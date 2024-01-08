@@ -33,7 +33,7 @@ import QuizIcon from './QuizIcon.svg'
 import CourseIcon from './ReadBook.svg'
 import RedBlinkingDot from './RedBlinkingDot.gif'
 import SaveNewIcon from './SaveNewIcon.svg'
-import SearchBlackSvg from './SearchBlack.svg' //  SearchIcon,
+import SearchBlackSvg from './SearchBlack.svg'; //  SearchIcon,
 
 import SettingNewIcon from './SettingNewIcon.svg'
 import CardOptionShareIcon from './ShareIconOptionMenu.svg'
@@ -56,11 +56,12 @@ import CloseSearchSvg from './closeSearch.svg'
 import CookieIcon from './cookieIcon.svg'
 import CourseListIcon from './course-icon.svg'
 // import  DraftIcon from './draftIcon.svg';
-import EventsListIcon5 from './Event.svg'
 import DraftIcon from './DraftIcon.svg'
+import EventsListIcon5 from './Event.svg'
+import VideoIcon from './VODIcon.svg'
 import DraftStatusIcon from './draftStatusIcon.svg'
 import EditIcon from './editIcon.svg'
-import EventsListIcon from './event-fill.svg' //  EventsListIcon5,
+import EventsListIcon from './event-fill.svg'; //  EventsListIcon5,
 import IconFaceBookLogoIconSvg from './facebookLogoIcon.svg'
 import FooterMenuUpdated from './footermenuupdated.svg'
 import HeaderMenuUpdated from './headermenuupdated.svg'
@@ -91,7 +92,6 @@ import IconListViewSvg from './sideMenuListView.svg'
 import IconTimerSvg from './timerIcon.svg'
 import IconTwitterLogoIconSvg from './twitterLogoIcon.svg'
 import UnpublishedStatusIcon from './unpublishStatusIcon.svg'
-import VideoIcon from './videoicon.svg'
 import VODListIcon from './vodListIcon.svg'
 export {
   AiSvg,
@@ -183,5 +183,6 @@ export {
   VODListIcon,
   VideoIcon,
   warning,
-  warningIcon,
+  warningIcon
 }
+
