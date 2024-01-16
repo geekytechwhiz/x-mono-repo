@@ -12,7 +12,8 @@ export const IframeDetails = ({ returnBack }: IframeDetailsProps) => {
         <ArrowBackIcon />
       </Box>
       <iframe
-        src={process.env.REACT_APP_CREATE_COURSE_URL}
+      title="title"
+        src={process.env.NX_CREATE_COURSE_URL}
         sandbox='allow-same-origin allow-scripts allow-popups allow-forms'
         width='100%'
         frameBorder='0'

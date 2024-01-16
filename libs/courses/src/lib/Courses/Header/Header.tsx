@@ -19,7 +19,7 @@ const Header = ({ returnBack }) => {
             className={classes.logoDispaly}
             onClick={() => navigate('/dashboard')}
           >
-            <img src={Logo} height='30' />
+            <img src={Logo} height='30' alt="img" />
           </Box>
         </Box>
       </Box>
