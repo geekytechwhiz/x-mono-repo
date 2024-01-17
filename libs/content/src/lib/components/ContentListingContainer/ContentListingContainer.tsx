@@ -1,9 +1,13 @@
 /* eslint-disable no-debugger */
+import {  useEffect,useContext } from 'react';
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
   useContentListing,
-  useContentSearch
+  useContentSearch,
+  contentTypeAPIs,
+  // fetchCourseContent,
+  // fetchSearchContent
 } from '@platformx/authoring-apis';
 import {
   ContentState,
@@ -23,6 +27,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const [isSpinning, setIsSpinning] = useState(false);
 
   const [filterValue, setFilterValue] = useState('ALL');
+  // const { state, dispatch } = useContext(Store);
 
   const { loading, error, refetch, contentList, fetchMore } = useContentSearch({
     contentType,
@@ -31,6 +36,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     startIndex,
     reloadContent: false,
   });
+  console.log("check2",contentList)
   const {
     deleteContent,
     duplicate,
@@ -47,6 +53,30 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     // dispatch(previewArticle({}));
     navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
   };
+
+  // useEffect(() => {
+  //   // localStorage.removeItem('articleTimerState');
+  //   // localStorage.removeItem('contentTypeTimerState');
+
+  //   // Clears content when navigation changed to diff content
+  //   if (state.content.contentList.length == 0) {
+  //     fetchContentSync();
+  //   }
+  // }, [contentType]);
+
+  // useEffect(() => {
+  //   fetchContentSync();
+  // }, [location]);
+
+  // const fetchContentSync = async () => {
+  //   if (contentType === 'Course') {
+  //     dispatch(
+  //       await contentTypeAPIs.fetchCourseContent(contentType, location, filterValue, state)
+  //     );
+  //   } else {
+  //     dispatch( await contentTypeAPIs.fetchSearchContent(contentType, location, filterValue, state));
+  //   }
+  // };
 
   const handleFilter = async (filter: string) => {
     setFilterValue(filter);

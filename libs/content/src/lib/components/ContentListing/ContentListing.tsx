@@ -178,7 +178,7 @@ const ContentListing = ({
                 <Box key={index}>
                   <Card
                     dataList={
-                      contentType == 'Course'
+                      contentType == 'course'
                         ? makeCourseContentData(item)
                         : makeContentData(item)
                     }

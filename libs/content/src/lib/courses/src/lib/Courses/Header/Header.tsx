@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../../assets/images/platform-x-logo.png';
+import { Logo } from '@platformx/utilities';
 import { useStyles } from './Header.styles';
 const Header = ({ returnBack }) => {
   const classes = useStyles();

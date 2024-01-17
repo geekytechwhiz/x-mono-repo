@@ -85,28 +85,17 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/content/create",
-  //   element: (
-  //     <ProtectedRoute  name='course'
-  //     subCategory=''
-  //     category='content'>
-  //       <CreateContent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/content/course",
-  //   element: (
-  //     <ProtectedRoute
-  //       name='course'
-  //       subCategory=''
-  //       category='content'
-  //       allowedRoles={["admin", "author", "content-manager", "reviewer", "publisher", "editor"]}>
-  //       <Content />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/content/create",
+    element: (
+      <ProtectedRoute  name='course'
+      subCategory='course'
+      category='content'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

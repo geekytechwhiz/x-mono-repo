@@ -37,7 +37,7 @@ const useContentSearch = ({
     });
 
     const fetchQuery =
-        contentType?.toLocaleLowerCase() === 'Course'
+        contentType?.toLocaleLowerCase() === 'course'
             ? SearchContentListQueries.FETCH_COURSE_LIST
             : SearchContentListQueries.FETCH_CONTENT_TYPE_LIST;
 
@@ -47,8 +47,10 @@ const useContentSearch = ({
     });
 
     useEffect(() => {
-        setContents(sortedData(data?.authoring_getContentTypeItems || []));
+        console.log("Today check",data)
+        setContents(sortedData(data?.authoring_getContentTypeItems || data?.authoring_recentContents || []));
     }, [data]);
+    console.log("check3",contents)
 
     const fetchMoreContent = async () => {
         try {
@@ -67,7 +69,7 @@ const useContentSearch = ({
 
             setContents(combinedData);
 
-            console.log(result);
+            console.log("22222",result);
         } catch (error) {
             console.error(error);
         }
@@ -76,6 +78,7 @@ const useContentSearch = ({
         await refetch(variables);
     };
     return { loading, error, contentList: contents, fetchMore: fetchMoreContent, refetch: refresh };
+    
 };
 
 export default useContentSearch;

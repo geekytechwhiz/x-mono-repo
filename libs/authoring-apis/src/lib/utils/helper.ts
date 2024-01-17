@@ -35,7 +35,7 @@ export const getLocale = (language: string, location: string) => {
   
 export const sortedData = (data: any[]) => {
     return data?.sort(
-        (a, b) => b?.last_modification_date - a.last_modification_date
+        (a, b) => (b?.last_modification_date || b?.last_modified_date) - (a.last_modification_date || a?.last_modified_date) 
     );
 };
 

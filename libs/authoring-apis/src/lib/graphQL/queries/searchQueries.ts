@@ -29,17 +29,15 @@ export const SearchContentListQueries = {
   FETCH_COURSE_LIST: gql`
     query FETCH_COURSE_LIST(
       $pagination: authoring_Paginate!
-      $filter: authoring_CONTENT_FILTER!
-      $isListing: Boolean
     ) {
       authoring_recentContents(
         pagination: $pagination
 
         searchTerm: ""
 
-        filter: $filter
+        filter: Course
 
-        isListing: $isListing
+        isListing: true
       )
     }
   `,

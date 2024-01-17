@@ -198,13 +198,13 @@ export const Card = ({
   }
 
   const getContentCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase()
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
       ? CATEGORY_PAGE
       : CATEGORY_CONTENT
   }
 
   const getContentSubCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase()
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
       ? ''
       : tagName
   }
