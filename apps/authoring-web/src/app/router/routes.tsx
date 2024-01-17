@@ -1,4 +1,7 @@
+import { CreateContent } from '@platformx/content'
 import { Dashboard } from '@platformx/dashboard'
+import NavTreeCreation from '@platformx/nav-menu'
+import { SitePage } from '@platformx/site-page'
 import { CreateUser, UserListing } from '@platformx/user-management'
 import {
   WorkflowDetails,
@@ -6,9 +9,6 @@ import {
 } from '@platformx/workflow-management'
 import { ProtectedRoute } from './ProtectedRoute'
 import { RouteConfig } from './routes.type'
-import { SitePage } from '@platformx/site-page'
-
-import { CreateContent } from "@platformx/content"
 export const routes: RouteConfig[] = [
   {
     path: '/',
@@ -93,10 +93,24 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create",
+    path: '/content/create',
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+      <ProtectedRoute name="quiz" subCategory="quiz" category="content">
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/navtree',
+    element: (
+      <ProtectedRoute
+        name="navigation"
+        category="menu"
+        subCategory=""
+        isSideBar={false}
+        isHeader={true}
+      >
+        <NavTreeCreation />
       </ProtectedRoute>
     ),
   },

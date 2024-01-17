@@ -11,6 +11,7 @@ import { ErrorTooltip } from './lib/components/ErrorTooltip/ErrorTooltip'
 import { MiniHeader } from './lib/components/Header/MiniHeader'
 import LanguageDropDown from './lib/components/LanguageDropDown/LanguageDropDown'
 import { Loader } from './lib/components/Loader'
+import ArticleListMobileLoader from './lib/components/Loader/ArticleListMobileLoader'
 import ContentListLoader from './lib/components/Loader/ContentListLoader'
 import { NoContentFound } from './lib/components/NoContentFound/NoContentFound'
 import NoSearchResult from './lib/components/NoSearchResult/NoSearchResult'
@@ -96,6 +97,7 @@ export {
   AUTH_URL,
   AddImage,
   ArticleListDesktopLoader,
+  ArticleListMobileLoader,
   ArticleMapper,
   AutoCompleteMultiSelect,
   AutoTextArea,
