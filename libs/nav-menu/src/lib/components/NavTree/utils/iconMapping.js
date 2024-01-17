@@ -1,4 +1,4 @@
-const iconMapping = {
+const icon = {
   NX_NAV_ICON_1:
     'https://dev.dam.hcl-x.com/server/api/core/bitstreams/373a4dc5-c608-404a-89ff-8b2644240f45/content',
 
@@ -33,5 +33,46 @@ const iconMapping = {
     'https://dev.dam.hcl-x.com/server/api/core/bitstreams/048e9e07-1f04-4df9-813b-332c37f0f8aa/content',
 
   NX_NAV_ICON_12:
-    'https://dev.dam.hcl-x.com/server/api/core/bitstreams/b5ca8fab-9a5d-4746-8441',
+    'https://dev.dam.hcl-x.com/server/api/core/bitstreams/b5ca8fab-9a5d-4746-8441-15038ef5fbbf/content',
 }
+
+const iconMapping = [
+  {
+    url: `${icon.NX_NAV_ICON_1}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_2}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_3}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_4}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_5}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_6}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_7}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_8}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_9}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_10}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_11}`,
+  },
+  {
+    url: `${icon.NX_NAV_ICON_12}`,
+  },
+]
+
+export default iconMapping

@@ -1,18 +1,20 @@
-import { Box } from '@mui/material';
+import { Box } from '@mui/material'
+import { fetchUserSitePermissionList } from '@platformx/authoring-apis'
 import {
-  ContentListLoader, NoSearchResult, capitalizeFirstLetter,
+  Card,
+  ContentListLoader,
+  NoSearchResult,
+  capitalizeFirstLetter,
+  capitalizeWords,
   convertToLowerCase,
-  handleHtmlTags
-} from '@platformx/utilities';
-import { Key, memo, useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { capitalizeWords, formatContentTitle } from '@platformx/utilities';
-import { ContentListingProps, ListItem } from '../../utils/List.types';
-import { Card } from '@platformx/utilities';
-import { fetchUserSitePermissionList } from '@platformx/authoring-apis';
-import { useUserSession } from '@platformx/utilities';
-import React from 'react';
-import ContentTypeMenuList from '../MenuList/ContentTypeMenuList';
+  formatContentTitle,
+  handleHtmlTags,
+  useUserSession,
+} from '@platformx/utilities'
+import { Key, memo, useEffect, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import { ContentListingProps, ListItem } from '../../utils/List.types'
+import ContentTypeMenuList from '../MenuList/ContentTypeMenuList'
 const ContentListing = ({
   contentList,
   loading,
@@ -29,39 +31,37 @@ const ContentListing = ({
   handleDeleteData,
   handlePageDelete,
   fetchContentDetails,
-
 }: ContentListingProps) => {
-
-  const [sitelist, setSiteList] = useState([]);
-  const [getSession] = useUserSession();
-  const { userInfo } = getSession();
-  const pageUrl = new URL(window.location.href);
-  const path = pageUrl.pathname.split('/')?.pop();
+  const [sitelist, setSiteList] = useState([])
+  const [getSession] = useUserSession()
+  const { userInfo } = getSession()
+  const pageUrl = new URL(window.location.href)
+  const path = pageUrl.pathname.split('/')?.pop()
 
   const fetchUserSite = async () => {
     try {
       const inputVariable = {
         user_id: userInfo?.user_id,
         content_type: capitalizeFirstLetter(path),
-      };
+      }
       const response: any = await fetchUserSitePermissionList({
         ...inputVariable,
-      });
+      })
 
       if (response?.authoring_getUserSitePermissionList) {
-        const siteList = response.authoring_getUserSitePermissionList || [];
-        setSiteList(siteList);
+        const siteList = response.authoring_getUserSitePermissionList || []
+        setSiteList(siteList)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  const searchPageUrl = new URL(window.location.href);
+  const searchPageUrl = new URL(window.location.href)
 
   const contentType: string = capitalizeFirstLetter(
-    searchPageUrl?.pathname?.split('/')?.[4]
-  );
+    searchPageUrl?.pathname?.split('/')?.[4],
+  )
   const makeContentData = (item: any) => {
     const listItemDetails: ListItem = {
       tagName: convertToLowerCase(item.tag_name),
@@ -78,16 +78,16 @@ const ContentListing = ({
         item?.schduled_unPublish_trigger_datetime,
       lastPublishedDate: item?.last_published_date,
       lastModifiedBy: capitalizeWords(
-        formatContentTitle(item?.last_modified_by?.replace('undefined', ''))
+        formatContentTitle(item?.last_modified_by?.replace('undefined', '')),
       ),
       publishedBy: capitalizeWords(
-        formatContentTitle(item?.published_by?.replace('undefined', ''))
+        formatContentTitle(item?.published_by?.replace('undefined', '')),
       ),
       publishedDate: item?.published_date,
       currentPageUrl: item?.current_page_url,
       parentPageUrl: item?.parent_page_url,
       name: capitalizeWords(
-        formatContentTitle(item?.name?.replace('undefined', ''))
+        formatContentTitle(item?.name?.replace('undefined', '')),
       ),
       page_state: item?.page_state,
       is_published: item?.is_published,
@@ -99,9 +99,9 @@ const ContentListing = ({
       eventStartDate: item?.event_start_date,
       eventEndDate: item?.event_end_date,
       url: item?.url || '',
-    };
-    return listItemDetails;
-  };
+    }
+    return listItemDetails
+  }
   const makeCourseContentData = (item: any) => {
     const listItemDetails: any = {
       tagName: convertToLowerCase(item.tags),
@@ -118,16 +118,16 @@ const ContentListing = ({
       //   item?.schduled_unPublish_trigger_datetime,
       lastPublishedDate: item.published_date,
       lastModifiedBy: capitalizeWords(
-        formatContentTitle(item?.published_by?.replace('undefined', ''))
+        formatContentTitle(item?.published_by?.replace('undefined', '')),
       ),
       publishedBy: capitalizeWords(
-        formatContentTitle(item?.published_by?.replace('undefined', ''))
+        formatContentTitle(item?.published_by?.replace('undefined', '')),
       ),
       publishedDate: item?.published_date,
       currentPageUrl: item?.course_url,
       parentPageUrl: item?.parent_page_url,
       name: capitalizeWords(
-        formatContentTitle(item?.name?.replace('undefined', ''))
+        formatContentTitle(item?.name?.replace('undefined', '')),
       ),
       // page_state: item?.page_state,
       // is_published: item?.is_published,
@@ -140,13 +140,13 @@ const ContentListing = ({
       // original_image: item?.original_image,
       // eventStartDate: item?.event_start_date,
       // eventEndDate: item?.event_end_date,
-    };
-    return listItemDetails;
-  };
+    }
+    return listItemDetails
+  }
 
   useEffect(() => {
-    fetchUserSite();
-  }, [path]);
+    fetchUserSite()
+  }, [path])
 
   return (
     <Box
@@ -161,49 +161,50 @@ const ContentListing = ({
         scrollableTarget="scrollableDiv"
         style={{ overflowX: 'hidden' }}
       >
-
         <Box sx={{ padding: '0 10px 0 15px' }}>
           <Box>
-            {contentList?.length > 0 && contentList?.map((item: any, index: Key | null | undefined) => {
-              return (
-                <Box key={index}>
-                  <Card
-                    dataList={
-                      contentType == 'Course'
-                        ? makeCourseContentData(item)
-                        : makeContentData(item)
-                    }
-                    deleteContent={deleteContent}
-                    preview={preview}
-                    view={view}
-                    edit={edit}
-                    editPage={editPage}
-                    viewPage={viewPage}
-                    previewPage={previewPage}
-                    handleDeleteData={handleDeleteData}
-                    handlePageDelete={handlePageDelete}
-                    siteList={sitelist}
-                    contentType={contentType}
-                    CustomMenuList={
-                      <ContentTypeMenuList
-                        item={makeContentData(item)}
-                        deleteContent={deleteContent}
-                        duplicate={duplicate} preview={preview}
-                        unPublish={unPublish}
-                        view={view} edit={edit}
-                        fetchContentDetails={fetchContentDetails} />}
-                  />
-                </Box>
-              );
-            })}
+            {contentList?.length > 0 &&
+              contentList?.map((item: any, index: Key | null | undefined) => {
+                return (
+                  <Box key={index}>
+                    <Card
+                      dataList={
+                        contentType == 'Course'
+                          ? makeCourseContentData(item)
+                          : makeContentData(item)
+                      }
+                      deleteContent={deleteContent}
+                      preview={preview}
+                      view={view}
+                      edit={edit}
+                      editPage={editPage}
+                      viewPage={viewPage}
+                      previewPage={previewPage}
+                      handleDeleteData={handleDeleteData}
+                      handlePageDelete={handlePageDelete}
+                      siteList={sitelist}
+                      contentType={contentType}
+                      CustomMenuList={
+                        <ContentTypeMenuList
+                          item={makeContentData(item)}
+                          deleteContent={deleteContent}
+                          duplicate={duplicate}
+                          preview={preview}
+                          unPublish={unPublish}
+                          view={view}
+                          edit={edit}
+                          fetchContentDetails={fetchContentDetails}
+                        />
+                      }
+                    />
+                  </Box>
+                )
+              })}
           </Box>
         </Box>
-
       </InfiniteScroll>
-      {
-        !loading && contentList?.length === 0 && <NoSearchResult />
-      }
+      {!loading && contentList?.length === 0 && <NoSearchResult />}
     </Box>
-  );
-};
-export default memo(ContentListing);
+  )
+}
+export default memo(ContentListing)

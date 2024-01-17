@@ -108,6 +108,7 @@ import EventsListIcon5 from './Event.svg'
 import ProgressIcon from './Frame.svg'
 import BookIcon from './ReadBook.svg'
 import AccountBalanceWalletIcon from './account_balance_wallet.svg'
+import SettingIcon from './settingIcon.svg'
 import TaskNotFoundIcon from './taskNotFoundIcon.svg'
 import WarningIcon from './warningIcon.svg'
 import WorkflowDetails from './workflow.svg'
@@ -210,6 +211,7 @@ export {
   SearchGraySvg,
   SearchIcon,
   SendIcon,
+  SettingIcon,
   SettingNewIcon,
   SitesIcon,
   SpaceListIcon,

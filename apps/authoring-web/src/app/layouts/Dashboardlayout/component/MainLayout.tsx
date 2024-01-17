@@ -1,26 +1,22 @@
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import {
-  RootState,
-  handleCancel,
-  handleConfirm,
-} from '@platformx/authoring-state';
-import { XDialog } from '@platformx/utilities';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import Header from './Header/Header';
-import LeftSideBar from './LeftSidebar/LeftSideBar';
-import RightLayout from './RightLayout/RightLayout';
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { RootState } from '@platformx/authoring-state'
+import { XDialog } from '@platformx/utilities'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import Header from './Header/Header'
+import LeftSideBar from './LeftSidebar/LeftSideBar'
+import RightLayout from './RightLayout/RightLayout'
 
 type LayoutWrapperProps = {
-  children: React.ReactNode;
-  isHeader?: boolean;
-  isSideBar?: boolean;
-  hasSearch?: boolean;
-  hasLogo?: boolean;
-};
+  children: React.ReactNode
+  isHeader?: boolean
+  isSideBar?: boolean
+  hasSearch?: boolean
+  hasLogo?: boolean
+}
 
 const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
   children,
@@ -29,30 +25,30 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
   hasSearch = true,
   hasLogo = false,
 }: LayoutWrapperProps) => {
-  const [open, setOpen] = useState(true);
-  const location = useLocation();
-  const theme = useTheme();
-  const pageUrl = new URL(window.location.href);
-  const [menuItemSelected, setMenuItemSelected] = useState('menu');
+  const [open, setOpen] = useState(true)
+  const location = useLocation()
+  const theme = useTheme()
+  const pageUrl = new URL(window.location.href)
+  const [menuItemSelected, setMenuItemSelected] = useState('menu')
   const { isOpen, dialogProps } = useSelector(
-    (state: RootState) => state.dialog
-  );
-  const { t } = useTranslation();
+    (state: RootState) => state.dialog,
+  )
+  const { t } = useTranslation()
   const handleDrawerOpen = () => {
-    isSideBar && setOpen(!open);
-  };
+    isSideBar && setOpen(!open)
+  }
 
-  const ifTab = useMediaQuery(theme.breakpoints.up('md'));
+  const ifTab = useMediaQuery(theme.breakpoints.up('md'))
 
   const getBreakPoint = () => {
-    return pageUrl.pathname.split('/')[3] === 'navtree' ? ifTab : isHeader;
-  };
+    return pageUrl.pathname.split('/')[3] === 'navtree' ? ifTab : isHeader
+  }
 
   const handleMenuAction = (menu) => {
-    setMenuItemSelected(menu);
-  };
+    setMenuItemSelected(menu)
+  }
 
-  const noLayoutRoute = ['site-setting'];
+  const noLayoutRoute = ['site-setting']
 
   if (
     !noLayoutRoute.some((routeName) => location.pathname.includes(routeName))
@@ -82,8 +78,8 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
         </RightLayout>
         {isOpen && (
           <XDialog
-            handleClose={handleCancel}
-            handleConfirm={handleConfirm}
+            // handleClose={handleCancel}
+            // handleConfirm={handleConfirm}
             open={isOpen}
             imageIcon={dialogProps.imageIcon}
             title={t(dialogProps.title)}
@@ -94,10 +90,10 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
           />
         )}
       </>
-    );
+    )
   }
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}
 
-export default LayoutWrapper;
+export default LayoutWrapper

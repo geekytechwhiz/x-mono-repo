@@ -1,15 +1,15 @@
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import { Box, Grid, Tooltip, Typography } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined'
+import { Box, Grid, Tooltip, Typography } from '@mui/material'
+import MenuItem from '@mui/material/MenuItem'
+import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 // import Loader from '../../../../Common/Loader';
 // import { FilterIcon } from '@platformx/utilities';
-import { useMutation } from '@apollo/client';
-import { WorkflowQueries } from '@platformx/authoring-apis';
-import { handleDialog } from '@platformx/authoring-state';
+import { useMutation } from '@apollo/client'
+import { WorkflowQueries } from '@platformx/authoring-apis'
+// import { handleDialog } from '@platformx/authoring-state'
 import {
   BasicSwitch,
   ShowToastError,
@@ -17,11 +17,11 @@ import {
   ThemeConstants,
   WarningIcon,
   WorkflowIcon,
-} from '@platformx/utilities';
-import { useDispatch } from 'react-redux';
-import MoreDialog from '../WorkFlowListing/MoreDialog';
-import { useStyles } from '../WorkFlowListing/WorkFlowListing.styles';
-import { ListViewProps } from '../WorkFlowListing/Workflow.Types';
+} from '@platformx/utilities'
+import { useDispatch } from 'react-redux'
+import MoreDialog from '../WorkFlowListing/MoreDialog'
+import { useStyles } from '../WorkFlowListing/WorkFlowListing.styles'
+import { ListViewProps } from '../WorkFlowListing/Workflow.Types'
 const ListView = ({
   name,
   id,
@@ -32,52 +32,52 @@ const ListView = ({
   title,
   handleReload,
 }: ListViewProps) => {
-  const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [checked, setChecked] = useState(status);
-  const [contentType, setContentType] = useState('');
-  const DateTime = format(new Date(creation_date), 'LLL dd, yyyy | H:mm');
-  const classes = useStyles();
-  const [workflowMutate] = useMutation(WorkflowQueries.UPDATE_WORKFLOW_STATUS);
-  const dispatch = useDispatch();
+  const { t } = useTranslation()
+  const [isLoading, setIsLoading] = useState(false)
+  const [checked, setChecked] = useState(status)
+  const [contentType, setContentType] = useState('')
+  const DateTime = format(new Date(creation_date), 'LLL dd, yyyy | H:mm')
+  const classes = useStyles()
+  const [workflowMutate] = useMutation(WorkflowQueries.UPDATE_WORKFLOW_STATUS)
+  const dispatch = useDispatch()
 
   const handleConfirm = async () => {
-    setIsLoading(true);
-    setChecked(!checked);
+    setIsLoading(true)
+    setChecked(!checked)
     try {
       const response = await workflowMutate({
         variables: {
           input: { title: title, status: !checked },
         },
         onCompleted: (res) => {
-          handleReload();
+          handleReload()
         },
-      });
-      setIsLoading(false);
+      })
+      setIsLoading(false)
       checked
         ? ShowToastSuccess(t('disable_workflow_message'))
-        : ShowToastSuccess(t('enable_workflow_message'));
+        : ShowToastSuccess(t('enable_workflow_message'))
     } catch (err: any) {
       ShowToastError(
         err.graphQLErrors.length > 0
           ? err.graphQLErrors[0].message
-          : t('api_error_toast')
-      );
-      setIsLoading(false);
+          : t('api_error_toast'),
+      )
+      setIsLoading(false)
     }
-  };
+  }
 
   useEffect(() => {
-    let tempStr = '';
+    let tempStr = ''
     content_type.forEach((val: any) => {
-      tempStr = `${tempStr}${val}, `;
-    });
+      tempStr = `${tempStr}${val}, `
+    })
     let str =
       tempStr.slice(0, tempStr.lastIndexOf(',')) +
       ' ' +
-      tempStr.slice(tempStr.lastIndexOf(',') + ' '.length);
-    setContentType(str);
-  }, [content_type]);
+      tempStr.slice(tempStr.lastIndexOf(',') + ' '.length)
+    setContentType(str)
+  }, [content_type])
   const handleChange = (checked: boolean) => {
     const dialogContent = {
       imageIcon: WarningIcon,
@@ -89,16 +89,16 @@ const ListView = ({
       leftButtonText: t('no'),
       rightButtonText: t('yes'),
       handleCallback: handleConfirm,
-    };
+    }
     // dialog.show(dialogContent, handleConfirm, handleDialogClose);
-    dispatch(handleDialog(dialogContent));
-  };
-  const navigate = useNavigate();
+    // dispatch(handleDialog(dialogContent))
+  }
+  const navigate = useNavigate()
 
   const handleViewWorkflow = (userId: string) => {
-    console.log('userId', userId);
-    navigate(`/workflow/workflow-details?path=${userId}`);
-  };
+    console.log('userId', userId)
+    navigate(`/workflow/workflow-details?path=${userId}`)
+  }
   return (
     <>
       {/* {isLoading && <Loader />} */}
@@ -181,7 +181,7 @@ const ListView = ({
                             )}
                           </Typography>
                         </Box>
-                      );
+                      )
                     })}
                   </Box>
                   <Box>
@@ -259,7 +259,7 @@ const ListView = ({
         </Grid>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default ListView;
+export default ListView
