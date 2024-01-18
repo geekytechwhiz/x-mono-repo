@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { articleSlice } from './slices/Article/ArticleSlice'
-import { commentSlice } from './slices/Comment/CommentSlice'
-import { contentSlice } from './slices/Content/ContentSlice'
-import { dialogSlice } from './slices/Dialog/DialogSlice'
-import { menuSlice } from './slices/Menu/MenuSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import { articleSlice } from "./slices/Article/ArticleSlice";
+import { commentSlice } from "./slices/Comment/CommentSlice";
+import { contentSlice } from "./slices/Content/ContentSlice";
+import { dialogSlice } from "./slices/Dialog/DialogSlice";
+import { menuSlice } from "./slices/Menu/MenuSlice";
+import { quizSlice } from "./slices/Quiz/QuizSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,8 +13,9 @@ export const store = configureStore({
     dialog: dialogSlice.reducer,
     comment: commentSlice.reducer,
     menu: menuSlice.reducer,
+    quiz: quizSlice.reducer,
   },
-})
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
