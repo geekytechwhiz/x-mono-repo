@@ -61,6 +61,8 @@ export const Card = ({
   duplicateToSite,
   contentType,
 }: CardProps) => {
+  console.log("dataList11",dataList.contentType)
+  console.log("dataList.tagName",dataList.tagName)
 
   const { canAccessAction } = useAccess();
   const tagName =

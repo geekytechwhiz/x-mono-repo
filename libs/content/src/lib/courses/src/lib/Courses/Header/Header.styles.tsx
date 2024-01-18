@@ -33,6 +33,21 @@ export const useStyles = makeStyles(() => ({
       display: 'none',
     },
   },
+  createCoursetophead : {
+    display: 'flex',
+     position: 'sticky',
+     top: 0,
+     zIndex: 2,
+      background: '#fff',
+    borderBottom: 'solid 1px #ced3d9',
+    alignItems:'center',
+    justifyContent:'space-between',
+     padding: '10px 20px',
+     minHeight:'62px',
+
+  },
+
+
   contentStyle: {
     [`@media (min-width:${ThemeConstants.XS}px)`]: {
       paddingRight: '10px',
@@ -93,3 +108,4 @@ export const useStyles = makeStyles(() => ({
     height: '16px',
   },
 }));
+

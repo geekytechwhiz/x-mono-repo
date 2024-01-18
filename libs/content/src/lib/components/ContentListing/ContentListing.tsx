@@ -14,6 +14,7 @@ import { useUserSession } from '@platformx/utilities';
 import MenuList from '../MenuList/MenuList';
 import React from 'react';
 const ContentListing = ({
+  content,
   contentList,
   loading,
   fetchMore,
@@ -78,7 +79,8 @@ const ContentListing = ({
       title: capitalizeFirstLetter(item.title),
       description: handleHtmlTags(item.description),
       author: item.author,
-      lastModifiedDate: item.last_modification_date || item?.modificationDate,
+      lastModifiedDate: item.last_modification_date || item?.modificationDate || item?.last_modified_date
+      ,
       status: item.status || item?.page_state,
       path: item?.path,
       page: item?.page,
@@ -178,7 +180,8 @@ const ContentListing = ({
                 <Box key={index}>
                   <Card
                     dataList={
-                      contentType == 'course'
+                      // makeCourseContentData(item)
+                      content === 'Course'
                         ? makeCourseContentData(item)
                         : makeContentData(item)
                     }

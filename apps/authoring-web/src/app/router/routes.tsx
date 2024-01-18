@@ -1,5 +1,6 @@
 import { Dashboard } from '@platformx/dashboard'
 import { CreateUser, UserListing } from '@platformx/user-management'
+import { CreateCourse } from '@platformx/content'
 import {
   WorkflowDetails,
   WorkflowManagement,
@@ -92,6 +93,20 @@ export const routes: RouteConfig[] = [
       subCategory='course'
       category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}
+        >
+        <CreateCourse />
       </ProtectedRoute>
     ),
   },

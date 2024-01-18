@@ -1,5 +1,6 @@
 import useTheme from '@mui/material/styles/useTheme';
 import { makeStyles } from '@mui/styles';
+import { ThemeConstants } from '@platformx/utilities';
 
 export const useCustomStyle = makeStyles(() => {
   const theme = useTheme();
@@ -21,7 +22,7 @@ export const useCustomStyle = makeStyles(() => {
       position: 'absolute',
       left: '5px',
       top: '70px',
-      background: theme.palette.primaryColor[100],
+      background:'#ffffff',
       [theme.breakpoints.down('lg')]: {
         left: '75px',
       },

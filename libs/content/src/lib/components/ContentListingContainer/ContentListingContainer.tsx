@@ -36,7 +36,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     startIndex,
     reloadContent: false,
   });
-  console.log("check2",contentList)
+  console.log("checkcontentType",contentType)
   const {
     deleteContent,
     duplicate,
@@ -51,6 +51,9 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const createContentNew = () => {
     debugger;
     // dispatch(previewArticle({}));
+    if(contentType==='Course')
+    navigate('/content/create-course');
+  else
     navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
   };
 
@@ -108,6 +111,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
 
       {(!loading && contentList && contentList?.length > 0) && (
         <ContentListing
+        content={contentType}
           contentList={contentList}
           deleteContent={deleteContent}
           dataList={contentList}

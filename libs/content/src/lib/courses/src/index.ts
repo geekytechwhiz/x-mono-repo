@@ -1,3 +1,3 @@
-import createCourse from './lib/Courses/CreateCourse'
+import CreateCourse from './lib/Courses/CreateCourse'
 export * from './lib/courses'
-export {createCourse}
+export {CreateCourse}

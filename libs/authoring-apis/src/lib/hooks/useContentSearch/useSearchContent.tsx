@@ -66,7 +66,7 @@ const useContentSearch = ({
 
             const fetchMoreData = result.data?.authoring_getContentTypeItems || [];
             const combinedData: any = [...contents, ...fetchMoreData];
-
+            console.log("combinedData",combinedData);
             setContents(combinedData);
 
             console.log("22222",result);
