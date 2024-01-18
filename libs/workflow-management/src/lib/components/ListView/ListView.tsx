@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 // import { FilterIcon } from '@platformx/utilities';
 import { useMutation } from '@apollo/client'
 import { WorkflowQueries } from '@platformx/authoring-apis'
-// import { handleDialog } from '@platformx/authoring-state'
+import { handleDialog } from '@platformx/authoring-state'
 import {
   BasicSwitch,
   ShowToastError,
@@ -91,7 +91,7 @@ const ListView = ({
       handleCallback: handleConfirm,
     }
     // dialog.show(dialogContent, handleConfirm, handleDialogClose);
-    // dispatch(handleDialog(dialogContent))
+    dispatch(handleDialog(dialogContent))
   }
   const navigate = useNavigate()
 

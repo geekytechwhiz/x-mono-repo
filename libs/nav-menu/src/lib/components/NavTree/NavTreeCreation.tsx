@@ -1,7 +1,15 @@
+import { useLazyQuery, useMutation } from '@apollo/client'
 import AddIcon from '@mui/icons-material/Add'
 import CloseIcon from '@mui/icons-material/Close'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import { Box, Button, Typography } from '@mui/material'
+import {
+  delete_menu,
+  fetch_menu_list,
+  publish_menu,
+  update_menu,
+} from '@platformx/authoring-apis'
+import { updateInitialState } from '@platformx/authoring-state'
 import { Category, ContentAction } from '@platformx/content'
 import {
   ErrorTooltip,
@@ -11,11 +19,13 @@ import {
   ThemeConstants,
   useAccess,
 } from '@platformx/utilities'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import CreateMenuPage from './CreateMenuPage'
 import NavMenuView from './MobileViewPages/NavMenuView'
 import NavTree from './NavTree'
+
 export default function NavTreeCreation() {
   const { t } = useTranslation()
   const handleSelectedType = async (selectedType) => {
@@ -34,7 +44,14 @@ export default function NavTreeCreation() {
   const [isedit, setisedit] = useState(false)
   const [isConfirm, setisConfirm] = useState(false)
   const { canAccessAction } = useAccess()
+  const [runFetchMenuList] = useLazyQuery(fetch_menu_list)
+  const [updatemutate] = useMutation(update_menu)
+  const [publishmutate] = useMutation(publish_menu)
+  const [mutateDeleteMenu] = useMutation(delete_menu)
 
+  const dispatch = useDispatch()
+  const [menus, setMenus] = useState<any>()
+  const [isCall, setIsCall] = useState(false)
   const onclickGuideline = () => {
     setIsOpen(true)
     setIsCreate(false)
@@ -54,7 +71,50 @@ export default function NavTreeCreation() {
     setIsCreate(value)
     setOpenCreateMenu(false)
   }
+  useEffect(() => {
+    runFetchMenuList({
+      variables: {
+        pagePath: '',
+      },
+    })
+      .then((resp) => {
+        if (resp?.data?.authoring_getNavigation) {
+          setMenus(resp?.data?.authoring_getNavigation)
 
+          dispatch(
+            updateInitialState(
+              resp?.data?.authoring_getNavigation?.menu_content,
+            ),
+          )
+        }
+      })
+      .catch((err) => {
+        console.log(JSON.stringify(err, null, 2))
+      })
+  }, [isCall])
+  const updateMenu = (menuToUpdate) => {
+    return updatemutate({
+      variables: {
+        input: menuToUpdate,
+      },
+    })
+  }
+  const publishMenu = (defaultTimeZone) => {
+    return publishmutate({
+      variables: {
+        input: {
+          timeZone: defaultTimeZone,
+        },
+      },
+    })
+  }
+  const deleteMenu = (menuToUpdate) => {
+    return mutateDeleteMenu({
+      variables: {
+        input: menuToUpdate,
+      },
+    })
+  }
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -101,6 +161,12 @@ export default function NavTreeCreation() {
               setisedit={setisedit}
               isConfirm={isConfirm}
               setIsCreate={setIsCreate}
+              isCall={isCall}
+              setIsCall={setIsCall}
+              menus={menus}
+              updateMenu={updateMenu}
+              publish={publishMenu}
+              deleteMenu={deleteMenu}
             />
           </Box>
         )}

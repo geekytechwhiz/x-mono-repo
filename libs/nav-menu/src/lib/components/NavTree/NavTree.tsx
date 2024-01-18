@@ -18,7 +18,7 @@ import {
   publish_menu,
   update_menu,
 } from '@platformx/authoring-apis'
-import { RootState, updateInitialState } from '@platformx/authoring-state'
+import { RootState } from '@platformx/authoring-state'
 import {
   SettingIcon,
   ShowToastError,
@@ -29,7 +29,6 @@ import {
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import DeleteDialog from './DeleteDialog'
 import './Header.css'
 import { Drag, DragAndDrop, Drop } from './drag-and-drop'
@@ -45,6 +44,12 @@ export default function NavTree({
   setisedit,
   isConfirm,
   setIsCreate,
+  isCall,
+  setIsCall,
+  menus,
+  updateMenu,
+  publish,
+  deleteMenu,
 }) {
   const { t } = useTranslation()
   const searchPageUrl = new URL(window.location.href)
@@ -54,7 +59,6 @@ export default function NavTree({
       ? (searchPageUrl.searchParams.get('searchCat') as string)
       : 'All',
   )
-  const [value, setValue] = React.useState(0)
   const [isOpen, setIsOpen] = React.useState(false)
   const dispatch = useDispatch()
 
@@ -68,9 +72,7 @@ export default function NavTree({
   const openListMenu = Boolean(listMenu)
   const openListSubMenu = Boolean(listSubMenu)
   const [currentButton, setCurrentButton] = React.useState(null)
-  const [hideClicked, setHideClicked] = React.useState(false)
   const [hideTextId, setHideTextId] = React.useState(0)
-  const [a, setA] = React.useState([hideTextId])
   const [mutateDeleteMenu] = useMutation(delete_menu)
   const [selectedItem, setSelectedItem] = useState<MenulistProps>()
   const [updatemutate] = useMutation(update_menu)
@@ -85,7 +87,7 @@ export default function NavTree({
   const newMenu = useRef<any>([])
   const username = `${userInfo.first_name} ${userInfo.last_name}`
   const [isLoaded, setIsLoaded] = useState(false)
-  const [menus, setMenus] = useState<any>()
+  // const [menus, setMenus] = useState<any>()
   const [menuToPublish, setMenuToPublish] = useState<
     {
       Title: string
@@ -122,9 +124,6 @@ export default function NavTree({
     event.stopPropagation()
     setListSubMenu(event.currentTarget)
     // setSelectedArticle(selectedArticle);
-  }
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
   }
 
   React.useEffect(() => {
@@ -166,8 +165,6 @@ export default function NavTree({
     }
   }
 
-  const navigate = useNavigate()
-
   const onRename = (label) => {
     const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
     const isItemExist = tempArr.find((val) => {
@@ -193,11 +190,12 @@ export default function NavTree({
         menu_content: tempArr,
       }
 
-      updatemutate({
-        variables: {
-          input: menuToUpdate,
-        },
-      })
+      // updatemutate({
+      //   variables: {
+      //     input: menuToUpdate,
+      //   },
+      // })
+      updateMenu(menuToUpdate)
         .then((resp) => {
           setRename('')
           ShowToastSuccess(`${t('menu')} ${t('updated_toast')}`)
@@ -228,11 +226,12 @@ export default function NavTree({
       menu_content: tempArr,
     }
 
-    updatemutate({
-      variables: {
-        input: menuToUpdate,
-      },
-    })
+    // updatemutate({
+    //   variables: {
+    //     input: menuToUpdate,
+    //   },
+    // })
+    updateMenu(menuToUpdate)
       .then((resp) => {
         // setIsrenamed(!isrenamed);
         setSubMenu('')
@@ -279,14 +278,7 @@ export default function NavTree({
     setSelectedType(item.name)
     handlePageList(item)
   }
-  const handleClick = (url) => {
-    navigate(url)
-  }
-  const handleClose = () => {
-    setIsOpen(false)
-    setCurrentButton(null)
-    setHideClicked(false)
-  }
+
   const handleReorderMenu = (defaultTimeZone) => {
     const { created_by: createdBy } = menus
     const menuToUpdate = {
@@ -295,21 +287,22 @@ export default function NavTree({
       menu_content: reorderMenu,
     }
     setIsLoaded(true)
-    updatemutate({
-      variables: {
-        input: menuToUpdate,
-      },
-    })
+    // updatemutate({
+    //   variables: {
+    //     input: menuToUpdate,
+    //   },
+    // })
+    updateMenu(menuToUpdate)
       .then((resp) => {
         setRename('')
-        // ShowToastSuccess(`${t('menu')} ${t('reordered_toast')}`);
-        publishmutate({
-          variables: {
-            input: {
-              timeZone: defaultTimeZone,
-            },
-          },
-        })
+        // publishmutate({
+        //   variables: {
+        //     input: {
+        //       timeZone: defaultTimeZone,
+        //     },
+        //   },
+        // })
+        publish(defaultTimeZone)
           .then((resp) => {
             setIsLoaded(false)
 
@@ -403,25 +396,26 @@ export default function NavTree({
     }
   }
   useEffect(() => {
-    runFetchMenuList({
-      variables: {
-        pagePath: '',
-      },
-    })
-      .then((resp) => {
-        if (resp?.data?.authoring_getNavigation) {
-          setMenus(resp?.data?.authoring_getNavigation)
+    setIsCall(!isCall)
+    // runFetchMenuList({
+    //   variables: {
+    //     pagePath: '',
+    //   },
+    // })
+    //   .then((resp) => {
+    //     if (resp?.data?.authoring_getNavigation) {
+    //       setMenus(resp?.data?.authoring_getNavigation)
 
-          dispatch(
-            updateInitialState(
-              resp?.data?.authoring_getNavigation?.menu_content,
-            ),
-          )
-        }
-      })
-      .catch((err) => {
-        console.log(JSON.stringify(err, null, 2))
-      })
+    //       dispatch(
+    //         updateInitialState(
+    //           resp?.data?.authoring_getNavigation?.menu_content,
+    //         ),
+    //       )
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(JSON.stringify(err, null, 2))
+    //   })
   }, [row, rename, editDone, isConfirm, subMenu])
   const handleDeleteMenu = () => {
     const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
@@ -436,18 +430,16 @@ export default function NavTree({
       createdBy,
       menu_content: itemToDelete,
     }
-    console.log('delete', menuToUpdate, selectedItem?.Menu_Id)
 
-    mutateDeleteMenu({
-      variables: {
-        input: menuToUpdate,
-      },
-    })
+    // mutateDeleteMenu({
+    //   variables: {
+    //     input: menuToUpdate,
+    //   },
+    // })
+    deleteMenu(menuToUpdate)
       .then(() => {
-        // getArticle(0, article?.articleArray?.length - 1);
         setRow(row - 1)
         ShowToastSuccess(`${t('menu')} ${t('deleted_toast')}`)
-        // setLoading(false);
       })
       .catch(() => {
         ShowToastError(t('api_error_toast'))

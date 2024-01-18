@@ -1,5 +1,5 @@
-import DragHandleIcon from '@mui/icons-material/DragHandle';
-import { Draggable } from 'react-beautiful-dnd';
+import DragHandleIcon from '@mui/icons-material/DragHandle'
+import { Draggable } from 'react-beautiful-dnd'
 
 export const Drag = ({ id, index, ...props }) => {
   return (
@@ -26,8 +26,8 @@ export const Drag = ({ id, index, ...props }) => {
             </div>
             {props.children}
           </div>
-        );
+        )
       }}
     </Draggable>
-  );
-};
+  )
+}

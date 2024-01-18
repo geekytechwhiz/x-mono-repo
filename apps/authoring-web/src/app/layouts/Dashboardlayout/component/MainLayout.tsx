@@ -1,6 +1,10 @@
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { RootState } from '@platformx/authoring-state'
+import {
+  RootState,
+  handleCancel,
+  handleConfirm,
+} from '@platformx/authoring-state'
 import { XDialog } from '@platformx/utilities'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -78,8 +82,8 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
         </RightLayout>
         {isOpen && (
           <XDialog
-            // handleClose={handleCancel}
-            // handleConfirm={handleConfirm}
+            handleClose={handleCancel}
+            handleConfirm={handleConfirm}
             open={isOpen}
             imageIcon={dialogProps.imageIcon}
             title={t(dialogProps.title)}
