@@ -12,7 +12,10 @@ import React, { useEffect, useState } from 'react';
 import { RATIOS } from '../utils/constants';
 
 const ShowCaseCrops = (props: any = {}) => {
-  const { open, Images = [], backTo, handleEdit, extension } = nullToObject(props);
+  const { open, backTo, handleEdit, data } = nullToObject(props);
+  const { cropped_images = [], original_image = {}} = data || {};
+  const { ext } = original_image || {};
+ 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -39,10 +42,9 @@ const ShowCaseCrops = (props: any = {}) => {
         <Box className='casecropsbox'>
           {loading && <XLoader type='circular' />}
           <Grid container sx={{ paddingRight: '50px' }}>
-            {Images.map(
+            {cropped_images.map(
               (
                 {
-                  visibility = '',
                   folder_path = '',
                   aspect_ratio = '',
                 },
@@ -52,7 +54,7 @@ const ShowCaseCrops = (props: any = {}) => {
                     <Box className='imgbox'>
                       <img
                         alt='cropped-img'
-                        src={formCroppedUrl(folder_path, extension)}
+                        src={formCroppedUrl(folder_path, ext)}
                       />
                       <Typography variant='h6regular' component='h6'>
                         {RATIOS[aspect_ratio]}

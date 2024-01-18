@@ -21,7 +21,7 @@ const MenuProps = {
   },
 };
 
-export default function LanguageDropDownCheckBox({ language, setLanguage }) {
+export default function LanguageDropDownCheckBox({ language, setLanguage }: any) {
   const handleChange = (
     event: any //SelectChangeEvent<typeof language>
   ) => {

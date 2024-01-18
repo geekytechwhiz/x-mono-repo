@@ -8,7 +8,6 @@ import {
     Grid,
     Typography,
 } from '@mui/material';
-import { styled } from '@mui/system';
 import React, { useMemo, useState } from 'react';
 import { BREAKPOINTS } from '../utils/constants';
 import SelectedImageCrop from './SelectedImageCrop';
@@ -18,7 +17,7 @@ import useImageCrop from '../hooks/useImageCrop';
 const ImageCrop = (props: any = {}) => {
     const {
         open,
-        cropImages = {},
+        originalImage={},
         backTo,
         doneCropCompleted,
     } = useMemo(() => nullToObject(props), [props]);
@@ -27,12 +26,11 @@ const ImageCrop = (props: any = {}) => {
     const {
         doneLoader,
         isLoading: doneCropLoading,
-        crops,
         handleDone,
         onCropChange,
-    } = useImageCrop(cropImages);
+    } = useImageCrop(originalImage, doneCropCompleted);
 
-    const { Thumbnail } = cropImages || {};
+    const { Thumbnail } = originalImage || {};
 
     return (
         <Dialog

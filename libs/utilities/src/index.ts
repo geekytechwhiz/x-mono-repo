@@ -51,6 +51,7 @@ import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import { ArticleMapper } from './lib/mappers/articleMapper';
 import DeletePopup from './lib/components/Popups/PlateformXDialog';
 import Gallery from './lib/components/Gallery/Gallery';
+import NoResultsFound from './lib/components/NoResultsFound';
 
 export * from './lib/assets/svg';
 export * from './lib/components';
@@ -70,14 +71,7 @@ export * from './lib/utils/helperFns';
 export * from './lib/components/ToastNotification/ToastNotification';
 export * from './lib/hooks/useAccess/useMapPermissions';
 export * from './lib/mappers/articleMapper';
-export * from './lib/components/ToastNotification/ToastNotification';
-export * from './lib/hooks/useAccess/useMapPermissions';
-export * from './lib/constants/CommonConstants';
-export * from './lib/layouts/TwoColumns/TwoColumnLayout';
-export * from './lib/themes/authoring/lightTheme';
-export * from './lib/themes/prelems/prelemTheme';
-export * from './lib/utils/helperFns';
-export * from './lib/mappers/articleMapper'
+export * from './lib/components/Gallery/config/request';
 
 export {
   AUTH_INFO,
@@ -128,5 +122,6 @@ export {
   NoContentFound,
   DeletePopup,
   ArticleMapper,
-  Gallery
+  Gallery,
+  NoResultsFound
 };

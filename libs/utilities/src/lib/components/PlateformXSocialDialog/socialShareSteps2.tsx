@@ -20,7 +20,7 @@ const SocialShareStep2 = ({
   scheduleDate,
   setScheduleDate,
   isReschedule,
-}) => {
+}: any) => {
   const { t } = useTranslation();
   const [selectFacebook, setSelectFacebook] = useState(true);
   const handleCheckboxChange = (event: any) => {

@@ -7,10 +7,10 @@ export const usePostImageCrop = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const postData = async (path: string, payload: any) => {
+    const postRequest = async (path: string, payload: any, callback: any) => {
         try {
             setIsLoading(true);
-            const res = await axios.post(process.env.REACT_APP_API_URI + path, payload, {
+            const res = await axios.post('https://dev.api.hcl-x.com/platform-x/' + path, payload, {
                 headers: {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*",
@@ -20,14 +20,15 @@ export const usePostImageCrop = () => {
                 },
                 withCredentials: true,
             });
-
-            setData(res.data.result || res.data);
+            setData(res.data);
+            callback(res.data, payload);
         } catch (err: any) {
             setError(err);
+            callback();
         } finally {
             setIsLoading(false);
         }
     };
 
-    return { data, error, isLoading, postData };
+    return { postRequest, data, isLoading, error };
 };

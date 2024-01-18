@@ -40,6 +40,7 @@ const PictureComponent = (props: any = {}) => {
         const {
           folder_path
         } = img || {};
+        console.info('single imagee', formCroppedUrl(folder_path, 'webp'))
         return (
           <>
             <source

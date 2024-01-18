@@ -2,6 +2,7 @@ import { Dashboard } from '@platformx/dashboard'
 import { CreateUser, UserListing } from '@platformx/user-management'
 import { ProtectedRoute } from './ProtectedRoute'
 import { RouteConfig } from './routes.type'
+import { XImageRender } from '@platformx/x-image-render'
 
 export const routes: RouteConfig[] = [
   {
@@ -27,6 +28,19 @@ export const routes: RouteConfig[] = [
       >
         {' '}
         <Dashboard />{' '}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/page-list',
+    element: (
+      <ProtectedRoute
+        category="page-list"
+        subCategory="page-list"
+        name="page-list"
+      >
+        {' '}
+        <XImageRender />{' '}
       </ProtectedRoute>
     ),
   },

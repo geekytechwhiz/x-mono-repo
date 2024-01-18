@@ -112,6 +112,12 @@ import InsertIcon from './inserticon.svg'
 import TaskNotFoundIcon from './taskNotFoundIcon.svg'
 import TotalrevIcon from './totalrev.svg'
 import WarningIcon from './warningIcon.svg'
+import ArrowUpwardIcon from './UploadThumbnail.svg'
+import ImageIcon from './image.svg'
+import GreenFolderIcon from './Folder-green.svg'
+import GreenSubFolderIcon from './Subfolder-green.svg'
+import FolderIcon from './descriptionsubicon.svg'
+import SubFolderIcon from './expandmoreiconn.svg'
 
 export {
   AccountBalanceWalletIcon,
@@ -223,4 +229,10 @@ export {
   WarningIcon,
   warning,
   warningIcon,
+  ArrowUpwardIcon,
+  ImageIcon,
+  GreenFolderIcon,
+  GreenSubFolderIcon,
+  FolderIcon,
+  SubFolderIcon
 }

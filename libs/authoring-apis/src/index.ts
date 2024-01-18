@@ -21,6 +21,8 @@ import { UserManagementQueries } from './lib/graphQL/queries/userManagementQueri
 import { snowplowTrackingHook } from './lib/hooks/customHook/snowplowTrackingHook';
 import { useDialog } from './lib/hooks/useDialog/useDialog';
 import commentsApi from './lib/services/comments/comments.api';
+import assetsApi from "./lib/services/assetsApi/assets.api";
+
 export * from './lib/services/siteSetting/SiteSetting';
 export * from "./lib/graphQL/queries/pageQueries"
 export * from "./lib/graphQL/queries/prelemQueries"
@@ -61,5 +63,6 @@ export {
   useDialog,
   usePage,
   userManagementAPI,
-  dashboardApi
+  dashboardApi,
+  assetsApi
 };

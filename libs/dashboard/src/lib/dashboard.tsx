@@ -18,7 +18,6 @@ import TaskPages from "./components/tasks/taskPages/TasksPages";
 import TaskNotFound from "./components/taskNotFound/TaskNotFound";
 
 export const Dashboard = () => {
-  console.warn('check 1');
    const classes = useStyles();
    const { t } = useTranslation();
    const [ getSession ] = useUserSession();

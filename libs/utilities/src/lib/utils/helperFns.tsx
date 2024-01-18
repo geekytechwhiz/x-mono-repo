@@ -8,6 +8,7 @@ import {
 } from '../constants/CommonConstants';
 import { LanguageList, countries } from './helperConstants';
 import { Props } from './types';
+import { AUTH_INFO } from '../constants/AuthConstant';
 
 const siteLevelSchema = {
   "siteName":"X",
@@ -242,33 +243,43 @@ export const checkImageUrlPath = (imgUrl = '') => {
   return FallBackImage;
 };
 
-export const formCroppedUrl = (
-  gcpUrl = '',
-  bucketName = '',
-  url = '',
-  ext = '',
-  contentType = '',
-  bannerType = ''
-) => {
-  if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
-    return url;
-  } else {
-    if (url && ext) {
-      if (bannerType !== '') {
-        return checkImageUrlPath(
-          `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`
-        );
-      } else {
-        return checkImageUrlPath(`${gcpUrl}/${bucketName}/${url}.${ext}`);
-      }
+export const formCroppedUrl = (url = "", ext = "") => {
+  if (url) {
+    if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
+      return url;
     }
-    return FallBackImage;
+    return `${AUTH_INFO.gcpUri}/${AUTH_INFO.gcpBucketName}/${url.replaceAll(" ", "%20")}.${ext}`;
   }
-  // if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) return url;
-  // else if (bannerType !== "")
-  //   return `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`;
-  // else return `${gcpUrl}/${bucketName}/${url}.${ext}`;
+  return FallBackImage;
 };
+
+// export const formCroppedUrl = (
+//   gcpUrl = '',
+//   bucketName = '',
+//   url = '',
+//   ext = '',
+//   contentType = '',
+//   bannerType = ''
+// ) => {
+//   if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
+//     return url;
+//   } else {
+//     if (url && ext) {
+//       if (bannerType !== '') {
+//         return checkImageUrlPath(
+//           `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`
+//         );
+//       } else {
+//         return checkImageUrlPath(`${gcpUrl}/${bucketName}/${url}.${ext}`);
+//       }
+//     }
+//     return FallBackImage;
+//   }
+//   // if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) return url;
+//   // else if (bannerType !== "")
+//   //   return `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`;
+//   // else return `${gcpUrl}/${bucketName}/${url}.${ext}`;
+// };
 
 // export const relativeImageURL = (
 //   gcpUrl: string,

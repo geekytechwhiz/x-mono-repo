@@ -32,7 +32,7 @@ const SocialShareStep3 = ({
   contentType,
   facebookProfileData,
   loading,
-}) => {
+}: any) => {
   const { CurrentPageURL = '' } = nullToObject(selectedItems);
 
   let isInSelected = false;
@@ -54,7 +54,7 @@ const SocialShareStep3 = ({
 
   const [, setValue] = useState<Dayjs | null>(dayjs());
 
-  function removeHttp(url) {
+  function removeHttp(url: any) {
     return url.replace(/(^\w+:|^)\/\//, '');
   }
   const handelNetworkSelect = (network: string) => {
