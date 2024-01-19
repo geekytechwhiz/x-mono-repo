@@ -12,12 +12,12 @@ import {
   FETCH_CONTENT_TYPE_LIST_ALL,
 } from '../../graphQL/queries/contentTypesQueries';
 import { SearchContentListQueries } from '../../graphQL/queries/searchQueries';
-import { ApiResponse } from '../../utils/types';
 import { ROW_SIZE } from '../../utils/constants';
-import { mapFetchALL } from './mapper';
 import { sortedData } from '../../utils/helper';
+import { ApiResponse } from '../../utils/types';
+import { mapFetchALL } from './mapper';
 
-// FetchQueries 
+// FetchQueries
 export const fetchContentByPath = FETCH_CONTENT_BY_PATH;
 export const fetchContentTypeList = FETCH_CONTENT_TYPE_LIST_ALL;
 
@@ -28,6 +28,12 @@ export const publishContentType = PUBLISH_CONTENT_TYPE;
 export const deleteContentType = DELETE_CONTENT_TYPE;
 
 const contentTypeAPIs = {
+  createContentType: CREATE_CONTENT_TYPE,
+  updateContentType: UPDATE_CONTENT_TYPE,
+  publishContentType: PUBLISH_CONTENT_TYPE,
+  deleteContentType: DELETE_CONTENT_TYPE,
+  fetchContentByPath: FETCH_CONTENT_BY_PATH,
+  fetchContentTypeListAll: FETCH_CONTENT_TYPE_LIST_ALL,
   fetchContent: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data } = await graphqlInstance.query({
@@ -50,18 +56,18 @@ const contentTypeAPIs = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
+      if (err instanceof ApolloError)
+        throw err;
     }
   },
 
   fetchSearchContent: async (
     contentType: string,
-    location: { state: any; },
+    location: { state: any },
     filter: string,
     startIndex: number,
     contentList: any,
-    reloadContent = false
+    reloadContent = false,
   ) => {
     const newPagination = {
       start: reloadContent ? 0 : startIndex,
@@ -71,7 +77,7 @@ const contentTypeAPIs = {
       location.state,
       filter,
       contentType,
-      newPagination
+      newPagination,
     );
     const { data } = await graphqlInstance.query({
       query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
@@ -80,7 +86,7 @@ const contentTypeAPIs = {
     });
     const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
 
-    return sortedContent
+    return sortedContent;
     // return {
     //   type: 'UPDATE_CONTENT',
     //   content: reloadContent
@@ -92,7 +98,6 @@ const contentTypeAPIs = {
     // };
   },
 
-
   fetchContentTypeList: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data, loading } = await graphqlInstance.query({
@@ -102,8 +107,8 @@ const contentTypeAPIs = {
       });
       return { data: data, loading: loading };
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
+      if (err instanceof ApolloError)
+        throw err;
     }
   },
   fetchSuggestions: async <T>(input: any): Promise<ApiResponse<T>> => {
@@ -126,7 +131,7 @@ const contentTypeAPIs = {
     filter: any,
     startIndex: any,
     contentList: any,
-    reloadContent = false
+    reloadContent = false,
   ) => {
     // const { startIndex, contentList } = state.content;
     const pagination = {
@@ -143,7 +148,6 @@ const contentTypeAPIs = {
       variables: variables,
       fetchPolicy: 'no-cache',
     });
-    console.log('courseList', data);
     const sortedContent = sortedData(data?.authoring_recentContents || []);
 
     return {
@@ -155,8 +159,7 @@ const contentTypeAPIs = {
       newDataSize: [...JSON.parse(JSON.stringify(sortedContent))].length,
       contentType: contentType,
     };
-  }
-
+  },
 };
 
 export default contentTypeAPIs;

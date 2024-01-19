@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useState } from "react";
 import "./ContentTypeCard.css";
-import { ImageIcon, VideoIcon } from '@platformx/utilities'
+import { ImageIcon, VODIcon } from "@platformx/utilities";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import useContentGlleryStyle from "./DamContentGllery.style";
 
@@ -41,7 +41,7 @@ const ContentTypeCard = ({
   };
   const icon = {
     Image: ImageIcon,
-    Video: VideoIcon,
+    Video: VODIcon,
   };
   const [isHovered, setHovered] = useState(false);
   const classes = useContentGlleryStyle();
@@ -94,7 +94,7 @@ const ContentTypeCard = ({
               <Typography
                 gutterBottom
                 variant='p3medium'
-               // component='h2'
+                // component='h2'
                 className={classes.contentwrap}
                 sx={{
                   maxWidth: {
