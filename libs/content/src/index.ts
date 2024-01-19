@@ -1,6 +1,7 @@
 import { QuizPollEventMenu } from "./lib/components/QuizPollEventsMenu/QuizPollEventsMenu";
 import Content from "./lib/content";
 import { CreateContent } from "./lib/pages/CreateContent";
+export * from "./lib/enums/ContentType";
 
 export * from "./lib/content";
 export * from "./lib/utils/Constants";
