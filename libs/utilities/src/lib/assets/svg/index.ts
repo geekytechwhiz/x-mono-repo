@@ -1,3 +1,4 @@
+/* eslint-disable no-duplicate-imports */
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
 import Challenge_community from "./Challenge_community.svg";
@@ -95,6 +96,7 @@ import IconTimerSvg from "./timerIcon.svg";
 import TotalrevIcon from "./totalrev.svg";
 import IconTwitterLogoIconSvg from "./twitterLogoIcon.svg";
 import UnpublishedStatusIcon from "./unpublishStatusIcon.svg";
+import VideoIcon from "./VODIcon.svg";
 import VODListIcon from "./vodListIcon.svg";
 // import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
@@ -103,21 +105,17 @@ import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
 import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
+import EventsListIcon5 from "./Event.svg";
 import ProgressIcon from "./Frame.svg";
+import BookIcon from "./ReadBook.svg";
 import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
 import WarningIcon from "./warningIcon.svg";
-import ArrowUpwardIcon from "./UploadThumbnail.svg";
-import ImageIcon from "./image.svg";
-import GreenFolderIcon from "./Folder-green.svg";
-import GreenSubFolderIcon from "./Subfolder-green.svg";
-import FolderIcon from "./descriptionsubicon.svg";
-import SubFolderIcon from "./expandmoreiconn.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
 import LeftArrowIcon from "./leftarrow.svg";
 import RightArrowIcon from "./rightarrow.svg";
-//import ArrowUpwardIcon from './ArrowUp.svg'
+import ArrowUpwardIcon from "./ArrowUp.svg";
 import Icon from "./Icon.svg";
 import Refresh from "./Refresh.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
@@ -129,6 +127,11 @@ import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 import PlayIcon from "./playIcon.svg";
+import ImageIcon from "./image.svg";
+import GreenFolderIcon from "./Folder-green.svg";
+import GreenSubFolderIcon from "./Subfolder-green.svg";
+import FolderIcon from "./descriptionsubicon.svg";
+import SubFolderIcon from "./expandmoreiconn.svg";
 
 export {
   // ArrowUpwardIcon,
