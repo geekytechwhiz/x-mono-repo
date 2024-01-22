@@ -57,7 +57,7 @@ import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
 import CourseListIcon from "./course-icon.svg";
-import DraftIcon from "./draftIcon.svg";
+import DraftIcon from "./DraftIcon.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
 import EventsListIcon from "./event-fill.svg";
@@ -146,6 +146,7 @@ export {
   GlobalVideoIcon,
   GlobalMiscIcon,
   FeatureStarIcon,
+  News_community,
   Icon,
   Refresh,
   MenuIcon1,
@@ -218,7 +219,6 @@ export {
   MobileMenuIconSvg,
   MoreHorizIcon,
   MyDashboardIcon,
-  News_community,
   NoContentFoundSvg,
   PagesIcon,
   PagesListIcon,
