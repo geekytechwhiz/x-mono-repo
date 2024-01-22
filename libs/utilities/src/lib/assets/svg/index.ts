@@ -130,6 +130,7 @@ import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 import RedDots from "./icon/RedDots.svg";
 import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import VectorIconSvg from "./assets/svg/VectorIcon.svg";
 
 export {
   GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,
@@ -258,4 +259,5 @@ export {
   RightArrowIcon,
   PlayIcon,
   PictureIcon,
+  VectorIconSvg
 };

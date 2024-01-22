@@ -14,6 +14,7 @@ import {
   Loader,
   PictureIcon,
 } from "@platformx/utilities";
+import { CreateHeader } from "@platformx/content";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
@@ -157,6 +158,29 @@ export const MediaHandle: React.FC = () => {
     <>
       {!galleryState && (
         <Box className={classes.pageContainer}>
+          <CreateHeader
+            createText={t("media_handle")}
+            handleReturn={() => {
+              navigate("/dashboard");
+            }}
+            isQuiz
+            hasPublishButton={true}
+            hasPreviewButton={false}
+            hasSaveButton={false}
+            saveText={t("update")}
+            handelPreview={() => {
+              /* your function code */
+            }}
+            handlePublish={onSave}
+            handleSaveOrPublish={onSave}
+            previewText='Preview'
+            showPreview={false}
+            toolTipText='Unable to preview please add required details'
+            saveVariant='contained'
+            category={"content"}
+            subCategory={"quiz"}
+            isFeatured={false}
+          />
           <Divider />
 
           <Grid container className={classes.contentContainer}>
