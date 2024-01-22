@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import { PrelemTheme, ToastContainerHandle } from "@platformx/utilities";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
+import { PrelemTheme, ToastContainerHandle } from "@platformx/utilities";
 import {
   // AnimationOnPageScroll,
   AboutUs2,

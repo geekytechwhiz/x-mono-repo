@@ -13,11 +13,9 @@ import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
-import General_community from "./General_community.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
 import IconPreview from "./IconPreview.svg";
 import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
-import News_community from "./News_community.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
@@ -57,7 +55,7 @@ import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
 import CourseListIcon from "./course-icon.svg";
-import DraftIcon from "./draftIcon.svg";
+import DraftIcon from "./DraftIcon.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
 import EventsListIcon from "./event-fill.svg";
@@ -190,7 +188,6 @@ export {
   EyeIcon,
   FilterIcon,
   FooterMenuUpdated,
-  General_community,
   GradeIcon,
   GreenDot,
   HamburgerMenuIcon,
@@ -211,7 +208,6 @@ export {
   MobileMenuIconSvg,
   MoreHorizIcon,
   MyDashboardIcon,
-  News_community,
   NoContentFoundSvg,
   PagesIcon,
   PagesListIcon,

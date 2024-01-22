@@ -1,8 +1,7 @@
 name: hep-caching
 on:
   push:
-    branches:
-    - feature/MAVER-2917
+    branches: 
     - develop
     - qa 
     - master
