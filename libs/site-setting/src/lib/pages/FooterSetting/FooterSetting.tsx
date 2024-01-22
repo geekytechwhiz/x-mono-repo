@@ -47,17 +47,17 @@ import {
   NewsLetterSkeleton,
   SiteLogoSkeleton,
 } from "../../components/CookieSettingConstant";
-import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
+// import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
 import { useFooterSettingStyle } from "./FooterSetting.style";
 //import { CreateHeader } from "../../../components/Common/CreateHeader";
 import { Divider } from "@mui/material";
-import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
+// import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
 // import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
 // import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
 import iconImages from "./FooterConstansts";
 
 export const FooterSetting = () => {
-  const [mediaList, setMediaList] = useState<string[]>([]);
+  const [mediaList, setMediaList] = useState<any>([]);
   const [operationType, setOperationType] = useState<any>("");
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const [key, setKey] = useState("");
@@ -83,7 +83,7 @@ export const FooterSetting = () => {
   });
   const [isNotificationToast, setIsNotificationToast] = useState<boolean>(false);
   // const [runFetchContentByPath, { loading }] = useLazyQuery(fetchContentByPath);
-  const toastMessage = useRef(null);
+  const toastMessage = useRef<any>(null);
   const crossButtonHandle = () => {
     setIsNotificationToast(false);
   };
@@ -209,12 +209,12 @@ export const FooterSetting = () => {
         bitstreamId: image.bitStreamId,
         visibility: "public",
       };
-      const response = await postRequest("api/v1/assets/image/no-crop", payload);
+      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
 
-      const relativeUrl = response?.original_image_relative_path + "." + response?.ext;
-      setForm((preForm) => ({ ...preForm, site_logo: relativeUrl }));
+      // const relativeUrl = response?.original_image_relative_path + "." + response?.ext;
+      // setForm((preForm) => ({ ...preForm, site_logo: relativeUrl }));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       ShowToastError(t("api_error_toast"));
     }
   };
@@ -278,7 +278,7 @@ export const FooterSetting = () => {
     if (form.footer_link.length <= 1) {
     } else {
       const linkData = form.footer_link;
-      console.log(linkData);
+      // console.log(linkData);
       form.footer_link = linkData.filter((item, ind) => ind != index);
       setForm({ ...form });
     }
@@ -293,14 +293,14 @@ export const FooterSetting = () => {
     cloneFormLink.splice(index, 1, droppedLink);
     setForm({ ...form, footer_link: cloneFormLink });
   };
-  const classes = useFooterSettingStyle({ isShowPreview })();
+  const classes = useFooterSettingStyle();
 
   return (
     <>
       {!galleryState && (
         <>
      <CreateHeader
-            createText={t("Footer Settin")}
+            createText={t("Footer_Setting")}
             handleReturn={() => {
               navigate("/dashboard");
             }}
@@ -324,11 +324,11 @@ export const FooterSetting = () => {
           />
           <Divider></Divider>
           <Box className={classes.globalnewcontain}>
-            <QuizPageScroll
+            {/* <QuizPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
               srollToView={srollToView}
-            />
+            /> */}
           </Box>
 
           <Box className={classes.pageContainer} id='scrollableDiv'>
@@ -352,7 +352,7 @@ export const FooterSetting = () => {
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
-                        <SiteSettingAddImage
+                        {/* <SiteSettingAddImage
                           url={
                             process.env.REACT_APP_GCP_URL +
                             "/" +
@@ -364,13 +364,13 @@ export const FooterSetting = () => {
                           type='Images'
                           operationType={operationType}
                           onUploadClick={onUploadClick}
-                        />
+                        /> */}
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4} className={classes.rightForm}>
                       <Box>
                         <Typography className={classes.skeletonTitle}>
-                          {t("logo_will_look_like_this_on_footer")}
+                          {t("logo_will_look_like_this_on_footer_site")}
                         </Typography>
                         {SiteLogoSkeleton(1)}
                       </Box>
@@ -452,7 +452,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <PictureIcon />
+                       <img src={PictureIcon} alt="PictureIcon" />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -478,7 +478,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <PictureIcon />
+                          <img src={PictureIcon} alt="PictureIcon" />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -503,7 +503,7 @@ export const FooterSetting = () => {
                       </Box>
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <PictureIcon />
+                        <img src={PictureIcon} alt="PictureIcon" />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox

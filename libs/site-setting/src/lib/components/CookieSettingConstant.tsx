@@ -496,7 +496,7 @@ export const ContactUsSkeleton = (
               alignItems: "center",
               justifyContent: "center",
             }}>
-            <Location />
+            <img src={Location} alt="Location" />
           </Box>
           <Box sx={{ width: "100%" }}>
             <Skeleton
@@ -528,7 +528,7 @@ export const ContactUsSkeleton = (
               alignItems: "center",
               justifyContent: "center",
             }}>
-            <Envelop />
+            <img src={Envelop} alt="Envelop" />
           </Box>
           <Box sx={{ width: "100%" }}>
             <Skeleton
@@ -560,7 +560,7 @@ export const ContactUsSkeleton = (
               alignItems: "center",
               justifyContent: "center",
             }}>
-            <Phone />
+            <img src={Phone} alt="Phone" />
           </Box>
           <Box sx={{ width: "100%" }}>
             <Skeleton
@@ -1007,7 +1007,7 @@ export const HeaderSearchSkeleton = (border) => (
             display: "flex",
             margin: "7px 7px 7px 95px",
           }}>
-          <Searchheadericon />
+          <img src={Searchheadericon} alt="Searchheadericon" />
         </Box>
       </Box>
       <Box
@@ -1230,7 +1230,7 @@ export const HeaderLanguageSkeleton = (pos) => (
               display: "flex",
               marginTop: "-3px",
             }}>
-            <Headerpublic />
+          <img src={Headerpublic} alt="Headerpublic" />
           </Box>
         </Box>
         <Box
@@ -1325,7 +1325,7 @@ export const HeaderCtaSkeleton = (border) => (
             marginRight: "12px",
             margin: "10px",
           }}>
-          <Ctasearch />
+        <img src={Ctasearch} alt="Ctasearch" />
         </Box>
 
         <Box
@@ -1338,7 +1338,7 @@ export const HeaderCtaSkeleton = (border) => (
             marginRight: "12px",
             margin: "9px",
           }}>
-          <Ctaround />
+        <img src={Ctaround} alt="Ctaround" />
         </Box>
 
         {/* </Box> */}

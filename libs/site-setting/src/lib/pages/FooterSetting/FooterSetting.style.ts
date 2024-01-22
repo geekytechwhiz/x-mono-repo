@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core';
 // import ThemeConstants from '../../../theme/variable';
 import { ThemeConstants } from '@platformx/utilities';
 
-export const useFooterSettingStyle = ({ isShowPreview }) =>
-  makeStyles((theme) => ({
+export const useFooterSettingStyle  = makeStyles((theme) => ({
     pageContainer: {
       [theme.breakpoints.up('xs')]: {
         padding: '15px',
@@ -47,7 +46,7 @@ export const useFooterSettingStyle = ({ isShowPreview }) =>
         padding: '24px 0 0 0',
         borderTop: '1px solid #D9DBE9',
         marginTop: '24px',
-        display: isShowPreview ? 'block' : 'none',
+        // display: isShowPreview ? 'block' : 'none',
       },
       [theme.breakpoints.up('sm')]: {
         padding: '15px 0 15px 32px',
