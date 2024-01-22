@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
-import DamContentGallery from "./damContentGallery/DamContentGallery";
+import DamContentGallery from "./components/damContentGallery/DamContentGallery";
 import {
   UploadIcon,
   ThemeConstants,
@@ -29,7 +29,7 @@ export const XImageRender = ({ callBack }): any => {
   const [returnData, setReturnData] = useState({});
   const [manualCropShow, setManualCropShow] = useState(false);
   const [showCropPreview, setShowCropPreview] = useState(false);
-  const [galleryDialogOpen, setGalleryDialogOpen] = useState<boolean>(false);
+  const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
 
   const autoCropCallBack = (data) => {
     if (data) {

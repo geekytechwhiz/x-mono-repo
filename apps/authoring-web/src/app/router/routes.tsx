@@ -97,14 +97,14 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
-  // {
-  //   path: "/content/create",
-  //   element: (
-  //     <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
-  //       <CreateContent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/content/create",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/site-setting/media-handle",
   //   element: (

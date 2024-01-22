@@ -5,10 +5,10 @@ import { Box } from "@mui/system";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MobileMenuIconSvg, SearchBlackSvg, ThemeConstants } from "@platformx/utilities";
-import useContentGlleryStyle from "./ContentTypeCard/DamContentGllery.style";
+import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 import DamContentSearchBox from "./DamContentSearchBox";
 import "./DamContentTopHeading.css";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
 
 type damcontentTopHeadingprops = {
   loading?: boolean;
@@ -132,9 +132,7 @@ const DamContentTopHeading = (_props: any) => {
           justifyContent='end'
           sx={{ margin: "0 0 1.25rem 0", display: "flex" }}>
           <Box justifyContent='end'>
-            <Button
-              variant='secondaryButton'
-              onClick={() => toggleGallery(false, "cancel")}>
+            <Button variant='secondaryButton' onClick={() => toggleGallery(false, "cancel")}>
               {t("cancel")}
             </Button>
             {/* <Button
@@ -144,14 +142,13 @@ const DamContentTopHeading = (_props: any) => {
               sx={{ marginLeft: "12px" }}>
               {t("done")}
             </Button> */}
-             <LoadingButton
-                onClick={handleDoneClick}
-                loading={loading}
-                loadingPosition='start'
-                variant="primaryButton"
-                disabled={!imageData.bitStreamId}
-            >
-                Done
+            <LoadingButton
+              onClick={handleDoneClick}
+              loading={loading}
+              loadingPosition='start'
+              variant='primaryButton'
+              disabled={!imageData.bitStreamId}>
+              Done
             </LoadingButton>
           </Box>
         </Grid>

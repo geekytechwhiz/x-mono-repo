@@ -1,8 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import { NoResultsFound, nullToArray } from "@platformx/utilities";
-import ContentTypeCard from "./ContentTypeCard/ContentTypeCard";
-import useContentGlleryStyle from "./ContentTypeCard/DamContentGllery.style";
+import ContentTypeCard from "./contentTypeCard/ContentTypeCard";
+import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderComponent from "./LoaderComponent";
 
@@ -48,26 +48,24 @@ const DamContentCard = ({
   };
 
   return (
-    <>
-      <Box className={classes.noresultfoundtypo} id='scrollablegallerydiv'>
-        {!isLoading && nullToArray(data.collectionItem)?.length === 0 ? (
-          <NoResultsFound />
-        ) : (
-          <Grid container className={classes.infinitescroll}>
-            <InfiniteScroll
-              loader={<LoaderComponent />}
-              next={fetchMoreData}
-              hasMore={isLazyLoad}
-              dataLength={data.collectionItem.length}
-              scrollableTarget='scrollablegallerydiv'>
-              {data.collectionItem?.map((item, index) => {
-                return getContentType(item, index);
-              })}
-            </InfiniteScroll>
-          </Grid>
-        )}
-      </Box>
-    </>
+    <Box className={classes.noresultfoundtypo} id='scrollablegallerydiv'>
+      {!isLoading && nullToArray(data.collectionItem)?.length === 0 ? (
+        <NoResultsFound />
+      ) : (
+        <Grid container className={classes.infinitescroll}>
+          <InfiniteScroll
+            loader={<LoaderComponent />}
+            next={fetchMoreData}
+            hasMore={isLazyLoad}
+            dataLength={data.collectionItem.length}
+            scrollableTarget='scrollablegallerydiv'>
+            {data.collectionItem?.map((item, index) => {
+              return getContentType(item, index);
+            })}
+          </InfiniteScroll>
+        </Grid>
+      )}
+    </Box>
   );
 };
 

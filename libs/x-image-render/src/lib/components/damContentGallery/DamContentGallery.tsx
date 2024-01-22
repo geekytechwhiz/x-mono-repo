@@ -10,7 +10,7 @@ import { assetsApi } from "@platformx/authoring-apis";
 import { ThemeConstants, AUTH_INFO, capitalizeFirstLetter } from "@platformx/utilities";
 import DamDropdown from "./DamDropdown";
 import useDamContent from "./DamContent.style";
-import { ASSETS, AUTHOR, SUBCOMMUNITIES } from "../utils/constants";
+import { ASSETS, AUTHOR, SUBCOMMUNITIES } from "../../utils/constants";
 
 type DamContentGalleryProps = {
   assetType: "Image" | "Video";
@@ -19,6 +19,9 @@ type DamContentGalleryProps = {
   toggleGallery: any;
   keyName?: string;
   id?: any;
+  processing?: boolean;
+  dialogOpen?: any;
+  isCrop?: boolean;
 };
 
 const COLLECTION_ITEM = {
@@ -26,7 +29,7 @@ const COLLECTION_ITEM = {
   page: {},
 };
 
-const DamContentGallery = (_props: any) => {
+const DamContentGallery = (_props: DamContentGalleryProps) => {
   const {
     dialogOpen,
     assetType,

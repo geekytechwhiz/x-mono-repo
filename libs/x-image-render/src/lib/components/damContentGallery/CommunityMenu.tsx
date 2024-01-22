@@ -5,9 +5,14 @@ import TreeView from "@mui/lab/TreeView";
 import { Box, Typography } from "@mui/material";
 import React, { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
-import { GreenFolderIcon, GreenSubFolderIcon, FolderIcon, SubFolderIcon } from "@platformx/utilities";
+import {
+  GreenFolderIcon,
+  GreenSubFolderIcon,
+  FolderIcon,
+  SubFolderIcon,
+} from "@platformx/utilities";
 import { ThemeConstants, AUTH_INFO } from "@platformx/utilities";
-import useContentGlleryStyle from "./ContentTypeCard/DamContentGllery.style";
+import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 
 interface Community {
   uuid: string;
@@ -27,7 +32,7 @@ interface Community {
 
 interface CommunityMenuProps {
   communities: Community[];
-  setUuid: Dispatch<SetStateAction<string>>;
+  setUuid: Dispatch<SetStateAction<string | undefined>>;
   assetType: string;
 }
 
@@ -102,15 +107,9 @@ const CommunityMenu: React.FC<CommunityMenuProps> = ({ communities, setUuid, ass
       }}>
       <TreeView
         defaultCollapseIcon={
-          <>
-            <ExpandMoreIcon className={`${classes.expandicon} ${classes.communityMenu}`} />
-          </>
+          <ExpandMoreIcon className={`${classes.expandicon} ${classes.communityMenu}`} />
         }
-        defaultExpandIcon={
-          <>
-            <ChevronRightIcon className={classes.expandicon} />
-          </>
-        }
+        defaultExpandIcon={<ChevronRightIcon className={classes.expandicon} />}
         className='all-categories'
         sx={{
           "& .Platform-x-Checkbox-root": {
@@ -146,7 +145,9 @@ const CommunityMenu: React.FC<CommunityMenuProps> = ({ communities, setUuid, ass
                   color={open.includes("all") ? "#4B9EF9" : "inherit"}
                   onClick={() =>
                     handleClick(
-                      assetType === "Image" ? (AUTH_INFO.dspaceImagesUuid || ''): (AUTH_INFO.dspaceVideosUuid || ''),
+                      assetType === "Image"
+                        ? AUTH_INFO.dspaceImagesUuid || ""
+                        : AUTH_INFO.dspaceVideosUuid || "",
                     )
                   }>
                   {assetType === "Image" ? t("image") : t("video")}
