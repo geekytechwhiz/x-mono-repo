@@ -130,16 +130,43 @@ import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 import RedDots from "./icon/RedDots.svg";
 import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
-import SitelogoupdateIcon from './sitelogopupdateicon.svg'
-import FaviconupdateIcon from './Faviconupdateicon.svg'
-import SearchnupdateIcon from './Searchupdateicon.svg'
-import LanguageupdateIcon from './Languageupdateicon.svg'
-import CtaupdateIcon from './CTAupdateicon.svg'
-
+import VectorIconSvg from "./VectorIcon.svg";
+import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
+import Aboutusupdateicon from "./Aboutusupdateicon.svg";
+import Contactusupdateicon from "./Contactusupdateicon.svg";
+import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
+import Newsletterupdateicon from "./Newsletterupdateicon.svg";
+import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
+import FaviconupdateIcon from './Faviconupdateicon.svg';
+import SearchnupdateIcon from './Searchupdateicon.svg';
+import LanguageupdateIcon from './Languageupdateicon.svg';
+import CtaupdateIcon from './CTAupdateicon.svg';
+import Location from './Location.svg';
+import Envelop from './Envelop.svg';
+import Phone from './Phone.svg';
+import Searchheadericon from './Searchheadericon.svg';
+import Headerpublic from './headerpublic.svg';
+import Ctaround from './ctaround.svg';
+import Ctasearch from './ctaround.svg';
 
 export {
-  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,SitelogoupdateIcon,FaviconupdateIcon,SearchnupdateIcon,LanguageupdateIcon,CtaupdateIcon,
+  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon, FaviconupdateIcon, SearchnupdateIcon, LanguageupdateIcon, CtaupdateIcon,
   ArrowUpwardIcon,
+  Sitelogoupdateicon,
+  Contactusupdateicon,
+  Aboutusupdateicon,
+  Addlinkupdateicon,
+  CopyrightUpdateIcon,
+  Newsletterupdateicon,
+  MediahandleUpdateIcon,
+  Location,
+  Envelop,
+  Phone,
+  Ctaround,
+  Ctasearch,
+  Searchheadericon,
+  Headerpublic,
   Icon,
   Refresh,
   MenuIcon1,
@@ -264,4 +291,5 @@ export {
   RightArrowIcon,
   PlayIcon,
   PictureIcon,
+  VectorIconSvg
 };

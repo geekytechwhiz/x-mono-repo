@@ -23,7 +23,7 @@ import {
   ShowToastError,
   useUserSession,
   PlateformXDialog,
-  SitelogoupdateIcon,
+  Sitelogoupdateicon,
   FaviconupdateIcon,
   SearchnupdateIcon,
   LanguageupdateIcon,
@@ -43,7 +43,7 @@ import {
 const iconImages = [
   {
     id: "headerlogo",
-    iconName: SitelogoupdateIcon,
+    iconName: Sitelogoupdateicon,
     tooltip: "header_logo",
   },
   {

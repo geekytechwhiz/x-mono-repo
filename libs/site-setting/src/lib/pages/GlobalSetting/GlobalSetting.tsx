@@ -10,6 +10,7 @@ import {
   publishGlobalSetting,
   updateGlobalSetting,
 } from "@platformx/authoring-apis";
+import { CreateHeader } from "@platformx/content";
 import GlobalHeaderbreadscum from "../../components/GlobalHeaderbreadscum";
 
 import { useGlobalSettingStyle } from "./GlobalSetting.style";
@@ -197,27 +198,29 @@ export const GlobalSetting = () => {
   const classes = useGlobalSettingStyle();
   return (
     <>
-      {/* <CreateHeader
-        createText={
-          t("global_setting")
-        }
-        returnBack={() => {
+      <CreateHeader
+        createText={t("global_setting")}
+        handleReturn={() => {
           navigate("/dashboard");
         }}
         isQuiz
-        publishButton={true}
-        previewButton={false}
-        saveButton={false}
-        handelPreview={false}
-        saveText={t('done')}
-        saveorPublish={onSaveClick}
+        hasPublishButton={true}
+        hasPreviewButton={false}
+        hasSaveButton={false}
+        saveText={t("update")}
+        handelPreview={() => {
+          /* your function code */
+        }}
+        handlePublish={onSaveClick}
+        handleSaveOrPublish={onSaveClick}
         previewText='Preview'
         showPreview={false}
         toolTipText='Unable to preview please add required details'
         saveVariant='contained'
-        category={'content'}
-        subCategory={'quiz'}
-      /> */}
+        category={"content"}
+        subCategory={"quiz"}
+        isFeatured={false}
+      />
       <Divider />
       <Box className={classes.globalnewcontain}>
         {/* <QuizPageScroll

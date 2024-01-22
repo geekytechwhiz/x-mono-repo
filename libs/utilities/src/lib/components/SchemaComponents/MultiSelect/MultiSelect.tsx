@@ -8,7 +8,7 @@ import { nullToArray } from "../../../utils/helperFns";
 
 const MultiSelect = ({
   list = [],
-  onPickerChange = null,
+  onPickerChange,
   containerStyle = {},
   defaultAmountOfItem = 10,
   title = "",
