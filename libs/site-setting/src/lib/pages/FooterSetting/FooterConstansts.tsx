@@ -1,15 +1,9 @@
-import { ReactComponent as SitelogoupdateIcon } from '../../../assets/svg/sitelogopupdateicon.svg';
-import { ReactComponent as Aboutusupdateicon } from '../../../assets/svg/Aboutusupdateicon.svg';
-import { ReactComponent as Contactusupdateicon } from '../../../assets/svg/Contactusupdateicon.svg';
-import { ReactComponent as Addlinkupdateicon } from "../../../assets/svg/addlinkupdateicon.svg";
-import { ReactComponent as CopyrightUpdateIcon } from "././../../../assets/svg/copyrightupdateicon.svg";
-import { ReactComponent as Newsletterupdateicon } from "../../../assets/svg/Newsletterupdateicon.svg";
-import { ReactComponent as MediahandleUpdateIcon } from "../../../assets/svg/mediahandleupdateicon.svg";
+import { Sitelogoupdateicon, Aboutusupdateicon, Contactusupdateicon, Addlinkupdateicon, CopyrightUpdateIcon, Newsletterupdateicon, MediahandleUpdateIcon } from "@platformx/utilities";
 
 const iconImages = [
   {
     id: 'sitelogo',
-    iconName: SitelogoupdateIcon,
+    iconName: Sitelogoupdateicon,
     tooltip: 'site_logo',
   },
   {

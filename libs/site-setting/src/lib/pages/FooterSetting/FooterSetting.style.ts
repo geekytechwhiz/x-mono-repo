@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
-import ThemeConstants from '../../../theme/variable';
+// import ThemeConstants from '../../../theme/variable';
+import { ThemeConstants } from '@platformx/utilities';
 
 export const useFooterSettingStyle = ({ isShowPreview }) =>
   makeStyles((theme) => ({

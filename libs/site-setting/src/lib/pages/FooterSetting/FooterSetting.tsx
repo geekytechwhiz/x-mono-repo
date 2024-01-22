@@ -22,8 +22,10 @@ import {
   TitleSubTitle,
   ShowToastSuccess,
   ShowToastError,
+  TextBox,
   useUserSession,
   PlateformXDialog,
+  CommonBoxWithNumber,
   Loader,
   PictureIcon,
   VectorIconSvg,
@@ -36,7 +38,7 @@ import {
   updateSiteSetting,
 } from "@platformx/authoring-apis";
 
-import { postRequest } from "../../../services/config/request";
+// import { postRequest } from "../../../services/config/request";
 import {
   AddLinkSkeleton,
   ContactUsSkeleton,
@@ -49,14 +51,12 @@ import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
 import { useFooterSettingStyle } from "./FooterSetting.style";
 //import { CreateHeader } from "../../../components/Common/CreateHeader";
 import { Divider } from "@mui/material";
-import CommonBoxWithNumber from "../../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
-import TextBox from "../../../components/Common/TextBox";
 import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
 import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
 import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
 import iconImages from "./FooterConstansts";
 
-const FooterSetting = () => {
+export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<string[]>([]);
   const [operationType, setOperationType] = useState<any>("");
   const [galleryState, setGalleryState] = useState<boolean>(false);
@@ -347,8 +347,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={`${t("event_image_tilte")}*`}
                           subTitle={t("choose_the_image")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
@@ -392,8 +392,8 @@ const FooterSetting = () => {
                       <TitleSubTitle
                         title={t("about_us_text")}
                         subTitle={t("this_will_be_the_about_us_text")}
-                        titleVarient='h6medium'
-                        subTitleVarient='h7regular'
+                        titleVariant='h6medium'
+                        subTitleVariant='h7regular'
                       />
                       <Box marginTop={2}>
                         <TextBox
@@ -430,8 +430,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("Title_text")}
                           subTitle={t("this_will_be_the_title_text")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                         <TextBox
                           name='title_text'
@@ -445,8 +445,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("sitesetting_bg_title")}
                           subTitle={t("sitesetting_sub_title")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
 
@@ -471,8 +471,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("email_address")}
                           subTitle={t("this_will_be_the_email_address_text")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
 
@@ -497,8 +497,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("contact_number")}
                           subTitle={t("this_will_be_the_contact_number_text")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
                       <Box className={classes.pictureiconinner} marginTop={2}>
@@ -542,8 +542,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("add_link_and_URL")}
                           subTitle={t("enter_link")}
-                          titleVarient='h3medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h3medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
 
@@ -572,7 +572,7 @@ const FooterSetting = () => {
                                 marginTop: index > 0 ? "20px" : "0",
                               }}
                               className={classes.dragIconContainer}>
-                              <VectorIconSvg />
+                              <img src={VectorIconSvg} alt="" />
                             </Grid>
                             <Grid
                               item
@@ -665,8 +665,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("sitesetting_copyright")}
                           subTitle={t("sitesetting_copyright_sub")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
                       <Box marginTop={2}>
@@ -704,8 +704,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("Title_text")}
                           subTitle={t("this_will_be_the_title_text")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
                       <Box marginTop={2}>
@@ -723,8 +723,8 @@ const FooterSetting = () => {
                         <TitleSubTitle
                           title={t("news_Letter_description")}
                           subTitle={t("this_will_be_the_description")}
-                          titleVarient='h6medium'
-                          subTitleVarient='h7regular'
+                          titleVariant='h6medium'
+                          subTitleVariant='h7regular'
                         />
                       </Box>
                       <Box marginTop={2}>
@@ -787,20 +787,20 @@ const FooterSetting = () => {
           </Box>
         </>
       )}
-      {galleryState && (
-        // <Gallery
-        //   handleImageSelected={handleSelectedImage}
-        //   toggleGallery={toggleGallery}
-        //   galleryMode={galleryType.current}
-        //   keyName={key}
-        // />
-        // <DamContentGallery
-        //   handleImageSelected={handleSelectedImage}
-        //   toggleGallery={toggleGallery}
-        //   assetType={galleryType.current === "Images" ? "Image" : "Video"}
-        //   keyName={key}
-        // />
-      )}
+      {/* {galleryState && (
+        <Gallery
+          handleImageSelected={handleSelectedImage}
+          toggleGallery={toggleGallery}
+          galleryMode={galleryType.current}
+          keyName={key}
+        />
+        <DamContentGallery
+          handleImageSelected={handleSelectedImage}
+          toggleGallery={toggleGallery}
+          assetType={galleryType.current === "Images" ? "Image" : "Video"}
+          keyName={key}
+        />
+      )} */}
       {/* {isNotificationToast &&
         <PlateformXSnackbar
           isDefaultOpen={isNotificationToast}

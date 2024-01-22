@@ -130,11 +130,25 @@ import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 import RedDots from "./icon/RedDots.svg";
 import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
-import VectorIconSvg from "./assets/svg/VectorIcon.svg";
+import VectorIconSvg from "./VectorIcon.svg";
+import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
+import Aboutusupdateicon from "./Aboutusupdateicon.svg";
+import Contactusupdateicon from "./Contactusupdateicon.svg";
+import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
+import Newsletterupdateicon from "./Newsletterupdateicon.svg";
+import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
 
 export {
   GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,
   ArrowUpwardIcon,
+  Sitelogoupdateicon,
+  Contactusupdateicon,
+  Aboutusupdateicon,
+  Addlinkupdateicon,
+  CopyrightUpdateIcon,
+  Newsletterupdateicon,
+  MediahandleUpdateIcon,
   Icon,
   Refresh,
   MenuIcon1,

@@ -5,7 +5,7 @@ import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-managem
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
-import { MediaHandle, FeatureFlagSetting, GlobalSetting } from "@platformx/site-setting";
+import { MediaHandle, FeatureFlagSetting, GlobalSetting, FooterSetting } from "@platformx/site-setting";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
 
@@ -109,6 +109,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
         <GlobalSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/footer-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='FooterSetting'>
+        <FooterSetting />
       </ProtectedRoute>
     ),
   },
