@@ -27,8 +27,26 @@ import Banner3 from "./Banner3/Banner3";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
 import ImageCarousel from "./ImageCrousel1/ImageCrousel1";
+import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
+import BlogTiles from "./BlogTiles/BlogTiles";
+import CustomerTestimonial2 from "./CustomerTestimonial2/CustomerTestimonial2";
+import ContentDisplayWithCategories from "./ContentDisplayWithCategories/ContentDisplayWithCategories";
+import CounterNumberShowcase from "./CounterNumberShowcase/CounterNumberShowcase";
+import ServiceCard7 from "./ServiceCard7/ServiceCard7";
+import ServiceShowcase2 from "./ServiceShowcase2/ServiceShowcase2";
+import FeatureTiles from "./FeatureTiles/FeatureTiles";
+import TeamMembers from "./TeamMembers/TeamMembers";
 
 export {
+  TeamMembers,
+  FeatureTiles,
+  ServiceShowcase2,
+  ServiceCard7,
+  CounterNumberShowcase,
+  ContentDisplayWithCategories,
+  CustomerTestimonial2,
+  BlogTiles,
+  DynamicPrelemOne,
   Banner6,
   DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,

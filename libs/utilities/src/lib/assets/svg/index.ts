@@ -132,7 +132,10 @@ import RedDots from "./icon/RedDots.svg";
 import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 
 export {
-  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,
+  GlobalImageIcon,
+  GlobalVideoIcon,
+  GlobalMiscIcon,
+  FeatureStarIcon,
   ArrowUpwardIcon,
   Icon,
   Refresh,

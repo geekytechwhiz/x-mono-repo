@@ -13,6 +13,18 @@ import News_community from "./News_community.svg";
 import playerIcon from "./profil_icon.svg";
 import Community from "./community.svg";
 import Challenges_community from "./Challenges_community.svg";
+import ArticleSoltIcon from "./article-v2.svg";
+import IconUpArrowSvg from "./upArrow.svg";
+import Business from "./Business.svg";
+import Fashion from "./Fashion.svg";
+import Lifestyle from "./Lifestyle.svg";
+import Sports from "./Sports.svg";
+import TechNews from "./TechNews.svg";
+import Travel from "./Travel.svg";
+import ArrowAnimated from "./animatedarrow.svg";
+import AwardsWinnerCompanyIcon from "./AwardsWinnerCompany.svg";
+import PrelemsDeployedIcon from "./PrelemsDeployed.svg";
+import ProjectsCompletedIcon from "./ProjectsCompletedIcon.svg";
 
 export {
   MaskImg,
@@ -30,4 +42,16 @@ export {
   playerIcon,
   Community,
   Challenges_community,
+  ArticleSoltIcon,
+  IconUpArrowSvg,
+  Business,
+  Fashion,
+  Lifestyle,
+  Sports,
+  TechNews,
+  Travel,
+  ArrowAnimated,
+  AwardsWinnerCompanyIcon,
+  PrelemsDeployedIcon,
+  ProjectsCompletedIcon,
 };

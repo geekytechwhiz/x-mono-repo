@@ -10,6 +10,7 @@ import Awards from "./Awards.png";
 import FeatureCard from "./Feature card.png";
 import ServiceCard from "./Service card.png";
 import Shopping_bag from "./shopping_bag.png";
+import CourseDegIcon from "./CourseIcon.png";
 
 export {
   Frame1,
@@ -24,4 +25,5 @@ export {
   FeatureCard,
   ServiceCard,
   Shopping_bag,
+  CourseDegIcon,
 };

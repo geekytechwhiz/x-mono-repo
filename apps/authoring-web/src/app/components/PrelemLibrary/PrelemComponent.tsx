@@ -34,6 +34,15 @@ import {
   Description,
   FullWidthText,
   ImageCarousel,
+  DynamicPrelemOne,
+  BlogTiles,
+  CustomerTestimonial2,
+  ContentDisplayWithCategories,
+  CounterNumberShowcase,
+  ServiceCard7,
+  ServiceShowcase2,
+  FeatureTiles,
+  TeamMembers,
 } from "@platformx/x-prelem-library";
 // call this function at the root of the application
 unstable_ClassNameGenerator.configure((componentName) =>
@@ -48,6 +57,15 @@ function PrelemComponent() {
         <Box sx={{ margin: (themeOptions) => themeOptions.prelemMargin.value }}>
           <CssBaseline />
           {/* <AnimationOnPageScroll /> */}
+          <TeamMembers />
+          <FeatureTiles />
+          <ServiceShowcase2 />
+          <ServiceCard7 />
+          <CounterNumberShowcase />
+          <ContentDisplayWithCategories />
+          <CustomerTestimonial2 />
+          <BlogTiles />
+          <DynamicPrelemOne />
           <Banner6 />
           <DynamicPrelemWithCarousel1 />
           <DynamicPrelemWithCarousel2 />

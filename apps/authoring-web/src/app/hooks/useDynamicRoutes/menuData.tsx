@@ -19,6 +19,7 @@ import {
   VideoIcon,
   FeatureStarIcon,
 } from "@platformx/utilities";
+
 const ContentRoutes = {
   url: "",
   Title: "content",
