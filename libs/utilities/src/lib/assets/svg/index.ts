@@ -142,6 +142,13 @@ import FaviconupdateIcon from './Faviconupdateicon.svg';
 import SearchnupdateIcon from './Searchupdateicon.svg';
 import LanguageupdateIcon from './Languageupdateicon.svg';
 import CtaupdateIcon from './CTAupdateicon.svg';
+import Location from './Location.svg';
+import Envelop from './Envelop.svg';
+import Phone from './Phone.svg';
+import Searchheadericon from './Searchheadericon.svg';
+import Headerpublic from './headerpublic.svg';
+import Ctaround from './ctaround.svg';
+import Ctasearch from './ctaround.svg';
 
 export {
   GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon, FaviconupdateIcon, SearchnupdateIcon, LanguageupdateIcon, CtaupdateIcon,
@@ -153,6 +160,13 @@ export {
   CopyrightUpdateIcon,
   Newsletterupdateicon,
   MediahandleUpdateIcon,
+  Location,
+  Envelop,
+  Phone,
+  Ctaround,
+  Ctasearch,
+  Searchheadericon,
+  Headerpublic,
   Icon,
   Refresh,
   MenuIcon1,

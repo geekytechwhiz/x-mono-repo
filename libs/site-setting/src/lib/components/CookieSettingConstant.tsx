@@ -1,15 +1,8 @@
 import { Box, Skeleton, Stack } from "@mui/material";
-import { ReactComponent as Location } from "../../../assets/Location.svg";
-import { ReactComponent as Envelop } from "../../../assets/Envelop.svg";
-import { ReactComponent as Phone } from "../../../assets/Phone.svg";
-import { ReactComponent as Searchheadericon } from "../../../assets/Searchheadericon.svg";
-import { ReactComponent as Headerpublic } from "../../../assets/headerpublic.svg";
-import { ReactComponent as Ctaround } from "../../../assets/ctaround.svg";
-import { ReactComponent as Ctasearch } from "../../../assets/ctasearch.svg";
+import { Location, Envelop, Phone, Searchheadericon, Headerpublic, Ctaround, Ctasearch } from "@platformx/utilities";
 
 export const InformativeCookieSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -97,11 +90,9 @@ export const InformativeCookieSkeleton = (border) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const ConsetCookieSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -191,11 +182,9 @@ export const ConsetCookieSkeleton = (border) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 const nonAndessentialCookieSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -367,7 +356,6 @@ const nonAndessentialCookieSkeleton = (border) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const informativeCookieSkeletonList = [
   {
@@ -408,8 +396,7 @@ export const consentCookieSkeletonList = [
 ];
 
 export const SiteLogoSkeleton = (pos) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         marginTop: "16px",
         backgroundColor: "#F3FAFF",
@@ -485,11 +472,9 @@ export const SiteLogoSkeleton = (pos) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const ContactUsSkeleton = (
-  <>
-    <Stack
+  <Stack
       sx={{
         marginTop: "16px",
         backgroundColor: "#F3FAFF",
@@ -601,7 +586,6 @@ export const ContactUsSkeleton = (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const AddLinkSkeleton = (
   <Stack
@@ -920,8 +904,7 @@ export const MediaHandleSkeleton = (
   </Stack>
 );
 export const HeaderLogoSkeleton = (pos) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         marginTop: "16px",
         backgroundColor: "#F3FAFF",
@@ -980,11 +963,9 @@ export const HeaderLogoSkeleton = (pos) => (
         />
       </Box>
     </Stack>
-  </>
 );
 export const HeaderSearchSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -1085,11 +1066,9 @@ export const HeaderSearchSkeleton = (border) => (
         />
       </Box>
     </Stack>
-  </>
 );
 export const HeaderFaviconSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -1202,11 +1181,9 @@ export const HeaderFaviconSkeleton = (border) => (
           background: "#C8E1FC",
         }}></Box>
     </Stack>
-  </>
 );
 export const HeaderLanguageSkeleton = (pos) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         backgroundColor: "#F3FAFF",
         display: "flex",
@@ -1314,11 +1291,9 @@ export const HeaderLanguageSkeleton = (pos) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const HeaderCtaSkeleton = (border) => (
-  <>
-    <Stack
+  <Stack
       sx={{
         marginTop: "16px",
         backgroundColor: "#F3FAFF",
@@ -1395,7 +1370,6 @@ export const HeaderCtaSkeleton = (border) => (
         </Box>
       </Box>
     </Stack>
-  </>
 );
 export const formConfig = [
   {

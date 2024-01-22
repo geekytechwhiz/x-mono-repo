@@ -46,14 +46,14 @@ import {
   MediaHandleSkeleton,
   NewsLetterSkeleton,
   SiteLogoSkeleton,
-} from "../CookieSetting/CookieSettingConstant";
+} from "../../components/CookieSettingConstant";
 import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
 import { useFooterSettingStyle } from "./FooterSetting.style";
 //import { CreateHeader } from "../../../components/Common/CreateHeader";
 import { Divider } from "@mui/material";
 import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
-import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
-import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
+// import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
+// import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
 import iconImages from "./FooterConstansts";
 
 export const FooterSetting = () => {
@@ -82,7 +82,7 @@ export const FooterSetting = () => {
     news_letter_description: "",
   });
   const [isNotificationToast, setIsNotificationToast] = useState<boolean>(false);
-  const [runFetchContentByPath, { loading }] = useLazyQuery(fetchContentByPath);
+  // const [runFetchContentByPath, { loading }] = useLazyQuery(fetchContentByPath);
   const toastMessage = useRef(null);
   const crossButtonHandle = () => {
     setIsNotificationToast(false);
