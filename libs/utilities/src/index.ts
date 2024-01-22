@@ -17,7 +17,8 @@ import ContentListDesktopLoader from "./lib/components/Loader/ContentListDesktop
 import ContentListMobileLoader from "./lib/components/Loader/ContentListLoaderMobile";
 import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import NoSearchResult from "./lib/components/NoSearchResult/NoSearchResult";
-
+import News_community from "./lib/assets/svg/News_community.svg";
+import General_community from "./lib/assets/svg/General_community.svg";
 import {
   default as DeletePopup,
   default as PlateformXDialog,
@@ -107,6 +108,8 @@ export * from "./lib/hooks/useAccess/useMapPermissions";
 export * from "./lib/mappers/articleMapper";
 
 export {
+  News_community,
+  General_community,
   AUTH_INFO,
   AUTH_URL,
   AddImage,
