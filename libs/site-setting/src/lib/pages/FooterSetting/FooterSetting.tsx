@@ -299,26 +299,29 @@ const FooterSetting = () => {
     <>
       {!galleryState && (
         <>
-          <CreateHeader
-            previewButton={false}
-            createText={"Footer Setting"}
-            returnBack={() => {
+     <CreateHeader
+            createText={t("Footer Settin")}
+            handleReturn={() => {
               navigate("/dashboard");
             }}
             isQuiz
-            publishButton={false}
-            handelPreview={false}
-            saveButton={false}
+            hasPublishButton={true}
+            hasPreviewButton={false}
+            hasSaveButton={false}
             saveText={t("update")}
+            handelPreview={() => {
+              /* your function code */
+            }}
+            handlePublish={onSaveClick}
+            handleSaveOrPublish={onSaveClick}
             previewText='Preview'
             showPreview={false}
-            saveorPublish={onSaveClick}
             toolTipText='Unable to preview please add required details'
             saveVariant='contained'
             category={"content"}
             subCategory={"quiz"}
+            isFeatured={false}
           />
-
           <Divider></Divider>
           <Box className={classes.globalnewcontain}>
             <QuizPageScroll
