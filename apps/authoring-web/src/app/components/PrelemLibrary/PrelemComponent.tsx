@@ -43,6 +43,18 @@ import {
   ServiceShowcase2,
   FeatureTiles,
   TeamMembers,
+  ImageCards,
+  FullWidthTextWithImage,
+  VideoBanner1,
+  ServiceCard1,
+  ServiceCard2,
+  ServiceCard3,
+  FeatureBox1,
+  FeatureBox2,
+  ServiceCard5,
+  Services1,
+  Services2,
+  Gallery1,
 } from "@platformx/x-prelem-library";
 // call this function at the root of the application
 unstable_ClassNameGenerator.configure((componentName) =>
@@ -95,6 +107,18 @@ function PrelemComponent() {
           <Description />
           <FullWidthText />
           <ImageCarousel />
+          <ImageCards />
+          <FullWidthTextWithImage />
+          <VideoBanner1 />
+          <ServiceCard1 />
+          <ServiceCard2 />
+          <ServiceCard3 />
+          <FeatureBox1 />
+          <FeatureBox2 />
+          <ServiceCard5 />
+          <Services1 />
+          <Services2 />
+          {/* <Gallery1 /> */}
         </Box>
       </ThemeProvider>
     </div>

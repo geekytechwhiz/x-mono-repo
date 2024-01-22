@@ -36,6 +36,18 @@ import ServiceCard7 from "./ServiceCard7/ServiceCard7";
 import ServiceShowcase2 from "./ServiceShowcase2/ServiceShowcase2";
 import FeatureTiles from "./FeatureTiles/FeatureTiles";
 import TeamMembers from "./TeamMembers/TeamMembers";
+import ImageCards from "./ImageCards/ImageCards";
+import FullWidthTextWithImage from "./FullWidthTextWithImage/FullWidthTextWithImage";
+import VideoBanner1 from "./VideoBanner1/VideoBanner1";
+import ServiceCard1 from "./ServiceCard1/ServiceCard1";
+import ServiceCard2 from "./ServiceCard2/ServiceCard2";
+import ServiceCard3 from "./ServiceCard3/ServiceCard3";
+import ServiceCard5 from "./ServiceCard5/ServiceCard5";
+import FeatureBox1 from "./FeatureBox1/FeatureBox1";
+import FeatureBox2 from "./FeatureBox2/FeatureBox2";
+import Services1 from "./Services1/Services1";
+import Services2 from "./Services2/Services2";
+import Gallery1 from "./Gallery1/Gallery1";
 
 export {
   TeamMembers,
@@ -76,4 +88,16 @@ export {
   Description,
   FullWidthText,
   ImageCarousel,
+  ImageCards,
+  FullWidthTextWithImage,
+  VideoBanner1,
+  ServiceCard1,
+  ServiceCard2,
+  ServiceCard3,
+  FeatureBox1,
+  FeatureBox2,
+  ServiceCard5,
+  Services1,
+  Services2,
+  Gallery1,
 };

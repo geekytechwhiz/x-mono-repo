@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import React from "react";
-import ThemeConstants from "./LightTheme/Variable";
+import ThemeConstants from "./Feyenoord/Variable";
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
