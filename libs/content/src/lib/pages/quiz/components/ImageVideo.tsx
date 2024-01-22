@@ -7,7 +7,7 @@ import { useCustomStyle } from "../quiz.style";
 import { CommentWrapper } from "@platformx/comment-review";
 import { XImageRender } from "@platformx/x-image-render";
 
-const ImageVideo = ({ state, setState, selectedImage }) => {
+const ImageVideo = ({ state, setState }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
 
@@ -41,7 +41,13 @@ const ImageVideo = ({ state, setState, selectedImage }) => {
               />
             </Grid>
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-              <XImageRender callBack={updateField} />
+              <XImageRender
+                callBack={updateField}
+                data={{
+                  original_image: state.original_image,
+                  published_images: state.published_images,
+                }}
+              />
             </Grid>
           </Grid>
         </CommonBoxWithNumber>

@@ -1096,11 +1096,7 @@ export const CreateQuiz = () => {
                   isDraft={isDraft}
                   setFieldChanges={setFieldChanges}
                 />
-                <ImageVideo
-                  state={quizState}
-                  setState={setQuizState}
-                  selectedImage={selectedImage}
-                />
+                <ImageVideo state={quizState} setState={setQuizState} />
                 <Question
                   quizState={quizState}
                   setQuizState={setQuizState}

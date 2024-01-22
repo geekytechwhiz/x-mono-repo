@@ -15,7 +15,7 @@ import CachedIcon from "@mui/icons-material/Cached";
 import ImageRender from "./components/ImageRender";
 import ShowCaseCrops from "./components/ShowCaseCrops";
 
-export const XImageRender = ({ callBack }): any => {
+export const XImageRender = ({ callBack, data }): any => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
   const [operationType, setOperationType] = useState<string>("choose");
@@ -26,7 +26,7 @@ export const XImageRender = ({ callBack }): any => {
     description: "",
     bitStreamId: "",
   });
-  const [returnData, setReturnData] = useState({});
+  const [returnData, setReturnData] = useState(data);
   const [manualCropShow, setManualCropShow] = useState(false);
   const [showCropPreview, setShowCropPreview] = useState(false);
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
@@ -157,7 +157,7 @@ export const XImageRender = ({ callBack }): any => {
           />
         )}
       </Box>
-      {Object.keys(returnData).length !== 0 ? (
+      {returnData.published_images.length > 0 ? (
         <Box
           sx={{
             position: "relative", //height: "91%"
