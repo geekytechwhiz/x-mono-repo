@@ -1,5 +1,5 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Button, Drawer, Grid } from "@mui/material";
+import { Box, Button, Dialog, DialogContent, Drawer, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import DamContentCard from "./DamContentCard";
 import DamContentLeftSidebar from "./DamContentLeftSidebar";
@@ -28,24 +28,26 @@ const COLLECTION_ITEM = {
 
 const DamContentGallery = (_props: any) => {
   const {
+    dialogOpen,
     assetType,
     handleImageSelected,
     handleSelectedVideo,
     toggleGallery,
     keyName,
-    processing
+    processing,
+    isCrop = "false",
   } = _props;
   const { fetchFacet, fetchDAMContent } = assetsApi;
   const [data, setData] = useState(COLLECTION_ITEM);
   const [menuData, setMenuData] = useState(COLLECTION_ITEM);
   const [loading, setLoading] = useState(true);
-   const [startIndex, setStartIndex] = useState<number>(0);
+  const [startIndex, setStartIndex] = useState<number>(0);
   const ROWS = 16;
   const [isLazyLoad, setIsLazyLoad] = useState<boolean>(true);
   const [label, setLabel] = useState({});
   const classes = useDamContent();
   const [uuid, setUuid] = useState(
-    assetType === 'Image' ? AUTH_INFO.dspaceImagesUuid : AUTH_INFO.dspaceVideosUuid,
+    assetType === "Image" ? AUTH_INFO.dspaceImagesUuid : AUTH_INFO.dspaceVideosUuid,
   );
   const [author, setAuthor] = useState("");
   const [inputValue, setInputValue] = useState<any>("");
@@ -177,7 +179,7 @@ const DamContentGallery = (_props: any) => {
     setCategoryLoading(true);
     try {
       const { authoring_getAssets = {} } = await fetchDAMContent({
-        uuid: assetType === 'Image' ? AUTH_INFO.dspaceImagesUuid : AUTH_INFO.dspaceVideosUuid,
+        uuid: assetType === "Image" ? AUTH_INFO.dspaceImagesUuid : AUTH_INFO.dspaceVideosUuid,
         start: 0,
         rows: 16,
         search: searchTerm,
@@ -213,7 +215,7 @@ const DamContentGallery = (_props: any) => {
     };
     setStartIndex(() => nextIndex);
     setSearchTerm(searchTerm);
-   // getDAMcontent(nextIndex, filter, searchTerm);
+    // getDAMcontent(nextIndex, filter, searchTerm);
   };
 
   const setInputValueHandle = (searchData = "") => {
@@ -221,8 +223,9 @@ const DamContentGallery = (_props: any) => {
   };
 
   const handleDoneClick = async () => {
-    if (assetType === 'Image') {
+    if (assetType === "Image") {
       handleImageSelected(imageData, keyName);
+      if (!isCrop) toggleGallery(false, "done", keyName);
     } else {
       try {
         const res = await axios.get(imageData.bundlesUrl);
@@ -268,95 +271,109 @@ const DamContentGallery = (_props: any) => {
   //Function to remove a tag from the author
 
   return (
-    <div>
-      {open ? (
-        <Grid container item xs={12} em={3} xl={2} lg={2} className={classes.parentGrid}>
-          <Drawer anchor='right' open={open} sx={{ zIndex: 1300 }}>
-            <Box role='presentation'>
-              <DamContentLeftSidebar
-                loading={loading}
-                toggleDrawer={toggleDrawer}
-                menuData={menuData}
-                setUuid={setUuid}
-                assetType={assetType}
-              />
-            </Box>
-          </Drawer>
-        </Grid>
-      ) : (
-        <Box className='damcontent_container'>
-          <DamContentTopHeading
-            onSearch={handleSearch}
-            inputValue={inputValue}
-            setInputValueHandle={setInputValueHandle}
-            assetType={assetType}
-            toggleGallery={toggleGallery}
-            handleDoneClick={handleDoneClick}
-            imageData={imageData}
-            menuData={menuData}
-            toggleDrawer={toggleDrawer}
-            loading={processing}
-          />
-
-          <Grid container spacing={0}>
-            <Grid
-              container
-              className='leftsidebar-scroll'
-              item
-              xs={12}
-              em={3}
-              xl={2.5}
-              lg={2.5}
-              sx={{
-                display: { xs: "none", em: "block" },
-                borderRight: `solid 1px ${ThemeConstants.LIGHT_GRAY_VARIENT1}`,
-              }}>
-              <DamContentLeftSidebar
-                toggleDrawer={() => {}}
-                loading={categoryLoading}
-                menuData={menuData}
-                setUuid={setUuid}
-                assetType={assetType}
-              />
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              em={9}
-              xl={9.5}
-              lg={9.5}
-              className={`${classes.damDropdown} right-topbar-container `}>
-              <Box className='right-topbar'>
-                <DamDropdown setAuthor={setAuthor} label={label} />
+    <Dialog
+      open={dialogOpen}
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
+      PaperProps={{
+        sx: {
+          width: "100%",
+          maxWidth: "100%",
+          height: "calc(100% - 40px)",
+          maxHeight: "calc(100% - 40px)",
+          margin: "20px",
+        },
+      }}>
+      <DialogContent sx={{ padding: "5px" }}>
+        {open ? (
+          <Grid container item xs={12} em={3} xl={2} lg={2} className={classes.parentGrid}>
+            <Drawer anchor='right' open={open} sx={{ zIndex: 1300 }}>
+              <Box role='presentation'>
+                <DamContentLeftSidebar
+                  loading={loading}
+                  toggleDrawer={toggleDrawer}
+                  menuData={menuData}
+                  setUuid={setUuid}
+                  assetType={assetType}
+                />
               </Box>
-
-              <Box className={classes.marginLeft}>
-                {author && (
-                  <Button
-                    className='tagbtn'
-                    key={author}
-                    disabled={false}
-                    variant='contained'
-                    onClick={() => removetag()}
-                    endIcon={<CloseIcon />}>
-                    {capitalizeFirstLetter(author?.toLowerCase())}
-                  </Button>
-                )}
-              </Box>
-              <DamContentCard
-                data={data}
-                isLazyLoad={isLazyLoad}
-                fetchMoreData={fetchMoreData}
-                isLoading={loading}
-                setImageData={setImageData}
-                imageData={imageData}
-              />
-            </Grid>
+            </Drawer>
           </Grid>
-        </Box>
-      )}
-    </div>
+        ) : (
+          <Box className='damcontent_container'>
+            <DamContentTopHeading
+              onSearch={handleSearch}
+              inputValue={inputValue}
+              setInputValueHandle={setInputValueHandle}
+              assetType={assetType}
+              toggleGallery={toggleGallery}
+              handleDoneClick={handleDoneClick}
+              imageData={imageData}
+              menuData={menuData}
+              toggleDrawer={toggleDrawer}
+              loading={processing}
+            />
+
+            <Grid container spacing={0}>
+              <Grid
+                container
+                className='leftsidebar-scroll'
+                item
+                xs={12}
+                em={3}
+                xl={2.5}
+                lg={2.5}
+                sx={{
+                  display: { xs: "none", em: "block" },
+                  borderRight: `solid 1px ${ThemeConstants.LIGHT_GRAY_VARIENT1}`,
+                }}>
+                <DamContentLeftSidebar
+                  toggleDrawer={() => {}}
+                  loading={categoryLoading}
+                  menuData={menuData}
+                  setUuid={setUuid}
+                  assetType={assetType}
+                />
+              </Grid>
+
+              <Grid
+                item
+                xs={12}
+                em={9}
+                xl={9.5}
+                lg={9.5}
+                className={`${classes.damDropdown} right-topbar-container `}>
+                <Box className='right-topbar'>
+                  <DamDropdown setAuthor={setAuthor} label={label} />
+                </Box>
+
+                <Box className={classes.marginLeft}>
+                  {author && (
+                    <Button
+                      className='tagbtn'
+                      key={author}
+                      disabled={false}
+                      variant='contained'
+                      onClick={() => removetag()}
+                      endIcon={<CloseIcon />}>
+                      {capitalizeFirstLetter(author?.toLowerCase())}
+                    </Button>
+                  )}
+                </Box>
+                <DamContentCard
+                  data={data}
+                  isLazyLoad={isLazyLoad}
+                  fetchMoreData={fetchMoreData}
+                  isLoading={loading}
+                  setImageData={setImageData}
+                  imageData={imageData}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 };
 

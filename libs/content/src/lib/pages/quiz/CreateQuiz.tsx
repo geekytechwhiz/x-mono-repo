@@ -22,7 +22,7 @@ import {
   capitalizeFirstLetter,
   getCurrentLang,
   useUserSession,
-  workflowKeys
+  workflowKeys,
 } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
@@ -35,8 +35,14 @@ import ContentPageScroll from "../../components/ContentPageScroll";
 import icons from "../../components/ContentWrapper/Utils/Constants";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
-import { DRAFT, PUBLISHED } from '../../utils/Constants';
-import { getCurrentQuiz, onBackButtonEvent, quizResponseMapper, unloadCallback, updateStructureData } from "../../utils/Helper";
+import { DRAFT, PUBLISHED } from "../../utils/Constants";
+import {
+  getCurrentQuiz,
+  onBackButtonEvent,
+  quizResponseMapper,
+  unloadCallback,
+  updateStructureData,
+} from "../../utils/Helper";
 import { QuizType } from "./Quiz.types";
 import { TitleDescription } from "./components/TitleDescription";
 import ChooseTags from "./components/choosetags/ChooseTags";
@@ -46,9 +52,9 @@ import SocialShare from "./components/socialshare/SocialShare";
 import { createInitialQuizState, createNewQuiz } from "./helper";
 import AddQuestion from "./components/addquestion/AddQuestion";
 import QuestionListing from "./components/questionlisting/QuestionListing";
+import ImageVideo from "./components/ImageVideo";
 
 export const CreateQuiz = () => {
-
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
   const params = useParams();
@@ -288,12 +294,16 @@ export const CreateQuiz = () => {
           setOpenPageExistModal(true);
           setPageStatus(pageState);
         } else {
-          await publishQuiz(quizRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(), quizState, publishPopup);
+          await publishQuiz(
+            quizRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
+            quizState,
+            publishPopup,
+          );
         }
       }
 
       const pageUrl = resp?.data?.authoring_createContent?.path.substring(
-        resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1
+        resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1,
       );
       quizRef.current.page = pageUrl;
       setDraftPageURL(pageUrl);
@@ -332,7 +342,16 @@ export const CreateQuiz = () => {
     }
 
     if (pageState) {
-      const resp = await createQuiz(pageState, true, isWorkflowStatus, quizState, editedSD, quizInstance, updateTempObj, isFeatured);
+      const resp = await createQuiz(
+        pageState,
+        true,
+        isWorkflowStatus,
+        quizState,
+        editedSD,
+        quizInstance,
+        updateTempObj,
+        isFeatured,
+      );
       await handleQuizCreation(resp, pageState, true, isWorkflowStatus);
     }
   };
@@ -370,8 +389,9 @@ export const CreateQuiz = () => {
         ...newTempData.CommonFields,
         ...updateTempObj.current,
         structure_data: structureData,
-        current_page_url: `/${currentQuizData.current !== "" ? currentQuizData.current : draftPageURL
-          }`,
+        current_page_url: `/${
+          currentQuizData.current !== "" ? currentQuizData.current : draftPageURL
+        }`,
         page: draftPageURL ? draftPageURL : currentQuizData.current,
         page_state: status,
         creationDate: new Date().toISOString(),
@@ -411,7 +431,11 @@ export const CreateQuiz = () => {
           // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setShowExitWarning(false);
         } else {
-          const { showPublishConfirm: hasConfirm, publishUrl } = await publishQuiz(draftPageURL ? draftPageURL : currentQuizData.current, quizState, publishPopup);
+          const { showPublishConfirm: hasConfirm, publishUrl } = await publishQuiz(
+            draftPageURL ? draftPageURL : currentQuizData.current,
+            quizState,
+            publishPopup,
+          );
           setShowPublishConfirm(hasConfirm);
           setPublishUrl(publishUrl);
         }
@@ -429,7 +453,7 @@ export const CreateQuiz = () => {
     setShowExitWarning(false);
     setQuizState({
       ...quizState,
-      "tags": tagArr,
+      tags: tagArr,
     });
 
     if (quizState?.title === "") {
@@ -457,9 +481,17 @@ export const CreateQuiz = () => {
       }
       if (!currentQuizData.current && isDraft) {
         // createQuiz(DRAFT, false, status, props, event_step);
-        const resp = await createQuiz(DRAFT, false, status, props, event_step, quizInstance, updateTempObj, isFeatured);
+        const resp = await createQuiz(
+          DRAFT,
+          false,
+          status,
+          props,
+          event_step,
+          quizInstance,
+          updateTempObj,
+          isFeatured,
+        );
         await handleQuizCreation(resp, DRAFT, false, status);
-
       } else {
         updateQUIZ(DRAFT, status, props, event_step);
       }
@@ -470,7 +502,7 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
     setQuizState({
       ...quizState,
-      "tags": tagArr,
+      tags: tagArr,
     });
     const {
       title,
@@ -520,7 +552,16 @@ export const CreateQuiz = () => {
       }
 
       if (!currentQuizData.current && isDraft) {
-        const resp = await createQuiz("PUBLISHED", false, false, quizState, editedSD, quizInstance, updateTempObj, isFeatured);
+        const resp = await createQuiz(
+          "PUBLISHED",
+          false,
+          false,
+          quizState,
+          editedSD,
+          quizInstance,
+          updateTempObj,
+          isFeatured,
+        );
         await handleQuizCreation(resp, "PUBLISHED", false, false);
 
         // createQuiz("PUBLISHED", false, false);
@@ -608,12 +649,12 @@ export const CreateQuiz = () => {
       setTagArr(tagsArray);
       setQuizState({
         ...quizState,
-        "tagsSocialShare": tagsArray,
+        tagsSocialShare: tagsArray,
       });
       quizRef.current = {
         ...quizRef.current,
-        "tags": tagsArray,
-        "tagsSocialShare": isDraft ? tagsArray : tagsArray, //[...quizState.tagsSocialShare],
+        tags: tagsArray,
+        tagsSocialShare: isDraft ? tagsArray : tagsArray, //[...quizState.tagsSocialShare],
       };
       unsavedChanges.current = true;
     }
@@ -653,7 +694,7 @@ export const CreateQuiz = () => {
   useEffect(() => {
     debugger;
     if (
-      (currentQuiz&&Object.keys(currentQuiz).length > 0 && params.id) ||
+      (currentQuiz && Object.keys(currentQuiz).length > 0 && params.id) ||
       Object.keys(currentQuiz).length
     ) {
       setQuizInstance(currentQuiz);
@@ -667,6 +708,7 @@ export const CreateQuiz = () => {
             const contentObj = res?.data?.authoring_getCmsContentByPath;
             const tempdata = { ...contentObj };
             delete tempdata.__typename;
+            console.info("edit data", tempdata);
             setQuizInstance(tempdata);
             setTagArr(tempdata.tags);
           }
@@ -748,7 +790,8 @@ export const CreateQuiz = () => {
                       question_type: resp.data.authoring_getCmsContentByPath.question_type,
                       options_compound_fields:
                         resp.data.authoring_getCmsContentByPath.options_compound_fields,
-                      background_content: resp.data.authoring_getCmsContentByPath.background_content,
+                      background_content:
+                        resp.data.authoring_getCmsContentByPath.background_content,
                     };
                   }
                 }),
@@ -927,7 +970,7 @@ export const CreateQuiz = () => {
     const result = await commentsApi.createOrUpdateComment({
       input: createCommentRequest,
     });
-     return result;
+    return result;
   };
 
   useEffect(() => {
@@ -979,7 +1022,7 @@ export const CreateQuiz = () => {
         sx={{
           display: isClickedQueList || openAddQuestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type="linear" />}
+        {isLoading && <XLoader type='linear' />}
 
         <Box>
           <Box>
@@ -987,7 +1030,7 @@ export const CreateQuiz = () => {
               hasPreviewButton={previewButton}
               handelPreview={handelPreview}
               createText={currentQuizData.current ? `${t("edit")} ${t("quiz")}` : t("create_quiz")}
-              handleReturn ={returnBack}
+              handleReturn={returnBack}
               isQuiz={isQuiz}
               hasPublishButton={publishButton}
               hasSaveButton={saveButton}
@@ -1039,11 +1082,11 @@ export const CreateQuiz = () => {
             )}
             {enableWorkflowHistory ? (
               <>WorkflowHistory</>
+            ) : (
               // <WorkflowHistory
               //   workflow={workflow}
               //   setEnableWorkflowHistory={setEnableWorkflowHistory}
               // />
-            ) : (
               <>
                 <TitleDescription
                   state={quizState}
@@ -1054,12 +1097,11 @@ export const CreateQuiz = () => {
                   isDraft={isDraft}
                   setFieldChanges={setFieldChanges}
                 />
-                {/* <ImageVideo
+                <ImageVideo
                   state={quizState}
                   setState={setQuizState}
-                  showGallery={showGallery}
                   selectedImage={selectedImage}
-                /> */}
+                />
                 <Question
                   quizState={quizState}
                   setQuizState={setQuizState}

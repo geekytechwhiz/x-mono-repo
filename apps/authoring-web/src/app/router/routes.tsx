@@ -32,7 +32,7 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='page-list' subCategory='page-list' name='page-list'>
         {" "}
-        <XImageRender />{" "}
+        {/* <XImageRender />{" "} */}
       </ProtectedRoute>
     ),
   },

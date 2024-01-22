@@ -132,9 +132,9 @@ import GreenFolderIcon from "./Folder-green.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
+import UploadIcon from "./upload.svg";
 
 export {
-  // ArrowUpwardIcon,
   Icon,
   Refresh,
   MenuIcon1,
@@ -261,4 +261,5 @@ export {
   LeftArrowIcon,
   RightArrowIcon,
   PlayIcon,
+  UploadIcon,
 };
