@@ -8,8 +8,8 @@ import pollIcon from "./poll.svg";
 import quizIcon from "./quiz.svg";
 import vodIcon from "./vod.svg";
 import courseIcon from "./course.svg";
-import General_community from "./General_community.svg";
-import News_community from "./News_community.svg";
+//import General_community from "./General_community.svg";
+//import News_community from "./News_community.svg";
 import playerIcon from "./profil_icon.svg";
 import Community from "./community.svg";
 import Challenges_community from "./Challenges_community.svg";
@@ -25,8 +25,8 @@ export {
   quizIcon,
   vodIcon,
   courseIcon,
-  General_community,
-  News_community,
+  // General_community,
+  // News_community,
   playerIcon,
   Community,
   Challenges_community,
