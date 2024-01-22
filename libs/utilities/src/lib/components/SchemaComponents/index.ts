@@ -16,6 +16,7 @@ import ColorPallet from "./ColorPallet/ColorPallet";
 import Answers from "./Answers/Answers";
 import { AddImageBackGroundColor } from "./AddImageBackgroundColor/AddImageBackgroundColor.stories";
 import TitleSubTitle from "./TitleSubtitle/TitleSubTitle";
+import MultiSelect from "./MultiSelect/MultiSelect";
 import { XButton } from "./XButton/XButton";
 import FormikTextField from "./FormikTextField/FormikTextField";
 import FormikField from "./FormikField/FormikField";
@@ -36,6 +37,7 @@ export {
     FormikField,
     FormikTextField,
     TitleSubTitle,
+    MultiSelect,
     XTypography,
     XTextField,
     XTextArea,

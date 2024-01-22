@@ -130,9 +130,15 @@ import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 import RedDots from "./icon/RedDots.svg";
 import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import SitelogoupdateIcon from './sitelogopupdateicon.svg'
+import FaviconupdateIcon from './Faviconupdateicon.svg'
+import SearchnupdateIcon from './Searchupdateicon.svg'
+import LanguageupdateIcon from './Languageupdateicon.svg'
+import CtaupdateIcon from './CTAupdateicon.svg'
+
 
 export {
-  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,
+  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,SitelogoupdateIcon,FaviconupdateIcon,SearchnupdateIcon,LanguageupdateIcon,CtaupdateIcon,
   ArrowUpwardIcon,
   Icon,
   Refresh,
