@@ -8,6 +8,7 @@ import { RouteConfig } from "./routes.type";
 import { MediaHandle, FeatureFlagSetting, GlobalSetting } from "@platformx/site-setting";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
+import { HeaderSetting } from "../../../../../libs/site-setting/src/lib/pages/HeaderSetting/HeaderSetting";
 
 export const routes: RouteConfig[] = [
   {
@@ -109,6 +110,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
         <GlobalSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/header-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='HeaderSetting'>
+        <HeaderSetting />
       </ProtectedRoute>
     ),
   },
