@@ -138,9 +138,13 @@ import Addlinkupdateicon from "./addlinkupdateicon.svg";
 import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
 import Newsletterupdateicon from "./Newsletterupdateicon.svg";
 import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
+import FaviconupdateIcon from './Faviconupdateicon.svg';
+import SearchnupdateIcon from './Searchupdateicon.svg';
+import LanguageupdateIcon from './Languageupdateicon.svg';
+import CtaupdateIcon from './CTAupdateicon.svg';
 
 export {
-  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon,
+  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon, FaviconupdateIcon, SearchnupdateIcon, LanguageupdateIcon, CtaupdateIcon,
   ArrowUpwardIcon,
   Sitelogoupdateicon,
   Contactusupdateicon,
