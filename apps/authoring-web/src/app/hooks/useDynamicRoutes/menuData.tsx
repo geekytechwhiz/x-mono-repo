@@ -17,6 +17,7 @@ import {
   SitesIcon,
   UsersIcon,
   VODIcon,
+  FeatureStarIcon,
 } from "@platformx/utilities";
 
 const ContentRoutes = {
@@ -114,14 +115,14 @@ export const MenuData = [
         category: "dashboard",
         subCategory: "",
       },
-      {
-        MenuName: "Prelem",
-        Icon: MyDashboardIcon,
-        url: "/prelem",
-        id: "prelem",
-        category: "dashboard",
-        subCategory: "",
-      },
+      // {
+      //   MenuName: "Prelem",
+      //   Icon: MyDashboardIcon,
+      //   url: "/prelem",
+      //   id: "prelem",
+      //   category: "dashboard",
+      //   subCategory: "",
+      // },
     ],
   },
   {
@@ -265,6 +266,14 @@ export const MenuData = [
         Icon: HeaderMenuUpdated,
         url: "/site-setting/global-setting",
         id: "global_setting",
+        category: "SiteSetting",
+        subCategory: "GlobalSetting",
+      },
+      {
+        MenuName: "Feature Setting",
+        Icon: FeatureStarIcon,
+        url: "/site-setting/feature-flag",
+        id: "feature_flag_setting",
         category: "SiteSetting",
         subCategory: "GlobalSetting",
       },

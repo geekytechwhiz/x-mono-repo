@@ -115,6 +115,12 @@ import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
 import LeftArrowIcon from "./leftarrow.svg";
 import RightArrowIcon from "./rightarrow.svg";
+import GlobalImageIcon from "./globalimageicon.svg";
+import GlobalVideoIcon from "./globalvideoicon.svg";
+import GlobalMiscIcon from "./globalmiscicon.svg";
+import FeatureStarIcon from "./featurestar.svg";
+import PlayIcon from "./playIcon.svg";
+import PictureIcon from "./pictureIcon.svg";
 import ArrowUpwardIcon from "./ArrowUp.svg";
 import Icon from "./Icon.svg";
 import Refresh from "./Refresh.svg";
@@ -126,15 +132,20 @@ import MenuIcon5 from "./MenuIcons-5.svg";
 import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
-import PlayIcon from "./playIcon.svg";
 import ImageIcon from "./image.svg";
 import GreenFolderIcon from "./Folder-green.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
+import RedDots from "./icon/RedDots.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 
 export {
+  GlobalImageIcon,
+  GlobalVideoIcon,
+  GlobalMiscIcon,
+  FeatureStarIcon,
   Icon,
   Refresh,
   MenuIcon1,
@@ -262,4 +273,5 @@ export {
   RightArrowIcon,
   PlayIcon,
   UploadIcon,
+  PictureIcon,
 };

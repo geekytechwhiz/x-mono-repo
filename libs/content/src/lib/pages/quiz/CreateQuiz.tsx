@@ -32,10 +32,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import Analytics from "../../components/Analytics/Analytics";
 import ContentPageScroll from "../../components/ContentPageScroll";
-import icons from "../../components/ContentWrapper/Utils/Constants";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
-import { DRAFT, PUBLISHED } from "../../utils/Constants";
+import { DRAFT, PUBLISHED, icons } from "../../utils/Constants";
 import {
   getCurrentQuiz,
   onBackButtonEvent,

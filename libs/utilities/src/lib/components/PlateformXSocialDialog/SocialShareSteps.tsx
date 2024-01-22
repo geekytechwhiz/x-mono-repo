@@ -32,7 +32,6 @@ import useUserSession from "../../hooks/useUserSession/useUserSession";
 import { capitalizeFirstLetter, convertToLowerCase, getSubDomain } from "../../utils/helperFns";
 import SkeltonLoader from "../SkeltonLoader/SkeltonLoader";
 import { ShowToastError, ShowToastSuccess } from "../ToastNotification/ToastNotification";
-
 // eslint-disable-next-line no-shadow
 enum ShareNetworkValues {
   fb = "Facebook",
@@ -307,7 +306,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           setfacebookProfileData(res?.data?.authoring_socialSharePageProfile[0]?.facebookRes);
         })
         .catch((err) => {
-          //console.log(JSON.stringify(err, null, 2));
+          console.log(JSON.stringify(err, null, 2));
         });
     }
 
