@@ -12,6 +12,8 @@ import ServiceCard from "./Service card.png";
 import Shopping_bag from "./shopping_bag.png";
 import CourseDegIcon from "./CourseIcon.png";
 import BigArrow from "./BigArrow.png";
+import DottedBg from "./dottedbg.png";
+import DottedRound from "./mask-dotted.png";
 
 export {
   Frame1,
@@ -28,4 +30,6 @@ export {
   Shopping_bag,
   CourseDegIcon,
   BigArrow,
+  DottedBg,
+  DottedRound,
 };

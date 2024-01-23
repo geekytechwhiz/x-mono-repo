@@ -50,8 +50,30 @@ import Services2 from "./Services2/Services2";
 import Gallery1 from "./Gallery1/Gallery1";
 import AboutUsFourWithSubHeading from "./AboutUsFourWithSubHeading/AboutUsFourWithSubHeading";
 import Statistics from "./Statistics/Statistics";
+import ProductSummary3 from "./ProductSummary3/ProductSummary3";
+import WebsiteSummaryWithSubHeading from "./WebsiteSummaryWithSubHeading/WebsiteSummaryWithSubHeading";
+import WebsiteSummaryWithSubHeading2 from "./WebsiteSummaryWithSubHeading2/WebsiteSummaryWithSubHeading2";
+import LeftAlignParagraphWithHeadline from "./LeftAlignParagraphWithHeadline/LeftAlignParagraphWithHeadline";
+import Banner4 from "./Banner4/Banner4";
+import ParagraphWithHeadlineAndCTA from "./ParagraphWithHeadlineAndCTA/ParagraphWithHeadlineAndCTA";
+import ImageVideoCarousel1 from "./ImageVideoCarousel1/ImageVideoCarousel1";
+import ParagraphWithHeadline from "./ParagraphWithHeadline/ParagraphWithHeadline";
+import DynamicPrelem from "./DynamicPrelem/DynamicPrelem";
+import Award1 from "./Awards1/Awards1";
+import Faq1 from "./Faq1/Faq1";
 
 export {
+  Faq1,
+  Award1,
+  DynamicPrelem,
+  ParagraphWithHeadline,
+  ImageVideoCarousel1,
+  ParagraphWithHeadlineAndCTA,
+  Banner4,
+  LeftAlignParagraphWithHeadline,
+  WebsiteSummaryWithSubHeading2,
+  WebsiteSummaryWithSubHeading,
+  ProductSummary3,
   Statistics,
   AboutUsFourWithSubHeading,
   TeamMembers,
