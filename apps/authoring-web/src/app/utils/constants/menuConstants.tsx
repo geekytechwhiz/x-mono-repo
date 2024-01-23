@@ -8,7 +8,7 @@ import {
   CourseIcon,
   SitesIcon,
   UsersIcon,
-  VideoIcon,
+  VODIcon,
   ArticleIcon,
   CookieIcon,
   FooterMenuUpdated,
@@ -16,8 +16,7 @@ import {
   MediaIcon,
   MyDashboardIcon,
   PagesIcon,
-} from '@platformx/utilities';
-
+} from "@platformx/utilities";
 
 export const MenuData = [
   {
@@ -35,7 +34,7 @@ export const MenuData = [
         subCategory: "",
       },
     ],
-  }, 
+  },
   {
     Title: "pages",
     id: "page",
@@ -66,7 +65,7 @@ export const MenuData = [
       },
       {
         MenuName: "VOD",
-        Icon: VideoIcon,
+        Icon: VODIcon,
         url: "/content/vod",
         category: "content",
         subCategory: "vod",

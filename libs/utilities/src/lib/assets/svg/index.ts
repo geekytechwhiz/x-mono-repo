@@ -13,11 +13,9 @@ import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
-import General_community from "./General_community.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
 import IconPreview from "./IconPreview.svg";
 import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
-import News_community from "./News_community.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
@@ -57,7 +55,7 @@ import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
 import CourseListIcon from "./course-icon.svg";
-import DraftIcon from "./draftIcon.svg";
+import DraftIcon from "./DraftIcon.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
 import EventsListIcon from "./event-fill.svg";
@@ -85,7 +83,10 @@ import RedDot from "./red.svg";
 import IconRescheduleSvg from "./reschedule.svg";
 import SchedulePublishIcon from "./schedulePublishIcon.svg";
 import SchedulePublishStatusIcon from "./schedulePublishStatusIcon.svg";
-import ScheduleUnpublishStatusIcon from "./scheduleUnpublishIcon.svg";
+import {
+  default as ScheduleUnpublishStatusIcon,
+  default as ScheduledUnpublishIcon,
+} from "./scheduleUnpublishIcon.svg";
 import SearchGraySvg from "./searchGray.svg";
 import SearchIcon from "./searchiconnn.svg";
 import IconListViewSvg from "./sideMenuListView.svg";
@@ -95,6 +96,7 @@ import IconTwitterLogoIconSvg from "./twitterLogoIcon.svg";
 import UnpublishedStatusIcon from "./unpublishStatusIcon.svg";
 import VideoIcon from "./VODIcon.svg";
 import VODListIcon from "./vodListIcon.svg";
+// import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
@@ -128,45 +130,23 @@ import MenuIcon5 from "./MenuIcons-5.svg";
 import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
+import ImageIcon from "./image.svg";
+import GreenFolderIcon from "./Folder-green.svg";
+import GreenSubFolderIcon from "./Subfolder-green.svg";
+import FolderIcon from "./descriptionsubicon.svg";
+import SubFolderIcon from "./expandmoreiconn.svg";
+import UploadIcon from "./upload.svg";
 import RedDots from "./icon/RedDots.svg";
-import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
-import VectorIconSvg from "./VectorIcon.svg";
-import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
-import Aboutusupdateicon from "./Aboutusupdateicon.svg";
-import Contactusupdateicon from "./Contactusupdateicon.svg";
-import Addlinkupdateicon from "./addlinkupdateicon.svg";
-import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
-import Newsletterupdateicon from "./Newsletterupdateicon.svg";
-import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
-import FaviconupdateIcon from './Faviconupdateicon.svg';
-import SearchnupdateIcon from './Searchupdateicon.svg';
-import LanguageupdateIcon from './Languageupdateicon.svg';
-import CtaupdateIcon from './CTAupdateicon.svg';
-import Location from './Location.svg';
-import Envelop from './Envelop.svg';
-import Phone from './Phone.svg';
-import Searchheadericon from './Searchheadericon.svg';
-import Headerpublic from './headerpublic.svg';
-import Ctaround from './ctaround.svg';
-import Ctasearch from './ctaround.svg';
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 
 export {
-  GlobalImageIcon, GlobalVideoIcon, GlobalMiscIcon, FeatureStarIcon, FaviconupdateIcon, SearchnupdateIcon, LanguageupdateIcon, CtaupdateIcon,
+  GlobalImageIcon,
+  GlobalVideoIcon,
+  GlobalMiscIcon,
+  FeatureStarIcon,
+  
   ArrowUpwardIcon,
-  Sitelogoupdateicon,
-  Contactusupdateicon,
-  Aboutusupdateicon,
-  Addlinkupdateicon,
-  CopyrightUpdateIcon,
-  Newsletterupdateicon,
-  MediahandleUpdateIcon,
-  Location,
-  Envelop,
-  Phone,
-  Ctaround,
-  Ctasearch,
-  Searchheadericon,
-  Headerpublic,
+ 
   Icon,
   Refresh,
   MenuIcon1,
@@ -188,7 +168,6 @@ export {
   AssetManagerIcon,
   BackButton,
   BlueDot,
-  BookIcon,
   CalenderIcon,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
@@ -216,11 +195,9 @@ export {
   EditIcon,
   EventsIcon,
   EventsListIcon,
-  EventsListIcon5,
   EyeIcon,
   FilterIcon,
   FooterMenuUpdated,
-  General_community,
   GradeIcon,
   GreenDot,
   HamburgerMenuIcon,
@@ -241,7 +218,6 @@ export {
   MobileMenuIconSvg,
   MoreHorizIcon,
   MyDashboardIcon,
-  News_community,
   NoContentFoundSvg,
   PagesIcon,
   PagesListIcon,
@@ -282,14 +258,20 @@ export {
   UsersIcon,
   VODIcon,
   VODListIcon,
-  VideoIcon,
   WarningIcon,
   WorkflowDetails,
   WorkflowIcon,
   warning,
+  ArrowUpwardIcon,
+  ImageIcon,
+  GreenFolderIcon,
+  GreenSubFolderIcon,
+  FolderIcon,
+  SubFolderIcon,
   LeftArrowIcon,
   RightArrowIcon,
   PlayIcon,
+  UploadIcon,
   PictureIcon,
   VectorIconSvg
 };

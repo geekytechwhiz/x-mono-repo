@@ -1,18 +1,14 @@
-import EditIcon from '@mui/icons-material/Edit';
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  Grid,
-  Typography,
-} from '@mui/material';
-import { XLoader, formCroppedUrl, nullToObject } from '@platformx/utilities';
-import React, { useEffect, useState } from 'react';
-import { RATIOS } from '../utils/constants';
+import EditIcon from "@mui/icons-material/Edit";
+import { Box, Button, Dialog, DialogContent, Grid, Typography } from "@mui/material";
+import { XLoader, formCroppedUrlInCrop, nullToObject } from "@platformx/utilities";
+import React, { useEffect, useState } from "react";
+import { RATIOS } from "../utils/constants";
 
 const ShowCaseCrops = (props: any = {}) => {
-  const { open, Images = [], backTo, handleEdit, extension } = nullToObject(props);
+  const { open, backTo, handleEdit, data } = nullToObject(props);
+  const { published_images: cropped_images = [], original_image = {} } = data || {};
+  const { ext } = original_image || {};
+
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -33,40 +29,27 @@ const ShowCaseCrops = (props: any = {}) => {
           maxHeight: "calc(100% - 40px)",
           margin: "20px",
         },
-      }}
-    >
-      <DialogContent sx={{ padding: '5px' }}>
+      }}>
+      <DialogContent sx={{ padding: "5px" }}>
         <Box className='casecropsbox'>
           {loading && <XLoader type='circular' />}
-          <Grid container sx={{ paddingRight: '50px' }}>
-            {Images.map(
-              (
-                {
-                  visibility = '',
-                  folder_path = '',
-                  aspect_ratio = '',
-                },
-              ) => {
-                return (
-                  <Box className='boxwp'>
-                    <Box className='imgbox'>
-                      <img
-                        alt='cropped-img'
-                        src={formCroppedUrl(folder_path, extension)}
-                      />
-                      <Typography variant='h6regular' component='h6'>
-                        {RATIOS[aspect_ratio]}
-                      </Typography>
-                    </Box>
+          <Grid container sx={{ paddingRight: "50px" }}>
+            {cropped_images.map(({ folder_path = "", aspect_ratio = "" }) => {
+              return (
+                <Box className='boxwp'>
+                  <Box className='imgbox'>
+                    <img alt='cropped-img' src={formCroppedUrlInCrop(folder_path, ext)} />
+                    <Typography variant='h6regular' component='h6'>
+                      {RATIOS[aspect_ratio]}
+                    </Typography>
                   </Box>
-                );
-              }
-            )}
+                </Box>
+              );
+            })}
             <Button
               className='editIconfixed'
               onClick={() => handleEdit()}
-              startIcon={<EditIcon />}
-            ></Button>
+              startIcon={<EditIcon />}></Button>
           </Grid>
         </Box>
       </DialogContent>

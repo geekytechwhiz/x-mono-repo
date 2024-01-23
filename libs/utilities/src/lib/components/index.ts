@@ -4,7 +4,6 @@ import WorkflowStepper from "./WorkflowStepper/WorkflowStepper";
 import ReportGraph from "./ReportGraph/ReportGraph";
 import { NoContentFound } from "./NoContentFound/NoContentFound";
 import SkeltonLoader from "./SkeltonLoader/SkeltonLoader";
-
 import SubmitButton from "./SchemaComponents/SubmitButton/SubmitButton";
 import { XToolTip } from "./XToolTip/XToolTip";
 import MarkedFeatured from "./MarkFeatured/MarkedFeatured";
@@ -14,7 +13,7 @@ import IconAndLabel from "./IconAndLabel";
 import { XTags } from "./SchemaComponents";
 import AutoCompleteText from "./AutoCompleteText/AutoCompleteText";
 import BasicSwitchText from "./BasicSwitchText";
-import ContentListMobileLoader from "./Loader/contentListLoaderMobile";
+import ContentListMobileLoader from "./Loader/ContentListLoaderMobile";
 
 export * from "./SchemaComponents/SubmitButton/helper";
 export * from "./DragAndDrop/index";
