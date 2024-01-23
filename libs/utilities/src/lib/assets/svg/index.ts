@@ -83,7 +83,10 @@ import RedDot from "./red.svg";
 import IconRescheduleSvg from "./reschedule.svg";
 import SchedulePublishIcon from "./schedulePublishIcon.svg";
 import SchedulePublishStatusIcon from "./schedulePublishStatusIcon.svg";
-import ScheduleUnpublishStatusIcon from "./scheduleUnpublishIcon.svg";
+import {
+  default as ScheduleUnpublishStatusIcon,
+  default as ScheduledUnpublishIcon,
+} from "./scheduleUnpublishIcon.svg";
 import SearchGraySvg from "./searchGray.svg";
 import SearchIcon from "./searchiconnn.svg";
 import IconListViewSvg from "./sideMenuListView.svg";
@@ -93,6 +96,7 @@ import IconTwitterLogoIconSvg from "./twitterLogoIcon.svg";
 import UnpublishedStatusIcon from "./unpublishStatusIcon.svg";
 import VideoIcon from "./VODIcon.svg";
 import VODListIcon from "./vodListIcon.svg";
+// import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
@@ -126,15 +130,23 @@ import MenuIcon5 from "./MenuIcons-5.svg";
 import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
+import ImageIcon from "./image.svg";
+import GreenFolderIcon from "./Folder-green.svg";
+import GreenSubFolderIcon from "./Subfolder-green.svg";
+import FolderIcon from "./descriptionsubicon.svg";
+import SubFolderIcon from "./expandmoreiconn.svg";
+import UploadIcon from "./upload.svg";
 import RedDots from "./icon/RedDots.svg";
-import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 
 export {
   GlobalImageIcon,
   GlobalVideoIcon,
   GlobalMiscIcon,
   FeatureStarIcon,
+  
   ArrowUpwardIcon,
+ 
   Icon,
   Refresh,
   MenuIcon1,
@@ -156,7 +168,6 @@ export {
   AssetManagerIcon,
   BackButton,
   BlueDot,
-  BookIcon,
   CalenderIcon,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
@@ -184,7 +195,6 @@ export {
   EditIcon,
   EventsIcon,
   EventsListIcon,
-  EventsListIcon5,
   EyeIcon,
   FilterIcon,
   FooterMenuUpdated,
@@ -248,13 +258,19 @@ export {
   UsersIcon,
   VODIcon,
   VODListIcon,
-  VideoIcon,
   WarningIcon,
   WorkflowDetails,
   WorkflowIcon,
   warning,
+  ArrowUpwardIcon,
+  ImageIcon,
+  GreenFolderIcon,
+  GreenSubFolderIcon,
+  FolderIcon,
+  SubFolderIcon,
   LeftArrowIcon,
   RightArrowIcon,
   PlayIcon,
+  UploadIcon,
   PictureIcon,
 };
