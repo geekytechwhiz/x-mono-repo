@@ -23,14 +23,14 @@ export const useClickImpression = () => {
         analytics,
         IMPRESSIONS.Card,
         secondaryArgs,
-        undefined,
+        {},
         cardClickObj,
       );
       const cardClickSnowplowObj = snowplowPrelemClickImpression(
         analytics,
         IMPRESSIONS.Card,
         secondaryArgs,
-        undefined,
+        {},
         cardClickObj,
       );
       handleTrack(IMPRESSIONS?.CLICK_IMPRESSION, cardClickAnalyticsObj);
@@ -47,15 +47,15 @@ export const useClickImpression = () => {
         analytics,
         IMPRESSIONS.Button,
         secondaryArgs,
-        undefined,
-        undefined,
+        {},
+        {},
       );
       const cardClickSnowplowObj = snowplowPrelemClickImpression(
         analytics,
         IMPRESSIONS.Button,
         secondaryArgs,
-        undefined,
-        undefined,
+        {},
+        {},
       );
       handleTrack(IMPRESSIONS?.TRACKID, cardClickSnowplowObj);
       handleTrack(IMPRESSIONS?.CLICK_IMPRESSION, buttonClickImpressionObj);

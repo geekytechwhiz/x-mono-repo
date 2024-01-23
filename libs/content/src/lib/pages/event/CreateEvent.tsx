@@ -22,7 +22,7 @@ import {
 // import WorkflowHistory from "../../components/WorkflowHistory/WorkflowHistory";
 // import { postRequest } from "../../services/config/request";
 import { ContentType } from "@platformx/content";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AnalyticsRef, EventInstance, EventWhole, SeoRef } from "./CreateEvent.types";
 import icons, {
   BEFORE_UNLOAD,
@@ -71,9 +71,10 @@ import EventSocialShare from "./components/EventSocialShare/EventSocialShare";
 import EventTimeAndLocation from "./components/EventTimeAndLocation/EventTimeAndLocation";
 import EventTitleDescription from "./components/EventTitleDescription/EventTitleDescription";
 // import { checkIfUnsavedChanges } from "./store/Actions";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 
 const CreateEvent = () => {
+  const dispatch = useDispatch();
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
   const { currentContent } = useSelector((state: RootState) => state.content);
@@ -161,7 +162,6 @@ const CreateEvent = () => {
   };
 
   const publishEvent = async (pageURL) => {
-    console.log("publishEvent", pageURL);
     const eventToSend = {
       page: pageURL,
     };
@@ -214,6 +214,7 @@ const CreateEvent = () => {
       structureData,
       IsDuplicate,
       isFeatured,
+      createdUser.current,
     );
     try {
       const data: any = await eventAPIS.createContentType({
@@ -389,7 +390,6 @@ const CreateEvent = () => {
   };
 
   const publish = () => {
-    console.log("publish");
     const {
       title,
       short_title: shortTitle,
@@ -589,8 +589,8 @@ const CreateEvent = () => {
       AUTH_INFO,
       i18n,
     );
-    // dispatch(previewContent(tempObj));
-    navigate("/content-preview");
+    dispatch(previewContent(tempObj));
+    navigate("/content/preview");
   };
 
   const eventAnalyticsHandle = (event) => {

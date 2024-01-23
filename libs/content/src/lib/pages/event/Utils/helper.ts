@@ -73,6 +73,8 @@ export const EventData: EventDataType = {
   postalCode: "",
   regionState: "",
   country: "",
+  published_images: [],
+  original_image: {},
 };
 
 export const SelectedImageData: SelectedImage = {
@@ -138,6 +140,7 @@ export const getEventToSend = (
   structureData,
   IsDuplicate,
   isFeatured,
+  username,
 ) => {
   const tempObjField = {
     background_content: {
@@ -166,6 +169,7 @@ export const getEventToSend = (
   const eventToSend = {
     ...newTempData,
     CommonFields: {
+      ...getNewEvent(username).CommonFields,
       ...(newTempData?.CommonFields || {}),
       ...updateTempObj.current,
       page_state: pageState,

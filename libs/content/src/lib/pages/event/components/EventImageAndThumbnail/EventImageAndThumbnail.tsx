@@ -1,15 +1,9 @@
 import { Box, Grid } from "@mui/material";
-import { Category, ContentAction, ContentType } from "@platformx/content";
-import {
-  AddImage,
-  CommonBoxWithNumber,
-  ErrorTooltip,
-  TitleSubTitle,
-  useAccess,
-} from "@platformx/utilities";
+import { CommonBoxWithNumber, TitleSubTitle, useAccess } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 // import "../../../../components/Common/commonStyles/disabledStyles.css";
+import { XImageRender } from "@platformx/x-image-render";
 import { useCustomStyle } from "../../CreateEvent.styles";
 import { ImageThumbnailProp } from "../../CreateEvent.types";
 import { IMAGES, IMAGE_URL } from "../../Utils/Constants";
@@ -25,6 +19,7 @@ const EventImageAndThumbnail = ({
   const [operationType, setOperationType] = useState<string>("");
   const { canAccessAction } = useAccess();
   const [imageUrlLink, setImageUrlLink] = useState("");
+  console.log("state", state);
 
   const updateField = (updatedPartialObj) => {
     const modifiedData = {
@@ -69,27 +64,12 @@ const EventImageAndThumbnail = ({
             />
           </Grid>
           <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-            <ErrorTooltip
-              component={
-                <Box
-                  classes={
-                    !canAccessAction(Category.Content, ContentType.Event, ContentAction.View) &&
-                    "disable"
-                  }>
-                  <AddImage
-                    url={imageUrlLink}
-                    onUploadClick={onUploadClick}
-                    type='Images'
-                    operationType={operationType}
-                    content={selectedImage}
-                    updateField={updateField}
-                    originalImage={state?.original_image}
-                    publishedImages={state?.published_images}
-                    isShowCrop={true}
-                  />
-                </Box>
-              }
-              doAccess={!canAccessAction(Category.Content, ContentType.Event, ContentAction.View)}
+            <XImageRender
+              callBack={updateField}
+              data={{
+                original_image: state.original_image,
+                published_images: state.published_images,
+              }}
             />
           </Grid>
         </Grid>

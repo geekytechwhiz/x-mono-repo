@@ -5,6 +5,7 @@ import {
   CookieIcon,
   CourseIcon,
   EventsIcon,
+  FeatureStarIcon,
   FooterMenuUpdated,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
@@ -16,8 +17,9 @@ import {
   QuizIcon,
   SitesIcon,
   UsersIcon,
-  VideoIcon,
+  VODIcon,
 } from "@platformx/utilities";
+import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
   url: "",
@@ -35,7 +37,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "VOD",
-      Icon: VideoIcon,
+      Icon: VODIcon,
       url: "/content/vod",
       category: "content",
       subCategory: "vod",
@@ -114,14 +116,14 @@ export const MenuData = [
         category: "dashboard",
         subCategory: "",
       },
-      {
-        MenuName: "Prelem",
-        Icon: MyDashboardIcon,
-        url: "/prelem",
-        id: "prelem",
-        category: "dashboard",
-        subCategory: "",
-      },
+      // {
+      //   MenuName: "Prelem",
+      //   Icon: MyDashboardIcon,
+      //   url: "/prelem",
+      //   id: "prelem",
+      //   category: "dashboard",
+      //   subCategory: "",
+      // },
     ],
   },
   {
@@ -202,6 +204,7 @@ export const MenuData = [
         id: "workflow_management",
         category: "Workflow",
         subCategory: "",
+        component: <WorkflowManagement></WorkflowManagement>,
       },
     ],
   },
@@ -265,6 +268,14 @@ export const MenuData = [
         Icon: HeaderMenuUpdated,
         url: "/site-setting/global-setting",
         id: "global_setting",
+        category: "SiteSetting",
+        subCategory: "GlobalSetting",
+      },
+      {
+        MenuName: "Feature Setting",
+        Icon: FeatureStarIcon,
+        url: "/site-setting/feature-flag",
+        id: "feature_flag_setting",
         category: "SiteSetting",
         subCategory: "GlobalSetting",
       },

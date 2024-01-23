@@ -1,3 +1,4 @@
+import ContentPreview from "./lib/components/ContentPreview/ContentPreview";
 import { QuizPollEventMenu } from "./lib/components/QuizPollEventsMenu/QuizPollEventsMenu";
 import Content from "./lib/content";
 import { CreateContent } from "./lib/pages/CreateContent";
@@ -7,4 +8,4 @@ export * from "./lib/enums/ContentType";
 export * from "./lib/utils/Constants";
 export * from "./lib/utils/Helper";
 
-export { Content, CreateContent, QuizPollEventMenu };
+export { Content, ContentPreview, CreateContent, QuizPollEventMenu };

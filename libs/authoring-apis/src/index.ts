@@ -12,6 +12,7 @@ import useDashboardData from "./lib/hooks/useDashboardData/useDashboardData";
 import { useDialog } from "./lib/hooks/useDialog/useDialog";
 import usePage from "./lib/hooks/usePage/usePage";
 import articleApi from "./lib/services/article/article";
+import assetsApi from "./lib/services/assetsApi/assets.api";
 import authAPI from "./lib/services/auth/auth.api";
 import commentsApi from "./lib/services/comments/comments.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
@@ -50,6 +51,7 @@ export {
   UserManagementQueries,
   WorkflowQueries,
   articleApi,
+  assetsApi,
   authAPI,
   cancelSocialSharePost,
   commentsApi,
