@@ -144,9 +144,6 @@ export {
   GlobalVideoIcon,
   GlobalMiscIcon,
   FeatureStarIcon,
-  
-  ArrowUpwardIcon,
- 
   Icon,
   Refresh,
   MenuIcon1,
@@ -273,5 +270,4 @@ export {
   PlayIcon,
   UploadIcon,
   PictureIcon,
-  VectorIconSvg
 };
