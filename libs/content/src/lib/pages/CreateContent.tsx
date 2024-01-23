@@ -1,19 +1,23 @@
 import { useLocation } from "react-router";
-import { CreateQuiz } from "../pages/quiz/CreateQuiz";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
+import { CreateQuiz } from "../pages/quiz/CreateQuiz";
+import CreateEvent from "./event/CreateEvent";
 
 export const CreateContent = () => {
+  const location = useLocation();
+  const contentType = location.state;
 
-    const location = useLocation();
-    const contentType = location.state;
+  switch (contentType) {
+    case "profile":
+      return <DynamicContentType contentType={contentType}></DynamicContentType>;
 
-    switch (contentType) {
-        case "profile":
-            return <DynamicContentType contentType={contentType}></DynamicContentType>;
+    case "quiz":
+      return <CreateQuiz></CreateQuiz>;
 
-        case "quiz":
-            return <CreateQuiz></CreateQuiz>;
-        default:
-            return <>DynamicContent</>;
-    }
+    case "event":
+      return <CreateEvent />;
+
+    default:
+      return <>DynamicContent</>;
+  }
 };

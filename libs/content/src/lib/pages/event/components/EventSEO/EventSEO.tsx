@@ -1,13 +1,17 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { BasicSwitchText, ShowToastSuccess, TitleSubTitle } from "@platformx/utilities";
+import {
+  BasicSwitchText,
+  CommonBoxWithNumber,
+  ShowToastSuccess,
+  StructureDataDialog,
+  TitleSubTitle,
+} from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ContentSeoStructureData from "../../../../components/Common/ContentSeoStructureData";
-
-import { CommonBoxWithNumber } from "@platformx/utilities";
 import { useCustomStyle } from "../../CreateEvent.styles";
 import { EventSEOProp } from "../../CreateEvent.types";
 import { SeoInfo } from "../../Utils/helper";
+
 const EventSEO = ({
   state,
   setState,
@@ -173,7 +177,7 @@ const EventSEO = ({
         </Grid>
       </CommonBoxWithNumber>
       {isOpen && (
-        <ContentSeoStructureData
+        <StructureDataDialog
           closeStructureData={closeStructureData}
           seoInfo={seoInfo}
           setSeoInfo={setSeoInfo}

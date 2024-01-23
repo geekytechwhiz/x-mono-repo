@@ -1,15 +1,15 @@
 /* eslint-disable no-debugger */
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router';
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router";
 
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
 import {
   ContentState,
   previewArticle,
   previewContent,
-  updateContentList
-} from '@platformx/authoring-state';
+  updateContentList,
+} from "@platformx/authoring-state";
 import {
   ShowToastError,
   ShowToastSuccess,
@@ -19,41 +19,26 @@ import {
   getSelectedSite,
   getSubDomain,
   useUserSession,
-} from '@platformx/utilities';
-import { useDispatch, useSelector } from 'react-redux';
-import { FETCH_CONTENT_BY_PATH } from '../../graphQL/queries/contentTypesQueries';
+} from "@platformx/utilities";
+import { useDispatch, useSelector } from "react-redux";
+import { FETCH_CONTENT_BY_PATH } from "../../graphQL/queries/contentTypesQueries";
 import contentTypeAPIs, {
   createContentType,
   deleteContentType,
   publishContentType,
-} from '../../services/contentTypes/contentTypes.api';
-import { LanguageList } from '../../utils/constants';
-import useVod from '../useVod/useVod';
-import { CONTENT_CONSTANTS } from './Uitls/Constants';
-import {
-  mapDeleteContent,
-  mapDuplicateContent,
-  mapUnPublishContent,
-} from './mapper';
+} from "../../services/contentTypes/contentTypes.api";
+import { LanguageList } from "../../utils/constants";
+import useVod from "../useVod/useVod";
+import { CONTENT_CONSTANTS } from "./Uitls/Constants";
+import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
 
-const {
-  LANG,
-  DRAFT,
-  EVENT,
-  POLL,
-  PUBLISHED,
-  QUESTION,
-  QUIZ,
-  UNPUBLISHED,
-  PREVIEW_PATH,
-} = CONTENT_CONSTANTS;
-const useContentListing = (filter = 'ALL') => {
+const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
+  CONTENT_CONSTANTS;
+const useContentListing = (filter = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { duplicateVod } = useVod();
-  const { contentList, startIndex } = useSelector(
-    (state: ContentState) => state,
-  );
+  const { contentList, startIndex } = useSelector((state: ContentState) => state);
   const navigate = useNavigate();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -73,14 +58,14 @@ const useContentListing = (filter = 'ALL') => {
   const location = useLocation();
 
   const fetchContentDetails = async (listItemDetails: {
-    tagName: string | undefined
-    page: any
+    tagName: string | undefined;
+    page: any;
   }) => {
     try {
       const response: any = await contentTypeAPIs.fetchContent({
         contentType:
-          listItemDetails.tagName === 'VOD'
-            ? 'Vod'
+          listItemDetails.tagName === "VOD"
+            ? "Vod"
             : capitalizeFirstLetter(listItemDetails.tagName),
         path: listItemDetails?.page,
       });
@@ -89,7 +74,7 @@ const useContentListing = (filter = 'ALL') => {
         return content;
       }
     } catch (err) {
-      ShowToastError(t('api_error_toast'));
+      ShowToastError(t("api_error_toast"));
     }
   };
   const deleteContent = async (listItemDetails: any) => {
@@ -100,8 +85,8 @@ const useContentListing = (filter = 'ALL') => {
       }
       try {
         const contentToSend = mapDeleteContent(
-          listItemDetails.tagName === 'VOD'
-            ? 'Vod'
+          listItemDetails.tagName === "VOD"
+            ? "Vod"
             : capitalizeFirstLetter(listItemDetails.tagName),
           selectedItem,
         );
@@ -124,13 +109,11 @@ const useContentListing = (filter = 'ALL') => {
           );
           dispatch(updateContentList(searchResponse));
           ShowToastSuccess(
-            `${capitalizeFirstLetter(listItemDetails.tagName)} ${t(
-              'deleted_toast',
-            )}`,
+            `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
           );
         }
       } catch (error: any) {
-        ShowToastError(t('api_error_toast'));
+        ShowToastError(t("api_error_toast"));
       }
     }
   };
@@ -140,8 +123,8 @@ const useContentListing = (filter = 'ALL') => {
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
         const contentToSend = mapUnPublishContent(
-          listItemDetails.tagName === 'VOD'
-            ? 'Vod'
+          listItemDetails.tagName === "VOD"
+            ? "Vod"
             : capitalizeFirstLetter(listItemDetails.tagName),
           selectedItem.page,
         );
@@ -161,38 +144,35 @@ const useContentListing = (filter = 'ALL') => {
           );
           dispatch(updateContentList(response));
           ShowToastSuccess(
-            `${capitalizeFirstLetter(listItemDetails.tagName)} ${t(
-              'unpublished_toast',
-            )}`,
+            `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("unpublished_toast")}`,
           );
         }
       } catch (error: any) {
-        ShowToastError(error?.graphQLErrors[0]?.message || t('api_error_toast'));
+        ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
 
   const view = async (listItemDetails: {
-    tagName: string
-    currentPageUrl: any
-    course_id: any
-  }) => { // eslint-disable-line
+    tagName: string;
+    currentPageUrl: any;
+    course_id: any;
+  }) => {
+    // eslint-disable-line
 
-    if (listItemDetails.tagName.toUpperCase() === 'VOD') {
+    if (listItemDetails.tagName.toUpperCase() === "VOD") {
+      window.open(`${getSubDomain()}/${i18n.language}/video${listItemDetails?.currentPageUrl}`);
+    } else if (listItemDetails.tagName === convertToLowerCase("Courses")) {
       window.open(
-        `${getSubDomain()}/${i18n.language}/video${listItemDetails?.currentPageUrl
-        }`,
-      );
-    } else if (listItemDetails.tagName === convertToLowerCase('Courses')) {
-      window.open(
-        `${getSubDomain()}/${i18n.language}/course/course-details?courseId=${listItemDetails?.course_id
+        `${getSubDomain()}/${i18n.language}/course/course-details?courseId=${
+          listItemDetails?.course_id
         }`,
       );
       // window.open(`${listItemDetails?.currentPageUrl}`);
     } else {
       window.open(
-        `${getSubDomain()}/${i18n.language
-        }/${listItemDetails.tagName?.toLowerCase()}${listItemDetails?.currentPageUrl
+        `${getSubDomain()}/${i18n.language}/${listItemDetails.tagName?.toLowerCase()}${
+          listItemDetails?.currentPageUrl
         }`,
       );
     }
@@ -201,10 +181,9 @@ const useContentListing = (filter = 'ALL') => {
   const edit = async (listItemDetails: { tagName: string; page: any }) => {
     dispatch(previewContent({}));
     dispatch(previewArticle({}));
-    navigate(
-      `/content/create-${listItemDetails.tagName?.toLowerCase()}?path=${listItemDetails.page
-      }`,
-    );
+    navigate(`/content/create?path=${listItemDetails?.tagName}`, {
+      state: listItemDetails?.tagName,
+    });
   };
 
   const preview = async (listItemDetails: any) => {
@@ -212,10 +191,7 @@ const useContentListing = (filter = 'ALL') => {
     const type = capitalizeFirstLetter(listItemDetails?.tagName);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
-        if (
-          selectedItem?.page_state === DRAFT ||
-          selectedItem?.page_state === UNPUBLISHED
-        ) {
+        if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
           const qusArry: never[] = [];
           if (
             selectedItem?.questions?.length &&
@@ -227,8 +203,7 @@ const useContentListing = (filter = 'ALL') => {
               })
                 .then((res) => {
                   if (res?.data?.authoring_getCmsContentByPath) {
-                    const qusObj = res?.data
-                      ?.authoring_getCmsContentByPath as never;
+                    const qusObj = res?.data?.authoring_getCmsContentByPath as never;
                     qusArry.push(qusObj);
                   }
                 })
@@ -246,9 +221,7 @@ const useContentListing = (filter = 'ALL') => {
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === POLL) {
             dispatch(previewContent({ ...selectedItem, contentType: type }));
             navigate(PREVIEW_PATH);
-          } else if (
-            capitalizeFirstLetter(listItemDetails.tagName) === 'Article'
-          ) {
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === "Article") {
             dispatch(
               previewArticle({
                 ...selectedItem,
@@ -256,7 +229,7 @@ const useContentListing = (filter = 'ALL') => {
                 developed_date: selectedItem.creationDate,
               }),
             );
-            navigate('/article-preview');
+            navigate("/article-preview");
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === EVENT) {
             const eventToPreview = {
               ...selectedItem,
@@ -273,7 +246,7 @@ const useContentListing = (filter = 'ALL') => {
           }
         }
       } catch (error: any) {
-        ShowToastError(error?.graphQLErrors[0]?.message || t('api_error_toast'));
+        ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
@@ -288,7 +261,7 @@ const useContentListing = (filter = 'ALL') => {
       if (
         selectedItem &&
         Object.keys(selectedItem).length > 0 &&
-        listItemDetails.tagName.toLowerCase() !== 'vod'
+        listItemDetails.tagName.toLowerCase() !== "vod"
       ) {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
@@ -298,9 +271,7 @@ const useContentListing = (filter = 'ALL') => {
           username,
           i18n.language,
         );
-        const selectedLanguage = LanguageList.filter((langObj) =>
-          language.includes(langObj.value),
-        );
+        const selectedLanguage = LanguageList.filter((langObj) => language.includes(langObj.value));
         const promises = selectedLanguage.map(async (lang) => {
           return createMutate({
             variables: {
@@ -330,9 +301,9 @@ const useContentListing = (filter = 'ALL') => {
           dispatch(updateContentList(response));
           for (const res of response) {
             ShowToastSuccess(
-              `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t(
-                'duplicated_toast',
-              )} ${t('for')} ${res.language}`,
+              `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
+                "for",
+              )} ${res.language}`,
             );
           }
         }
@@ -343,8 +314,8 @@ const useContentListing = (filter = 'ALL') => {
       console.log(error);
       ShowToastError(
         error.graphQLErrors[0]
-          ? `${error.graphQLErrors[0].message} ${t('for')} ` //${l.value}
-          : t('api_error_toast'),
+          ? `${error.graphQLErrors[0].message} ${t("for")} ` //${l.value}
+          : t("api_error_toast"),
       );
     }
   };
@@ -390,8 +361,8 @@ const useContentListing = (filter = 'ALL') => {
       console.log(error);
       ShowToastError(
         error.graphQLErrors[0]
-          ? `${error.graphQLErrors[0].message} ${t('for')} ` //${l.value}
-          : t('api_error_toast'),
+          ? `${error.graphQLErrors[0].message} ${t("for")} ` //${l.value}
+          : t("api_error_toast"),
       );
     }
   };

@@ -1,10 +1,9 @@
 import { useLazyQuery } from "@apollo/client";
 import { Box } from "@mui/material";
-import { CommonBoxWithNumber, ShowToastError } from "@platformx/utilities";
+import { FETCH_TAG_LIST } from "@platformx/authoring-apis";
+import { CommonBoxWithNumber, ShowToastError, XTags } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tags } from "../../../../components/Common/tags/Tags";
-import { fetchTagList } from "../../../../services/common/tags.aps";
 import { useCustomStyle } from "../../CreateEvent.styles";
 import { TagsProp } from "../../CreateEvent.types";
 
@@ -22,11 +21,11 @@ const EventChooseTags = ({
   const classes = useCustomStyle();
 
   const { currentContent = {} } = content;
-  const [runFetchTagList] = useLazyQuery(fetchTagList);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
   const [tagData, setTagData] = useState([]);
   const [tagArr, setTagArr] = useState([]);
 
-  const handleTagOnChange = (event) => {
+  const handleTagOnChange = (event: any) => {
     let tagsArray: any = [...tagArr] || [];
     if (event.target.checked && tagsArray?.length > 14) {
       event.target.checked = false;
@@ -35,25 +34,25 @@ const EventChooseTags = ({
       if (event.target.checked) {
         tagsArray = [...tagArr, event.target.value];
       } else {
-        tagsArray.splice(tagArr.indexOf(event.target.value), 1);
+        // tagsArray.splice(tagArr.indexOf(event.target.value), 1);
       }
       setTagArr(tagsArray);
       setState({
         ...state,
-        ["tags"]: tagsArray,
-        ["tagsSocialShare"]: tagsArray,
+        tags: tagsArray,
+        tagsSocialShare: tagsArray,
       });
       eventWholeRef.current = {
         ...eventWholeRef.current,
-        ["tags"]: tagsArray,
-        ["tagsSocialShare"]: tagsArray,
+        tags: tagsArray,
+        tagsSocialShare: tagsArray,
       };
       unsavedChanges.current = true;
     }
   };
 
   useEffect(() => {
-    if (Object.keys(tagData).length == 0) {
+    if (Object.keys(tagData).length === 0) {
       runFetchTagList({
         variables: { start: 0, rows: 1000 },
       })
@@ -78,7 +77,7 @@ const EventChooseTags = ({
   }, [currentContent]);
   useEffect(() => {
     if (isEdit && state?.tags) {
-      setTagArr(state?.tags);
+      // setTagArr(state?.tags);
     }
   }, [state]);
 
@@ -102,7 +101,7 @@ const EventChooseTags = ({
         subTitleVarient='p4regular'
         subTitle={t("subhead")}>
         <Box className='noSpacWp'>
-          <Tags
+          <XTags
             tagData={tagData}
             selectedTag={tagArr}
             handleTagOnChange={handleTagOnChange}
