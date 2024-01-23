@@ -48,8 +48,12 @@ import FeatureBox2 from "./FeatureBox2/FeatureBox2";
 import Services1 from "./Services1/Services1";
 import Services2 from "./Services2/Services2";
 import Gallery1 from "./Gallery1/Gallery1";
+import AboutUsFourWithSubHeading from "./AboutUsFourWithSubHeading/AboutUsFourWithSubHeading";
+import Statistics from "./Statistics/Statistics";
 
 export {
+  Statistics,
+  AboutUsFourWithSubHeading,
   TeamMembers,
   FeatureTiles,
   ServiceShowcase2,
