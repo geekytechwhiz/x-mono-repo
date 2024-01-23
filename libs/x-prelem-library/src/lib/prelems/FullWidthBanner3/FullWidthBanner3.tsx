@@ -155,7 +155,7 @@ FullWidthBanner3Prop) => {
             <Container
               className={authoringHelper?.isEditPage ? "grid_full_width" : "grid_container"}>
               <Grid container>
-                <Grid xs={12} md={12} em={6} lg={5}>
+                <Grid item xs={12} md={12} em={6} lg={5}>
                   <Box className='rightCol'>
                     <Typography variant='h2semibold' id={"title"}>
                       {content.title}

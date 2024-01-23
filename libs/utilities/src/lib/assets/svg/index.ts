@@ -144,7 +144,9 @@ export {
   GlobalVideoIcon,
   GlobalMiscIcon,
   FeatureStarIcon,
-  //News_community,
+  
+  ArrowUpwardIcon,
+ 
   Icon,
   Refresh,
   MenuIcon1,

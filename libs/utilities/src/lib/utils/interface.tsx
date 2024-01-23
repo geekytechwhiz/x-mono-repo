@@ -11,6 +11,29 @@ export interface PrelemBaseEndpoint {
   deliveryEndPoint?: string;
   language?: string;
 }
+export interface Analytics {
+  pageId?: number;
+  prelemId?: number;
+  pageTitle?: string;
+  prelemTitle?: string;
+  pageDesc?: string;
+  pageTags?: string;
+  prelemTags?: string;
+  prelemPosition?: number;
+  isAnalyticsEnabled: boolean;
+  isAuthoring: boolean;
+  isSeoEnabled: boolean;
+}
+
+interface AuthoringHelper {
+  innerRef: any;
+  sendStructureDataToAuthoringCB: (structureData: string) => void;
+  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
+  isEditing: boolean;
+  lastSavedStructuredData?: string;
+  isModalShow?: boolean;
+  authoringHoverShow?: boolean;
+}
 export interface Content {
   Description?: string;
   Title?: string;

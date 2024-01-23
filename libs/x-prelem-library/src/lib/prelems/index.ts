@@ -27,8 +27,42 @@ import Banner3 from "./Banner3/Banner3";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
 import ImageCarousel from "./ImageCrousel1/ImageCrousel1";
+import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
+import BlogTiles from "./BlogTiles/BlogTiles";
+import CustomerTestimonial2 from "./CustomerTestimonial2/CustomerTestimonial2";
+import ContentDisplayWithCategories from "./ContentDisplayWithCategories/ContentDisplayWithCategories";
+import CounterNumberShowcase from "./CounterNumberShowcase/CounterNumberShowcase";
+import ServiceCard7 from "./ServiceCard7/ServiceCard7";
+import ServiceShowcase2 from "./ServiceShowcase2/ServiceShowcase2";
+import FeatureTiles from "./FeatureTiles/FeatureTiles";
+import TeamMembers from "./TeamMembers/TeamMembers";
+import ImageCards from "./ImageCards/ImageCards";
+import FullWidthTextWithImage from "./FullWidthTextWithImage/FullWidthTextWithImage";
+import VideoBanner1 from "./VideoBanner1/VideoBanner1";
+import ServiceCard1 from "./ServiceCard1/ServiceCard1";
+import ServiceCard2 from "./ServiceCard2/ServiceCard2";
+import ServiceCard3 from "./ServiceCard3/ServiceCard3";
+import ServiceCard5 from "./ServiceCard5/ServiceCard5";
+import FeatureBox1 from "./FeatureBox1/FeatureBox1";
+import FeatureBox2 from "./FeatureBox2/FeatureBox2";
+import Services1 from "./Services1/Services1";
+import Services2 from "./Services2/Services2";
+import Gallery1 from "./Gallery1/Gallery1";
+import AboutUsFourWithSubHeading from "./AboutUsFourWithSubHeading/AboutUsFourWithSubHeading";
+import Statistics from "./Statistics/Statistics";
 
 export {
+  Statistics,
+  AboutUsFourWithSubHeading,
+  TeamMembers,
+  FeatureTiles,
+  ServiceShowcase2,
+  ServiceCard7,
+  CounterNumberShowcase,
+  ContentDisplayWithCategories,
+  CustomerTestimonial2,
+  BlogTiles,
+  DynamicPrelemOne,
   Banner6,
   DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,
@@ -58,4 +92,16 @@ export {
   Description,
   FullWidthText,
   ImageCarousel,
+  ImageCards,
+  FullWidthTextWithImage,
+  VideoBanner1,
+  ServiceCard1,
+  ServiceCard2,
+  ServiceCard3,
+  FeatureBox1,
+  FeatureBox2,
+  ServiceCard5,
+  Services1,
+  Services2,
+  Gallery1,
 };
