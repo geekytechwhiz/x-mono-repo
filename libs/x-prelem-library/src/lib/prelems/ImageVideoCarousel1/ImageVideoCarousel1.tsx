@@ -3,7 +3,14 @@ import { Box, CardMedia, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { formCroppedUrl, PlayIcon, ProgressiveLoader } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  formCroppedUrl,
+  PlayIcon,
+  ProgressiveLoader,
+  SecondaryArgs,
+} from "@platformx/utilities";
 import { useCustomStyle } from "./ImageVideoCarousel1.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -133,17 +140,7 @@ const ImageVideoCarousel1 = ({
         <Typography variant='p3regular' component='p' className='centerText' id='sub_title'>
           {content?.sub_title}
         </Typography>
-        <Grid
-          className='gridWrapper'
-          container
-          // sx={{
-          //   "&:hover": {
-          //     ".add-content-overlay": {
-          //       display: authoringHelper?.authoringHoverShow ? "flex" : "none",
-          //     },
-          //   },
-          // }}
-        >
+        <Grid className='gridWrapper' container>
           <Grid item xs={12} em={3} className='leftSideBarWrapper'>
             {cardArr?.length > 0 &&
               cardArr.slice(0, 6).map((item: any, index: number) => (
@@ -259,37 +256,9 @@ const ImageVideoCarousel1 = ({
 
 interface ImageVideoCarousel1Props {
   content: Content;
-  secondaryArgs?: any;
+  secondaryArgs: SecondaryArgs;
   authoringHelper?: AuthoringHelper;
   analytics: Analytics;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  authoringHoverShow?: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
 }
 
 interface Content {

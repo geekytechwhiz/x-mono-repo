@@ -38,7 +38,7 @@ import FeatureTiles from "./FeatureTiles/FeatureTiles";
 import TeamMembers from "./TeamMembers/TeamMembers";
 import ImageCards from "./ImageCards/ImageCards";
 import FullWidthTextWithImage from "./FullWidthTextWithImage/FullWidthTextWithImage";
-import VideoBanner1 from "./VideoBanner1/VideoBanner1";
+// import VideoBanner1 from "./VideoBanner1/VideoBanner1";
 import ServiceCard1 from "./ServiceCard1/ServiceCard1";
 import ServiceCard2 from "./ServiceCard2/ServiceCard2";
 import ServiceCard3 from "./ServiceCard3/ServiceCard3";
@@ -116,7 +116,7 @@ export {
   ImageCarousel,
   ImageCards,
   FullWidthTextWithImage,
-  VideoBanner1,
+  // VideoBanner1,
   ServiceCard1,
   ServiceCard2,
   ServiceCard3,

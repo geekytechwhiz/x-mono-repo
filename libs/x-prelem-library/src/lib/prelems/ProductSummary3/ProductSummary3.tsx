@@ -2,7 +2,13 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
+import {
+  completeButtonUrl,
+  formCroppedUrl,
+  SecondaryArgs,
+  Analytics,
+  AuthoringHelper,
+} from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import { useCustomStyle } from "./ProductSummary3.style";
 import ImageRender from "../../components/ImageRender";
@@ -59,7 +65,7 @@ const ProductSummary3 = ({
         url: completeButtonUrl(
           content?.Button1_Action,
           content?.Button1_RedirectURL,
-          secondaryArgs.prelemBaseEndpoint.buttonBaseUrl,
+          secondaryArgs?.prelemBaseEndpoint?.buttonBaseUrl,
         ),
       };
     } catch (e) {
@@ -131,13 +137,6 @@ const ProductSummary3 = ({
                   320: "card2",
                 }}
               />
-              {/* <img
-          alt="summary"
-          src={imgUrl}
-          width="890"
-          height="713"
-          className="imageProp"
-        /> */}
             </Box>
           </Grid>
           <Grid md={12} em={4} className='secondColumnContentWrapper'>
@@ -181,33 +180,7 @@ interface ProductSummary3Props {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {

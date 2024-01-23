@@ -45,7 +45,7 @@ import {
   TeamMembers,
   ImageCards,
   FullWidthTextWithImage,
-  VideoBanner1,
+  // VideoBanner1,
   ServiceCard1,
   ServiceCard2,
   ServiceCard3,
@@ -54,6 +54,17 @@ import {
   ServiceCard5,
   Services1,
   Services2,
+  ProductSummary3,
+  WebsiteSummaryWithSubHeading,
+  WebsiteSummaryWithSubHeading2,
+  // LeftAlignParagraphWithHeadline,
+  Banner4,
+  ParagraphWithHeadlineAndCTA,
+  ImageVideoCarousel1,
+  // ParagraphWithHeadline,
+  DynamicPrelem,
+  Award1,
+  Faq1,
 } from "@platformx/x-prelem-library";
 // call this function at the root of the application
 unstable_ClassNameGenerator.configure((componentName) =>
@@ -68,6 +79,17 @@ function PrelemComponent() {
         <Box sx={{ margin: (themeOptions) => themeOptions.prelemMargin.value }}>
           <CssBaseline />
           {/* <AnimationOnPageScroll /> */}
+          <Faq1 />
+          <Award1 />
+          <DynamicPrelem />
+          {/* <ParagraphWithHeadline /> */}
+          <ImageVideoCarousel1 />
+          <ParagraphWithHeadlineAndCTA />
+          <Banner4 />
+          {/* <LeftAlignParagraphWithHeadline /> */}
+          <WebsiteSummaryWithSubHeading />
+          <WebsiteSummaryWithSubHeading2 />
+          <ProductSummary3 />
           <TeamMembers />
           <FeatureTiles />
           <ServiceShowcase2 />
@@ -108,7 +130,7 @@ function PrelemComponent() {
           <ImageCarousel />
           <ImageCards />
           <FullWidthTextWithImage />
-          <VideoBanner1 />
+          {/* <VideoBanner1 /> */}
           <ServiceCard1 />
           <ServiceCard2 />
           <ServiceCard3 />
