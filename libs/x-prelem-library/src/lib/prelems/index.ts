@@ -26,7 +26,7 @@ import Banner1 from "./Banner1/Banner1";
 import Banner3 from "./Banner3/Banner3";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
-import ImageCarousel from "./ImageCrousel1/ImageCrousel1";
+import ImageCarousel from "./ImageCarousel1/ImageCarousel1";
 import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
 import BlogTiles from "./BlogTiles/BlogTiles";
 import CustomerTestimonial2 from "./CustomerTestimonial2/CustomerTestimonial2";
