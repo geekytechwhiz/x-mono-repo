@@ -104,6 +104,7 @@ export * from "./lib/themes/prelems/prelemTheme";
 export * from "./lib/utils/helper";
 export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
+export * from "./lib/utils/interface";
 export * from "./lib/components/ToastNotification/ToastNotification";
 export * from "./lib/hooks/useAccess/useMapPermissions";
 export * from "./lib/mappers/articleMapper";

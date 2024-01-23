@@ -1,6 +1,6 @@
 import useTheme from "@mui/material/styles/useTheme";
 import { makeStyles } from "@mui/styles";
-import "./ImageCrousel1.css";
+import "./ImageCarousel1.css";
 
 export const useCustomStyle = makeStyles(() => {
   const theme = useTheme();

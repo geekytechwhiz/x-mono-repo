@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Container, Grid } from "@mui/material";
-// import { useTranslation } from "react-i18next";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { getDynamicContentListApiCall } from "@platformx/utilities";
@@ -13,7 +12,6 @@ const DynamicPrelemWithCarousel2 = ({ content, authoringHelper, secondaryArgs = 
   const classes = useCustomStyle();
   const [loading, setLoading] = useState(false);
   const [contentList, setContentList] = React.useState([]);
-  // const { t } = useTranslation();
   const [start, setStart] = useState(0);
   const numberOfRows = 3;
 
@@ -121,20 +119,6 @@ const DynamicPrelemWithCarousel2 = ({ content, authoringHelper, secondaryArgs = 
     </div>
   );
 };
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
-}
 
 DynamicPrelemWithCarousel2.defaultProps = {
   content: {

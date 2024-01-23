@@ -5,9 +5,8 @@ import { useInView } from "react-intersection-observer";
 import { completeButtonUrl, getImg } from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import ImageRender from "../../components/ImageRender";
-import { useCustomStyle } from "./ImageCrousel1.style";
+import { useCustomStyle } from "./ImageCarousel1.style";
 import prelemTypes from "../../globalStyle";
-import "./ImageCrousel1.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import Slider from "../../components/Slider/Slider";
 

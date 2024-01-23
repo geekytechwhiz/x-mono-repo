@@ -16,6 +16,7 @@ import {
   TechNews,
   Travel,
   ArrowAnimated,
+  Analytics,
 } from "@platformx/utilities";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import "./ContentDisplayWithCategories.css";
@@ -442,20 +443,7 @@ interface ContentDisplayWithCategoriesProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
+  secondaryArgs: any;
 }
 
 interface AuthoringHelper {

@@ -8,11 +8,8 @@ export const useCustomStyle = makeStyles(() => {
       "&.imageCardsWrapperBg": {
         background: theme.palette.prelemType1.BACKGROUND,
         "& .imageContentWrapper": {
-          "& img": {
+          "& .imageWrapper": {
             height: "460px",
-            objectFit: "cover",
-            width: "100%",
-            borderRadius: theme.borderRadius.value,
             [theme.breakpoints.down("lg")]: {
               height: "430px",
             },
@@ -27,6 +24,11 @@ export const useCustomStyle = makeStyles(() => {
             },
             [theme.breakpoints.down("xs")]: {
               height: "280px",
+            },
+            "& img": {
+              objectFit: "cover",
+              width: "100%",
+              borderRadius: theme.borderRadius.value,
             },
           },
           "& p": {

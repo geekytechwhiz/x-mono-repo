@@ -1,10 +1,17 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import { Autorenew } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
-import { formCroppedUrl, nullToArray, nullToObject, IconUpArrowSvg } from "@platformx/utilities";
+import {
+  formCroppedUrl,
+  nullToArray,
+  nullToObject,
+  IconUpArrowSvg,
+  SecondaryArgs,
+  AuthoringHelper,
+  Analytics,
+} from "@platformx/utilities";
 import "./CustomerTestimonial2.css";
 import { useCustomStyle } from "./CustomerTestimonial2.style";
 import prelemTypes from "../../globalStyle";
@@ -202,128 +209,87 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
       </Slider>
     );
   }, Slots);
-  return (
-    <>
-      {currentIndex !== null ? (
-        <Box
-          className={`${classes.customerTestimonial2Wrapper} ${globalClasses.prelemType1} prelem prelemType1 customer-testimonial2 customerTestimonial2Bg`}>
-          <div
-            ref={authoringHelper?.innerRef}
-            className={`CustomerTestimonial2-slider prelem-py sliderInnerWrapper`}>
-            <Box ref={ref}>
-              <Box className='title'>
-                <Typography variant='h2medium' color='secondaryTitle' id='title'>
-                  {" "}
-                  {content?.title}{" "}
-                </Typography>
-              </Box>
-              <Typography variant='h2semibold' color='secondaryTitle' className='centerText'>
-                {/* <img
+  return currentIndex !== null ? (
+    <Box
+      className={`${classes.customerTestimonial2Wrapper} ${globalClasses.prelemType1} prelem prelemType1 customer-testimonial2 customerTestimonial2Bg`}>
+      <div
+        ref={authoringHelper?.innerRef}
+        className={`CustomerTestimonial2-slider prelem-py sliderInnerWrapper`}>
+        <Box ref={ref}>
+          <Box className='title'>
+            <Typography variant='h2medium' color='secondaryTitle' id='title'>
+              {" "}
+              {content?.title}{" "}
+            </Typography>
+          </Box>
+          <Typography variant='h2semibold' color='secondaryTitle' className='centerText'>
+            {/* <img
                   alt="quotes"
                   src={IconDoubleQutoesSvg}
                   width="70"
                   height="48"
                 /> */}
-                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 25' width='70' height='48'>
-                  <path d='M12.744 7.57652H8.52002V19.1605H0.0720215V7.44852C0.0720215 3.16051 2.50402 0.728516 6.79202 0.728516H12.744V7.57652ZM15.176 19.1605V7.44852C15.176 3.16051 17.608 0.728516 21.896 0.728516H27.848V7.57652H23.624V19.1605H15.176Z'></path>
-                </svg>
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 25' width='70' height='48'>
+              <path d='M12.744 7.57652H8.52002V19.1605H0.0720215V7.44852C0.0720215 3.16051 2.50402 0.728516 6.79202 0.728516H12.744V7.57652ZM15.176 19.1605V7.44852C15.176 3.16051 17.608 0.728516 21.896 0.728516H27.848V7.57652H23.624V19.1605H15.176Z'></path>
+            </svg>
+          </Typography>
+
+          <Box
+            className='overlayPosition'
+            // sx={{
+            //   "&:hover": {
+            //     ".add-content-overlay": {
+            //       display: authoringHelper?.isEditing ? "flex" : "none",
+            //     },
+            //   },
+            // }}
+          >
+            <Typography
+              variant='p1regular'
+              color='secondaryParagraph'
+              className='teasureCenter'
+              id='description'>
+              {description}
+            </Typography>
+
+            <Box className='iconUparrowWrapper'>
+              <Box className='iconUparrow'>
+                <img alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
+              </Box>
+              <React.Fragment>
+                <Box className='sliderWidth'>
+                  <Box className='sliderHeight'> {sliderCommon} </Box>
+                </Box>
+              </React.Fragment>
+              <Typography variant='p3medium' color='secondaryParagraph' className='noMargin'>
+                {text1}{" "}
               </Typography>
-
+              <Typography variant='p4medium' color='secondaryParagraph' className='noMargin'>
+                {text2}
+              </Typography>
+            </Box>
+            <Box className={authoringHelper?.isEditing ? "overlay" : "hideElementClass"}>
               <Box
-                className='overlayPosition'
-                // sx={{
-                //   "&:hover": {
-                //     ".add-content-overlay": {
-                //       display: authoringHelper?.isEditing ? "flex" : "none",
-                //     },
-                //   },
-                // }}
-              >
-                <Typography
-                  variant='p1regular'
-                  color='secondaryParagraph'
-                  className='teasureCenter'
-                  id='description'>
-                  {description}
+                className='pointer'
+                onClick={() => secondaryArgs?.multiSlot?.onToggleContentGallery("awards", true)}>
+                <Autorenew className='autorenewIcon' />
+                <Typography className='overLaytextgap' variant='h3regular' color='textColor'>
+                  Replace
                 </Typography>
-
-                <Box className='iconUparrowWrapper'>
-                  <Box className='iconUparrow'>
-                    <img alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
-                  </Box>
-                  <React.Fragment>
-                    <Box className='sliderWidth'>
-                      <Box className='sliderHeight'> {sliderCommon} </Box>
-                    </Box>
-                  </React.Fragment>
-                  <Typography variant='p3medium' color='secondaryParagraph' className='noMargin'>
-                    {text1}{" "}
-                  </Typography>
-                  <Typography variant='p4medium' color='secondaryParagraph' className='noMargin'>
-                    {text2}
-                  </Typography>
-                </Box>
-                <Box className={authoringHelper?.isEditing ? "overlay" : "hideElementClass"}>
-                  <Box
-                    className='pointer'
-                    onClick={() =>
-                      secondaryArgs?.multiSlot?.onToggleContentGallery("awards", true)
-                    }>
-                    <Autorenew className='autorenewIcon' />
-                    <Typography className='overLaytextgap' variant='h3regular' color='textColor'>
-                      Replace
-                    </Typography>
-                  </Box>
-                </Box>
               </Box>
             </Box>
-          </div>
+          </Box>
         </Box>
-      ) : null}
-    </>
-  );
+      </div>
+    </Box>
+  ) : null;
 };
 
 interface CustomerTestimonial2Props {
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
-  secondaryArgs?: SecondaryArgs;
-}
-
-interface SecondaryArgs {
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  bucketName: string;
-  gcpUrl: string;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
+  authoringHelper: AuthoringHelper;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {

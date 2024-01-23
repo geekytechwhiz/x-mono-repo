@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
-import ImageCrousel1 from "./ImageCrousel1";
+import ImageCrousel1 from "./ImageCarousel1";
 
 export default {
   title: "Prelems/Banner 2",
