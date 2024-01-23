@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { useEffect, useRef, useState } from "react";
 import "./Banner5.css";
-//import "../EcommerceDiscoverNow/EcommerceDiscoverNow.css";
 import { useInView } from "react-intersection-observer";
 import {
   Analytics,
