@@ -26,6 +26,7 @@ import {
   GlobalMiscIcon,
 } from "@platformx/utilities";
 import { Loader } from "../../../../../utilities/src";
+import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 
 const iconImages = [
   {
@@ -224,11 +225,11 @@ export const GlobalSetting = () => {
       />
       <Divider />
       <Box className={classes.globalnewcontain}>
-        {/* <QuizPageScroll
+        <ContentPageScroll
             icons={iconImages}
             parentToolTip={parentToolTip}
             srollToView={srollToView}
-          /> */}
+          />
       </Box>
 
       <Box className={classes.pageContainer} id='scrollableDiv'>

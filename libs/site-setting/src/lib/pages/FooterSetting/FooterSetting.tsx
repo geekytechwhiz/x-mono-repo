@@ -55,6 +55,8 @@ import { Divider } from "@mui/material";
 // import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
 // import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
 import iconImages from "./FooterConstansts";
+import { XImageRender } from "@platformx/x-image-render";
+import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 
 export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<any>([]);
@@ -194,7 +196,13 @@ export const FooterSetting = () => {
     setOperationType(type);
   };
   const updateField = (updatedPartialObj) => {
-    console.log("updatedPartialObj", updatedPartialObj);
+    console.info("final data", updatedPartialObj);
+    const modifiedData = {
+      // ...JSON.parse(JSON.stringify(state)),
+      ...updatedPartialObj,
+    };
+    console.info("modified data", modifiedData);
+    // setState(modifiedData);
   };
 
   const showGallery = (gType, keyName, id?: any) => {
@@ -324,11 +332,11 @@ export const FooterSetting = () => {
           />
           <Divider></Divider>
           <Box className={classes.globalnewcontain}>
-            {/* <QuizPageScroll
+            <ContentPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
               srollToView={srollToView}
-            /> */}
+            />
           </Box>
 
           <Box className={classes.pageContainer} id='scrollableDiv'>
@@ -824,5 +832,3 @@ export const FooterSetting = () => {
     </>
   );
 };
-
-export default FooterSetting;

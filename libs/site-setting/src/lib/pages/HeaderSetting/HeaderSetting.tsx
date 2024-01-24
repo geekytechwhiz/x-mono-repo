@@ -39,6 +39,7 @@ import {
   HeaderLogoSkeleton,
   HeaderSearchSkeleton,
 } from "../../components/CookieSettingConstant";
+import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 
 const iconImages = [
   {
@@ -313,11 +314,11 @@ export const HeaderSetting = () => {
           /> */}
           <Divider />
           <Box className={classes.globalnewcontain}>
-            {/* <QuizPageScroll
+            <ContentPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
               srollToView={srollToView}
-            /> */}
+            />
           </Box>
 
           <Box className={classes.pageContainer} id='scrollableDiv'>
