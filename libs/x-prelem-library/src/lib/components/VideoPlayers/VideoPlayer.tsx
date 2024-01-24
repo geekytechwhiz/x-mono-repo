@@ -44,7 +44,7 @@ const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
 };
 interface VideoPlayerProp {
   playerProp: {
-    videoUrl: string;
+    videoUrl?: string;
     posterImg: string;
     width?: string;
     height?: string;

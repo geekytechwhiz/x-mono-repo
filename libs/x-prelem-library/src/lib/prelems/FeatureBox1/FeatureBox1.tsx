@@ -8,6 +8,7 @@ import "./FeatureBox1.css";
 import { useCustomStyle } from "./FeatureBox1.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 
 const FeatureBox1 = ({ content, analytics, authoringHelper, secondaryArgs }: FeatureBox1Props) => {
   const { ref, inView } = useInView({
@@ -236,45 +237,6 @@ interface FeatureBox1Props {
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
-}
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-}
-interface MultiSlot {
-  onToggleContentGallery: () => void;
-}
-interface PrelemBaseEndpoint {
-  device?: string;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  authoringHoverShow?: boolean;
-  isEditPage?: boolean;
 }
 
 interface Content {

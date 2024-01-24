@@ -4,7 +4,7 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
 import "../../Style.css";
-import { getFormattedImageUrl } from "@platformx/utilities";
+import { SecondaryArgs, getFormattedImageUrl } from "@platformx/utilities";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 
 const SlickStyle = `
@@ -519,21 +519,13 @@ const ImageVideoGalleryModalSlider = ({
   );
 };
 
-interface SecondaryArgs {
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  gcpUrl?: string;
-  bucketName?: string;
-}
-interface PrelemBaseEndpoint {
-  device?: string;
-}
 interface ModalSliderProps {
   openModal?: any;
   indexPos?: number;
   sliderData?: any;
   contentType?: string;
   handleClose?: () => void;
-  secondaryArgs?: SecondaryArgs;
+  secondaryArgs: SecondaryArgs;
 }
 
 ImageVideoGalleryModalSlider.defaultProps = {

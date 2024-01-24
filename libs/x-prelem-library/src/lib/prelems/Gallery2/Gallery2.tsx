@@ -9,7 +9,7 @@ import { useCustomStyle } from "./Gallery2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import { getImage } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, getImage } from "@platformx/utilities";
 
 // ts-ignore
 const Gallery2 = ({
@@ -233,49 +233,6 @@ interface Gallery2Prop {
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
-}
-
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  editState?: boolean;
-  gcpUrl?: string;
-  bucketName?: string;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-  language?: string;
-}
-
-interface MultiSlot {
-  onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: any;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  isEditing: boolean;
-  lastSavedStructuredData?: string;
-  isModalShow?: boolean;
-  authoringHoverShow?: boolean;
 }
 
 interface GallerySliderProps {
