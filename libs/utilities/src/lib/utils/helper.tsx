@@ -1,6 +1,11 @@
 /* eslint-disable no-console */
 import { getRestApiCall, nullToObject, postRestApiCall } from "./helperFns";
 
+export const getStyleString = (styles: any) =>
+  Object.entries(styles)
+    .map(([prop, value]) => `${prop}: ${value}`)
+    .join("; ");
+
 /**
  * courseId based get course fill details
  * post call
@@ -88,9 +93,18 @@ export const updateUserFormDetailsService = (ele: any) => {
   return postRestApiCall(`${usersEndPoint}contact_us/save`, data, language, PublishEndPoint);
 };
 
-export const getFirstTwoletters = (title:string) => {
-  if (!title) return '';
-  const words = title.trim().split(' ');
+export const getFirstTwoletters = (title: string) => {
+  if (!title) return "";
+  const words = title.trim().split(" ");
   if (words.length === 1) return words[0].substring(0, 2);
   return words[0].charAt(0) + words[words.length - 1].charAt(0);
+};
+
+export const openPageInNewTab = (url: string) => {
+  if (window && url) {
+    const infoUrl = window?.open(url, "_blank");
+    if (infoUrl) {
+      infoUrl.focus();
+    }
+  }
 };

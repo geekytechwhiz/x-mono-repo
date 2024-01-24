@@ -1,22 +1,19 @@
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { ErrorTooltip } from '@platformx/utilities';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useStyles } from './CardMenu.styles';
 // import EmbedDialog from '@platformx/utilities';
 import {
+  ErrorTooltip,
   PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
   convertToLowerCase,
   getSubDomain,
   useAccess,
-} from '@platformx/utilities';
-import DuplicateContentPopup from '../DuplicateContentPopup/DuplicateContentPopup';
-
-import {
+  DuplicateContentPopup,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
   CardOptionDeleteIcon,
@@ -26,14 +23,14 @@ import {
   CardOptionShareIcon,
   CardOptionUnPublishIcon,
   CardOptionViewIcon,
+  WorkflowStepper,
+  PlateformXSocialDialog
 } from '@platformx/utilities';
 
 import { useMediaQuery, useTheme } from '@mui/material';
 import { getEmbedTempData, getSocialShareData } from '../../utils/Helper';
-import { MenuActions } from '../CardMenu/CardMenu.types';
+import { MenuActions } from '../CourseMenu/CardMenu.types';
 import EmbedDialog from '../EmbedDialog/EmbedDialog';
-import PlateformXSocialDialog from '../PlateformXSocialDialog/PlateformXSocialDialog';
-import WorkflowStepper from '../WorkflowStepper/WorkflowStepper';
 
 export const QuizPollEventMenu = ({
   anchorEl,
@@ -52,7 +49,7 @@ export const QuizPollEventMenu = ({
   fetchContentDetails,
   sitelist,
   duplicateToSite,
-}) => {
+}: any) => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -74,17 +71,17 @@ export const QuizPollEventMenu = ({
     setSelectedContent(listItemDetails);
   }, [listItemDetails]);
 
-  const openSettingsPanel = (path) => {
+  const openSettingsPanel = (path: string) => {
     navigate(
-      `/content/create-${contentType?.toLowerCase()}?path=${path}&open=socialShare`
+      `/content/create-${contentType?.toLowerCase()}?path=${path}&open=socialShare`,
     );
   };
 
-  const handleEditContentType = (listItemDetails) => {
-    edit(listItemDetails);
+  const handleEditContentType = (items: any) => {
+    edit(items);
   };
 
-  const handleStartBlog = (path) => {
+  const handleStartBlog = (path: string) => {
     navigate(`/content/create-blog?path=${path}`);
   };
 
@@ -94,9 +91,8 @@ export const QuizPollEventMenu = ({
   };
 
   const handleCopy = () => {
-    const text = `${getSubDomain()}/${i18n.language}/${
-      contentType.toLowerCase() === 'vod' ? 'video' : contentType.toLowerCase()
-    }${listItemDetails.current_page_url}`;
+    const text = `${getSubDomain()}/${i18n.language}/${contentType.toLowerCase() === 'vod' ? 'video' : contentType.toLowerCase()
+      }${listItemDetails.current_page_url}`;
     if (listItemDetails.current_page_url) {
       navigator.clipboard.writeText(text);
       ShowToastSuccess(t('url_copy_toast'));
@@ -108,7 +104,6 @@ export const QuizPollEventMenu = ({
   const getDuplicateTitle = () => {
     const timestamp = new Date().getTime();
     const newVal = `${timestamp} - ${selectedContent?.title}`.trim();
-    // const newVal = `${t('copy_of')} ${selectedContent?.title}`.trim();
     const duplicateContentTitle =
       newVal.length > 100 ? newVal.slice(0, 100) : newVal;
     return duplicateContentTitle.trim();
@@ -138,7 +133,7 @@ export const QuizPollEventMenu = ({
     });
   };
 
-  const onHandleMenuActions = (action) => {
+  const onHandleMenuActions = (action: any) => {
     switch (action) {
       case MenuActions.EDIT:
         handleEditContentType(listItemDetails);
@@ -178,6 +173,8 @@ export const QuizPollEventMenu = ({
       case MenuActions.APPROVAL_STATUS:
         setMenuActions({ ...menuActions, approvalStatus: true });
         break;
+      default:
+        break; // Add default condition here
     }
   };
 
@@ -210,7 +207,7 @@ export const QuizPollEventMenu = ({
           isDialogOpen={menuActions.delete}
           title={t('delete_title')}
           subTitle={`${t('delete_confirm')} ${t(
-            contentType?.toLowerCase()
+            contentType?.toLowerCase(),
           )}?. ${t('process_undone')}`}
           closeButtonText={t('no_keep_it')}
           confirmButtonText={t('yes_delete_it')}
@@ -234,7 +231,7 @@ export const QuizPollEventMenu = ({
           isDialogOpen={menuActions.unpublish}
           title={`${t('unpublish')} ${t(contentType?.toLowerCase())}`}
           subTitle={`${t('unpublish_confirm')} ${t(
-            contentType?.toLowerCase()
+            contentType?.toLowerCase(),
           )}`}
           closeButtonText={t('no')}
           confirmButtonText={t('yes')}
@@ -288,7 +285,7 @@ export const QuizPollEventMenu = ({
         {contentType === 'event' &&
           (listItemDetails.page_state === 'published' ||
             (listItemDetails.page_state === 'draft' &&
-              listItemDetails?.is_published)) && (
+              listItemDetails?.lastPublishedDate)) && (
             <MenuItem
               disableRipple
               onClick={() => {
@@ -297,29 +294,29 @@ export const QuizPollEventMenu = ({
               }}
             >
               <div className={classes.icon}>
-                <CardOptionEditIcon /> {t('write_a_blog')}
+                <img src={CardOptionEditIcon} alt="edit" />
               </div>
+              {t('write_a_blog')}
             </MenuItem>
           )}
         {(listItemDetails.page_state === 'published' ||
           (listItemDetails.page_state === 'draft' &&
-            listItemDetails.is_published)) && (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              handleClose();
-              view(listItemDetails);
-            }}
-          >
-            <div className={classes.icon}>
-              <CardOptionViewIcon />
-            </div>
-            {t('view')}
-          </MenuItem>
-        )}
+            listItemDetails.lastPublishedDate)) && (
+            <MenuItem
+              disableRipple
+              onClick={() => {
+                handleClose();
+                view(listItemDetails);
+              }}
+            >
+              <div className={classes.icon}>
+                <img src={CardOptionViewIcon} alt="view" />
+              </div>
+              {t('view')}
+            </MenuItem>
+          )}
         {(listItemDetails.page_state === 'draft' ||
-          listItemDetails.page_state === 'unpublished') &&
-          listItemDetails?.tagName?.toLowerCase() !== 'vod' && (
+          listItemDetails.page_state === 'unpublished') && (
             <MenuItem
               disableRipple
               onClick={() => {
@@ -328,8 +325,9 @@ export const QuizPollEventMenu = ({
               }}
             >
               <div className={classes.icon}>
-                <CardOptionViewIcon /> {t('preview')}
+                <img src={CardOptionViewIcon} alt="view" />
               </div>
+              {t('preview')}
             </MenuItem>
           )}
         {tabView && (
@@ -341,61 +339,50 @@ export const QuizPollEventMenu = ({
                 onClick={() => onHandleMenuActions('edit')}
               >
                 <div className={classes.icon}>
-                  <CardOptionEditIcon />
-                  {t('edit')}
+                  <img src={CardOptionEditIcon} alt="edit" />
                 </div>
+                {t('edit')}
               </MenuItem>
             }
             doAccess={!canAccessAction(category, subCategory, 'Update')}
           />
         )}
-        {listItemDetails?.tagName?.toLowerCase() !== 'vod' && (
-          <ErrorTooltip
-            component={
-              <MenuItem
-                disableRipple
-                disabled={!canAccessAction(category, subCategory, 'duplicate')}
-                onClick={() => {
-                  handleClose();
-                  onHandleMenuActions('duplicate');
-                }}
-              >
-                <div className={classes.icon}>
-                  <CardOptionDuplicateIcon />
-                  {t('duplicate')}
-                </div>
-              </MenuItem>
-            }
-            doAccess={!canAccessAction(category, subCategory, 'duplicate')}
-          />
-        )}
+
+        <ErrorTooltip
+          component={
+            <MenuItem
+              disableRipple
+              disabled={!canAccessAction(category, subCategory, 'create')}
+              onClick={() => {
+                handleClose();
+                onHandleMenuActions('duplicate');
+              }}
+            >
+              <div className={classes.icon}>
+                <img src={CardOptionDuplicateIcon} alt="duplicate" />
+              </div>
+              {t('duplicate')}
+            </MenuItem>
+          }
+          doAccess={!canAccessAction(category, subCategory, 'create')}
+        />
 
         {(listItemDetails.page_state === 'published' ||
           (listItemDetails.page_state === 'draft' &&
-            listItemDetails?.is_published)) && (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              handleClose();
-              onHandleMenuActions('copy_url');
-            }}
-          >
-            <div className={classes.icon}>
-              <CardOptionCopyUrlIcon />
+            listItemDetails?.lastPublishedDate)) && (
+            <MenuItem
+              disableRipple
+              onClick={() => {
+                handleClose();
+                onHandleMenuActions('copy_url');
+              }}
+            >
+              <div className={classes.icon}>
+                <img src={CardOptionCopyUrlIcon} alt="copy" />
+              </div>
               {t('copy_url')}
-            </div>
-          </MenuItem>
-        )}
-
-        {/* <MenuItem
-          disableRipple
-          onClick={() => {
-            handleClose();
-            onHandleMenuActions('settings');
-          }}
-        >
-          <SettingsIcon /> {t('settings')}
-        </MenuItem> */}
+            </MenuItem>
+          )}
         {listItemDetails.page_state === 'published' && (
           <ErrorTooltip
             component={
@@ -408,9 +395,9 @@ export const QuizPollEventMenu = ({
                 }}
               >
                 <div className={classes.icon}>
-                  <CardOptionUnPublishIcon />
-                  {t('unpublish')}
+                  <img src={CardOptionUnPublishIcon} alt="UnPublish" />
                 </div>
+                {t('unpublish')}
               </MenuItem>
             }
             doAccess={!canAccessAction(category, subCategory, 'unpublish')}
@@ -429,9 +416,9 @@ export const QuizPollEventMenu = ({
                 }}
               >
                 <div className={classes.icon}>
-                  <CardOptionDeleteIcon />
-                  {t('delete')}
+                  <img src={CardOptionDeleteIcon} alt="delete" />
                 </div>
+                {t('delete')}
               </MenuItem>
             }
             doAccess={!canAccessAction(category, subCategory, 'delete')}
@@ -440,23 +427,24 @@ export const QuizPollEventMenu = ({
 
         {(listItemDetails.page_state === 'published' ||
           (listItemDetails.page_state === 'draft' &&
-            listItemDetails?.is_published)) && (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              handleClose();
-              onHandleMenuActions('social_share');
-            }}
-          >
-            <div className={classes.icon}>
-              <CardOptionShareIcon /> {t('social_share')}
-            </div>
-          </MenuItem>
-        )}
+            listItemDetails?.lastPublishedDate)) && (
+            <MenuItem
+              disableRipple
+              onClick={() => {
+                handleClose();
+                onHandleMenuActions('social_share');
+              }}
+            >
+              <div className={classes.icon}>
+                <img src={CardOptionShareIcon} alt="view" />
+              </div>
+              {t('social_share')}
+            </MenuItem>
+          )}
         {duplicateToSite &&
           (listItemDetails.page_state === 'published' ||
             (listItemDetails.page_state === 'draft' &&
-              listItemDetails?.is_published)) && (
+              listItemDetails?.lastPublishedDate)) && (
             <ErrorTooltip
               component={
                 <MenuItem
@@ -472,71 +460,43 @@ export const QuizPollEventMenu = ({
                   }}
                 >
                   <div className={classes.icon}>
-                    <CardOptionShareIcon /> {t('share_with_sites')}
+                    <img src={CardOptionShareIcon} alt="UnPublish" />
                   </div>
+                  {t('share_with_sites')}
                 </MenuItem>
               }
               doAccess={!canAccessAction(category, subCategory, 'sharetosite')}
             />
           )}
 
-        {convertToLowerCase(listItemDetails.tagName) !== 'vod' && (
-          <>
-            {(listItemDetails.page_state === 'published' ||
-              (listItemDetails.page_state === 'draft' &&
-                listItemDetails?.is_published)) && (
-              <MenuItem
-                disableRipple
-                onClick={() => {
-                  handleClose();
-                  onHandleMenuActions('embed');
-                }}
-              >
-                <div className={classes.icon}>
-                  <CardOptionImbedIcon /> {t('embed')}
-                </div>
-              </MenuItem>
-            )}
-            {/* {(listItemDetails.page_state === 'published' ||
-              (listItemDetails.page_state === 'draft' &&
-                listItemDetails?.is_published)) && (
-              <MenuItem
-                disableRipple
-                onClick={() => {
-                  handleClose();
-                  onHandleMenuActions('social_share');
-                }}
-              >
-                <ShareIcon /> {t('social_share')}
-              </MenuItem>
-            )} */}
-            {/* {(listItemDetails.page_state === 'published' ||
-              (listItemDetails.page_state === 'draft' &&
-                listItemDetails?.is_published)) && (
-              <MenuItem
-                disableRipple
-                onClick={() => {
-                  handleClose();
-                  onHandleMenuActions('embed');
-                }}
-              >
-                <CodeIcon /> {t('embed')}
-              </MenuItem>
-            )} */}
+        {(listItemDetails.page_state === 'published' ||
+          (listItemDetails.page_state === 'draft' &&
+            listItemDetails?.lastPublishedDate)) && (
             <MenuItem
               disableRipple
               onClick={() => {
                 handleClose();
-                onHandleMenuActions('approval_status');
+                onHandleMenuActions('embed');
               }}
             >
               <div className={classes.icon}>
-                <CardOptionApprovalStatusIcon />
-                {t('approval_status')}
+                <img src={CardOptionImbedIcon} alt="view" />
               </div>
+              {t('embed')}
             </MenuItem>
-          </>
-        )}
+          )}
+        <MenuItem
+          disableRipple
+          onClick={() => {
+            handleClose();
+            onHandleMenuActions('approval_status');
+          }}
+        >
+          <div className={classes.icon}>
+            <img src={CardOptionApprovalStatusIcon} alt="Approval" />
+          </div>
+          {t('approval_status')}
+        </MenuItem>
       </Menu>
     </div>
   );

@@ -679,7 +679,7 @@
   "scheduled_items": "Ihre geplanten Artikel",
   "boost_pages": "HCLTech X-Komponenten",
   "to_create": "Was möchten Sie erstellen?",
-  "greets_x": "Willkommen zurück ,",
+  "greets_x": "Willkommen zurück,",
   "hello": "Hallo",
   "recent_pages": "Aktuelle Seiten",
   "task_not_found": "Hurra!! Sie haben heute keine ausstehende Aufgabe",
@@ -1162,5 +1162,10 @@
   "last_name_label": "Familienname, Nachname",
   "toolTip_title": "Als Hervorgehoben markieren:",
   "toolTip_message": "Aktivieren Sie es, wenn Sie diesen Inhalt für eine bessere Sichtbarkeit hervorheben möchten.",
-  "loading": "Wird geladen..."
+  "loading": "Wird geladen...",
+  "feature_flag_setting": "Feature-Flag",
+  "personalisation": "Personalisation",
+  "google_analytics_tracking": "Google Analytics Tracking",
+  "snowplow_tracking": "Snowplow Tracking",
+  "master_control": "Master Control"
 }

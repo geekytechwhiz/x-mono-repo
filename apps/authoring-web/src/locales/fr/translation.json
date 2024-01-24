@@ -679,7 +679,7 @@
   "scheduled_items": "Vos éléments programmés",
   "boost_pages": "Composants HCLTech X",
   "to_create": "Qu'aimeriez-vous créer ?",
-  "greets_x": "content de te revoir ,",
+  "greets_x": "content de te revoir,",
   "hello": "Bonjour",
   "recent_pages": "Pages récentes",
   "task_not_found": "Hourra !! Vous n'avez aucune tâche en attente aujourd'hui",
@@ -1161,5 +1161,10 @@
   "last_name_label": "Nom de famille",
   "toolTip_title": "Marquer comme présenté:",
   "toolTip_message": "Activez-le si vous souhaitez mettre en avant ce contenu pour une meilleure visibilité.",
-  "loading": "Chargement..."
+  "loading": "Chargement...",
+  "feature_flag_setting": "Indicateur de fonctionnalité",
+  "personalisation": "Personalisation",
+  "google_analytics_tracking": "Google Analytics Tracking",
+  "snowplow_tracking": "Snowplow Tracking",
+  "master_control": "Master Control"
 }

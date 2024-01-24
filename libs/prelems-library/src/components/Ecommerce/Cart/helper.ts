@@ -1,4 +1,4 @@
-import { nullToObject, postRestApiCall } from "lib/utils/helperFns";
+import { nullToObject, postRestApiCall } from "../../../utils/helperFns";
 
 export const updateQuantityOfCartItem = (ele: any) => {
   const { secondaryArgs = {}, cartId = "", lineItemId = "", quantity } = nullToObject(ele);

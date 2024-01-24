@@ -6,19 +6,19 @@ import { useLocation, useNavigate } from 'react-router';
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
 import {
   ContentState,
-  PageData,
   previewArticle,
   previewContent,
-  updateContentList,
+  updateContentList
 } from '@platformx/authoring-state';
 import {
   ShowToastError,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   convertToLowerCase,
   getCurrentLang,
   getSelectedSite,
   getSubDomain,
-  useUserSession
+  useUserSession,
 } from '@platformx/utilities';
 import { useDispatch, useSelector } from 'react-redux';
 import { FETCH_CONTENT_BY_PATH } from '../../graphQL/queries/contentTypesQueries';
@@ -28,14 +28,15 @@ import contentTypeAPIs, {
   publishContentType,
 } from '../../services/contentTypes/contentTypes.api';
 import { LanguageList } from '../../utils/constants';
+import useVod from '../useVod/useVod';
 import { CONTENT_CONSTANTS } from './Uitls/Constants';
 import {
   mapDeleteContent,
   mapDuplicateContent,
   mapUnPublishContent,
 } from './mapper';
+
 const {
-  ALL,
   LANG,
   DRAFT,
   EVENT,
@@ -49,10 +50,9 @@ const {
 const useContentListing = (filter = 'ALL') => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-
-  const { pageInfo } = useSelector((state: PageData) => state);
-  const { contentList, startIndex, contentType } = useSelector(
-    (state: ContentState) => state
+  const { duplicateVod } = useVod();
+  const { contentList, startIndex } = useSelector(
+    (state: ContentState) => state,
   );
   const navigate = useNavigate();
   const [getSession] = useUserSession();
@@ -73,8 +73,8 @@ const useContentListing = (filter = 'ALL') => {
   const location = useLocation();
 
   const fetchContentDetails = async (listItemDetails: {
-    tagName: string | undefined;
-    page: any;
+    tagName: string | undefined
+    page: any
   }) => {
     try {
       const response: any = await contentTypeAPIs.fetchContent({
@@ -103,33 +103,34 @@ const useContentListing = (filter = 'ALL') => {
           listItemDetails.tagName === 'VOD'
             ? 'Vod'
             : capitalizeFirstLetter(listItemDetails.tagName),
-          selectedItem
+          selectedItem,
         );
-        const unPublishResponse = await deleteMutate({
+        const response: any = await deleteMutate({
           variables: {
             ...contentToSend,
           },
         });
-        if (unPublishResponse) {
-          const response = await contentTypeAPIs.fetchSearchContent(
-            pageInfo.content.contentType,
+        const {
+          authoring_deleteContent: { message },
+        } = response.data;
+        if (response) {
+          const searchResponse = await contentTypeAPIs.fetchSearchContent(
+            capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
             startIndex,
             contentList,
-            true
+            true,
           );
-          updateContentList(response);
-          ShowToastError(
+          dispatch(updateContentList(searchResponse));
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t(
-              'deleted_toast'
-            )}`
+              'deleted_toast',
+            )}`,
           );
         }
       } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+        ShowToastError(t('api_error_toast'));
       }
     }
   };
@@ -142,7 +143,7 @@ const useContentListing = (filter = 'ALL') => {
           listItemDetails.tagName === 'VOD'
             ? 'Vod'
             : capitalizeFirstLetter(listItemDetails.tagName),
-          selectedItem.page
+          selectedItem.page,
         );
         const unPublishResponse = await unPublishMutate({
           variables: {
@@ -151,58 +152,48 @@ const useContentListing = (filter = 'ALL') => {
         });
         if (unPublishResponse) {
           const response = await contentTypeAPIs.fetchSearchContent(
-            pageInfo.content.contentType,
+            capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
             startIndex,
             contentList,
-            true
+            true,
           );
-          updateContentList(response);
-          ShowToastError(
+          dispatch(updateContentList(response));
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t(
-              'unpublished_toast'
-            )}`
+              'unpublished_toast',
+            )}`,
           );
         }
       } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+        ShowToastError(error?.graphQLErrors[0]?.message || t('api_error_toast'));
       }
     }
   };
 
   const view = async (listItemDetails: {
-    tagName: string;
-    currentPageUrl: any;
-    course_id: any;
-  }) => {
-    // window.open(
-    //   `${
-    //     AUTH_INFO.publishUri + i18n.language
-    //   }/${listItemDetails.tagName?.toLowerCase()}${
-    //     listItemDetails?.currentPageUrl
-    //   }`
-    // );
+    tagName: string
+    currentPageUrl: any
+    course_id: any
+  }) => { // eslint-disable-line
 
     if (listItemDetails.tagName.toUpperCase() === 'VOD') {
       window.open(
         `${getSubDomain()}/${i18n.language}/video${listItemDetails?.currentPageUrl
-        }`
+        }`,
       );
     } else if (listItemDetails.tagName === convertToLowerCase('Courses')) {
       window.open(
         `${getSubDomain()}/${i18n.language}/course/course-details?courseId=${listItemDetails?.course_id
-        }`
+        }`,
       );
       // window.open(`${listItemDetails?.currentPageUrl}`);
     } else {
-      console.log('text');
       window.open(
         `${getSubDomain()}/${i18n.language
         }/${listItemDetails.tagName?.toLowerCase()}${listItemDetails?.currentPageUrl
-        }`
+        }`,
       );
     }
   };
@@ -212,7 +203,7 @@ const useContentListing = (filter = 'ALL') => {
     dispatch(previewArticle({}));
     navigate(
       `/content/create-${listItemDetails.tagName?.toLowerCase()}?path=${listItemDetails.page
-      }`
+      }`,
     );
   };
 
@@ -223,7 +214,7 @@ const useContentListing = (filter = 'ALL') => {
       try {
         if (
           selectedItem?.page_state === DRAFT ||
-          selectedItem?.page_state == UNPUBLISHED
+          selectedItem?.page_state === UNPUBLISHED
         ) {
           const qusArry: never[] = [];
           if (
@@ -263,7 +254,7 @@ const useContentListing = (filter = 'ALL') => {
                 ...selectedItem,
                 page_lastmodifiedby: selectedItem.last_modifiedBy,
                 developed_date: selectedItem.creationDate,
-              })
+              }),
             );
             navigate('/article-preview');
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === EVENT) {
@@ -282,9 +273,7 @@ const useContentListing = (filter = 'ALL') => {
           }
         }
       } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+        ShowToastError(error?.graphQLErrors[0]?.message || t('api_error_toast'));
       }
     }
   };
@@ -292,21 +281,25 @@ const useContentListing = (filter = 'ALL') => {
     IsDuplicate = false,
     title: any,
     language: string | string[],
-    listItemDetails: any
+    listItemDetails: any,
   ) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     try {
-      if (selectedItem && Object.keys(selectedItem).length > 0) {
+      if (
+        selectedItem &&
+        Object.keys(selectedItem).length > 0 &&
+        listItemDetails.tagName.toLowerCase() !== 'vod'
+      ) {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
           IsDuplicate,
           selectedItem,
           username,
-          i18n.language
+          i18n.language,
         );
         const selectedLanguage = LanguageList.filter((langObj) =>
-          language.includes(langObj.value)
+          language.includes(langObj.value),
         );
         const promises = selectedLanguage.map(async (lang) => {
           return createMutate({
@@ -326,30 +319,32 @@ const useContentListing = (filter = 'ALL') => {
         const response = await Promise.all(promises);
 
         if (response && response.length > 0) {
-          const response = await contentTypeAPIs.fetchSearchContent(
-            contentType,
+          const response: any = await contentTypeAPIs.fetchSearchContent(
+            capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
             startIndex,
             contentList,
-            true
+            true,
           );
-          updateContentList(response);
+          dispatch(updateContentList(response));
           for (const res of response) {
-            ShowToastError(
+            ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t(
-                'duplicated_toast'
-              )} ${t('for')} ${res.language}`
+                'duplicated_toast',
+              )} ${t('for')} ${res.language}`,
             );
           }
         }
+      } else {
+        duplicateVod({ IsDuplicate, title, language, selectedItem });
       }
     } catch (error: any) {
       console.log(error);
       ShowToastError(
         error.graphQLErrors[0]
           ? `${error.graphQLErrors[0].message} ${t('for')} ` //${l.value}
-          : t('api_error_toast')
+          : t('api_error_toast'),
       );
     }
   };
@@ -358,7 +353,7 @@ const useContentListing = (filter = 'ALL') => {
     IsDuplicate = false,
     title: any,
     listItemDetails: any,
-    siteTitle: any
+    siteTitle: any,
   ) => {
     try {
       const selectedItem = await fetchContentDetails(listItemDetails);
@@ -370,7 +365,7 @@ const useContentListing = (filter = 'ALL') => {
           IsDuplicate,
           selectedItem,
           username,
-          i18n.language
+          i18n.language,
         );
         // const selectedLanguage = LanguageList.filter((langObj) =>
         //   language.includes(langObj.value)
@@ -396,7 +391,7 @@ const useContentListing = (filter = 'ALL') => {
       ShowToastError(
         error.graphQLErrors[0]
           ? `${error.graphQLErrors[0].message} ${t('for')} ` //${l.value}
-          : t('api_error_toast')
+          : t('api_error_toast'),
       );
     }
   };

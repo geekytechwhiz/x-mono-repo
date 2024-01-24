@@ -32,8 +32,8 @@ import {
   capitalizeFirstLetter,
   convertToLowerCase,
   getSubDomain,
+  SkeltonLoader
 } from '@platformx/utilities';
-import SkeltonLoader from '../SkeltonLoader/SkeltonLoader';
 enum ShareNetworkValues {
   fb = 'Facebook',
   in = 'LinkedIn',
@@ -114,7 +114,7 @@ const SocialShareSteps = ({
   contentType,
   onClickingDone,
   onDoneClick,
-}) => {
+}: any) => {
   const { t, i18n } = useTranslation();
   const [activeStep, setActiveStep] = React.useState(1);
   const [selectedSocial, setSelectedSocial] = React.useState({
@@ -151,7 +151,7 @@ const SocialShareSteps = ({
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
   //Social Share Schedule API Call
-  const socialSchedule = (input, sharetype) => {
+  const socialSchedule = (input: any, sharetype: any) => {
     setLoading(true);
     socialShareSchedule({
       variables: {
@@ -177,7 +177,7 @@ const SocialShareSteps = ({
   };
 
   //Check VOD status before calling Social Share Schedule API
-  const getVodStatus = (page, scheduleInput, sharetype) => {
+  const getVodStatus = (page: any, scheduleInput: any, sharetype: any) => {
     runFetchVodById({
       variables: { folder: 'vodcontent', path: page },
     })
@@ -212,7 +212,7 @@ const SocialShareSteps = ({
       });
   };
   //Check Article status before calling Social Share Schedule API
-  const getArticleStatus = async (articleName, scheduleInput, sharetype) => {
+  const getArticleStatus = async (articleName: any, scheduleInput: any, sharetype: any) => {
     setLoading(true);
     if (articleName) {
       await runFetchArticleModel({
@@ -254,7 +254,7 @@ const SocialShareSteps = ({
     }
   };
   //Check Poll, Quiz and Event status before calling Social Share Schedule API
-  const getContentStatus = (type, contentPath, scheduleInput, sharetype) => {
+  const getContentStatus = (type: any, contentPath: any, scheduleInput: any, sharetype: any) => {
     setLoading(true);
     runFetchContentByPath({
       variables: {
@@ -272,7 +272,7 @@ const SocialShareSteps = ({
         // }
         if (
           res?.data?.authoring_getCmsContentByPath?.page_state ===
-            'PUBLISHED' ||
+          'PUBLISHED' ||
           res?.data?.authoring_getCmsContentByPath?.page_state === 'DRAFT'
         ) {
           socialSchedule(scheduleInput, sharetype);
@@ -292,7 +292,7 @@ const SocialShareSteps = ({
       });
   };
   //Social Share Re-Schedule API Call
-  const socialReSchedule = (ReScheduleInput) => {
+  const socialReSchedule = (ReScheduleInput: any) => {
     setLoading(true);
     socialShareReSchedule({
       variables: {
@@ -345,11 +345,10 @@ const SocialShareSteps = ({
     }
 
     if (activeStep == 2) {
-      const postURL = `${getSubDomain()}/${i18n.language}/${
-        convertToLowerCase(contentType) === 'vod'
-          ? 'video'
-          : convertToLowerCase(contentType)
-      }${selectedItem?.CurrentPageURL}`;
+      const postURL = `${getSubDomain()}/${i18n.language}/${convertToLowerCase(contentType) === 'vod'
+        ? 'video'
+        : convertToLowerCase(contentType)
+        }${selectedItem?.CurrentPageURL}`;
 
       if (checked) {
         const scheduleDateTime: any = scheduleDate
@@ -391,8 +390,8 @@ const SocialShareSteps = ({
           content_type: selectedItem?.contentType
             ? selectedItem?.contentType
             : contentType == 'video'
-            ? 'VOD'
-            : contentType,
+              ? 'VOD'
+              : contentType,
           item_path: selectedItem?.Page,
         },
       };
@@ -600,10 +599,10 @@ const SocialShareSteps = ({
                   //   em: activeStep === 0 ? '130px' : '0px',
                   // },
                   '@media screen and (max-height: 600px) and (orientation: landscape)':
-                    {
-                      position: 'unset',
-                      marginTop: '12px',
-                    },
+                  {
+                    position: 'unset',
+                    marginTop: '12px',
+                  },
                   display: { xs: 'none', md: 'flex' },
                   justifyContent: { md: 'flex-end' },
                   bottom: { xs: '20px', md: '15px' },
@@ -691,8 +690,8 @@ const SocialShareSteps = ({
                     {activeStep === 2
                       ? t('done')
                       : activeStep === 3
-                      ? t('done')
-                      : t('next')}
+                        ? t('done')
+                        : t('next')}
                   </Button>
                 ) : null}
               </Box>
