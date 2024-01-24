@@ -64,6 +64,12 @@ import Faq1 from "./Faq1/Faq1";
 import VideoBanner2 from "./VideoBanner2/VideoBanner2";
 import ServiceCard6 from "./ServiceCard6/ServiceCard6";
 import ProfileListing from "./ProfileListing/ProfileListing";
+import LiveStreemFeed from "./LivestreamFeed/LivestreamFeed";
+import Gallery2 from "./Gallery2/Gallery2";
+import VideoBanner1 from "./VideoBanner1/VideoBanner1";
+import SignBoard from "./SignBoard/SignBoard";
+import ContactUs from "./ContactUs/ContactUs";
+import ProductSummaryViaVideo from "./ProductSummaryViaVideo/ProductSummaryViaVideo";
 
 export {
   ProfileListing,
@@ -122,7 +128,7 @@ export {
   ImageCarousel,
   ImageCards,
   FullWidthTextWithImage,
-  // VideoBanner1,
+  VideoBanner1,
   ServiceCard1,
   ServiceCard2,
   ServiceCard3,
@@ -132,4 +138,9 @@ export {
   Services1,
   Services2,
   Gallery1,
+  Gallery2,
+  LiveStreemFeed,
+  SignBoard,
+  ContactUs,
+  ProductSummaryViaVideo,
 };

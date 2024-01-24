@@ -6,7 +6,7 @@ import { useCustomStyle } from "./VideoBanner1.style";
 import "./VideoBanner1.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import { Analytics, SecondaryArgs } from "@platformx/utilities";
+import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
   const [val, setVal] = useState(1);
@@ -251,8 +251,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
 interface VideoBanner1Prop {
   content: Content;
   analytics: Analytics;
-  authoringHelper: any;
-  secondaryArgs: SecondaryArgs;
+  authoringHelper?: any;
+  secondaryArgs?: any;
 }
 
 interface Content {

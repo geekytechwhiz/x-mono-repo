@@ -7,7 +7,7 @@ import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
+import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const ParagraphWithHeadline = ({
   content,
@@ -117,7 +117,7 @@ interface ParagraphWithHeadlineProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs: SecondaryArgs;
+  secondaryArgs?: any; //SecondaryArgs;
 }
 
 interface Content {
