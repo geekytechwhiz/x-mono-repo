@@ -360,6 +360,13 @@ export const FooterSetting = () => {
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
+                      <XImageRender
+                callBack={updateField}
+                data={{
+                  original_image: {},
+                  published_images: [],
+                }}
+              />
                         {/* <SiteSettingAddImage
                           url={
                             process.env.REACT_APP_GCP_URL +
