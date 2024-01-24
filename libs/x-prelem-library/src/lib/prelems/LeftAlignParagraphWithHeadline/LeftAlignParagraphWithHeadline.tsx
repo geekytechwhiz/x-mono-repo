@@ -6,7 +6,7 @@ import "../../Style.css";
 import { useCustomStyle } from "./LeftAlignParagraphWithHeadline.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
+import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const LeftAlignParagraphWithHeadline = ({
   content,
@@ -100,7 +100,7 @@ interface LeftAlignParagraphWithHeadlineProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs: SecondaryArgs;
+  secondaryArgs?: any; //SecondaryArgs;
 }
 
 interface Content {

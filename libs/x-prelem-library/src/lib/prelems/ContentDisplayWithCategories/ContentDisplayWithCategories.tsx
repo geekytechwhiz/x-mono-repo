@@ -6,7 +6,6 @@ import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
 import {
-  formCroppedUrl,
   getImage,
   getLandingPageURL,
   Business,
@@ -17,6 +16,8 @@ import {
   Travel,
   ArrowAnimated,
   Analytics,
+  SecondaryArgs,
+  noResults,
 } from "@platformx/utilities";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import "./ContentDisplayWithCategories.css";
@@ -259,12 +260,13 @@ const ContentDisplayWithCategories = ({
                   <React.Fragment>
                     <Box className='noDataFoundWrapper'>
                       <img
-                        src={formCroppedUrl(
-                          secondaryArgs?.gcpUrl,
-                          secondaryArgs?.bucketName,
-                          secondaryArgs?.noResultImg?.Url,
-                          "png",
-                        )}
+                        src={noResults}
+                        // src={formCroppedUrl(
+                        //   secondaryArgs?.gcpUrl,
+                        //   secondaryArgs?.bucketName,
+                        //   secondaryArgs?.noResultImg?.Url,
+                        //   "png",
+                        // )}
                         alt='NoDataFound'
                       />
                     </Box>
@@ -443,7 +445,7 @@ interface ContentDisplayWithCategoriesProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs: any;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface AuthoringHelper {

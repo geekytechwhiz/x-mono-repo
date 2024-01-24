@@ -92,7 +92,7 @@ const DynamicPrelemWithCarousel2 = ({ content, authoringHelper, secondaryArgs = 
               <CardSkeleton />
             </Box>
           ) : contentList?.length > 0 ? (
-            <Box sx={{ marginLeft: "-15px", marginRight: "-15px" }}>
+            <Box sx={{ marginLeft: "-15px", marginRight: "-15px", width: "calc(100% + 30px)" }}>
               <Grid container>
                 {contentList.map((item: any, index: any) => {
                   return (

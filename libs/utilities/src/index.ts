@@ -53,11 +53,11 @@ import { ArticleMapper } from "./lib/mappers/articleMapper";
 
 import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
 import LightTheme from "./lib/themes/authoring/theme";
-import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme/Variable";
-import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord/Variable";
-import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa/Variable";
-import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia/Variable";
-import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme/Variable";
+import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme";
+import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord";
+import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa";
+import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia";
+import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import { LanguageList } from "./lib/utils/helperConstants";
 import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl } from "./lib/utils/helperFns";
