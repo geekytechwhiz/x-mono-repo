@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import GreenTick from "assets/userProfile/greenTick.png";
-import "service/i18n";
+import "libs/utilities/src/lib/utils/i18next";
 import { useTranslation } from "react-i18next";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContactUsForm.style";
@@ -29,6 +28,7 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
+  GreenTick,
 } from "@platformx/utilities";
 import { useInView } from "react-intersection-observer";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";

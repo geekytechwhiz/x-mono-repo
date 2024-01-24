@@ -12,7 +12,6 @@ export const useCustomStyle = makeStyles(() => {
           "& h2": {
             paddingBottom: "12px",
             borderBottom: `1px solid ${theme.palette.prelemType1.LINE}`,
-            color: "#000",
           },
         },
         "& .CardBoxWp": {

@@ -64,8 +64,14 @@ import Faq1 from "./Faq1/Faq1";
 import VideoBanner2 from "./VideoBanner2/VideoBanner2";
 import ServiceCard6 from "./ServiceCard6/ServiceCard6";
 import ProfileListing from "./ProfileListing/ProfileListing";
+import Ecommerce3Slot1 from "./Ecommerce3Slot1/Ecommerce3Slot1";
+import Ecommerce3Slot2 from "./Ecommerce3Slot2/Ecommerce3Slot2";
+import ContactUsForm from "./ContactUsForm/ContactUsForm";
 
 export {
+  ContactUsForm,
+  Ecommerce3Slot2,
+  Ecommerce3Slot1,
   ProfileListing,
   ServiceCard6,
   VideoBanner2,
