@@ -14,6 +14,7 @@ import CourseDegIcon from "./CourseIcon.png";
 import BigArrow from "./BigArrow.png";
 import DottedBg from "./dottedbg.png";
 import DottedRound from "./mask-dotted.png";
+import CardBgImg from "./card-bg.png";
 
 export {
   Frame1,
@@ -32,4 +33,5 @@ export {
   BigArrow,
   DottedBg,
   DottedRound,
+  CardBgImg,
 };

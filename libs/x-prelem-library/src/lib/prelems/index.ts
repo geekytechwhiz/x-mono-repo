@@ -61,8 +61,14 @@ import ParagraphWithHeadline from "./ParagraphWithHeadline/ParagraphWithHeadline
 import DynamicPrelem from "./DynamicPrelem/DynamicPrelem";
 import Award1 from "./Awards1/Awards1";
 import Faq1 from "./Faq1/Faq1";
+import VideoBanner2 from "./VideoBanner2/VideoBanner2";
+import ServiceCard6 from "./ServiceCard6/ServiceCard6";
+import ProfileListing from "./ProfileListing/ProfileListing";
 
 export {
+  ProfileListing,
+  ServiceCard6,
+  VideoBanner2,
   Faq1,
   Award1,
   DynamicPrelem,

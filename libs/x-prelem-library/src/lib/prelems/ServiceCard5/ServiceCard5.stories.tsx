@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import ServiceCard5 from "./ServiceCard5";
 
 export default {
-  title: "Prelems/Product Summary",
+  title: "Prelems/Service Card5",
   component: ServiceCard5,
 } as Meta;
 
