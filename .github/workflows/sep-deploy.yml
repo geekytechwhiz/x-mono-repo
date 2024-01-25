@@ -82,7 +82,7 @@ jobs:
       - name: Deploy authoring-web 
         run:
         #  npm run deploy:authoring --namespace=https://dev.console.hcl-x.com/ 
-          npm run deploy:authoring --namespace=https://dev.console.hcl-x.com/
+          npm run deploy:authoring  
           
        
 
