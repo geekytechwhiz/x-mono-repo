@@ -81,7 +81,13 @@ jobs:
           
           # npx nx build authoring-web
           # npx nx serve authoring-web --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }} 
-          npx nx serve authoring-web --public-host=https://dev.console.hcl-x.com --inspect=5858 --verbose
+          # npx nx serve authoring-web --public-host=https://dev.console.hcl-x.com --inspect=5858 --verbose
+
+      - name: Build affected libraries and deploy authoring-web
+        # run: npm run serve:authoring-web
+        run:
+         npm run deploy:authoring -- --namespace=https://dev.console.hcl-x.com/
+        
 
 
 
