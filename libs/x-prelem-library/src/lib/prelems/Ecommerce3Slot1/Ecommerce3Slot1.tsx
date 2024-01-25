@@ -79,169 +79,156 @@ export default function Ecommerce3Slot1({
         className={
           authoringHelper?.isEditPage ? "grid_full_width prelem-py" : "grid_container prelem-py"
         }>
-        <Grid
-          em={12}
-          sx={{
-            width: "100%",
-            display: { xs: "flex", md: "block", em: "grid" },
-            gap: "30px",
-            flexDirection: { xs: "column" },
-            height: "auto",
-            justifyContent: "center",
-            padding: { xs: "15px", md: "30px" },
-          }}>
+        <Grid container>
           <Grid
+            xs={12}
+            md={12}
             em={9}
             sx={{
-              gridRow: { em: "1 / 3" },
-              gridColumn: { em: "1 / 2" },
-              marginBottom: { md: "30px", em: "0" },
+              marginBottom: "30px",
             }}
             className='discover-article'>
-            <Box className='discover-image1 discover-picture'>
-              <Box className='imgOverlay'></Box>
-              <ImageRender
-                originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
-                publishedImages={content?.ImageCompound?.ImageCompound_1?.published_images}
-                secondaryArgs={secondaryArgs}
-                imgOrder={{
-                  1440: "square",
-                  1280: "landscape",
-                  1024: "card2",
-                  768: "square",
-                  600: "card1",
-                  320: "portrait",
-                }}
-              />
-            </Box>
             <Box
-              className='discover-headerArea'
-              sx={{ left: "18px", top: "25px", flexDirection: "column" }}>
-              <Typography
-                variant='h2regular'
-                color='textColor'
-                sx={{ left: "45px", top: "37px" }}
-                id='Title1'>
-                {content?.Title1}
-              </Typography>
-              <Box>
-                <BasicButton
-                  openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
-                  isAuthoring={analytics?.isAuthoring}
-                  currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
-                  variant='defaultButton1'
-                  analyticsEnabled={analytics?.isAnalyticsEnabled}
-                  ButtonObj={ButtonObj1}
-                  isEditing={authoringHelper?.isEditing}
-                  buttonDataObj={ButtonDataObj1}
-                  secondaryArgs={secondaryArgs}
-                  endIcon={<EastIcon className='arrowIcon icon headerLight' />}
-                  analytics={analytics}
-                />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid
-            em={3}
-            sx={{
-              gridRow: { em: "1" },
-              gridColumn: { em: "2" },
-              paddingRight: { md: "15px", em: "0px" },
-              width: { md: "50%", em: "initial" },
-              float: { md: "left", em: "unset" },
-            }}
-            className='discover-article'>
-            <Box className='discover-image2 discover-picture'>
-              <Box className='imgOverlay'></Box>
-              <ImageRender
-                originalImage={content?.ImageCompound?.ImageCompound_2?.original_image}
-                publishedImages={content?.ImageCompound?.ImageCompound_2?.published_images}
-                secondaryArgs={secondaryArgs}
-                imgOrder={{
-                  1440: "square",
-                  1280: "landscape",
-                  1024: "card2",
-                  768: "square",
-                  600: "card1",
-                  320: "portrait",
-                }}
-              />
-            </Box>
-            <Box
-              className='discover-headerArea'
-              sx={{ left: "18px", top: "25px", flexDirection: "column" }}>
-              <Typography variant='h4regular' color='textColor' id='Title2'>
-                {content?.Title2}
-              </Typography>
-              <Box>
-                <BasicButton
-                  openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
-                  isAuthoring={analytics?.isAuthoring}
-                  currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
-                  variant='defaultButton1'
-                  analyticsEnabled={analytics?.isAnalyticsEnabled}
-                  ButtonObj={ButtonObj2}
-                  isEditing={authoringHelper?.isEditing}
-                  buttonDataObj={ButtonDataObj2}
-                  secondaryArgs={secondaryArgs}
-                  endIcon={<EastIcon className='arrowIcon icon headerLight' />}
-                  analytics={analytics}
-                />
-              </Box>
-            </Box>
-          </Grid>
-          <Grid
-            em={3}
-            sx={{
-              gridRow: { em: "2" },
-              gridColumn: { em: "unset" },
-              paddingLeft: { md: "15px", em: "0px" },
-              width: { md: "50%", em: "initial" },
-              float: { md: "right", em: "unset" },
-            }}
-            className='discover-article'>
-            <Box className='discover-image2 discover-picture'>
-              <Box className='imgOverlay'></Box>
-              <ImageRender
-                originalImage={content?.ImageCompound?.ImageCompound_3?.original_image}
-                publishedImages={content?.ImageCompound?.ImageCompound_3?.published_images}
-                secondaryArgs={secondaryArgs}
-                imgOrder={{
-                  1440: "square",
-                  1280: "landscape",
-                  1024: "card2",
-                  768: "square",
-                  600: "card1",
-                  320: "portrait",
-                }}
-              />
-            </Box>
-            <Box
-              className='discover-headerArea'
               sx={{
-                left: { md: "36px", xs: "18px", em: "18px" },
-                top: "25px",
-                flexDirection: "column",
+                marginRight: { md: "0px", em: "30px", position: "relative" },
               }}>
-              <Typography variant='h4regular' color='textColor' id='Title3'>
-                {content?.Title3}
-              </Typography>
-              <Box>
-                <BasicButton
-                  openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
-                  isAuthoring={analytics?.isAuthoring}
-                  currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
-                  variant='defaultButton1'
-                  analyticsEnabled={analytics?.isAnalyticsEnabled}
-                  ButtonObj={ButtonObj3}
-                  isEditing={authoringHelper?.isEditing}
-                  buttonDataObj={ButtonDataObj3}
+              <Box className='discover-image1 discover-picture'>
+                <Box className='imgOverlay'></Box>
+                <ImageRender
+                  originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
+                  publishedImages={content?.ImageCompound?.ImageCompound_1?.published_images}
                   secondaryArgs={secondaryArgs}
-                  endIcon={<EastIcon className='arrowIcon icon headerLight' />}
-                  analytics={analytics}
+                  imgOrder={{
+                    1440: "square",
+                    1280: "landscape",
+                    1024: "card2",
+                    768: "square",
+                    600: "card1",
+                    320: "portrait",
+                  }}
                 />
               </Box>
+              <Box
+                className='discover-headerArea'
+                sx={{ left: "18px", top: "25px", flexDirection: "column" }}>
+                <Typography
+                  variant='h2regular'
+                  color='textColor'
+                  sx={{ left: "45px", top: "37px" }}
+                  id='Title1'>
+                  {content?.Title1}
+                </Typography>
+                <Box>
+                  <BasicButton
+                    openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
+                    isAuthoring={analytics?.isAuthoring}
+                    currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
+                    variant='defaultButton1'
+                    analyticsEnabled={analytics?.isAnalyticsEnabled}
+                    ButtonObj={ButtonObj1}
+                    isEditing={authoringHelper?.isEditing}
+                    buttonDataObj={ButtonDataObj1}
+                    secondaryArgs={secondaryArgs}
+                    endIcon={<EastIcon className='arrowIcon icon headerLight' />}
+                    analytics={analytics}
+                  />
+                </Box>
+              </Box>
             </Box>
+          </Grid>
+
+          <Grid xs={12} md={12} em={3}>
+            <Grid
+              em={12}
+              xs={12}
+              md={12}
+              className='discover-article'
+              sx={{
+                marginBottom: "30px",
+              }}>
+              <Box className='discover-image2 discover-picture'>
+                <Box className='imgOverlay'></Box>
+                <ImageRender
+                  originalImage={content?.ImageCompound?.ImageCompound_2?.original_image}
+                  publishedImages={content?.ImageCompound?.ImageCompound_2?.published_images}
+                  secondaryArgs={secondaryArgs}
+                  imgOrder={{
+                    1440: "square",
+                    1280: "landscape",
+                    1024: "card2",
+                    768: "square",
+                    600: "card1",
+                    320: "portrait",
+                  }}
+                />
+              </Box>
+              <Box
+                className='discover-headerArea'
+                sx={{ left: "18px", top: "25px", flexDirection: "column" }}>
+                <Typography variant='h4regular' color='textColor' id='Title2'>
+                  {content?.Title2}
+                </Typography>
+                <Box>
+                  <BasicButton
+                    openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
+                    isAuthoring={analytics?.isAuthoring}
+                    currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
+                    variant='defaultButton1'
+                    analyticsEnabled={analytics?.isAnalyticsEnabled}
+                    ButtonObj={ButtonObj2}
+                    isEditing={authoringHelper?.isEditing}
+                    buttonDataObj={ButtonDataObj2}
+                    secondaryArgs={secondaryArgs}
+                    endIcon={<EastIcon className='arrowIcon icon headerLight' />}
+                    analytics={analytics}
+                  />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid xs={12} md={12} em={12} className='discover-article'>
+              <Box className='discover-image2 discover-picture'>
+                <Box className='imgOverlay'></Box>
+                <ImageRender
+                  originalImage={content?.ImageCompound?.ImageCompound_3?.original_image}
+                  publishedImages={content?.ImageCompound?.ImageCompound_3?.published_images}
+                  secondaryArgs={secondaryArgs}
+                  imgOrder={{
+                    1440: "square",
+                    1280: "landscape",
+                    1024: "card2",
+                    768: "square",
+                    600: "card1",
+                    320: "portrait",
+                  }}
+                />
+              </Box>
+              <Box
+                className='discover-headerArea'
+                sx={{
+                  left: { md: "36px", xs: "18px", em: "18px" },
+                  top: "25px",
+                  flexDirection: "column",
+                }}>
+                <Typography variant='h4regular' color='textColor' id='Title3'>
+                  {content?.Title3}
+                </Typography>
+                <Box>
+                  <BasicButton
+                    openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
+                    isAuthoring={analytics?.isAuthoring}
+                    currentBtnEditing={authoringHelper?.selectedButtonNameForEditing}
+                    variant='defaultButton1'
+                    analyticsEnabled={analytics?.isAnalyticsEnabled}
+                    ButtonObj={ButtonObj3}
+                    isEditing={authoringHelper?.isEditing}
+                    buttonDataObj={ButtonDataObj3}
+                    secondaryArgs={secondaryArgs}
+                    endIcon={<EastIcon className='arrowIcon icon headerLight' />}
+                    analytics={analytics}
+                  />
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
