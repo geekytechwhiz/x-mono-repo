@@ -81,7 +81,7 @@ jobs:
           
           # npx nx build authoring-web
           # npx nx serve authoring-web --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }}
-          npx nx serve authoring-web --public-host=${{ secrets.NAMESPACE_NAME_DEVELOP }}
+          npx nx serve authoring-web --verbose --public-host=${{ secrets.NAMESPACE_NAME_DEVELOP }}
 
 
   # deploy-x-user-experience:
