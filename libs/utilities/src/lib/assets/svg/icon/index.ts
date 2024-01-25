@@ -13,6 +13,13 @@ import News_community from "./News_community.svg";
 import playerIcon from "./profil_icon.svg";
 import Community from "./community.svg";
 import Challenges_community from "./Challenges_community.svg";
+import next from "./next.svg";
+import prev from "./prev.svg";
+import IconMasterCardSvg from "./MasterCard.svg";
+import IconVisaCardSvg from "./VisaCard.svg";
+import IconDelete1svg from "./Delete1.svg";
+import IconGoogleSvg from "./Gplus.svg";
+import IconFbSvg from "./FaceBookIcon.svg";
 
 export {
   MaskImg,
@@ -30,4 +37,11 @@ export {
   playerIcon,
   Community,
   Challenges_community,
+  next,
+  prev,
+  IconMasterCardSvg,
+  IconVisaCardSvg,
+  IconDelete1svg,
+  IconGoogleSvg,
+  IconFbSvg,
 };

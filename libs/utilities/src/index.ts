@@ -13,7 +13,7 @@ import { MiniHeader } from "./lib/components/Header/MiniHeader";
 import LanguageDropDown from "./lib/components/LanguageDropDown/LanguageDropDown";
 import { Loader } from "./lib/components/Loader";
 import ContentListDesktopLoader from "./lib/components/Loader/ContentListDesktopLoader";
-import ContentListMobileLoader from "./lib/components/Loader/contentListLoaderMobile";
+import ContentListMobileLoader from "./lib/components/Loader/ContentListLoaderMobile";
 import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import NoSearchResult from "./lib/components/NoSearchResult/NoSearchResult";
 import {
@@ -80,6 +80,7 @@ export * from "./lib/assets/images";
 export * from "./lib/assets/svg";
 export * from "./lib/assets/svg/icon";
 export * from "./lib/assets/pngIcons";
+export * from "./lib/assets/gif";
 export * from "./lib/components";
 export * from "./lib/components/CardSkeleton/CardSkeleton";
 export * from "./lib/components/SchemaComponents";
@@ -94,6 +95,7 @@ export * from "./lib/themes/prelems/prelemTheme";
 export * from "./lib/utils/helper";
 export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
+export * from "./lib/utils/helperEcommerce";
 
 export {
   AUTH_INFO,
