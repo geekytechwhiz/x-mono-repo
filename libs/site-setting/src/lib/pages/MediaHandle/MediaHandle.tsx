@@ -42,15 +42,33 @@ export const MediaHandle: React.FC = () => {
     media_url: string;
     errorMessage: string;
     enable: string;
+    media_name: string;
   }
 
   const initForm = (list: FormItem[]) =>
     (list || []).map((item) => ({
       ...item,
       value: JSON.parse(item.enable),
+      name: item.media_name,
       errorMessage: "",
     }));
   const [form, setForm] = useState<FormItem[]>([]);
+
+  const handleSelectedImage = async (image, keyName) => {
+    try {
+      const payload = {
+        bitstreamId: image.bitStreamId,
+        visibility: "public",
+      };
+      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
+      // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
+      // const cloneForm = [...form];
+      // cloneForm[currentMediaHandleIndex.current].icon_image = relativeUrl;
+      // setForm([...cloneForm]);
+    } catch (error) {
+      // showToastError(t("api_error_toast"));
+    }
+  };
 
   const toggleGallery = (toggleState: boolean) => {
     setGalleryState(toggleState);
@@ -236,7 +254,7 @@ export const MediaHandle: React.FC = () => {
                   <Box
                     className={classes.pictureBox}
                     onClick={() => {
-                      updateField(true);
+                      toggleGallery(true);
                       currentMediaHandleIndex.current = index;
                     }}>
                     {control.icon_image ? (
@@ -277,17 +295,14 @@ export const MediaHandle: React.FC = () => {
         </Box>
       )}
       {galleryState && (
-        <Box className={classes.galleryBox}>
-          <XImageRender 
-            callBack={updateField}
-            data={{
-              original_image: {},
-              published_images: [],
-            }}           
-          />
-        </Box>
+        <DamContentGallery
+          handleImageSelected={handleSelectedImage}
+          toggleGallery={toggleGallery}
+          assetType='Image'
+          keyName={key}
+          dialogOpen={galleryState}
+        />
       )}
     </>
   );
 };
-
