@@ -26,6 +26,9 @@ import AwardsWinnerCompanyIcon from "./AwardsWinnerCompany.svg";
 import PrelemsDeployedIcon from "./PrelemsDeployed.svg";
 import ProjectsCompletedIcon from "./ProjectsCompletedIcon.svg";
 import ServiceCard2Background from "./ServiceCard2Background.svg";
+import IconCopySvg from "./Copy.svg";
+import IconFacebookSvg from "./Facebook.svg";
+import IconLinkedInSvg from "./LinkedIn.svg";
 
 export {
   MaskImg,
@@ -56,4 +59,7 @@ export {
   PrelemsDeployedIcon,
   ProjectsCompletedIcon,
   ServiceCard2Background,
+  IconCopySvg,
+  IconFacebookSvg,
+  IconLinkedInSvg,
 };

@@ -15,6 +15,7 @@ import BigArrow from "./BigArrow.png";
 import DottedBg from "./dottedbg.png";
 import DottedRound from "./mask-dotted.png";
 import CardBgImg from "./card-bg.png";
+import IconEmbed from "./Embed.png";
 
 export {
   Frame1,
@@ -34,4 +35,5 @@ export {
   DottedBg,
   DottedRound,
   CardBgImg,
+  IconEmbed,
 };
