@@ -7,7 +7,8 @@
     "storybook:build:utilities": "nx run utilities:build-storybook",
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build": "nx build authoring-web",
-    "start": "nx serve authoring-web"
+    "start": "nx serve authoring-web",
+    "serve:authoring-web": "nx serve authoring-web --public-host=https://dev.console.hcl-x.com"
   },
   "private": true,
   "dependencies": {
