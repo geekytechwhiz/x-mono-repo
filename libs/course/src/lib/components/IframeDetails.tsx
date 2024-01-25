@@ -1,7 +1,7 @@
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box } from '@mui/material';
-import { useCustomStyle } from './Course.Styles';
-import { IframeDetailsProps } from './IframeDetails.types';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Box } from "@mui/material";
+import { useCustomStyle } from "./Course.Styles";
+import { IframeDetailsProps } from "./IframeDetails.types";
 
 export const IframeDetails = ({ returnBack }: IframeDetailsProps) => {
   const classes = useCustomStyle();
@@ -12,12 +12,12 @@ export const IframeDetails = ({ returnBack }: IframeDetailsProps) => {
         <ArrowBackIcon />
       </Box>
       <iframe
-      title="title"
+        title='title'
         src={process.env.NX_CREATE_COURSE_URL}
         sandbox='allow-same-origin allow-scripts allow-popups allow-forms'
         width='100%'
         frameBorder='0'
-        style={{ height: '100vh' }}
+        style={{ height: "100vh" }}
       />
     </Box>
   );

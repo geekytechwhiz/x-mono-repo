@@ -1,5 +1,6 @@
-import { CreateContent, CreateCourse } from "@platformx/content";
+import { CreateContent } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
+import { CreateCourse } from "@platformx/course";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -102,7 +103,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/content/create",
     element: (
-      <ProtectedRoute name='course' subCategory='course' category='content'>
+      <ProtectedRoute
+        name='course'
+        subCategory='course'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
         <CreateContent />
       </ProtectedRoute>
     ),
