@@ -7,7 +7,14 @@ import CommonDraftDescription from "../../components/CommonDraftDescription/Comm
 import ImageRender from "../../components/ImageRender";
 import "../../Style.css";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { nullToObject, nullToString, RedDots } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  nullToObject,
+  nullToString,
+  RedDots,
+  SecondaryArgs,
+} from "@platformx/utilities";
 import { useCustomStyle } from "./Description.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -169,36 +176,10 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
 
 interface DescriptionProp {
   content: Content;
-  analytics?: any; //Analytics;
+  analytics: Analytics;
   authoringHelper?: AuthoringHelper;
   prelemEditState?: boolean;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {

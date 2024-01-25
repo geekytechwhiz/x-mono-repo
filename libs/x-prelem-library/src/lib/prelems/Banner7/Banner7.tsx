@@ -4,7 +4,13 @@ import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import Slider from "react-slick";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { formCroppedUrl, handleHtmlTags } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrl,
+  handleHtmlTags,
+} from "@platformx/utilities";
 import { useCustomStyle } from "./Banner7.style";
 import "./Banner7.css";
 import prelemTypes from "../../globalStyle";
@@ -259,33 +265,7 @@ interface Banner7Prop {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {

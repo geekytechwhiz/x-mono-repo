@@ -1,18 +1,276 @@
-import styled from 'styled-components';
+import { Box, Typography } from "@mui/material";
+import { useState } from "react";
+import DamContentGallery from "./components/damContentGallery/DamContentGallery";
+import {
+  UploadIcon,
+  ThemeConstants,
+  ShowToastError,
+  nullToObject,
+  ShowToastSuccess,
+} from "@platformx/utilities";
+import { useTranslation } from "react-i18next";
+import { usePostImageCrop } from "./hooks/usePostImageCrop";
+import ImageCrop from "./components/ImageCrop";
+import CachedIcon from "@mui/icons-material/Cached";
+import ImageRender from "./components/ImageRender";
+import ShowCaseCrops from "./components/ShowCaseCrops";
 
-/* eslint-disable-next-line */
-export interface XImageRenderProps {}
+export const XImageRender = ({ callBack, data }): any => {
+  const { t } = useTranslation();
+  const { postRequest } = usePostImageCrop();
+  const [operationType, setOperationType] = useState<string>("choose");
+  const [processing, setProcessing] = useState(false);
+  const [selectedImage, setSelectedImage] = useState({
+    Thumbnail: "",
+    title: "",
+    description: "",
+    bitStreamId: "",
+  });
+  const [returnData, setReturnData] = useState(data);
+  const [manualCropShow, setManualCropShow] = useState(false);
+  const [showCropPreview, setShowCropPreview] = useState(false);
+  const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
 
-const StyledXImageRender = styled.div`
-  color: pink;
-`;
+  const autoCropCallBack = (data) => {
+    if (data) {
+      const {
+        images = [],
+        ext,
+        original_image_relative_path = "",
+        visibility = "",
+        bitstream_id,
+      } = nullToObject(data);
+      if (images?.length > 0) {
+        const data = {
+          published_images: images,
+          original_image: {
+            original_image_relative_path,
+            bitStreamId: bitstream_id,
+            auto: true,
+            ext: ext,
+            visibility,
+          },
+        };
+        setReturnData(data);
+        setProcessing(false);
+        setGalleryDialogOpen(false);
+        ShowToastSuccess(`${t("auto_cropped_successfully")}`);
+        callBack(data);
+      } else {
+        setProcessing(false);
+        setGalleryDialogOpen(false);
+        setManualCropShow(true);
+        ShowToastError(`${t("auto_cropping_failed")}`);
+      }
+    }
+  };
 
-export function XImageRender(props: XImageRenderProps) {
+  const autoCropFunc = async (selectedImg) => {
+    setProcessing(true);
+    const payload = {
+      url: selectedImg.Thumbnail,
+      bitstreamId: selectedImg.bitStreamId,
+      visibility: "public",
+    };
+    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack);
+  };
+
+  const handleSelectedImage = async (image) => {
+    setSelectedImage(image);
+    autoCropFunc(image);
+  };
+
+  const toggleGallery = (toggleState: boolean, type: string) => {
+    setGalleryDialogOpen(toggleState);
+    if (type === "cancel") {
+      setSelectedImage({
+        title: "",
+        Thumbnail: "",
+        description: "",
+        bitStreamId: "",
+      });
+    }
+  };
+
+  const showGallery = () => {
+    window.scrollTo(0, 0);
+    setGalleryDialogOpen(true);
+  };
+
+  const onUploadClick = (type) => {
+    setOperationType(type);
+    showGallery();
+  };
+
+  const backTo = () => {
+    if (manualCropShow) setManualCropShow(false);
+    if (showCropPreview) setShowCropPreview(false);
+  };
+
+  const doneCropCompleted = (
+    cropImages = [],
+    ext = "",
+    original_image_relative_path = "",
+    visibility = "",
+    bitstream_id = "",
+  ) => {
+    if (cropImages.length > 0) {
+      const data = {
+        published_images: cropImages,
+        original_image: {
+          original_image_relative_path,
+          bitStreamId: bitstream_id,
+          auto: false,
+          ext: ext,
+          visibility,
+        },
+      };
+      setReturnData(data);
+      callBack(data);
+    }
+    setManualCropShow(false);
+  };
+
+  const handleEdit = () => {
+    setShowCropPreview(false);
+    setManualCropShow(true);
+  };
+
+  const changeCrop = () => {
+    setShowCropPreview(true);
+  };
+
   return (
-    <StyledXImageRender>
-      <h1>Welcome to XImageRender!</h1>
-    </StyledXImageRender>
+    <>
+      <Box
+        sx={{
+          backgroundColor: "#FFF",
+        }}>
+        {galleryDialogOpen && (
+          <DamContentGallery
+            handleImageSelected={handleSelectedImage}
+            toggleGallery={toggleGallery}
+            assetType={"Image"}
+            processing={processing}
+            dialogOpen={galleryDialogOpen}
+            isCrop={true}
+          />
+        )}
+      </Box>
+      {returnData.published_images.length > 0 ? (
+        <Box
+          sx={{
+            position: "relative", //height: "91%"
+            borderRadius: "15px",
+            minHeight: "206px",
+            "& picture": {
+              height: "206px",
+            },
+          }}
+          mb={2}>
+          <ImageRender
+            data={returnData}
+            selectedImage={selectedImage}
+            imgOrder={{
+              1440: "hero",
+              1280: "landscape",
+              1024: "card2",
+              768: "square",
+              600: "card2",
+              320: "card2",
+            }}
+            changeCrop={changeCrop}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#7470708a",
+              borderRadius: "15px",
+            }}>
+            <Box sx={{ display: "flex" }}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
+                <Box
+                  sx={{
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    width: "25px",
+                    height: "25px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "auto",
+                  }}>
+                  <CachedIcon sx={{ color: "#626060" }} />
+                </Box>
+                <Typography
+                  mt={1}
+                  sx={{
+                    fontSize: ThemeConstants.FONTSIZE_XS,
+                    color: ThemeConstants.WHITE_COLOR,
+                    textTransform: "capitalize",
+                  }}>
+                  {t("replace")}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            borderRadius: "15px",
+            cursor: "pointer",
+            height: "206px",
+            backgroundColor: "#EFF0F6",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+          onClick={() => onUploadClick("choose")}>
+          <Box
+            sx={{
+              width: "40px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            m={1}>
+            <img src={UploadIcon} alt='UploadIcon' />
+          </Box>
+          <Box
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              color: ThemeConstants.PRIMARY_MAIN_COLOR,
+            }}>
+            <Typography variant='h5medium'>Choose your image</Typography>
+          </Box>
+        </Box>
+      )}
+      {manualCropShow && (
+        <ImageCrop
+          open={manualCropShow}
+          backTo={backTo}
+          doneCropCompleted={doneCropCompleted}
+          originalImage={selectedImage}
+        />
+      )}
+      {showCropPreview && (
+        <ShowCaseCrops
+          open={showCropPreview}
+          backTo={backTo}
+          handleEdit={handleEdit}
+          data={returnData}
+        />
+      )}
+    </>
   );
-}
-
-export default XImageRender;
+};

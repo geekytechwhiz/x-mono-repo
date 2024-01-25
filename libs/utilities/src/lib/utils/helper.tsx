@@ -99,3 +99,12 @@ export const getFirstTwoletters = (title: string) => {
   if (words.length === 1) return words[0].substring(0, 2);
   return words[0].charAt(0) + words[words.length - 1].charAt(0);
 };
+
+export const openPageInNewTab = (url: string) => {
+  if (window && url) {
+    const infoUrl = window?.open(url, "_blank");
+    if (infoUrl) {
+      infoUrl.focus();
+    }
+  }
+};

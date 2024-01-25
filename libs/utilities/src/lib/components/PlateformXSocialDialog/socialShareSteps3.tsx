@@ -1,25 +1,25 @@
-import { Box, Grid, TextField } from '@mui/material'
-import Avatar from '@mui/material/Avatar'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
-import CardMedia from '@mui/material/CardMedia'
-import Typography from '@mui/material/Typography'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import dayjs, { Dayjs } from 'dayjs'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import avtarImg from '../../assets/images/avatar.png'
+import { Box, Grid, TextField } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs, { Dayjs } from "dayjs";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import avtarImg from "../../assets/images/avatar.png";
 import {
   convertToLowerCase,
   getSubDomain,
   nullToObject,
   relativeImageURL,
-} from '../../utils/helperFns'
-import XLoader from '../XLoader/XLoader'
-import { getSHareDetailsBasedOnContentType } from './utils/socialShareTypes'
+} from "../../utils/helperFns";
+import XLoader from "../XLoader/XLoader";
+import { getSHareDetailsBasedOnContentType } from "./utils/socialShareTypes";
 
 const SocialShareStep3 = ({
   selectedItems,
@@ -31,47 +31,46 @@ const SocialShareStep3 = ({
   facebookProfileData,
   loading,
 }: any) => {
-  const { CurrentPageURL = '' } = nullToObject(selectedItems)
+  const { CurrentPageURL = "" } = nullToObject(selectedItems);
 
-  let isInSelected = false
-  const { t, i18n } = useTranslation()
+  let isInSelected = false;
+  const { t, i18n } = useTranslation();
   if (!selectedNetwork.fb && selectedNetwork.in) {
-    isInSelected = true
+    isInSelected = true;
   } else {
-    isInSelected = false
+    isInSelected = false;
   }
 
-  const [selectLinkedIn, setSelectLinkedIn] = useState(isInSelected)
-  const [selectFacebook, setSelectFacebook] = useState(true)
-  const [sharedContentDetailsLoader, setSharedContentDetailsLoader] =
-    useState(false)
-  const [sharedContentDetails, setSharedContentDetails] = useState<any>({})
-  const { description, title = '', thumbnail = '' } = sharedContentDetails
+  const [selectLinkedIn, setSelectLinkedIn] = useState(isInSelected);
+  const [selectFacebook, setSelectFacebook] = useState(true);
+  const [sharedContentDetailsLoader, setSharedContentDetailsLoader] = useState(false);
+  const [sharedContentDetails, setSharedContentDetails] = useState<any>({});
+  const { description, title = "", thumbnail = "" } = sharedContentDetails;
 
-  const [, setValue] = useState<Dayjs | null>(dayjs())
+  const [, setValue] = useState<Dayjs | null>(dayjs());
 
   function removeHttp(url: string) {
-    return url.replace(/(^\w+:|^)\/\//, '')
+    return url.replace(/(^\w+:|^)\/\//, "");
   }
   const handelNetworkSelect = (network: string) => {
-    if (network === 'fb') {
-      setSelectLinkedIn(false)
-      setSelectFacebook(true)
+    if (network === "fb") {
+      setSelectLinkedIn(false);
+      setSelectFacebook(true);
     }
-    if (network === 'in') {
-      setSelectFacebook(false)
-      setSelectLinkedIn(true)
+    if (network === "in") {
+      setSelectFacebook(false);
+      setSelectLinkedIn(true);
     }
-  }
+  };
 
   const redirectURL =
-    contentType == 'article'
-      ? `${getSubDomain()}/${i18n.language}/${convertToLowerCase(
-          contentType,
-        )}/${selectedItems?.CurrentPageURL}`
-      : `${getSubDomain()}/${i18n.language}/${convertToLowerCase(contentType)}${
+    contentType === "article"
+      ? `${getSubDomain()}/${i18n.language}/${convertToLowerCase(contentType)}/${
           selectedItems?.CurrentPageURL
         }`
+      : `${getSubDomain()}/${i18n.language}/${convertToLowerCase(contentType)}${
+          selectedItems?.CurrentPageURL
+        }`;
 
   const inlineCss = `
   .Platform-x-CardContent-root:last-child{
@@ -108,7 +107,7 @@ const SocialShareStep3 = ({
     overflow: hidden;
     word-wrap: break-word;
   }
- `
+ `;
 
   /**
    * passing contentType and page url
@@ -118,36 +117,36 @@ const SocialShareStep3 = ({
     const newObj = {
       ContentType: contentType,
       CurrentPageURL: CurrentPageURL,
-    }
+    };
 
-    setSharedContentDetailsLoader(true) //loader off
-    const response = await getSHareDetailsBasedOnContentType(newObj)
+    setSharedContentDetailsLoader(true); //loader off
+    const response = await getSHareDetailsBasedOnContentType(newObj);
     if (response) {
-      setSharedContentDetails(response)
+      setSharedContentDetails(response);
     } else {
-      setSharedContentDetails({})
+      setSharedContentDetails({});
     }
-    setSharedContentDetailsLoader(false) //loader off
-  }
+    setSharedContentDetailsLoader(false); //loader off
+  };
 
   useEffect(() => {
     if (contentType) {
-      getContentTypeInformation()
+      getContentTypeInformation();
     }
-  }, [contentType])
+  }, [contentType]);
 
   return (
     <Box>
       <style>{inlineCss}</style>
       <Grid>
-        {(loading || sharedContentDetailsLoader) && <XLoader type="circular" />}
+        {(loading || sharedContentDetailsLoader) && <XLoader type='circular' />}
         {/* <Grid item xs={6}></Grid> */}
         <Grid item xs={12} md={12}>
           <Box
             sx={{
-              textAlign: 'center',
+              textAlign: "center",
               // padding: { xs: '15px 0px 0px 0px', md: '0px' },
-              width: { xs: '100%', md: '100%', xl: '100%' },
+              width: { xs: "100%", md: "100%", xl: "100%" },
               // margin: {
               //   xs: '0px 23px 20px 45px',
               //   md: '0px',
@@ -155,55 +154,49 @@ const SocialShareStep3 = ({
               // },
               // position: { xs: 'static', md: 'relative' },
               // top: '-25px',
-            }}
-          >
-            <Box sx={{ display: 'flex', paddingBottom: '10px' }}>
+            }}>
+            <Box sx={{ display: "flex", paddingBottom: "10px" }}>
               {selectedNetwork.fb ? (
                 <Box
                   sx={{
                     // marginRight: '25px',
-                    padding: '12px 18px 12px 18px',
-                    color: selectFacebook ? '#000' : '#89909a',
-                    backgroundColor: selectFacebook ? '#f5f6f8' : '#fff',
+                    padding: "12px 18px 12px 18px",
+                    color: selectFacebook ? "#000" : "#89909a",
+                    backgroundColor: selectFacebook ? "#f5f6f8" : "#fff",
                     // cursor: 'pointer',
                   }}
-                  onClick={() => handelNetworkSelect('fb')}
-                >
-                  {t('facebook')}
+                  onClick={() => handelNetworkSelect("fb")}>
+                  {t("facebook")}
                 </Box>
               ) : null}
               {selectedNetwork.in ? (
                 <Box
                   sx={{
-                    padding: '12px 23px 11px 18px',
-                    color: selectLinkedIn ? '#000' : '#89909a',
-                    cursor: 'pointer',
-                    backgroundColor: selectLinkedIn ? '#f5f6f8' : '#fff',
+                    padding: "12px 23px 11px 18px",
+                    color: selectLinkedIn ? "#000" : "#89909a",
+                    cursor: "pointer",
+                    backgroundColor: selectLinkedIn ? "#f5f6f8" : "#fff",
                   }}
-                  onClick={() => handelNetworkSelect('in')}
-                >
-                  {t('linkedin')}
+                  onClick={() => handelNetworkSelect("in")}>
+                  {t("linkedin")}
                 </Box>
               ) : null}
             </Box>
 
-            <Box className="social-share-box">
+            <Box className='social-share-box'>
               <Card
                 sx={{
                   // maxWidth: 445,
-                  marginTop: { xs: '5px', md: '0' },
-                  Width: '100%',
-                }}
-              >
+                  marginTop: { xs: "5px", md: "0" },
+                  Width: "100%",
+                }}>
                 <CardHeader
-                  sx={{ padding: '10px 12px' }}
+                  sx={{ padding: "10px 12px" }}
                   avatar={
                     <Avatar
-                      alt="Platform-X"
+                      alt='Platform-X'
                       src={
-                        facebookProfileData &&
-                        selectedNetwork?.fb &&
-                        selectFacebook
+                        facebookProfileData && selectedNetwork?.fb && selectFacebook
                           ? facebookProfileData.picture
                           : avtarImg
                       }
@@ -213,107 +206,89 @@ const SocialShareStep3 = ({
                   title={
                     facebookProfileData && selectedNetwork?.fb && selectFacebook
                       ? facebookProfileData.name
-                      : 'platform-X'
+                      : "platform-X"
                   }
-                  subheader=""
+                  subheader=''
                 />
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
+                  variant='body2'
+                  color='text.secondary'
                   sx={{
-                    maxHeight: '44px',
-                    display: '-webkit-box',
+                    maxHeight: "44px",
+                    display: "-webkit-box",
                     WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    textAlign: 'left',
-                    padding: '0px 10px 10px ',
-                    wordBreak: 'break-word',
-                  }}
-                >
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textAlign: "left",
+                    padding: "0px 10px 10px ",
+                    wordBreak: "break-word",
+                  }}>
                   {captionText}
                 </Typography>
                 <a
-                  target="_blank"
-                  href={
-                    selectedItems?.postURL
-                      ? selectedItems?.postURL
-                      : redirectURL
-                  }
-                  rel="noreferrer"
-                >
+                  target='_blank'
+                  href={selectedItems?.postURL ? selectedItems?.postURL : redirectURL}
+                  rel='noreferrer'>
                   {thumbnail ? (
                     <CardMedia
-                      component="img"
-                      height="194"
+                      component='img'
+                      height='194'
                       image={relativeImageURL(thumbnail)}
                       alt={title}
                     />
                   ) : (
                     <Box
                       sx={{
-                        height: '194PX',
-                      }}
-                    ></Box>
+                        height: "194PX",
+                      }}></Box>
                   )}
                 </a>
                 <a
-                  target="_blank"
-                  href={
-                    selectedItems?.postURL
-                      ? selectedItems?.postURL
-                      : redirectURL
-                  }
-                  rel="noreferrer"
-                >
+                  target='_blank'
+                  href={selectedItems?.postURL ? selectedItems?.postURL : redirectURL}
+                  rel='noreferrer'>
                   <CardContent
                     sx={{
-                      padding: '10px',
-                      textAlign: 'left',
-                      backgroundColor: '#f5f6f8',
-                      paddingBottom: '12px !important',
-                    }}
-                  >
+                      padding: "10px",
+                      textAlign: "left",
+                      backgroundColor: "#f5f6f8",
+                      paddingBottom: "12px !important",
+                    }}>
                     {selectFacebook && !selectLinkedIn ? (
-                      <Box
-                        sx={{ textTransform: 'uppercase', color: '#89909a' }}
-                      >
-                        <Typography variant="h7regular">
-                          {removeHttp(getSubDomain())}
-                        </Typography>
+                      <Box sx={{ textTransform: "uppercase", color: "#89909a" }}>
+                        <Typography variant='h7regular'>{removeHttp(getSubDomain())}</Typography>
                       </Box>
                     ) : null}
                     <Box>
-                      <Typography variant="h5bold">{title}</Typography>
+                      <Typography variant='h5bold'>{title}</Typography>
                     </Box>
 
-                    <Box sx={{ color: '#89909a' }}>
+                    <Box sx={{ color: "#89909a" }}>
                       <Typography
-                        variant="h7regular"
+                        variant='h7regular'
                         sx={{ WebkitLineClamp: 2 }}
-                        className="socialDesc"
-                      >
+                        className='socialDesc'>
                         {description}
                       </Typography>
                     </Box>
                   </CardContent>
                 </a>
               </Card>
-              <Box sx={{ paddingTop: '10px', paddingRight: '5px' }}>
+              <Box sx={{ paddingTop: "10px", paddingRight: "5px" }}>
                 {isSchedulePost ? (
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
                       disabled
-                      inputFormat="MM/DD/YYYY | H:mm a"
+                      inputFormat='MM/DD/YYYY | H:mm a'
                       renderInput={(params) => <TextField {...params} />}
                       value={scheduleDateVal}
                       onChange={(newValue) => {
-                        setValue(newValue)
+                        setValue(newValue);
                       }}
                     />
                   </LocalizationProvider>
                 ) : (
-                  ''
+                  ""
                 )}
               </Box>
             </Box>
@@ -321,6 +296,6 @@ const SocialShareStep3 = ({
         </Grid>
       </Grid>
     </Box>
-  )
-}
-export default SocialShareStep3
+  );
+};
+export default SocialShareStep3;

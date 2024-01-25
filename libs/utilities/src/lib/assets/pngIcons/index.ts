@@ -14,6 +14,11 @@ import loadergif from "./Data-loader.gif";
 import CoinImage from "./CoinImage.png";
 import LoyalityPointIcon from "./LoyalityPointIcon.png";
 import ordersuccess from "./ordersuccess.gif";
+import CourseDegIcon from "./CourseIcon.png";
+import BigArrow from "./BigArrow.png";
+import DottedBg from "./dottedbg.png";
+import DottedRound from "./mask-dotted.png";
+import CardBgImg from "./card-bg.png";
 
 export {
   Frame1,
@@ -32,4 +37,9 @@ export {
   CoinImage,
   LoyalityPointIcon,
   ordersuccess,
+  CourseDegIcon,
+  BigArrow,
+  DottedBg,
+  DottedRound,
+  CardBgImg,
 };
