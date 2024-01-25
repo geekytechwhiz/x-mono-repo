@@ -82,8 +82,6 @@ jobs:
         run: 
           npm run deploy:authoring  
           
-       
-
   deploy-x-user-experience:
     runs-on: ubuntu-latest
     steps:
@@ -148,7 +146,10 @@ jobs:
 
       - name: Install Nx CLI
         run: npm install -g @nrwl/nx
-      
+
+      - name: Install Package 
+        run: npm install --force
+
       - name: Build affected libraries 
         run: | 
           npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel 
