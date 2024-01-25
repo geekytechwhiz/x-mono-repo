@@ -17,15 +17,15 @@ module.exports = withNx({
     styledComponents: true,
   },
   webpack: (config, { isServer }) => {
-    // Add a loader for font files
+    // Added a loader for font files
     config.module.rules.push({
       test: /\.(woff|woff2|eot|ttf|otf)$/,
       use: {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
-          outputPath: 'static/fonts/', // You can adjust the output path
-          publicPath: '/_next/static/fonts/', // You can adjust the public path
+          outputPath: 'static/fonts/',
+          publicPath: '/_next/static/fonts/',
         },
       },
     });
