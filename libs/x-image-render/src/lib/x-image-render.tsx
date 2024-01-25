@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import DamContentGallery from "./components/damContentGallery/DamContentGallery";
 import {
   UploadIcon,
@@ -7,6 +7,7 @@ import {
   ShowToastError,
   nullToObject,
   ShowToastSuccess,
+  relativeImageURL,
 } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
 import { usePostImageCrop } from "./hooks/usePostImageCrop";
@@ -15,7 +16,12 @@ import CachedIcon from "@mui/icons-material/Cached";
 import ImageRender from "./components/ImageRender";
 import ShowCaseCrops from "./components/ShowCaseCrops";
 
-export const XImageRender = ({ callBack, data }): any => {
+//custom check for rerender
+const areEqual = (prevProps, nextProps) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+};
+
+const XImageRender = ({ callBack, data, isCrop = true }): any => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
   const [operationType, setOperationType] = useState<string>("choose");
@@ -75,9 +81,27 @@ export const XImageRender = ({ callBack, data }): any => {
     await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack);
   };
 
+  const noCropCallBack = (data) => {
+    const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
+    setReturnData({ relativeUrl: relativeUrl });
+    callBack({ relativeUrl: relativeUrl });
+  };
+
+  const noCropFunc = async (image) => {
+    const payload = {
+      bitstreamId: image.bitStreamId,
+      visibility: "public",
+    };
+    await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack);
+  };
+
   const handleSelectedImage = async (image) => {
     setSelectedImage(image);
-    autoCropFunc(image);
+    if (isCrop) {
+      autoCropFunc(image);
+    } else {
+      noCropFunc(image);
+    }
   };
 
   const toggleGallery = (toggleState: boolean, type: string) => {
@@ -140,8 +164,13 @@ export const XImageRender = ({ callBack, data }): any => {
     setShowCropPreview(true);
   };
 
+  useEffect(() => {
+    if (JSON.stringify(data) !== JSON.stringify(returnData)) {
+      setReturnData(data);
+    }
+  }, [data]);
   return (
-    <>
+    <Fragment>
       <Box
         sx={{
           backgroundColor: "#FFF",
@@ -153,12 +182,13 @@ export const XImageRender = ({ callBack, data }): any => {
             assetType={"Image"}
             processing={processing}
             dialogOpen={galleryDialogOpen}
-            isCrop={true}
+            isCrop={isCrop}
           />
         )}
       </Box>
-      {returnData.published_images.length > 0 ? (
+      {returnData.published_images && returnData.published_images.length > 0 ? (
         <Box
+          key={`published_images_length_${returnData.published_images.length}`}
           sx={{
             position: "relative", //height: "91%"
             borderRadius: "15px",
@@ -180,6 +210,68 @@ export const XImageRender = ({ callBack, data }): any => {
               320: "card2",
             }}
             changeCrop={changeCrop}
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#7470708a",
+              borderRadius: "15px",
+            }}>
+            <Box sx={{ display: "flex" }}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
+                <Box
+                  sx={{
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    width: "25px",
+                    height: "25px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "auto",
+                  }}>
+                  <CachedIcon sx={{ color: "#626060" }} />
+                </Box>
+                <Typography
+                  mt={1}
+                  sx={{
+                    fontSize: ThemeConstants.FONTSIZE_XS,
+                    color: ThemeConstants.WHITE_COLOR,
+                    textTransform: "capitalize",
+                  }}>
+                  {t("replace")}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      ) : returnData.relativeUrl ? (
+        <Box
+          sx={{
+            position: "relative", //height: "91%"
+            borderRadius: "15px",
+            minHeight: "206px",
+            "& picture": {
+              height: "206px",
+            },
+          }}
+          mb={2}>
+          <img
+            style={{
+              width: "100%",
+              height: "206px",
+              objectFit: "cover",
+              display: "flex",
+              borderRadius: "15px",
+            }}
+            src={relativeImageURL(returnData.relativeUrl)}
+            alt='socialshare'
           />
           <Box
             sx={{
@@ -271,6 +363,8 @@ export const XImageRender = ({ callBack, data }): any => {
           data={returnData}
         />
       )}
-    </>
+    </Fragment>
   );
 };
+
+export default React.memo(XImageRender, areEqual);
