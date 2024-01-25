@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, CardMedia, Container, Tab, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { getImage } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, getImage } from "@platformx/utilities";
 import Slider from "react-slick";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./ImageAndVideoGallery.style";
@@ -304,7 +303,7 @@ interface ContactUsProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface SecondaryArgs {
@@ -323,31 +322,6 @@ interface PrelemBaseEndpoint {
 
 interface MultiSlot {
   onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  isEditing: boolean;
-  lastSavedStructuredData?: string;
-  isModalShow?: boolean;
-  authoringHoverShow?: boolean;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  isEditPage?: boolean;
 }
 
 interface GallerySliderProps {

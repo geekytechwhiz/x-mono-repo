@@ -2,7 +2,13 @@ import { Box, Card, CardActions, CardContent, CardMedia, Typography } from "@mui
 import axios from "axios";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { getImage, handleHtmlTags, onClickCardUrlNavigate } from "@platformx/utilities";
+import {
+  Analytics,
+  SecondaryArgs,
+  getImage,
+  handleHtmlTags,
+  onClickCardUrlNavigate,
+} from "@platformx/utilities";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { getIcon } from "../../components/Utils/helperFns";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
@@ -167,32 +173,6 @@ interface BlogTilesCardProps {
   analytics: Analytics;
   cardIndex: number;
   getIcon?: (a: string) => string;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-interface SecondaryArgs {
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  editState: boolean;
-  bucketName: string;
-  gcpUrl: string;
-  sitename?: string;
-}
-interface PrelemBaseEndpoint {
-  PublishEndPoint?: string;
-  APIEndPoint?: string;
-  deliveryEndPoint?: string;
-  language?: string;
 }
 interface Content {
   Description?: string;
