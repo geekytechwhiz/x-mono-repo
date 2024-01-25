@@ -1,10 +1,10 @@
+import { XImageRender } from "@platformx/x-image-render";
 import { Dashboard } from "@platformx/dashboard";
 import { CreateUser, UserListing } from "@platformx/user-management";
 import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-
 import { MediaHandle, FeatureFlagSetting, GlobalSetting } from "@platformx/site-setting";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
@@ -25,6 +25,15 @@ export const routes: RouteConfig[] = [
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
         {" "}
         <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/page-list",
+    element: (
+      <ProtectedRoute category='page-list' subCategory='page-list' name='page-list'>
+        {" "}
+        {/* <XImageRender />{" "} */}
       </ProtectedRoute>
     ),
   },
@@ -88,14 +97,14 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
-  // {
-  //   path: "/content/create",
-  //   element: (
-  //     <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
-  //       <CreateContent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/content/create",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/site-setting/media-handle",
   //   element: (

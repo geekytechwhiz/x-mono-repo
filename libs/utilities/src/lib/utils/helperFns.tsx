@@ -5,6 +5,7 @@ import ToastService from "../components/ToastContainer/ToastService";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
 import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Props } from "./types";
+import { AUTH_INFO } from "../constants/AuthConstant";
 import { SecondaryArgs, Content } from "./interface";
 
 const siteLevelSchema = {
@@ -218,6 +219,16 @@ export const debounce = (fn: any, ms = 300) => {
 export const checkImageUrlPath = (imgUrl = "") => {
   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
     return imgUrl;
+  }
+  return FallBackImage;
+};
+
+export const formCroppedUrlInCrop = (url = "", ext = "") => {
+  if (url) {
+    if (url.indexOf("http://") === 0 || url.indexOf("https://") === 0) {
+      return url;
+    }
+    return `${AUTH_INFO.gcpUri}/${AUTH_INFO.gcpBucketName}/${url.replaceAll(" ", "%20")}.${ext}`;
   }
   return FallBackImage;
 };
@@ -849,7 +860,7 @@ export const getFormattedImageUrl = (path: string, ext: string, secondaryArgs: a
   }
   return FallBackImage;
 };
-export const getRandomNumber = (answerArray, min, max) => {
+export const getRandomNumber = (answerArray: any, min: number, max: number) => {
   if (answerArray?.length < max) {
     const existingNumbers = answerArray.map((arr: any) => arr.id);
     let randomNumber;

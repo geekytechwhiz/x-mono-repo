@@ -16,9 +16,10 @@ import {
   QuizIcon,
   SitesIcon,
   UsersIcon,
-  VideoIcon,
+  VODIcon,
   FeatureStarIcon,
 } from "@platformx/utilities";
+
 const ContentRoutes = {
   url: "",
   Title: "content",
@@ -35,7 +36,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "VOD",
-      Icon: VideoIcon,
+      Icon: VODIcon,
       url: "/content/vod",
       category: "content",
       subCategory: "vod",
