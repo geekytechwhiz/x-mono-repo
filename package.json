@@ -8,7 +8,7 @@
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build": "nx build authoring-web",
     "start": "serve dist/apps/authoring-web -p 3000",
-    "deploy:authoring": "serve dist/apps/authoring-web -p 3000 --listen 0.0.0.0"
+    "deploy:authoring": "serve dist/apps/authoring-web -p 3000"
   },
   "private": true,
   "dependencies": {
