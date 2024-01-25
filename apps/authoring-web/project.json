@@ -60,7 +60,8 @@
       "options": {
         "buildTarget": "authoring-web:build",
         "hmr": true,
-        "port": 3000
+        "port": 3000,
+        "publicHost": "dev-v2.console.hcl-x.com"
       },
       "configurations": {
         "development": {
