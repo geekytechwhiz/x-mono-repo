@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "../../../../../utilities/src";
+import { Loader, PlateformXDialogSuccess } from "../../../../../utilities/src";
 //import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
 //import MultiSelect from "../../../components/Common/MultiSelect/MultiSelect";
 import {
@@ -40,6 +40,8 @@ import {
   HeaderSearchSkeleton,
 } from "../../components/CookieSettingConstant";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
+import { XImageRender } from "@platformx/x-image-render";
+import { CreateHeader } from "@platformx/content";
 
 const iconImages = [
   {
@@ -248,6 +250,16 @@ export const HeaderSetting = () => {
     return false;
   };
 
+  const updateField = (updatedPartialObj) => {
+    console.info("final data", updatedPartialObj);
+    const modifiedData = {
+      // ...JSON.parse(JSON.stringify(state)),
+      ...updatedPartialObj,
+    };
+    console.info("modified data", modifiedData);
+    // setState(modifiedData);
+  };
+
   const scrollHandler = () => {
     if (scrollDebounceRef.current) {
       clearTimeout(scrollDebounceRef.current);
@@ -294,24 +306,29 @@ export const HeaderSetting = () => {
     <>
       {!galleryState && (
         <>
-          {/* <CreateHeader
+          <CreateHeader
             createText={"header Setting"}
-            returnBack={() => {
+            handleReturn={() => {
               navigate("/dashboard");
             }}
             isQuiz
-            publishButton={false}
-            saveButton={false}
-            previewButton={false}
-            handelPreview={false}
-            saveorPublish={onSaveClick}
+            hasPublishButton={true}
+            hasPreviewButton={false}
+            hasSaveButton={false}
             saveText={t("update")}
+            handelPreview={() => {
+              /* your function code */
+            }}
+            handlePublish={onSaveClick}
+            handleSaveOrPublish={onSaveClick}
             previewText='Preview'
             showPreview={false}
+            toolTipText='Unable to preview please add required details'
             saveVariant='contained'
             category={"content"}
             subCategory={"quiz"}
-          /> */}
+            isFeatured={false}
+          />
           <Divider />
           <Box className={classes.globalnewcontain}>
             <ContentPageScroll
@@ -342,6 +359,13 @@ export const HeaderSetting = () => {
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
+                      <XImageRender
+                callBack={updateField}
+                data={{
+                  original_image: {},
+                  published_images: [],
+                }}
+              />
                         {/* <SiteSettingAddImage
                           url={
                             process.env.REACT_APP_GCP_URL +
@@ -385,6 +409,13 @@ export const HeaderSetting = () => {
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
                         <Box sx={{ width: "40%" }}>
+                        <XImageRender
+                callBack={updateField}
+                data={{
+                  original_image: {},
+                  published_images: [],
+                }}
+              />
                           {/* <SiteSettingAddImage
                             url={
                               process.env.REACT_APP_GCP_URL +
@@ -566,7 +597,7 @@ export const HeaderSetting = () => {
       )} */}
 
       {showPublishConfirm && (
-        <PlateformXDialog
+        <PlateformXDialogSuccess
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={`${t("header")}${"  "}${t("update_settings_success")}`}

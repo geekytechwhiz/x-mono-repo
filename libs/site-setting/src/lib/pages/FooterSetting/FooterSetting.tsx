@@ -7,16 +7,6 @@ import Typography from "@mui/material/Typography";
 import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import Loader from "../../../Common/Loader";
-//import { ReactComponent as PictureIcon } from "../../../assets/PictureIcon.svg";
-//import { ReactComponent as VectorIconSvg } from "../../../assets/svg/VectorIcon.svg";
-//import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
-//import MultiSelect from "../../../components/Common/MultiSelect/MultiSelect";
-//import TitleSubTitle from "../../../components/Common/TitleSubTitle";
-//import PlateformXDialog from "../../../components/Modal";
-//import { showToastError } from "../../../components/toastNotification/toastNotificationReactTostify";
-//import useUserSession from "../../../hooks/useUserSession/useUserSession";
-
 import {
   MultiSelect,
   TitleSubTitle,
@@ -29,6 +19,7 @@ import {
   Loader,
   PictureIcon,
   VectorIconSvg,
+  PlateformXDialogSuccess,
 } from "@platformx/utilities";
 
 import { CreateHeader } from "@platformx/content";
@@ -47,16 +38,12 @@ import {
   NewsLetterSkeleton,
   SiteLogoSkeleton,
 } from "../../components/CookieSettingConstant";
-// import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
 import { useFooterSettingStyle } from "./FooterSetting.style";
-//import { CreateHeader } from "../../../components/Common/CreateHeader";
 import { Divider } from "@mui/material";
-// import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
-// import { fetchContentByPath } from "../../../services/contentTypes/contentTypes.api";
-// import { useLazyQuery } from "@apollo/client/react/hooks/useLazyQuery";
 import iconImages from "./FooterConstansts";
 import { XImageRender } from "@platformx/x-image-render";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
+import CustomTextBox from "../../components/CustomTextBox";
 
 export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<any>([]);
@@ -596,7 +583,7 @@ export const FooterSetting = () => {
                               md={10}
                               lg={10}
                               sx={{ marginTop: index > 0 ? "20px" : "0" }}>
-                              <TextBox
+                              <CustomTextBox
                                 name='enter_link_url'
                                 placeHolder={t("enter_link_url")}
                                 maxCharLength={120}
@@ -627,7 +614,7 @@ export const FooterSetting = () => {
                               lg={1}
                               sx={{ marginTop: "20px" }}></Grid>
                             <Grid item xs={10} sm={10} md={10} lg={10} sx={{ marginTop: "20px" }}>
-                              <TextBox
+                              <CustomTextBox
                                 name='linkname1'
                                 placeHolder={t("linkname")}
                                 maxCharLength={120}
@@ -824,7 +811,7 @@ export const FooterSetting = () => {
           onCloseButtonClick={onCloseSaveHandler}
         />} */}
       {isNotificationToast && (
-        <PlateformXDialog
+        <PlateformXDialogSuccess
           isDialogOpen={isNotificationToast}
           title={t("congratulations")}
           subTitle={`${t("footer_settings_success")}`}

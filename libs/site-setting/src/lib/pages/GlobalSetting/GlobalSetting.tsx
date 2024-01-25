@@ -24,6 +24,7 @@ import {
   GlobalImageIcon,
   GlobalVideoIcon,
   GlobalMiscIcon,
+  PlateformXDialogSuccess,
 } from "@platformx/utilities";
 import { Loader } from "../../../../../utilities/src";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
@@ -366,7 +367,7 @@ export const GlobalSetting = () => {
       </Box>
 
       {showPublishConfirm && (
-        <PlateformXDialog
+        <PlateformXDialogSuccess
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={`${t("global_setting")}${"  "}${t("updated_toast")}`}

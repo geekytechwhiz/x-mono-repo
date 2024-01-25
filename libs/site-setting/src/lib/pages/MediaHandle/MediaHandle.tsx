@@ -13,12 +13,15 @@ import {
   PlateformXDialog,
   Loader,
   PictureIcon,
+  PlateformXDialogSuccess,
 } from "@platformx/utilities";
 import { CreateHeader } from "@platformx/content";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
 import { userMediaHanleStyle } from "./MediaHandle.style";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import CustomTextBox from "../../components/CustomTextBox";
 
 export const MediaHandle: React.FC = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
@@ -88,6 +91,16 @@ export const MediaHandle: React.FC = () => {
     } catch (error) {
       // Handle errors
     }
+  };
+
+  const updateField = (updatedPartialObj) => {
+    console.info("final data", updatedPartialObj);
+    const modifiedData = {
+      // ...JSON.parse(JSON.stringify(state)),
+      ...updatedPartialObj,
+    };
+    console.info("modified data", modifiedData);
+    // setState(modifiedData);
   };
 
   const publishmediaHandle = () => {
@@ -223,7 +236,7 @@ export const MediaHandle: React.FC = () => {
                   <Box
                     className={classes.pictureBox}
                     onClick={() => {
-                      toggleGallery(true);
+                      updateField(true);
                       currentMediaHandleIndex.current = index;
                     }}>
                     {control.icon_image ? (
@@ -238,7 +251,7 @@ export const MediaHandle: React.FC = () => {
                     )}
                   </Box>
                   <Box className={classes.textBox}>
-                    <TextBox
+                    <CustomTextBox
                       name='title'
                       state={control?.media_url}
                       handleChange={(event) => handleTextChange(event, control?.name)}
@@ -248,7 +261,7 @@ export const MediaHandle: React.FC = () => {
               </Fragment>
             ))}
             {isSuccessPopup && (
-              <PlateformXDialog
+              <PlateformXDialogSuccess
                 isDialogOpen={isSuccessPopup}
                 title={t("congratulations")}
                 subTitle={`${t("media_settings_success")}`}
@@ -265,16 +278,16 @@ export const MediaHandle: React.FC = () => {
       )}
       {galleryState && (
         <Box className={classes.galleryBox}>
-          {/* <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={galleryType.current === "Images" ? "Image" : "Video"}
-            keyName={key}
-          /> */}
+          <XImageRender 
+            callBack={updateField}
+            data={{
+              original_image: {},
+              published_images: [],
+            }}           
+          />
         </Box>
       )}
     </>
   );
 };
 
-//export default MediaHandle;

@@ -17,7 +17,7 @@ import {
   formConfig,
   informativeCookieSkeletonList,
 } from '../../components/CookieSettingConstant';
-import { CommonBoxWithNumber, Loader, TitleSubTitle, MultiSelect, PlateformXDialog, useUserSession,  } from '@platformx/utilities';
+import { CommonBoxWithNumber, Loader, TitleSubTitle, MultiSelect, PlateformXDialog, useUserSession, PlateformXDialogSuccess,  } from '@platformx/utilities';
 import { CreateHeader } from "@platformx/content";
 import { useLazyQuery } from '@apollo/client/react/hooks/useLazyQuery';
 // import { fetchContentByPath } from '../../../services/contentTypes/contentTypes.api';
@@ -413,7 +413,7 @@ export const CookieSetting = () => {
       </Box>
       </Box>
       {isNotificationToast && (
-        <PlateformXDialog
+        <PlateformXDialogSuccess
           isDialogOpen={isNotificationToast}
           title={t('congratulations')}
           subTitle={`${t('cookie_settings_success')}`}
