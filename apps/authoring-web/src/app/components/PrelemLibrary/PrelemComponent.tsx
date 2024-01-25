@@ -75,6 +75,7 @@ import {
   ProductSummaryViaVideo,
   ServiceCard4,
   VideoLandingPage,
+  Article,
   // Gallery1,
 } from "@platformx/x-prelem-library";
 // call this function at the root of the application
@@ -163,6 +164,7 @@ function PrelemComponent() {
           <ProductSummaryViaVideo /> */}
           {/* <ServiceCard4 /> */}
           <VideoLandingPage />
+          <Article />
         </Box>
       </ThemeProvider>
     </div>

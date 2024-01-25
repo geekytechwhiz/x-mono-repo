@@ -988,3 +988,29 @@ export const getCommunityFallBackImageBasedOnContentType = (
 export const createIconUrl = (secondaryArgs: any, imgUrl: string) => {
   return `${secondaryArgs?.gcpUrl}${imgUrl}`;
 };
+
+export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
+  return gcpUrl + "/" + bucketName + "/" + img;
+};
+
+export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
+  const windowWidth = window.innerWidth;
+  let itemsPerSlide;
+  if (windowWidth >= 1280) {
+    itemsPerSlide = itemsPerRow.lg;
+  } else if (windowWidth >= 768) {
+    itemsPerSlide = itemsPerRow.md;
+  } else if (windowWidth >= 500) {
+    itemsPerSlide = itemsPerRow.sm;
+  } else {
+    itemsPerSlide = itemsPerRow.xs;
+  }
+
+  const sliderArray: object[][] = [];
+  if (originalArray && originalArray.length) {
+    for (let i = 0; i < originalArray.length; i += itemsPerSlide) {
+      sliderArray.push(originalArray.slice(i, i + itemsPerSlide));
+    }
+    return sliderArray;
+  }
+};

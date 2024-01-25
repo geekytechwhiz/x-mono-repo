@@ -59,7 +59,7 @@ const CardContent = ({ selectedItem }: any) => {
               justifyContent: "center",
               alignItems: "center",
             }}
-            className='card'>
+            className='card1'>
             {selectedItem && selectedItem?.Thumbnail ? (
               <EmbedDesktopTabCard content={content} />
             ) : (

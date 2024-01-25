@@ -14,8 +14,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Slider from "../Slider/Slider";
 import { useCustomStyle } from "./RecentCarousel.style";
-// import ArticleIcon from "assets/Article.png";
-// import fallBackImage from "assets/fallBackImage.png";
 import {
   formRelativeURL,
   createSliderArray,
@@ -30,7 +28,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
   const theme = useTheme();
   const { t } = useTranslation();
   const { gcpUrl, bucketName } = secondaryArgs;
-  const [cardArr, setCardArr] = useState([]);
+  const [cardArr, setCardArr] = useState<object[]>([]);
   const onClickCard = (item: any) => {
     if (typeof window !== "undefined") {
       const id = item?.current_page_url;

@@ -12,10 +12,6 @@ import {
 import ToastService from "../../components/ToastContainer/ToastService";
 import { errorRequest, linkCopy } from "../../components/ConstantData";
 import ToastContainerHandle from "../../components/ToastContainer/ToastContainerHandle";
-// import IconCopySvg from "../../assets/svgIcon/Copy.svg";
-// import IconEmbedInSvg from "../../assets/svgIcon/Embed.png";
-// import IconFacebookSvg from "../../assets/svgIcon/Facebook.svg";
-// import IconLinkedInSvg from "../../assets/svgIcon/LinkedIn.svg";
 import EmbedDialog from "../EmbededModal/EmbededModal";
 
 type Sharetype = {
