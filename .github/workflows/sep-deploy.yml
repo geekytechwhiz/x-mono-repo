@@ -86,8 +86,8 @@ jobs:
       - name: Build affected libraries and deploy authoring-web
         # run: npm run serve:authoring-web
         run:
-         npm run deploy:authoring -- --namespace=https://dev.console.hcl-x.com/
-        
+         npm run deploy:authoring --namespace=https://dev.console.hcl-x.com/
+        #  -- --namespace=https://dev.console.hcl-x.com/
 
 
 
