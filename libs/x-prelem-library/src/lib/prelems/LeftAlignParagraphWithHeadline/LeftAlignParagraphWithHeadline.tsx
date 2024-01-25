@@ -6,7 +6,7 @@ import "../../Style.css";
 import { useCustomStyle } from "./LeftAlignParagraphWithHeadline.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 
 const LeftAlignParagraphWithHeadline = ({
   content,
@@ -100,7 +100,7 @@ interface LeftAlignParagraphWithHeadlineProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any; //SecondaryArgs;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {
@@ -139,6 +139,15 @@ LeftAlignParagraphWithHeadline.defaultProps = {
       "This prelem can be used to add Left Align Paragraph With Headline anywhere in the website. ",
     pageTags: "Text, Full Width, Left Align Paragraph With Headline",
     prelemTags: "Text, Full Width, Left Align Paragraph With Headline",
+  },
+  secondaryArgs: {
+    prelemBaseEndpoint: {
+      APIEndPoint: "https://platx-api-dev.fanuep.com/platform-x/",
+      device: "window",
+      buttonBaseUrl: "https://platx-publish-dev.fanuep.com/",
+    },
+    editState: false,
+    multiSlot: {},
   },
 };
 export default LeftAlignParagraphWithHeadline;
