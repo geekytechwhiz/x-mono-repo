@@ -3,7 +3,12 @@ import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { formCroppedUrl, structureDataUrlPoint, RedDots } from "@platformx/utilities";
+import {
+  formCroppedUrl,
+  structureDataUrlPoint,
+  RedDots,
+  SecondaryArgs,
+} from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import { useCustomStyle } from "./WebsiteIntroduction2.style";
 import prelemTypes from "../../globalStyle";
@@ -399,7 +404,7 @@ interface WebsiteIntroduction2Prop {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Analytics {

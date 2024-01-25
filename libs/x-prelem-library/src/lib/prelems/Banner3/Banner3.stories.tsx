@@ -3,7 +3,7 @@ import { Story, Meta } from "@storybook/react";
 import Banner3 from "./Banner3";
 
 export default {
-  title: "Prelems/Banner 2",
+  title: "Prelems/Banner3",
   component: Banner3,
 } as Meta;
 
