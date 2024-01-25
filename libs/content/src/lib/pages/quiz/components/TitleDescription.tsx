@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 // import { useComment } from "../../hooks/useComment/useComment";
 // import AutoTextArea from "../Common/AutoTextArea";
 // import TextBox from "../Common/TextBox";
-// import TitleSubTitle from "../Common/TitleSubTitle"; 
+// import TitleSubTitle from "../Common/TitleSubTitle";
 // import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
 import { useCustomStyle } from "../quiz.style";
 import { AutoTextArea, CommonBoxWithNumber, TextBox, TitleSubTitle } from "@platformx/utilities";
 import { useComment } from "@platformx/authoring-apis";
-import { CommentWrapper } from "@platformx/comment-review"
+import { CommentWrapper } from "@platformx/comment-review";
+
 export const TitleDescription = ({
   state,
   setState,

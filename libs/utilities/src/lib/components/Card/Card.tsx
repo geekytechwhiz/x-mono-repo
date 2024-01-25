@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { createElement, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import RedBlinkingDot from "../../assets/red_blinking_gif.gif";
+import { RedBlinkingDot } from "@platformx/utilities";
 import {
   CATEGORY_CONTENT,
   CATEGORY_PAGE,
@@ -27,7 +27,6 @@ import PlateformXDialog from "../Popups/PlateformXDialog";
 // import { CourseMenu } from '../CourseMenu/CourseMenu';
 // import CardMenu from '../CardMenu/CardMenu';
 // import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
-import React from "react";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
@@ -187,7 +186,7 @@ export const Card = ({
   };
 
   const getContentSubCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase() ? "" : tagName;
+    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (

@@ -48,7 +48,11 @@ const useContentSearch = ({
     fetchPolicy: "no-cache",
   });
   useEffect(() => {
-    const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
+    console.log("check11", data);
+    const sortedContent = sortedData(
+      data?.authoring_getContentTypeItems || data?.authoring_recentContents || [],
+    );
+    console.log("check12-sortedContent", sortedContent);
 
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({
@@ -59,6 +63,7 @@ const useContentSearch = ({
       dispatch(updateContentList(serializableData));
     }
   }, [data]);
+  console.log("check11-contents", contents);
 
   const fetchMoreContent = async () => {
     try {

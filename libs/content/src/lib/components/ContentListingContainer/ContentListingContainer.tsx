@@ -1,5 +1,4 @@
-/* eslint-disable require-await */
-/* eslint-disable no-debugger */
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
@@ -7,7 +6,7 @@ import {
   useContentSearch,
 } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentListing from "../ContentListing/ContentListing";
@@ -28,6 +27,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     startIndex,
     reloadContent: false,
   });
+
   const {
     deleteContent,
     duplicate,
@@ -38,6 +38,29 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     fetchContentDetails,
     duplicateToSite,
   } = useContentListing("ALL");
+
+  const memoizedMethods = useMemo(
+    () => ({
+      deleteContent: useMemo(() => deleteContent, [deleteContent]),
+      duplicate: useMemo(() => duplicate, [duplicate]),
+      preview: useMemo(() => preview, [preview]),
+      unPublish: useMemo(() => unPublish, [unPublish]),
+      view: useMemo(() => view, [view]),
+      edit: useMemo(() => edit, [edit]),
+      fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
+      duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
+    }),
+    [
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
+    ],
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,39 +73,15 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   }, [contentType]);
 
   const createContentNew = () => {
-    // dispatch(previewArticle({}));
-    if (contentType === "Course") navigate("/content/create-course");
+    if (contentType === "course") navigate("/content/create-course");
     else navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
   };
 
-  // useEffect(() => {
-  //   // localStorage.removeItem('articleTimerState');
-  //   // localStorage.removeItem('contentTypeTimerState');
-
-  //   // Clears content when navigation changed to diff content
-  //   if (state.content.contentList.length == 0) {
-  //     fetchContentSync();
-  //   }
-  // }, [contentType]);
-
-  // useEffect(() => {
-  //   fetchContentSync();
-  // }, [location]);
-
-  // const fetchContentSync = async () => {
-  //   if (contentType === 'Course') {
-  //     dispatch(
-  //       await contentTypeAPIs.fetchCourseContent(contentType, location, filterValue, state)
-  //     );
-  //   } else {
-  //     dispatch( await contentTypeAPIs.fetchSearchContent(contentType, location, filterValue, state));
-  //   }
-  // };
-
-  const handleFilter = async (filter: string) => {
+  const handleFilter = (filter: string) => {
     setFilterValue(filter);
   };
-  const handleRefresh = async () => {
+
+  const handleRefresh = () => {
     setIsSpinning(true);
     refetch();
   };
@@ -103,27 +102,23 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         animationState={isSpinning}
       />
 
-      {/* {(!loading && contentList && contentList?.length > 0) && ( */}
       <ContentListing
         content={contentType}
         contentList={contentArray}
-        deleteContent={deleteContent}
+        deleteContent={memoizedMethods.deleteContent}
         dataList={contentArray}
         fetchMore={handleFetchMore}
-        preview={preview}
-        unPublish={unPublish}
-        view={view}
-        edit={edit}
+        preview={memoizedMethods.preview}
+        unPublish={memoizedMethods.unPublish}
+        view={memoizedMethods.view}
+        edit={memoizedMethods.edit}
         loading={loading}
-        duplicate={duplicate}
-        fetchContentDetails={fetchContentDetails}
-        duplicateToSite={duplicateToSite}
+        duplicate={memoizedMethods.duplicate}
+        fetchContentDetails={memoizedMethods.fetchContentDetails}
+        duplicateToSite={memoizedMethods.duplicateToSite}
       />
-      {/* )} */}
-      {/* {
-        !loading && contentList?.length === 0 && <NoSearchResult />
-      } */}
     </>
   );
 };
-export default ContListingContainer;
+
+export default memo(ContListingContainer);
