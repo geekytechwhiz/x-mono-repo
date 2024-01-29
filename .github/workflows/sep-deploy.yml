@@ -1,10 +1,9 @@
-name: ci-cd
+name: platformx-workflow
 on:
   push:
     branches:
     - develop
-    - qa 
-    - master
+    - qa  
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -75,15 +74,14 @@ jobs:
       - name: Install Package 
         run: npm install --force
 
-      - name: Build affected libraries and deploy authoring-web
+      - name: Build affected libraries 
         run: |
-          npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel 
+          npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel  
+         
+      - name: Deploy authoring-web 
+        run: 
+          npm run deploy:authoring  
           
-          # npx nx build authoring-web
-          # npx nx serve authoring-web --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }}
-          npx nx serve authoring-web --port=3000 --public-host=${{ secrets.NAMESPACE_NAME_DEVELOP }}
-
-
   deploy-x-user-experience:
     runs-on: ubuntu-latest
     steps:
@@ -149,7 +147,13 @@ jobs:
       - name: Install Nx CLI
         run: npm install -g @nrwl/nx
 
-      - name: Build affected libraries and deploy authoring-web
-        run: |
-          nx affected --target=build --base=main --head=$GITHUB_SHA
-          nx run authoring-web:deploy --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }}
+      - name: Install Package 
+        run: npm install --force
+
+      - name: Build affected libraries 
+        run: | 
+          npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel 
+      # - name: Deploy User Experiance
+      #   run: 
+      #     npm run deploy:user-experience  
+         
