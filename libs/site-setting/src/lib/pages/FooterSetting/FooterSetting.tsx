@@ -47,10 +47,8 @@ import CustomTextBox from "../../components/CustomTextBox";
 
 export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<any>([]);
-  const [operationType, setOperationType] = useState<any>("");
   const [galleryState, setGalleryState] = useState<boolean>(false);
-  const [key, setKey] = useState("");
-  const galleryType = useRef<string>("Images");
+
   const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
   const [parentToolTip, setParentToolTip] = useState("");
   const [srollToView, setsrollToView] = useState<any>();
@@ -71,7 +69,7 @@ export const FooterSetting = () => {
     news_letter_description: "",
   });
   const [isNotificationToast, setIsNotificationToast] = useState<boolean>(false);
-  // const [runFetchContentByPath, { loading }] = useLazyQuery(fetchContentByPath);
+
   const toastMessage = useRef<any>(null);
   const crossButtonHandle = () => {
     setIsNotificationToast(false);
@@ -178,44 +176,8 @@ export const FooterSetting = () => {
     }
   };
 
-  const onUploadClick = (type) => {
-    showGallery("Images", "imagevideoURL");
-    setOperationType(type);
-  };
-  const updateField = (updatedPartialObj) => {
-    console.info("final data", updatedPartialObj);
-    const modifiedData = {
-      // ...JSON.parse(JSON.stringify(state)),
-      ...updatedPartialObj,
-    };
-    console.info("modified data", modifiedData);
-    // setState(modifiedData);
-  };
-
-  const showGallery = (gType, keyName, id?: any) => {
-    window.scrollTo(0, 0);
-    setGalleryState(true);
-    setKey(keyName);
-  };
-
-  const handleSelectedImage = async (image, keyName) => {
-    try {
-      const payload = {
-        bitstreamId: image.bitStreamId,
-        visibility: "public",
-      };
-      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
-
-      // const relativeUrl = response?.original_image_relative_path + "." + response?.ext;
-      // setForm((preForm) => ({ ...preForm, site_logo: relativeUrl }));
-    } catch (error) {
-      // console.log(error);
-      ShowToastError(t("api_error_toast"));
-    }
-  };
-
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
+  const updateField = (data) => {
+    setForm((preForm) => ({ ...preForm, site_logo: data.relativeUrl }));
   };
 
   const isInViewport = (element) => {
@@ -268,7 +230,7 @@ export const FooterSetting = () => {
       setForm({ ...form });
     };
   };
-  const [newForms, setNewForm] = useState([]);
+
   const onDeleteOption = (index) => {
     if (form.footer_link.length <= 1) {
     } else {
@@ -294,7 +256,7 @@ export const FooterSetting = () => {
     <>
       {!galleryState && (
         <>
-     <CreateHeader
+          <CreateHeader
             createText={t("Footer_Setting")}
             handleReturn={() => {
               navigate("/dashboard");
@@ -347,13 +309,13 @@ export const FooterSetting = () => {
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
-                      <XImageRender
-                callBack={updateField}
-                data={{
-                  original_image: {},
-                  published_images: [],
-                }}
-              />
+                        <XImageRender
+                          callBack={updateField}
+                          data={{
+                            relativeUrl: form.site_logo,
+                          }}
+                          isCrop={false}
+                        />
                         {/* <SiteSettingAddImage
                           url={
                             process.env.REACT_APP_GCP_URL +
@@ -454,7 +416,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                       <img src={PictureIcon} alt="PictureIcon" />
+                          <img src={PictureIcon} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -480,7 +442,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <img src={PictureIcon} alt="PictureIcon" />
+                          <img src={PictureIcon} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -505,7 +467,7 @@ export const FooterSetting = () => {
                       </Box>
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                        <img src={PictureIcon} alt="PictureIcon" />
+                          <img src={PictureIcon} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -574,7 +536,7 @@ export const FooterSetting = () => {
                                 marginTop: index > 0 ? "20px" : "0",
                               }}
                               className={classes.dragIconContainer}>
-                              <img src={VectorIconSvg} alt="" />
+                              <img src={VectorIconSvg} alt='' />
                             </Grid>
                             <Grid
                               item
