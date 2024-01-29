@@ -250,14 +250,11 @@ export const HeaderSetting = () => {
     return false;
   };
 
-  const updateField = (updatedPartialObj) => {
-    console.info("final data", updatedPartialObj);
-    const modifiedData = {
-      // ...JSON.parse(JSON.stringify(state)),
-      ...updatedPartialObj,
-    };
-    console.info("modified data", modifiedData);
-    // setState(modifiedData);
+  const updateHeaderlogo = (data) => {
+    setForm((preForm) => ({ ...preForm, header_logo: data.relativeUrl  }));
+  };
+  const updateFavicon = (data) => {
+    setForm((preForm) => ({ ...preForm,header_favicon: data.relativeUrl }));
   };
 
   const scrollHandler = () => {
@@ -360,11 +357,11 @@ export const HeaderSetting = () => {
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
                       <XImageRender
-                callBack={updateField}
+                callBack={updateHeaderlogo}
                 data={{
-                  original_image: {},
-                  published_images: [],
+                  relativeUrl: form.header_logo,
                 }}
+                isCrop={false}
               />
                         {/* <SiteSettingAddImage
                           url={
@@ -410,11 +407,12 @@ export const HeaderSetting = () => {
                       <Box sx={{ marginTop: "15px" }}>
                         <Box sx={{ width: "40%" }}>
                         <XImageRender
-                callBack={updateField}
-                data={{
-                  original_image: {},
-                  published_images: [],
-                }}
+               callBack={updateFavicon}
+               data={{
+                 relativeUrl: form.header_favicon,
+               }}
+               isCrop={false}
+              
               />
                           {/* <SiteSettingAddImage
                             url={
