@@ -3,11 +3,22 @@ import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { Box, Button, Grid, Tooltip, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { DefaultStateCommentIcon, ErrorTooltip, MarkedFeatured, PreviewNewIcon, SubmitButton, Timer, XToolTip, enableReferBack, useAccess } from "@platformx/utilities";
-import { useEffect } from "react";
 import { RootState } from "@platformx/authoring-state";
-import { useStyles } from "./CreateHeader.style";
+import {
+  DefaultStateCommentIcon,
+  ErrorTooltip,
+  MarkedFeatured,
+  PreviewNewIcon,
+  SubmitButton,
+  Timer,
+  WorkflowHistoryIcon,
+  XToolTip,
+  enableReferBack,
+  useAccess,
+} from "@platformx/utilities";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useStyles } from "./CreateHeader.style";
 import { HeaderProps } from "./Header.types";
 
 export const CreateHeader = ({
@@ -34,16 +45,17 @@ export const CreateHeader = ({
   createComment,
   setIsFeatured,
   isFeatured,
+  setEnableWorkflowHistory,
 }: HeaderProps) => {
-
   const { canAccessAction } = useAccess();
   const theme = useTheme();
-  const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } =
-  useSelector((state: RootState) => state.comment.commentInfo);
+  const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } = useSelector(
+    (state: RootState) => state.comment.commentInfo,
+  );
   const handleReview = () => {
     setIsReviewEnabled(!isReviewEnabled);
     if (comments?.length > 0) {
-    setIsCommentPanelOpen(true);
+      setIsCommentPanelOpen(true);
     }
   };
   useEffect(() => {
@@ -62,20 +74,20 @@ export const CreateHeader = ({
       sx={
         isQuiz
           ? {
-            backgroundColor: "#ffffff",
-            padding: "10px",
-            margin: "0px",
-            display: "flex",
-            alignItems: "center",
-            minHeight: "62px",
-          }
+              backgroundColor: "#ffffff",
+              padding: "10px",
+              margin: "0px",
+              display: "flex",
+              alignItems: "center",
+              minHeight: "62px",
+            }
           : {
-            padding: "10px",
-            margin: "0px",
-            display: "flex",
-            alignItems: "center",
-            minHeight: "62px",
-          }
+              padding: "10px",
+              margin: "0px",
+              display: "flex",
+              alignItems: "center",
+              minHeight: "62px",
+            }
       }>
       <Grid item xs={2} md={5} em={4} sm={12} sx={{ display: "flex", alignItems: "center" }}>
         <Button
@@ -102,7 +114,6 @@ export const CreateHeader = ({
         direction='row-reverse'
         container
         alignItems='flex-end'>
-
         {publishText && (
           <SubmitButton
             category={category}
@@ -135,7 +146,7 @@ export const CreateHeader = ({
             component={
               <Button
                 disabled={hasPreviewButton}
-                startIcon={<img src={PreviewNewIcon} alt="" />}
+                startIcon={<img src={PreviewNewIcon} alt='' />}
                 onClick={handelPreview}
                 className='iconBtn'></Button>
             }
@@ -168,7 +179,7 @@ export const CreateHeader = ({
                 aria-label='chat'
                 onClick={handleReview}
                 className='iconBtn'
-                startIcon={<img src={DefaultStateCommentIcon} alt="comments" width='20px' />}>
+                startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
                 {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
 
                 {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
@@ -182,7 +193,7 @@ export const CreateHeader = ({
                   aria-label='chat'
                   onClick={handleReview}
                   className='iconBtn'
-                  startIcon={<img src={DefaultStateCommentIcon} alt="comments" width='20px' />}>
+                  startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
                   {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
                   {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
                 </Button>
@@ -192,11 +203,10 @@ export const CreateHeader = ({
         }
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
         {showPreview && (
-          // <WorkflowHistoryIcon TODO enable workflow history
-          //   enableWorkflowHistory={setEnableWorkflowHistory}
-          //   workflow_status={workflow?.workflow_status}
-          // />
-          <>WorkflowHistoryIcon</>
+          <WorkflowHistoryIcon
+            enableWorkflowHistory={setEnableWorkflowHistory}
+            workflow_status={workflow?.workflow_status}
+          />
         )}
         <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
       </Grid>
@@ -237,7 +247,9 @@ export const CreateHeader = ({
               startIcon={<SaveAsRoundedIcon />}
               sx={{ minWidth: "0px" }}
               onClick={() => handleSaveOrPublish()}
-              disabled={!canAccessAction(category, subCategory, "Create") || hasSaveButton}></Button>
+              disabled={
+                !canAccessAction(category, subCategory, "Create") || hasSaveButton
+              }></Button>
           }
           doAccess={!canAccessAction(category, subCategory, "Create")}
         />

@@ -1,13 +1,7 @@
-import { XImageRender } from "@platformx/x-image-render";
+import { CreateContent } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
-import { CreateUser, UserListing } from "@platformx/user-management";
-import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { MediaHandle, FeatureFlagSetting, GlobalSetting } from "@platformx/site-setting";
-import { SitePage } from "@platformx/site-page";
-import { CreateContent } from "@platformx/content";
 
 export const routes: RouteConfig[] = [
   {
@@ -98,9 +92,22 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create",
+    path: "/content/create/quiz",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute
+        name='article'
+        subCategory='article'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
         <CreateContent />
       </ProtectedRoute>
     ),
