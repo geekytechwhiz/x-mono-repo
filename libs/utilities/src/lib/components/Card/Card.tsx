@@ -123,6 +123,7 @@ export const Card = ({
       published: view,
       unpublished: preview,
     };
+    // eslint-disable-next-line default-case
     switch (tagName) {
       // case 'vod':
       //   handlePageView();
@@ -186,7 +187,7 @@ export const Card = ({
   };
 
   const getContentSubCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (
@@ -198,7 +199,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} />
+                <img src={iconsList[dataList.tagName]} alt='img' />
               </Box>
 
               <Box className='rightspace'>

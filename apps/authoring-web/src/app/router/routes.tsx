@@ -101,7 +101,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create",
+    path: "/content/create/course",
     element: (
       <ProtectedRoute
         name='course'

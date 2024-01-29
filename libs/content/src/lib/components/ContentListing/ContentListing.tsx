@@ -162,9 +162,7 @@ const ContentListing = ({
                   <Box key={index}>
                     <Card
                       dataList={
-                        contentType === "Course"
-                          ? makeCourseContentData(item)
-                          : makeContentData(item)
+                        content === "Course" ? makeCourseContentData(item) : makeContentData(item)
                       }
                       deleteContent={deleteContent}
                       preview={preview}
