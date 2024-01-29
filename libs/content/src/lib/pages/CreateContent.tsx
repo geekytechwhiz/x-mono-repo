@@ -12,8 +12,8 @@ export const CreateContent = () => {
 
     case "quiz":
       return <CreateQuiz></CreateQuiz>;
-    case "polls":
-      return <CreatePolls></CreatePolls>;
+    // case "polls":
+    //   return <CreatePolls></CreatePolls>;
     default:
       return <>DynamicContent</>;
   }

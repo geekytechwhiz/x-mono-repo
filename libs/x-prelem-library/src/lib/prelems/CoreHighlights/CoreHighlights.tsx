@@ -1,10 +1,16 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { formCroppedUrl, handleHtmlTags } from "@platformx/utilities";
-// import PhoneIcon from "../../assets/svgIcon/phoneIcon.svg";
+import {
+  Analytics,
+  AuthoringHelper,
+  formCroppedUrl,
+  handleHtmlTags,
+  SecondaryArgs,
+} from "@platformx/utilities";
 import { useCustomStyle } from "./CoreHighlights.style";
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
@@ -113,10 +119,10 @@ CoreHighlightsProp) => {
     return (
       <Box className='leftImgBox'>
         <Box className='middleBoxWp'>
-          <Typography variant='h1largebold' color='secondaryLabel'>
+          <Typography variant='h1largebold' color='secondaryLabel' id='coretitle'>
             {content.coretitle}+
           </Typography>
-          <Typography variant='p3bold' color='secondaryLabel'>
+          <Typography variant='p3bold' color='secondaryLabel' id='coredescription'>
             {content.coredescription}
           </Typography>
         </Box>
@@ -200,24 +206,32 @@ CoreHighlightsProp) => {
   const secondColumnContent = () => {
     return (
       <Box className='rightCol'>
-        <Typography variant='p4semibold' color='secondaryLabel' textTransform={"uppercase"}>
+        <Typography
+          variant='p4semibold'
+          color='secondaryLabel'
+          id='subtitle'
+          textTransform={"uppercase"}>
           {`// ${content.subtitle}`}
         </Typography>
-        <Typography variant='h2semibold'>{content.title}</Typography>
-        <Typography variant='p3regular' className='leftborder'>
+        <Typography variant='h2semibold' id='title'>
+          {content.title}
+        </Typography>
+        <Typography variant='p3regular' id='subdescription' className='leftborder'>
           {content.subdescription}
         </Typography>
-        <Typography variant='p3regular'>{content.description}</Typography>
+        <Typography variant='p3regular' id='description'>
+          {content.description}
+        </Typography>
         <Divider variant='fullWidth' />
         <Box className='bootomTextContent'>
           <Box className='imgBoxIcon'>
-            <img src='{PhoneIcon}' alt='Icon' />
+            <LocalPhoneOutlinedIcon sx={{ fontSize: "47px" }} />
           </Box>
           <Box className='rightContent'>
-            <Typography variant='p2regular' m={0}>
+            <Typography variant='p2regular' id='contacttitle' m={0}>
               {content.contacttitle}
             </Typography>
-            <Typography variant='h3bold' mt={0.5}>
+            <Typography variant='h3bold' id='contactdescription' mt={0.5}>
               {content.contactdescription}
             </Typography>
           </Box>
@@ -252,33 +266,7 @@ interface CoreHighlightsProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {
