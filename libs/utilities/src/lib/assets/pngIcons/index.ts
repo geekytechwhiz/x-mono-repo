@@ -16,6 +16,9 @@ import DottedBg from "./dottedbg.png";
 import DottedRound from "./mask-dotted.png";
 import CardBgImg from "./card-bg.png";
 import IconEmbed from "./Embed.png";
+import RoyalIcon from "./RoyalAntwerp.png";
+import OGCIcon from "./OGC.png";
+import AZIcon from "./AZ.png";
 
 export {
   Frame1,
@@ -36,4 +39,7 @@ export {
   DottedRound,
   CardBgImg,
   IconEmbed,
+  RoyalIcon,
+  OGCIcon,
+  AZIcon,
 };

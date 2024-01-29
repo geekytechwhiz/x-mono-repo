@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import React from "react";
 import DialogCloseIcon from "../assets/svgIcon/DialogCloseIcon.svg";
 import DeleteIcon from "../assets/svgIcon/errorPopupIcon.svg";
-import { prelemTypes } from "../theme/globalStyle";
+import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
 
 export default function ExitModal({

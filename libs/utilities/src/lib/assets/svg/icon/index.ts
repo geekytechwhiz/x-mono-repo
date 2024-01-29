@@ -29,6 +29,7 @@ import ServiceCard2Background from "./ServiceCard2Background.svg";
 import IconCopySvg from "./Copy.svg";
 import IconFacebookSvg from "./Facebook.svg";
 import IconLinkedInSvg from "./LinkedIn.svg";
+import CloseIcon from "./Cross.svg";
 
 export {
   MaskImg,
@@ -62,4 +63,5 @@ export {
   IconCopySvg,
   IconFacebookSvg,
   IconLinkedInSvg,
+  CloseIcon,
 };
