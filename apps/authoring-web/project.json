@@ -56,11 +56,12 @@
     },
     "serve": {
       "executor": "@nx/webpack:dev-server",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "buildTarget": "authoring-web:build",
         "hmr": true,
-        "port": 3000
+        "port": 3000,
+        "publicHost": "https://dev.console.hcl-x.com"
       },
       "configurations": {
         "development": {

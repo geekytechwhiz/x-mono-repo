@@ -130,20 +130,6 @@ const DynamicPrelemOne = ({ content, authoringHelper, secondaryArgs = {} }: any)
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
-}
-
 DynamicPrelemOne.defaultProps = {
   content: {
     Title: "Lorem ipsum dolor sit amet",

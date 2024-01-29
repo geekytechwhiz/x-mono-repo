@@ -16,6 +16,7 @@ import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
   PlateformXDialog,
+  PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
   XLoader,
@@ -470,6 +471,8 @@ export const CreateQuiz = () => {
         quizState?.schedule_unpublish_datetime === null)
     ) {
       ShowToastError(`${t("scheduled_unpublish")} ${t("is_required")}`);
+    } else if (quizState?.questions.length === 0) {
+      ShowToastError("Please add atleast one question");
     } else {
       const pageURL = currentQuizData.current
         ? currentQuizData.current
@@ -484,7 +487,8 @@ export const CreateQuiz = () => {
           DRAFT,
           false,
           status,
-          props,
+          quizState,
+          //props,
           event_step,
           quizInstance,
           updateTempObj,
@@ -686,12 +690,9 @@ export const CreateQuiz = () => {
     setCurrentQuestionId("");
     setOpenAddQuestion(false);
   };
-  const [contentType] = useState(
-    capitalizeFirstLetter(quizPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
-  );
+
   const [runFetchContentByPath, { loading }] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   useEffect(() => {
-    debugger;
     if (
       (currentQuiz && Object.keys(currentQuiz).length > 0 && params.id) ||
       Object.keys(currentQuiz).length
@@ -700,14 +701,13 @@ export const CreateQuiz = () => {
       setTagArr(currentQuiz?.Tag);
     } else if (params.id) {
       runFetchContentByPath({
-        variables: { contentType: contentType, path: currentQuizData.current },
+        variables: { contentType: "Quiz", path: currentQuizData.current },
       })
         .then((res) => {
           if (res?.data?.authoring_getCmsContentByPath) {
             const contentObj = res?.data?.authoring_getCmsContentByPath;
             const tempdata = { ...contentObj };
             delete tempdata.__typename;
-            console.info("edit data", tempdata);
             setQuizInstance(tempdata);
             setTagArr(tempdata.tags);
           }
@@ -731,7 +731,7 @@ export const CreateQuiz = () => {
           setIsLoading(true);
 
           const res = await runFetchContentByPath({
-            variables: { contentType, path: currentQuizData.current },
+            variables: { contentType: "Quiz", path: currentQuizData.current },
           });
 
           if (res?.data?.authoring_getCmsContentByPath) {
@@ -942,7 +942,6 @@ export const CreateQuiz = () => {
   const [isOpenedOther, setIsOpenedOther] = useState(false);
   // flat = true: open add new question or choose from list and not scroll to question container.
   useEffect(() => {
-    debugger;
     if (openAddQuestion || isClickedQueList) {
       setIsOpenedOther(true);
     } else if (isOpenedOther) {
@@ -984,20 +983,6 @@ export const CreateQuiz = () => {
   }, [tagData?.length > 0]);
   return (
     <>
-      <Box
-        sx={{
-          backgroundColor: "#FFF",
-        }}>
-        {/* {galleryState && (
-          <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={galleryType.current === "Images" ? "Image" : "Video"}
-            keyName={key}
-            id={answerId}
-          />
-        )} */}
-      </Box>
       {isClickedQueList && (
         <QuestionListing
           setIsClickedQueList={setIsClickedQueList}
@@ -1082,10 +1067,6 @@ export const CreateQuiz = () => {
             {enableWorkflowHistory ? (
               <>WorkflowHistory</>
             ) : (
-              // <WorkflowHistory
-              //   workflow={workflow}
-              //   setEnableWorkflowHistory={setEnableWorkflowHistory}
-              // />
               <>
                 <TitleDescription
                   state={quizState}
@@ -1096,7 +1077,12 @@ export const CreateQuiz = () => {
                   isDraft={isDraft}
                   setFieldChanges={setFieldChanges}
                 />
-                <ImageVideo state={quizState} setState={setQuizState} />
+                <ImageVideo
+                  state={quizState}
+                  setState={setQuizState}
+                  quizRef={quizRef}
+                  unsavedChanges={unsavedChanges}
+                />
                 <Question
                   quizState={quizState}
                   setQuizState={setQuizState}
@@ -1110,141 +1096,25 @@ export const CreateQuiz = () => {
                   unsavedChanges={unsavedChanges}
                   setFieldChanges={setFieldChanges}
                 />
-                {/* <SchedulePublish
-              handleSchedulePublish={handleSchedulePublish}
-              isEditMode={isEditMode}
-              state={quizState}
-              setState={setQuizState}
-              unsavedChanges={unsavedChanges}
-            /> */}
                 <ChooseTags
                   tagData={tagData}
                   selectedTag={tagArr}
                   handleTagOnChange={handleTagOnChange}
                   isEdit={currentQuizData.current ? true : false}
                 />
-
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={socialShareExpanded}
-                  onChange={() => setSocialShareExpanded(!socialShareExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('social_share')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <SocialShare
-                      showGallery={showGallery}
-                      state={quizState}
-                      setState={setQuizState}
-                      quizRef={quizRef}
-                      unsavedChanges={unsavedChanges}
-                      setFieldChanges={setFieldChanges}
-                      selectedImage={selectedImage}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
                 <SocialShare
-                  showGallery={showGallery}
                   state={quizState}
                   setState={setQuizState}
                   quizRef={quizRef}
                   unsavedChanges={unsavedChanges}
                   setFieldChanges={setFieldChanges}
-                  selectedImage={selectedImage}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={analyticsExpanded}
-                  onChange={() => setAnalyticsExpanded(!analyticsExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('analytics')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Analytics
-                      state={quizState}
-                      setState={setQuizState}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
                 <Analytics
                   number='07'
                   state={quizState}
                   setState={setQuizState}
                   unsavedChanges={unsavedChanges}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={seoExpanded}
-                  onChange={() => setSeoExpanded(!seoExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('SEO')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Seo
-                      state={quizState}
-                      setState={setQuizState}
-                      setEditedSD={setEditedSD}
-                      quizInstance={quizInstance}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
-                {/* <Seo
-                  state={quizState}
-                  setState={setQuizState}
-                  setEditedSD={setEditedSD}
-                  quizInstance={quizInstance}
-                  unsavedChanges={unsavedChanges}
-                /> */}
               </>
             )}
           </Box>
@@ -1275,7 +1145,7 @@ export const CreateQuiz = () => {
           closeIcon={<CreateRoundedIcon />}
         />
         {showPublishConfirm || showWorkflowSubmit ? (
-          <PlateformXDialog
+          <PlateformXDialogSuccess
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
             subTitle={showPublishConfirm ? t("quiz_publish_popoup") : t("requested_action")}
