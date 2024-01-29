@@ -4,7 +4,13 @@ import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
-import { completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrl,
+} from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import "./ServiceCard7.css";
 import { useCustomStyle } from "./ServiceCard7.style";
@@ -361,50 +367,6 @@ interface ServiceCard7Prop {
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
-}
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  bucketName: string;
-  gcpUrl: string;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-  buttonBaseUrl?: string;
-}
-
-interface MultiSlot {
-  onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  authoringHoverShow?: boolean;
-  isEditPage?: boolean;
 }
 
 interface Content {

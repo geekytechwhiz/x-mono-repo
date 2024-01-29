@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Grid } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import { useCustomStyle } from "./ServiceCard3.style";
 import prelemTypes from "../../globalStyle";
-import { formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
@@ -184,59 +183,10 @@ const ServiceCard3 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
 
 interface ServiceCard3Prop {
   content: Content;
-  analytics?: any; //Analytics;
-  authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any; //SecondaryArgs;
+  analytics: Analytics;
+  authoringHelper: AuthoringHelper;
+  secondaryArgs: SecondaryArgs;
 }
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  gcpUrl: string;
-  bucketName: string;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-  editState: boolean;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-  PublishEndPoint?: string;
-  APIEndPoint?: string;
-  deliveryEndPoint?: string;
-  language?: string;
-}
-
-interface MultiSlot {
-  onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  authoringHoverShow?: boolean;
-  isEditPage?: boolean;
-}
-
 interface Content {
   Title?: string;
   ImageIcon?: boolean;

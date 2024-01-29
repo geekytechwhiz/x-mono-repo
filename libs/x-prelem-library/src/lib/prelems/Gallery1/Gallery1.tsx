@@ -1,6 +1,6 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import InfiniteLooper from "../../components/InfiniteLooper/InfiniteLooper";
@@ -11,6 +11,7 @@ import "./Gallery1.css";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import CustomModalSlider from "../../components/CustomModalSlider/CustomModalSlider";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 // ts-ignore
 const Gallery1 = ({
   content,
@@ -199,46 +200,6 @@ interface Gallery1Prop {
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
-}
-
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  editState?: boolean;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-}
-
-interface MultiSlot {
-  onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: any;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  isEditing: boolean;
-  lastSavedStructuredData?: string;
-  isModalShow?: boolean;
-  authoringHoverShow?: boolean;
 }
 
 interface GallerySliderProps {

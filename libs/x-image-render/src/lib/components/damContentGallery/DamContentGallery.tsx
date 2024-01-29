@@ -38,7 +38,7 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
     toggleGallery,
     keyName,
     processing,
-    isCrop = "false",
+    isCrop = false,
   } = _props;
   const { fetchFacet, fetchDAMContent } = assetsApi;
   const [data, setData] = useState(COLLECTION_ITEM);

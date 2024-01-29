@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
 import { useCustomStyle } from "./ProductSummaryViaVideo2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -146,41 +146,8 @@ ProductSummaryProp) => {
 interface ProductSummaryProp {
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-
-// interface SecondaryArgs {
-//   APIEndPoint: string;
-//   gcpUrl: string;
-//   bucketName: string;
-//   prelemImpressionSchema?: string;
-//   clickImpressionSchema?: string;
-// }
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
+  authoringHelper: AuthoringHelper;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {

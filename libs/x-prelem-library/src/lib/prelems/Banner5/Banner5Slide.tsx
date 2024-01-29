@@ -36,13 +36,6 @@ const Banner5Slide = ({
           320: "portrait",
         }}
       />
-      {/* <img
-          src={img}
-          width="100%"
-          height="100%"
-          style={{ objectFit: "cover" }}
-          alt="back"
-        /> */}
       <Box className='slide-content'>
         <Box className={`slide-caption caption`}>
           <Box

@@ -7,18 +7,24 @@ import { useCustomStyle } from "../quiz.style";
 import { CommentWrapper } from "@platformx/comment-review";
 import { XImageRender } from "@platformx/x-image-render";
 
-const ImageVideo = ({ state, setState }) => {
+const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
 
   const updateField = (updatedPartialObj) => {
-    console.info("final data", updatedPartialObj);
+    console.warn("final data", updatedPartialObj);
+    const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
       ...updatedPartialObj,
+      socialShareImgURL: relativeUrl,
     };
-    console.info("modified data", modifiedData);
     setState(modifiedData);
+    quizRef.current = {
+      ...quizRef.current,
+      socialShareImgURL: relativeUrl,
+    };
+    unsavedChanges.current = true;
   };
 
   const classes = useCustomStyle();
@@ -47,6 +53,7 @@ const ImageVideo = ({ state, setState }) => {
                   original_image: state.original_image,
                   published_images: state.published_images,
                 }}
+                isCrop={true}
               />
             </Grid>
           </Grid>

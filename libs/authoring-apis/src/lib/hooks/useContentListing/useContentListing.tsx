@@ -181,8 +181,8 @@ const useContentListing = (filter = "ALL") => {
   const edit = async (listItemDetails: { tagName: string; page: any }) => {
     dispatch(previewContent({}));
     dispatch(previewArticle({}));
-    navigate(`/content/create?path=${listItemDetails?.tagName}`, {
-      state: listItemDetails?.tagName,
+    navigate(`/content/create?path=${listItemDetails.page}`, {
+      state: listItemDetails.tagName?.toLowerCase(),
     });
   };
 

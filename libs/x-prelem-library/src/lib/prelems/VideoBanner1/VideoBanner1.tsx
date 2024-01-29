@@ -6,6 +6,7 @@ import { useCustomStyle } from "./VideoBanner1.style";
 import "./VideoBanner1.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
   const [val, setVal] = useState(1);
@@ -250,33 +251,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
 interface VideoBanner1Prop {
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
+  authoringHelper?: any;
   secondaryArgs?: any;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: any;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
 }
 
 interface Content {

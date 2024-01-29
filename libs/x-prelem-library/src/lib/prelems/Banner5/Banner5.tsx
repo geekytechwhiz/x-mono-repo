@@ -2,9 +2,14 @@ import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { useEffect, useRef, useState } from "react";
 import "./Banner5.css";
-//import "../EcommerceDiscoverNow/EcommerceDiscoverNow.css";
 import { useInView } from "react-intersection-observer";
-import { completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrl,
+} from "@platformx/utilities";
 import Banner5Slide from "./Banner5Slide";
 import { useCustomStyle } from "./Banner5.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -117,7 +122,7 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
                 contenturl: completeButtonUrl(
                   content["Button" + (index + 1) + "_Action"],
                   content["Button" + (index + 1) + "_RedirectURL"],
-                  secondaryArgs.prelemBaseEndpoint.buttonBaseUrl,
+                  secondaryArgs?.prelemBaseEndpoint?.buttonBaseUrl,
                 ),
               },
             };
@@ -257,14 +262,14 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
 interface Banner5Props {
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
+  authoringHelper: AuthoringHelper;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {
   TagName?: string;
 
-  Title1?: string;
+  Title1: string;
   Button1_Action?: string;
   Button1_Content?: string;
   Button1_Name?: string;
@@ -273,7 +278,7 @@ interface Content {
   Button1_Type?: string;
   Button1_Value?: string;
 
-  Title2?: string;
+  Title2: string;
   Button2_Action?: string;
   Button2_Content?: string;
   Button2_Name?: string;
@@ -282,7 +287,7 @@ interface Content {
   Button2_Type?: string;
   Button2_Value?: string;
 
-  Title3?: string;
+  Title3: string;
   Button3_Action?: string;
   Button3_Content?: string;
   Button3_Name?: string;
@@ -291,7 +296,7 @@ interface Content {
   Button3_Type?: string;
   Button3_Value?: string;
 
-  Title4?: string;
+  Title4: string;
   Button4_Action?: string;
   Button4_Content?: string;
   Button4_Name?: string;
@@ -318,31 +323,6 @@ interface PublishedImages {
   folder_path: string;
   visibility: string;
   ext: string;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
 }
 
 Banner5.defaultProps = {

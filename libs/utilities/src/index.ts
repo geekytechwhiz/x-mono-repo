@@ -80,6 +80,7 @@ import i18next from "./lib/utils/i18next";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
+export * from "./lib/assets/gif";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
@@ -98,6 +99,7 @@ export * from "./lib/themes/prelems/prelemTheme";
 export * from "./lib/utils/helper";
 export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
+export * from "./lib/utils/interface";
 
 export {
   AUTH_INFO,
