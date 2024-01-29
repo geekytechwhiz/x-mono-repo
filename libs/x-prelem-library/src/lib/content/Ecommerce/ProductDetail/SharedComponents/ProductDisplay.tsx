@@ -9,7 +9,8 @@ import SkeletonLoader from "./SkeletonLoader";
 import ProductAttribute from "./ProductAttribute";
 import AddCart from "./AddCart/AddCart";
 import EcomProductPrice from "./ProductPrice";
-import { addToCartGetCartId, ecomCartIdBasedGetItem, nullToObject } from "@platformx/utilities";
+import { nullToObject } from "@platformx/utilities";
+import { addToCartGetCartId, ecomCartIdBasedGetItem } from "../../helperEcommerce";
 
 interface ProductDisplayProps {
   rewardPoints?: string | number;

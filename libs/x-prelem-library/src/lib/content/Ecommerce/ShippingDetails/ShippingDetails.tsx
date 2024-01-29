@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Box, Button, Container } from "@mui/material";
 import {
-  ecomCartIdBasedGetItem,
-  proceedToShippingAddress,
   emailValidate,
   inputEmptyFieldValidate,
   inputNonEmptyFieldValidate,
   nullToObject,
 } from "@platformx/utilities";
+import { ecomCartIdBasedGetItem, proceedToShippingAddress } from "../helperEcommerce";
 import { ChevronLeft } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import "libs/utilities/src/lib/utils/i18next";

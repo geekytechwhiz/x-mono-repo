@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import React, { useState, useRef } from "react";
 import { Box, Card, CardActionArea, CardMedia, Typography, Tooltip } from "@mui/material";
-import { nullToObject, updateQuantityOfCartItem, removeCartItem } from "@platformx/utilities";
+import { nullToObject } from "@platformx/utilities";
+import { updateQuantityOfCartItem, removeCartItem } from "../../helperEcommerce";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 // import { useTranslation } from "react-i18next";
 import "libs/utilities/src/lib/utils/i18next";

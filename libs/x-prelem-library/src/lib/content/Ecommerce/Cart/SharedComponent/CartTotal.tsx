@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { nullToObject, lineItemsOutOfStockCheck } from "@platformx/utilities";
+import { nullToObject } from "@platformx/utilities";
+import { lineItemsOutOfStockCheck } from "../../helperEcommerce";
 import { Box, Typography, Button, Divider } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "libs/utilities/src/lib/utils/i18next";

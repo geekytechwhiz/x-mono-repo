@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./SubTotal.css";
 import { Box, Typography } from "@mui/material";
-import { nullToObject, ecomCartIdBasedGetItem } from "@platformx/utilities";
+import { nullToObject } from "@platformx/utilities";
+import { ecomCartIdBasedGetItem } from "../../helperEcommerce";
 import { useTranslation } from "react-i18next";
 import "libs/utilities/src/lib/utils/i18next";
 import ActualPrice from "../../ProductDetail/SharedComponents/ActualPrice";

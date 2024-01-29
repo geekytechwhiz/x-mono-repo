@@ -4,14 +4,8 @@ import EastIcon from "@mui/icons-material/East";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import { Box, Typography, Grid, Button, Container } from "@mui/material";
 import "libs/utilities/src/lib/utils/i18next";
-import {
-  nullToArray,
-  nullToObject,
-  ecomCartIdBasedGetItem,
-  getProductDetails,
-  addToCartGetCartId,
-  fallBackImage,
-} from "@platformx/utilities";
+import { nullToArray, nullToObject, fallBackImage } from "@platformx/utilities";
+import { ecomCartIdBasedGetItem, getProductDetails, addToCartGetCartId } from "../helperEcommerce";
 import "./ProductListing.css";
 import { useCustomStyle } from "./ProductListing.style";
 import ActualPrice from "../ProductDetail/SharedComponents/ActualPrice";

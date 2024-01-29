@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import "libs/utilities/src/lib/utils/i18next";
 import { useTranslation } from "react-i18next";
 import { Grid, Box } from "@mui/material";
-import {
-  nullToObject,
-  nullToString,
-  getProductDetailsApiCall,
-  getProductDetailsRewardpoints,
-} from "@platformx/utilities";
+import { nullToObject, nullToString } from "@platformx/utilities";
+import { getProductDetailsApiCall, getProductDetailsRewardpoints } from "../helperEcommerce";
+
 import ProductListing from "../ProductListing/ProductListing";
 import ToastService from "../../../components/ToastContainer/ToastService";
 import "./ProductDetail.css";

@@ -18,13 +18,15 @@ import {
   inputEmptyFieldValidate,
   inputNonEmptyFieldValidate,
   nullToObject,
+  SuccessIcon,
+  DeleteGif as DeleteIcon,
+} from "@platformx/utilities";
+import {
   ecomCartIdBasedGetItem,
   placeOrder,
   addPaymentMethod,
   proceedToBillingAddress,
-  SuccessIcon,
-  DeleteGif as DeleteIcon,
-} from "@platformx/utilities";
+} from "../helperEcommerce";
 import Confirmation from "../Common/Confirmation/Confirmation";
 import ProductLoader from "../ProductListing/ProductLoader";
 import "./../ShippingDetails/ShippingDetails.css";

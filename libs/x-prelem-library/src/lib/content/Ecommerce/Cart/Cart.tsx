@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Button, Box, Container, Typography } from "@mui/material";
 import { ChevronLeft } from "@mui/icons-material";
-import { nullToObject, ecomCartIdBasedGetItem } from "@platformx/utilities";
+import { nullToObject } from "@platformx/utilities";
+import { ecomCartIdBasedGetItem } from "../helperEcommerce";
 import { useTranslation } from "react-i18next";
 import "libs/utilities/src/lib/utils/i18next";
 import ShoppingList from "./SharedComponent/ShoppingList";
