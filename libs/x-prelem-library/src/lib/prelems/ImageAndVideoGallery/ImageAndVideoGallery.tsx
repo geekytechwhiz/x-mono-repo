@@ -4,7 +4,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, CardMedia, Container, Tab, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Analytics, AuthoringHelper, getImage } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, getImage } from "@platformx/utilities";
 import Slider from "react-slick";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./ImageAndVideoGallery.style";
@@ -306,24 +306,6 @@ interface ContactUsProp {
   secondaryArgs: SecondaryArgs;
 }
 
-interface SecondaryArgs {
-  multiSlot?: MultiSlot;
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  gcpUrl?: string;
-  bucketName?: string;
-  prelemImpressionSchema?: string;
-  clickImpressionSchema?: string;
-}
-
-interface PrelemBaseEndpoint {
-  device?: string;
-  language?: string;
-}
-
-interface MultiSlot {
-  onToggleContentGallery: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
-
 interface GallerySliderProps {
   Thumbnail: string | undefined;
   Name: string;
@@ -441,8 +423,12 @@ ImageAndVideoGallery.defaultProps = {
   },
   secondaryArgs: {
     prelemBaseEndpoint: {
-      device: "",
+      APIEndPoint: "https://dev.prelem.hcl-x.com/platform-x/v1/authoring",
+      device: "window",
+      buttonBaseUrl: "https://platx-publish-dev.fanuep.com/",
     },
+    editState: false,
+    multiSlot: {},
     gcpUrl: "https://storage.googleapis.com",
     bucketName: "cropped_image_public",
   },

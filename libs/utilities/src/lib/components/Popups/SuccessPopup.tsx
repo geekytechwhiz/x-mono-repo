@@ -21,31 +21,31 @@ export default function PlateformXDialogSuccess({
   const navigate = useNavigate();
   return (
     <>
-      <div className="deletePopupContaniner">
+      <div className='deletePopupContaniner'>
         <Dialog
           fullWidth={true}
           open={isDialogOpen}
           onClose={closeButtonHandle}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
+          aria-labelledby='alert-dialog-title'
+          aria-describedby='alert-dialog-description'
           sx={{
-            '.Platform-x-Paper-root': {
-              padding: '25px !important',
+            ".Platform-x-Paper-root": {
+              padding: "25px !important",
             },
-            '.Platform-x-Box-root': {
-              margin: '5px',
+            ".Platform-x-Box-root": {
+              margin: "5px",
             },
-            '.Platform-x-DialogContent-root': {
-              overflowY: 'hidden !important',
+            ".Platform-x-DialogContent-root": {
+              overflowY: "hidden !important",
             },
-            '.Platform-x-DialogActions-root': {
-              margin: '20px 0 0 0 !important',
+            ".Platform-x-DialogActions-root": {
+              margin: "20px 0 0 0 !important",
             },
-            '.Platform-x-Dialog-paper': {
-              maxWidth: { xs: '100%', sm: '700px', lg: '800px' },
-              width: { xs: '100%', sm: '700px', lg: '800px' },
-              margin: { xs: '0px' },
-              position: { xs: 'absolute', md: 'inherit' },
+            ".Platform-x-Dialog-paper": {
+              maxWidth: { xs: "100%", sm: "700px", lg: "800px" },
+              width: { xs: "100%", sm: "700px", lg: "800px" },
+              margin: { xs: "0px" },
+              position: { xs: "absolute", md: "inherit" },
               bottom: { xs: 0 },
               borderBottomLeftRadius: { xs: 0, md: 4 },
               borderBottomRightRadius: { xs: 0, md: 4 },
@@ -66,91 +66,84 @@ export default function PlateformXDialogSuccess({
           </Box>
           <Box
             sx={{
-              textAlign: 'center',
-              color: '#fd0c0d',
-              margin: { xs: 0, md: '71px 0 4px' },
-            }}
-          >
+              textAlign: "center",
+              color: "#fd0c0d",
+              margin: { xs: 0, md: "71px 0 4px" },
+            }}>
             <Box
               sx={{
-                width: { xs: '90px', md: '100px' },
-                height: { xs: '90px', md: '100px' },
-                margin: 'auto !important',
-              }}
-            >
-              <img src={DeleteIcon} style={{ width: '100%' }} />
+                width: { xs: "90px", md: "100px" },
+                height: { xs: "90px", md: "100px" },
+                margin: "auto !important",
+              }}>
+              <img src={DeleteIcon} style={{ width: "100%" }} />
             </Box>
           </Box>
           {title ? (
             <DialogTitle
-              id="alert-dialog-title"
-              variant="h2medium"
+              id='alert-dialog-title'
+              variant='h2medium'
               sx={{
-                textAlign: 'center',
-                padding: { xs: '0', md: '23px 0px' },
-              }}
-            >
+                textAlign: "center",
+                padding: { xs: "0", md: "23px 0px" },
+              }}>
               {title}
             </DialogTitle>
           ) : (
-            ''
+            ""
           )}
           {subTitle ? (
             <Box
               sx={{
-                textAlign: 'center',
-                padding: { xs: '10px 0', md: '10px 20px' },
+                textAlign: "center",
+                padding: { xs: "10px 0", md: "10px 20px" },
                 maxWidth: 700,
-                margin: 'auto',
-              }}
-            >
-              <Typography variant="h5regular">{subTitle}</Typography>
+                margin: "auto",
+              }}>
+              <Typography variant='h5regular'>{subTitle}</Typography>
             </Box>
           ) : (
-            ''
+            ""
           )}
 
           <DialogActions
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              margin: { xs: '10px 0', md: '61px 0 74px' },
-            }}
-          >
+              display: "flex",
+              justifyContent: "center",
+              margin: { xs: "10px 0", md: "61px 0 74px" },
+            }}>
             {closeButtonText ? (
               <Button
-                variant="outlined"
+                variant='outlined'
                 sx={{
-                  marginRight: '12px',
-                  minWidth: { xs: '158px', md: '190px' },
-                  minHeight: { xs: '40px', md: '50px' },
+                  marginRight: "12px",
+                  minWidth: { xs: "158px", md: "190px" },
+                  minHeight: { xs: "40px", md: "50px" },
                 }}
                 startIcon={<ListIcon />}
-                onClick={closeButtonHandle}
-              >
+                onClick={closeButtonHandle}>
                 {closeButtonText}
               </Button>
             ) : (
-              ''
+              ""
             )}
             {confirmButtonText ? (
               <Button
-                variant="contained"
+                variant='contained'
                 sx={{
-                  minWidth: { xs: '158px', md: '190px' },
-                  minHeight: { xs: '40px', md: '50px' },
+                  minWidth: { xs: "158px", md: "190px" },
+                  minHeight: { xs: "40px", md: "50px" },
                 }}
-                startIcon={<AddIcon />}
+                // startIcon={<AddIcon />}
                 onClick={() => {
                   closeButtonHandle();
                   confirmButtonHandle();
                 }}
-                autoFocus
-              >
+                autoFocus>
                 {confirmButtonText}
               </Button>
             ) : (
-              ''
+              ""
             )}
           </DialogActions>
         </Dialog>

@@ -10,9 +10,9 @@ export interface SecondaryArgs {
   currentPageURL?: string;
 }
 export interface PrelemBaseEndpoint {
-  PublishEndPoint?: string;
-  APIEndPoint?: string;
-  deliveryEndPoint?: string;
+  PublishEndPoint: string;
+  APIEndPoint: string;
+  deliveryEndPoint: string;
   language?: string;
   buttonBaseUrl?: string;
   device?: string;
