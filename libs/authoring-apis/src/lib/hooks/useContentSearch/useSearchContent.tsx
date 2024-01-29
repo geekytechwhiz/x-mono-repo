@@ -38,21 +38,23 @@ const useContentSearch = ({
     rows: ROW_SIZE,
   });
 
+  const variableCourse: any = { ...variables, filter: "Course", isListing: true };
+
+  // const variableCourse: any = { filter: "Course", isListing: true };
+
   const fetchQuery =
     contentType?.toLocaleLowerCase() === "course"
       ? SearchContentListQueries.FETCH_COURSE_LIST
       : SearchContentListQueries.FETCH_CONTENT_TYPE_LIST;
 
   const { loading, error, data, fetchMore, refetch } = useQuery(fetchQuery, {
-    variables,
+    variables: contentType?.toLocaleLowerCase() === "course" ? variableCourse : variables,
     fetchPolicy: "no-cache",
   });
   useEffect(() => {
-    console.log("check11", data);
     const sortedContent = sortedData(
       data?.authoring_getContentTypeItems || data?.authoring_recentContents || [],
     );
-    console.log("check12-sortedContent", sortedContent);
 
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({
@@ -63,7 +65,6 @@ const useContentSearch = ({
       dispatch(updateContentList(serializableData));
     }
   }, [data]);
-  console.log("check11-contents", contents);
 
   const fetchMoreContent = async () => {
     try {
