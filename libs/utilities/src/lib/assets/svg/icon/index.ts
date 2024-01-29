@@ -29,6 +29,8 @@ import ServiceCard2Background from "./ServiceCard2Background.svg";
 import IconCopySvg from "./Copy.svg";
 import IconFacebookSvg from "./Facebook.svg";
 import IconLinkedInSvg from "./LinkedIn.svg";
+import SearchIcon from "./SearchIcon.svg";
+// import { ReactComponent as ArticleIconComponent } from "./article.svg";
 
 export {
   MaskImg,
@@ -62,4 +64,6 @@ export {
   IconCopySvg,
   IconFacebookSvg,
   IconLinkedInSvg,
+  ArticleIconComponent,
+  SearchIcon,
 };

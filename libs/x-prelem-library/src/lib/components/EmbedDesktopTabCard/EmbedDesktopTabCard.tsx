@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
+import * as React from "react";
 
 interface ContentProp {
   content: Content;

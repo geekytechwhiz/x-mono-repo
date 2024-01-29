@@ -1014,3 +1014,11 @@ export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
     return sliderArray;
   }
 };
+export const getRelativeImageURL = (
+  gcpUrl: string,
+  bucketName: string,
+  url: string,
+  ext: string,
+) => {
+  return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
+};

@@ -389,6 +389,30 @@ Article.defaultProps = {
       ScheduleUnpublishDateTime: "",
       IsSchedulePublish: "",
     },
+    settings: {
+      keywords: ["Lionel Messi"],
+      page_caching: false,
+      page_mobile_friendly: false,
+      is_schedule_publish: false,
+      is_schedule_unpublish: false,
+      seo_title: "Manchester Dev",
+      seo_description:
+        "Manchester Dev is a technology and development conference held in the city of Manchester, England. The conference takes place annually in the month of May and b...",
+      seo_keywords: ["Lionel Messi"],
+      seo_blockIndexing: true,
+      socialog_title: "Manchester Dev",
+      socialog_description:
+        "Manchester Dev is a technology and development conference held in the city of Manchester, England. The conference takes place annually in the month of May and b...",
+      socialog_sitename: "Manchester Dev",
+      socialog_type: "article",
+      socialog_url: "https://du.hcl-x.com/en/article/manchester-dev-1705470475132",
+      socialog_image: "1704969880045/public/jpeg/Alireza-bg.jpg",
+      socialog_twitter_title: "Manchester Dev",
+      socialog_twitter_description:
+        "Manchester Dev is a technology and development conference held in the city of Manchester, England. The conference takes place annually in the month of May and b...",
+      socialog_twitter_image: "1704969880045/public/jpeg/Alireza-bg.jpg",
+      socialog_twitter_url: "https://du.hcl-x.com/en/article/manchester-dev-1705470475132",
+    },
     structure_data:
       '{"@context":"https://schema.org","@type":"Article","headline":"final create","Description":"dfasdf dsfsdaf dfsdf dfsdf ddfsdf&nbsp;","keywords":[""],"url":"final-create","image":"https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/5d50e2ba-dd05-44f8-ad2c-17148ae7b76b/content","datePublished":"2022-11-11T13:38:57.565Z","dateModified":"","author":[{"@type":"Person","name":"Platx Dev","url":"final-create"}]}',
     developed_by: "Platx Dev",

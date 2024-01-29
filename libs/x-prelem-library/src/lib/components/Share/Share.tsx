@@ -4,14 +4,14 @@ import { useTranslation } from "react-i18next";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
 import {
   nullToObject,
-  IconCopySvg,
-  IconEmbed,
-  IconFacebookSvg,
   IconLinkedInSvg,
+  IconFacebookSvg,
+  IconEmbed,
+  IconCopySvg,
 } from "@platformx/utilities";
-import ToastService from "../../components/ToastContainer/ToastService";
-import { errorRequest, linkCopy } from "../../components/ConstantData";
-import ToastContainerHandle from "../../components/ToastContainer/ToastContainerHandle";
+import ToastService from "../ToastContainer/ToastService";
+import { errorRequest, linkCopy } from "../ConstantData";
+import ToastContainerHandle from "../ToastContainer/ToastContainerHandle";
 import EmbedDialog from "../EmbededModal/EmbededModal";
 
 type Sharetype = {
@@ -26,7 +26,7 @@ type Sharetype = {
 const Share = (props: Sharetype) => {
   const theme = useTheme();
   const { shareUrl = "", domainUrl = "", enablePreview } = nullToObject(props);
-
+  // const ShareCount = (shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>;
   /**
    * back ground color will change based on their own brand based
    * @param bgColor string default black
@@ -131,6 +131,7 @@ const Share = (props: Sharetype) => {
             style={{ ...imgCommon() }}
           />
           {(shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>}
+          {/* <ShareCount /> */}
         </Box>
       </FacebookShareButton>
 
