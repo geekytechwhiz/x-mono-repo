@@ -7,10 +7,8 @@ import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 import {
   BasicSwitch,
-  TextBox,
   ShowToastSuccess,
   useUserSession,
-  PlateformXDialog,
   Loader,
   PictureIcon,
   PlateformXDialogSuccess,
@@ -20,15 +18,15 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
 import { userMediaHanleStyle } from "./MediaHandle.style";
-import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import { DamContentGallery } from "@platformx/x-image-render";
 import CustomTextBox from "../../components/CustomTextBox";
+import { usePostImageCrop } from "libs/x-image-render/src/lib/hooks/usePostImageCrop";
 
 export const MediaHandle: React.FC = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
-  const galleryType = useRef<string>("Images");
+  const { postRequest } = usePostImageCrop();
   const currentMediaHandleIndex = useRef<number | null>(null);
   const [galleryState, setGalleryState] = useState<boolean>(false);
-  const [key, setKey] = useState<string>("");
   const toastMessage = useRef<string | null>(null);
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -54,17 +52,21 @@ export const MediaHandle: React.FC = () => {
     }));
   const [form, setForm] = useState<FormItem[]>([]);
 
-  const handleSelectedImage = async (image, keyName) => {
+  const noCropCallBack = (data) => {
+    const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
+    const cloneForm = [...form];
+    cloneForm[currentMediaHandleIndex.current!].icon_image = relativeUrl;
+    setForm([...cloneForm]);
+  };
+
+  const handleSelectedImage = async (image) => {
     try {
       const payload = {
         bitstreamId: image.bitStreamId,
         visibility: "public",
       };
-      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
-      // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
-      // const cloneForm = [...form];
-      // cloneForm[currentMediaHandleIndex.current].icon_image = relativeUrl;
-      // setForm([...cloneForm]);
+
+      await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack);
     } catch (error) {
       // showToastError(t("api_error_toast"));
     }
@@ -95,12 +97,6 @@ export const MediaHandle: React.FC = () => {
 
   const fetchMediaHandleData = async () => {
     try {
-      // const { authoring_getMediaHandle: { mediahandle = [] } = {} } = await fetchMediaHandle({
-      //   pagePath: "social-media-item",
-      // });
-
-      // const formData = initForm(mediahandle);
-      // setForm(formData);
       const { authoring_getMediaHandle: { mediahandle = [] } = {} } = await fetchMediaHandle({
         pagePath: "social-media-item",
       });
@@ -109,16 +105,6 @@ export const MediaHandle: React.FC = () => {
     } catch (error) {
       // Handle errors
     }
-  };
-
-  const updateField = (updatedPartialObj) => {
-    console.info("final data", updatedPartialObj);
-    const modifiedData = {
-      // ...JSON.parse(JSON.stringify(state)),
-      ...updatedPartialObj,
-    };
-    console.info("modified data", modifiedData);
-    // setState(modifiedData);
   };
 
   const publishmediaHandle = () => {
@@ -184,6 +170,7 @@ export const MediaHandle: React.FC = () => {
   useEffect(() => {
     fetchMediaHandleData();
   }, []);
+
   const classes = userMediaHanleStyle();
   return (
     <>
@@ -299,7 +286,7 @@ export const MediaHandle: React.FC = () => {
           handleImageSelected={handleSelectedImage}
           toggleGallery={toggleGallery}
           assetType='Image'
-          keyName={key}
+          keyName=''
           dialogOpen={galleryState}
         />
       )}
