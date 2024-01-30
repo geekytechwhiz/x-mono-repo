@@ -1014,10 +1014,8 @@ export const CreateQuiz = () => {
                 <TitleDescription
                   state={quizState}
                   setState={setQuizState}
-                  setSaveButton={setSaveButton}
                   unsavedChanges={unsavedChanges}
                   quizRef={quizRef}
-                  isDraft={isDraft}
                   setFieldChanges={setFieldChanges}
                 />
                 <ImageVideo

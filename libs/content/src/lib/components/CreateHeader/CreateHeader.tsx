@@ -154,7 +154,6 @@ export const CreateHeader = ({
         {
           // enableReferBack(workflow) ||
           comments?.length > 0 ? (
-            // <Badge badgeContent={comments?.length} color='info'>
             <Box sx={{ position: "relative" }} className={classes.buttonWrapper}>
               <span
                 color='error'
@@ -183,17 +182,15 @@ export const CreateHeader = ({
                 }></Button>
             </Box>
           ) : (
-            // </Badge>
             enableReferBack(workflow) && (
               <Box className={classes.buttonWrapper}>
                 <Button
                   aria-label='chat'
                   onClick={handleReview}
                   className='iconBtn'
-                  startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                  {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-                  {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-                </Button>
+                  startIcon={
+                    <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                  }></Button>
               </Box>
             )
           )
