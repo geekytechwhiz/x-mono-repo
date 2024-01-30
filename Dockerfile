@@ -27,5 +27,5 @@ RUN npm install -g @nrwl/nx
 RUN npm install --legacy-peer-deps
 # start app
 RUN npx nx build authoring-web
-# EXPOSE 3000
-# CMD npm run start
+EXPOSE 3000
+CMD npm run start
