@@ -84,8 +84,6 @@ export const CreateQuiz = () => {
   const [, setIsSideMenuOpen] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [isQuiz] = useState(true);
-  const [galleryState, setGalleryState] = useState<boolean>(false);
-  const galleryType = useRef<string>("Images");
   const [openAddQuestion, setOpenAddQuestion] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState("");
   const [isClickedQueList, setIsClickedQueList] = useState(false);
@@ -93,23 +91,10 @@ export const CreateQuiz = () => {
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState({
-    Thumbnail: "",
-    title: "",
-    description: "",
-  });
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
-  const [selectedVideo, setSelectedVideo] = useState({
-    Thumbnail: "",
-    title: "",
-    description: "",
-    Url: "",
-  });
   const [workflow, setWorkflow] = useState({});
   const [tagData, setTagData] = useState<any>({});
   const [tagArr, setTagArr] = useState<any>([]);
-  const [key, setKey] = useState("");
-  const [answerId, setAnswerId] = useState("");
   const [parentToolTip, setParentToolTip] = useState("");
   const [, setFieldChanges] = useState();
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
@@ -566,8 +551,6 @@ export const CreateQuiz = () => {
           isFeatured,
         );
         await handleQuizCreation(resp, "PUBLISHED", false, false);
-
-        // createQuiz("PUBLISHED", false, false);
       } else {
         updateQUIZ("PUBLISHED", false);
       }
@@ -579,50 +562,10 @@ export const CreateQuiz = () => {
     }
   }, [timerState]);
 
-  const handleSelectedVideo = (video) => {
-    setSelectedVideo(video);
-    setQuizState({
-      ...quizState,
-      title: video?.title,
-      description: video?.description,
-      imagevideoURL: video?.imagevideoURL,
-      thumbnailURL: video?.thumbnailURL,
-    });
-  };
-  const setImageOrVideoToDefault = () => {
-    setSelectedImage({
-      title: "",
-      Thumbnail: "",
-      description: "",
-    });
-    setSelectedVideo({
-      title: "",
-      Thumbnail: "",
-      description: "",
-      Url: "",
-    });
-  };
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
-    if (type === "cancel") {
-      setImageOrVideoToDefault();
-    }
-  };
-  const showGallery = (gType, keyName, id?: any) => {
-    window.scrollTo(0, 0);
-    galleryType.current = gType;
-    setGalleryState(true);
-    setKey(keyName);
-    if (id) {
-      setAnswerId(id);
-    }
-  };
   const returnBack = () => {
     if (unsavedChanges.current === true) {
       setShowExitWarning(true);
     } else {
-      // dispatch(previewContent({}));
-      // navigate(-1);
       navigate("/content/quiz");
     }
   };
@@ -1049,7 +992,7 @@ export const CreateQuiz = () => {
               overflowX: "hidden",
             }}
             id='scrollableDiv'>
-            {!isClickedQueList && !galleryState && !enableWorkflowHistory && (
+            {!isClickedQueList && !enableWorkflowHistory && (
               <Box
                 sx={{
                   position: "fixed",

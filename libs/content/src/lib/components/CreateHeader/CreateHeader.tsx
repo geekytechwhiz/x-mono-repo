@@ -178,11 +178,9 @@ export const CreateHeader = ({
                 aria-label='chat'
                 onClick={handleReview}
                 className='iconBtn'
-                startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-
-                {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-              </Button>
+                startIcon={
+                  <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                }></Button>
             </Box>
           ) : (
             // </Badge>

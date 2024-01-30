@@ -37,17 +37,17 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
   const [showCropPreview, setShowCropPreview] = useState(false);
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
 
-  const autoCropCallBack = (data) => {
-    if (data) {
+  const autoCropCallBack = (dat, img) => {
+    if (dat) {
       const {
         images = [],
         ext,
         original_image_relative_path = "",
         visibility = "",
         bitstream_id,
-      } = nullToObject(data);
+      } = nullToObject(dat);
       if (images?.length > 0) {
-        const data = {
+        const retdata = {
           published_images: images,
           original_image: {
             original_image_relative_path,
@@ -55,13 +55,16 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
             auto: true,
             ext: ext,
             visibility,
+            Thumbnail: img?.Thumbnail,
+            Title: img?.title,
           },
+          selected_image: img,
         };
-        setReturnData(data);
+        setReturnData(retdata);
         setProcessing(false);
         setGalleryDialogOpen(false);
         ShowToastSuccess(`${t("auto_cropped_successfully")}`);
-        callBack(data);
+        callBack(retdata);
       } else {
         setProcessing(false);
         setGalleryDialogOpen(false);
@@ -78,13 +81,13 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
       bitstreamId: selectedImg.bitStreamId,
       visibility: "public",
     };
-    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack);
+    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack, selectedImg);
   };
 
-  const noCropCallBack = (data) => {
+  const noCropCallBack = (data, img) => {
     const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
     setReturnData({ relativeUrl: relativeUrl });
-    callBack({ relativeUrl: relativeUrl });
+    callBack({ relativeUrl: relativeUrl, selected_img: img });
   };
 
   const noCropFunc = async (image) => {
@@ -92,10 +95,10 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
       bitstreamId: image.bitStreamId,
       visibility: "public",
     };
-    await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack);
+    await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack, image);
   };
 
-  const handleSelectedImage = async (image) => {
+  const handleSelectedImage = (image) => {
     setSelectedImage(image);
     if (isCrop) {
       autoCropFunc(image);
@@ -137,8 +140,9 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
     original_image_relative_path = "",
     visibility = "",
     bitstream_id = "",
+    img: any = {},
   ) => {
-    if (cropImages.length > 0) {
+    if (cropImages && cropImages.length > 0) {
       const data = {
         published_images: cropImages,
         original_image: {
@@ -147,7 +151,10 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
           auto: false,
           ext: ext,
           visibility,
+          Thumbnail: img?.Thumbnail,
+          Title: img?.title,
         },
+        selected_image: img,
       };
       setReturnData(data);
       callBack(data);
@@ -165,8 +172,15 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
   };
 
   useEffect(() => {
-    if (JSON.stringify(data) !== JSON.stringify(returnData)) {
+    if (data && JSON.stringify(data) !== JSON.stringify(returnData)) {
       setReturnData(data);
+      console.warn("data", data, returnData);
+      setSelectedImage({
+        Thumbnail: data?.original_image?.Thumbnail,
+        title: "",
+        description: "",
+        bitStreamId: data?.original_image?.bitStreamId,
+      });
     }
   }, [data]);
   return (

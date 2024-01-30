@@ -17,11 +17,14 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
       ...updatedPartialObj,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
     };
     setState(modifiedData);
     quizRef.current = {
       ...quizRef.current,
+      ...updatedPartialObj,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
     };
     unsavedChanges.current = true;
