@@ -48,6 +48,8 @@ export const useCustomStyle = makeStyles(() => {
               margin: 0,
               position: "relative",
               maxWidth: "500px",
+              visibility: "visible !important",
+              transform: "none !important",
               [theme.breakpoints.down("sm")]: {
                 width: "100%",
                 height: "330px",

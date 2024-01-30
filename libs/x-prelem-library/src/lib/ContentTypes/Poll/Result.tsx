@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SingleQuestionResultCard from "./SingleQuestionResultCard";
 import ImageQuestion from "./ImageQuestion";
-import CloseIcon from "../../assets/svgIcon/Cross.svg";
+import { CloseIcon } from "@platformx/utilities";
 import PollContext from "./PollContext";
 import { useTranslation } from "react-i18next";
 

@@ -5,7 +5,7 @@ import { default as React, Suspense, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { nullToObject } from "@platformx/utilities";
-// import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
+import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
 import Share from "../../components/Share/Share";
 import { useCustomStyle } from "./videoLandingPage.style";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
@@ -15,6 +15,167 @@ import "../../utils/service/i18n";
 const BrightcovePlayer: any = React.lazy(
   () => import("../../components/BrightcovePlayer/BrightcovePlayer"),
 );
+const latestVODs = [
+  {
+    Page: "dev-test",
+    Title: "Dev Test",
+    Description: "Test test desc",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/bcabb215-976a-4652-b975-44a10c48578c/content",
+    CurrentPageURL: "/dev-test",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/62fc08be-da77-49d7-956e-a2e66ce5dccf/content",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T12:04:02Z",
+    lastModifiedDate: "2022-11-30T12:04:02Z",
+    Author: "Medha",
+  },
+  {
+    Page: "-focus-on-filip-kosti-juven-1669806720189",
+    Title: "🇷🇸-focus-on-filip-kostić-juven",
+    Description: "Test",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/bcabb215-976a-4652-b975-44a10c48578c/content",
+    CurrentPageURL: "/-focus-on-filip-kosti-juven-1669806720189",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/62fc08be-da77-49d7-956e-a2e66ce5dccf/content",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T11:30:50Z",
+    lastModifiedDate: "2022-11-30T11:30:50Z",
+    Author: "Medha",
+  },
+  {
+    Page: "dsdfsdfdf",
+    Title: "Xerox-wall-28-July-22",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/fb1d25ee-4124-49c9-a817-64c5dd946fd9/content",
+    CurrentPageURL: "/dsdfsdfdf",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/94fab19b-d708-4cb9-9523-2efb03b4fb6a/content",
+    Page_LastModifiedBy: "Medha",
+    Page_PublishedBy: "undefined",
+    PublishedDate: "2022-11-30T10:49:30Z",
+    lastModifiedDate: "2022-11-30T10:49:30Z",
+    Author: "Medha",
+  },
+  {
+    Page: "xerox-wall-28-july-22",
+    Title: "draft3",
+    Description: "Test desc",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/fb1d25ee-4124-49c9-a817-64c5dd946fd9/content",
+    CurrentPageURL: "/xerox-wall-28-july-22",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/94fab19b-d708-4cb9-9523-2efb03b4fb6a/content",
+    Page_LastModifiedBy: "Medha",
+    Page_PublishedBy: "undefined",
+    PublishedDate: "2022-11-30T10:49:01Z",
+    lastModifiedDate: "2022-11-30T10:49:01Z",
+    Author: "Medha",
+  },
+  {
+    Page: "-focus-on-filip-kosti-juven",
+    Title: "🇷🇸-focus-on-filip-kostić-juven",
+    Description: "gulshan",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/8c112c4b-3f7b-4a92-bd83-da5fe4f96981/content",
+    CurrentPageURL: "/-focus-on-filip-kosti-juven",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/62fc08be-da77-49d7-956e-a2e66ce5dccf/content",
+    Page_LastModifiedBy: "Medha",
+    Page_PublishedBy: "undefined",
+    PublishedDate: "2022-11-30T10:26:39Z",
+    lastModifiedDate: "2022-11-30T10:26:39Z",
+    Author: "Medha",
+  },
+  {
+    Page: "-focus-on-filip-kosti-juven-1669801970763",
+    Title: "🇷🇸-focus-on-filip-kostić-juven",
+    Description: "test",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/8c112c4b-3f7b-4a92-bd83-da5fe4f96981/content",
+    CurrentPageURL: "/-focus-on-filip-kosti-juven-1669801970763",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/62fc08be-da77-49d7-956e-a2e66ce5dccf/content",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T09:54:53Z",
+    lastModifiedDate: "2022-11-30T09:54:53Z",
+    Author: "Medha",
+  },
+  {
+    Page: "fddf",
+    Title: "fghfghfgh",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/fb1d25ee-4124-49c9-a817-64c5dd946fd9/content",
+    CurrentPageURL: "/fddf",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/94fab19b-d708-4cb9-9523-2efb03b4fb6a/content",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T09:42:13Z",
+    lastModifiedDate: "2022-11-30T09:42:13Z",
+    Author: "Medha",
+  },
+  {
+    Page: "ghhh",
+    Title: "ghhhTesting",
+    TagName: "VOD",
+    CurrentPageURL: "/ghhh",
+    ParentPageURL: "/",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T09:16:44Z",
+    lastModifiedDate: "2022-11-30T09:16:44Z",
+    Author: "Medha Gupta",
+  },
+  {
+    Page: "two-goals-from-kean-and-milik-makes-it-three",
+    Title: "two-goals-from-kean-and-milik-makes-it-three",
+    Description: "test",
+    TagName: "VOD",
+    Thumbnail:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/88fe51f2-6607-475e-b7f0-3411875fc9f3/content",
+    CurrentPageURL: "/two-goals-from-kean-and-milik-makes-it-three",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/15582b46-27fe-4596-b0e5-e3db9e8f7979/content",
+    Page_LastModifiedBy: "Medha",
+    PublishedDate: "2022-11-30T09:13:10Z",
+    lastModifiedDate: "2022-11-30T09:13:10Z",
+    Author: "Medha",
+  },
+  {
+    Page: "test-vod3",
+    Title: "Vod Publish 24 Nov test ^^^^^^^^ &&& ",
+    Description: "its time .",
+    TagName: "VOD",
+    Thumbnail:
+      "https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png",
+    CurrentPageURL: "/test-vod3",
+    ParentPageURL: "/",
+    DsapceVideoUrl:
+      "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/222ba388-4da7-456a-9957-fd5a13c93c86/content",
+    Poster:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHw%3D&w=1000&q=80",
+    ShortDescription: "wfwewefew",
+    Page_PublishedBy: "t",
+    PublishedDate: "2022-11-30T07:18:42Z",
+    lastModifiedDate: "2022-11-30T07:18:42Z",
+    Author: "t",
+  },
+];
 
 const VideoLandingPage = (props: any) => {
   const { content, analytics, authoringHelper = {}, secondaryArgs = {} } = nullToObject(props);
@@ -276,7 +437,7 @@ const VideoLandingPage = (props: any) => {
                   margin: { xs: "0 -3%", md: "0" },
                   padding: { xs: "20px 5%", md: "0" },
                 }}>
-                {/* {!isAuthoring && content?.LatestVods?.length > 0 && (
+                {!isAuthoring && content?.LatestVods?.length > 0 && (
                   <RecentCarousel
                     data={isAuthoring ? latestVODs : content?.LatestVods}
                     isVideoLandingPage={true}
@@ -284,7 +445,7 @@ const VideoLandingPage = (props: any) => {
                       isAuthoring ? { ...secondaryArgs, platform: "isAuthoring" } : secondaryArgs
                     }
                   />
-                )} */}
+                )}
               </Box>
             </Card>
           </Grid>

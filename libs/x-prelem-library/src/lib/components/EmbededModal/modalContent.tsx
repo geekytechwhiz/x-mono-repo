@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Box, Button, Grid, useTheme, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import EmbedDesktopTabCard from "../EmbedDesktopTabCard/EmbedDesktopTabCard";
 import { useTranslation } from "react-i18next";
-import SkeltonLoader from "../Skeleton/Skeleton";
+import SkeltonLoader from "../Skeleton/skeleton";
 
 const CardContent = ({ selectedItem }: any) => {
   const [copyStatus, setICopyStatus] = useState<boolean>(false);
@@ -30,7 +30,6 @@ const CardContent = ({ selectedItem }: any) => {
     navigator.clipboard.writeText(code);
     setICopyStatus(true);
   };
-  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -158,32 +157,22 @@ const CardContent = ({ selectedItem }: any) => {
                     flexDirection: "row-reverse",
                   }}>
                   <Button
-                    variant='secondaryButton1'
+                    variant='primaryButton1'
                     sx={{
                       display: { xs: "none", md: "flex" },
                       margin: "0",
                       padding: "0",
-                      background: theme.palette.textColor1,
-                      color: theme.palette.textColor,
-                      "&:hover": {
-                        background: theme.palette.textColor1,
-                      },
                     }}
                     onClick={() => copyEmbededCode(desktopEmbededCode)}>
                     {copyStatus ? t("copied") : t("copy_code")}
                   </Button>
                   <Button
-                    variant='secondaryButton1'
+                    variant='primaryButton1'
                     sx={{
                       padding: "0",
                       minWidth: { xs: "100%" },
                       display: { xs: "flex", md: "none" },
                       margin: { xs: "20px 0 0 0", md: 0 },
-                      background: theme.palette.textColor1,
-                      color: theme.palette.textColor,
-                      "&:hover": {
-                        background: theme.palette.textColor1,
-                      },
                     }}
                     onClick={() => copyEmbededCode(mobileEmbededCode)}>
                     {copyStatus ? t("copied") : t("copy_code")}

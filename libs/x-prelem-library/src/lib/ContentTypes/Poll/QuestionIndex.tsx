@@ -3,38 +3,12 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ExitModal from "../../components/ExitModal";
-import { LoaderGif, CloseIcon } from "@platformx/utilities";
+import { LoaderGif, CloseIcon, Analytics } from "@platformx/utilities";
 import ImageQuestion from "./ImageQuestion";
 import PollContext from "./PollContext";
 import SingleQuestion from "./SingleQuestion";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-interface SecondaryArgs {
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  gcpUrl: string;
-  bucketName: string;
-}
-interface PrelemBaseEndpoint {
-  PublishEndPoint?: string;
-  language?: string;
-  buttonBaseUrl?: ButtonBaseUrl;
-}
-interface ButtonBaseUrl {
-  buttonBaseUrl?: string;
-}
 interface QuestionIndexProps {
   data: {
     is_image_option: boolean;
@@ -56,7 +30,7 @@ interface QuestionIndexProps {
   showLoading: boolean;
   enablePreview: boolean;
   fetchCroppedUrl: (a: string, b: [], c: {}, d: {}) => string;
-  secondaryArgs: SecondaryArgs;
+  secondaryArgs: any;
 }
 
 const QuestionIndex = ({

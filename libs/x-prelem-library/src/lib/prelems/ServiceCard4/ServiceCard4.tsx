@@ -21,10 +21,7 @@ const ServiceCard4 = ({
   secondaryArgs,
 }: ServiceCard4Props) => {
   const [activeSlide, setActiveSlide] = useState(1);
-
   const firstRender = useRef(true);
-  const totalLenth = content?.Slots?.length ? content?.Slots?.length : 0;
-  const refs = Array.from({ length: totalLenth }, () => useRef());
   const { inView, ref } = useInView({
     threshold: 0,
   });
@@ -51,7 +48,7 @@ const ServiceCard4 = ({
   };
 
   const windowSettings = {
-    dots: true,
+    dots: false,
     arrow: true,
     infinite: true,
     speed: 500,
@@ -162,53 +159,22 @@ const ServiceCard4 = ({
             <Slider {...windowSettings}>
               {content?.Slots?.map((item, index) => {
                 return (
-                  <Box key={index} ref={refs[index]}>
+                  <Box key={index}>
                     <Box className='slider-wrapper'>
                       <Box className='contentWrapper'>
-                        <Slide
-                          direction='left'
-                          in={true}
-                          // in={
-                          //   secondaryArgs?.editState
-                          //     ? true
-                          //     : inView && refs[index].current === document.activeElement
-                          // }
-                          timeout={1500}>
+                        <Slide direction='left' in={true} timeout={1500}>
                           <Typography variant='h1semibold'>{item?.Title}</Typography>
                         </Slide>
-                        <Slide
-                          direction='right'
-                          in={true}
-                          // in={
-                          //   secondaryArgs?.editState
-                          //     ? true
-                          //     : inView && refs[index].current === document.activeElement
-                          // }
-                          timeout={1500}>
+                        <Slide direction='right' in={true} timeout={1500}>
                           <Typography variant='h3semibold'>{item?.Title}</Typography>
                         </Slide>
-                        <Slide
-                          direction='right'
-                          in={true}
-                          // in={
-                          //   secondaryArgs?.editState
-                          //     ? true
-                          //     : inView && refs[index].current === document.activeElement
-                          // }
-                          timeout={1800}>
+                        <Slide direction='right' in={true} timeout={1800}>
                           <Typography variant='p3regular' id='Description'>
                             {item?.Description}
                           </Typography>
                         </Slide>
                       </Box>
-                      <Slide
-                        direction='left'
-                        // in={
-                        //   secondaryArgs?.editState
-                        //     ? true
-                        //     : inView && refs[index].current === document.activeElement
-                        // }
-                        timeout={1500}>
+                      <Slide direction='left' in={true} timeout={1500}>
                         <Box className='imageWrapper' id='Image'>
                           <img alt='card4' src={item?.Image_1?.Url} />
                         </Box>
@@ -281,7 +247,7 @@ ServiceCard4.defaultProps = {
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         Image_1: {
           Name: "HomeBanner",
-          Url: "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/59c70c5b-4f61-4673-aabd-bda3dd6e1faf/content",
+          Url: "https://cdn.zeplin.io/60c3203b05dcf9bca374c4c0/assets/6CCB6664-1DD8-4FA9-BE57-251EB1752516.png",
           Title: "HomeBanner",
           Description: "This is for HeroBanner",
           AltText: "HomeBanner",
@@ -293,7 +259,7 @@ ServiceCard4.defaultProps = {
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         Image_1: {
           Name: "HomeBanner",
-          Url: "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/59c70c5b-4f61-4673-aabd-bda3dd6e1faf/content",
+          Url: "https://cdn.zeplin.io/60c3203b05dcf9bca374c4c0/assets/6CCB6664-1DD8-4FA9-BE57-251EB1752516.png",
           Title: "HomeBanner",
           Description: "This is for HeroBanner",
           AltText: "HomeBanner",
@@ -305,7 +271,7 @@ ServiceCard4.defaultProps = {
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         Image_1: {
           Name: "HomeBanner",
-          Url: "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/59c70c5b-4f61-4673-aabd-bda3dd6e1faf/content",
+          Url: "https://cdn.zeplin.io/60c3203b05dcf9bca374c4c0/assets/6CCB6664-1DD8-4FA9-BE57-251EB1752516.png",
           Title: "HomeBanner",
           Description: "This is for HeroBanner",
           AltText: "HomeBanner",
