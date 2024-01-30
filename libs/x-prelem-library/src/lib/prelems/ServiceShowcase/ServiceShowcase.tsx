@@ -8,7 +8,7 @@ import BasicButton from "../../components/BasicButton/BasicButton";
 import { useCustomStyle } from "./ServiceShowcase.style";
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
-import { Analytics, AuthoringHelper } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 
 // ts-ignore
 const ServiceShowcase = ({
@@ -277,8 +277,7 @@ interface ServiceShowcaseProp {
   content: Content;
   analytics: Analytics;
   authoringHelper: AuthoringHelper;
-  // secondaryArgs: SecondaryArgs;
-  secondaryArgs: any;
+  secondaryArgs: SecondaryArgs;
 }
 interface Content {
   Title_1?: string;
@@ -473,6 +472,7 @@ ServiceShowcase.defaultProps = {
     prelemBaseEndpoint: {
       APIEndPoint: "https://platx-api-dev.fanuep.com/platform-x/",
       device: "window",
+      PublishEndPoint: "",
     },
     editState: false,
     multiSlot: {},
