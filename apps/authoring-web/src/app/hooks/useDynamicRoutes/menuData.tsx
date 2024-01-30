@@ -115,14 +115,14 @@ export const MenuData = [
         category: "dashboard",
         subCategory: "",
       },
-      {
-        MenuName: "Prelem",
-        Icon: MyDashboardIcon,
-        url: "/prelem",
-        id: "prelem",
-        category: "dashboard",
-        subCategory: "",
-      },
+      // {
+      //   MenuName: "Prelem",
+      //   Icon: MyDashboardIcon,
+      //   url: "/prelem",
+      //   id: "prelem",
+      //   category: "dashboard",
+      //   subCategory: "",
+      // },
     ],
   },
   {

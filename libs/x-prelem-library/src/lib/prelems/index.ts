@@ -75,6 +75,9 @@ import ContactUs from "./ContactUs/ContactUs";
 import ProductSummaryViaVideo from "./ProductSummaryViaVideo/ProductSummaryViaVideo";
 import ServiceCard4 from "./ServiceCard4/ServiceCard4";
 import VideoLandingPage from "../ContentTypes/VideoLandingPage/VideoLandingPage";
+import Article from "../ContentTypes/Article/Article";
+import EventLandingPage from "../ContentTypes/EventLandingPage/EventLandingPage";
+import Blogs from "../ContentTypes/Blogs/Blogs";
 
 export {
   ContactUsForm,
@@ -153,4 +156,7 @@ export {
   ProductSummaryViaVideo,
   ServiceCard4,
   VideoLandingPage,
+  Article,
+  EventLandingPage,
+  Blogs,
 };

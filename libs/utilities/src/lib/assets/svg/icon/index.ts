@@ -31,9 +31,9 @@ import IconFacebookSvg from "./Facebook.svg";
 import IconLinkedInSvg from "./LinkedIn.svg";
 import CloseIcon from "./Cross.svg";
 import SearchIcon from "./SearchIcon.svg";
-import { ReactComponent as ArticleIconComponent } from "./article.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
 import PopupDeleteIcon from "./errorPopupIcon.svg";
+import { ReactComponent as ArticleIconComponent } from "./cardArticleIcon.svg";
 
 export {
   MaskImg,
