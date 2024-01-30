@@ -149,29 +149,16 @@ export const ArticleDetails = ({
                       </Box>
                     </Box>
                   )}
-                  {/* <Box
-                    onMouseEnter={() => ifBanner() && setOnHover(true)}
-                    className={classes.imgUploadBox}
-                    sx={{ overflow: "hidden" }}>
-                    <XImageRender
-                      callBack={updateImageField}
-                      data={{
-                        original_image: state?.ObjectFields?.original_image,
-                        published_images: state?.ObjectFields?.published_images,
-                      }}
-                    />
-                  </Box> */}
                   <Box sx={{ paddingLeft: "14px" }}>
-                    {/* <CommentWrapper
-                  elementId='1'
-                  scrollRef={scrollToRef}
-                  comments={comments}
-                  workflow={workflow}
-                > */}
-                    <Typography variant='h7medium'>
-                      {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
-                    </Typography>
-                    {/* </CommentWrapper> */}
+                    <CommentWrapper
+                      elementId='1'
+                      scrollRef={scrollToRef}
+                      // comments={comments}
+                      workflow={workflow}>
+                      <Typography variant='h7medium'>
+                        {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
+                      </Typography>
+                    </CommentWrapper>
                   </Box>
                   {state?.ObjectFields?.published_images.length > 0 && (
                     <Box onClick={handleClearImage} className={classes.closeIconStyle}>

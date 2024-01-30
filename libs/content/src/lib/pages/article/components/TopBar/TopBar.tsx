@@ -3,7 +3,6 @@ import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
-import { useComment } from "@platformx/authoring-apis";
 import {
   DefaultStateCommentIcon,
   ErrorTooltip,
@@ -18,11 +17,13 @@ import {
   useAccess,
   workflowKeys,
 } from "@platformx/utilities";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 // import { ToolTip } from "../../../components/Common/ToolTip";
 // import WorkflowAssignee from "../../../components/WorkflowAssignee/Index";
+import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
+import { useDispatch, useSelector } from "react-redux";
 import "../../CreateArticle.css";
 import { useStyles } from "../../CreateArticle.styles";
 import PublishSocialShare from "../PublishSocialShare/PublishSocialShare";
@@ -58,24 +59,25 @@ const TopBar = ({
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const { canAccessAction } = useAccess();
-  // const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } = useComment();
-  const { comments } = useComment();
   const [approvalStatus, setApprovalStatus] = useState(false);
+  const dispatch = useDispatch();
+  const { commentInfo } = useSelector((states: RootState) => states.comment);
+  const { comments, isReviewEnabled } = commentInfo;
   const handleReview = () => {
-    // setIsReviewEnabled(!isReviewEnabled);
-    // if (comments?.length > 0) {
-    // setIsCommentPanelOpen(true);
-    //}
+    dispatch(setIsReviewEnabled(!isReviewEnabled));
+    dispatch(setIsCommentPanelOpen(true));
   };
-  // useEffect(() => {
-  //   if (enableReferBack(workflow) || comments?.length > 0) {
-  //     // setIsReviewEnabled(true);
-  //   } else {
-  //     // setIsReviewEnabled(false);
-  //   }
-  // }, [isReviewEnabled, workflow, comments]);
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    if (enableReferBack(workflow) || comments?.length > 0) {
+      dispatch(setIsReviewEnabled(true));
+    } else {
+      dispatch(setIsReviewEnabled(false));
+    }
+  }, [isReviewEnabled, workflow, comments]);
+
   return (
     <>
       <Box className='createarticletophead'>
@@ -116,51 +118,43 @@ const TopBar = ({
               enableWorkflowHistory={setEnableWorkflowHistory}
               workflow_status={workflow.workflow_status}
             />
-
-            {
-              //enableReferBack(workflow) ||
-              comments?.length > 0 ? (
-                // <Badge badgeContent={comments?.length} color='info'>
-                <Box sx={{ position: "relative" }} className={classes.buttonWrapper}>
-                  <span
-                    color='error'
-                    style={{
-                      display: "inline-block",
-                      marginLeft: " 5px",
-                      marginRight: "5px",
-                      marginBottom: "-2px",
-                      borderRadius: "50%",
-                      position: "absolute",
-                      top: "7px",
-                      right: "3px",
-                      zIndex: 9,
-                      height: "8px",
-                      width: "8px",
-                      backgroundColor: "#D32F2F",
-                    }}></span>
+            {comments?.length > 0 ? (
+              <Box sx={{ position: "relative" }} className={classes.buttonWrapper}>
+                <span
+                  color='error'
+                  style={{
+                    display: "inline-block",
+                    marginLeft: " 5px",
+                    marginRight: "5px",
+                    marginBottom: "-2px",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: "7px",
+                    right: "3px",
+                    zIndex: 9,
+                    height: "8px",
+                    width: "8px",
+                    backgroundColor: "#D32F2F",
+                  }}></span>
+                <Button
+                  className='iconBtn'
+                  onClick={handleReview}
+                  startIcon={
+                    <img src={DefaultStateCommentIcon} style={{ width: "20px" }} alt='img' />
+                  }></Button>
+              </Box>
+            ) : (
+              enableReferBack(workflow) && (
+                <Box className={classes.buttonWrapper}>
                   <Button
                     className='iconBtn'
                     onClick={handleReview}
                     startIcon={
                       <img src={DefaultStateCommentIcon} style={{ width: "20px" }} alt='img' />
-                    }>
-                    {/* <DefaultStateCommentIcon /> */}
-                  </Button>
+                    }></Button>
                 </Box>
-              ) : (
-                // </Badge>
-                enableReferBack(workflow) && (
-                  <Box className={classes.buttonWrapper}>
-                    <Button
-                      className='iconBtn'
-                      onClick={handleReview}
-                      startIcon={
-                        <img src={DefaultStateCommentIcon} style={{ width: "20px" }} alt='img' />
-                      }></Button>
-                  </Box>
-                )
               )
-            }
+            )}
             {timerState && <Timer lastmodifiedDate={lastmodifiedDate} />}
 
             <ToolTip
@@ -273,7 +267,6 @@ const TopBar = ({
                   }></Button>
               </Box>
             ) : (
-              // </Badge>
               enableReferBack(workflow) && (
                 <Box className={classes.buttonWrapper}>
                   <Button
