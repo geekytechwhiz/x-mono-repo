@@ -4,6 +4,7 @@ import { updateContentList } from "@platformx/authoring-state";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
+import { SearchCourseListQueries } from "../../graphQL/queries/courseQueries";
 import { sortedData } from "../../utils/helper";
 import { mapFetchALL } from "../useContentListing/mapper";
 
@@ -44,7 +45,7 @@ const useContentSearch = ({
 
   const fetchQuery =
     contentType?.toLocaleLowerCase() === "course"
-      ? SearchContentListQueries.FETCH_COURSE_LIST
+      ? SearchCourseListQueries.FETCH_COURSE_LIST
       : SearchContentListQueries.FETCH_CONTENT_TYPE_LIST;
 
   const { loading, error, data, fetchMore, refetch } = useQuery(fetchQuery, {
