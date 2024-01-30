@@ -1,3 +1,6 @@
+/* eslint-disable require-atomic-updates */
+/* eslint-disable no-debugger */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
@@ -5,17 +8,32 @@ import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import Loader from "../../Common/Loader";
 import {
-  showToastError,
-  showToastSuccess,
-} from "../../components/toastNotification/toastNotificationReactTostify";
-import { useCommentContext } from "../../context/CommentsContext/CommentsContext";
-import useUserSession from "../../hooks/useUserSession/useUserSession";
-import useWorkflow from "../../hooks/useWorkflow/useWorkflow";
-import commentsApi from "../../services/comments/comments.api";
-import { fetchTagList } from "../../services/common/tags.aps";
-import { postRequest } from "../../services/config/request";
+  FETCH_TAG_LIST,
+  commentsApi,
+  contentTypeAPIs,
+  useComment,
+  useWorkflow,
+} from "@platformx/authoring-apis";
+import {
+  CATEGORY_CONTENT,
+  PlateformXDialog,
+  PlateformXDialogSuccess,
+  ShowToastError,
+  ShowToastSuccess,
+  XLoader,
+  capitalizeFirstLetter,
+  getCurrentLang,
+  useUserSession,
+  workflowKeys,
+} from "@platformx/utilities";
+
+// import { useCommentContext } from "../../context/CommentsContext/CommentsContext";
+
+// import useWorkflow from "../../hooks/useWorkflow/useWorkflow";
+// import commentsApi from "../../services/comments/comments.api";
+// import { fetchTagList } from "../../services/common/tags.aps";
+// import { postRequest } from "../../services/config/request";
 import {
   createContentType,
   fetchContentByPath,
@@ -390,9 +408,11 @@ export const CreatePoll = (): JSX.Element => {
     };
     return PollStructureData;
   };
-  const [createpollmutate] = useMutation(createContentType);
-  const [updatepollmutate] = useMutation(updateContentType);
-  const [publishpollmutate] = useMutation(publishContentType);
+
+  const [createpollmutate] = useMutation(contentTypeAPIs.createContentType);
+  const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
+  const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
+
   const [contentType, setContentType] = useState(
     capitalizeFirstLetter(pollPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
   );
@@ -836,7 +856,7 @@ export const CreatePoll = (): JSX.Element => {
 
     setPollState({
       ...pollState,
-      ["tags"]: tagArr,
+      tags: tagArr,
     });
 
     if (pollState?.title === "") {
@@ -876,7 +896,7 @@ export const CreatePoll = (): JSX.Element => {
     dispatch(previewContent({}));
     setPollState({
       ...pollState,
-      ["tags"]: tagArr,
+      tags: tagArr,
     });
     const {
       title,
@@ -958,7 +978,7 @@ export const CreatePoll = (): JSX.Element => {
         pollRef.current = {
           ...pollRef.current,
           [keyName]: image?.Thumbnail,
-          ["socialShareImgURL"]: relativeUrl,
+          socialShareImgURL: relativeUrl,
         };
 
         unsavedChanges.current = true;
@@ -989,7 +1009,7 @@ export const CreatePoll = (): JSX.Element => {
         pollRef.current = {
           ...pollRef.current,
           [keyName]: image?.Thumbnail,
-          ["socialShareImgURL"]: "",
+          socialShareImgURL: "",
         };
 
         unsavedChanges.current = true;
@@ -1074,12 +1094,12 @@ export const CreatePoll = (): JSX.Element => {
       setTagArr(tagsArray);
       setPollState({
         ...pollState,
-        ["tagsSocialShare"]: tagsArray,
+        tagsSocialShare: tagsArray,
       });
       pollRef.current = {
         ...pollRef.current,
-        ["tags"]: tagsArray,
-        ["tagsSocialShare"]: isDraft ? tagsArray : tagsArray, //[...pollState.tagsSocialShare],
+        tags: tagsArray,
+        tagsSocialShare: isDraft ? tagsArray : tagsArray, //[...pollState.tagsSocialShare],
       };
       setIsEdited(true);
       unsavedChanges.current = true;
