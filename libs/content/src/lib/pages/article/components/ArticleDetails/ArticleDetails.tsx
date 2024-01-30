@@ -62,8 +62,8 @@ export const ArticleDetails = ({
     resetSelectedImage();
   };
 
-  const handleOnMouseHover = () => {
-    state?.ObjectFields?.published_images?.length !== 0 && setOnHover(true);
+  const ifBanner = () => {
+    return state?.ObjectFields?.banner !== "" ? true : false;
   };
 
   useEffect(() => {
@@ -115,7 +115,7 @@ export const ArticleDetails = ({
                 workflow={workflow}>
                 <Box className={classes.contentStyle}>
                   <Box
-                    onMouseEnter={handleOnMouseHover}
+                    onMouseEnter={() => ifBanner() && setOnHover(true)}
                     className={classes.imgUploadBox}
                     sx={{ overflow: "hidden" }}>
                     <XImageRender
@@ -134,11 +134,11 @@ export const ArticleDetails = ({
                   workflow={workflow}
                 > */}
                     <Typography variant='h7medium'>
-                      {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
+                      {ifBanner() ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
                     </Typography>
                     {/* </CommentWrapper> */}
                   </Box>
-                  {state?.ObjectFields?.published_images.length > 0 && (
+                  {ifBanner() && (
                     <Box onClick={handleClearImage} className={classes.closeIconStyle}>
                       <CloseOutlinedIcon sx={{ height: "15px", width: "15px" }} />
                     </Box>

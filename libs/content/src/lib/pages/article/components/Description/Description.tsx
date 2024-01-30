@@ -12,9 +12,10 @@ import ReactDomServer from "react-dom/server";
 import { useTranslation } from "react-i18next";
 
 import i18next from "i18next";
-// import DamContentGallery from "../../../../components/Common/DamContentGallery/DamContentGallery";
-// import { createChatGptRequest } from "../../../../services/chatGpt/chatGpt.api";
 // import ContentGallery from "../ContentGallery/ContentGallery";
+import { createChatGptRequest } from "@platformx/authoring-apis";
+import { DamContentGallery } from "@platformx/x-image-render";
+import ContentGallery from "../ContentGallery/ContentGallery";
 import DescriptionContentCard from "../DescriptionContentCard";
 import MediaTray from "../MediaTray/MediaTray";
 import AddUrlDialog from "../url-dialog-box/AddUrlDialog";
@@ -290,8 +291,6 @@ function Description({
     }
     desc.current = `${desc.current}<img src='${image.Thumbnail}' class='descAsset' style='display:block;object-fit:cover'/><br><br>`;
     setShowOutput(document?.getElementById("desc")?.innerHTML);
-    // setShowMediaOption(false);
-    // updateField({ Description: document?.getElementById('desc')?.innerHTML });
     setState({
       ...state,
       CommonFields: {
@@ -316,8 +315,6 @@ function Description({
     }
     desc.current = `${desc.current}<video class='descAsset' controls playsinline style="object-fit: cover; display: block" poster='${video.Thumbnail}'><source src='${video.Url}' type="video/mp4"></video><br><br>`;
     setShowOutput(document?.getElementById("desc")?.innerHTML);
-    // setShowMediaOption(false);
-    // updateField({ Description: document?.getElementById('desc')?.innerHTML });
     setState({
       ...state,
       CommonFields: {
@@ -382,14 +379,14 @@ function Description({
 
   const toggleGallery = (toggleState, type) => {
     setGalleryState(toggleState);
-    if (type == "cancel") {
+    if (type === "cancel") {
       setImageOrVideoToDefault();
     }
   };
 
   const showGallery = (gType) => {
     // window.scrollTo(0, 0);
-    if (gType == "content") {
+    if (gType === "content") {
       contentType.current = contentTypes;
       setContentGalleryState(true);
     } else {
@@ -420,136 +417,58 @@ function Description({
     fr: "French",
     de: "German",
   };
-  //const chatUrl = `${process.env.REACT_APP_CHATGPT_API_URI}${i18n.language}/chatgpt`;
+
   const chatGptResponse = async (prompt) => {
     const requestParam = {
       input: {
         prompt: prompt,
       },
     };
-    // createChatGptRequest(requestParam)
-    //   .then((result: any) => {
-    //     const chatGptDataResponse = result?.authoring_getContentOpenai?.text;
-    //     if (chatGptDataResponse) {
-    //       setIsLoading(false);
-    //       const el = document.getElementById("desc");
-    //       const dataAdded = chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "");
-    //       if (el !== null) {
-    //         el.innerHTML = el.innerHTML + dataAdded;
-    //       }
-    //       desc.current = desc.current + dataAdded;
-    //       // updateField({ Description: resp?.data?.data?.[0]?.text });
-    //       setState({
-    //         ...state,
-    //         CommonFields: {
-    //           ...state.CommonFields,
-    //           description: document?.getElementById("desc")?.innerHTML,
-    //           settings: {
-    //             ...state.CommonFields.settings,
-    //             socialog_description: trimString(
-    //               handleHtmlTags(chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "")),
-    //               200,
-    //             ),
-    //           },
-    //         },
-    //       });
-    //       setDescription(document?.getElementById("desc")?.innerHTML);
-    //       setCheckDesc(document?.getElementById("desc")?.innerHTML);
-    //     }
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+    createChatGptRequest(requestParam)
+      .then((result: any) => {
+        const chatGptDataResponse = result?.authoring_getContentOpenai?.text;
+        if (chatGptDataResponse) {
+          setIsLoading(false);
+          const el = document.getElementById("desc");
+          const dataAdded = chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "");
+          if (el !== null) {
+            el.innerHTML = el.innerHTML + dataAdded;
+          }
+          desc.current = desc.current + dataAdded;
+          // updateField({ Description: resp?.data?.data?.[0]?.text });
+          setState({
+            ...state,
+            CommonFields: {
+              ...state.CommonFields,
+              description: document?.getElementById("desc")?.innerHTML,
+              settings: {
+                ...state.CommonFields.settings,
+                socialog_description: trimString(
+                  handleHtmlTags(chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "")),
+                  200,
+                ),
+              },
+            },
+          });
+          setDescription(document?.getElementById("desc")?.innerHTML);
+          setCheckDesc(document?.getElementById("desc")?.innerHTML);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
 
   const chatGPT = () => {
     setIsLoading(true);
-
     const chatGptPrompt = process.env.REACT_APP_CHAT_GPT_PROMPT
       ? process.env.REACT_APP_CHAT_GPT_PROMPT
       : "Please write 3 paragraph article about";
 
     chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping[i18next.language]}`);
-
-    // console.log('text', document?.getElementById('desc')?.innerHTML);
-    // if (chatGptDataResponse?.data?.authoring_getContentOpenai?.text) {
-    //   setIsLoading(false);
-    //   const el = document.getElementById('desc');
-    //   const dataAdded = resp?.data?.data?.[0]?.text;
-    //   if (el !== null) {
-    //     el.innerHTML = el.innerHTML + dataAdded;
-    //   }
-    //   desc.current = desc.current + dataAdded;
-    //   // updateField({ Description: resp?.data?.data?.[0]?.text });
-    //   setState({
-    //     ...state,
-    //     CommonFields: {
-    //       ...state.CommonFields,
-    //       description: document?.getElementById('desc')?.innerHTML,
-    //       // +
-    //       // resp?.data?.data?.[0]?.text,
-    //       settings: {
-    //         ...state.CommonFields.settings,
-    //         socialog_description: trimString(
-    //           handleHtmlTags(resp?.data?.data?.[0]?.text),
-    //           200
-    //         ),
-    //       },
-    //     },
-    //   });
-    //   setDescription(
-    //     document?.getElementById('desc')?.innerHTML
-    //     // +
-    //     //   resp?.data?.data?.[0]?.text
-    //   );
-    // }
-    // axios
-    //   .post(chatUrl, {
-    //     prompt: `write an article on the topic ${title}`,
-    //     max_length: 1000,
-    //     numbers: 1,
-    //     temp: 1,
-    //   })
-    //   .then((resp) => {
-    //     if (resp?.data?.data?.[0]?.text) {
-    //       setIsLoading(false);
-    //       const el = document.getElementById('desc');
-    //       const dataAdded = resp?.data?.data?.[0]?.text;
-    //       if (el !== null) {
-    //         el.innerHTML = el.innerHTML + dataAdded;
-    //       }
-    //       desc.current = desc.current + dataAdded;
-    //       // updateField({ Description: resp?.data?.data?.[0]?.text });
-    //       setState({
-    //         ...state,
-    //         CommonFields: {
-    //           ...state.CommonFields,
-    //           description: document?.getElementById('desc')?.innerHTML,
-    //           // +
-    //           // resp?.data?.data?.[0]?.text,
-    //           settings: {
-    //             ...state.CommonFields.settings,
-    //             socialog_description: trimString(
-    //               handleHtmlTags(resp?.data?.data?.[0]?.text),
-    //               200
-    //             ),
-    //           },
-    //         },
-    //       });
-    //       setDescription(
-    //         document?.getElementById('desc')?.innerHTML
-    //         // +
-    //         //   resp?.data?.data?.[0]?.text
-    //       );
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setIsLoading(false);
-
-    //     showToastError(t('api_error_toast'));
-    //   });
   };
+
   useEffect(() => {
     if (Object.keys(state).length > 0) {
       setDescription(state?.CommonFields?.description);
@@ -559,44 +478,37 @@ function Description({
   return (
     <>
       {isLoading && <ChatGptLoader />}
-
       <Box
         sx={{
           backgroundColor: "#FFF",
         }}>
         <style>{blockQuotes}</style>
-        <Dialog fullScreen open={galleryState}>
-          {/* <Gallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            galleryMode={galleryType.current}
-            handleVideoSelected={handleSelectedVideo}
-          /> */}
-          {/* <DamContentGallery
+        {galleryState && (
+          <DamContentGallery
             handleImageSelected={handleSelectedImage}
             handleSelectedVideo={handleSelectedVideo}
             toggleGallery={toggleGallery}
+            dialogOpen={galleryState}
+            isCrop={false}
             assetType={galleryType.current === "Images" ? "Image" : "Video"}
-          /> */}
-        </Dialog>
+          />
+        )}
         <Dialog fullScreen open={contentGalleryState}>
-          {/* <ContentGallery
+          <ContentGallery
             handleSelectedContent={handleSelectedContent}
             onToggleContentGallery={onToggleContentGallery}
             contentType={contentType.current}
-          /> */}
+          />
         </Dialog>
       </Box>
       <Box
         sx={{
           display: "flex",
-          // justifyContent: 'space-between',
           fontSize: "16px",
           backgroundColor: "white",
           width: "100%",
           position: "relative",
         }}>
-        {/* <Box sx={{ position: 'relative' }}> */}
         <Box
           sx={{
             alignSelf: "flex-end",
@@ -605,7 +517,6 @@ function Description({
           }}>
           {showMediaOption && <MediaTray showGallery={showGallery} />}
         </Box>
-        {/* </Box> */}
         <Box
           id='desc'
           sx={{
@@ -617,7 +528,6 @@ function Description({
           onBlur={handleDescriptionChange}
           onInput={(e) => onChange(e)}
           onPaste={(e) => onChange(e)}
-          // placeholder={t('des_placeholder')}
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(description, { ADD_ATTR: ["target"] } || ""),
           }}

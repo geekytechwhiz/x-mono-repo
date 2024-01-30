@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import { AUTH_INFO, BigArrow, getSubDomain, handleHtmlTags } from "@platformx/utilities";
+import { Box, Button } from "@mui/material";
+import { AUTH_INFO, getSubDomain, handleHtmlTags } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
 import "./Description/Description.css";
 
@@ -87,7 +87,7 @@ function DescriptionContentCard({ content }) {
                   height: "40px",
                 }}
                 rel='noreferrer'>
-                <button
+                <Button
                   style={{
                     padding: "0 8px",
                     borderRadius: "4px",
@@ -103,8 +103,8 @@ function DescriptionContentCard({ content }) {
                     ? "Start"
                     : "View"}{" "}
                   {content.ContentType}
-                  <img src={BigArrow} style={{ marginLeft: "10px" }} />
-                </button>
+                  {/* <img src={BigArrow} style={{ marginLeft: "10px" }} /> */}
+                </Button>
               </a>
             </div>
           </div>

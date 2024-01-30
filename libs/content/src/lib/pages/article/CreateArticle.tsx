@@ -1,14 +1,16 @@
 import { Box } from "@mui/material";
-import { RootState, previewContent } from "@platformx/authoring-state";
+import { RootState, handleDialog, previewContent } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
   Loader,
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
+  WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
   i18next,
+  successGif,
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
@@ -17,18 +19,13 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { onBackButtonEvent, unloadCallback } from "../../utils/Helper";
-import { ArticleActionDialog } from "./components/ArticleActionDialog/ArticleActionDialog";
 import { ArticleDetails } from "./components/ArticleDetails/ArticleDetails";
 import PublishModal from "./components/PublishModal/PublishModal";
 import TopBar from "./components/TopBar/TopBar";
-// import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
 // import WorkflowHistory from "../../../components/WorkflowHistory/WorkflowHistory";
 import { articleApi, commentsApi, useComment, useWorkflow } from "@platformx/authoring-apis";
-// import { postRequest } from "../../../services/config/request";
-import { DamContentGallery } from "@platformx/x-image-render";
 import { CATEGORY_CONTENT, ContentType, DRAFT, PUBLISHED } from "../../utils/Constants";
 import { useStyles } from "./CreateArticle.styles";
-
 import {
   ArticleInitialState,
   articleInitialObj,
@@ -68,13 +65,9 @@ export const CreateArticle = () => {
   const [showMediaOption, setShowMediaOption] = useState(true);
   const [isClickedPublish, setIsClickedPublish] = useState(false);
   const count = useRef(0);
-  const [onSavedModal, setOnSavedModal] = useState(false);
   const unsavedChanges = useRef<boolean>(false);
-  const [showExitWarning, setShowExitWarning] = useState(false);
-  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
-  const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
   const [timerState, setTimerState] = useState(
-    localStorage.getItem("articleTimerState") == "true" ? true : false,
+    localStorage.getItem("articleTimerState") ? true : false,
   );
   const [lastmodifiedDate, setLastmodifiedDate] = useState(new Date().toISOString());
   const [key, setKey] = useState("");
@@ -106,52 +99,10 @@ export const CreateArticle = () => {
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
   const { comments } = useComment();
   const [isReload, setIsReload] = useState(false);
-  useEffect(() => {
-    setIsReload(!isReload);
-  }, [comments]);
+
   const imageCropHandle = () => {
     setIsArticleCrop(() => isArticleCrop + 1);
   };
-  const handleSelectedImage = async (image, keyName) => {
-    console.log("image", image);
-    if (keyName === "social_img") {
-      setShow(true);
-      try {
-        const payload = {
-          bitstreamId: image.bitStreamId,
-          visibility: "public",
-        };
-        // const response = await postRequest("api/v1/assets/image/no-crop", payload);
-        const relativeUrl = ""; // `${response?.original_image_relative_path}.${response?.ext}`;
-        setArticleInstance({
-          ...articleInstance,
-          CommonFields: {
-            ...articleInstance.CommonFields,
-            settings: {
-              ...articleInstance.CommonFields.settings,
-              socialog_image: relativeUrl,
-            },
-          },
-        });
-      } catch (error) {
-        ShowToastError(t("api_error_toast"));
-      }
-    } else {
-      setSelectedImage(image);
-      setContent({
-        Url: image.Thumbnail,
-        Title: image.Title,
-        Description: image.Description,
-        bitStreamId: image.bitStreamId,
-      });
-      setShowMediaOption(true);
-    }
-  };
-  useEffect(() => {
-    if (timerState) {
-      localStorage.setItem("articleTimerState", "true");
-    }
-  }, [timerState]);
 
   const toggleGallery = (toggleState, type, keyName) => {
     setGalleryState(toggleState);
@@ -206,9 +157,6 @@ export const CreateArticle = () => {
     }
   };
 
-  useEffect(() => {
-    getTags();
-  }, []);
   const handleTags = (event) => {
     handleTagOnChange(event, tagArr, setTagArr, tagArrRef, socialOgTags, setSocialOgTags);
   };
@@ -372,6 +320,14 @@ export const CreateArticle = () => {
   };
 
   useEffect(() => {
+    setIsReload(!isReload);
+    getTags();
+    if (timerState) {
+      localStorage.setItem("articleTimerState", "true");
+    }
+  }, [comments, timerState]);
+
+  useEffect(() => {
     if (Object.keys(currentContent)?.length > 0) {
       const {
         title,
@@ -438,6 +394,35 @@ export const CreateArticle = () => {
   const validateArticleDetails = (isPublish = false) => {
     return validateDetails(articleInstance, tagArrRef, isPublish);
   };
+  const navigateTo = () => {
+    unsavedChanges.current = false;
+    navigate("/content/article");
+    //clearComment();
+    // dispatch(previewContent({}));
+  };
+  const enableDialog = (type = "") => {
+    const dialogContent = {
+      imageIcon: successGif,
+      isOpen: true,
+      title: t("congratulations"),
+      subTitle: type === workflowKeys.approve ? t("article_publish_popoup") : t("requested_action"),
+      rightButtonText: t("go_to_listing"),
+      handleCallback: navigateTo,
+    };
+    dispatch(handleDialog(dialogContent));
+  };
+  const exitWarnDialog = (type) => {
+    const dialogContent = {
+      imageIcon: WarningIcon,
+      isOpen: true,
+      title: t("save_warn_title"),
+      subTitle: t("save_warn_subtitle"),
+      leftButtonText: t("Stay Here"),
+      rightButtonText: t("take_me_out"),
+      handleCallback: navigateTo,
+    };
+    dispatch(handleDialog(dialogContent));
+  };
   const onSave = async (isWorkflow = true, props = {}, event_step = "") => {
     if (!validateArticleDetails()) {
       setIsLoading(true);
@@ -459,10 +444,7 @@ export const CreateArticle = () => {
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
               if (success) {
-                workflow_status === workflowKeys.publish.toLowerCase() &&
-                event_step === workflowKeys.approve
-                  ? setShowPublishConfirm(true)
-                  : setShowWorkflowSubmit(true);
+                workflow_status === workflowKeys.publish.toLowerCase() && enableDialog(event_step);
               }
             }
             path.current = detailsRes.authoring_updateContent?.path.substring(
@@ -503,7 +485,7 @@ export const CreateArticle = () => {
             if (isWorkflow) {
               const { success } = await workflowRequest(workflowObj, workflowKeys.approve);
               if (success) {
-                setShowWorkflowSubmit(true);
+                enableDialog();
               }
             }
             setWorkflow({ ...workflow, ...workflowObj });
@@ -555,8 +537,7 @@ export const CreateArticle = () => {
               updatedPagePath.substring(updatedPagePath.lastIndexOf("/") + 1),
             );
             if (response.authoring_publishContent.message === "Article published successfully") {
-              // ShowToastSuccess(`${t('article')} ${t('published_toast')}`);
-              setShowPublishConfirm(true);
+              enableDialog(workflowKeys.approve);
               setIsLoading(false);
               setTimerState(true);
               setLastmodifiedDate(new Date().toISOString());
@@ -564,7 +545,6 @@ export const CreateArticle = () => {
               ShowToastSuccess(response.authoring_publishContent.message);
             }
           } catch (err: any) {
-            setShowPublishConfirm(false);
             setTimerState(false);
             setLastmodifiedDate("");
 
@@ -642,10 +622,7 @@ export const CreateArticle = () => {
     const tags = JSON.parse(JSON.stringify(tagArrRef.current));
     return updateStructureData(content, banner, tags.tags, pageURL);
   };
-  const crossButtonHandle = () => {
-    setShowPublishConfirm(false);
-    // navigate(`?path=${path.current}`);
-  };
+
   useEffect(() => {
     if (JSON.stringify(articleInstance) === JSON.stringify(compareInstance.current)) {
       unsavedChanges.current = false;
@@ -661,43 +638,31 @@ export const CreateArticle = () => {
       setPreviewButton(false);
     }
   }, [articleInstance, checkDesc]);
-  const closeButtonHandle = () => {
-    unsavedChanges.current = false;
-    //clearComment();
-    setShowPublishConfirm(false);
-    setOnSavedModal(false);
-    setShowExitWarning(false);
-    setShowWorkflowSubmit(false);
-    navigate("/content/article");
-  };
+
   const returnBack = () => {
     if (unsavedChanges.current) {
-      setShowExitWarning(true);
+      exitWarnDialog(true);
     } else {
       navigate("/content/article");
     }
   };
-  const navigateTo = () => {
-    unsavedChanges.current = false;
-    navigate("/content/article");
-    //clearComment();
-    dispatch(previewContent({}));
-  };
+
   useEffect(() => {
     if (unsavedChanges.current == true) {
       window.history.pushState(null, "", window.location.pathname + location?.search);
       window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
       window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
       );
     }
     return () => {
       window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
       window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
       );
     };
   }, [unsavedChanges.current, articleInstance]);
+
   return (
     <Box
       className={classes.containerStyle}
@@ -709,19 +674,7 @@ export const CreateArticle = () => {
       <Box
         sx={{
           backgroundColor: ThemeConstants.WHITE_COLOR,
-        }}>
-        {galleryState && (
-          <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={"Image"}
-            processing={false}
-            dialogOpen={true}
-            isCrop={false}
-            keyName={key}
-          />
-        )}
-      </Box>
+        }}></Box>
       <TopBar
         returnBack={returnBack}
         createText={t("publish")}
@@ -802,17 +755,6 @@ export const CreateArticle = () => {
         onSave={onSave}
         createComment={createComment}
       />
-      {(onSavedModal || showExitWarning || showPublishConfirm || showWorkflowSubmit) && (
-        <ArticleActionDialog
-          onSavedModal={onSavedModal}
-          crossButtonHandle={crossButtonHandle}
-          showExitWarning={showExitWarning}
-          closeButtonHandle={closeButtonHandle}
-          setShowExitWarning={setShowExitWarning}
-          showPublishConfirm={showPublishConfirm}
-          showWorkflowSubmit={showWorkflowSubmit}
-        />
-      )}
     </Box>
   );
 };

@@ -1,51 +1,31 @@
-import { useLazyQuery } from '@apollo/client';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import SearchIcon from '@mui/icons-material/Search';
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField from '@mui/material/TextField';
-import ContentTypeCard from 'platform-x-prelems/prelems/ContentTypeCard';
-import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import NoResults from '../../../../assets/images/no-results.png';
-import { fetchAllMultislotContentList } from '../../../../services/contentGallery/contentGallery.api';
-import ThemeConstants from '../../../../theme/variable';
-import { ContentGalleryTypes } from '../../../../utils/constants';
+import { useLazyQuery } from "@apollo/client";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import SearchIcon from "@mui/icons-material/Search";
+import { Box, Button, FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import { ContentGalleryTypes, fetchAllMultislotContentList } from "@platformx/authoring-apis";
+import { AUTH_INFO, NoResultsFound, ThemeConstants } from "@platformx/utilities";
+import ContentTypeCard from "platform-x-prelems/prelems/ContentTypeCard";
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { ContentProps } from "./utils/contentGalleryTypes";
 
-import { ContentProps } from './utils/contentGalleryTypes';
-import { authInfo } from '../../../../utils/authConstants';
-
-const ContentGallery = ({
-  handleSelectedContent,
-  onToggleContentGallery,
-  contentType,
-}) => {
+const ContentGallery = ({ handleSelectedContent, onToggleContentGallery, contentType }) => {
   const { t } = useTranslation();
-  const contentArray = contentType.includes('Select')
-    ? ContentGalleryTypes
-    : contentType;
+  const contentArray = contentType.includes("Select") ? ContentGalleryTypes : contentType;
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [selectedItem, setSelectedItem] = useState<ContentProps>({});
-  const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState(
-    contentArray.length > 0 ? contentArray[0] : 'ALL'
-  );
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(contentArray.length > 0 ? contentArray[0] : "ALL");
   const [items, setItems] = useState<ContentProps[]>([]);
   const [loading, setLoading] = useState(true);
   const isError = false;
-  const secondaryArgs = { 
-    gcpUrl: authInfo.gcpUri,
-    bucketName: authInfo.gcpBucketName
+  const secondaryArgs = {
+    gcpUrl: AUTH_INFO.gcpUri,
+    bucketName: AUTH_INFO.gcpBucketName,
   };
 
   function debounce(func, timeout = 500) {
@@ -59,7 +39,7 @@ const ContentGallery = ({
   }
 
   const handleSelectedItem = (item, index) => {
-    if (selectedItem == item) {
+    if (selectedItem === item) {
       setSelectedItem({});
       setSelectedIndex(-1);
     } else {
@@ -67,9 +47,7 @@ const ContentGallery = ({
       setSelectedIndex(index);
     }
   };
-  const [fetchMultiSlotContentList] = useLazyQuery(
-    fetchAllMultislotContentList
-  );
+  const [fetchMultiSlotContentList] = useLazyQuery(fetchAllMultislotContentList);
 
   const handleDone = () => {
     handleSelectedContent(selectedItem);
@@ -96,7 +74,7 @@ const ContentGallery = ({
 
   const handleSearchChange = useCallback(
     debounce((fil, sear) => getAllContentTypes(fil, sear)),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -111,46 +89,40 @@ const ContentGallery = ({
         sm={4}
         md={3}
         sx={{
-          cursor: 'pointer',
-          position: 'relative',
-          height: { xs: 'auto', md: '255px' },
-          ':hover': {
-            '.hoverOverlay': {
-              backgroundColor: 'rgba(0,0,0,0.5)',
-              '&.selected': {
-                backgroundColor: 'rgba(0,0,0,0.8)',
+          cursor: "pointer",
+          position: "relative",
+          height: { xs: "auto", md: "255px" },
+          ":hover": {
+            ".hoverOverlay": {
+              backgroundColor: "rgba(0,0,0,0.5)",
+              "&.selected": {
+                backgroundColor: "rgba(0,0,0,0.8)",
               },
             },
           },
         }}
         onClick={(e) => handleSelectedItem(item, index)}
         key={index}
-        p={2}
-      >
+        p={2}>
         <ContentTypeCard content={item} secondaryArgs={secondaryArgs} />
         <Box
-          className={`hoverOverlay ${
-            index === selectedIndex ? 'selected' : ''
-          }`}
+          className={`hoverOverlay ${index === selectedIndex ? "selected" : ""}`}
           sx={{
             ...(selectedIndex >= 0 && {
               backgroundColor:
-                index === selectedIndex
-                  ? 'rgba(0,0,0,0.8)'
-                  : 'rgba(207,207,207,0.52)',
+                index === selectedIndex ? "rgba(0,0,0,0.8)" : "rgba(207,207,207,0.52)",
             }),
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            right: '0',
-            bottom: '0',
+            position: "absolute",
+            top: "0",
+            left: "0",
+            right: "0",
+            bottom: "0",
             m: 2,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-          p={1}
-        >
+          p={1}>
           <Box>
             {index === selectedIndex && (
               <CheckCircleOutlineIcon
@@ -172,7 +144,7 @@ const ContentGallery = ({
   };
 
   const resetSearch = () => {
-    setSearch('');
+    setSearch("");
   };
 
   const handleFilterChange = (e) => {
@@ -183,13 +155,12 @@ const ContentGallery = ({
   return (
     <Box
       sx={{
-        position: 'absolute',
-        backgroundColor: '#fff',
-        width: '100%',
-        height: '100%',
-        zIndex: '3',
-      }}
-    >
+        position: "absolute",
+        backgroundColor: "#fff",
+        width: "100%",
+        height: "100%",
+        zIndex: "3",
+      }}>
       <Grid container pt={2} pb={2} pl={4} pr={4}>
         <Grid
           item
@@ -198,10 +169,9 @@ const ContentGallery = ({
           md={3}
           lg={3}
           sx={{
-            margin: 'auto 0',
-            paddingBottom: { xs: '20px', sm: '20px', lg: '5px' },
-          }}
-        >
+            margin: "auto 0",
+            paddingBottom: { xs: "20px", sm: "20px", lg: "5px" },
+          }}>
           <Typography
             variant='h4'
             sx={{
@@ -209,9 +179,8 @@ const ContentGallery = ({
               fontWeight: ThemeConstants.FONTWEIGHT_BOLD,
               fontFamily: ThemeConstants.PRIMARY_FONT_FAMILY,
               color: ThemeConstants.BLACK_COLOR,
-            }}
-          >
-            {t('prelem_choose_content')}
+            }}>
+            {t("prelem_choose_content")}
           </Typography>
         </Grid>
         <Grid
@@ -220,32 +189,31 @@ const ContentGallery = ({
           sm={6}
           md={6}
           lg={6}
-          sx={{ paddingBottom: { xs: '20px', sm: '20px', display: 'flex' } }}
-        >
+          sx={{ paddingBottom: { xs: "20px", sm: "20px", display: "flex" } }}>
           <Grid item xs={12} sm={6} md={8} lg={8}>
             <FormControl fullWidth>
               <TextField
                 className='contentTypeCard'
                 sx={{
                   ml: 5,
-                  backgroundColor: '#f5f6f8',
-                  height: '50px',
-                  '.Platform-x-Input-root:before': {
-                    borderBottom: '2px solid #2d2d39',
+                  backgroundColor: "#f5f6f8",
+                  height: "50px",
+                  ".Platform-x-Input-root:before": {
+                    borderBottom: "2px solid #2d2d39",
                   },
-                  '.Platform-x-Input-root:after': {
-                    borderBottom: '2px solid #000000',
+                  ".Platform-x-Input-root:after": {
+                    borderBottom: "2px solid #000000",
                   },
-                  '.Platform-x-Input-root.Mui-disabled:before': {
-                    borderBottom: '2px solid #c3c3cb',
+                  ".Platform-x-Input-root.Mui-disabled:before": {
+                    borderBottom: "2px solid #c3c3cb",
                   },
-                  '.Platform-x-InputBase-root.Platform-x-OutlinedInput-root': {
-                    borderTopRightRadius: '0px !important',
-                    borderBottomRightRadius: '0px !important',
+                  ".Platform-x-InputBase-root.Platform-x-OutlinedInput-root": {
+                    borderTopRightRadius: "0px !important",
+                    borderBottomRightRadius: "0px !important",
                   },
                 }}
                 variant='outlined'
-                placeholder={t('search')}
+                placeholder={t("search")}
                 value={search}
                 onChange={onSearchChange}
                 InputProps={{
@@ -256,13 +224,13 @@ const ContentGallery = ({
                   ),
                   endAdornment: (
                     <InputAdornment position='end'>
-                      {search !== '' && (
+                      {search !== "" && (
                         <CloseRoundedIcon
                           onClick={resetSearch}
                           sx={{
-                            cursor: 'pointer',
-                            position: 'absolute',
-                            right: '18px',
+                            cursor: "pointer",
+                            position: "absolute",
+                            right: "18px",
                           }}
                         />
                       )}
@@ -280,13 +248,12 @@ const ContentGallery = ({
                 id='demo-simple-select'
                 value={filter}
                 style={{
-                  backgroundColor: '#f5f6f8',
-                  height: '50px',
-                  borderTopLeftRadius: '0px',
-                  borderBottomLeftRadius: '0px',
+                  backgroundColor: "#f5f6f8",
+                  height: "50px",
+                  borderTopLeftRadius: "0px",
+                  borderBottomLeftRadius: "0px",
                 }}
-                onChange={handleFilterChange}
-              >
+                onChange={handleFilterChange}>
                 {contentArray.map((type, key) => {
                   return (
                     <MenuItem value={type} key={key}>
@@ -309,69 +276,48 @@ const ContentGallery = ({
           direction='column'
           alignItems='center'
           justifyContent='center'
-          sx={{ margin: '0 0 1.25rem 0', display: 'flex' }}
-        >
+          sx={{ margin: "0 0 1.25rem 0", display: "flex" }}>
           <Box justifyContent='end'>
             <Button
-              sx={{ textTransform: 'capitalize', ml: 1 }}
+              sx={{ textTransform: "capitalize", ml: 1 }}
               variant='outlined'
-              onClick={() => onToggleContentGallery(-1)}
-            >
-              {t('cancel')}
+              onClick={() => onToggleContentGallery(-1)}>
+              {t("cancel")}
             </Button>
 
             <Button
               variant='contained'
               sx={{
-                padding: selectedIndex === -1 ? '14px' : '11px',
-                marginLeft: '20px',
-                boxShadow: 'none',
-                ':hover': { boxShadow: 'none' },
-                textTransform: 'capitalize',
+                padding: selectedIndex === -1 ? "14px" : "11px",
+                marginLeft: "20px",
+                boxShadow: "none",
+                ":hover": { boxShadow: "none" },
+                textTransform: "capitalize",
                 ml: 1,
               }}
               disabled={selectedIndex === -1}
-              onClick={handleDone}
-            >
-              {t('save')}
+              onClick={handleDone}>
+              {t("save")}
             </Button>
           </Box>
         </Grid>
       </Grid>
 
       {isError ? (
-        <Box
-          sx={{
-            marginTop: '200px',
-            marginBottom: '100px',
-            textAlign: 'center',
-          }}
-        >
-          <img src={NoResults} />
-          <Typography
-            variant='h3'
-            sx={{ color: ThemeConstants.LIGHT_GREY_COLOR }}
-          >
-            Failed to fetch results
-          </Typography>
-        </Box>
+        <NoResultsFound />
       ) : (
-        <Box
-          sx={{ height: 'calc(100vh - 90px)', overflowY: 'scroll' }}
-          id='scrollableDiv'
-        >
+        <Box sx={{ height: "calc(100vh - 90px)", overflowY: "scroll" }} id='scrollableDiv'>
           {loading ? (
             <Box
               sx={{
-                marginTop: '100px',
-                marginBottom: '100px',
-                textAlign: 'center',
-              }}
-            >
+                marginTop: "100px",
+                marginBottom: "100px",
+                textAlign: "center",
+              }}>
               <CircularProgress
                 style={{
-                  width: '80px',
-                  height: '80px',
+                  width: "80px",
+                  height: "80px",
                   color: ThemeConstants.PRIMARY_MAIN_COLOR,
                 }}
               />
@@ -379,35 +325,34 @@ const ContentGallery = ({
           ) : items?.length === 0 ? (
             <Box
               sx={{
-                marginTop: '100px',
-                marginBottom: '100px',
-                textAlign: 'center',
-              }}
-            >
+                marginTop: "100px",
+                marginBottom: "100px",
+                textAlign: "center",
+              }}>
               <Typography variant='overline' display='block' gutterBottom>
-                {t('no_results')}
+                {t("no_results")}
               </Typography>
             </Box>
           ) : (
-            <Grid container sx={{ backgroundColor: '#f7f7f7' }}>
+            <Grid container sx={{ backgroundColor: "#f7f7f7" }}>
               {items?.map((item, index) => {
                 if (
                   item &&
                   [
-                    'ImageGallery',
-                    'VideoGallery',
-                    'Accolades',
-                    'ServiceCard',
-                    'Gallery',
-                    'Article',
-                    'VOD',
-                    'Testimonial',
-                    'FAQ',
-                    'Awards',
-                    'Poll',
-                    'Quiz',
-                    'Event',
-                  ].includes(item.ContentType || '')
+                    "ImageGallery",
+                    "VideoGallery",
+                    "Accolades",
+                    "ServiceCard",
+                    "Gallery",
+                    "Article",
+                    "VOD",
+                    "Testimonial",
+                    "FAQ",
+                    "Awards",
+                    "Poll",
+                    "Quiz",
+                    "Event",
+                  ].includes(item.ContentType || "")
                 )
                   return getContentType(item, index);
               })}
@@ -420,7 +365,7 @@ const ContentGallery = ({
 };
 
 ContentGallery.defaultProps = {
-  contentType: ['Select'],
+  contentType: ["Select"],
 };
 
 export default ContentGallery;

@@ -10,11 +10,92 @@ import { t } from "i18next";
 
 export const ArticleInitialState = {
   CommonFields: {
+    page: "",
     title: "",
+    description: "",
+    category: "Article",
+    site_name: "",
+    parent_page_url: "/",
+    current_page_url: "",
+    developedby: "",
+    page_state: "",
+    is_edit: false,
+    seo_enable: true,
+    analytics_enable: true,
+    robot_txt: false,
+    sitemap: false,
+    analytics: "",
+    others: "",
+    structure_data: "",
+    createdBy: "",
+    creationDate: "",
+    modificationDate: "",
+    tags: [],
+    page_createdby: "",
+    page_lastmodifiedby: "",
+    settings: {
+      socialog_url: "",
+      socialog_twitter_url: "",
+      socialog_type: "article",
+      socialog_sitename: "",
+      seo_title: "",
+      socialog_title: "",
+      socialog_twitter_title: "",
+      socialog_description: "",
+      socialog_twitter_description: "",
+      socialog_image: "",
+      socialog_twitter_image: "",
+      keywords: [],
+      seo_keywords: [],
+      seo_description: "",
+      seo_blockIndexing: true,
+    },
+    IsConfirm: false,
+    is_featured: false,
   },
   ObjectFields: {
-    published_images: [],
-    original_image: {},
+    page_name: "",
+    banner: "",
+    sub_title: "",
+    content_type: "Article",
+    page_tags: [],
+    link_tags: [],
+    article_content: {},
+    tag: [],
+    links: [],
+    published_images: [
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+      {
+        aspect_ratio: "",
+        folder_path: "",
+      },
+    ],
+    original_image: {
+      original_image_relative_path: "",
+      bitStreamId: "",
+      auto: true,
+      ext: "",
+      visibility: "",
+    },
   },
 };
 
@@ -90,18 +171,11 @@ export const articleInitialObj = (username) => {
   };
   return newArticle;
 };
-export const updateImageData = (obj, content, setState, state, selectedImage) => {
-  const { published_images, original_image } = obj || {};
-  const banner = content?.Url;
-  const sub_title = selectedImage?.Title;
+export const updateImageData = (imgObj, content, setState, state, selectedImage) => {
+  const { published_images, original_image } = imgObj || {};
+  const banner = original_image?.bitStreamId;
+  const sub_title = original_image?.Title;
   const relativeUrl = `${original_image?.original_image_relative_path}.${original_image?.ext}`;
-  console.log("obj", obj, "state", state, "selectedImage", selectedImage);
-  // setContent({
-  //   Url: image.Thumbnail,
-  //   Title: image.Title,
-  //   Description: image.Description,
-  //   bitStreamId: image.bitStreamId,
-  // });
   setState({
     ...state,
     CommonFields: {
