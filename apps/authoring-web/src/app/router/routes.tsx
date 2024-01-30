@@ -12,8 +12,9 @@ import {
   GlobalSetting,
   FooterSetting,
   HeaderSetting,
-  CookieSetting
+  CookieSetting,
 } from "@platformx/site-setting";
+import { Sites } from "@platformx/sites";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
 
@@ -158,6 +159,22 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
         <FeatureFlagSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <Sites />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation/:siteName",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <Sites />
       </ProtectedRoute>
     ),
   },
