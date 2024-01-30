@@ -7,7 +7,7 @@ import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 
 const ParagraphWithHeadline = ({
   content,
@@ -117,7 +117,7 @@ interface ParagraphWithHeadlineProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any; //SecondaryArgs;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Content {
@@ -155,6 +155,15 @@ ParagraphWithHeadline.defaultProps = {
     pageDesc: "This prelem can be used to add Paragraph With Headline anywhere in the website.",
     pageTags: "Text, Full Width, Paragraph With Headline",
     prelemTags: "Text, Full Width, Paragraph With Headline",
+  },
+  secondaryArgs: {
+    prelemBaseEndpoint: {
+      APIEndPoint: "https://platx-api-dev.fanuep.com/platform-x/",
+      device: "window",
+      buttonBaseUrl: "https://platx-publish-dev.fanuep.com/",
+    },
+    editState: false,
+    multiSlot: {},
   },
 };
 export default ParagraphWithHeadline;
