@@ -10,6 +10,7 @@ RUN npm install -g @nrwl/nx
 RUN npm install --force
 COPY . ./
 ENV NODE_OPTIONS="--max_old_space_size=8192"
-RUN npm run build
-EXPOSE 3000
-CMD npm start
+RUN nx release publish
+# RUN npm run build
+# EXPOSE 3000
+# CMD npm start
