@@ -83,7 +83,6 @@ function Blogs({ eventUrl, secondaryArgs, content = {} }: any) {
         setInitialLoad(true); //if landing from fb share help to scroll to that blog
         setList(data.data);
       });
-    // setList(mock.data);
   };
 
   const fetchMoreData = async () => {

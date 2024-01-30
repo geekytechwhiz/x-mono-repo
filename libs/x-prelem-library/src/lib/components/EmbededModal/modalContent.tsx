@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import EmbedDesktopTabCard from "../EmbedDesktopTabCard/EmbedDesktopTabCard";
 import { useTranslation } from "react-i18next";
-import SkeltonLoader from "../Skeleton/skeleton";
+import SkeltonLoader from "../Skeleton/Skeleton";
 
 const CardContent = ({ selectedItem }: any) => {
   const [copyStatus, setICopyStatus] = useState<boolean>(false);
@@ -58,7 +58,7 @@ const CardContent = ({ selectedItem }: any) => {
               justifyContent: "center",
               alignItems: "center",
             }}
-            className='card'>
+            className='card1'>
             {selectedItem && selectedItem?.Thumbnail ? (
               <EmbedDesktopTabCard content={content} />
             ) : (
