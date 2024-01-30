@@ -63,39 +63,8 @@ export const ArticleInitialState = {
     article_content: {},
     tag: [],
     links: [],
-    published_images: [
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-      {
-        aspect_ratio: "",
-        folder_path: "",
-      },
-    ],
-    original_image: {
-      original_image_relative_path: "",
-      bitStreamId: "",
-      auto: true,
-      ext: "",
-      visibility: "",
-    },
+    published_images: [],
+    original_image: {},
   },
 };
 
@@ -172,6 +141,7 @@ export const articleInitialObj = (username) => {
   return newArticle;
 };
 export const updateImageData = (imgObj, content, setState, state, selectedImage) => {
+  console.log("imgObj", imgObj, state);
   const { published_images, original_image } = imgObj || {};
   const banner = original_image?.bitStreamId;
   const sub_title = original_image?.Title;

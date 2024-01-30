@@ -1,6 +1,7 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import CropOutlinedIcon from "@mui/icons-material/CropOutlined";
 import { Box, Grid } from "@mui/material";
+import PictureComponent from "../ArticleImageRender/Components/PictureComponent";
 import { useStyles } from "./ImageOnHover.styles";
 // import CommonPictureComponent from "../../../Gallery/CommonPictureComponent";
 
@@ -24,16 +25,11 @@ export const ImageOnHoverCard = ({
   return (
     <Grid container>
       <Grid item xs={12} md={9} lg={5}>
-        {/* <Box
-          sx={{ position: 'absolute', top: '120px' }}
-          onMouseEnter={() => setOnHover(true)}
-          onMouseOut={() => setOnHover(false)}
-        > */}
         <Box
           className={classes.onHoverImage}
           onMouseEnter={() => setOnHover(true)}
           onMouseLeave={() => setOnHover(false)}>
-          {/* <CommonPictureComponent croppedImages={publishedImages} imgOrder={imgOrder} /> */}
+          <PictureComponent croppedImages={publishedImages} imgOrder={imgOrder} />
           <Box
             sx={{
               position: "absolute",
@@ -43,8 +39,6 @@ export const ImageOnHoverCard = ({
               display: "flex",
               alignItems: "right",
               justifyContent: "right",
-              //   padding: '10px',
-              //   backgroundColor: '#7470708a',
               borderRadius: "5px",
             }}>
             <Box
@@ -95,7 +89,6 @@ export const ImageOnHoverCard = ({
             </Box>
           </Box>
         </Box>
-        {/* </Box> */}
       </Grid>
     </Grid>
   );

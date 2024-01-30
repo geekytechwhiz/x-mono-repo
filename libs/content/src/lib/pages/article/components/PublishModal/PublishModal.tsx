@@ -1,15 +1,15 @@
+import CachedIcon from "@mui/icons-material/Cached";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
 import { Box, Divider, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { styled } from "@mui/material/styles";
+import { CloudIcon, SubmitButton, ThemeConstants, XTags } from "@platformx/utilities";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-// import CloudIcon from '../../../../../src/assets/CloudIcon.png';
-import { SubmitButton, ThemeConstants, XTags } from "@platformx/utilities";
-// import CommonImageRender from '../../../Gallery/CommonImageRender';
-import { XImageRender } from "@platformx/x-image-render";
+import ArticleImageRender from "../ArticleImageRender/ArticleImageRender";
 import { useStyles } from "./PublishModal.styles";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -153,13 +153,76 @@ export default function PublishModal({
                 width: { sm: "610px", xs: "100%" },
                 height: { sm: "343px", xs: "187px" },
               }}>
-              <XImageRender
-                callBack={updateImageField}
-                data={{
-                  original_image: state?.ObjectFields?.original_image,
-                  published_images: state?.ObjectFields?.published_images,
-                }}
-              />
+              {content?.Url ? (
+                <>
+                  <ArticleImageRender
+                    content={selectedImage}
+                    imgOrder={{
+                      1440: "hero",
+                      1280: "landscape",
+                      1024: "card2",
+                      768: "square",
+                      600: "card1",
+                      320: "portrait",
+                    }}
+                    updateField={updateImageField}
+                    originalImage={state?.ObjectFields?.original_image}
+                    publishedImages={state?.ObjectFields?.published_images}
+                    operationType={operationType}
+                    resetSelectedImage={resetSelectedImage}
+                    isCropLoading={true}
+                    isUploadArticle={isUploadArticle}
+                    count={count}
+                  />
+
+                  <Box className={classes.imgBox}>
+                    <Box sx={{ display: "flex" }}>
+                      <Box
+                        sx={{ cursor: "pointer", pr: "7px" }}
+                        onClick={() => {
+                          handleClose();
+                          onUploadClick("Images", "replace");
+                        }}>
+                        <Box className={classes.cachedIconBox}>
+                          <CachedIcon sx={{ color: "#626060" }} />
+                        </Box>
+                      </Box>
+                      <Box sx={{ cursor: "pointer", pl: "7px" }} onClick={imageCropHandle}>
+                        <Box className={classes.editIconBox}>
+                          <ModeEditOutlinedIcon sx={{ color: "#626060" }} />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </>
+              ) : (
+                <Box className={classes.cloudIconBox}>
+                  <Box
+                    onClick={() => {
+                      handleClose();
+                      onUploadClick("Images", "choose");
+                    }}
+                    sx={{ cursor: "pointer" }}>
+                    <img src={CloudIcon} alt='img' />
+                  </Box>
+                  <Typography variant='h4regular' sx={{ textAlign: "center", padding: "15px" }}>
+                    {t("drag_drop")}
+                  </Typography>
+                  <Button
+                    sx={{
+                      backgroundColor: "#4B9EF9",
+                      border: "inherit",
+                      ":hover": { backgroundColor: "#4B9EF9" },
+                    }}
+                    variant='contained'
+                    onClick={() => {
+                      handleClose();
+                      onUploadClick("Images", "choose");
+                    }}>
+                    {t("browse_to_upload")}
+                  </Button>
+                </Box>
+              )}
             </Box>
 
             <Typography variant='h7medium'>{t("article_banner_note")}</Typography>

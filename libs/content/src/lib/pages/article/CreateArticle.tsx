@@ -10,6 +10,7 @@ import {
   capitalizeFirstLetter,
   getCurrentLang,
   i18next,
+  nullToObject,
   successGif,
   useUserSession,
   workflowKeys,
@@ -24,6 +25,7 @@ import PublishModal from "./components/PublishModal/PublishModal";
 import TopBar from "./components/TopBar/TopBar";
 // import WorkflowHistory from "../../../components/WorkflowHistory/WorkflowHistory";
 import { articleApi, commentsApi, useComment, useWorkflow } from "@platformx/authoring-apis";
+import { DamContentGallery, usePostImageCrop } from "@platformx/x-image-render";
 import { CATEGORY_CONTENT, ContentType, DRAFT, PUBLISHED } from "../../utils/Constants";
 import { useStyles } from "./CreateArticle.styles";
 import {
@@ -39,6 +41,7 @@ import {
 
 export const CreateArticle = () => {
   const { currentContent } = useSelector((state: RootState) => state.content);
+  const { postRequest } = usePostImageCrop();
   const classes = useStyles();
   const [onHover, setOnHover] = useState(false);
   const [open, setOpen] = useState(false);
@@ -646,6 +649,42 @@ export const CreateArticle = () => {
       navigate("/content/article");
     }
   };
+  const handleCallback = (data) => {
+    if (data) {
+      const { ext, original_image_relative_path = "" } = nullToObject(data);
+      const relativeUrl = `${original_image_relative_path}.${ext}`;
+      setArticleInstance({
+        ...articleInstance,
+        CommonFields: {
+          ...articleInstance.CommonFields,
+          settings: {
+            ...articleInstance.CommonFields.settings,
+            socialog_image: relativeUrl,
+          },
+        },
+      });
+    }
+  };
+
+  const handleSelectedImage = async (image, keyName) => {
+    if (keyName === "social_img") {
+      setShow(true);
+      const payload = {
+        bitstreamId: image.bitStreamId,
+        visibility: "public",
+      };
+      await postRequest("api/v1/assets/image/no-crop", payload, handleCallback);
+    } else {
+      setSelectedImage(image);
+      setContent({
+        Url: image.Thumbnail,
+        Title: image.Title,
+        Description: image.Description,
+        bitStreamId: image.bitStreamId,
+      });
+      setShowMediaOption(true);
+    }
+  };
 
   useEffect(() => {
     if (unsavedChanges.current == true) {
@@ -674,7 +713,18 @@ export const CreateArticle = () => {
       <Box
         sx={{
           backgroundColor: ThemeConstants.WHITE_COLOR,
-        }}></Box>
+        }}>
+        {galleryState && (
+          <DamContentGallery
+            handleImageSelected={handleSelectedImage}
+            toggleGallery={toggleGallery}
+            assetType={galleryType.current === "Images" ? "Image" : "Video"}
+            keyName={key}
+            isCrop={false}
+            dialogOpen={galleryState}
+          />
+        )}
+      </Box>
       <TopBar
         returnBack={returnBack}
         createText={t("publish")}

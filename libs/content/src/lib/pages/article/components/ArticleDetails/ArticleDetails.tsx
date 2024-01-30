@@ -6,8 +6,9 @@ import { CommentListPanel, CommentWrapper } from "@platformx/comment-review";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 // import CommonImageRender from "../../Gallery/CommonImageRender";
-import { XImageRender } from "@platformx/x-image-render";
+import { CloudIcon } from "@platformx/utilities";
 import { useStyles } from "../../CreateArticle.styles";
+import ArticleImageRender from "../ArticleImageRender/ArticleImageRender";
 import Description from "../Description/Description";
 import { ImageOnHoverCard } from "../ImageOnHoverCard/ImageOnHoverCard";
 import Title from "../Title";
@@ -62,10 +63,6 @@ export const ArticleDetails = ({
     resetSelectedImage();
   };
 
-  const ifBanner = () => {
-    return state?.ObjectFields?.banner !== "" ? true : false;
-  };
-
   useEffect(() => {
     const originalImage = state?.ObjectFields?.original_image;
     if (id && originalImage && Object.keys(originalImage).length !== 0) {
@@ -114,7 +111,45 @@ export const ArticleDetails = ({
                 // comments={comments}
                 workflow={workflow}>
                 <Box className={classes.contentStyle}>
-                  <Box
+                  {content?.Url ? (
+                    <Box
+                      onMouseEnter={() => setOnHover(true)}
+                      className={classes.imgUploadBox}
+                      sx={{ overflow: "hidden" }}>
+                      <ArticleImageRender
+                        content={selectedImage}
+                        imgOrder={{
+                          1440: "hero",
+                          1280: "landscape",
+                          1024: "card2",
+                          768: "square",
+                          600: "card1",
+                          320: "portrait",
+                        }}
+                        updateField={updateImageField}
+                        originalImage={state?.ObjectFields?.original_image}
+                        publishedImages={state?.ObjectFields?.published_images}
+                        operationType={operationType}
+                        resetSelectedImage={resetSelectedImage}
+                        isArticleCrop={isArticleCrop}
+                        isCropLoading={true}
+                        isUploadArticle={true}
+                        count={count}
+                      />
+                    </Box>
+                  ) : (
+                    <Box
+                      onClick={() => {
+                        setIsClickedPublish(false);
+                        onUploadClick("Images", "choose");
+                      }}
+                      className={classes.imgUploadBox}>
+                      <Box className={classes.heroBannerCloudIconBox}>
+                        <img src={CloudIcon} alt='img' />
+                      </Box>
+                    </Box>
+                  )}
+                  {/* <Box
                     onMouseEnter={() => ifBanner() && setOnHover(true)}
                     className={classes.imgUploadBox}
                     sx={{ overflow: "hidden" }}>
@@ -125,7 +160,7 @@ export const ArticleDetails = ({
                         published_images: state?.ObjectFields?.published_images,
                       }}
                     />
-                  </Box>
+                  </Box> */}
                   <Box sx={{ paddingLeft: "14px" }}>
                     {/* <CommentWrapper
                   elementId='1'
@@ -134,11 +169,11 @@ export const ArticleDetails = ({
                   workflow={workflow}
                 > */}
                     <Typography variant='h7medium'>
-                      {ifBanner() ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
+                      {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
                     </Typography>
                     {/* </CommentWrapper> */}
                   </Box>
-                  {ifBanner() && (
+                  {state?.ObjectFields?.published_images.length > 0 && (
                     <Box onClick={handleClearImage} className={classes.closeIconStyle}>
                       <CloseOutlinedIcon sx={{ height: "15px", width: "15px" }} />
                     </Box>

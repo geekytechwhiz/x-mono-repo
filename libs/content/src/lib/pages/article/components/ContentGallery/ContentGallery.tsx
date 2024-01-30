@@ -11,7 +11,7 @@ import { AUTH_INFO, NoResultsFound, ThemeConstants } from "@platformx/utilities"
 import ContentTypeCard from "platform-x-prelems/prelems/ContentTypeCard";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ContentProps } from "./utils/contentGalleryTypes";
+import { ContentProps } from "./ContentGallery.types";
 
 const ContentGallery = ({ handleSelectedContent, onToggleContentGallery, contentType }) => {
   const { t } = useTranslation();
