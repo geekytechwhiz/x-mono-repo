@@ -26,6 +26,6 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npm install -g @nrwl/nx
 RUN npm install --legacy-peer-deps
 # start app
-RUN nx release publish
+RUN npx nx release publish
 # EXPOSE 3000
 # CMD npm run start
