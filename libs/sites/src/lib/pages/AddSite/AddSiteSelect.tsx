@@ -1,6 +1,8 @@
 import { MenuItem, Select } from "@mui/material";
-import { ReactComponent as ArrowDown } from "../../../assets/svg/ArrowDown.svg";
 import { Box } from "@mui/system";
+import { ArrowDown } from "@platformx/utilities";
+import { German, English, Franch } from "@platformx/utilities";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const AddSiteSelect = ({
   value,
@@ -9,6 +11,12 @@ const AddSiteSelect = ({
   isLanguageDropDown,
   isDisabled = false,
 }) => {
+  const flag = {
+    en: English,
+    fr: Franch,
+    de: German,
+  };
+
   return (
     <>
       <style>{`
@@ -25,7 +33,7 @@ const AddSiteSelect = ({
         `}</style>
       <Select
         disabled={isDisabled}
-        IconComponent={ArrowDown}
+        IconComponent={KeyboardArrowDownIcon}
         id='selectcontainer'
         onChange={handleDropDownChange}
         displayEmpty
@@ -77,7 +85,9 @@ const AddSiteSelect = ({
             <Box sx={{ display: "flex" }}>
               {isLanguageDropDown && (
                 <img
-                  src={require(`../../../assets/${item.value}_flag.png`)}
+                  // src={require(`../../../assets/${item.value}_flag.png`)}
+                  src={flag[item.value] || ""}
+                  alt={item.value}
                   style={{
                     objectFit: "cover",
                     width: "24px",

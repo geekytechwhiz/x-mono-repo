@@ -6,14 +6,13 @@ import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 
 import {
-  fetchAdminList,
-  fetchDomainList,
   createSiteConfig,
   fetchSites,
   publishMultisiteInfo,
   siteTitleValidation,
   subdomainValidation,
   updateSiteConfig,
+  fetchAdminDomainList,
 } from "@platformx/authoring-apis";
 import { CookieTextArea } from "@platformx/site-setting";
 import { ControlTitle, useAddSiteStyle } from "./AddSite.style";
@@ -35,6 +34,7 @@ export const AddSite = () => {
   const [activeForm, setActiveForm] = useState<string>("");
   const [adminDomainList, setAdminDomain] = useState<any>({ domainList: [], adminList: [] });
   const { siteName } = useParams();
+
   const [openPublishModal, setOpenPublishModal] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savedPageURL, setSavedPageURL] = useState("");
@@ -204,27 +204,20 @@ export const AddSite = () => {
     }
   };
 
-  const fetchDomain = async () => {
+  const fetchAdminDomain = async () => {
     try {
-      const res: any = await fetchDomainList();
-      const temp = res?.authoring_getAdminDomainList?.map((obj) => ({
+      const res: any = await fetchAdminDomainList();
+
+      const domain = res?.domain?.map((obj) => ({
         ...obj,
         value: obj.dnsName,
       }));
-      setAdminDomain((prev) => ({ ...prev, domainList: temp }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const fetchAdmin = async () => {
-    try {
-      const res: any = await fetchAdminList();
-      const temp = res?.authoring_getAdminDomainList?.map((obj) => ({
+      const admin = res?.admin?.map((obj) => ({
         value: obj.email,
         name: obj.email,
         user_id: obj.user_id,
       }));
-      setAdminDomain((prev) => ({ ...prev, adminList: temp }));
+      setAdminDomain(() => ({ adminList: admin || [], domainList: domain || [] }));
     } catch (error) {
       console.log(error);
     }
@@ -255,49 +248,48 @@ export const AddSite = () => {
   }, [adminDomainList]);
 
   useEffect(() => {
-    fetchDomain();
-    fetchAdmin();
+    fetchAdminDomain();
     if (siteName) {
       fetchSiteDetail();
     }
   }, []);
 
-  // const handleScroll = () => {
-  //   if (scrollDebounceRef.current) {
-  //     clearTimeout(scrollDebounceRef.current);
-  //   }
-  //   const timeOutId = setTimeout(() => {
-  //     const currentScroll = window.scrollY;
-  //     const activeSection = sectionPos.current.find(
-  //       (section) => currentScroll >= section.start && currentScroll <= section.end,
-  //     );
-  //     if (activeSection) {
-  //       setActiveForm(activeSection.section);
-  //     }
-  //   }, 100);
-  //   scrollDebounceRef.current = timeOutId;
-  // };
-  // const getSectionPos = () => {
-  //   let tempStartPos = 0;
-  //   const listPos = iconList.map((icon) => {
-  //     const sectionStartPos = tempStartPos;
-  //     tempStartPos = icon.sectionRef.current.offsetTop;
-  //     return {
-  //       ...icon,
-  //       start: sectionStartPos,
-  //       end: icon.sectionRef.current.offsetHeight + sectionStartPos,
-  //     };
-  //   });
-  //   return listPos;
-  // };
-  // useEffect(() => {
-  //   sectionPos.current = getSectionPos();
-  //   handleScroll();
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+  const handleScroll = () => {
+    if (scrollDebounceRef.current) {
+      clearTimeout(scrollDebounceRef.current);
+    }
+    const timeOutId = setTimeout(() => {
+      const currentScroll = window.scrollY;
+      const activeSection = sectionPos.current.find(
+        (section) => currentScroll >= section.start && currentScroll <= section.end,
+      );
+      if (activeSection) {
+        setActiveForm(activeSection.section);
+      }
+    }, 100);
+    scrollDebounceRef.current = timeOutId;
+  };
+  const getSectionPos = () => {
+    let tempStartPos = 0;
+    const listPos = iconList.map((icon) => {
+      const sectionStartPos = tempStartPos;
+      tempStartPos = icon.sectionRef?.current?.offsetTop!;
+      return {
+        ...icon,
+        start: sectionStartPos,
+        end: icon?.sectionRef?.current?.offsetHeight! + sectionStartPos,
+      };
+    });
+    return listPos;
+  };
+  useEffect(() => {
+    sectionPos.current = getSectionPos();
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const onBreadscumClick = (icon) => {
     if (!icon) return;
@@ -306,10 +298,10 @@ export const AddSite = () => {
   };
   const iconList = [
     {
-      iconComponent: <Pencil />,
+      iconComponent: Pencil,
       title: t("create_new_site"),
       section: "create_new_site",
-      // sectionRef: createSiteSection,
+      sectionRef: createSiteSection,
     },
     // {
     //   iconComponent: <SettingSliderIcon />,
@@ -366,7 +358,9 @@ export const AddSite = () => {
       newSiteForm[2]?.value != "" && validate(input, "site_title");
     } else {
       const input = {
-        search: newSiteForm[1]?.value + "." + newSiteForm[0]?.value,
+        search: newSiteForm[1]?.value
+          ? newSiteForm[1]?.value + "." + newSiteForm[0]?.value
+          : newSiteForm[0]?.value,
         zoneName: getZoneName(),
       };
 

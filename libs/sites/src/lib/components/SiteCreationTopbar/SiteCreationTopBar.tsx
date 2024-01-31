@@ -1,10 +1,10 @@
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import { t } from "i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import Logo from "../../../assets/svg/PlatX-logo.svg";
+
 import "./SiteCreationTopBar.css";
 import { SiteCreationTopBarProps } from "./SiteCreationTopBar.types";
-import { MenuTwoDash, LongLeftArrow, SaveIcon } from "@platformx/utilities";
+import { MenuTwoDash, LongLeftArrow, SaveIcon, PlatXLogo } from "@platformx/utilities";
 
 const SiteCreationTopBar = ({
   returnBack,
@@ -29,7 +29,7 @@ const SiteCreationTopBar = ({
             <img src={MenuTwoDash} alt='icon' />
           </Box>
           <Box onClick={() => navigate("/dashboard")}>
-            <img src={Logo} height='30' />
+            <img src={PlatXLogo} height='30' />
           </Box>
         </Box>
         <Box className='draftspace'>
@@ -155,7 +155,7 @@ const SiteCreationTopBar = ({
                         color: activeForm === icon.section ? "#4B9EF9" : "",
                       }}
                       className='usericon'>
-                      {icon.iconComponent}
+                      <img src={icon.iconComponent} />
                     </Box>
                     <Box
                       className='text'
