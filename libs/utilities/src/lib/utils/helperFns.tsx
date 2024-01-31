@@ -7,6 +7,7 @@ import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Props } from "./types";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { SecondaryArgs, Content } from "./interface";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "@platformx/utilities";
 
 const siteLevelSchema = {
   siteName: "X",
@@ -1021,4 +1022,16 @@ export const getRelativeImageURL = (
   ext: string,
 ) => {
   return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
+};
+export const getFlag = (code = "") => {
+  switch (code || getCurrentLang()) {
+    case "en":
+      return EN_FLAG;
+    case "fr":
+      return FR_FLAG;
+    case "de":
+      return DE_FLAG;
+    default:
+      return EN_FLAG;
+  }
 };
