@@ -1,12 +1,13 @@
 /* eslint-disable */
-import AddIcon from "@mui/icons-material/Add";
-import ListIcon from "@mui/icons-material/List";
-import { Box, Button, Typography } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
-import { useNavigate } from "react-router-dom";
-import DeleteIcon from "../../assets/icons/righttick.svg";
+import AddIcon from '@mui/icons-material/Add';
+import ListIcon from '@mui/icons-material/List';
+import { Box, Button, Typography, IconButton } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import { useNavigate } from 'react-router-dom';
+import DeleteIcon from '../../assets/icons/righttick.svg';
+import DialogCloseIcon from '../../assets/svg/DialogCloseIcon.svg';
 
 export default function PlateformXDialogSuccess({
   isDialogOpen,
@@ -49,19 +50,20 @@ export default function PlateformXDialogSuccess({
               borderBottomLeftRadius: { xs: 0, md: 4 },
               borderBottomRightRadius: { xs: 0, md: 4 },
             },
-            textAlign: "center",
-          }}>
-          {/* <Box
-                    sx={{ textAlign: 'right', cursor: 'pointer' }}
-                    mt={1}
-                    mr={3}
-                    onClick={
+            textAlign: 'center',
+          }}
+        >
+          <Box
+            sx={{ textAlign: 'right', cursor: 'pointer' }}
+            mt={1}
+            mr={3}
+            onClick={
 
-                        closeButtonHandle
-                    }
-                >
-                    <CloseIcon />
-                </Box> */}
+              closeButtonHandle
+            }
+          >
+            <img src={DialogCloseIcon} alt="" />
+          </Box>
           <Box
             sx={{
               textAlign: "center",

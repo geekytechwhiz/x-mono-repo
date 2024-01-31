@@ -5,7 +5,16 @@ import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { MediaHandle, FeatureFlagSetting, GlobalSetting } from "@platformx/site-setting";
+
+import {
+  MediaHandle,
+  FeatureFlagSetting,
+  GlobalSetting,
+  FooterSetting,
+  HeaderSetting,
+  CookieSetting,
+} from "@platformx/site-setting";
+import { Sites } from "@platformx/sites";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
 
@@ -105,30 +114,71 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/site-setting/media-handle",
-  //   element: (
-  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
-  //       <MediaHandle />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/site-setting/global-setting",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <GlobalSetting />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/site-setting/feature-flag",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <FeatureFlagSetting />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/site-setting/media-handle",
+    element: (
+      <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+        <MediaHandle />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/global-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <GlobalSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/footer-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='FooterSetting'>
+        <FooterSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/header-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='HeaderSetting'>
+        <HeaderSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/cookie-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='CookieSetting'>
+        <CookieSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/feature-flag",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <FeatureFlagSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <Sites />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation/:siteName",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <Sites />
+      </ProtectedRoute>
+    ),
+  },
+
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

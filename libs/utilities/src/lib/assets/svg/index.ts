@@ -113,6 +113,7 @@ import GlobalMiscIcon from "./globalmiscicon.svg";
 import FeatureStarIcon from "./featurestar.svg";
 import PlayIcon from "./playIcon.svg";
 import PictureIcon from "./pictureIcon.svg";
+import VectorIconSvg from "./VectorIcon.svg";
 import ArrowUpwardIcon from "./ArrowUp.svg";
 import Icon from "./Icon.svg";
 import Refresh from "./Refresh.svg";
@@ -131,6 +132,24 @@ import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
 import RedDots from "./icon/RedDots.svg";
+import Location from "./Location.svg";
+import Envelop from "./Envelop.svg";
+import Phone from "./Phone.svg";
+import Searchheadericon from "./Searchheadericon.svg";
+import Headerpublic from "./headerpublic.svg";
+import Ctaround from "./ctaround.svg";
+import Ctasearch from "./ctasearch.svg";
+import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
+import Aboutusupdateicon from "./Aboutusupdateicon.svg";
+import Contactusupdateicon from "./Contactusupdateicon.svg";
+import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
+import Newsletterupdateicon from "./Newsletterupdateicon.svg";
+import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
+import FaviconupdateIcon from "./Faviconupdateicon.svg";
+import SearchnupdateIcon from "./Searchupdateicon.svg";
+import LanguageupdateIcon from "./Languageupdateicon.svg";
+import CtaupdateIcon from "./CTAupdateicon.svg"
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 
 export {
@@ -264,4 +283,23 @@ export {
   PlayIcon,
   UploadIcon,
   PictureIcon,
+  VectorIconSvg,
+  Searchheadericon,
+  Headerpublic,
+  Ctaround,
+  Ctasearch,
+  Location,
+  Envelop,
+  Phone,
+  Sitelogoupdateicon,
+  Aboutusupdateicon,
+  Contactusupdateicon,
+  Addlinkupdateicon,
+  CopyrightUpdateIcon,
+  Newsletterupdateicon,
+  MediahandleUpdateIcon,
+  FaviconupdateIcon,
+  SearchnupdateIcon,
+  LanguageupdateIcon,
+  CtaupdateIcon
 };
