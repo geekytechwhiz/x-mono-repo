@@ -7,6 +7,7 @@ import { Box, Divider } from "@mui/material";
 import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   FETCH_TAG_LIST,
@@ -16,34 +17,13 @@ import {
   useWorkflow,
 } from "@platformx/authoring-apis";
 import {
-  CATEGORY_CONTENT,
-  PlateformXDialog,
-  PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
   XLoader,
-  capitalizeFirstLetter,
-  getCurrentLang,
   useUserSession,
   workflowKeys,
-} from "@platformx/utilities";
-
-// import { useCommentContext } from "../../context/CommentsContext/CommentsContext";
-
-// import useWorkflow from "../../hooks/useWorkflow/useWorkflow";
-// import commentsApi from "../../services/comments/comments.api";
-// import { fetchTagList } from "../../services/common/tags.aps";
-// import { postRequest } from "../../services/config/request";
-import {
-  createContentType,
-  fetchContentByPath,
-  publishContentType,
-  updateContentType,
-} from "../../services/contentTypes/contentTypes.api";
-import { Store } from "../../store/ContextStore";
-import { ContentType } from "../../utils/Enums/ContentType";
-import { CATEGORY_CONTENT } from "../../utils/constants";
-import {
+  PlateformXDialog,
+  CATEGORY_CONTENT,
   capitalizeFirstLetter,
   getCurrentLang,
   getSubDomain,
@@ -51,34 +31,48 @@ import {
   onBackButtonEvent,
   trimString,
   unloadCallback,
-} from "../../utils/helperFunctions";
-import { CreateHeader } from "../Common/CreateHeader";
-import DamContentGallery from "../Common/DamContentGallery/DamContentGallery";
-import { previewContent } from "../Common/contentTypes/store/ContentAction";
-import CommentListPanel from "../ContentRewiew/CommentListPanel";
-import PlateformXDialog from "../Modal";
-import Analytics from "../Quiz/Analytics";
-import icons from "../Quiz/Constants";
-import { workflowKeys } from "../Submit/Utils/contstants";
-import WorkflowHistory from "../WorkflowHistory/WorkflowHistory";
+} from "@platformx/utilities";
+
+// import { postRequest } from "../../services/config/request";
+
+// import { Store } from "../../store/ContextStore";
+// import { ContentType } from "../../utils/Enums/ContentType";
+import { ContentType } from "../../enums/ContentType";
+// import { CATEGORY_CONTENT } from "../../utils/constants";
+import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
+// import DamContentGallery from "../Common/DamContentGallery/DamContentGallery";
+
+// import { previewContent } from "../Common/contentTypes/store/ContentAction";
+import { RootState } from "@platformx/authoring-state";
+import { CommentListPanel } from "@platformx/comment-review";
+import Analytics from "../../components/Analytics/Analytics";
+
+// import icons from "../Quiz/Constants";
+import { icons } from "../../utils/Constants";
+
+// import { workflowKeys } from "../Submit/Utils/contstants";
+// import WorkflowHistory from "../WorkflowHistory/WorkflowHistory";
+
 import AddQuestion from "./components/addQuestion/AddQuestion";
 import ChooseTags from "./components/choosetags/ChooseTags";
 import { ImageVideo } from "./components/ImageVideo";
-import PollPageScroll from "./PollPageScroll";
+import PollPageScroll from "./components/pollsPageScroll/PollPageScroll";
 import Result from "./components/results/Result";
 import Seo from "./components/Seo";
 import SocialShare from "./components/socialshare/SocialShare";
 import { TitleDescription } from "./TitleDescription";
 import { DRAFT, PUBLISHED } from "./Utils/constants";
-import { checkIfUnsavedChanges } from "./store/Actions";
+// import { checkIfUnsavedChanges } from "./store/Actions";
 
 export const CreatePoll = (): JSX.Element => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
   const params = useParams();
   const updateTempObj = useRef<any>({});
-  const { state, dispatch } = useContext(Store);
-  const { poll, content } = state;
+  const { currentContent } = useSelector((state: RootState) => state.content);
+  const { currentPoll } = useSelector((state: RootState) => state.poll);
+  // const { state, dispatch } = useContext(Store);
+  // const { poll, content } = state;
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -129,7 +123,7 @@ export const CreatePoll = (): JSX.Element => {
   const [parentToolTip, setParentToolTip] = useState("");
   const [addImage, setAddImage] = useState<boolean>(false);
   const scrollDebounceRef = useRef<any>(null);
-  const [runFetchTagList] = useLazyQuery(fetchTagList);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [socialShareExpanded, setSocialShareExpanded] = useState(
     pollPageUrl.searchParams.get("open") ? true : false,
@@ -178,7 +172,7 @@ export const CreatePoll = (): JSX.Element => {
   const [editedSD, setEditedSD] = useState({});
   const [filedChanges, setFieldChanges] = useState(false);
   const [isReload, setIsReload] = useState(false);
-  const { selectedComment, comments, clearComment } = useCommentContext();
+  const { comments } = useComment();
   const login_user_id = userInfo?.user_id;
 
   useEffect(() => {
@@ -313,7 +307,7 @@ export const CreatePoll = (): JSX.Element => {
     short_description: "",
     tags: [],
   };
-  const pollRef = useRef<any>(state.poll.currentPoll ? state.poll.currentPoll : defPoll);
+  const pollRef = useRef<any>(currentPoll ? currentPoll : defPoll);
   const tagRef = useRef<any>([]);
 
   const [isPublishDisabled, setPublishDisabled] = useState<boolean>(true);
@@ -408,15 +402,14 @@ export const CreatePoll = (): JSX.Element => {
     };
     return PollStructureData;
   };
-
   const [createpollmutate] = useMutation(contentTypeAPIs.createContentType);
   const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
   const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
-
   const [contentType, setContentType] = useState(
     capitalizeFirstLetter(pollPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
   );
-  const [runFetchContentByPath] = useLazyQuery(fetchContentByPath);
+  // const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
+  const [runFetchContentByPath] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   const taglength = useRef();
   useEffect(() => {
     const {
@@ -554,9 +547,9 @@ export const CreatePoll = (): JSX.Element => {
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {
-          showToastError(error.graphQLErrors[0].message);
+          ShowToastError(error.graphQLErrors[0].message);
         } else {
-          showToastError(t("api_error_toast"));
+          ShowToastError(t("api_error_toast"));
         }
       });
   };
@@ -653,7 +646,7 @@ export const CreatePoll = (): JSX.Element => {
     })
       .then((resp) => {
         unsavedChanges.current = false;
-        dispatch(checkIfUnsavedChanges(unsavedChanges.current));
+        // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setTimerState(true);
         setLastmodifiedDate(new Date().toISOString());
         if (pageState.toLowerCase() !== PUBLISHED.toLowerCase()) {
@@ -664,7 +657,7 @@ export const CreatePoll = (): JSX.Element => {
             setWorkflowStatus(isWorkflow);
           } else {
             if (!isWorkflow) {
-              showToastSuccess(`${t("poll")} ${t("saved_toast")}`);
+              ShowToastSuccess(`${t("poll")} ${t("saved_toast")}`);
             }
             //setOnSavedModal(true);
             setIsDraft(false);
@@ -710,9 +703,9 @@ export const CreatePoll = (): JSX.Element => {
         setTimerState(false);
         setLastmodifiedDate("");
         if (error?.graphQLErrors[0]) {
-          showToastError(error.graphQLErrors[0].message);
+          ShowToastError(error.graphQLErrors[0].message);
         } else {
-          showToastError(t("api_error_toast"));
+          ShowToastError(t("api_error_toast"));
         }
       });
   };
@@ -826,12 +819,12 @@ export const CreatePoll = (): JSX.Element => {
         if (status && status?.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            showToastSuccess(`${t("poll")} ${t("updated_toast")}`);
+            ShowToastSuccess(`${t("poll")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }
           unsavedChanges.current = false;
-          dispatch(checkIfUnsavedChanges(unsavedChanges.current));
+          // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setShowExitWarning(false);
           setIsEdited(false);
         } else {
@@ -841,7 +834,7 @@ export const CreatePoll = (): JSX.Element => {
       .catch((error) => {
         setTimerState(false);
         setLastmodifiedDate("");
-        showToastError(t("api_error_toast"));
+        ShowToastError(t("api_error_toast"));
         setIsLoading(false);
         console.log(JSON.stringify(error, null, 2));
       });
@@ -851,7 +844,7 @@ export const CreatePoll = (): JSX.Element => {
     setShowWorkflowSubmit(false);
   };
   const savePoll = (status = true, props = {}, event_step = "") => {
-    dispatch(previewContent({}));
+    // dispatch(previewContent({}));
     setShowExitWarning(false);
 
     setPollState({
@@ -860,20 +853,20 @@ export const CreatePoll = (): JSX.Element => {
     });
 
     if (pollState?.title === "") {
-      showToastError(`${t("title")} ${t("is_required")}`);
+      ShowToastError(`${t("title")} ${t("is_required")}`);
     } else if (pollState?.description === "") {
-      showToastError(`${t("description")} ${t("is_required")}`);
+      ShowToastError(`${t("description")} ${t("is_required")}`);
     } else if (
       pollState?.is_schedule_publish &&
       (pollState?.schedule_publish_datetime === "" || pollState?.schedule_publish_datetime === null)
     ) {
-      showToastError(`${t("scheduled_publish")} ${t("time")} ${t("is_required")}`);
+      ShowToastError(`${t("scheduled_publish")} ${t("time")} ${t("is_required")}`);
     } else if (
       pollState?.is_schedule_unpublish &&
       (pollState?.schedule_unpublish_datetime === "" ||
         pollState?.schedule_unpublish_datetime === null)
     ) {
-      showToastError(`${t("scheduled_unpublish")} ${t("time")} ${t("is_required")}`);
+      ShowToastError(`${t("scheduled_unpublish")} ${t("time")} ${t("is_required")}`);
     } else {
       const pageURL = currentPollData.current
         ? currentPollData.current
@@ -893,7 +886,7 @@ export const CreatePoll = (): JSX.Element => {
   };
 
   const publish = () => {
-    dispatch(previewContent({}));
+    // dispatch(previewContent({}));
     setPollState({
       ...pollState,
       tags: tagArr,
@@ -913,33 +906,33 @@ export const CreatePoll = (): JSX.Element => {
     const checkOptionsChars = answers.filter((ans) => ans.option.length > 50);
     const shortDesc = pollState.short_description;
     if (title === "") {
-      showToastError(`${t("title")} ${t("is_required")}`);
+      ShowToastError(`${t("title")} ${t("is_required")}`);
     } else if (shortTitle === "") {
-      showToastError(`${t("short_title")} ${t("is_required")}`);
+      ShowToastError(`${t("short_title")} ${t("is_required")}`);
     } else if (shortDesc === "") {
-      showToastError(`${t("short_description")} ${t("is_required")}`);
+      ShowToastError(`${t("short_description")} ${t("is_required")}`);
     } else if (description === "") {
-      showToastError(`${t("description")} ${t("is_required")}`);
+      ShowToastError(`${t("description")} ${t("is_required")}`);
     } else if (colorCode === "" && imagevideoURL === "") {
-      showToastError(`${t("banner_image")} ${t("is_required")}`);
+      ShowToastError(`${t("banner_image")} ${t("is_required")}`);
     } else if (pollState?.poll_title === "") {
-      showToastError(`${t("poll")} ${t("question")} ${t("title")} ${t("is_required")}`);
+      ShowToastError(`${t("poll")} ${t("question")} ${t("title")} ${t("is_required")}`);
     } else if (pollState?.poll_description === "") {
-      showToastError(`${t("poll")} ${t("question")} ${t("description")} ${t("is_required")}`);
+      ShowToastError(`${t("poll")} ${t("question")} ${t("description")} ${t("is_required")}`);
     } else if (queBackgroundColor === "" && queBackgroundImg === "") {
-      showToastError(`${t("poll")} ${t("question")} ${t("banner_image")} ${t("is_required")}`);
+      ShowToastError(`${t("poll")} ${t("question")} ${t("banner_image")} ${t("is_required")}`);
     } else if (emptyAnswers.length > 0) {
-      showToastError(`${t("answers")} ${t("is_required")}`);
+      ShowToastError(`${t("answers")} ${t("is_required")}`);
     } else if (addImage && emptyImageOptions.length > 0) {
-      showToastError(t("empty_images"));
+      ShowToastError(t("empty_images"));
     } else if (scoreBy === "") {
-      showToastError(`${t("score")} ${t("is_required")}`);
+      ShowToastError(`${t("score")} ${t("is_required")}`);
     } else if (pollState?.is_schedule_publish && pollState?.schedule_publish_datetime === "") {
-      showToastError(`${t("scheduled_publish")} ${t("is_required")}`);
+      ShowToastError(`${t("scheduled_publish")} ${t("is_required")}`);
     } else if (pollState?.is_schedule_unpublish && pollState?.schedule_unpublish_datetime === "") {
-      showToastError(`${t("scheduled_unpublish")} ${t("is_required")}`);
+      ShowToastError(`${t("scheduled_unpublish")} ${t("is_required")}`);
     } else if (tagArr?.length === 0) {
-      showToastError(t("tag_error"));
+      ShowToastError(t("tag_error"));
     } else {
       const pageURL = currentPollData.current
         ? currentPollData.current
@@ -1030,7 +1023,7 @@ export const CreatePoll = (): JSX.Element => {
         unsavedChanges.current = true;
       }
       console.log(error);
-      keyName === "socialShareImgURL" && showToastError(t("api_error_toast"));
+      keyName === "socialShareImgURL" && ShowToastError(t("api_error_toast"));
     }
   };
   const handleSelectedVideo = (video, id) => {
@@ -1075,7 +1068,7 @@ export const CreatePoll = (): JSX.Element => {
     if (unsavedChanges.current === true) {
       setShowExitWarning(true);
     } else {
-      dispatch(previewContent({}));
+      // dispatch(previewContent({}));
       navigate("/content/poll");
     }
   };
@@ -1084,7 +1077,7 @@ export const CreatePoll = (): JSX.Element => {
 
     if (event.target.checked && tagsArray?.length > 14) {
       event.target.checked = false;
-      showToastError(t("allowed_tags_toast"));
+      ShowToastError(t("allowed_tags_toast"));
     } else {
       if (event.target.checked) {
         tagsArray = [...tagArr, event.target.value];
@@ -1131,11 +1124,11 @@ export const CreatePoll = (): JSX.Element => {
 
   useEffect(() => {
     setIsEditMode(true);
-    if (Object.keys(content?.currentContent).length > 0) {
-      setPollState(content?.currentContent);
-      pollRef.current = content?.currentContent;
+    if (Object.keys(currentContent).length > 0) {
+      setPollState(currentContent);
+      pollRef.current = currentContent;
       setAnswers(
-        content?.currentContent?.options_compound_fields.map((x) => {
+        currentContent?.options_compound_fields.map((x) => {
           return {
             id: x.option_id,
             option: x.option_text,
@@ -1143,7 +1136,7 @@ export const CreatePoll = (): JSX.Element => {
           };
         }),
       );
-      setTagArr(content?.currentContent?.tags);
+      setTagArr(currentContent?.tags);
     } else if (currentPollData.current && unsavedChanges.current != true) {
       setIsLoading(true);
       runFetchContentByPath({
@@ -1336,7 +1329,7 @@ export const CreatePoll = (): JSX.Element => {
       setShowExitWarning(false);
       qusUnsavedChanges.current = false;
     } else {
-      dispatch(previewContent({}));
+      // dispatch(previewContent({}));
       navigate("/content/poll");
     }
   };
@@ -1349,7 +1342,7 @@ export const CreatePoll = (): JSX.Element => {
   };
   const navigateTo = () => {
     navigate("/content/poll");
-    dispatch(previewContent({}));
+    // dispatch(previewContent({}));
   };
   const handelPreview = (contentPayload) => {
     const backgroundContent = {
@@ -1387,7 +1380,7 @@ export const CreatePoll = (): JSX.Element => {
       contentType: "Poll",
     };
     console.log("handelPreview", tempObj);
-    dispatch(previewContent(tempObj));
+    // dispatch(previewContent(tempObj));
     navigate("/content-preview");
   };
 
@@ -1407,7 +1400,7 @@ export const CreatePoll = (): JSX.Element => {
     };
   }, [unsavedChanges.current]);
   useEffect(() => {
-    dispatch(checkIfUnsavedChanges(unsavedChanges.current));
+    // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
   }, [pollState]);
   //create comment
   const createComment = async () => {
@@ -1438,19 +1431,11 @@ export const CreatePoll = (): JSX.Element => {
   }, [tagData?.length > 0]);
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: "#FFF",
         }}>
         {galleryState && (
-          // <Gallery
-          //   handleImageSelected={handleSelectedImage}
-          //   toggleGallery={toggleGallery}
-          //   galleryMode={galleryType.current}
-          //   handleVideoSelected={handleSelectedVideo}
-          //   keyName={key}
-          //   id={answerId}
-          // />
           <DamContentGallery
             handleImageSelected={handleSelectedImage}
             toggleGallery={toggleGallery}
@@ -1459,13 +1444,13 @@ export const CreatePoll = (): JSX.Element => {
             id={answerId}
           />
         )}
-      </Box>
+      </Box> */}
 
       <Box
         sx={{
           display: isClickedQueList || openAddQestion ? "none" : "initial",
         }}>
-        {isLoading && <Loader />}
+        {isLoading && <XLoader type='linear' />}
         <Box>
           <Box>
             <CreateHeader
@@ -1523,10 +1508,7 @@ export const CreatePoll = (): JSX.Element => {
               </Box>
             )}
             {enableWorkflowHistory ? (
-              <WorkflowHistory
-                workflow={workflow}
-                setEnableWorkflowHistory={setEnableWorkflowHistory}
-              />
+              <>WorkflowHistory</>
             ) : (
               <>
                 <TitleDescription

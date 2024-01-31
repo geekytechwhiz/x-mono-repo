@@ -14,6 +14,7 @@ import { XTags } from "./SchemaComponents";
 import AutoCompleteText from "./AutoCompleteText/AutoCompleteText";
 import BasicSwitchText from "./BasicSwitchText";
 import ContentListMobileLoader from "./Loader/ContentListLoaderMobile";
+import ContentSeoStructureData from "./ContentSeoStructureData";
 
 export * from "./SchemaComponents/SubmitButton/helper";
 export * from "./DragAndDrop/index";
@@ -37,4 +38,5 @@ export {
   SkeltonLoader,
   NoContentFound,
   SubmitButton,
+  ContentSeoStructureData,
 };

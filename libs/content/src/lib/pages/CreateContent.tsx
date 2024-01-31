@@ -1,5 +1,6 @@
 import { useLocation } from "react-router";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
+import { CreatePoll } from "../pages/Polls/CreatePoll";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 
 export const CreateContent = () => {
@@ -12,8 +13,8 @@ export const CreateContent = () => {
 
     case "quiz":
       return <CreateQuiz></CreateQuiz>;
-    // case "polls":
-    //   return <CreatePolls></CreatePolls>;
+    case "poll":
+      return <CreatePoll></CreatePoll>;
     default:
       return <>DynamicContent</>;
   }

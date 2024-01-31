@@ -2,14 +2,27 @@ import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import AddImage from "../Common/AddImage";
-import AutoCompleteText from "../Common/AutoCompleteText";
-import AutoTextArea from "../Common/AutoTextArea";
-import TextBox from "../Common/TextBox";
-import TitleSubTitle from "../Common/TitleSubTitle";
+import {
+  AutoCompleteText,
+  AutoTextArea,
+  CommonBoxWithNumber,
+  TextBox,
+  TitleSubTitle,
+  AddImage,
+} from "@platformx/utilities";
+import { XImageRender } from "@platformx/x-image-render";
+// import AddImage from "../Common/AddImage";
+// import AutoCompleteText from "../Common/AutoCompleteText";
+// import AutoTextArea from "../Common/AutoTextArea";
+// import TextBox from "../Common/TextBox";
+// import TitleSubTitle from "../Common/TitleSubTitle";
 import { useCustomStyle } from "../../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
-import { relativeImageURL } from "../../utils/helperFunctions";
+// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+// import {
+//   relativeImageURL,
+// } from "@platformx/utilities";
+// eslint-disable-next-line no-duplicate-imports
+import { relativeImageURL } from "@platformx/utilities";
 
 const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, selectedImage }) => {
   const { t } = useTranslation();
@@ -49,8 +62,8 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             <TitleSubTitle
               title={t("choose_image")}
               subTitle={t("page_choose_image")}
-              titleVarient='h6medium'
-              subTitleVarient='h7regular'
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
             />
           </Grid>
           <Grid item xs={12} sm={7} md={7} className='textFiled'>
@@ -71,8 +84,8 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             <TitleSubTitle
               title={t("poll_ss_title")}
               subTitle={t("quiz_ss_subtitle")}
-              titleVarient='h6medium'
-              subTitleVarient='h7regular'
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
             />
           </Grid>
           <Grid item xs={12} sm={12} md={7} lg={7} className='textFiled'>
@@ -88,8 +101,8 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             <TitleSubTitle
               title={t("poll_ss_description")}
               subTitle={t("quiz_ss_subdescription")}
-              titleVarient='h6medium'
-              subTitleVarient='h7regular'
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
             />
           </Grid>
           <Grid item xs={12} sm={7} md={7} className='textFiled'>
@@ -106,8 +119,8 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             <TitleSubTitle
               title={t("quiz_tags_title")}
               subTitle={t("quiz_tags_subtitle")}
-              titleVarient='h6medium'
-              subTitleVarient='h7regular'
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
             />
           </Grid>
 

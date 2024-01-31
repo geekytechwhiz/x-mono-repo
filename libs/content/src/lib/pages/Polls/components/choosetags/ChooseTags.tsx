@@ -1,9 +1,10 @@
 import { Box } from "@mui/material";
 
 import { useTranslation } from "react-i18next";
-import { Tags } from "../Common/tags/Tags";
+// import { Tags } from "../Common/tags/Tags";
 import { useCustomStyle } from "../../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+import { CommonBoxWithNumber, XTags } from "@platformx/utilities";
 
 const ChooseTags = ({ isEdit, tagData, selectedTag, handleTagOnChange }) => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ const ChooseTags = ({ isEdit, tagData, selectedTag, handleTagOnChange }) => {
         subTitleVarient='p4regular'
         subTitle={t("subhead")}>
         <Box className='noSpacWp'>
-          <Tags
+          <XTags
             isEdit={isEdit}
             tagData={tagData}
             selectedTag={selectedTag}

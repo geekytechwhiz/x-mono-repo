@@ -1,15 +1,20 @@
+/* eslint-disable require-atomic-updates */
+/* eslint-disable no-debugger */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useComment } from "../../hooks/useComment/useComment";
-import { AddImageBackgroundColor } from "../Common/AddImageBackgroundColor";
-import AutoTextArea from "../Common/AutoTextArea";
-import TextBox from "../Common/TextBox";
-import TitleSubTitle from "../Common/TitleSubTitle";
-import CommentWrapper from "../ContentRewiew/CommentWrapper";
+import { useComment } from "@platformx/authoring-apis";
+import { CommentWrapper } from "@platformx/comment-review";
 import AnswerContent from "./AnswerContent";
 import { useCustomStyle } from "../../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+import {
+  AutoTextArea,
+  CommonBoxWithNumber,
+  TextBox,
+  TitleSubTitle,
+  AddImageBackGroundColor,
+} from "@platformx/utilities";
 
 const AddQuestion = ({
   saveQuestionCallBack,
@@ -99,7 +104,7 @@ const AddQuestion = ({
   return (
     <Box id='questions' className={classes.mainStyleWrapper}>
       <Box>
-        <CommentWrapper elementId='3' scrollRef={scrollToRef} comments={comments}>
+        <CommentWrapper elementId='3' scrollRef={scrollToRef}>
           <CommonBoxWithNumber
             number='03'
             title={t("poll_qus_header")}
@@ -111,8 +116,8 @@ const AddQuestion = ({
                 <TitleSubTitle
                   title={`${t("title")}*`}
                   subTitle={t("poll_subtitle")}
-                  titleVarient='h6medium'
-                  subTitleVarient='h7regular'
+                  titleVariant='h6medium'
+                  subTitleVariant='h7regular'
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
@@ -129,8 +134,8 @@ const AddQuestion = ({
                 <TitleSubTitle
                   title={`${t("description")}*`}
                   subTitle={t("poll_short_subdes")}
-                  titleVarient='h6medium'
-                  subTitleVarient='h7regular'
+                  titleVariant='h6medium'
+                  subTitleVariant='h7regular'
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} className='textFiled'>
@@ -149,12 +154,12 @@ const AddQuestion = ({
                 <TitleSubTitle
                   title={t("quiz_addqus_image_title")}
                   subTitle={t("poll_bg_subtitle")}
-                  titleVarient='h6medium'
-                  subTitleVarient='h7regular'
+                  titleVariant='h6medium'
+                  subTitleVariant='h7regular'
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-                <AddImageBackgroundColor
+                <AddImageBackGroundColor
                   state={state.queBackgroundImg}
                   isImg={isImg}
                   onUploadClick={onUploadClick}

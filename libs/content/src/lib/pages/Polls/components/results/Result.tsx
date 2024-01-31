@@ -1,9 +1,10 @@
 import { Box, Grid, RadioGroup } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import RadioControlLabel from "../Common/RadioControlLabel";
-import TitleSubTitle from "../Common/TitleSubTitle";
+// import RadioControlLabel from "../Common/RadioControlLabel";
+// import TitleSubTitle from "../Common/TitleSubTitle";
 import { useCustomStyle } from "../../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+import { CommonBoxWithNumber, RadioControlLabel, TitleSubTitle } from "@platformx/utilities";
 
 const Result = ({ state, setState, unsavedChanges }) => {
   const { t } = useTranslation();
@@ -24,8 +25,8 @@ const Result = ({ state, setState, unsavedChanges }) => {
             <TitleSubTitle
               title={t("score_title")}
               subTitle={t("score_subtitle")}
-              titleVarient='h6medium'
-              subTitleVarient='h7regular'
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
             />
           </Grid>
           <Grid item xs={12} sm={7} md={7}>

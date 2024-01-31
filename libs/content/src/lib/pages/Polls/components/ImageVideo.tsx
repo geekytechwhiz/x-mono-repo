@@ -1,12 +1,15 @@
 import { Box, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useComment } from "../../hooks/useComment/useComment";
-import { AddImageBackgroundColor } from "../Common/AddImageBackgroundColor";
-import TitleSubTitle from "../Common/TitleSubTitle";
-import CommentWrapper from "../ContentRewiew/CommentWrapper";
+// import { useComment } from "../../hooks/useComment/useComment";
+import { useComment } from "@platformx/authoring-apis";
+// import { AddImageBackgroundColor } from "../Common/AddImageBackgroundColor";
+// import TitleSubTitle from "../Common/TitleSubTitle";
+// import CommentWrapper from "../ContentRewiew/CommentWrapper";
 import { useCustomStyle } from "../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+import { CommonBoxWithNumber, TitleSubTitle, AddImageBackGroundColor } from "@platformx/utilities";
+import { CommentWrapper } from "@platformx/comment-review";
 
 export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImage }) => {
   const { t } = useTranslation();
@@ -71,7 +74,7 @@ export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImag
   const classes = useCustomStyle();
   return (
     <Box id='imageVideo' className={classes.mainStyleWrapper}>
-      <CommentWrapper elementId='2' scrollRef={scrollToRef} comments={comments}>
+      <CommentWrapper elementId='2' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='02'
           title={t("poll_bg_header")}
@@ -83,12 +86,12 @@ export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImag
               <TitleSubTitle
                 title={t("poll_bg_title")}
                 subTitle={t("poll_bg_subtitle")}
-                titleVarient='h6medium'
-                subTitleVarient='h7regular'
+                titleVariant='h6medium'
+                subTitleVariant='h7regular'
               />
             </Grid>
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-              <AddImageBackgroundColor
+              <AddImageBackGroundColor
                 state={state.imagevideoURL}
                 isImg={isImg}
                 onUploadClick={onUploadClick}

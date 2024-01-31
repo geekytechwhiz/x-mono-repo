@@ -2,13 +2,16 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useComment } from "../../hooks/useComment/useComment";
-import BasicSwitchText from "../Common/BasicSwitchText";
-import TitleSubTitle from "../Common/TitleSubTitle";
-import CommentWrapper from "../ContentRewiew/CommentWrapper";
+import { useComment } from "@platformx/authoring-apis";
+import { CommonBoxWithNumber, TitleSubTitle, BasicSwitchText } from "@platformx/utilities";
+// import { useComment } from "../../hooks/useComment/useComment";
+// import BasicSwitchText from "../Common/BasicSwitchText";
+// import TitleSubTitle from "../Common/TitleSubTitle";
+// import CommentWrapper from "../ContentRewiew/CommentWrapper";
+import { CommentWrapper } from "@platformx/comment-review";
 import { Options } from "./Options";
 import { useCustomStyle } from "../../Poll.style";
-import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
+// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
 
 const AnswerContent = ({
   showGallery,
@@ -27,7 +30,7 @@ const AnswerContent = ({
   const classes = useCustomStyle();
   return (
     <Box className={classes.mainStyleWrapper}>
-      <CommentWrapper elementId='4' scrollRef={scrollToRef} comments={comments}>
+      <CommentWrapper elementId='4' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='04'
           title={t("answer_content")}
@@ -50,8 +53,8 @@ const AnswerContent = ({
               <TitleSubTitle
                 title={t("answers")}
                 subTitle={t("enter_answer")}
-                titleVarient='h6medium'
-                subTitleVarient='h7regular'
+                titleVariant='h6medium'
+                subTitleVariant='h7regular'
                 toolTipIcon={
                   <InfoOutlinedIcon sx={{ height: "18px", width: "18px", paddingLeft: "2px" }} />
                 }

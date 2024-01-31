@@ -60,7 +60,14 @@ import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAus
 import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import { LanguageList } from "./lib/utils/helperConstants";
-import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl } from "./lib/utils/helperFns";
+import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl,
+    capitalizeFirstLetter,
+  getSubDomain,
+  handleHtmlTags,
+  onBackButtonEvent,
+  trimString,
+  unloadCallback,
+ } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 import {
   XFileUpload,
@@ -180,4 +187,10 @@ export {
   workflowKeys,
   XDatePicker,
   ErrorHandleAutoTextArea,
+  capitalizeFirstLetter,
+  getSubDomain,
+  handleHtmlTags,
+  onBackButtonEvent,
+  trimString,
+  unloadCallback,
 };

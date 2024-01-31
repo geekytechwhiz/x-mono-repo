@@ -1,13 +1,22 @@
 import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "../../assets/images/icons/deleteIcon.svg";
+// import DeleteIcon from "../../assets/images/icons/deleteIcon.svg";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, Grid, TextField, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ReactComponent as Icon } from "../../assets/Icon.svg";
-import { getRandomNumber } from "../../utils/helperFunctions";
-import { showToastError } from "../toastNotification/toastNotificationReactTostify";
-import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
+// import { ReactComponent as Icon } from "../../assets/Icon.svg";
+import {
+  Drag,
+  DragAndDrop,
+  DeleteIcon,
+  Drop,
+  ShowToastError,
+  getRandomNumber,
+  Icon,
+} from "@platformx/utilities";
+// import { getRandomNumber } from "../../utils/helperFunctions";
+// import { showToastError } from "../toastNotification/toastNotificationReactTostify";
+// import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
 
 export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsavedChanges }) => {
   const { t } = useTranslation();
@@ -67,7 +76,7 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
         { id: `${getRandomNumber(answers, 1, 200)}`, option: "", image: "" },
       ]);
     } else {
-      showToastError(t("options_limit_toast"));
+      ShowToastError(t("options_limit_toast"));
     }
   };
   useEffect(() => {
@@ -180,7 +189,7 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
                             justifyContent: "center",
                             cursor: "pointer",
                           }}>
-                          <Icon />
+                          <img src={Icon} alt='Icon' />
                         </Box>
                       )}
                     </Grid>
