@@ -151,6 +151,10 @@ import SearchnupdateIcon from "./Searchupdateicon.svg";
 import LanguageupdateIcon from "./Languageupdateicon.svg";
 import CtaupdateIcon from "./CTAupdateicon.svg"
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import Pencil from './Pencil.svg'
+import MenuTwoDash from './MenuTwoDash.svg'
+import LongLeftArrow from './LongLeftArrow.svg'
+import SaveIcon from './Save.svg'
 
 export {
   GlobalImageIcon,
@@ -301,5 +305,9 @@ export {
   FaviconupdateIcon,
   SearchnupdateIcon,
   LanguageupdateIcon,
-  CtaupdateIcon
+  CtaupdateIcon,
+  Pencil,
+  MenuTwoDash,
+  LongLeftArrow,
+  SaveIcon
 };
