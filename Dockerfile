@@ -28,4 +28,5 @@ RUN npm install --legacy-peer-deps
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npx nx build react-test
 EXPOSE 3000
-CMD npm run start
+# CMD npm run start
+CMD npm run deploy:react-test
