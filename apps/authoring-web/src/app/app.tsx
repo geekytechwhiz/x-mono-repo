@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-debugger */
 
 import { ApolloProvider } from "@apollo/client";
@@ -72,11 +71,12 @@ function App() {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
-        //   window.location.replace(AUTH_URL);
-        // }
+        if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
+          window.location.replace(AUTH_URL);
+        }
 
         const analytics = await analyticsInstance(Analytics);
+        console.log("Analytics instance:", analytics);
         setInstances(analytics);
 
         const lang = getCurrentLang();
@@ -85,7 +85,8 @@ function App() {
           i18n.changeLanguage(lang);
         }
       } catch (error: any) {
-        /* empty */
+        console.error("Error during initialization:", error);
+        console.error("Error details:", error?.stack || error?.message || error);
       }
     };
     initializeApp();
@@ -94,7 +95,31 @@ function App() {
   return (
     <Suspense fallback={<div>...Loading</div>}>
       <div className='App'>
-        <h1>Hello authoring web</h1>
+        <I18nextProvider i18n={i18n}>
+          <ApolloProvider client={graphqlInstance}>
+            {/* <AnalyticsProvider instance={instances}> */}
+            <ThemeProvider theme={LightTheme}>
+              <CssBaseline />
+              <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
+                <Provider store={store}>
+                  <AppRouter />
+                </Provider>
+              </BrowserRouter>
+            </ThemeProvider>
+            {/* </AnalyticsProvider> */}
+            <ToastContainer
+              position='bottom-center'
+              autoClose={4000}
+              newestOnTop
+              closeOnClick
+              pauseOnFocusLoss
+              pauseOnHover
+              theme='colored'
+              icon={false}
+              className={classes.toastContainer}
+            />
+          </ApolloProvider>
+        </I18nextProvider>
       </div>
     </Suspense>
   );
