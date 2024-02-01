@@ -23,7 +23,7 @@ WORKDIR /server
 COPY . /server
 # install dependencies
 RUN npm install -g @nrwl/nx
-RUN npm install --legacy-peer-deps
+RUN npm install
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npx nx build authoring-web
