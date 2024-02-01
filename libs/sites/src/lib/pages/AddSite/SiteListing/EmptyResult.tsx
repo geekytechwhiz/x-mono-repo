@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as EmptySiteBox } from '../../../assets/svg/emptysitebox.svg'
+import {
+  EmptySiteBox
+} from "@platformx/utilities";
 // import ThemeConstants from '../../../theme/variable';
 import { useEmptyResultStyle } from './EmptyResult.style';
 import { AddNewButton } from './SiteListing.style';

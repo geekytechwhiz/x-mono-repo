@@ -4,14 +4,16 @@ import { t } from "i18next";
 import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router";
-import PeopleIcon from "../../../assets/svg/2PeopleIcon.svg";
-import { ReactComponent as CopyIcon } from "../../../assets/svg/CopyIcon.svg";
-import EditIcon from "../../../assets/svg/Pencil.svg";
-import SettingIcon from "../../../assets/svg/settings.svg";
+import {
+  PeopleIcon,
+  CopyIcon,
+  SettingIcon,
+  PencilIcon,
+  SitePlaceholder
+} from "@platformx/utilities";
 import { fetchMultisiteListing } from "@platformx/authoring-apis"
 import { capitalizeFirstLetter, getCurrentLang, NoSearchResult, ShowToastSuccess } from "@platformx/utilities";
 import EmptyResult from "./EmptyResult";
-import SitePlaceholder from "../../../assets/site-placeholder.png";
 import {
   SiteDesTypo,
   SiteDomainTypo,
@@ -212,7 +214,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                 <IconButton
                                   onClick={() => copyDomainName(generateDomain(site))}
                                   aria-label='copy domain name'>
-                                  <CopyIcon width={18} height={18} />
+                                 <img src={CopyIcon} alt="" />
                                 </IconButton>
                               </SiteDomainTypo>
                             </Box>
@@ -259,7 +261,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                   onClick={() =>
                                     navigate(`/sites/site-creation/${site.site_title_url}`)
                                   }>
-                                  <img src={EditIcon} />
+                                  <img src={PencilIcon} />
                                 </IconButton>
                               </Tooltip>
 
