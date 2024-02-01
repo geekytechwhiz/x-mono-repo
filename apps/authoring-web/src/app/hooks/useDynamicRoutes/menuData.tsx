@@ -281,7 +281,8 @@ export const MenuData = [
   },
   {
     Title: "Sites",
-    id: "site",
+    //id: "site",
+    id: "sitesetting",
     roles: ["admin"],
     Menu: [
       {
@@ -290,8 +291,10 @@ export const MenuData = [
         url: "/sites/site-listing",
         id: "Sites",
         roles: ["admin"],
-        category: "Site",
-        subCategory: "Sites",
+        // category: "Site",
+        // subCategory: "Sites",
+        category: "SiteSetting",
+        subCategory: "GlobalSetting",
       },
     ],
   },

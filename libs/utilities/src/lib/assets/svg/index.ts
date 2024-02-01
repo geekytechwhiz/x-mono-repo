@@ -18,6 +18,7 @@ import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
+import EmptySiteBox from "./emptysitebox.svg";
 import PollIcon from "./PollIcon.svg";
 import PostsIcon from "./PostsIcon.svg";
 import PostIconMenu from "./PostsIconmenu.svg";
@@ -109,6 +110,9 @@ import LeftArrowIcon from "./leftarrow.svg";
 import RightArrowIcon from "./rightarrow.svg";
 import GlobalImageIcon from "./globalimageicon.svg";
 import GlobalVideoIcon from "./globalvideoicon.svg";
+import PeopleIcon from "./2PeopleIcon.svg";
+import SettingIcon from "./settings.svg";
+import PencilIcon from "./PencilIcon.svg";
 import GlobalMiscIcon from "./globalmiscicon.svg";
 import FeatureStarIcon from "./featurestar.svg";
 import PlayIcon from "./playIcon.svg";
@@ -139,6 +143,7 @@ import Searchheadericon from "./Searchheadericon.svg";
 import Headerpublic from "./headerpublic.svg";
 import Ctaround from "./ctaround.svg";
 import Ctasearch from "./ctasearch.svg";
+import SitePlaceholder from "../site-placeholder.png";
 import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
 import Aboutusupdateicon from "./Aboutusupdateicon.svg";
 import Contactusupdateicon from "./Contactusupdateicon.svg";
@@ -311,5 +316,10 @@ export {
   Pencil,
   MenuTwoDash,
   LongLeftArrow,
-  SaveIcon
+  SaveIcon,
+  PeopleIcon,
+  EmptySiteBox,
+  SettingIcon,
+  PencilIcon,
+  SitePlaceholder
 };
