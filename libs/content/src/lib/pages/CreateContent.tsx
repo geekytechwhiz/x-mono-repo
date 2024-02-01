@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
-import { CreatePoll } from "../pages/Polls/CreatePoll";
+import { CreatePoll } from "./Polls/CreatePoll";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 
 export const CreateContent = () => {

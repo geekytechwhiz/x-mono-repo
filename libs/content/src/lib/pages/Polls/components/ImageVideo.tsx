@@ -1,14 +1,13 @@
 import { Box, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// import { useComment } from "../../hooks/useComment/useComment";
 import { useComment } from "@platformx/authoring-apis";
-// import { AddImageBackgroundColor } from "../Common/AddImageBackgroundColor";
-// import TitleSubTitle from "../Common/TitleSubTitle";
-// import CommentWrapper from "../ContentRewiew/CommentWrapper";
 import { useCustomStyle } from "../Poll.style";
-// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
-import { CommonBoxWithNumber, TitleSubTitle, AddImageBackGroundColor } from "@platformx/utilities";
+import {
+  CommonBoxWithNumber,
+  TitleSubTitle,
+  // AddImageBackGroundColor
+} from "@platformx/utilities";
 import { CommentWrapper } from "@platformx/comment-review";
 
 export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImage }) => {
@@ -91,7 +90,7 @@ export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImag
               />
             </Grid>
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-              <AddImageBackGroundColor
+              {/* <AddImageBackGroundColor
                 state={state.imagevideoURL}
                 isImg={isImg}
                 onUploadClick={onUploadClick}
@@ -105,7 +104,7 @@ export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImag
                 originalImage={state?.original_image}
                 publishedImages={state?.published_images}
                 isShowCrop={true}
-              />
+              /> */}
             </Grid>
           </Grid>
         </CommonBoxWithNumber>

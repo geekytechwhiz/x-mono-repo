@@ -7,7 +7,6 @@ import { Box, Divider } from "@mui/material";
 import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   FETCH_TAG_LIST,
@@ -32,6 +31,7 @@ import {
   trimString,
   unloadCallback,
 } from "@platformx/utilities";
+import { RootState, previewContent } from "@platformx/authoring-state";
 
 // import { postRequest } from "../../services/config/request";
 
@@ -43,7 +43,6 @@ import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 // import DamContentGallery from "../Common/DamContentGallery/DamContentGallery";
 
 // import { previewContent } from "../Common/contentTypes/store/ContentAction";
-import { RootState } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import Analytics from "../../components/Analytics/Analytics";
 
@@ -62,15 +61,18 @@ import Seo from "./components/Seo";
 import SocialShare from "./components/socialshare/SocialShare";
 import { TitleDescription } from "./TitleDescription";
 import { DRAFT, PUBLISHED } from "./Utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import ContentPageScroll from "../../components/ContentPageScroll";
 // import { checkIfUnsavedChanges } from "./store/Actions";
 
 export const CreatePoll = (): JSX.Element => {
+  const dispatch = useDispatch();
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
   const params = useParams();
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
-  const { currentPoll } = useSelector((state: RootState) => state.poll);
+  // const { currentPoll } = useSelector((state: RootState) => state.poll);
   // const { state, dispatch } = useContext(Store);
   // const { poll, content } = state;
   const [getSession] = useUserSession();
@@ -307,7 +309,7 @@ export const CreatePoll = (): JSX.Element => {
     short_description: "",
     tags: [],
   };
-  const pollRef = useRef<any>(currentPoll ? currentPoll : defPoll);
+  const pollRef = useRef<any>(defPoll);
   const tagRef = useRef<any>([]);
 
   const [isPublishDisabled, setPublishDisabled] = useState<boolean>(true);
@@ -690,14 +692,14 @@ export const CreatePoll = (): JSX.Element => {
         );
         pollRef.current.page = pageUrl;
         setDraftPageURL(pageUrl);
-        const tagArrTemp = { ...poll.current };
-        delete tagArrTemp.Description;
-        const res = Object.keys(tagArrTemp).every((keyName) => tagArrTemp[keyName]);
-        if (res && Object.keys(tagArrTemp).length > 0 && tagArrTemp.tags.length > 0) {
-          setPublishDisabled(false);
-        } else {
-          setPublishDisabled(true);
-        }
+        // const tagArrTemp = { ...poll.current };
+        // delete tagArrTemp.Description;
+        // const res = Object.keys(tagArrTemp).every((keyName) => tagArrTemp[keyName]);
+        // if (res && Object.keys(tagArrTemp).length > 0 && tagArrTemp.tags.length > 0) {
+        //   setPublishDisabled(false);
+        // } else {
+        //   setPublishDisabled(true);
+        // }
       })
       .catch((error) => {
         setTimerState(false);
@@ -959,19 +961,19 @@ export const CreatePoll = (): JSX.Element => {
         bitstreamId: image.bitStreamId,
         visibility: "public",
       };
-      const response = await postRequest("api/v1/assets/image/no-crop", payload);
-      const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
+      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
+      // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
       if (keyName === "imagevideoURL") {
         setPollState({
           ...pollState,
           [keyName]: image?.Thumbnail,
           thumbnailURL: image?.Thumbnail,
-          socialShareImgURL: relativeUrl,
+          // socialShareImgURL: relativeUrl,
         });
         pollRef.current = {
           ...pollRef.current,
           [keyName]: image?.Thumbnail,
-          socialShareImgURL: relativeUrl,
+          // socialShareImgURL: relativeUrl,
         };
 
         unsavedChanges.current = true;
@@ -987,7 +989,7 @@ export const CreatePoll = (): JSX.Element => {
         pollRef.current = {
           ...pollRef.current,
           [keyName]: image?.Thumbnail,
-          socialShareImgURL: relativeUrl,
+          // socialShareImgURL: relativeUrl,
         };
         unsavedChanges.current = true;
       }
@@ -1259,7 +1261,7 @@ export const CreatePoll = (): JSX.Element => {
           console.log(JSON.stringify(err, null, 2));
         });
     }
-  }, [content]);
+  }, [currentContent]);
 
   useEffect(() => {
     if (Object.keys(tagData).length == 0) {
@@ -1319,7 +1321,7 @@ export const CreatePoll = (): JSX.Element => {
     const dataHolder = document.getElementById("scrollableDiv");
     dataHolder?.addEventListener("scroll", scrollHandler);
     return () => {
-      dataHolder.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("scroll", scrollHandler);
     };
   }, []);
 
@@ -1344,7 +1346,7 @@ export const CreatePoll = (): JSX.Element => {
     navigate("/content/poll");
     // dispatch(previewContent({}));
   };
-  const handelPreview = (contentPayload) => {
+  const handelPreview = () => {
     const backgroundContent = {
       objectType: pollState?.imagevideoURL ? "image" : pollState?.colorCode ? "color" : "",
       Url: pollState?.thumbnailURL,
@@ -1380,7 +1382,7 @@ export const CreatePoll = (): JSX.Element => {
       contentType: "Poll",
     };
     console.log("handelPreview", tempObj);
-    // dispatch(previewContent(tempObj));
+    dispatch(previewContent(tempObj));
     navigate("/content-preview");
   };
 
@@ -1454,25 +1456,25 @@ export const CreatePoll = (): JSX.Element => {
         <Box>
           <Box>
             <CreateHeader
-              previewButton={previewButton}
+              hasPreviewButton={previewButton}
               handelPreview={handelPreview}
               createText={currentPollData.current ? t("edit_poll") : t("create_poll")}
-              returnBack={returnBack}
+              handleReturn={returnBack}
               isQuiz
-              publishButton={publishButton}
-              saveButton={saveButton}
-              saveorPublish={savePoll}
+              hasPublishButton={publishButton}
+              hasSaveButton={saveButton}
+              handleSaveOrPublish={savePoll}
               publishText={t("publish")}
               saveText={t("save_as_draft")}
               previewText={t("preview")}
               toolTipText={t("preview_tooltip")}
               saveVariant='secondaryButton'
-              publish={publish}
+              handlePublish={publish}
               category={CATEGORY_CONTENT}
               subCategory={ContentType.Poll}
               workflow={workflow}
-              timerState={timerState}
-              lastmodifiedDate={lastmodifiedDate}
+              hasTimerState={timerState}
+              lastModifiedDate={lastmodifiedDate}
               setEnableWorkflowHistory={setEnableWorkflowHistory}
               createComment={createComment}
               setIsFeatured={setIsFeatured}
@@ -1500,7 +1502,7 @@ export const CreatePoll = (): JSX.Element => {
                   right: { sm: "5px", xs: 0 },
                   zIndex: 1000,
                 }}>
-                <PollPageScroll
+                <ContentPageScroll
                   icons={icons}
                   parentToolTip={parentToolTip}
                   srollToView={srollToView}

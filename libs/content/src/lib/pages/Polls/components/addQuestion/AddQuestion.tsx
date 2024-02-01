@@ -13,7 +13,7 @@ import {
   CommonBoxWithNumber,
   TextBox,
   TitleSubTitle,
-  AddImageBackGroundColor,
+  // AddImageBackGroundColor,
 } from "@platformx/utilities";
 
 const AddQuestion = ({
@@ -159,7 +159,7 @@ const AddQuestion = ({
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-                <AddImageBackGroundColor
+                {/* <AddImageBackGroundColor
                   state={state.queBackgroundImg}
                   isImg={isImg}
                   onUploadClick={onUploadClick}
@@ -173,7 +173,7 @@ const AddQuestion = ({
                   originalImage={state?.question_original_image}
                   publishedImages={state?.question_published_images}
                   isShowCrop={true}
-                />
+                /> */}
                 {/* {addQuestionInfo.queBackgroundImg && isImg ? (
                     <Box
                       sx={{
