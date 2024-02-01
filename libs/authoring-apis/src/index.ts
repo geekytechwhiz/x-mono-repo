@@ -30,7 +30,7 @@ import commentsApi from "./lib/services/comments/comments.api";
 import assetsApi from "./lib/services/assetsApi/assets.api";
 import { WorkflowQueries } from "./lib/graphQL/queries/workflowQueries";
 import workflowApi from "./lib/services/workflow/workflow.api";
-
+export * from "./lib/services/SiteCreation/SiteCreation.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/graphQL/queries/pageQueries";
 export * from "./lib/graphQL/queries/prelemQueries";

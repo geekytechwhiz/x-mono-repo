@@ -14,7 +14,7 @@ import {
   HeaderSetting,
   CookieSetting,
 } from "@platformx/site-setting";
-import { Sites } from "@platformx/sites";
+import { AddSite } from "@platformx/sites";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
 
@@ -166,7 +166,7 @@ export const routes: RouteConfig[] = [
     path: "/sites/site-creation",
     element: (
       <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
-        <Sites />
+        <AddSite />
       </ProtectedRoute>
     ),
   },
@@ -174,7 +174,7 @@ export const routes: RouteConfig[] = [
     path: "/sites/site-creation/:siteName",
     element: (
       <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
-        <Sites />
+        <AddSite />
       </ProtectedRoute>
     ),
   },
