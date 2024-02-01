@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 
 export const useCustomStyle = makeStyles(() => {
   const theme = useTheme();
-  console.log("test lint");
   return {
     featureTilesWrapper: {
       "&.featureTilesBg": {
