@@ -8,7 +8,8 @@ export const getCurrentLang = () => {
   const split = location.pathname.split("/");
 
   if (LanguageList().find((x) => x.id === split[2])) {
-    lang = split[2];
+    const [, , selectedLanugage] = split;
+    lang = selectedLanugage;
   } else {
     lang = DefaultLocale;
   }
@@ -18,10 +19,9 @@ export const getCurrentLang = () => {
 export const getSelectedSite = () => {
   let site = "";
   const split = location.pathname.split("/");
-  site = split[1];
-  console.warn("selected site", site);
+  const [, selectedSite] = split;
+  site = selectedSite;
   if (site === "en" || site === "fr" || site === "de") {
-    console.warn("selected site 2", localStorage.getItem("selectedSite"));
     return localStorage.getItem("selectedSite");
   } else {
     return site;
@@ -69,7 +69,7 @@ export const updateStructureData = (content: any, banner: any, keywords: any, pa
     Description: trimString(handleHtmlTags(content?.description), 200),
     keywords: keywords,
     image: banner,
-    url: `${getSubDomain()}/${i18n.language}/` + `article/${pageUrl}`,
+    url: `${getSubDomain()}/${i18n.language}/article/${pageUrl}`,
     datePublished: dateFormat(new Date().toISOString()),
     dateModified: dateFormat(new Date().toISOString()),
     author: [

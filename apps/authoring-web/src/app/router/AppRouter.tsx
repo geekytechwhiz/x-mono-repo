@@ -2,7 +2,7 @@
 
 import { XLoader, useUserSession } from "@platformx/utilities";
 import { memo, useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import { useAuthentication } from "../hooks/useAuthentication";
 import { routes } from "./routes";
 import { useDynamicRoutes } from "../hooks/useDynamicRoutes/useDynamicRoutes";
@@ -12,14 +12,12 @@ function AppRouter() {
   const location = useLocation();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-  const navigate = useNavigate();
-  const { handleSignIn } = useAuthentication();
+  const { handleSignIn, verifySession } = useAuthentication();
   const generatedRoutes = useDynamicRoutes(MenuData, routes);
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
 
   useEffect(() => {
-    console.warn("use effect 1", code);
     // Check if there is no active session and redirect to the login page
     // if (!getSession()?.userInfo && !code) {
     //   localStorage.removeItem("selectedSite");
@@ -30,7 +28,6 @@ function AppRouter() {
   }, [location]);
 
   useEffect(() => {
-    console.warn("use effect 2");
     if (location.search.includes("code") && Object.entries(userInfo || {}).length === 0) {
       handleSignIn(location.search.split("code=")[1]);
     }
