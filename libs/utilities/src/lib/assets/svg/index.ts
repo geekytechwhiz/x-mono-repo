@@ -130,8 +130,9 @@ import GreenSubFolderIcon from "./Subfolder-green.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
-import RedDots from "./icon/RedDots.svg";
+import RedDotsIcon from "./icon/RedDots.svg";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   GlobalImageIcon,
@@ -264,4 +265,6 @@ export {
   PlayIcon,
   UploadIcon,
   PictureIcon,
+  DialogCloseIcon,
+  RedDotsIcon,
 };
