@@ -39,7 +39,7 @@ export const CreateHeader = ({
   category,
   subCategory,
   workflow,
-  setEnableWorkflowHistory,
+  // setEnableWorkflowHistory,
   hasTimerState,
   lastModifiedDate,
   createComment,

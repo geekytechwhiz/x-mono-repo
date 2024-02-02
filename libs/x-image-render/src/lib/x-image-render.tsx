@@ -24,7 +24,6 @@ const areEqual = (prevProps, nextProps) => {
 const XImageRender = ({ callBack, data, isCrop = true }): any => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
-  const [operationType, setOperationType] = useState<string>("choose");
   const [processing, setProcessing] = useState(false);
   const [selectedImage, setSelectedImage] = useState({
     Thumbnail: "",
@@ -124,8 +123,7 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
     setGalleryDialogOpen(true);
   };
 
-  const onUploadClick = (type) => {
-    setOperationType(type);
+  const onUploadClick = () => {
     showGallery();
   };
 

@@ -1,29 +1,18 @@
-/* eslint-disable no-debugger */
-
 import { ApolloProvider } from "@apollo/client";
 import { init as initApm } from "@elastic/apm-rum";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
-
 import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
-// import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-// import { CommentProvider } from './context/CommentsContext/CommentsContext';
-// import { ActionProvider } from './context/actionContext/ActionProvider';
-// import RootRouter from './router/rootRouter';
-// import { StoreProvider } from './store/ContextStore';
-// import LightTheme from './theme/lightTheme';
-// import { DefaultLocale } from './utils/constants';
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import { DefaultLocale, LightTheme, getCurrentLang, getSelectedRoute } from "@platformx/utilities";
 import { Provider } from "react-redux";
-import { AnalyticsProvider } from "use-analytics";
 import AppRouter from "./router/AppRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
@@ -48,7 +37,7 @@ initApm({
   logLevel: "debug",
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   toastContainer: {
     width: "457px",
     "& .Toastify__toast": {
@@ -61,26 +50,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  console.warn("check app.tsx");
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
-  const [instances, setInstances] = useState<any>({});
+  const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
 
   useEffect(() => {
     const initializeApp = async () => {
-      console.warn("initialize app");
       try {
         if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
           window.location.replace(AUTH_URL);
         }
-
         const analytics = await analyticsInstance(Analytics);
-        console.log("Analytics instance:", analytics);
         setInstances(analytics);
-
         const lang = getCurrentLang();
         if (lang) {
           setLanguage(lang);

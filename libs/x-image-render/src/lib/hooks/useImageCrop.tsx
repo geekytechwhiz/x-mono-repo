@@ -1,4 +1,3 @@
-// useImageCrop.js
 import { useState } from "react";
 import { ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
 import { BREAKPOINTS } from "../utils/constants";
@@ -58,7 +57,6 @@ const useImageCrop = (originalImage: any, doneCropCompleted: any) => {
     };
 
     try {
-      console.warn("original imaga", originalImage);
       await postRequest("api/v1/assets/image/manual-crop", payload, apiCallBack, originalImage);
     } catch (error) {
       console.error("Error cropping image:", error);

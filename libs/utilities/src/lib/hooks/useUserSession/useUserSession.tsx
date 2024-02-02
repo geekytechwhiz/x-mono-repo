@@ -1,7 +1,6 @@
-import { data } from "./sessionData";
 import { UserSession } from "./useUserSession.types";
 
-const useUserSession = (): [() => UserSession, (session: UserSession | null) => void] => {
+const useUserSession = () => {
   const updateSession = (updatedSession: any) => {
     localStorage.setItem("userSession", "");
 

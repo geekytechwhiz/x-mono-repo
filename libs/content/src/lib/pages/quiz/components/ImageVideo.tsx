@@ -12,7 +12,6 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
   const { scrollToRef } = useComment();
 
   const updateField = (updatedPartialObj) => {
-    console.warn("final data", updatedPartialObj);
     const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),

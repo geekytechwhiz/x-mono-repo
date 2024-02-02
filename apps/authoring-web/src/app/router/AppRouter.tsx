@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import { XLoader, useUserSession } from "@platformx/utilities";
 import { memo, useEffect } from "react";
 import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";

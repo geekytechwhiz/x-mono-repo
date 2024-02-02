@@ -1,5 +1,5 @@
 import { RootState } from "@platformx/authoring-state";
-import { memo, useRef } from "react";
+import React, { memo, useRef } from "react";
 import { useSelector } from "react-redux";
 import CommentBox from "./CommentBox";
 import CommentPreview from "./CommentPreview";
@@ -7,7 +7,7 @@ import { WrapperProps } from "./ContentReview.types";
 
 const CommentWrapper: React.FC<WrapperProps> = ({
   children,
-  scrollRef,
+  //  scrollRef,
   elementId,
   workflow,
 }: WrapperProps) => {
@@ -16,7 +16,6 @@ const CommentWrapper: React.FC<WrapperProps> = ({
   );
   const popOverRef = useRef(null);
   const pageUrl = new URL(window.location.href);
-  console.log("pageUrl", pageUrl);
   const arr = pageUrl.searchParams?.get("page")?.split("/") || [];
   const pathnm = `${arr[arr.length - 1]}`; //`${arr[6]}/${arr[7]}` || '';
   const contentName = useRef(

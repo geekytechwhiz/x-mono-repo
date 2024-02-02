@@ -3,7 +3,6 @@ import { Box, Button, Dialog, DialogContent, Grid, IconButton, Typography } from
 import { XLoader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { RATIOS } from "../utils/constants";
-import LoadingButton from "@mui/lab/LoadingButton";
 
 const ShowCaseCrops = (props: any = {}) => {
   const { open, backTo, handleEdit, data } = nullToObject(props);

@@ -1,6 +1,3 @@
-/* eslint-disable require-atomic-updates */
-/* eslint-disable no-debugger */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
@@ -56,12 +53,11 @@ import ImageVideo from "./components/ImageVideo";
 
 export const CreateQuiz = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
   const { currentQuiz } = useSelector((state: RootState) => state.quiz);
-  // const { quiz, content } = state;
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -81,7 +77,7 @@ export const CreateQuiz = () => {
   const [previewButton, setPreviewButton] = useState(true);
   const [publishButton] = useState(false);
   const [saveButton, setSaveButton] = useState(false);
-  const [, setIsSideMenuOpen] = useState(false);
+ // const [, setIsSideMenuOpen] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [isQuiz] = useState(true);
   const [openAddQuestion, setOpenAddQuestion] = useState(false);
@@ -89,7 +85,7 @@ export const CreateQuiz = () => {
   const [isClickedQueList, setIsClickedQueList] = useState(false);
   const [, setPublishUrl] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState(false);
+ // const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
   const [workflow, setWorkflow] = useState({});
@@ -664,7 +660,7 @@ export const CreateQuiz = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsEditMode(true);
+       // setIsEditMode(true);
 
         if (Object.keys(currentContent).length > 0) {
           setQuizState(currentContent);

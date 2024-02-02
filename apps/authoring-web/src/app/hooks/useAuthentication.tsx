@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
@@ -8,13 +6,11 @@ import {
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
   const [handleImpression] = usePlatformAnalytics();
   const [getSession, updateSession] = useUserSession();
-  const navigate = useNavigate();
 
   const handleSignIn = async (authCode) => {
     const payload = {
@@ -24,18 +20,14 @@ export const useAuthentication = () => {
       redirect_uri: AUTH_INFO.redirectUri,
       tenant_id: AUTH_INFO.realm,
     };
-    console.warn("payload", payload);
     try {
       const response = await authAPI.signIn("auth/session", payload);
-      console.warn("check 2", response);
       if (response && response.data) {
-        console.warn("check 3", response.data);
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find(
           (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase(),
         )?.name;
-
         updateSession(createSession(response.data, true, userRole));
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
@@ -59,7 +51,6 @@ export const useAuthentication = () => {
   const verifySession = async () => {
     try {
       const response = await authAPI.verifySession("auth/verify-session");
-      console.warn("verify session", response);
       if (response?.data) {
         const { active } = response.data || { userDetails: {} };
 
@@ -96,7 +87,6 @@ export const useAuthentication = () => {
       } else {
         // localStorage.removeItem("selectedSite");
         updateSession(null);
-        console.warn("redirect", AUTH_URL);
         window.location.replace(AUTH_URL);
       }
     } catch (error) {
