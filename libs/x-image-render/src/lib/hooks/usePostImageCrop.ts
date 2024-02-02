@@ -3,11 +3,10 @@ import axios from "axios";
 import { useState } from "react";
 
 export const usePostImageCrop = () => {
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const postRequest = async (path: string, payload: any, callback: any) => {
+  const postRequest = async (path: string, payload: any, callback: any, selectedImg: any) => {
     try {
       setIsLoading(true);
       const res = await axios.post("https://dev.api.hcl-x.com/platform-x/" + path, payload, {
@@ -20,8 +19,7 @@ export const usePostImageCrop = () => {
         },
         withCredentials: true,
       });
-      setData(res.data);
-      callback(res.data);
+      callback(res.data, selectedImg);
     } catch (err: any) {
       setError(err);
       callback();
@@ -30,5 +28,5 @@ export const usePostImageCrop = () => {
     }
   };
 
-  return { postRequest, data, isLoading, error };
+  return { postRequest, isLoading, error };
 };

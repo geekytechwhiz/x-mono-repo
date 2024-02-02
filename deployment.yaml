@@ -4,6 +4,7 @@ metadata:
   labels:
     app: platformx-mono-repo-nx
   name: platformx-mono-repo-nx
+  namespace: dev-v2
 spec:
   replicas: 2
   selector:
