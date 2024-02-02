@@ -32,7 +32,6 @@ const SocialShare = ({ state, setState, quizRef, unsavedChanges, setFieldChanges
   };
 
   const updateField = (data) => {
-    console.warn("final data", data);
     setState({ ...state, socialShareImgURL: data.relativeUrl });
     quizRef.current = {
       ...quizRef.current,

@@ -3,21 +3,14 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Profile from "../../assets/images/avatar.png";
 import Logo from "../../assets/images/platform-x-logo.png";
-// import { Store } from '../../store/ContextStore';
-// import ThemeConstants from '../../theme/variable';
-// import { logoutUrl } from '../../utils/authConstants';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import usePlatformAnalytics from "platform-x-utils/dist/analytics";
-import { useTranslation } from "react-i18next";
 import LanguageDropDown from "../LanguageDropDown/LanguageDropDown";
 import useUserSession from "../../hooks/useUserSession/useUserSession";
-// import { callSaveandResetWarning } from '../../store/Actions';
-import { getCurrentLang, getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
+import { getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import PlateformXDialog from "../Popups/PlateformXDialog";
@@ -31,12 +24,8 @@ const saveWarningMessage = {
 };
 
 export const Header = (props) => {
-  const { t, i18n } = useTranslation();
   const [getSession, updateSession] = useUserSession();
   const { userInfo, isActive } = getSession();
-  // const { state, dispatch } = useContext(Store); // TODO need to check this
-  // const { page } = state;
-  // const { quiz } = state;
   const navigate = useNavigate();
   const location = useLocation();
   const { saveWarnTitle, saveWarnSubtitle, saveWarnSave, saveWarnReject } = saveWarningMessage;
@@ -98,6 +87,8 @@ export const Header = (props) => {
       case "PAGE_LIST":
         navigate("/page-list");
         break;
+      default:
+        navigate("/");
     }
   };
   const handleChangePassword = () => {
@@ -106,10 +97,10 @@ export const Header = (props) => {
       callFnsCase("CHANGE_PWD");
     }
   };
-  const handlePrelem = () => {
-    setAnchorE2(null);
-    navigate("/page-list");
-  };
+  // const handlePrelem = () => {
+  //   setAnchorE2(null);
+  //   navigate("/page-list");
+  // };
   const handleLogout = () => {
     setTriggerCase("LOGOUT");
     if (!hasUnsavedChanges()) {
@@ -153,7 +144,7 @@ export const Header = (props) => {
         }}>
         {isActive ? (
           <Box onClick={handleLogoClick} sx={{ cursor: "pointer" }}>
-            <img src={Logo} height='30' />
+            <img src={Logo} height='30' alt='logo-img' />
           </Box>
         ) : (
           <Typography

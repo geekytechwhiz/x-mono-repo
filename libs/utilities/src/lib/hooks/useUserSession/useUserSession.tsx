@@ -1,5 +1,6 @@
 import { UserSession } from "./useUserSession.types";
 
+// eslint-disable-next-line no-unused-vars
 const useUserSession = (): [() => UserSession, (session: UserSession | null) => void] => {
   const updateSession = (updatedSession: any) => {
     localStorage.setItem("userSession", "");
