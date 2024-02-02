@@ -51,7 +51,7 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
               <XImageRender
                 callBack={updateField}
-                data={{
+                editData={{
                   original_image: state.original_image,
                   published_images: state.published_images,
                 }}

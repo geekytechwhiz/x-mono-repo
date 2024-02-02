@@ -22,7 +22,6 @@ import {
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
-import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -76,8 +75,8 @@ export const CreateQuiz = () => {
   const navigate = useNavigate();
   const [previewButton, setPreviewButton] = useState(true);
   const [publishButton] = useState(false);
-  const [saveButton, setSaveButton] = useState(false);
- // const [, setIsSideMenuOpen] = useState(false);
+  const [saveButton] = useState(false);
+  // const [, setIsSideMenuOpen] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [isQuiz] = useState(true);
   const [openAddQuestion, setOpenAddQuestion] = useState(false);
@@ -85,7 +84,7 @@ export const CreateQuiz = () => {
   const [isClickedQueList, setIsClickedQueList] = useState(false);
   const [, setPublishUrl] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
- // const [isEditMode, setIsEditMode] = useState(false);
+  // const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
   const [workflow, setWorkflow] = useState({});
@@ -162,15 +161,15 @@ export const CreateQuiz = () => {
   const tagRef = useRef<any>([]);
 
   const [, setPublishDisabled] = useState<boolean>(true);
-  const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
-    setQuizState({
-      ...quizState,
-      is_schedule_publish: isPublish,
-      schedule_publish_datetime: publishTime,
-      is_schedule_unpublish: isUnpublish,
-      schedule_unpublish_datetime: unPublishTime,
-    });
-  };
+  // const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
+  //   setQuizState({
+  //     ...quizState,
+  //     is_schedule_publish: isPublish,
+  //     schedule_publish_datetime: publishTime,
+  //     is_schedule_unpublish: isUnpublish,
+  //     schedule_unpublish_datetime: unPublishTime,
+  //   });
+  // };
 
   const updateCurrentInstance = (pageURL) => {
     const updatedObj = {
@@ -186,9 +185,8 @@ export const CreateQuiz = () => {
     updateField(updatedObj);
   };
 
-  const [createquizmutate] = useMutation(contentTypeAPIs.createContentType);
   const [updatequizmutate] = useMutation(contentTypeAPIs.updateContentType);
-  const [publishquizmutate] = useMutation(contentTypeAPIs.publishContentType);
+
   useEffect(() => {
     const {
       title,
@@ -214,9 +212,6 @@ export const CreateQuiz = () => {
       setPreviewButton(false);
     }
   }, [quizState]);
-  const dateFormat = (dataTime) => {
-    return dataTime && format(new Date(dataTime), "h:mm aa, dd LLLL");
-  };
   const publishPopup = useRef({
     publishTitle: "Congratulations!",
     publishDescription:
@@ -224,9 +219,8 @@ export const CreateQuiz = () => {
     publishCloseText: "Go to Listing",
     publishConfirmText: "View QUIZ",
   });
-
   const [pageStatus, setPageStatus] = useState(DRAFT);
-  const [editedSD, setEditedSD] = useState("");
+  const [editedSD] = useState("");
   const [workflowStatus, setWorkflowStatus] = useState(true);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
   const workflowSubmitRequest = async (workflowObj, status) => {
@@ -286,6 +280,7 @@ export const CreateQuiz = () => {
       const pageUrl = resp?.data?.authoring_createContent?.path.substring(
         resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1,
       );
+      // eslint-disable-next-line require-atomic-updates
       quizRef.current.page = pageUrl;
       setDraftPageURL(pageUrl);
 
@@ -660,7 +655,7 @@ export const CreateQuiz = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       // setIsEditMode(true);
+        // setIsEditMode(true);
 
         if (Object.keys(currentContent).length > 0) {
           setQuizState(currentContent);
@@ -842,22 +837,21 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
   };
   const handelPreview = () => {
-    const backgroundContent = {
-      objectType: "image",
-      Url: quizState?.imagevideoURL,
-      Title: "",
-      Thumbnail: quizState?.imagevideoURL,
-      Color: "",
-    };
-    const tempObj = {
-      ...quizState,
-      background_content: backgroundContent,
-      contentType: "Quiz",
-    };
+    // const backgroundContent = {
+    //   objectType: "image",
+    //   Url: quizState?.imagevideoURL,
+    //   Title: "",
+    //   Thumbnail: quizState?.imagevideoURL,
+    //   Color: "",
+    // };
+    // const tempObj = {
+    //   ...quizState,
+    //   background_content: backgroundContent,
+    //   contentType: "Quiz",
+    // };
     // dispatch(previewContent(tempObj));
     navigate("/content-preview");
   };
-  const [changes, setChanges] = useState(unsavedChanges.current);
 
   useEffect(() => {
     if (unsavedChanges.current === true) {
@@ -873,7 +867,8 @@ export const CreateQuiz = () => {
         onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
       );
     };
-  }, [unsavedChanges.current, changes]);
+  }, [unsavedChanges.current]);
+
   useEffect(() => {
     // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
   }, [quizState]);

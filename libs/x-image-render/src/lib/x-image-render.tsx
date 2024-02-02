@@ -21,7 +21,7 @@ const areEqual = (prevProps, nextProps) => {
   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 };
 
-const XImageRender = ({ callBack, data, isCrop = true }): any => {
+const XImageRender = ({ callBack, editData, isCrop = true }): any => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
   const [processing, setProcessing] = useState(false);
@@ -31,20 +31,20 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
     description: "",
     bitStreamId: "",
   });
-  const [returnData, setReturnData] = useState(data);
+  const [returnData, setReturnData] = useState(editData);
   const [manualCropShow, setManualCropShow] = useState(false);
   const [showCropPreview, setShowCropPreview] = useState(false);
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
 
-  const autoCropCallBack = (dat, img) => {
-    if (dat) {
+  const autoCropCallBack = (data, img) => {
+    if (data) {
       const {
         images = [],
         ext,
         original_image_relative_path = "",
         visibility = "",
         bitstream_id,
-      } = nullToObject(dat);
+      } = nullToObject(data);
       if (images?.length > 0) {
         const retdata = {
           published_images: images,
@@ -170,17 +170,16 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
   };
 
   useEffect(() => {
-    if (data && JSON.stringify(data) !== JSON.stringify(returnData)) {
-      setReturnData(data);
-      console.warn("data", data, returnData);
+    if (editData && JSON.stringify(editData) !== JSON.stringify(returnData)) {
+      setReturnData(editData);
       setSelectedImage({
-        Thumbnail: data?.original_image?.Thumbnail,
+        Thumbnail: editData?.original_image?.Thumbnail,
         title: "",
         description: "",
-        bitStreamId: data?.original_image?.bitStreamId,
+        bitStreamId: editData?.original_image?.bitStreamId,
       });
     }
-  }, [data]);
+  }, [editData]);
   return (
     <Fragment>
       <Box
