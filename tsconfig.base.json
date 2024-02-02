@@ -17,6 +17,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@platformx/assets-manager": ["libs/assets-manager/src/index.ts"],
       "@platformx/authoring-apis": ["libs/authoring-apis/src/index.ts"],
       "@platformx/authoring-state": ["libs/authoring-state/src/index.ts"],
       "@platformx/comment-review": ["libs/comment-review/src/index.ts"],

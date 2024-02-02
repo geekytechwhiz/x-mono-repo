@@ -44,7 +44,7 @@ import iconImages from "./FooterConstansts";
 import { XImageRender } from "@platformx/x-image-render";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import CustomTextBox from "../../components/CustomTextBox";
-
+import './footersetting.css'
 export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<any>([]);
   const [galleryState, setGalleryState] = useState<boolean>(false);
