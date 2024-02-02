@@ -236,7 +236,7 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
               borderRadius: "15px",
             }}>
             <Box sx={{ display: "flex" }}>
-              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
                 <Box
                   sx={{
                     borderRadius: "50%",
@@ -298,7 +298,7 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
               borderRadius: "15px",
             }}>
             <Box sx={{ display: "flex" }}>
-              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
                 <Box
                   sx={{
                     borderRadius: "50%",
@@ -337,7 +337,7 @@ const XImageRender = ({ callBack, data, isCrop = true }): any => {
             justifyContent: "center",
             flexDirection: "column",
           }}
-          onClick={() => onUploadClick("choose")}>
+          onClick={() => onUploadClick()}>
           <Box
             sx={{
               width: "40px",
