@@ -24,10 +24,12 @@ COPY . /server
 # install dependencies
 # RUN npm cache clean --force 
 RUN npm install -g @nrwl/nx
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
+RUN npm ci
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
-RUN npx nx build authoring-web
+# RUN npx nx build authoring-web
+RUN npx nx affected:build --base=origin/$GITHUB_BASE_REF --head=$GITHUB_HEAD_REF
 EXPOSE 3000
 CMD npm run start
 # CMD npm run deploy:react-test
