@@ -8,6 +8,7 @@
     "strict": true,
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": false,
+     "composite": true
   },
   "files": [],
   "include": [

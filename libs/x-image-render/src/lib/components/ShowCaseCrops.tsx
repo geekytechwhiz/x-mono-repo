@@ -1,6 +1,6 @@
 import EditIcon from "@mui/icons-material/Edit";
-import { Box, Button, Dialog, DialogContent, Grid, Typography } from "@mui/material";
-import { XLoader, formCroppedUrlInCrop, nullToObject } from "@platformx/utilities";
+import { Box, Button, Dialog, DialogContent, Grid, IconButton, Typography } from "@mui/material";
+import { XLoader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { RATIOS } from "../utils/constants";
 
@@ -30,13 +30,46 @@ const ShowCaseCrops = (props: any = {}) => {
           margin: "20px",
         },
       }}>
+      <Grid
+        container
+        sx={{
+          borderBottom: "1px solid #ced3d9",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: { xs: "10px 15px", md: "0px 24px" },
+        }}>
+        <Grid xs={12} md={8}>
+          <Typography variant='h4bold'>Preview Images</Typography>
+        </Grid>
+        <Grid
+          xs={12}
+          md={4}
+          sx={{
+            textAlign: { xs: "left", md: "right" },
+            padding: { xs: "10px 0", md: "8px" },
+          }}>
+          <IconButton
+            className='closeBtnIcon'
+            edge='end'
+            color='inherit'
+            onClick={() => backTo()}
+            aria-label='close'>
+            <img src={DialogCloseIcon} alt='' />
+          </IconButton>
+          <Button
+            className='editIconfixed'
+            onClick={() => handleEdit()}
+            startIcon={<EditIcon />}></Button>
+        </Grid>
+      </Grid>
       <DialogContent sx={{ padding: "5px" }}>
         <Box className='casecropsbox'>
           {loading && <XLoader type='circular' />}
           <Grid container sx={{ paddingRight: "50px" }}>
             {cropped_images.map(({ folder_path = "", aspect_ratio = "" }) => {
               return (
-                <Box className='boxwp'>
+                <Box className='boxwp' key={aspect_ratio}>
                   <Box className='imgbox'>
                     <img alt='cropped-img' src={formCroppedUrlInCrop(folder_path, ext)} />
                     <Typography variant='h6regular' component='h6'>
@@ -46,10 +79,6 @@ const ShowCaseCrops = (props: any = {}) => {
                 </Box>
               );
             })}
-            <Button
-              className='editIconfixed'
-              onClick={() => handleEdit()}
-              startIcon={<EditIcon />}></Button>
           </Grid>
         </Box>
       </DialogContent>
