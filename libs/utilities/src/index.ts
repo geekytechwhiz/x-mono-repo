@@ -94,6 +94,8 @@ export * from "./lib/assets/svg";
 export * from "./lib/assets/svg/icon";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/gif";
+export * from "./lib/assets/header";
+export * from "./lib/assets/footer";
 export * from "./lib/components";
 export * from "./lib/components/CardSkeleton/CardSkeleton";
 export * from "./lib/components/SchemaComponents";
