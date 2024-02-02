@@ -13,7 +13,7 @@ function AppRouter() {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const navigate = useNavigate();
-  const { handleSignIn, verifySession } = useAuthentication();
+  const { handleSignIn } = useAuthentication();
   const generatedRoutes = useDynamicRoutes(MenuData, routes);
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
