@@ -17,6 +17,7 @@ import {
 import { AddSite, SiteListing } from "@platformx/sites";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
+import { MediaIcon } from "@platformx/utilities";
 
 export const routes: RouteConfig[] = [
   {
@@ -186,7 +187,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

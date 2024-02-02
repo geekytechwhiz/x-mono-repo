@@ -294,5 +294,39 @@ export const MenuData = [
         subCategory: "GlobalSetting",
       },
     ],
+
+    
+  },
+  {
+    url: '',
+    Title: 'Assets',
+    id: 'assets',
+    roles: ['admin'],
+    Menu: [
+      {
+        MenuName: 'Images',
+        Icon: MediaIcon,
+        url: '/asset/images',
+        id: 'Images',
+        category: 'Assets',
+        subCategory: '',
+      },
+      {
+        MenuName: 'Videos',
+        Icon: MediaIcon,
+        url: '/asset/videos',
+        id: 'Videos',
+        category: 'Assets',
+        subCategory: '',
+      },
+      {
+        MenuName: 'Document',
+        Icon: MediaIcon,
+        url: '/asset/docs',
+        id: 'Document',
+        category: 'Assets',
+        subCategory: '',
+      },
+    ],
   },
 ];
