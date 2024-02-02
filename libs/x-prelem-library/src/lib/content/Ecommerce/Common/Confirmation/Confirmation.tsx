@@ -11,9 +11,9 @@ type ConfirmationProps = {
   open?: boolean;
   buttonOne?: string;
   buttonTwo?: string;
-  handleClose?: (e?: any) => void;
-  buttonOneFunc?: (e?: any) => void;
-  buttonTwoFunc?: (e?: any) => void;
+  handleClose?: () => void;
+  buttonOneFunc?: () => void;
+  buttonTwoFunc?: () => void;
 };
 export default function Confirmation(props: ConfirmationProps) {
   const {

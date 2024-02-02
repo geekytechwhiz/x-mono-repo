@@ -46,7 +46,8 @@ type PaymentDetailProps = {
   secondaryArgs: any;
   cartCountUpdate: any;
   enableLogin?: boolean;
-  takeToLoginPage: (e?: any) => void;
+  // eslint-disable-next-line no-unused-vars
+  takeToLoginPage: (url: string) => void;
 };
 
 const PaymentDetail = ({

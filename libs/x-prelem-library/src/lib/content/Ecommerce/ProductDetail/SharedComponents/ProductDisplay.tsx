@@ -18,6 +18,7 @@ interface ProductDisplayProps {
   loading: boolean;
   productFullDetails: any;
   productId: string;
+  // eslint-disable-next-line no-unused-vars
   sizeVariantsHandle: (item: any) => void;
   t: any;
   cartCountUpdate: any;
