@@ -3,6 +3,7 @@ import { nullToObject, postRestApiCall } from "@platformx/utilities";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Intl {
   type Key = "calendar" | "collation" | "currency" | "numberingSystem" | "timeZone" | "unit";
+  // eslint-disable-next-line no-unused-vars
   function supportedValuesOf(input: Key): string[];
 }
 
