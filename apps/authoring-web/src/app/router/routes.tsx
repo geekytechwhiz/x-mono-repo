@@ -1,6 +1,6 @@
 import { Dashboard } from "@platformx/dashboard";
 import { CreateUser, UserListing } from "@platformx/user-management";
-import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
+// import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";

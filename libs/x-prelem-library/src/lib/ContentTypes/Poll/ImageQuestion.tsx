@@ -4,6 +4,7 @@ import VoteProgress from "./VoteProgress";
 
 interface ImageQuestionProps {
   data: [];
+  // eslint-disable-next-line no-unused-vars
   callBack?: (a: any) => void;
   isResultPage: boolean;
   displayScores?: string;

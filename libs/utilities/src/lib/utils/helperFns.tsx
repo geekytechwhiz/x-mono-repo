@@ -723,6 +723,7 @@ export const trimString = (string: string, length: number) => {
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Intl {
   type Key = "calendar" | "collation" | "currency" | "numberingSystem" | "timeZone" | "unit";
+  // eslint-disable-next-line no-unused-vars
   function supportedValuesOf(input: Key): string[];
 }
 
@@ -786,14 +787,11 @@ export const capitalizeWords = (title = "") => {
 export const timeZoneData = () => {
   return Intl.supportedValuesOf("timeZone");
 };
-const aryIannaTimeZones = timeZoneData();
+// const aryIannaTimeZones = timeZoneData();
 export const getUniqueTimeZone = () => {
-  const data: any = [];
-  aryIannaTimeZones.forEach((timeZone, i) => {
-    // let strTime = new Date().toLocaleTimeString([], {
-    //   timeZone: `${timeZone}`,
-    //   hour12: false,
-    // });
+  const aryIannaTimeZones = timeZoneData();
+  const data: { label: string; time: string }[] = [];
+  aryIannaTimeZones.forEach((timeZone) => {
     const strTime = new Date().toLocaleString([], {
       timeZone: `${timeZone}`,
       hour12: false,
@@ -801,10 +799,6 @@ export const getUniqueTimeZone = () => {
     const time = new Date(strTime).toTimeString().slice(0, -21);
     data.push({ label: `${timeZone} ${time}(IST)`, time: `${strTime}` });
   });
-  const uniqueItems = data.filter(
-    (item: any, index: any, self: any) =>
-      index === self.findIndex((x: any) => x.time === item.time),
-  );
   return data;
 };
 

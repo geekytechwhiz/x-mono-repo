@@ -87,8 +87,11 @@ interface Analytics {
 
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
+  // eslint-disable-next-line no-unused-vars
   sendStructureDataToAuthoringCB: (structureData: string) => void;
+  // eslint-disable-next-line no-unused-vars
   sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
+  // eslint-disable-next-line no-unused-vars
   openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
