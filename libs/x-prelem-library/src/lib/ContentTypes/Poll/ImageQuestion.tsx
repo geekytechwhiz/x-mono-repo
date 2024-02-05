@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Typography, Box } from "@mui/material";
 import VoteProgress from "./VoteProgress";
 
 interface ImageQuestionProps {
   data: [];
-  // eslint-disable-next-line no-unused-vars
   callBack?: (a: any) => void;
   isResultPage: boolean;
   displayScores?: string;

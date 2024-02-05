@@ -1,4 +1,4 @@
-import * as React from "react";
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Typography, Checkbox, FormGroup, FormControlLabel, FormControl } from "@mui/material";
 

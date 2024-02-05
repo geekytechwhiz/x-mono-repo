@@ -6,7 +6,9 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 type ProfileHeaderProps = {
   isDisabled?: boolean;
   userDetails?: any;
+  // eslint-disable-next-line no-unused-vars
   editProfile?: (e?: any) => void;
+  // eslint-disable-next-line no-unused-vars
   saveProfile?: (e?: any) => void;
 };
 

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import "../../../utils/service/i18n";
 import { useTranslation } from "react-i18next";
 import { Xlogo, ChangePasswordImg } from "@platformx/utilities";
@@ -13,7 +14,9 @@ import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxCompon
 
 type ChangePasswordProps = {
   secondaryArgs?: any;
+  // eslint-disable-next-line no-unused-vars
   moveToHomePage?: (e?: any) => void;
+  // eslint-disable-next-line no-unused-vars
   passwordDetails?: (e?: any) => void;
 };
 const ChangePassword = ({

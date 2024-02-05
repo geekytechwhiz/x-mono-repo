@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Typography, Box, Button } from "@mui/material";
 import React, { useContext } from "react";
 import HomeIcon from "@mui/icons-material/Home";

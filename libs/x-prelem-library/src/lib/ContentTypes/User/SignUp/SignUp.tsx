@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "../../../utils/service/i18n";
 import { useTranslation } from "react-i18next";
