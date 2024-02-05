@@ -888,7 +888,7 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
 };
 export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
   const {
-    Thumbnail: { Url: url = "", ext = "" } = {},
+    Thumbnail: { Url: url = "", ext = "", Color: color2 = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
@@ -897,7 +897,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     color: null,
     imageUrl: null,
   };
-  if (color === "") {
+  if (color === "" && color2 === "") {
     const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
     const httpRegex = /https?:\/\//g;
     const httpCount = (urlOfImage.match(httpRegex) || []).length;
@@ -913,7 +913,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
       };
     }
   } else {
-    return { ...imageColorObject, color };
+    return { ...imageColorObject, color: color || color2 };
   }
 };
 export const getCommunityFallBackImageBasedOnContentType = (

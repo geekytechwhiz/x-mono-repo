@@ -170,6 +170,8 @@ export const getProductDetails = (
   //Use for local testing.
   // return getRestApiCall(
   //   `https://dev.delivery.hcl-x.com/platform-x/api/v1/web/en/delivery/getEcomProducts?queryParam=${queryparam}`,
+  //   "en",
+  //   "delhiuniversity",
   // );
 };
 
