@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { Typography, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 import { green } from "@mui/material/colors";
 import DoneIcon from "@mui/icons-material/Done";

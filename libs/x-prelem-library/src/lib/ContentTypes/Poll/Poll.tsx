@@ -480,6 +480,7 @@ const Poll = ({
 interface PollProps {
   content: any;
   showLoading: boolean;
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (a: any) => void;
   results: any;
   analytics: Analytics;

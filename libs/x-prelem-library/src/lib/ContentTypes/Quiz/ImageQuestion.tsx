@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import SingleImageCard from "./SingleImageCard";
 
 interface ImageQuestionProps {

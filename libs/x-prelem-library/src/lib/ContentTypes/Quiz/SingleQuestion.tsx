@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import { useState } from "react";
 import { Typography, Radio, RadioGroup, FormControlLabel, FormControl } from "@mui/material";
