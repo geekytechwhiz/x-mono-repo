@@ -53,14 +53,18 @@ import { ArticleMapper } from "./lib/mappers/articleMapper";
 
 import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
 import LightTheme from "./lib/themes/authoring/theme";
-import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme";
-import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord";
-import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa";
-import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia";
-import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
+// import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme";
+// import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord";
+// import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa";
+// import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia";
+// import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
-import { LanguageList } from "./lib/utils/helperConstants";
-import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl } from "./lib/utils/helperFns";
+// import { LanguageList } from "./lib/utils/helperConstants";
+import {
+  //getCurrentLang,
+  getUniqueTimeZone,
+  // getFormattedImageUrl
+} from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 import {
   XFileUpload,
@@ -90,6 +94,8 @@ export * from "./lib/assets/svg";
 export * from "./lib/assets/svg/icon";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/gif";
+export * from "./lib/assets/header";
+export * from "./lib/assets/footer";
 export * from "./lib/components";
 export * from "./lib/components/CardSkeleton/CardSkeleton";
 export * from "./lib/components/SchemaComponents";
