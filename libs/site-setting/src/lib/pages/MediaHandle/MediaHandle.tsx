@@ -66,7 +66,7 @@ export const MediaHandle: React.FC = () => {
         visibility: "public",
       };
 
-      await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack);
+      await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack, image);
     } catch (error) {
       // showToastError(t("api_error_toast"));
     }
