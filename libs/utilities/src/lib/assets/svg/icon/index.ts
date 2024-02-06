@@ -33,6 +33,14 @@ import AwardsWinnerCompanyIcon from "./AwardsWinnerCompany.svg";
 import PrelemsDeployedIcon from "./PrelemsDeployed.svg";
 import ProjectsCompletedIcon from "./ProjectsCompletedIcon.svg";
 import ServiceCard2Background from "./ServiceCard2Background.svg";
+import IconCopySvg from "./Copy.svg";
+import IconFacebookSvg from "./Facebook.svg";
+import IconLinkedInSvg from "./LinkedIn.svg";
+import CloseIcon from "./Cross.svg";
+import BlogSearchIcon from "./blogSearchIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
+import PopupDeleteIcon from "./errorPopupIcon.svg";
+import { ReactComponent as ArticleIconComponent } from "./cardArticleIcon.svg";
 
 export {
   MaskImg,
@@ -70,4 +78,12 @@ export {
   PrelemsDeployedIcon,
   ProjectsCompletedIcon,
   ServiceCard2Background,
+  IconCopySvg,
+  IconFacebookSvg,
+  IconLinkedInSvg,
+  CloseIcon,
+  ArticleIconComponent,
+  BlogSearchIcon,
+  DialogCloseIcon,
+  PopupDeleteIcon,
 };
