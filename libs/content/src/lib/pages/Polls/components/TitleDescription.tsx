@@ -4,7 +4,7 @@ import { AutoTextArea, CommonBoxWithNumber, TextBox, TitleSubTitle } from "@plat
 import { useComment } from "@platformx/authoring-apis";
 import { CommentWrapper } from "@platformx/comment-review";
 
-import { useCustomStyle } from "./Poll.style";
+import { useCustomStyle } from "../Poll.style";
 
 export const TitleDescription = ({
   state,

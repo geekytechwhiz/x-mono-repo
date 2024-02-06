@@ -44,6 +44,15 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
       [event.target.name]: event.target.value,
     };
   };
+  const updateField = (data) => {
+    console.warn("final data", data);
+    setState({ ...state, socialShareImgURL: data.relativeUrl });
+    pollRef.current = {
+      ...pollRef.current,
+      socialShareImgURL: data.relativeUrl,
+    };
+    unsavedChanges.current = true;
+  };
   const onUploadClick = (type) => {
     showGallery("Images", "socialShareImgURL");
     setOperationType(type);
@@ -67,16 +76,18 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             />
           </Grid>
           <Grid item xs={12} sm={7} md={7} className='textFiled'>
-            <AddImage
-              // url={
-              //   selectedImage.Thumbnail
-              //     ? selectedImage.Thumbnail
-              //     : state.socialShareImgURL
-              // }
+            {/* <AddImage
               url={relativeImageURL(state.socialShareImgURL)}
               onUploadClick={onUploadClick}
               handleChange={handleChange}
               type='Images'
+            /> */}
+            <XImageRender
+              callBack={updateField}
+              data={{
+                relativeUrl: state.socialShareImgURL,
+              }}
+              isCrop={false}
             />
           </Grid>
 

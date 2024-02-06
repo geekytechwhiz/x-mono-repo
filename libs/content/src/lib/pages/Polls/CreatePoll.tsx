@@ -7,7 +7,7 @@ import { Box, Divider } from "@mui/material";
 import { format } from "date-fns";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   FETCH_TAG_LIST,
   commentsApi,
@@ -54,15 +54,16 @@ import { icons } from "../../utils/Constants";
 
 import AddQuestion from "./components/addQuestion/AddQuestion";
 import ChooseTags from "./components/choosetags/ChooseTags";
-import { ImageVideo } from "./components/ImageVideo";
+// import { ImageVideo } from "./components/ImageVideo";
 import PollPageScroll from "./components/pollsPageScroll/PollPageScroll";
 import Result from "./components/results/Result";
 import Seo from "./components/Seo";
 import SocialShare from "./components/socialshare/SocialShare";
-import { TitleDescription } from "./TitleDescription";
+import { TitleDescription } from "./components/TitleDescription";
 import { DRAFT, PUBLISHED } from "./Utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import ContentPageScroll from "../../components/ContentPageScroll";
+import ImageVideo from "./components/ImageVideo";
 // import { checkIfUnsavedChanges } from "./store/Actions";
 
 export const CreatePoll = (): JSX.Element => {
@@ -407,9 +408,11 @@ export const CreatePoll = (): JSX.Element => {
   const [createpollmutate] = useMutation(contentTypeAPIs.createContentType);
   const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
   const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
-  const [contentType, setContentType] = useState(
-    capitalizeFirstLetter(pollPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
-  );
+  // const [contentType, setContentType] = useState(
+  // capitalizeFirstLetter(pollPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
+  // );
+  const location = useLocation();
+  const contentType = capitalizeFirstLetter(location.state);
   // const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
   const [runFetchContentByPath] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   const taglength = useRef();
@@ -1523,11 +1526,15 @@ export const CreatePoll = (): JSX.Element => {
                   setFieldChanges={setFieldChanges}
                 />
                 <ImageVideo
+                  // state={pollState}
+                  // setState={setPollState}
+                  // showGallery={showGallery}
+                  // pollRef={pollRef}
+                  // selectedImage={selectedImage}
                   state={pollState}
                   setState={setPollState}
-                  showGallery={showGallery}
                   pollRef={pollRef}
-                  selectedImage={selectedImage}
+                  unsavedChanges={unsavedChanges}
                 />
                 <AddQuestion
                   saveQuestionCallBack={saveQuestionCallBack}

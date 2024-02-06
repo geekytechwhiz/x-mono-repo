@@ -15,6 +15,7 @@ import {
   TitleSubTitle,
   // AddImageBackGroundColor,
 } from "@platformx/utilities";
+import { XImageRender } from "@platformx/x-image-render";
 
 const AddQuestion = ({
   saveQuestionCallBack,
@@ -174,6 +175,14 @@ const AddQuestion = ({
                   publishedImages={state?.question_published_images}
                   isShowCrop={true}
                 /> */}
+                <XImageRender
+                  callBack={updateField}
+                  data={{
+                    original_image: state.question_original_image,
+                    published_images: state.question_published_images,
+                  }}
+                  isCrop={true}
+                />
                 {/* {addQuestionInfo.queBackgroundImg && isImg ? (
                     <Box
                       sx={{

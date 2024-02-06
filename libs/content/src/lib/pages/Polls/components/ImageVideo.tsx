@@ -1,110 +1,60 @@
 import { Box, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useComment } from "@platformx/authoring-apis";
-import { useCustomStyle } from "../Poll.style";
-import {
-  CommonBoxWithNumber,
-  TitleSubTitle,
-  // AddImageBackGroundColor
-} from "@platformx/utilities";
+import { CommonBoxWithNumber, TitleSubTitle } from "@platformx/utilities";
+import { useCustomStyle } from "./quiz.style";
 import { CommentWrapper } from "@platformx/comment-review";
+import { XImageRender } from "@platformx/x-image-render";
 
-export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImage }) => {
+export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
   const { t } = useTranslation();
-  const [operationType, setOperationType] = useState<string>("choose");
-  const [isImg, setImg] = useState(true);
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const { comments, handleCommentClick, scrollToRef, selectedElementId } = useComment();
-  const handleRefresh = () => {
-    setBackgroundColor("");
-    setImg(false);
-    setState({
-      ...state,
-      imagevideoURL: "",
-      socialShareImgURL: "",
-      colorCode: "",
-      thumbnailURL: "",
-    });
-    pollRef.current = {
-      ...pollRef.current,
-      socialShareImgURL: "",
-    };
-  };
-  const handleColorPallete = (color) => {
-    // qusUnsavedChanges.current = true
-    setBackgroundColor(color);
-    setImg(false);
-    setState({
-      ...state,
-      imagevideoURL: "",
-      thumbnailURL: "",
-      socialShareImgURL: "",
-      colorCode: color,
-    });
-    pollRef.current = {
-      ...pollRef.current,
-      socialShareImgURL: "",
-    };
-  };
-  const onUploadClick = (type) => {
-    showGallery("Images", "imagevideoURL");
-    setOperationType(type);
-    setImg(true);
-    setState({
-      ...state,
-      colorCode: "",
-    });
-  };
-  useEffect(() => {
-    if (state.colorCode !== "") {
-      setImg(false);
-      setBackgroundColor(state.colorCode);
-    }
-  }, [state.colorCode]);
+  const { scrollToRef } = useComment();
 
   const updateField = (updatedPartialObj) => {
+    console.warn("final data", updatedPartialObj);
+    const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
       ...updatedPartialObj,
+      socialShareImgURL: relativeUrl,
     };
     setState(modifiedData);
+    pollRef.current = {
+      ...pollRef.current,
+      socialShareImgURL: relativeUrl,
+    };
+    unsavedChanges.current = true;
   };
+
   const classes = useCustomStyle();
   return (
     <Box id='imageVideo' className={classes.mainStyleWrapper}>
       <CommentWrapper elementId='2' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='02'
-          title={t("poll_bg_header")}
+          title={t("quiz_background_head")}
           titleVarient='p3semibold'
           subTitleVarient='p4regular'
           subTitle={t("subhead")}>
           <Grid container>
             <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
               <TitleSubTitle
-                title={t("poll_bg_title")}
-                subTitle={t("poll_bg_subtitle")}
+                title={`${t("add_image")}*`}
+                subTitle={t("quiz_image_subtitle")}
                 titleVariant='h6medium'
                 subTitleVariant='h7regular'
               />
             </Grid>
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-              {/* <AddImageBackGroundColor
-                state={state.imagevideoURL}
-                isImg={isImg}
-                onUploadClick={onUploadClick}
-                backgroundColor={backgroundColor}
-                handleColorPallete={handleColorPallete}
-                handleRefresh={handleRefresh}
-                label={t("quiz_image_placeholder")}
-                operationType={operationType}
-                content={selectedImage}
-                updateField={updateField}
-                originalImage={state?.original_image}
-                publishedImages={state?.published_images}
-                isShowCrop={true}
-              /> */}
+              <XImageRender
+                callBack={updateField}
+                data={{
+                  original_image: state.original_image,
+                  published_images: state.published_images,
+                }}
+                isCrop={true}
+              />
             </Grid>
           </Grid>
         </CommonBoxWithNumber>
@@ -112,3 +62,5 @@ export const ImageVideo = ({ state, setState, showGallery, pollRef, selectedImag
     </Box>
   );
 };
+
+export default React.memo(ImageVideo);
