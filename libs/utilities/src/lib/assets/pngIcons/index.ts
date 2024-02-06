@@ -19,6 +19,18 @@ import BigArrow from "./BigArrow.png";
 import DottedBg from "./dottedbg.png";
 import DottedRound from "./mask-dotted.png";
 import CardBgImg from "./card-bg.png";
+import IconEmbed from "./Embed.png";
+import RoyalIcon from "./RoyalAntwerp.png";
+import OGCIcon from "./OGC.png";
+import AZIcon from "./AZ.png";
+import DE_FLAG from "./de_flag.png";
+import EN_FLAG from "./en_flag.png";
+import FR_FLAG from "./fr_flag.png";
+import AVATAR from "./avatar.png";
+import Coin from "./coin.png";
+import SignUpSvg from "./signUp.png";
+import ChangePasswordImg from "./changepassword.png";
+import Xlogo from "./x-logo.png";
 
 export {
   Frame1,
@@ -42,4 +54,16 @@ export {
   DottedBg,
   DottedRound,
   CardBgImg,
+  IconEmbed,
+  RoyalIcon,
+  OGCIcon,
+  AZIcon,
+  DE_FLAG,
+  EN_FLAG,
+  FR_FLAG,
+  AVATAR,
+  Coin,
+  SignUpSvg,
+  ChangePasswordImg,
+  Xlogo,
 };
