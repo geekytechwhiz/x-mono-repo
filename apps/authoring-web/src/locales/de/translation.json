@@ -1163,6 +1163,8 @@
   "toolTip_title": "Als Hervorgehoben markieren:",
   "toolTip_message": "Aktivieren Sie es, wenn Sie diesen Inhalt für eine bessere Sichtbarkeit hervorheben möchten.",
   "loading": "Wird geladen...",
+  "administrator": "Administratorin",
+  "your_site": "Deine Seite",
   "feature_flag_setting": "Feature-Flag",
   "personalisation": "Personalisation",
   "google_analytics_tracking": "Google Analytics Tracking",

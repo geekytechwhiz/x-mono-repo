@@ -251,10 +251,10 @@ export const HeaderSetting = () => {
   };
 
   const updateHeaderlogo = (data) => {
-    setForm((preForm) => ({ ...preForm, header_logo: data.relativeUrl  }));
+    setForm((preForm) => ({ ...preForm, header_logo: data.relativeUrl }));
   };
   const updateFavicon = (data) => {
-    setForm((preForm) => ({ ...preForm,header_favicon: data.relativeUrl }));
+    setForm((preForm) => ({ ...preForm, header_favicon: data.relativeUrl }));
   };
 
   const scrollHandler = () => {
@@ -356,13 +356,13 @@ export const HeaderSetting = () => {
                         />
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
-                      <XImageRender
-                callBack={updateHeaderlogo}
-                data={{
-                  relativeUrl: form.header_logo,
-                }}
-                isCrop={false}
-              />
+                        <XImageRender
+                          callBack={updateHeaderlogo}
+                          editData={{
+                            relativeUrl: form.header_logo,
+                          }}
+                          isCrop={false}
+                        />
                         {/* <SiteSettingAddImage
                           url={
                             process.env.REACT_APP_GCP_URL +
@@ -406,14 +406,13 @@ export const HeaderSetting = () => {
                       </Box>
                       <Box sx={{ marginTop: "15px" }}>
                         <Box sx={{ width: "40%" }}>
-                        <XImageRender
-               callBack={updateFavicon}
-               data={{
-                 relativeUrl: form.header_favicon,
-               }}
-               isCrop={false}
-              
-              />
+                          <XImageRender
+                            callBack={updateFavicon}
+                            editData={{
+                              relativeUrl: form.header_favicon,
+                            }}
+                            isCrop={false}
+                          />
                           {/* <SiteSettingAddImage
                             url={
                               process.env.REACT_APP_GCP_URL +

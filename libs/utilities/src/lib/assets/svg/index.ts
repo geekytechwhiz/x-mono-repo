@@ -161,6 +161,9 @@ import MenuTwoDash from './MenuTwoDash.svg'
 import LongLeftArrow from './LongLeftArrow.svg'
 import SaveIcon from './Save.svg'
 import ArrowDown from './ArrowDown.svg'
+import RedDotsIcon from "./icon/RedDots.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   GlobalImageIcon,
@@ -321,5 +324,7 @@ export {
   EmptySiteBox,
   SettingIcon,
   PencilIcon,
-  SitePlaceholder
+  SitePlaceholder,
+  DialogCloseIcon,
+  RedDotsIcon,
 };
