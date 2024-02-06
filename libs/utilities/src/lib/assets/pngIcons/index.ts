@@ -10,6 +10,10 @@ import Awards from "./Awards.png";
 import FeatureCard from "./Feature card.png";
 import ServiceCard from "./Service card.png";
 import Shopping_bag from "./shopping_bag.png";
+import loadergif from "./Data-loader.gif";
+import CoinImage from "./CoinImage.png";
+import LoyalityPointIcon from "./LoyalityPointIcon.png";
+import ordersuccess from "./ordersuccess.gif";
 import CourseDegIcon from "./CourseIcon.png";
 import BigArrow from "./BigArrow.png";
 import DottedBg from "./dottedbg.png";
@@ -29,6 +33,10 @@ export {
   FeatureCard,
   ServiceCard,
   Shopping_bag,
+  loadergif,
+  CoinImage,
+  LoyalityPointIcon,
+  ordersuccess,
   CourseDegIcon,
   BigArrow,
   DottedBg,

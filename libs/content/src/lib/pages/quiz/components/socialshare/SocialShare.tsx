@@ -32,7 +32,6 @@ const SocialShare = ({ state, setState, quizRef, unsavedChanges, setFieldChanges
   };
 
   const updateField = (data) => {
-    console.warn("final data", data);
     setState({ ...state, socialShareImgURL: data.relativeUrl });
     quizRef.current = {
       ...quizRef.current,
@@ -62,7 +61,7 @@ const SocialShare = ({ state, setState, quizRef, unsavedChanges, setFieldChanges
           <Grid item xs={12} sm={7} md={7} className='textFiled'>
             <XImageRender
               callBack={updateField}
-              data={{
+              editData={{
                 relativeUrl: state.socialShareImgURL,
               }}
               isCrop={false}

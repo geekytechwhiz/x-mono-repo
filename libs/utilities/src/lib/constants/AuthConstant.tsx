@@ -5,10 +5,8 @@ const AUTH_INFO = {
   redirectUri: process.env.NX_REDIRECT_URI,
   publishUri: process.env.NX_PUBLISH_URI,
   dspaceUri: process.env.NX_DSPACE_URI,
-  dspaceImagesUuid:
-    localStorage.getItem('imageUuid') || process.env.NX_DSPACE_IMAGES_UUID,
-  dspaceVideosUuid:
-    localStorage.getItem('videoUuid') || process.env.NX_DSPACE_VIDEOS_UUID,
+  dspaceImagesUuid: localStorage.getItem("imageUuid") || process.env.NX_DSPACE_IMAGES_UUID,
+  dspaceVideosUuid: localStorage.getItem("videoUuid") || process.env.NX_DSPACE_VIDEOS_UUID,
   gcpUri: process.env.NX_GCP_URL,
   gcpBucketName: process.env.NX_BUCKET_NAME,
 };
