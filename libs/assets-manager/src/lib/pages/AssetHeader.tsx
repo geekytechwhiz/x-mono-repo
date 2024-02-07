@@ -14,7 +14,8 @@ export function AssetHeader({ handleShow }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
-  const { assetType = "images" } = useParams();
+  const pathName = window.location.pathname.split("/");
+  const assetType = pathName.pop() || "images";
   const [searchParams] = useSearchParams();
 
   const path = searchParams.get("path");

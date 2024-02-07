@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ShowToastError, AUTH_INFO } from "@platformx/utilities";
 import AssetApi from "../../services/assetsApi/assets.api";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const COMMUNITY = {
   collections: [],
@@ -24,7 +24,8 @@ const useAsset = () => {
 
   const ROWS = 16;
   const [searchParams] = useSearchParams();
-  const { assetType = "images" } = useParams();
+  const pathName = window.location.pathname.split("/");
+  const assetType = pathName.pop() || "images";
   const assetUUID = {
     images: AUTH_INFO.dspaceImagesUuid,
     videos: AUTH_INFO.dspaceVideosUuid,

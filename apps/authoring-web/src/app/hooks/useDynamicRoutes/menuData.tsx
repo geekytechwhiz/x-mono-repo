@@ -317,14 +317,14 @@ export const MenuData = [
         category: "Assets",
         subCategory: "",
       },
-      {
-        MenuName: "Document",
-        Icon: MediaIcon,
-        url: "/asset/docs",
-        id: "Document",
-        category: "Assets",
-        subCategory: "",
-      },
+      // {
+      //   MenuName: "Document",
+      //   Icon: MediaIcon,
+      //   url: "/asset/docs",
+      //   id: "Document",
+      //   category: "Assets",
+      //   subCategory: "",
+      // },
     ],
   },
 ];

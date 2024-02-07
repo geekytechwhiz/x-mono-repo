@@ -8,7 +8,7 @@ import {
   ShowToastSuccess,
   AUTH_INFO,
 } from "@platformx/utilities";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { AssetHeader } from "./AssetHeader";
 import Folder from "../components/Folder";
 import { useImagesStyle } from "./Images.style";
@@ -19,11 +19,12 @@ import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FolderSkelaton } from "../components/FolderSkeleton";
 
-export const AssetImages = () => {
+export const AssetListing = () => {
   const classes = useImagesStyle();
   const { t } = useTranslation();
+  const pathName = window.location.pathname.split("/");
+  const assetType = pathName.pop() || "images";
 
-  const { assetType = "images" } = useParams();
   const [show, setShow] = useState(false);
   const [folderName, setFolderName] = useState("");
   const [searchParams] = useSearchParams();

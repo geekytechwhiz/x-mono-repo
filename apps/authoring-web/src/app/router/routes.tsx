@@ -10,7 +10,7 @@ import {
   CookieSetting,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateAssest, AssetImages } from "@platformx/assets-manager";
+import { CreateAssest, AssetListing } from "@platformx/assets-manager";
 import { CreateContent } from "@platformx/content";
 
 export const routes: RouteConfig[] = [
@@ -110,18 +110,18 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/asset",
+    path: "/asset/images",
     element: (
       <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetImages />
+        <AssetListing />
       </ProtectedRoute>
     ),
   },
   {
-    path: "/asset/:assetType",
+    path: "/asset/videos",
     element: (
       <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetImages />
+        <AssetListing />
       </ProtectedRoute>
     ),
   },
