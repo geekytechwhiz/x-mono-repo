@@ -11,7 +11,7 @@ import {
   TextBox,
   AutoTextArea,
   AssetcatIcon,
-  AssetMedia,
+  Assetmedia,
   CommonBoxWithNumber,
 } from "@platformx/utilities";
 import { Button, Divider, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
@@ -70,7 +70,7 @@ export const CreateAssest = () => {
             <Box className={classes.boxwrapper}>
               <Box className={classes.boxwrapper1}>
                 <Box className={classes.boxwrapper2}>
-                  <img src={AssetMedia} alt='' />
+                  <img src={Assetmedia} alt='' />
                 </Box>
                 <Box className={classes.commonboxtext}>
                   <Typography>common metadata</Typography>

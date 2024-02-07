@@ -152,6 +152,7 @@ import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
 import Aboutusupdateicon from "./Aboutusupdateicon.svg";
 import Contactusupdateicon from "./Contactusupdateicon.svg";
 import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import Assetmedia from "./icon/assetmedia.png";
 import MorehorAsset from "./MorehorAsset.svg";
 import AssetyesIcon from "./Assetyesicon.svg";
 import Imageasset from "./Imagesasset.svg";
@@ -163,6 +164,7 @@ import FaviconupdateIcon from "./Faviconupdateicon.svg";
 import SearchnupdateIcon from "./Searchupdateicon.svg";
 import LanguageupdateIcon from "./Languageupdateicon.svg";
 import CtaupdateIcon from "./CTAupdateicon.svg";
+import AssetcatIcon from "./icon/assetcaricon.png";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import Pencil from "./Pencil.svg";
 import MenuTwoDash from "./MenuTwoDash.svg";
@@ -342,4 +344,6 @@ export {
   backAssetIcon,
   DialogCloseIcon,
   RedDots,
+  Assetmedia,
+  AssetcatIcon,
 };
