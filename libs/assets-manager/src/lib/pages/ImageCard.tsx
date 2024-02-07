@@ -1,15 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import {
-    Imageasset,
-    video
-  } from "@platformx/utilities";
+import { Imageasset, video } from "@platformx/utilities";
 import Morevarwhite from "../../assets/images/moreverwhite.png";
 // import { dateFormat } from "../../utils/helperFunctions";
 // import AssetCardMenu from "./AssetCardMenu/CardMenu";
-import useImagesStyle from "./Images.style";
-// import PlateformXDialogDelete from "../../pages/ar";
+import { useImagesStyle } from "./Images.style";
 import { useTranslation } from "react-i18next";
 
 const ImageCard = ({ data, deleteAsset }) => {
@@ -60,7 +58,7 @@ const ImageCard = ({ data, deleteAsset }) => {
             <Typography className={classes.cardName} variant='h6medium'>
               {data.name}
             </Typography>
-            <Typography variant='h7medium'>{(data.lastModified)}</Typography>
+            <Typography variant='h7medium'>{data.lastModified}</Typography>
           </Box>
         </Box>
         <Box className={classes.boxasset}>

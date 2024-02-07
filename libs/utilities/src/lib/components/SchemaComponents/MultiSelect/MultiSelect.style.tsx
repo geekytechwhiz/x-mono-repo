@@ -1,31 +1,31 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
   typoViewMoreOrLess: {
-    color: '#374fd5',
-    textDecoration: 'underline',
-    cursor: 'pointer',
-    textTransform: 'capitalize',
-    height: '35px',
-    margin: '5px',
-    padding: '10px',
+    color: "#374fd5",
+    textDecoration: "underline",
+    cursor: "pointer",
+    textTransform: "capitalize",
+    height: "35px",
+    margin: "5px",
+    padding: "10px",
   },
-  typo: { textTransform: 'capitalize' },
+  typo: { textTransform: "capitalize" },
   listItem: {
-    display: 'flex',
-    width:'auto !important',
-    justifyContent: 'center !important',
-    alignItems: 'center !important',
-    height: '37px',
-    borderRadius: '5px',
-    padding: '0 !important',
-    margin:'0 0 10px 0'
+    display: "flex",
+    width: "auto !important",
+    justifyContent: "center !important",
+    alignItems: "center !important",
+    height: "37px",
+    borderRadius: "5px",
+    padding: "0 !important",
+    margin: "0 0 10px 0",
   },
   listContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
   },
 }));
 

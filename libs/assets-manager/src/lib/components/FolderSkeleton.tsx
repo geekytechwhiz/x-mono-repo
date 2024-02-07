@@ -1,9 +1,9 @@
 import { Skeleton } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
-import useImagesStyle from "../pages/Images.style";
+import { useImagesStyle } from "../pages/Images.style";
 
-const FolderSkelaton = ({ size }) => {
+export const FolderSkelaton = ({ size }) => {
   const classes = useImagesStyle();
 
   return (
@@ -29,5 +29,3 @@ const FolderSkelaton = ({ size }) => {
     </>
   );
 };
-
-export default FolderSkelaton;

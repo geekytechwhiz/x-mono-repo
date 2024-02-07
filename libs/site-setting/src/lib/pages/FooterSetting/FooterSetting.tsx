@@ -10,11 +10,9 @@ import { useNavigate } from "react-router-dom";
 import {
   MultiSelect,
   TitleSubTitle,
-  ShowToastSuccess,
   ShowToastError,
   TextBox,
   useUserSession,
-  PlateformXDialog,
   CommonBoxWithNumber,
   Loader,
   PictureIcon,
@@ -44,12 +42,11 @@ import iconImages from "./FooterConstansts";
 import { XImageRender } from "@platformx/x-image-render";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import CustomTextBox from "../../components/CustomTextBox";
-import './footersetting.css'
+import "./footersetting.css";
+
 export const FooterSetting = () => {
   const [mediaList, setMediaList] = useState<any>([]);
-  const [galleryState, setGalleryState] = useState<boolean>(false);
-
-  const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
+  const [galleryState] = useState<boolean>(false);
   const [parentToolTip, setParentToolTip] = useState("");
   const [srollToView, setsrollToView] = useState<any>();
   const [mediaOptionList, setMediaOptionList] = useState<[]>([]);
@@ -128,7 +125,7 @@ export const FooterSetting = () => {
       },
     };
     publishFooterSetting(input)
-      .then((response) => {
+      .then(() => {
         setIsLoading(false);
         toastMessage.current = "footer_settings_success";
         setIsNotificationToast(true);
@@ -222,7 +219,7 @@ export const FooterSetting = () => {
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  });
 
   const handleLinkInputChange = (link, fieldName) => {
     return (event) => {
@@ -233,10 +230,11 @@ export const FooterSetting = () => {
 
   const onDeleteOption = (index) => {
     if (form.footer_link.length <= 1) {
+      /* empty */
     } else {
       const linkData = form.footer_link;
       // console.log(linkData);
-      form.footer_link = linkData.filter((item, ind) => ind != index);
+      form.footer_link = linkData.filter((item, ind) => ind !== index);
       setForm({ ...form });
     }
   };
@@ -311,7 +309,7 @@ export const FooterSetting = () => {
                       <Box sx={{ marginTop: "15px" }}>
                         <XImageRender
                           callBack={updateField}
-                          data={{
+                          editData={{
                             relativeUrl: form.site_logo,
                           }}
                           isCrop={false}

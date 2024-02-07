@@ -1,24 +1,21 @@
 import { Button, FormControl, Grid, Menu, Radio, RadioGroup, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import {
-    DeleteIcon,
-    FilterIcon,
-    backAssetIcon
-  } from "@platformx/utilities";
+import { DeleteIcon, FilterIcon, backAssetIcon } from "@platformx/utilities";
 import { FormControlCustom } from "@platformx/content";
 import AssetBreadsum from "../pages/AssetBreadscum";
-import { PlateformXDialog } from "@platformx/utilities"
-import useImagesStyle from "./Images.style";
+import { useImagesStyle } from "./Images.style";
+import PlateformXAssetDialog from "./ChooseAssetModal";
 
 export function AssetHeader({ handleShow }) {
   const classes = useImagesStyle();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const { assetType = "images" } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const path = searchParams.get("path");
   const [assetValue, setAssetValue] = useState(false);
@@ -26,14 +23,13 @@ export function AssetHeader({ handleShow }) {
   const handleFilterClose = () => {
     setAnchor(null);
   };
-  const [filterValue, setFilterValue] = useState();
+  const [filterValue] = useState();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedValue = () => (event.target as HTMLInputElement).value;
+  const handleChange = () => {
     setAnchor(null);
   };
 
-  const handlebtnClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handlebtnClick = (event) => {
     event.stopPropagation();
     setAnchor(event.currentTarget);
   };
@@ -68,7 +64,7 @@ export function AssetHeader({ handleShow }) {
           </Box>
           <Box className={classes.deletenewicon}>
             <Box>
-              <img src={DeleteIcon} alt='Filter Icon' width='25' height='24' />
+              <img src={DeleteIcon} alt='Filter Icon' width='23' height='23' />
             </Box>
           </Box>
           <Button onClick={handlebtnClick} variant='primaryButton'>
@@ -125,10 +121,10 @@ export function AssetHeader({ handleShow }) {
             </RadioGroup>
           </FormControl>
         </Menu>
-        {/* <PlateformXAssetDialog
+        <PlateformXAssetDialog
           isDialogOpen={assetValue}
           closeButtonHandle={() => setAssetValue(false)}
-        /> */}
+        />
       </Grid>
     </Grid>
   );

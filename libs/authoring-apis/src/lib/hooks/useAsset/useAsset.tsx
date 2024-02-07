@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { ShowToastError } from "@platformx/utilities";
+import { ShowToastError, AUTH_INFO } from "@platformx/utilities";
 import AssetApi from "../../services/assetsApi/assets.api";
 import { useParams, useSearchParams } from "react-router-dom";
-// import { authInfo } from "../../utils/authConstants";
 
 const COMMUNITY = {
   collections: [],
@@ -13,7 +12,7 @@ const COLLECTION_ITEM = {
   page: {},
 };
 
-const useAsset = ({ search = "" }) => {
+const useAsset = () => {
   const [assetData, setAssetData] = useState<any>(COMMUNITY);
   const [collectionItem, setCollectionItem] = useState<any>(COLLECTION_ITEM);
   const [folderLoading, setFolderLoading] = useState(false);
@@ -27,8 +26,8 @@ const useAsset = ({ search = "" }) => {
   const [searchParams] = useSearchParams();
   const { assetType = "images" } = useParams();
   const assetUUID = {
-    images: '93ea0aed-631b-45a7-b3ae-564ac071dea6',
-    videos: '11f0b07a-b736-40da-8a60-de9c8f6b4aae',
+    images: AUTH_INFO.dspaceImagesUuid,
+    videos: AUTH_INFO.dspaceVideosUuid,
     // docs: authInfo.misc
   };
 
@@ -57,12 +56,10 @@ const useAsset = ({ search = "" }) => {
           collections,
           subcommunities,
         });
-      } else {
-        console.log("error in api");
       }
     } catch (err) {
       // setError(err);
-      ShowToastError('err');
+      ShowToastError("err");
     } finally {
       setFolderLoading(false);
       reload && setRefresh(false);
@@ -83,22 +80,20 @@ const useAsset = ({ search = "" }) => {
         reload,
       );
       if (authoring_getAssets) {
-        const { collectionItem = [], page = {} } = authoring_getAssets;
+        const { collectionItem: item = [], page = {} } = authoring_getAssets;
         if (collectionItem.length < ROWS) {
           setIsLazyLoad(false);
         } else {
           setIsLazyLoad(true);
         }
         setCollectionItem({
-          collectionItem: collectionItem,
+          collectionItem: item,
           page: page,
         });
-      } else {
-        console.log("error in api");
       }
     } catch (err) {
       //setError(err);
-      ShowToastError('err');
+      ShowToastError("err");
       setIsLazyLoad(false);
     } finally {
       setAssetLoading(false);
@@ -119,7 +114,7 @@ const useAsset = ({ search = "" }) => {
         reload,
       );
       if (authoring_getAssets) {
-        const { collectionItem = [], page = {} } = authoring_getAssets;
+        const { collectionItem: item = [], page = {} } = authoring_getAssets;
         if (collectionItem.length < ROWS) {
           setIsLazyLoad(false);
         } else {
@@ -127,16 +122,14 @@ const useAsset = ({ search = "" }) => {
         }
 
         setCollectionItem((prev) => ({
-          collectionItem: [...prev.collectionItem, ...collectionItem],
+          collectionItem: [...prev.collectionItem, ...item],
           page: page,
         }));
-      } else {
-        console.log("error in api");
       }
     } catch (err) {
       // setError(err);
       setIsLazyLoad(false);
-      ShowToastError('err');
+      ShowToastError("err");
     } finally {
       reload && setRefresh(false);
     }

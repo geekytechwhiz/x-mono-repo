@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { XImageRender } from "@platformx/x-image-render";
 import { Dashboard } from "@platformx/dashboard";
 import { CreateUser, UserListing } from "@platformx/user-management";
@@ -15,6 +17,7 @@ import {
   CookieSetting,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateAssest, AssetImages } from "@platformx/assets-manager";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
 import { MediaIcon } from "@platformx/utilities";
@@ -112,6 +115,30 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetImages />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/:assetType",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetImages />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/create_asset",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <CreateAssest />
       </ProtectedRoute>
     ),
   },

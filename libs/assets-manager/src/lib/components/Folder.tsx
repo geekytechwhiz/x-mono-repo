@@ -1,40 +1,36 @@
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  MorehorAsset,
-  FolderIcon
+import { MorehorAsset, FolderIcon } from "@platformx/utilities";
+import AssetCardMenu from "./CardMenu";
+import { useImagesStyle } from "../pages/Images.style";
 
-} from "@platformx/utilities";
-// import AssetCardMenu from "./AssetCardMenu/CardMenu";
-import useImagesStyle from "../pages/Images.style";
-// import PlateformXDialogDelete from "../../pages/articles/deletePopup";
-import { useTranslation } from "react-i18next";
-
-export default function Folder({ data, deleteFolder }) {
-  const { t, i18n } = useTranslation();
+export default function Folder({
+  data,
+}: //deleteFolder
+any) {
   const classes = useImagesStyle();
   const [searchParams, setSearchParams] = useSearchParams({});
   const path = searchParams.get("path");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const [isDelete, setIsDelete] = useState(false);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  // const [isDelete, setIsDelete] = useState(false);
+  const handleClick = (event) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
   const handleDelete = () => {
-    setIsDelete(true);
+    // setIsDelete(true);
   };
 
-  const deleteCloseButtonHandle = () => {
-    setIsDelete(false);
-  };
-  const deleteConfirmButtonHandle = () => {
-    deleteFolder(data.uuid);
-    setIsDelete(false);
-  };
+  // const deleteCloseButtonHandle = () => {
+  //   setIsDelete(false);
+  // };
+  // const deleteConfirmButtonHandle = () => {
+  //   deleteFolder(data.uuid);
+  //   setIsDelete(false);
+  // };
 
   const handleOpen = () => {
     const pathArray = path ? path.split("|") : [];
@@ -81,14 +77,14 @@ export default function Folder({ data, deleteFolder }) {
             <img src={MorehorAsset} alt='' />
           </IconButton>
         </Box>
-        {/* <AssetCardMenu
+        <AssetCardMenu
           open={open}
           anchorEl={anchorEl}
           handleMenuClose={() => {
             setAnchorEl(null);
           }}
           handleDelete={handleDelete}
-        /> */}
+        />
       </Box>
       {/* {isDelete && (
         <PlateformXDialogDelete

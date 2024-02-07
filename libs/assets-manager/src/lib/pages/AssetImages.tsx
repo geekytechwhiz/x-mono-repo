@@ -3,41 +3,33 @@ import { Box } from "@mui/system";
 import {
   AssetnoIcon,
   AssetyesIcon,
-  NewfolderIcon
+  NewfolderIcon,
+  ShowToastError,
+  ShowToastSuccess,
+  AUTH_INFO,
 } from "@platformx/utilities";
 import { useParams, useSearchParams } from "react-router-dom";
 import { AssetHeader } from "./AssetHeader";
 import Folder from "../components/Folder";
-import useImagesStyle from "./Images.style";
+import { useImagesStyle } from "./Images.style";
 import { useEffect, useState } from "react";
-import { useAsset } from "@platformx/authoring-apis";
 import ImageCard from "./ImageCard";
-import {
-  assetsApi
-  // createCollection,
-  // createCommunity,
-  // deleteAsset,
-  // deleteCommunity,
-} from "@platformx/authoring-apis";
-import {
-  ShowToastError,
-  ShowToastSuccess,
-} from "@platformx/utilities";
-import { t } from "i18next";
-// import { authInfo } from "@platformx/utilities";
+import { assetsApi, useAsset } from "@platformx/authoring-apis";
+import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
-import FolderSkelaton from "../components/FolderSkeleton";
+import { FolderSkelaton } from "../components/FolderSkeleton";
 
-export const AssetListing = () => {
+export const AssetImages = () => {
   const classes = useImagesStyle();
+  const { t } = useTranslation();
 
   const { assetType = "images" } = useParams();
   const [show, setShow] = useState(false);
   const [folderName, setFolderName] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const assetUUID = {
-    images: '93ea0aed-631b-45a7-b3ae-564ac071dea6',
-    videos: '11f0b07a-b736-40da-8a60-de9c8f6b4aae',
+    images: AUTH_INFO.dspaceImagesUuid,
+    videos: AUTH_INFO.dspaceVideosUuid,
     // docs: authInfo.misc
   };
   const uuid1 = searchParams.get("uuid1") || assetUUID[assetType];
@@ -52,7 +44,7 @@ export const AssetListing = () => {
     setStartIndex,
     assetLoading,
     folderLoading,
-  } = useAsset({});
+  } = useAsset();
 
   const entityType = {
     images: "Image",
@@ -108,7 +100,7 @@ export const AssetListing = () => {
     }
   };
 
-  const deleteAssets = async (assetId) => {
+  const deleteAssets = async () => {
     // try {
     //   const data = await deleteAsset({
     //     uuid: assetId,
@@ -142,7 +134,7 @@ export const AssetListing = () => {
                 <Box className={classes.folderlisting}>
                   <img className={classes.foldericon} src={NewfolderIcon} alt='folder' />
                   <Box className={classes.typeoexisttest}>
-                    <Typography variant="inherit" className={classes.createfol}>
+                    <Typography variant='inherit' className={classes.createfol}>
                       Create new folder
                     </Typography>
                   </Box>
@@ -183,7 +175,7 @@ export const AssetListing = () => {
             )}
           </Grid>
           {folderLoading && <FolderSkelaton size={[1, 2, 3]} />}
-          {assetData.subcommunities.map((data, i) => (
+          {assetData.subcommunities.map((data) => (
             <Folder key={data.uuid} data={data} deleteFolder={deleteFolder} />
           ))}
 
