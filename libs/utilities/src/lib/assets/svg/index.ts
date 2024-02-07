@@ -171,6 +171,9 @@ import MenuTwoDash from "./MenuTwoDash.svg";
 import LongLeftArrow from "./LongLeftArrow.svg";
 import SaveIcon from "./Save.svg";
 import ArrowDown from "./ArrowDown.svg";
+import FileUploadicon from "./fileupload.svg";
+import Assetmodalicon from "./icon/assetmodalicon.png";
+
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
 
@@ -346,4 +349,6 @@ export {
   RedDots,
   Assetmedia,
   AssetcatIcon,
+  FileUploadicon,
+  Assetmodalicon,
 };
