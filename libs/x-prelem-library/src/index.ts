@@ -1,2 +1,2 @@
 export * from "./lib/prelems";
-export * from "./lib/content";
+export * from "./lib/ContentTypes";

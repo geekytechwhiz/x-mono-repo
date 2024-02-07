@@ -139,6 +139,7 @@ import GreenSubFolderIcon from "./Subfolder-green.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
+import RedDots from "./icon/RedDots.svg";
 import Location from "./Location.svg";
 import Envelop from "./Envelop.svg";
 import Phone from "./Phone.svg";
@@ -168,16 +169,8 @@ import MenuTwoDash from "./MenuTwoDash.svg";
 import LongLeftArrow from "./LongLeftArrow.svg";
 import SaveIcon from "./Save.svg";
 import ArrowDown from "./ArrowDown.svg";
-import RedDotsIcon from "./icon/RedDots.svg";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
-import AssetMedia from "./icon/assetmedia.png";
-import Assetmodalicon from "./icon/assetmodalicon.png";
-import AssetcatIcon from "./icon/assetcaricon.png";
-import MorevertAssetIcon from "./Morevertasset.svg";
-import AssetChooseupload from "./assetchooseupload.svg";
-import Newfoldersvg from "./newfoldersvg.svg";
-import FileUploadicon from "./fileupload.svg";
 
 export {
   GlobalImageIcon,
@@ -348,12 +341,5 @@ export {
   Imageasset,
   backAssetIcon,
   DialogCloseIcon,
-  RedDotsIcon,
-  AssetMedia,
-  AssetcatIcon,
-  MorevertAssetIcon,
-  AssetChooseupload,
-  Newfoldersvg,
-  Assetmodalicon,
-  FileUploadicon,
+  RedDots,
 };

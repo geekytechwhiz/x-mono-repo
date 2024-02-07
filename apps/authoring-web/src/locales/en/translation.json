@@ -1173,6 +1173,8 @@
   "toolTip_title": "Mark as Featured:",
   "toolTip_message": "Enable it if you want to highlight this content for better enhanced visibility.",
   "loading": "Loading...",
+  "administrator": "Administrator",
+  "your_site": "Your Site",
   "feature_flag_setting": "Feature Flag",
   "personalisation": "Personalisation",
   "google_analytics_tracking": "Google Analytics Tracking",

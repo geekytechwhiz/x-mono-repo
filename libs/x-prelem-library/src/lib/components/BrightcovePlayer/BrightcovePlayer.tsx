@@ -117,6 +117,7 @@ interface BrightcovePlayerProp {
     VideoID: string;
     PlaylistID?: string;
   };
+  // eslint-disable-next-line no-unused-vars
   setVideoContent?: ({ name }: any) => void;
   options?: any;
   analytics?: Analytics;
@@ -139,7 +140,7 @@ interface Analytics {
 BrightcovePlayer.defaultProps = {
   analyticsEnable: true,
   VideoData: {
-    AccountID: "6312397989001",
+    AccountID: "6415745389001",
     PlayerID: "default",
     VideoID: "6340658248112",
     PlaylistID: "PlaylistID",

@@ -7,7 +7,7 @@ import {
   allowOnlyNumberInputData,
   allowOnlyShippingLetterInputData,
   allowOnlyLetterInputData,
-} from "../../../utils/helperFns";
+} from "@platformx/utilities";
 
 const allowInputParams = (e: any, key: string) => {
   switch (key) {
@@ -87,6 +87,11 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
   // useEffect(() => {
   //   setStateValue(value);
   // }, [value]);
+  const allowInputHandler: any = (e: any) => {
+    if (customInPutAllowField) {
+      allowInputParams(e, customInPutAllowField);
+    }
+  };
   return (
     <>
       <TextField
@@ -113,9 +118,7 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        onInput={
-          customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
-        }
+        onInput={(e) => allowInputHandler(e)}
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>

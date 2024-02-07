@@ -7,6 +7,7 @@ import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Props } from "./types";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { SecondaryArgs, Content } from "./interface";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "@platformx/utilities";
 
 const siteLevelSchema = {
   siteName: "X",
@@ -722,6 +723,7 @@ export const trimString = (string: string, length: number) => {
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Intl {
   type Key = "calendar" | "collation" | "currency" | "numberingSystem" | "timeZone" | "unit";
+  // eslint-disable-next-line no-unused-vars
   function supportedValuesOf(input: Key): string[];
 }
 
@@ -785,14 +787,11 @@ export const capitalizeWords = (title = "") => {
 export const timeZoneData = () => {
   return Intl.supportedValuesOf("timeZone");
 };
-const aryIannaTimeZones = timeZoneData();
+// const aryIannaTimeZones = timeZoneData();
 export const getUniqueTimeZone = () => {
-  const data: any = [];
-  aryIannaTimeZones.forEach((timeZone, i) => {
-    // let strTime = new Date().toLocaleTimeString([], {
-    //   timeZone: `${timeZone}`,
-    //   hour12: false,
-    // });
+  const aryIannaTimeZones = timeZoneData();
+  const data: { label: string; time: string }[] = [];
+  aryIannaTimeZones.forEach((timeZone) => {
     const strTime = new Date().toLocaleString([], {
       timeZone: `${timeZone}`,
       hour12: false,
@@ -800,10 +799,6 @@ export const getUniqueTimeZone = () => {
     const time = new Date(strTime).toTimeString().slice(0, -21);
     data.push({ label: `${timeZone} ${time}(IST)`, time: `${strTime}` });
   });
-  const uniqueItems = data.filter(
-    (item: any, index: any, self: any) =>
-      index === self.findIndex((x: any) => x.time === item.time),
-  );
   return data;
 };
 
@@ -893,7 +888,7 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
 };
 export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
   const {
-    Thumbnail: { Url: url = "", ext = "" } = {},
+    Thumbnail: { Url: url = "", ext = "", Color: color2 = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
@@ -902,7 +897,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     color: null,
     imageUrl: null,
   };
-  if (color === "") {
+  if (color === "" && color2 === "") {
     const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
     const httpRegex = /https?:\/\//g;
     const httpCount = (urlOfImage.match(httpRegex) || []).length;
@@ -918,7 +913,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
       };
     }
   } else {
-    return { ...imageColorObject, color };
+    return { ...imageColorObject, color: color || color2 };
   }
 };
 export const getCommunityFallBackImageBasedOnContentType = (
@@ -987,4 +982,50 @@ export const getCommunityFallBackImageBasedOnContentType = (
 
 export const createIconUrl = (secondaryArgs: any, imgUrl: string) => {
   return `${secondaryArgs?.gcpUrl}${imgUrl}`;
+};
+
+export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
+  return gcpUrl + "/" + bucketName + "/" + img;
+};
+
+export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
+  const windowWidth = window.innerWidth;
+  let itemsPerSlide;
+  if (windowWidth >= 1280) {
+    itemsPerSlide = itemsPerRow.lg;
+  } else if (windowWidth >= 768) {
+    itemsPerSlide = itemsPerRow.md;
+  } else if (windowWidth >= 500) {
+    itemsPerSlide = itemsPerRow.sm;
+  } else {
+    itemsPerSlide = itemsPerRow.xs;
+  }
+
+  const sliderArray: object[][] = [];
+  if (originalArray && originalArray.length) {
+    for (let i = 0; i < originalArray.length; i += itemsPerSlide) {
+      sliderArray.push(originalArray.slice(i, i + itemsPerSlide));
+    }
+    return sliderArray;
+  }
+};
+export const getRelativeImageURL = (
+  gcpUrl: string,
+  bucketName: string,
+  url: string,
+  ext: string,
+) => {
+  return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
+};
+export const getFlag = (code = "") => {
+  switch (code || getCurrentLang()) {
+    case "en":
+      return EN_FLAG;
+    case "fr":
+      return FR_FLAG;
+    case "de":
+      return DE_FLAG;
+    default:
+      return EN_FLAG;
+  }
 };

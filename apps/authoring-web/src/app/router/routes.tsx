@@ -1,13 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { XImageRender } from "@platformx/x-image-render";
 import { Dashboard } from "@platformx/dashboard";
-import { CreateUser, UserListing } from "@platformx/user-management";
-import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-
 import {
   MediaHandle,
   FeatureFlagSetting,
@@ -18,9 +11,7 @@ import {
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateAssest, AssetImages } from "@platformx/assets-manager";
-import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
-import { MediaIcon } from "@platformx/utilities";
 
 export const routes: RouteConfig[] = [
   {
