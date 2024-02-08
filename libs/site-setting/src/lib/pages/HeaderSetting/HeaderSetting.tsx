@@ -5,24 +5,15 @@ import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader, PlateformXDialogSuccess } from "../../../../../utilities/src";
-//import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
-//import MultiSelect from "../../../components/Common/MultiSelect/MultiSelect";
 import {
   fetchHeaderSetting,
   publishHeaderSetting,
   updateHeaderSetting,
 } from "@platformx/authoring-apis";
-//import { postRequest } from "../../../services/config/request";
-//import SiteSettingAddImage from "../SiteSettingAddImage/SiteSettingAddImage";
 import { useHeaderSettingStyle } from "./HeaderSetting.style";
-//import { CreateHeader } from "../../../components/Common/CreateHeader";
-//import QuizPageScroll from "../../../components/Quiz/QuizPageScroll";
-
 import {
   CommonBoxWithNumber,
-  ShowToastError,
   useUserSession,
-  PlateformXDialog,
   Sitelogoupdateicon,
   FaviconupdateIcon,
   SearchnupdateIcon,
@@ -73,11 +64,9 @@ const iconImages = [
 
 export const HeaderSetting = () => {
   const [languageList, setlanguageList] = useState<any>([]);
-  const [operationType, setOperationType] = useState<any>("");
-  const [galleryState, setGalleryState] = useState<boolean>(false);
-  const [key, setKey] = useState("");
-  const galleryType = useRef<string>("Images");
-  const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [galleryState] = useState<boolean>(false);
+  // const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [srollToView, setsrollToView] = useState<any>();
   const [languageOptionList, setlanguageOptionList] = useState([]);
@@ -143,7 +132,7 @@ export const HeaderSetting = () => {
     const x = language_list.reduce((acc, obj) => {
       return { ...acc, [obj.lang_code]: obj.lang };
     }, {});
-    setlanguageOptionList(language_list.map((language) => language.lang));
+    setlanguageOptionList(language_list.map((languag) => languag.lang));
     setlanguageList(language.split("|").map((lang) => x[lang]));
   };
 
@@ -164,7 +153,7 @@ export const HeaderSetting = () => {
       },
     };
     publishHeaderSetting(input)
-      .then((response) => {
+      .then(() => {
         //toastMessage.current = 'publish_settings_success';
         //setIsNotificationToast(true);
         setShowPublishConfirm(true);
@@ -201,40 +190,9 @@ export const HeaderSetting = () => {
         throw err;
       });
   };
-  const [fieldstatus, setFieldStatus] = useState("");
-  const onUploadClick = (type, field = "") => {
-    showGallery("Images", "imagevideoURL", field);
-    setOperationType(type);
-    setFieldStatus(field);
-  };
 
   // const updateField = (updatedPartialObj) => {
   // };
-
-  const showGallery = (gType, keyName, id?: any) => {
-    window.scrollTo(0, 0);
-    setGalleryState(true);
-    setKey(keyName);
-  };
-
-  const handleSelectedImage = async (image, keyName) => {
-    try {
-      const payload = {
-        bitstreamId: image.bitStreamId,
-        visibility: "public",
-      };
-      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
-
-      // const relativeUrl = response?.original_image_relative_path + "." + response?.ext;
-      // setForm((preForm) => ({ ...preForm, [fieldstatus]: relativeUrl }));
-    } catch (error) {
-      console.log(error);
-      ShowToastError(t("api_error_toast"));
-    }
-  };
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
-  };
 
   const isInViewport = (element) => {
     const mainElement = document.querySelector(`#${element}`);
@@ -285,18 +243,8 @@ export const HeaderSetting = () => {
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  });
 
-  const handleLinkInputChange = (link, fieldName) => {
-    return (event) => {
-      link[fieldName] = event.target.value;
-      setForm({ ...form });
-    };
-  };
-  const [searchSwitch, setsearchSwitch] = useState<boolean>(true);
-  const switchChange = (controlName) => {
-    setsearchSwitch(!searchSwitch);
-  };
   const classes = useHeaderSettingStyle();
 
   return (
@@ -363,18 +311,6 @@ export const HeaderSetting = () => {
                           }}
                           isCrop={false}
                         />
-                        {/* <SiteSettingAddImage
-                          url={
-                            process.env.REACT_APP_GCP_URL +
-                            "/" +
-                            process.env.REACT_APP_BUCKET_NAME +
-                            "/" +
-                            form.header_logo
-                          }
-                          type='header_logo'
-                          operationType={operationType}
-                          onUploadClick={onUploadClick}
-                        /> */}
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4} className={classes.rightForm}>

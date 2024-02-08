@@ -1,4 +1,5 @@
 
 import useWorkflow from "./useWorkflow/useWorkflow"
 import usePage from "./usePage/usePage"
-export { useWorkflow, usePage }
+import useAsset from "./useAsset/useAsset"
+export { useWorkflow, usePage, useAsset }

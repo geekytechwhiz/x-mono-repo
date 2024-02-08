@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import {

@@ -10,6 +10,7 @@ import CardOptionDeleteIcon from "./DeleteIconOptionMenu.svg";
 import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
 import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
+import AssetnoIcon from "./Assetnoicon.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
@@ -71,6 +72,9 @@ import MobileMenuIconSvg from "./mobileMenuIconSvg.svg";
 import MoreHorizIcon from "./moreHoriz.svg";
 import MyDashboardIcon from "./myDashboardIcon.svg";
 import PagesIcon from "./pagesIcon.svg";
+import Folder from "./folder.svg";
+import backAssetIcon from "./backAssetIcon.svg";
+import NewfolderIcon from "./newfoldericon.svg";
 import PagesListIcon from "./pagesListIcon.svg";
 import IconPlayCircleSvg from "./play_circle.svg";
 import PollListIcon from "./polls-fill.svg";
@@ -148,20 +152,28 @@ import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
 import Aboutusupdateicon from "./Aboutusupdateicon.svg";
 import Contactusupdateicon from "./Contactusupdateicon.svg";
 import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import Assetmedia from "./icon/assetmedia.png";
+import MorehorAsset from "./MorehorAsset.svg";
+import AssetyesIcon from "./Assetyesicon.svg";
+import Imageasset from "./Imagesasset.svg";
+import video from "./video.svg";
 import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
 import Newsletterupdateicon from "./Newsletterupdateicon.svg";
 import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
 import FaviconupdateIcon from "./Faviconupdateicon.svg";
 import SearchnupdateIcon from "./Searchupdateicon.svg";
 import LanguageupdateIcon from "./Languageupdateicon.svg";
-import CtaupdateIcon from "./CTAupdateicon.svg"
+import CtaupdateIcon from "./CTAupdateicon.svg";
+import AssetcatIcon from "./icon/assetcaricon.png";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
-import Pencil from './Pencil.svg'
-import MenuTwoDash from './MenuTwoDash.svg'
-import LongLeftArrow from './LongLeftArrow.svg'
-import SaveIcon from './Save.svg'
-import ArrowDown from './ArrowDown.svg'
-import RedDotsIcon from "./icon/RedDots.svg";
+import Pencil from "./Pencil.svg";
+import MenuTwoDash from "./MenuTwoDash.svg";
+import LongLeftArrow from "./LongLeftArrow.svg";
+import SaveIcon from "./Save.svg";
+import ArrowDown from "./ArrowDown.svg";
+import FileUploadicon from "./fileupload.svg";
+import Assetmodalicon from "./icon/assetmodalicon.png";
+
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
 
@@ -325,6 +337,18 @@ export {
   SettingIcon,
   PencilIcon,
   SitePlaceholder,
+  Folder,
+  MorehorAsset,
+  AssetnoIcon,
+  AssetyesIcon,
+  NewfolderIcon,
+  video,
+  Imageasset,
+  backAssetIcon,
   DialogCloseIcon,
-  RedDotsIcon,
+  RedDots,
+  Assetmedia,
+  AssetcatIcon,
+  FileUploadicon,
+  Assetmodalicon,
 };

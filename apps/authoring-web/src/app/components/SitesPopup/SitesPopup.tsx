@@ -1,9 +1,15 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-console */
 import { Avatar, Box, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { SettingNewIcon } from "@platformx/utilities";
+import {
+  SettingNewIcon,
+  useUserSession,
+  getFirstTwoletters,
+  NoSearchResult,
+} from "@platformx/utilities";
 import { useState } from "react";
-import { useUserSession, getFirstTwoletters, NoSearchResult } from "@platformx/utilities";
 import usePopupStyle from "./SitesPopup.style";
 import SitesSearchBox from "./SitesSeachBox";
 import CloseIcon from "@mui/icons-material/Close";
@@ -22,14 +28,14 @@ export default function SitesPopup(props) {
   const accessible_sites = storedSession?.userInfo?.accessible_sites;
   const storedSite = localStorage.getItem("selectedSite");
   const [filteredSites, setfilteredSites] = useState(
-    accessible_sites.filter((a) => a != "System" && a != storedSite),
+    accessible_sites.filter((a) => a !== "System" && a !== storedSite),
   );
 
   const handleSearch = (value) => {
     setfilteredSites(
       accessible_sites
         .filter((a) => a.includes(value))
-        .filter((a) => a != "System" && a != storedSite),
+        .filter((a) => a !== "System" && a !== storedSite),
     );
   };
   const handleSiteChange = async (e, sitetitle) => {

@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -83,7 +82,7 @@ export const MediaHandle: React.FC = () => {
   const navigate = useNavigate();
 
   const switchChange = (controlName: string) => {
-    const control = form.find((control) => control?.name === controlName);
+    const control = form.find((contro) => contro?.name === controlName);
     if (!control) return;
     control.value = !control.value;
     setForm([...form]);
@@ -117,7 +116,7 @@ export const MediaHandle: React.FC = () => {
       },
     };
     publishMediaHanle(input)
-      .then((response) => {
+      .then(() => {
         toastMessage.current = "media_settings_success";
         setIsSuccessPopup(true);
       })
@@ -169,7 +168,7 @@ export const MediaHandle: React.FC = () => {
 
   useEffect(() => {
     fetchMediaHandleData();
-  }, []);
+  });
 
   const classes = userMediaHanleStyle();
   return (

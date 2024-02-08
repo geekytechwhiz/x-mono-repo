@@ -1,8 +1,9 @@
-import { FormControl, IconButton, InputAdornment, InputBase, TextField } from "@mui/material";
+import { FormControl, IconButton, TextField } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { SearchIcon } from "@platformx/utilities";
 import usePopupStyle from "./SitesPopup.style";
 import { useState } from "react";
+
 export default function SitesSearchBox({ handleSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
 
