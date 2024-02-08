@@ -131,7 +131,6 @@ import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
 import RedDotsIcon from "./icon/RedDots.svg";
-// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
