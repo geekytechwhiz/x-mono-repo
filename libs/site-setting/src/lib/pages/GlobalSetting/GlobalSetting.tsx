@@ -20,7 +20,6 @@ import {
   CommonBoxWithNumber,
   ShowToastError,
   useUserSession,
-  PlateformXDialog,
   GlobalImageIcon,
   GlobalVideoIcon,
   GlobalMiscIcon,
@@ -67,7 +66,7 @@ export const GlobalSetting = () => {
   const miscellaneousRef = useRef<HTMLElement>(null);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const scrollDebounceRef = useRef<any>(null);
-  const [srollToView, setsrollToView] = useState<any>();
+  const [srollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
 
   const [getSession] = useUserSession();
@@ -227,10 +226,10 @@ export const GlobalSetting = () => {
       <Divider />
       <Box className={classes.globalnewcontain}>
         <ContentPageScroll
-            icons={iconImages}
-            parentToolTip={parentToolTip}
-            srollToView={srollToView}
-          />
+          icons={iconImages}
+          parentToolTip={parentToolTip}
+          srollToView={srollToView}
+        />
       </Box>
 
       <Box className={classes.pageContainer} id='scrollableDiv'>

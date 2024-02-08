@@ -1,7 +1,6 @@
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import { t } from "i18next";
 import { useNavigate, useParams } from "react-router-dom";
-
 import "./SiteCreationTopBar.css";
 import { SiteCreationTopBarProps } from "./SiteCreationTopBar.types";
 import { MenuTwoDash, LongLeftArrow, SaveIcon, PlatXLogo } from "@platformx/utilities";
@@ -29,7 +28,7 @@ const SiteCreationTopBar = ({
             <img src={MenuTwoDash} alt='icon' />
           </Box>
           <Box onClick={() => navigate("/dashboard")}>
-            <img src={PlatXLogo} height='30' />
+            <img src={PlatXLogo} alt='platx' height='30' />
           </Box>
         </Box>
         <Box className='draftspace'>
@@ -51,6 +50,7 @@ const SiteCreationTopBar = ({
           <Tooltip title={!isSaved ? t("save_publish") : ""} placement='bottom' enterTouchDelay={0}>
             <Box className='sitetool'>
               <Button
+                className='btnbox'
                 variant='contained'
                 sx={{
                   "&:disabled": {
@@ -119,19 +119,8 @@ const SiteCreationTopBar = ({
             {iconList?.map((icon: any, index) => (
               <Box sx={{ display: "flex", cursor: "pointer" }} key={`icon${index + 1}`}>
                 {index > 0 && (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: "0 10px",
-                    }}>
-                    <Box
-                      sx={{
-                        width: "20px",
-                        height: "0px",
-                        border: "1px solid #D9DBE9",
-                      }}></Box>
+                  <Box className='sitetopbox'>
+                    <Box className='sitetopbnew'></Box>
                   </Box>
                 )}
 
@@ -155,7 +144,7 @@ const SiteCreationTopBar = ({
                         color: activeForm === icon.section ? "#4B9EF9" : "",
                       }}
                       className='usericon'>
-                      <img src={icon.iconComponent} />
+                      <img src={icon.iconComponent} alt='icon' />
                     </Box>
                     <Box
                       className='text'

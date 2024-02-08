@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, Divider } from "@mui/material";
 import { t } from "i18next";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "./FeatureFlagSetting.style";
 import {
@@ -30,7 +30,7 @@ export const FeatureFlagSetting = () => {
     setFeature((prev) => ({ ...prev, [name]: !prev[name] }));
   };
   const masterControl = () => {
-    setFeature((feature) => {
+    setFeature(() => {
       const istrue = feature.article || feature.quiz || feature.vod || feature.poll;
       return {
         ...feature,
@@ -170,7 +170,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box sx={{ display: "flex" }}>
+                        <Box className={classes.featurebox}>
                           <BasicSwitch
                             checked={feature.vod}
                             onChange={() => handleChange("vod")}
@@ -183,7 +183,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box sx={{ display: "flex" }}>
+                        <Box className={classes.featurebox}>
                           <BasicSwitch
                             checked={feature.poll}
                             onChange={() => handleChange("poll")}
