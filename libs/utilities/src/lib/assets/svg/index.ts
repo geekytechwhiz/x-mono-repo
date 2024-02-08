@@ -116,6 +116,7 @@ import PictureIcon from "./pictureIcon.svg";
 import ArrowUpwardIcon from "./ArrowUp.svg";
 import Icon from "./Icon.svg";
 import Refresh from "./Refresh.svg";
+import VideoIcon from "./videoicon.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
 import MenuIcon2 from "./MenuIcons-2.svg";
 import MenuIcon3 from "./MenuIcons-3.svg";
@@ -141,6 +142,7 @@ export {
   FeatureStarIcon,
   Icon,
   Refresh,
+  VideoIcon,
   MenuIcon1,
   MenuIcon2,
   MenuIcon3,
