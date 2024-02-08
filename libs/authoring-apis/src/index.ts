@@ -10,11 +10,7 @@ import { ArticleMutations } from "./lib/graphQL/mutations/articleMutations";
 import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
 import { FETCH_VOD_BY_ID, FETCH_VOD_LIST_ALL } from "./lib/graphQL/queries/vodQueries";
-// import { 
-//   CREATE_VOD,
-//   // fetchVodById,
-//   publish_vod,
-//   update_vod,} from "./lib/graphQL/mutations/vodMutations"
+import {create_vod, fetchVodById, publish_vod, update_vod} from './lib/services/vod/vod.api'
 import graphqlInstance from "./lib/config/graphqlConfig";
 import useContentSearch from "./lib/hooks/useContentSearch/useSearchContent";
 import {
