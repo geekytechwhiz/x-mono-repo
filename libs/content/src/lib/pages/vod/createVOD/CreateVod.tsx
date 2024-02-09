@@ -7,7 +7,7 @@ import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from 
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import { DamContentGallery } from "@platformx/x-image-render";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 // import { useDispatch, useSelector } from "react-redux";
 import {
   TitleSubTitle,
@@ -89,6 +89,7 @@ export const CreateVod = () => {
   // const { state, dispatch } = useContext(Store);
   // const { vod } = state;
   const { currentContent } = useSelector((state: RootState) => state.content);
+  console.log("111111currentContent", currentContent);
   //   const { currentVod} = useSelector((state: RootState) => state.vod);
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
@@ -852,10 +853,17 @@ export const CreateVod = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
-                  <AddImage
+                  {/* <AddImage
                     url={vodRef.current?.Thumbnail}
                     onUploadClick={onUploadClick}
                     type='Images'
+                  /> */}
+                  <XImageRender
+                    callBack={updateField}
+                    editData={{
+                      relativeUrl: vodRef.current?.Thumbnail,
+                    }}
+                    isCrop={false}
                   />
                 </Grid>
               </Grid>
@@ -939,12 +947,9 @@ export const CreateVod = () => {
         <DamContentGallery
           handleImageSelected={handleSelectedImage}
           toggleGallery={toggleGallery}
-          assetType={
-            galleryType.current === "Images" || galleryType.current === "replace"
-              ? "Image"
-              : "Video"
-          }
+          assetType={"Video"}
           handleSelectedVideo={handleSelectedVideo}
+          dialogOpen={galleryState}
         />
       )}
       {showPublishConfirm && (

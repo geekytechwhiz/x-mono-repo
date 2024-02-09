@@ -6,6 +6,7 @@ import { CommonBoxWithNumber } from "./lib/components/CommonBoxWithNumber/Common
 import ContentGridLoader from "./lib/components/ContentGridLoader";
 import DatePicker from "./lib/components/DatePicker/DatePicker";
 import Error from "./lib/components/Error/Error";
+import Icons from "./lib/components/Icons";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 // import Gallery from './lib/components/Gallery/Gallery'
@@ -186,4 +187,5 @@ export {
   workflowKeys,
   XDatePicker,
   ErrorHandleAutoTextArea,
+  Icons,
 };
