@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, Divider } from "@mui/material";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "./FeatureFlagSetting.style";
@@ -23,6 +23,7 @@ export const FeatureFlagSetting = () => {
   });
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const onSaveClick = async () => {
     // setIsLoading(true);
   };
