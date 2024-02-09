@@ -47,7 +47,7 @@ import ContentPageScroll from "../../../components/ContentPageScroll";
 
 // import { Store } from "../../../store/ContextStore";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
-import TagListing from "../TagListing";
+import TagListing from "../Components/TagListing";
 import { checkIfUnsavedChanges, previewVod } from "../store/Actions";
 // import { DEF_VOD } from './Utils/constats';
 // import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
