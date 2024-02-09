@@ -95,7 +95,7 @@ jobs:
           script: |
             echo $TAG, $BRANCH, $CLUSTER, $PROJECT, $REPO_NAME, $GKE_ZONE, $DEPLOYMENT_NAME
             rm -rf  $REPO_NAME
-            git clone git@github.com:hcl-x/$REPO_NAME.git ;cd $REPO_NAME; git checkout $BRANCH
+            git clone git@github.com:hcl-x/$REPO_NAME.git ;cd $REPO_NAME; git checkout $BRANCH; cd authoring
             curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
             chmod u+x ./kustomize
             gcloud container clusters get-credentials $CLUSTER --zone $GKE_ZONE --project $PROJECT
@@ -196,7 +196,7 @@ jobs:
   #         script: |
   #           echo $TAG, $BRANCH, $CLUSTER, $PROJECT, $REPO_NAME, $GKE_ZONE, $DEPLOYMENT_NAME
   #           rm -rf  $REPO_NAME
-  #           git clone git@github.com:hcl-x/$REPO_NAME.git ;cd $REPO_NAME; git checkout $BRANCH
+  #           git clone git@github.com:hcl-x/$REPO_NAME.git ;cd $REPO_NAME; git checkout $BRANCH; cd userexp
   #           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
   #           chmod u+x ./kustomize
   #           gcloud container clusters get-credentials $CLUSTER --zone $GKE_ZONE --project $PROJECT
