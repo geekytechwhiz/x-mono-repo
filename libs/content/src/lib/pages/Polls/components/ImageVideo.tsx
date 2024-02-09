@@ -1,21 +1,21 @@
 import { Box, Grid } from "@mui/material";
+import { useComment } from "@platformx/authoring-apis";
+import { CommentWrapper } from "@platformx/comment-review";
+import { CommonBoxWithNumber, TitleSubTitle } from "@platformx/utilities";
+import { XImageRender } from "@platformx/x-image-render";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useComment } from "@platformx/authoring-apis";
-import { CommonBoxWithNumber, TitleSubTitle } from "@platformx/utilities";
 import { useCustomStyle } from "./quiz.style";
-import { CommentWrapper } from "@platformx/comment-review";
-import { XImageRender } from "@platformx/x-image-render";
 
-export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
+export const ImageVideo = ({ state, setState, pollRef, unsavedChanges, showGallery }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
+  const classes = useCustomStyle();
 
   const updateField = (updatedPartialObj) => {
-    console.warn("final data", updatedPartialObj);
     const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
-      ...JSON.parse(JSON.stringify(state)),
+      ...state,
       ...updatedPartialObj,
       socialShareImgURL: relativeUrl,
     };
@@ -27,7 +27,6 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
     unsavedChanges.current = true;
   };
 
-  const classes = useCustomStyle();
   return (
     <Box id='imageVideo' className={classes.mainStyleWrapper}>
       <CommentWrapper elementId='2' scrollRef={scrollToRef}>
