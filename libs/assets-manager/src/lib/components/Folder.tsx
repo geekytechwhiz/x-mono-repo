@@ -1,36 +1,35 @@
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { MorehorAsset, FolderIcon } from "@platformx/utilities";
+import { MorehorAsset, AssetfoldernewIcon, PlateformXDialog } from "@platformx/utilities";
 import AssetCardMenu from "./CardMenu";
 import { useImagesStyle } from "../pages/Images.style";
+import { useTranslation } from "react-i18next";
 
-export default function Folder({
-  data,
-}: //deleteFolder
-any) {
+export default function Folder({ data, deleteFolder }: any) {
   const classes = useImagesStyle();
   const [searchParams, setSearchParams] = useSearchParams({});
   const path = searchParams.get("path");
+  const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isDelete, setIsDelete] = useState(false);
   const open = Boolean(anchorEl);
-  // const [isDelete, setIsDelete] = useState(false);
   const handleClick = (event) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
   const handleDelete = () => {
-    // setIsDelete(true);
+    setIsDelete(true);
   };
 
-  // const deleteCloseButtonHandle = () => {
-  //   setIsDelete(false);
-  // };
-  // const deleteConfirmButtonHandle = () => {
-  //   deleteFolder(data.uuid);
-  //   setIsDelete(false);
-  // };
+  const deleteCloseButtonHandle = () => {
+    setIsDelete(false);
+  };
+  const deleteConfirmButtonHandle = () => {
+    deleteFolder(data.uuid);
+    setIsDelete(false);
+  };
 
   const handleOpen = () => {
     const pathArray = path ? path.split("|") : [];
@@ -54,7 +53,7 @@ any) {
       <Box className={classes.folderadd}>
         <Box className={classes.folderlisting} onClick={handleOpen}>
           <Box className={classes.sitesearchform}>
-            <img className={classes.foldericon} src={FolderIcon} alt='folder' />
+            <img className={classes.foldericon} src={AssetfoldernewIcon} alt='folder' />
           </Box>
           <Box className={classes.typeoexisttest}>
             <Typography variant='h6semibold' className={classes.marginTop}>
@@ -86,8 +85,8 @@ any) {
           handleDelete={handleDelete}
         />
       </Box>
-      {/* {isDelete && (
-        <PlateformXDialogDelete
+      {isDelete && (
+        <PlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
           subTitle={`${t("delete_confirm")}`}
@@ -96,7 +95,7 @@ any) {
           closeButtonHandle={deleteCloseButtonHandle}
           confirmButtonHandle={deleteConfirmButtonHandle}
         />
-      )} */}
+      )}
     </Grid>
   );
 }

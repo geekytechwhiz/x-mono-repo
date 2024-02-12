@@ -3,7 +3,7 @@ import { Box, IconButton, Grid, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { useImagesStyle } from "./Images.style";
 import { ModalHeader } from "./ModalHeader";
-import { MorevertAssetIcon, Folder, Newfoldersvg } from "@platformx/utilities";
+import { MorevertassetIcon, Folder, NewfolderIcon } from "@platformx/utilities";
 
 export type DialogList = {
   isDialogOpen: boolean;
@@ -66,7 +66,7 @@ export default function PlateformXFolderDialog({ isDialogOpen, closeButtonHandle
               <Grid item xs={12} sm={6} md={6} em={4} lg={3}>
                 <Box className={classes.folderadd}>
                   <Box className={classes.folderlisting}>
-                    <img className={classes.foldericon} src={Newfoldersvg} alt='foldericon' />
+                    <img className={classes.foldericon} src={NewfolderIcon} alt='foldericon' />
                     <Box className={classes.typeoexisttest}>
                       <Typography variant='h5bold' className={classes.modaltypoin}>
                         Create new folder
@@ -97,7 +97,7 @@ export default function PlateformXFolderDialog({ isDialogOpen, closeButtonHandle
                         id='long-button'
                         aria-haspopup='true'
                         onClick={handleClick}>
-                        <img src={MorevertAssetIcon} alt='' />
+                        <img src={MorevertassetIcon} alt='' />
                       </IconButton>
                     </Box>
                   </Box>

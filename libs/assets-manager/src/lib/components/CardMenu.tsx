@@ -28,7 +28,7 @@ const AssetCardMenu = (props) => {
         onClick={() => {
           onHandleMenuActions("delete");
         }}>
-        <CardOptionDeleteIcon />
+        <img src={CardOptionDeleteIcon} alt='cardoption' />
         {t("delete")}
       </MenuItem>
     </Menu>
