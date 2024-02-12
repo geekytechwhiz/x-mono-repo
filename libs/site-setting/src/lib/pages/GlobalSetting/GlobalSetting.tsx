@@ -260,6 +260,7 @@ export const GlobalSetting = () => {
                       </Box>
                       <Box>
                         <Button
+                          className={classes.btnbox}
                           sx={{
                             display: { xs: "none", sm: "block" },
                             marginTop: "10px",

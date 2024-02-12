@@ -70,11 +70,13 @@ import MediaIcon from "./mediaIcon.svg";
 import MenuIcon from "./menu.svg";
 import MobileMenuIconSvg from "./mobileMenuIconSvg.svg";
 import MoreHorizIcon from "./moreHoriz.svg";
+import MorevertassetIcon from "./morevertasseticon.svg";
 import MyDashboardIcon from "./myDashboardIcon.svg";
 import PagesIcon from "./pagesIcon.svg";
 import Folder from "./folder.svg";
 import backAssetIcon from "./backAssetIcon.svg";
 import NewfolderIcon from "./newfoldericon.svg";
+import AssetfoldernewIcon from "./assetfoldernew.svg";
 import PagesListIcon from "./pagesListIcon.svg";
 import IconPlayCircleSvg from "./play_circle.svg";
 import PollListIcon from "./polls-fill.svg";
@@ -351,4 +353,6 @@ export {
   AssetcatIcon,
   FileUploadicon,
   Assetmodalicon,
+  MorevertassetIcon,
+  AssetfoldernewIcon,
 };

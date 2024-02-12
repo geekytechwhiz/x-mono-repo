@@ -168,7 +168,7 @@ export const MediaHandle: React.FC = () => {
 
   useEffect(() => {
     fetchMediaHandleData();
-  });
+  }, []);
 
   const classes = userMediaHanleStyle();
   return (

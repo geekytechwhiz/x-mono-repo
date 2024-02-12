@@ -243,7 +243,7 @@ export const HeaderSetting = () => {
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  });
+  }, []);
 
   const classes = useHeaderSettingStyle();
 

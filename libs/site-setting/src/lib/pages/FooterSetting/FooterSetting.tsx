@@ -219,7 +219,7 @@ export const FooterSetting = () => {
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  });
+  }, []);
 
   const handleLinkInputChange = (link, fieldName) => {
     return (event) => {
