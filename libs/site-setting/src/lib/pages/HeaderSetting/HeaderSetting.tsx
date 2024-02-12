@@ -340,8 +340,8 @@ export const HeaderSetting = () => {
                           subTitleVariant='h7regular'
                         />
                       </Box>
-                      <Box sx={{ marginTop: "15px" }}>
-                        <Box sx={{ width: "40%" }}>
+                      <Box className={classes.faviconbox}>
+                        <Box className={classes.faviconbox2}>
                           <XImageRender
                             callBack={updateFavicon}
                             editData={{
@@ -349,19 +349,6 @@ export const HeaderSetting = () => {
                             }}
                             isCrop={false}
                           />
-                          {/* <SiteSettingAddImage
-                            url={
-                              process.env.REACT_APP_GCP_URL +
-                              "/" +
-                              process.env.REACT_APP_BUCKET_NAME +
-                              "/" +
-                              form.header_favicon
-                            }
-                            // updateField={updateField}
-                            type='header_favicon'
-                            operationType={operationType}
-                            onUploadClick={onUploadClick}
-                          /> */}
                         </Box>
                         <Box className={classes.skeletonTitle}>
                           Image Size must be 16x16px, Max 200KB JPG & PNG are allowed only

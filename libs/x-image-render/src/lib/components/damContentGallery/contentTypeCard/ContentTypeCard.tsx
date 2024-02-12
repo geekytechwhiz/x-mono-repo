@@ -6,14 +6,7 @@ import { ImageIcon, VODIcon } from "@platformx/utilities";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import useContentGlleryStyle from "./DamContentGllery.style";
 
-const ContentTypeCard = ({
-  content,
-  isLoading,
-  selectedCardIndex,
-  onSelectCard,
-  setImageData,
-  imageData,
-}) => {
+const ContentTypeCard = ({ content, isLoading, selectedCardIndex, onSelectCard, setImageData }) => {
   const minCss = `
     .singlebr {
       display: -webkit-box;
@@ -43,7 +36,7 @@ const ContentTypeCard = ({
     Image: ImageIcon,
     Video: VODIcon,
   };
-  const [isHovered, setHovered] = useState(false);
+  const [, setHovered] = useState(false);
   const classes = useContentGlleryStyle();
 
   const handleClick = () => {

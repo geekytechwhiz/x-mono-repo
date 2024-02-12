@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, Divider } from "@mui/material";
-import { t } from "i18next";
-import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "./FeatureFlagSetting.style";
 import {
@@ -23,6 +23,7 @@ export const FeatureFlagSetting = () => {
   });
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const onSaveClick = async () => {
     // setIsLoading(true);
   };
@@ -30,7 +31,7 @@ export const FeatureFlagSetting = () => {
     setFeature((prev) => ({ ...prev, [name]: !prev[name] }));
   };
   const masterControl = () => {
-    setFeature((feature) => {
+    setFeature(() => {
       const istrue = feature.article || feature.quiz || feature.vod || feature.poll;
       return {
         ...feature,
@@ -170,7 +171,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box sx={{ display: "flex" }}>
+                        <Box className={classes.featurebox}>
                           <BasicSwitch
                             checked={feature.vod}
                             onChange={() => handleChange("vod")}
@@ -183,7 +184,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box sx={{ display: "flex" }}>
+                        <Box className={classes.featurebox}>
                           <BasicSwitch
                             checked={feature.poll}
                             onChange={() => handleChange("poll")}
