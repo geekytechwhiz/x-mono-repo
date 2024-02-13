@@ -1,39 +1,16 @@
-# FROM node:alpine
-# # create & set working directory
-# RUN mkdir -p /server
-# WORKDIR /server
-# # copy source files
-# COPY . /server
-# # install dependencies
-# # RUN npm cache clean --force 
-# RUN npm install -g @nrwl/nx
-# RUN npm install --legacy-peer-deps
-# # start app
-# ENV NODE_OPTIONS="--max_old_space_size=8192"
-# RUN npx nx build authoring-web
-# EXPOSE 3000
-# CMD npm run deploy:authoring
-
-
 FROM node:alpine
-
-# Create & set working directory
+# create & set working directory
+RUN mkdir -p /server
 WORKDIR /server
-
-# Copy source files
-COPY . .
-
-# Install dependencies
-RUN npm install --legacy-peer-deps
-
-# Install Nx globally
+# copy source files
+COPY . /server
+# install dependencies
+# RUN npm cache clean --force 
 RUN npm install -g @nrwl/nx
-
-# Set environment variable for Node.js memory usage
+RUN npm install --legacy-peer-deps
+# start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
-
-# Expose port 3000 (if your application listens on this port)
+RUN npx nx build authoring-web
 EXPOSE 3000
+CMD npm run deploy:authoring
 
-# Define the command to start the app
-CMD ["npx", "nx", "serve", "authoring-web"]
