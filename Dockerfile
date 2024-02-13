@@ -25,7 +25,7 @@ COPY . /server
 RUN npm install --legacy-peer-deps
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
-RUN npx nx build authoring-web --verbose
+RUN npx nx affected -t build authoring-web --verbose
 # RUN npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel 
 EXPOSE 3000
 CMD npm run start
