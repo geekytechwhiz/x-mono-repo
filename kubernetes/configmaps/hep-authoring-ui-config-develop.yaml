@@ -4,16 +4,16 @@ data:
   ELASTIC_APM_SERVER_URL: http://apm-service.efk.svc.cluster.local:8200
   FAST_REFRESH: "false"
   NX_ANALYTICS_PROVIDER: googleTagManager
-  NX_API_URI: https://dev.api.hcl-x.com/platform-x/
+  NX_API_URI: https://marvericks.api.hcl-x.com/platform-x/
   NX_APM_ENVIRONMENT: dev
   NX_APM_SERVER_URL: platx-apm-server-dev.hcl-x.com
   NX_APM_TRACING: "false"
-  NX_AUTHOR_URI: https://dev.monorepo.console.hcl-x.com/
+  NX_AUTHOR_URI: https://marvericks.console.hcl-x.com/
   NX_BLOG_API_URI: https://dev.blogging.hcl-x.com/platform-x/
-  NX_CHATGPT_API_URI: https://dev.api.hcl-x.com/platform-x/api/v1/web/
+  NX_CHATGPT_API_URI: https://marvericks.api.hcl-x.com/platform-x/api/v1/web/
   NX_CLIENT_ID: react
   NX_COMPONENT_THEME: PrelemTheme
-  NX_DELIVERY_URI: https://dev.delivery.hcl-x.com/platform-x/
+  NX_DELIVERY_URI: https://marvericks.delivery.hcl-x.com/platform-x/
   NX_DSPACE_IMAGES_UUID: 93ea0aed-631b-45a7-b3ae-564ac071dea6
   NX_DSPACE_URI: https://dev.dam.hcl-x.com/
   NX_DSPACE_VIDEOS_UUID: 11f0b07a-b736-40da-8a60-de9c8f6b4aae
@@ -22,14 +22,14 @@ data:
   NX_GA_ID: G-ZWXSJ8FKM8
   NX_GOOGLE_SEARCH_VERIFICATION: GA-12345
   NX_GRANT_TYPE: authorization_code
-  NX_GRAPHQL_URI: https://dev.api.hcl-x.com/platform-x/v1/authoring/gateway
+  NX_GRAPHQL_URI: https://marvericks.api.hcl-x.com/platform-x/v1/authoring/gateway
   NX_GTM_ID: GTM-WFDDL38
   NX_HEADER: Xheader
   NX_HEADER_THEME: PrelemTheme
   NX_KEYCLOAK_URI: https://dev.idp.hcl-x.com
   NX_PUBLISH_URI: https://dev.hcl-x.com/
   NX_REALM: platform-x
-  NX_REDIRECT_URI: https://dev.monorepo.console.hcl-x.com/en
+  NX_REDIRECT_URI: https://marvericks.console.hcl-x.com/en/
   NX_CHAT_GPT_PROMPT: Please write 3 paragraph article about
   NX_GCP_URL: https://storage.googleapis.com
   NX_BUCKET_NAME: cropped_image_public
@@ -46,7 +46,7 @@ data:
   NX_NAV_ICON_10: https://dev.dam.hcl-x.com/server/api/core/bitstreams/e0056513-65b5-45ed-a381-c1b82619f368/content
   NX_NAV_ICON_11: https://dev.dam.hcl-x.com/server/api/core/bitstreams/048e9e07-1f04-4df9-813b-332c37f0f8aa/content
   NX_NAV_ICON_12: https://dev.dam.hcl-x.com/server/api/core/bitstreams/b5ca8fab-9a5d-4746-8441-15038ef5fbbf/content
-  NX_BASE_URL: https://dev.monorepo.console.hcl-x.com/
+  NX_BASE_URL: https://marvericks.console.hcl-x.com
   NX_PRELEM_THEME: light
   NX_USERS_URI: https://dev.users.hcl-x.com/platform-x/
   NX_SITE_BASED_THEME: dev,,delhiuniversity
