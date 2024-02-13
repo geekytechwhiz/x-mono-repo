@@ -8,7 +8,7 @@ data:
   NX_APM_ENVIRONMENT: dev
   NX_APM_SERVER_URL: platx-apm-server-dev.hcl-x.com
   NX_APM_TRACING: "false"
-  NX_AUTHOR_URI: https://dev.console.hcl-x.com/
+  NX_AUTHOR_URI: https://dev.monorepo.console.hcl-x.com/
   NX_BLOG_API_URI: https://dev.blogging.hcl-x.com/platform-x/
   NX_CHATGPT_API_URI: https://dev.api.hcl-x.com/platform-x/api/v1/web/
   NX_CLIENT_ID: react
@@ -29,7 +29,7 @@ data:
   NX_KEYCLOAK_URI: https://dev.idp.hcl-x.com
   NX_PUBLISH_URI: https://dev.hcl-x.com/
   NX_REALM: platform-x
-  NX_REDIRECT_URI: https://dev.console.hcl-x.com/en
+  NX_REDIRECT_URI: https://dev.monorepo.console.hcl-x.com/en
   NX_CHAT_GPT_PROMPT: Please write 3 paragraph article about
   NX_GCP_URL: https://storage.googleapis.com
   NX_BUCKET_NAME: cropped_image_public
@@ -46,11 +46,11 @@ data:
   NX_NAV_ICON_10: https://dev.dam.hcl-x.com/server/api/core/bitstreams/e0056513-65b5-45ed-a381-c1b82619f368/content
   NX_NAV_ICON_11: https://dev.dam.hcl-x.com/server/api/core/bitstreams/048e9e07-1f04-4df9-813b-332c37f0f8aa/content
   NX_NAV_ICON_12: https://dev.dam.hcl-x.com/server/api/core/bitstreams/b5ca8fab-9a5d-4746-8441-15038ef5fbbf/content
-  NX_BASE_URL: https://dev.console.hcl-x.com
+  NX_BASE_URL: https://dev.monorepo.console.hcl-x.com/
   NX_PRELEM_THEME: light
   NX_USERS_URI: https://dev.users.hcl-x.com/platform-x/
   NX_SITE_BASED_THEME: dev,,delhiuniversity
-  
+
   NX_USER_REGISTER_SCHEMA: "iglu:com.hcl-x/user-registration-schema/jsonschema/1-0-2"
 kind: ConfigMap
 metadata:
