@@ -86,7 +86,7 @@ function App() {
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>
               <CssBaseline />
-              <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
+              <BrowserRouter>
                 <Provider store={store}>
                   <AppRouter />
                 </Provider>
