@@ -54,5 +54,5 @@ data:
   NX_USER_REGISTER_SCHEMA: "iglu:com.hcl-x/user-registration-schema/jsonschema/1-0-2"
 kind: ConfigMap
 metadata:
-  name: hep-authoring-ui-config
-  namespace: dev-v2
+  name: hep-mono-authoring-ui-config
+  namespace: mavericks
