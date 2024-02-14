@@ -17,6 +17,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@platformx/article-mfe": ["libs/article-mfe/src/index.ts"],
+      "@platformx/article-mfe/server": ["libs/article-mfe/src/server.ts"],
       "@platformx/authoring-apis": ["libs/authoring-apis/src/index.ts"],
       "@platformx/authoring-state": ["libs/authoring-state/src/index.ts"],
       "@platformx/comment-review": ["libs/comment-review/src/index.ts"],

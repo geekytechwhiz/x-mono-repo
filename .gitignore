@@ -71,4 +71,7 @@ docs/
 # Ignore miscellaneous files
 Thumbs.db
 .DS_Store
-Desktop.ini 
+Desktop.ini
+
+# Next.js
+.next
