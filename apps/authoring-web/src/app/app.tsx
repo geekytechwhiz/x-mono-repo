@@ -12,12 +12,12 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 // import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css'; 
+import './App.css';
 // import { CommentProvider } from './context/CommentsContext/CommentsContext';
 // import { ActionProvider } from './context/actionContext/ActionProvider';
 // import RootRouter from './router/rootRouter';
 // import { StoreProvider } from './store/ContextStore';
-// import LightTheme from './theme/lightTheme'; 
+// import LightTheme from './theme/lightTheme';
 // import { DefaultLocale } from './utils/constants';
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
@@ -68,12 +68,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+  debugger;
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
   const [instances, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
-  const { pathname } = window.location
+  const { pathname } = window.location;
 
   useEffect(() => {
 

@@ -6,8 +6,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import React from 'react';
 import DialogCloseIcon from '../assets/svgIcon/DialogCloseIcon.svg';
 import DeleteIcon from '../assets/svgIcon/errorPopupIcon.svg';
-import { prelemTypes } from '../themes/prelems/globalStyle';
 import { useCustomStyle } from './ExitModal.styles';
+import prelemTypes from '../themes/prelems/globalStyle';
 
 export default function ExitModal({
   isDialogOpen,

@@ -1,6 +1,6 @@
 import { Typography, styled } from '@mui/material';
-import ThemeConstants from '../../../themes/authoring/variable';
-// import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
+import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+ // import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
 // import ThemeConstants from '../../theme/variable';
 
 // const fontStyle = `
