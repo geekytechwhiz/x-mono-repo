@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./StringTextBoxComponent.css";
 import CloseIcon from "@mui/icons-material/Close";
@@ -113,9 +114,9 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        onInput={
-          customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
-        }
+        // onInput={ TODO
+        //   customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
+        // }
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>

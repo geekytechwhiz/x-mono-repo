@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import React from "react";
 import { getImage, nullToObject } from "@platformx/utilities";
 import "./ContentTypeCard.css";
-import { getIcon } from "../../Common/Utils/helperFns";
+import { getIcon } from "../Utils/helperFns";
 
 const ContentTypeCard = ({
   content,

@@ -1,26 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./StringTextBoxComponent.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { InputAdornment, TextField } from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import {
-  allowOnlyNumberInputData,
-  allowOnlyShippingLetterInputData,
-  allowOnlyLetterInputData,
-} from "../../../utils/helperFns";
 
-const allowInputParams = (e: any, key: string) => {
-  switch (key) {
-    case "number":
-      return allowOnlyNumberInputData(e);
-    case "CustomFirstName":
-      return allowOnlyShippingLetterInputData(e);
-    case "charter":
-      return allowOnlyLetterInputData(e);
-    default:
-      return null;
-  }
-};
 type StringOnChangeTextBoxProps = {
   maxLength?: number;
   name?: string;
@@ -113,9 +97,9 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        onInput={
-          customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
-        }
+        // onInput={ TODO
+        //   customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
+        // }
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>

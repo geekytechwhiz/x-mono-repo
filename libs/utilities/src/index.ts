@@ -56,8 +56,10 @@ import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAus
 import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme/Variable";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import { LanguageList } from "./lib/utils/helperConstants";
+import { News_community } from "./lib/assets/svg";
 import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
+import prelemTypes from "./lib/themes/prelems/globalStyle";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -99,6 +101,7 @@ export {
   AUTH_INFO,
   AUTH_URL,
   AddImage,
+  News_community,
   ToastContainerHandle,
   ContentListMobileLoader,
   ContentListDesktopLoader,
@@ -122,6 +125,7 @@ export {
   LightTheme,
   Loader,
   MiniHeader,
+  prelemTypes,
   NEW_LOGOUT_URL,
   NoContentFound,
   NoSearchResult,
