@@ -1,13 +1,16 @@
 import axios from "axios";
 import { format } from "date-fns";
+import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
+import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
 import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
-import { AUTH_INFO } from "../constants/AuthConstant";
-import { SecondaryArgs, Content } from "./interface";
-import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
+
+const { publicRuntimeConfig = {} } = getConfig() || {};
 
 const siteLevelSchema = {
   siteName: "X",
@@ -1028,4 +1031,11 @@ export const getFlag = (code = "") => {
     default:
       return EN_FLAG;
   }
+};
+export const locationApiCallService = async () => {
+  const res = await axios.get(
+    `${publicRuntimeConfig.NEXT_GEOLOCATION_API_URL}?apiKey=${publicRuntimeConfig.NEXT_GEOLOCATION_API_KEY}`,
+  );
+  const { data: locationData = {} }: any = res;
+  return locationData || {};
 };
