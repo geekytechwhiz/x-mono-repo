@@ -23,7 +23,7 @@ jobs:
           echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "GKE_ZONE=GKE_ZONE_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_AUTH_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
-          echo "NAMESPACE_NAME=$(echo namespace-name-${{ github.ref_name }} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]//g;s/--*/-/g')" >> $GITHUB_ENV
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
@@ -82,13 +82,9 @@ jobs:
           cd authoring
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
-          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}:$GITHUB_RUN_NUMBER
-          ./kustomize edit set namespace $NAMESPACE_NAME
-          ./kustomize build . | kubectl apply -f - -n $NAMESPACE_NAME
-          ./kustomize build . > output.yaml
-          cat output.yaml # Check the namespace in this file
-          echo "Deploying to namespace: $NAMESPACE_NAME"
-          kubectl rollout status deployment $DEPLOYMENT_NAME -n $NAMESPACE_NAME
+          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
+          ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} --timeout=120s
 
             
   user-experience-ui:
@@ -107,7 +103,7 @@ jobs:
           echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "GKE_ZONE=GKE_ZONE_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_UX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
-          echo "NAMESPACE_NAME=$(echo namespace-name-${{ github.ref_name }} | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]//g;s/--*/-/g')" >> $GITHUB_ENV
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
@@ -166,11 +162,7 @@ jobs:
           cd userexp
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
-          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}:$GITHUB_RUN_NUMBER
-          ./kustomize edit set namespace $NAMESPACE_NAME
-          ./kustomize build . | kubectl apply -f - -n $NAMESPACE_NAME
-          ./kustomize build . > output.yaml
-          cat output.yaml # Check the namespace in this file
-          echo "Deploying to namespace: $NAMESPACE_NAME"
-          kubectl rollout status deployment $DEPLOYMENT_NAME -n $NAMESPACE_NAME
+          ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
+          ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} --timeout=120s
 
