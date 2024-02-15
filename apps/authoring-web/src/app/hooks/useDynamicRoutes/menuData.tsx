@@ -1,4 +1,5 @@
 import { Content } from "@platformx/content";
+import { Space } from "@platformx/community";
 import {
   ApprovalStatus,
   ArticleIcon,
@@ -155,6 +156,7 @@ export const MenuData = [
         category: "Community",
         subCategory: "spaces",
         roles: ["admin", "Super Admin"],
+        component: <Space />,
       },
     ],
   },

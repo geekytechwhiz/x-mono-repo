@@ -6,6 +6,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 import { SitePage } from "@platformx/site-page";
 import { CreateContent } from "@platformx/content";
+import { CreateSpace } from "@platformx/community";
 
 export const routes: RouteConfig[] = [
   {
@@ -91,6 +92,19 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/community/create-space",
+    element: (
+      <ProtectedRoute
+        name='space'
+        category='public'
+        subCategory='public'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateSpace />
       </ProtectedRoute>
     ),
   },

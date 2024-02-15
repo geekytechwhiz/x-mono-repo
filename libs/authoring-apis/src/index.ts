@@ -53,6 +53,8 @@ export * from "./lib/services/prelems/prelems.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/utils/constants";
 export * from "./lib/hooks";
+export * from "./lib/services/space/space.api";
+export * from "./lib/graphQL/mutations/spaceMutations";
 
 export {
   ArticleMutations,
