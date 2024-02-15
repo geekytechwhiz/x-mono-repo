@@ -113,9 +113,9 @@ function App() {
             <ThemeProvider theme={LightTheme}>
               <CssBaseline />
               <BrowserRouter
-                basename={
-                  routing ? `/${routing}/${language}` : `/${language}`
-                }
+                // basename={
+                //   routing ? `/${routing}/${language}` : `/${language}`
+                // }
               >
                 <Provider store={store}>
                   <AppRouter />
