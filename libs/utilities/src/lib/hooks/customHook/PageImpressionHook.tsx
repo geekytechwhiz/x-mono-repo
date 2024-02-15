@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { nullToObject } from "../../../utils/helperFunctions";
+import { nullToObject } from "../../utils/helperFns";
 import { useSnowplowTrackingHook } from "./snowplowTrackingHook";
 
 export const usePageImpression = (

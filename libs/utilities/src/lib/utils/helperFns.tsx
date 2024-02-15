@@ -1039,3 +1039,63 @@ export const locationApiCallService = async () => {
   const { data: locationData = {} }: any = res;
   return locationData || {};
 };
+export const getDomainUrl = (host) => {
+  return `http://${host}/`;
+};
+
+export const sendBaseUrl = () => {
+  return process.env.NX_PUBLISH_API_URL_GENERIC;
+};
+
+export const sendBlogUrl = () => {
+  return process.env.NX_BLOGS_API;
+};
+
+export const sendBtnBaseUrl = () => {
+  return process.env.NX_PUBLISH_APP_URL;
+};
+
+export const trimmedBaseUrl = () => {
+  const { NX_PUBLISH_API_URL = "" } = process.env;
+  return NX_PUBLISH_API_URL.replace("api/v1/web/en/delivery", "");
+};
+
+export const getNextApiUrl = () => {
+  return process.env.NX_API_URL;
+};
+
+export const baseEndpointObj = (host) => {
+  return {
+    APIEndPoint: sendBaseUrl(),
+    PublishEndPoint: getDomainUrl(host),
+    buttonBaseUrl: getDomainUrl(host),
+    deliveryEndPoint: trimmedBaseUrl(),
+    usersEndPoint: getNextApiUrl(),
+    blogEndPoint: sendBlogUrl(),
+    loyaltyEndPoint: process.env.NX_LOYALTY_END_POINT,
+    loyaltyPortalEndPoint: process.env.NX_LOYALTY_PORTAL_END_POINT,
+  };
+};
+
+export const snowplowSchemaUrl = () => {
+  return {
+    pageImpressionSchema: process.env.NX_PAGE_IMPRESSIONS_SCHEMA,
+    prelemImpressionSchema: process.env.NX_SNOWPLOW_PRELEM_IMPRESSIONS,
+    clickImpressionSchema: process.env.NX_SNOWPLOW_CLICK_IMPRESSIONS,
+    userRegisterImpressionSchema: process.env.NX_SNOWPLOW_REGISTER_USER_IMPRESSIONS,
+    environment: process.env.NX_ELASTIC_APM_ENVIRONMENT,
+    gcpUrl: process.env.NX_GCP_URL,
+    bucketName: process.env.NX_BUCKET_NAME,
+  };
+};
+
+export const getSecondaryArgs = (langCode, query, hostName) => {
+  return {
+    ...snowplowSchemaUrl(),
+    baseEndpoint: {
+      language: langCode,
+      query: query,
+      ...baseEndpointObj(hostName),
+    },
+  };
+};
