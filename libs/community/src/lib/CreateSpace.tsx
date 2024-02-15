@@ -9,7 +9,7 @@ import {
   convertToLowerCase,
   nullToObject,
   ShowToastError as showToastError,
-  PlateformXDialog,
+  CommonPlateformXDialog as PlateformXDialog,
 } from "@platformx/utilities";
 import SpaceAccess from "./components/SpaceAccess/SpaceAccess";
 import SpaceDetails from "./components/SpaceDetails/SpaceDetails";

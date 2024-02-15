@@ -7,7 +7,12 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useEffect, useState } from "react";
 import InviteMemberPopupCard from "./InviteMemberPopupCard";
 import { useStyles } from "./InviteMemberPopup.styles";
-import { NoSearchResult, XCheckbox, PlateformXDialog, Loader } from "@platformx/utilities";
+import {
+  NoSearchResult,
+  XCheckbox,
+  CommonPlateformXDialog as PlateformXDialog,
+  Loader,
+} from "@platformx/utilities";
 
 const InviteMemberPopup = ({
   cancleButtonHandle,

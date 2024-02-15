@@ -86,6 +86,7 @@ import {
 } from "./lib/components/SchemaComponents";
 import XDialog from "./lib/components/XDialog/XDialog";
 import NoResultsFound from "./lib/components/NoResultsFound";
+import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -186,4 +187,5 @@ export {
   workflowKeys,
   XDatePicker,
   ErrorHandleAutoTextArea,
+  CommonPlateformXDialog,
 };
