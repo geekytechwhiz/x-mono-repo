@@ -158,6 +158,7 @@ jobs:
         run: |
           nx affected --target=build --base=main --head=$GITHUB_SHA
           # nx run authoring-web:deploy --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }} 
+          
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f deployment.yaml -n ${{ secrets.NAMESPACE_NAME_DEVELOP }}
