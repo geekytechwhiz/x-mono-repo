@@ -56,7 +56,7 @@ import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAus
 import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme/Variable";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import { LanguageList } from "./lib/utils/helperConstants";
-import { News_community } from "./lib/assets/svg";
+import { News_community, General_community } from "./lib/assets/svg";
 import { getCurrentLang, getUniqueTimeZone, getFormattedImageUrl } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
@@ -102,6 +102,7 @@ export {
   AUTH_URL,
   AddImage,
   News_community,
+  General_community,
   ToastContainerHandle,
   ContentListMobileLoader,
   ContentListDesktopLoader,
