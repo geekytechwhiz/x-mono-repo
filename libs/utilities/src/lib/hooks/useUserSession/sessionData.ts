@@ -1,10 +1,19 @@
 export const data = {
     "permissions": [
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "Common",
+            "sub_category": "",
+            "actions": [
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "Page",
             "sub_category": "",
             "actions": [
+                "Create",
                 "Update",
                 "Delete",
                 "Publish",
@@ -13,21 +22,25 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Content",
             "sub_category": "Article",
             "actions": [
+                "Create",
                 "Update",
                 "Delete",
+                "Publish",
+                "UnPublish",
                 "View",
                 "ShareToSite"
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Content",
             "sub_category": "Vod",
             "actions": [
+                "Create",
                 "Update",
                 "Delete",
                 "Publish",
@@ -37,23 +50,25 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Content",
             "sub_category": "Quiz",
             "actions": [
-                "View",
-                "UnPublish",
-                "Publish",
-                "Delete",
+                "Create",
                 "Update",
+                "Delete",
+                "Publish",
+                "UnPublish",
+                "View",
                 "ShareToSite"
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Content",
             "sub_category": "Poll",
             "actions": [
+                "Create",
                 "Update",
                 "Delete",
                 "Publish",
@@ -63,10 +78,11 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Content",
             "sub_category": "Event",
             "actions": [
+                "Create",
                 "Update",
                 "Delete",
                 "Publish",
@@ -75,7 +91,15 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "All",
+            "sub_category": "",
+            "actions": [
+                "All"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "Dashboard",
             "sub_category": "",
             "actions": [
@@ -83,16 +107,17 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Workflow",
             "sub_category": "",
             "actions": [
                 "View",
-                "Create"
+                "Create",
+                "Update"
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "Workflow",
             "sub_category": "Task",
             "actions": [
@@ -101,7 +126,7 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "OpenAI",
             "sub_category": "ChatGpt",
             "actions": [
@@ -109,15 +134,37 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
             "category": "UserManagement",
             "sub_category": "Users",
             "actions": [
+                "View",
+                "Create",
+                "Update"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Menu",
+            "sub_category": "",
+            "actions": [
+                "Create",
+                "Update",
+                "Delete",
+                "Publish",
                 "View"
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "WorkflowFIFA",
+            "sub_category": "RequestReview",
+            "actions": [
+                "Submit"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "WorkflowFIFA",
             "sub_category": "Review",
             "actions": [
@@ -126,7 +173,33 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "WorkflowFIFA",
+            "sub_category": "Approval",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "WorkflowFIFA",
+            "sub_category": "Publish",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Workflow2",
+            "sub_category": "RequestReview",
+            "actions": [
+                "Submit"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "Workflow2",
             "sub_category": "Review",
             "actions": [
@@ -135,7 +208,33 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "Workflow2",
+            "sub_category": "Approval",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Workflow2",
+            "sub_category": "Publish",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Workflow3",
+            "sub_category": "RequestReview",
+            "actions": [
+                "Submit"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "Workflow3",
             "sub_category": "Review",
             "actions": [
@@ -144,39 +243,244 @@ export const data = {
             ]
         },
         {
-            "site": "delhiuniversity",
+            "site": "kiwi",
+            "category": "Workflow3",
+            "sub_category": "Approval",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Workflow3",
+            "sub_category": "Publish",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Default",
+            "sub_category": "RequestReview",
+            "actions": [
+                "Submit"
+            ]
+        },
+        {
+            "site": "kiwi",
             "category": "Default",
             "sub_category": "Review",
             "actions": [
                 "Approve",
                 "ReferBack"
             ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Default",
+            "sub_category": "Approval",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Default",
+            "sub_category": "Publish",
+            "actions": [
+                "Approve",
+                "ReferBack"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Post",
+            "sub_category": "AllPosts",
+            "actions": [
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "SiteSetting",
+            "sub_category": "HeaderSetting",
+            "actions": [
+                "View",
+                "Update"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "SiteSetting",
+            "sub_category": "FooterSetting",
+            "actions": [
+                "Update",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "SiteSetting",
+            "sub_category": "GlobalSetting",
+            "actions": [
+                "Update",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "SiteSetting",
+            "sub_category": "MediaHandle",
+            "actions": [
+                "Update",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "SiteSetting",
+            "sub_category": "CookieSetting",
+            "actions": [
+                "Update",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "User",
+            "sub_category": "Site",
+            "actions": [
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Community",
+            "sub_category": "Spaces",
+            "actions": [
+                "Create",
+                "Update",
+                "Delete"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Community",
+            "sub_category": "Reports",
+            "actions": [
+                "Create",
+                "Update",
+                "Delete",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Content",
+            "sub_category": "Community",
+            "actions": [
+                "Create",
+                "Update",
+                "Delete",
+                "Publish",
+                "UnPublish",
+                "View",
+                "ShareToSite"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Rewards",
+            "sub_category": "",
+            "actions": [
+                "Update"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Campaign",
+            "sub_category": "",
+            "actions": [
+                "Update",
+                "Create",
+                "View"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Assets",
+            "sub_category": "",
+            "actions": [
+                "View",
+                "Create",
+                "Delete"
+            ]
+        },
+        {
+            "site": "kiwi",
+            "category": "Reports",
+            "sub_category": "UserEngagement",
+            "actions": [
+                "View"
+            ]
         }
     ],
     "isActive": true,
-    "role": "Moderator 1",
+    "role": "admin",
     "userInfo": {
-        "user_id": "00df0e8b-fc47-46cb-aee2-d22f58c9c55d",
-        "name": "John Moderator-1",
-        "first_name": "John",
-        "last_name": "Moderator-1",
-        "email_id": "johnmoderator-1@hcl.com",
-        "username": "johnmoderator-1@hcl.com",
+        "user_id": "0d565540-7dde-4466-af74-4f7571b2a4d5",
+        "name": "Harsh upadhyay",
+        "first_name": "Harsh",
+        "last_name": "upadhyay",
+        "email_id": "harsh.upadhyay@hcl.com",
+        "username": "harsh.upadhyay@hcl.com",
         "email_verified": false,
         "gender": "Male",
         "roles": [
             {
-                "name": "Moderator 1",
+                "name": "Super Admin",
+                "site": "System",
+                "id": "64cb7067b049facf9cb04423"
+            },
+            {
+                "name": "admin",
                 "site": "delhiuniversity",
-                "id": "653b6c0380ccfead5db69711"
+                "id": "653b6c0380ccfead5db6970b"
+            },
+            {
+                "name": "admin",
+                "site": "monorepotest",
+                "id": "65bb2faf57492322288c4d80"
+            },
+            {
+                "name": "admin",
+                "site": "kiwi",
+                "id": "655b48f430bcbf27d3c0b57c"
+            },
+            {
+                "name": "admin",
+                "site": "dev",
+                "id": "655b318fca42b71565d08024"
             }
         ],
         "permissions": [
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "Common",
+                "sub_category": "",
+                "actions": [
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "Page",
                 "sub_category": "",
                 "actions": [
+                    "Create",
                     "Update",
                     "Delete",
                     "Publish",
@@ -185,21 +489,25 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Content",
                 "sub_category": "Article",
                 "actions": [
+                    "Create",
                     "Update",
                     "Delete",
+                    "Publish",
+                    "UnPublish",
                     "View",
                     "ShareToSite"
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Content",
                 "sub_category": "Vod",
                 "actions": [
+                    "Create",
                     "Update",
                     "Delete",
                     "Publish",
@@ -209,23 +517,25 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Content",
                 "sub_category": "Quiz",
                 "actions": [
-                    "View",
-                    "UnPublish",
-                    "Publish",
-                    "Delete",
+                    "Create",
                     "Update",
+                    "Delete",
+                    "Publish",
+                    "UnPublish",
+                    "View",
                     "ShareToSite"
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Content",
                 "sub_category": "Poll",
                 "actions": [
+                    "Create",
                     "Update",
                     "Delete",
                     "Publish",
@@ -235,10 +545,11 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Content",
                 "sub_category": "Event",
                 "actions": [
+                    "Create",
                     "Update",
                     "Delete",
                     "Publish",
@@ -247,7 +558,15 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "All",
+                "sub_category": "",
+                "actions": [
+                    "All"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "Dashboard",
                 "sub_category": "",
                 "actions": [
@@ -255,16 +574,17 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Workflow",
                 "sub_category": "",
                 "actions": [
                     "View",
-                    "Create"
+                    "Create",
+                    "Update"
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "Workflow",
                 "sub_category": "Task",
                 "actions": [
@@ -273,7 +593,7 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "OpenAI",
                 "sub_category": "ChatGpt",
                 "actions": [
@@ -281,15 +601,37 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
                 "category": "UserManagement",
                 "sub_category": "Users",
                 "actions": [
+                    "View",
+                    "Create",
+                    "Update"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Menu",
+                "sub_category": "",
+                "actions": [
+                    "Create",
+                    "Update",
+                    "Delete",
+                    "Publish",
                     "View"
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "WorkflowFIFA",
+                "sub_category": "RequestReview",
+                "actions": [
+                    "Submit"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "WorkflowFIFA",
                 "sub_category": "Review",
                 "actions": [
@@ -298,7 +640,33 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "WorkflowFIFA",
+                "sub_category": "Approval",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "WorkflowFIFA",
+                "sub_category": "Publish",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Workflow2",
+                "sub_category": "RequestReview",
+                "actions": [
+                    "Submit"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "Workflow2",
                 "sub_category": "Review",
                 "actions": [
@@ -307,7 +675,33 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "Workflow2",
+                "sub_category": "Approval",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Workflow2",
+                "sub_category": "Publish",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Workflow3",
+                "sub_category": "RequestReview",
+                "actions": [
+                    "Submit"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "Workflow3",
                 "sub_category": "Review",
                 "actions": [
@@ -316,28 +710,213 @@ export const data = {
                 ]
             },
             {
-                "site": "delhiuniversity",
+                "site": "kiwi",
+                "category": "Workflow3",
+                "sub_category": "Approval",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Workflow3",
+                "sub_category": "Publish",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Default",
+                "sub_category": "RequestReview",
+                "actions": [
+                    "Submit"
+                ]
+            },
+            {
+                "site": "kiwi",
                 "category": "Default",
                 "sub_category": "Review",
                 "actions": [
                     "Approve",
                     "ReferBack"
                 ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Default",
+                "sub_category": "Approval",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Default",
+                "sub_category": "Publish",
+                "actions": [
+                    "Approve",
+                    "ReferBack"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Post",
+                "sub_category": "AllPosts",
+                "actions": [
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "SiteSetting",
+                "sub_category": "HeaderSetting",
+                "actions": [
+                    "View",
+                    "Update"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "SiteSetting",
+                "sub_category": "FooterSetting",
+                "actions": [
+                    "Update",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "SiteSetting",
+                "sub_category": "GlobalSetting",
+                "actions": [
+                    "Update",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "SiteSetting",
+                "sub_category": "MediaHandle",
+                "actions": [
+                    "Update",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "SiteSetting",
+                "sub_category": "CookieSetting",
+                "actions": [
+                    "Update",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "User",
+                "sub_category": "Site",
+                "actions": [
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Community",
+                "sub_category": "Spaces",
+                "actions": [
+                    "Create",
+                    "Update",
+                    "Delete"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Community",
+                "sub_category": "Reports",
+                "actions": [
+                    "Create",
+                    "Update",
+                    "Delete",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Content",
+                "sub_category": "Community",
+                "actions": [
+                    "Create",
+                    "Update",
+                    "Delete",
+                    "Publish",
+                    "UnPublish",
+                    "View",
+                    "ShareToSite"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Rewards",
+                "sub_category": "",
+                "actions": [
+                    "Update"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Campaign",
+                "sub_category": "",
+                "actions": [
+                    "Update",
+                    "Create",
+                    "View"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Assets",
+                "sub_category": "",
+                "actions": [
+                    "View",
+                    "Create",
+                    "Delete"
+                ]
+            },
+            {
+                "site": "kiwi",
+                "category": "Reports",
+                "sub_category": "UserEngagement",
+                "actions": [
+                    "View"
+                ]
             }
         ],
-        "default_site": "delhiuniversity",
-        "selected_site": "delhiuniversity",
+        "default_site": "kiwi",
+        "selected_site": "kiwi",
         "preferred_sites_languages": {
-            "platformx": "en",
-            "delhiuniversity": "en"
+            "System": "en",
+            "delhiuniversity": "en",
+            "monorepotest": "en",
+            "kiwi": "en",
+            "dev": "en"
         },
         "accessible_sites": [
-            "platformx",
-            "delhiuniversity"
+            "System",
+            "delhiuniversity",
+            "monorepotest",
+            "kiwi",
+            "dev"
         ],
         "preferred_sites_urls": {
-            "platformx": "https://platformx.hcl-x.com",
-            "delhiuniversity": "du.hcl-x.com"
+            "System": "",
+            "delhiuniversity": "du.hcl-x.com",
+            "monorepotest": "monorepotesting.hclplatx.com",
+            "kiwi": "kiwi.hcl-x.com",
+            "dev": "dev.hcl-x.com"
         }
     }
 }
