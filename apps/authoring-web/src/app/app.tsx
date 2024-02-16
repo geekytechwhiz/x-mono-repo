@@ -28,13 +28,11 @@ import {
   getSelectedRoute
 } from '@platformx/utilities';
 import { Provider } from 'react-redux';
-import { AnalyticsProvider } from 'use-analytics';
+import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
 import Analytics from './utils/analytics/analyticsData';
 import { analyticsInstance } from './utils/analytics/dynamicAnalytics';
 import { AUTH_URL } from './utils/authConstants';
-import { BrowserRouter } from 'react-router-dom';
-
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace('Mui', 'Platform-x-')
 );
@@ -74,6 +72,7 @@ function App() {
   const classes = useStyles();
   const [instances, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
+  console.log('routing', routing)
   const { pathname } = window.location;
 
   useEffect(() => {
@@ -113,9 +112,9 @@ function App() {
             <ThemeProvider theme={LightTheme}>
               <CssBaseline />
               <BrowserRouter
-                // basename={
-                //   routing ? `/${routing}/${language}` : `/${language}`
-                // }
+                basename={
+                  routing ? `/${routing}/${language}` : `/${language}`
+                }
               >
                 <Provider store={store}>
                   <AppRouter />
