@@ -12,6 +12,7 @@ import avtarImg from "./avatar.png";
 import Logo from "./logo.png";
 import successGif from "./success.gif";
 import fallBackImage from "./fallBackImage.png";
+import noResults from "./no-results.png";
 
 export {
   fallBackImage,
@@ -26,4 +27,5 @@ export {
   avtarImg,
   Logo,
   successGif,
+  noResults,
 };

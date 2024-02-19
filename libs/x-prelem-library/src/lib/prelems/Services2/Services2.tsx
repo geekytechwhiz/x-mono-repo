@@ -7,7 +7,7 @@ import "../../Style.css";
 import { useCustomStyle } from "./Services2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
 
 const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Services2Prop) => {
   // const [contentType, setContentType] = React.useState("image");
@@ -195,36 +195,9 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
 
 interface Services2Prop {
   content: Content;
-  analytics?: any; //Analytics;
+  analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  authoringHoverShow?: boolean;
-  isEditPage?: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 interface Content {
   Title?: string;

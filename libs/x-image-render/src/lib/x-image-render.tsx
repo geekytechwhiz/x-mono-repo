@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import DamContentGallery from "./components/damContentGallery/DamContentGallery";
 import {
   UploadIcon,
@@ -7,6 +7,7 @@ import {
   ShowToastError,
   nullToObject,
   ShowToastSuccess,
+  relativeImageURL,
 } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
 import { usePostImageCrop } from "./hooks/usePostImageCrop";
@@ -15,10 +16,14 @@ import CachedIcon from "@mui/icons-material/Cached";
 import ImageRender from "./components/ImageRender";
 import ShowCaseCrops from "./components/ShowCaseCrops";
 
-export const XImageRender = ({ callBack, data }): any => {
+//custom check for rerender
+const areEqual = (prevProps, nextProps) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+};
+
+const XImageRender = ({ callBack, editData, isCrop = true }): any => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
-  const [operationType, setOperationType] = useState<string>("choose");
   const [processing, setProcessing] = useState(false);
   const [selectedImage, setSelectedImage] = useState({
     Thumbnail: "",
@@ -26,12 +31,12 @@ export const XImageRender = ({ callBack, data }): any => {
     description: "",
     bitStreamId: "",
   });
-  const [returnData, setReturnData] = useState(data);
+  const [returnData, setReturnData] = useState(editData);
   const [manualCropShow, setManualCropShow] = useState(false);
   const [showCropPreview, setShowCropPreview] = useState(false);
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
 
-  const autoCropCallBack = (data) => {
+  const autoCropCallBack = (data, img) => {
     if (data) {
       const {
         images = [],
@@ -41,7 +46,7 @@ export const XImageRender = ({ callBack, data }): any => {
         bitstream_id,
       } = nullToObject(data);
       if (images?.length > 0) {
-        const data = {
+        const retdata = {
           published_images: images,
           original_image: {
             original_image_relative_path,
@@ -49,13 +54,16 @@ export const XImageRender = ({ callBack, data }): any => {
             auto: true,
             ext: ext,
             visibility,
+            Thumbnail: img?.Thumbnail,
+            Title: img?.title,
           },
+          selected_image: img,
         };
-        setReturnData(data);
+        setReturnData(retdata);
         setProcessing(false);
         setGalleryDialogOpen(false);
         ShowToastSuccess(`${t("auto_cropped_successfully")}`);
-        callBack(data);
+        callBack(retdata);
       } else {
         setProcessing(false);
         setGalleryDialogOpen(false);
@@ -72,12 +80,30 @@ export const XImageRender = ({ callBack, data }): any => {
       bitstreamId: selectedImg.bitStreamId,
       visibility: "public",
     };
-    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack);
+    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack, selectedImg);
   };
 
-  const handleSelectedImage = async (image) => {
+  const noCropCallBack = (data, img) => {
+    const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
+    setReturnData({ relativeUrl: relativeUrl });
+    callBack({ relativeUrl: relativeUrl, selected_img: img });
+  };
+
+  const noCropFunc = async (image) => {
+    const payload = {
+      bitstreamId: image.bitStreamId,
+      visibility: "public",
+    };
+    await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack, image);
+  };
+
+  const handleSelectedImage = (image) => {
     setSelectedImage(image);
-    autoCropFunc(image);
+    if (isCrop) {
+      autoCropFunc(image);
+    } else {
+      noCropFunc(image);
+    }
   };
 
   const toggleGallery = (toggleState: boolean, type: string) => {
@@ -97,8 +123,7 @@ export const XImageRender = ({ callBack, data }): any => {
     setGalleryDialogOpen(true);
   };
 
-  const onUploadClick = (type) => {
-    setOperationType(type);
+  const onUploadClick = () => {
     showGallery();
   };
 
@@ -113,8 +138,9 @@ export const XImageRender = ({ callBack, data }): any => {
     original_image_relative_path = "",
     visibility = "",
     bitstream_id = "",
+    img: any = {},
   ) => {
-    if (cropImages.length > 0) {
+    if (cropImages && cropImages.length > 0) {
       const data = {
         published_images: cropImages,
         original_image: {
@@ -123,7 +149,10 @@ export const XImageRender = ({ callBack, data }): any => {
           auto: false,
           ext: ext,
           visibility,
+          Thumbnail: img?.Thumbnail,
+          Title: img?.title,
         },
+        selected_image: img,
       };
       setReturnData(data);
       callBack(data);
@@ -140,8 +169,19 @@ export const XImageRender = ({ callBack, data }): any => {
     setShowCropPreview(true);
   };
 
+  useEffect(() => {
+    if (editData && JSON.stringify(editData) !== JSON.stringify(returnData)) {
+      setReturnData(editData);
+      setSelectedImage({
+        Thumbnail: editData?.original_image?.Thumbnail,
+        title: "",
+        description: "",
+        bitStreamId: editData?.original_image?.bitStreamId,
+      });
+    }
+  }, [editData]);
   return (
-    <>
+    <Fragment>
       <Box
         sx={{
           backgroundColor: "#FFF",
@@ -153,12 +193,13 @@ export const XImageRender = ({ callBack, data }): any => {
             assetType={"Image"}
             processing={processing}
             dialogOpen={galleryDialogOpen}
-            isCrop={true}
+            isCrop={isCrop}
           />
         )}
       </Box>
-      {returnData.published_images.length > 0 ? (
+      {returnData.published_images && returnData.published_images.length > 0 ? (
         <Box
+          key={`published_images_length_${returnData.published_images.length}`}
           sx={{
             position: "relative", //height: "91%"
             borderRadius: "15px",
@@ -194,7 +235,69 @@ export const XImageRender = ({ callBack, data }): any => {
               borderRadius: "15px",
             }}>
             <Box sx={{ display: "flex" }}>
-              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
+                <Box
+                  sx={{
+                    borderRadius: "50%",
+                    backgroundColor: "#fff",
+                    width: "25px",
+                    height: "25px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "auto",
+                  }}>
+                  <CachedIcon sx={{ color: "#626060" }} />
+                </Box>
+                <Typography
+                  mt={1}
+                  sx={{
+                    fontSize: ThemeConstants.FONTSIZE_XS,
+                    color: ThemeConstants.WHITE_COLOR,
+                    textTransform: "capitalize",
+                  }}>
+                  {t("replace")}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      ) : returnData.relativeUrl ? (
+        <Box
+          sx={{
+            position: "relative", //height: "91%"
+            borderRadius: "15px",
+            minHeight: "206px",
+            "& picture": {
+              height: "206px",
+            },
+          }}
+          mb={2}>
+          <img
+            style={{
+              width: "100%",
+              height: "206px",
+              objectFit: "cover",
+              display: "flex",
+              borderRadius: "15px",
+            }}
+            src={relativeImageURL(returnData.relativeUrl)}
+            alt='socialshare'
+          />
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#7470708a",
+              borderRadius: "15px",
+            }}>
+            <Box sx={{ display: "flex" }}>
+              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
                 <Box
                   sx={{
                     borderRadius: "50%",
@@ -233,7 +336,7 @@ export const XImageRender = ({ callBack, data }): any => {
             justifyContent: "center",
             flexDirection: "column",
           }}
-          onClick={() => onUploadClick("choose")}>
+          onClick={() => onUploadClick()}>
           <Box
             sx={{
               width: "40px",
@@ -271,6 +374,8 @@ export const XImageRender = ({ callBack, data }): any => {
           data={returnData}
         />
       )}
-    </>
+    </Fragment>
   );
 };
+
+export default React.memo(XImageRender, areEqual);

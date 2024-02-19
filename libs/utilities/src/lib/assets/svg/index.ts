@@ -1,4 +1,3 @@
-/* eslint-disable no-duplicate-imports */
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
 import Challenge_community from "./Challenge_community.svg";
@@ -29,13 +28,12 @@ import CourseIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import ReplyIcon from "./Reply.svg";
 import SaveNewIcon from "./SaveNewIcon.svg";
-import SearchBlackSvg from "./SearchBlack.svg"; //  SearchIcon,
+import SearchBlackSvg from "./SearchBlack.svg";
 import SendIcon from "./Send.svg";
 import SettingNewIcon from "./SettingNewIcon.svg";
 import CardOptionShareIcon from "./ShareIconOptionMenu.svg";
 import SitesIcon from "./SitesIcon.svg";
 import SpaceListIcon from "./Space.svg";
-
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
 import VODIcon from "./VODIcon.svg";
@@ -94,18 +92,14 @@ import IconTimerSvg from "./timerIcon.svg";
 import TotalrevIcon from "./totalrev.svg";
 import IconTwitterLogoIconSvg from "./twitterLogoIcon.svg";
 import UnpublishedStatusIcon from "./unpublishStatusIcon.svg";
-import VideoIcon from "./VODIcon.svg";
 import VODListIcon from "./vodListIcon.svg";
-// import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
 import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
-import EventsListIcon5 from "./Event.svg";
 import ProgressIcon from "./Frame.svg";
-import BookIcon from "./ReadBook.svg";
 import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
 import WarningIcon from "./warningIcon.svg";
@@ -136,17 +130,14 @@ import GreenSubFolderIcon from "./Subfolder-green.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import SubFolderIcon from "./expandmoreiconn.svg";
 import UploadIcon from "./upload.svg";
-import RedDots from "./icon/RedDots.svg";
-// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import RedDotsIcon from "./icon/RedDots.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   GlobalImageIcon,
   GlobalVideoIcon,
   GlobalMiscIcon,
   FeatureStarIcon,
-  
-  ArrowUpwardIcon,
- 
   Icon,
   Refresh,
   MenuIcon1,
@@ -273,4 +264,6 @@ export {
   PlayIcon,
   UploadIcon,
   PictureIcon,
+  DialogCloseIcon,
+  RedDotsIcon,
 };

@@ -7,18 +7,26 @@ import { useCustomStyle } from "../quiz.style";
 import { CommentWrapper } from "@platformx/comment-review";
 import { XImageRender } from "@platformx/x-image-render";
 
-const ImageVideo = ({ state, setState }) => {
+const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
 
   const updateField = (updatedPartialObj) => {
-    console.info("final data", updatedPartialObj);
+    const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
       ...updatedPartialObj,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
+      socialShareImgURL: relativeUrl,
     };
-    console.info("modified data", modifiedData);
     setState(modifiedData);
+    quizRef.current = {
+      ...quizRef.current,
+      ...updatedPartialObj,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
+      socialShareImgURL: relativeUrl,
+    };
+    unsavedChanges.current = true;
   };
 
   const classes = useCustomStyle();
@@ -43,10 +51,11 @@ const ImageVideo = ({ state, setState }) => {
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
               <XImageRender
                 callBack={updateField}
-                data={{
+                editData={{
                   original_image: state.original_image,
                   published_images: state.published_images,
                 }}
+                isCrop={true}
               />
             </Grid>
           </Grid>
