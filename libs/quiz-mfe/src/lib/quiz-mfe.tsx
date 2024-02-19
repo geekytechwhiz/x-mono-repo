@@ -1,29 +1,33 @@
 import { Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { fetchContentData } from "@platformx/authoring-apis";
-import { CONTENT_TYPE, ErrorBoundary, getSecondaryArgs } from "@platformx/utilities";
+import { ErrorBoundary, PrelemTheme, getSecondaryArgs } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { QuizComponent } from "./components/QuizComponent";
+import { QuizMfeProps } from "./quiz-mfe.types";
 
-export function QuizMfe() {
+export function QuizMfe({ contentType, id, langCode, host }: QuizMfeProps) {
   const [pageData, setPageData] = useState({} as any);
+
+  useEffect(() => {
+    fetchContentData(contentType, id, langCode, host).then((res) => {
+      setPageData(res?.data?.data?.fetchQuizContent);
+    });
+  }, []);
   const { ref } = useInView({
     /* Optional options */
     threshold: 0,
   });
-  useEffect(() => {
-    fetchContentData(CONTENT_TYPE.QUIZ, CONTENT_TYPE.QUIZ, "en", "localhost").then((res) => {
-      setPageData(res?.data?.data?.fetchArticleContent);
-    });
-  }, []);
-
   return (
     <Box ref={ref}>
       <ErrorBoundary>
-        <QuizComponent
-          pageData={pageData}
-          secondaryArgs={getSecondaryArgs("en", CONTENT_TYPE.QUIZ, "localhost")}
-        />
+        <ThemeProvider theme={PrelemTheme}>
+          <QuizComponent
+            pageData={pageData}
+            secondaryArgs={getSecondaryArgs(langCode, contentType, host)}
+          />
+        </ThemeProvider>
       </ErrorBoundary>
     </Box>
   );

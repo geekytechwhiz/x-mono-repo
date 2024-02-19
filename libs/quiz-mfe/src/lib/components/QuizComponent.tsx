@@ -1,6 +1,4 @@
-import dynamic from "next/dynamic";
-
-const QuizPrelem: any = dynamic(() => import(`platform-x-prelems/prelems/Quiz`), { ssr: false });
+import { Quiz } from "@platformx/x-prelem-library";
 
 export const QuizComponent = (props) => {
   const { pageData = {}, secondaryArgs } = props || {};
@@ -19,7 +17,7 @@ export const QuizComponent = (props) => {
   };
 
   return (
-    <QuizPrelem
+    <Quiz
       content={pageData}
       analytics={prelemAnalyticsProp}
       authoringHelper={prelemAuthoringHelper}

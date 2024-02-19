@@ -1,23 +1,17 @@
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Analytics, CloseIcon, getRelativeImageURL, nullToObject } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
-import "../../utils/service/i18n";
-import {
-  nullToObject,
-  getRelativeImageURL,
-  CloseIcon,
-  AuthoringHelper,
-  Analytics,
-} from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
+import "../../utils/service/i18n";
 import QuestionIndex from "./QuestionIndex";
 import QuizContext from "./QuizContext";
 import ScoreScreen from "./ScoreScreen";
 import ViewAnswers from "./ViewAnswers";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
 const Quiz = ({
   content,
@@ -119,13 +113,13 @@ const Quiz = ({
         name: content.title,
         description: content.description,
         hasPart:
-          content.questions.length > 0 &&
+          content?.questions?.length > 0 &&
           content?.questions.map(({ question }: any) => {
             return {
               "@type": "Question",
               name: question,
               suggestedAnswer:
-                question.options_compound_fields.length > 0 &&
+                question?.options_compound_fields?.length > 0 &&
                 question.options_compound_fields.map(({ option_id, option_text }: any) => {
                   return {
                     "@type": "Answer",
@@ -201,7 +195,7 @@ const Quiz = ({
   };
 
   useEffect(() => {
-    if (content.questions.length > 0) {
+    if (content?.questions?.length > 0) {
       const formatData = content.questions.map((question: any, key: number) => {
         return {
           question_key: key + 1,
@@ -340,7 +334,6 @@ const Quiz = ({
       </Box>
     );
   };
-
   return (
     <div ref={authoringHelper?.innerRef}>
       <div ref={ref}>
@@ -374,7 +367,7 @@ const Quiz = ({
               sx={{
                 position: "relative",
                 backgroundImage:
-                  content.background_content.objectType === "image"
+                  content?.background_content?.objectType === "image"
                     ? // ? `url(${content.background_content.Url})`
                       fetchCroppedUrl(
                         content.background_content.Url,
@@ -391,9 +384,9 @@ const Quiz = ({
                       )
                     : "",
                 backgroundColor:
-                  content.background_content.objectType === "image"
+                  content?.background_content?.objectType === "image"
                     ? "black"
-                    : content.background_content.Color,
+                    : content?.background_content?.Color,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 height: "100vh",
@@ -493,7 +486,7 @@ const Quiz = ({
 interface QuizProps {
   content: any;
   analytics: Analytics;
-  authoringHelper: AuthoringHelper;
+  authoringHelper?: any; //AuthoringHelper;
   secondaryArgs: any;
   enablePreview?: boolean;
 }
