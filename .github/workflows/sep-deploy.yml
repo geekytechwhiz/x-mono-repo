@@ -84,7 +84,8 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=120s 
+
             
   user-experience-ui:
     name: user-experience-ui
@@ -163,4 +164,5 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=120s
+
