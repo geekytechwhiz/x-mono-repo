@@ -1,33 +1,23 @@
 import React from "react";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
-import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material";
+import Toast from "./Toast";
 
 const ErrorToast = ({ title = "title", description = "description" }) => {
+  const theme = useTheme();
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}>
-      <Box>
-        <HighlightOffRoundedIcon style={{ color: "#E53935", marginRight: 2 }} />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "left",
-          marginLeft: "10px",
-        }}>
-        <Typography variant='h5bold' sx={{ margin: "0px", color: "#E53935" }}>
-          {title}
-        </Typography>
-        <Typography variant='h5regular' sx={{ margin: "0px" }}>
-          {description}
-        </Typography>
-      </Box>
-    </Box>
+    <Toast
+      title={title}
+      description={description}
+      color={theme.palette.prelemType1?.NOTIFICATION?.ERROR?.BACKGROUND}>
+      <HighlightOffRoundedIcon
+        style={{
+          color: theme.palette.prelemType1?.NOTIFICATION?.ERROR?.BACKGROUND,
+          marginRight: 2,
+        }}
+      />
+    </Toast>
   );
 };
 export default ErrorToast;

@@ -1,10 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SuccessToast from "./customToast/SuccessToast";
-import ErrorToast from "./customToast/ErrorToast";
-import WarningToast from "./customToast/WarningToast";
-import InfoToast from "./customToast/InfoToast";
+import { SuccessToast, ErrorToast, WarningToast, InfoToast } from "./customToast";
 
 const toastPosition = "bottom-left";
 

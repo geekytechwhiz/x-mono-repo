@@ -1,33 +1,22 @@
 import React from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material";
+import Toast from "./Toast";
 
 const SuccessToast = ({ title = "title", description = "description" }) => {
+  const theme = useTheme();
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}>
-      <Box>
-        <CheckCircleOutlineIcon style={{ color: "#0FA069", marginRight: 2 }} />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "left",
-          marginLeft: "10px",
-        }}>
-        <Typography variant='h5bold' sx={{ margin: "0px", color: "#0FA069" }}>
-          {title}
-        </Typography>
-        <Typography variant='h5regular' sx={{ margin: "0px" }}>
-          {description}
-        </Typography>
-      </Box>
-    </Box>
+    <Toast
+      title={title}
+      description={description}
+      color={theme.palette.prelemType1?.NOTIFICATION?.SUCCESS?.BACKGROUND}>
+      <CheckCircleOutlineIcon
+        style={{
+          color: theme.palette.prelemType1?.NOTIFICATION?.SUCCESS?.BACKGROUND,
+          marginRight: 2,
+        }}
+      />
+    </Toast>
   );
 };
 export default SuccessToast;
