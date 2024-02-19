@@ -1,4 +1,3 @@
-import { Dashboard } from "@platformx/dashboard";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
@@ -6,8 +5,9 @@ export const routes: RouteConfig[] = [
     path: "/",
     element: (
       // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-      <Dashboard />
+      // <Dashboard />
       // </ProtectedRoute>
+      <>Dashboard</>
     ),
   },
   {
@@ -15,7 +15,8 @@ export const routes: RouteConfig[] = [
     element: (
       // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
 
-      <Dashboard />
+      // <Dashboard />
+      <>Dashboard</>
     ),
   },
   // {
