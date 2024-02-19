@@ -6,7 +6,6 @@ export const routes: RouteConfig[] = [
     path: "/",
     element: (
       // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-
       <Dashboard />
       // </ProtectedRoute>
     ),
@@ -15,9 +14,8 @@ export const routes: RouteConfig[] = [
     path: "/dashboard",
     element: (
       // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-      //   {" "}
+
       <Dashboard />
-      // </ProtectedRoute>
     ),
   },
   // {
