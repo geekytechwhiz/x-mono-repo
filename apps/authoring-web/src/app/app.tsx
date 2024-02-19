@@ -21,7 +21,13 @@ import "./App.css";
 // import { DefaultLocale } from './utils/constants';
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
-import { DefaultLocale, LightTheme, getSelectedRoute, useUserSession, getCurrentLang } from "@platformx/utilities";
+import {
+  DefaultLocale,
+  LightTheme,
+  getCurrentLang,
+  getSelectedRoute,
+  useUserSession,
+} from "@platformx/utilities";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
