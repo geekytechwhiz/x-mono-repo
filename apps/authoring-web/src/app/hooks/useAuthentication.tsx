@@ -3,12 +3,10 @@
 import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
-  AUTH_URL,
   getSelectedSite,
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
-import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
@@ -19,7 +17,7 @@ export const useAuthentication = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const location = useLocation();
-
+  console.log("location", location);
   const handleSignIn = async (authCode) => {
     const payload = {
       code: authCode,
@@ -31,10 +29,12 @@ export const useAuthentication = () => {
     console.log("payload", payload);
 
     try {
+      console.log("login data before");
       const response = await authAPI.signIn("auth/session", payload);
-      console.log(response, "login data 22222");
+      console.log(response, "login data after");
 
       if (response && response.data) {
+        console.log(" response.data", response.data);
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find(
@@ -42,7 +42,7 @@ export const useAuthentication = () => {
         )?.name;
 
         updateSession(createSession(response.data, true, userRole));
-
+        console.log("userDetails", getSession());
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
 
