@@ -32,6 +32,8 @@
       "@platformx/utilities": ["libs/utilities/src/index.ts"],
       "@platformx/workflow-management": ["libs/workflow-management/src/index.ts"],
       "@platformx/x-image-render": ["libs/x-image-render/src/index.ts"],
+      "@platformx/x-poll": ["libs/x-poll/src/index.ts"],
+      "@platformx/x-poll/server": ["libs/x-poll/src/server.ts"],
       "@platformx/x-prelem-library": ["libs/x-prelem-library/src/index.ts"]
     }
   },
