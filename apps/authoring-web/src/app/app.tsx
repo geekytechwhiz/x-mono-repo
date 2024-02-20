@@ -90,7 +90,7 @@ function App() {
     if (
       window.location.pathname === "/en" ||
       window.location.pathname === "/" ||
-      window.location.pathname === `/${routing}/en`
+      (window.location.pathname === `/${routing}/en` && Object.entries(userInfo || {}).length === 0)
     ) {
       /*` Home page will removed. Going forward Keycloak Login Page act as a landing page for X*/
       window.location.replace(AUTH_URL);
@@ -103,7 +103,7 @@ function App() {
     const lang = getCurrentLang();
     if (lang) {
       setLanguage(lang);
-      i18n.changeLanguage(lang);
+      // i18n.changeLanguage(lang);
     }
   }, []);
 

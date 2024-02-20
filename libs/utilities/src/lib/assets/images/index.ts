@@ -10,22 +10,21 @@ import inGreen from "./in-green.png";
 
 import avtarImg from "./avatar.png";
 import Logo from "./logo.png";
-import successGif from "./success.gif";
+// import successGif from "./success.gif";
 import fallBackImage from "./fallBackImage.png";
 import noResults from "./no-results.png";
 
 export {
-  fallBackImage,
   CATSvg,
-  German,
   English,
   Franch,
+  German,
+  Logo,
+  avtarImg,
+  fallBackImage,
   fbGray,
   fbGreen,
   inGray,
   inGreen,
-  avtarImg,
-  Logo,
-  successGif,
   noResults,
 };
