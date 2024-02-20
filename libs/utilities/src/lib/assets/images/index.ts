@@ -9,9 +9,8 @@ import inGray from "./in-gray.png";
 import inGreen from "./in-green.png";
 
 import avtarImg from "./avatar.png";
-import Logo from "./logo.png";
-// import successGif from "./success.gif";
 import fallBackImage from "./fallBackImage.png";
+import Logo from "./logo.png";
 import noResults from "./no-results.png";
 
 export {
