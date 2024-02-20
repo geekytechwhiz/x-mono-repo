@@ -140,7 +140,7 @@ function RootRouter() {
     //   setLoader(true);
     //   handleSignIn();
     // }
-    if (code && Object.entries(userInfo || {}).length !== 0) {
+    if (code) {
       const selected_site = userInfo.selected_site;
       const lang = userInfo.preferred_sites_languages?.[selected_site] || "en";
       //navigate('/dashboard');
@@ -149,17 +149,19 @@ function RootRouter() {
           `${process.env.REACT_APP_BASE_URL}/${selected_site}/${lang}/sites/site-listing`,
         );
       } else {
-        window.location.replace(
-          `${process.env.REACT_APP_BASE_URL}/${selected_site}/${lang}/dashboard`,
-        );
+        // window.location.replace(
+        //   `${process.env.REACT_APP_BASE_URL}/${selected_site}/${lang}/dashboard`,
+        // );
+        // navigate(`${selected_site}/${lang}/dashboard`);
+        navigate(`dashboard`);
       }
     }
-    // if (!code && location?.pathname === "/") {
-    //   window.location.href = AUTH_URL;
-    // }
+    if (!code && location?.pathname === "/") {
+      window.location.href = AUTH_URL;
+    }
     console.log("useEffect code", code);
     setLoader(false);
-  }, [code]);
+  }, []);
 
   const handleLogin = () => {
     console.log("login", AUTH_URL);
@@ -187,8 +189,9 @@ function RootRouter() {
           sx={{ cursor: 'pointer' }}
         />
       ) : null} */}
-      <div>RootRouter</div>
       <Routes>
+        <Route path='/' element={<>Home</>} />
+
         {/* <Route path='/dashboard' element={<Dashboard />} /> */}
 
         {routes.map(({ path, element }) => (
