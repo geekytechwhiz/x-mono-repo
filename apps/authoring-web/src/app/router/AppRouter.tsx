@@ -2,9 +2,9 @@ import { XLoader, useUserSession } from "@platformx/utilities";
 import { memo, useEffect } from "react";
 import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import { useAuthentication } from "../hooks/useAuthentication";
-import { routes } from "./routes";
-import { useDynamicRoutes } from "../hooks/useDynamicRoutes/useDynamicRoutes";
 import { MenuData } from "../hooks/useDynamicRoutes/menuData";
+import { useDynamicRoutes } from "../hooks/useDynamicRoutes/useDynamicRoutes";
+import { routes } from "./routes";
 
 function AppRouter() {
   const location = useLocation();
@@ -26,9 +26,9 @@ function AppRouter() {
   }, [location]);
 
   useEffect(() => {
-    if (location.search.includes("code") && Object.entries(userInfo || {}).length === 0) {
-      handleSignIn(location.search.split("code=")[1]);
-    }
+    // if (location.search.includes("code") && Object.entries(userInfo || {}).length === 0) {
+    //   handleSignIn(location.search.split("code=")[1]);
+    // }
     // else if (location.search.includes("code") && Object.entries(userInfo || {}).length !== 0) {
     //   const { selected_site } = userInfo;
     //   const lang = userInfo.preferred_sites_languages?.[selected_site] || "en";

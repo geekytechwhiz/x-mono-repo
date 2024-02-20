@@ -19,13 +19,13 @@ export const routes: RouteConfig[] = [
   // },
   {
     path: "/dashboard",
-    element: <Dashboard />,
-    // element: (
-    //   <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-    //     {" "}
-    //     <Dashboard />{" "}
-    //   </ProtectedRoute>
-    // ),
+    // element: <Dashboard />,
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        {" "}
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
   },
   // {
   //   path: "/prelem",

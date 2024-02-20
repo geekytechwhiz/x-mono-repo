@@ -4,20 +4,26 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
+import { graphqlInstance } from "@platformx/authoring-apis";
+import { store } from "@platformx/authoring-state";
+import {
+  AUTH_URL,
+  DefaultLocale,
+  LightTheme,
+  getCurrentLang,
+  getSelectedRoute,
+  useUserSession,
+} from "@platformx/utilities";
 import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { graphqlInstance } from "@platformx/authoring-apis";
-import { store } from "@platformx/authoring-state";
-import { DefaultLocale, LightTheme, getCurrentLang, getSelectedRoute } from "@platformx/utilities";
-import { Provider } from "react-redux";
-import AppRouter from "./router/AppRouter";
+import RootRouter from "./router/rootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
-import { AUTH_URL } from "./utils/authConstants";
-import { BrowserRouter } from "react-router-dom";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -56,26 +62,50 @@ function App() {
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
+
+  // useEffect(() => {
+  //   const initializeApp = async () => {
+  //     try {
+  //       if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
+  //         window.window.location.replace(AUTH_URL);
+  //       }
+  //       const analytics = await analyticsInstance(Analytics);
+  //       setInstances(analytics);
+  //       const lang = getCurrentLang();
+  //       if (lang) {
+  //         setLanguage(lang);
+  //         i18n.changeLanguage(lang);
+  //       }
+  //     } catch (error: any) {
+  //       console.error("Error during initialization:", error);
+  //       console.error("Error details:", error?.stack || error?.message || error);
+  //     }
+  //   };
+  //   initializeApp();
+  // }, []);
 
   useEffect(() => {
-    const initializeApp = async () => {
-      try {
-        if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
-          window.location.replace(AUTH_URL);
-        }
-        const analytics = await analyticsInstance(Analytics);
-        setInstances(analytics);
-        const lang = getCurrentLang();
-        if (lang) {
-          setLanguage(lang);
-          i18n.changeLanguage(lang);
-        }
-      } catch (error: any) {
-        console.error("Error during initialization:", error);
-        console.error("Error details:", error?.stack || error?.message || error);
-      }
-    };
-    initializeApp();
+    if (
+      (window.location.pathname === "/en" ||
+        window.location.pathname === "/" ||
+        window.location.pathname === `/${routing}/en`) &&
+      Object.keys(userInfo).length === 0
+    ) {
+      /*` Home page will removed. Going forward Keycloak Login Page act as a landing page for X*/
+      window.location.replace(AUTH_URL);
+      // window.window.location.replace(`${process.env.REACT_APP_REDIRECT_URI}`);
+    }
+    (async () => {
+      const res = await analyticsInstance(Analytics);
+      setInstances(res);
+    })();
+    const lang = getCurrentLang();
+    if (lang) {
+      setLanguage(lang);
+      i18n.changeLanguage(lang);
+    }
   }, []);
 
   return (
@@ -86,9 +116,9 @@ function App() {
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>
               <CssBaseline />
-              <BrowserRouter>
+              <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <AppRouter />
+                  <RootRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
