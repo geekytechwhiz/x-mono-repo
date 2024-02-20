@@ -94,7 +94,7 @@ function App() {
     ) {
       /*` Home page will removed. Going forward Keycloak Login Page act as a landing page for X*/
       window.location.replace(AUTH_URL);
-      // window.window.location.replace(`${process.env.REACT_APP_REDIRECT_URI}`);
+      // window.window.location.replace(`${process.env.NX_APP_REDIRECT_URI}`);
     }
     (async () => {
       const res = await analyticsInstance(Analytics);
