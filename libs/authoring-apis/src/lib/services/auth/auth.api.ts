@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { ApolloError } from "@apollo/client";
 import axios from "axios";
 import graphqlInstance from "../../config/graphqlConfig";
@@ -32,6 +33,7 @@ const authAPI = {
   },
   signIn: async (url: string, payload = {}) => {
     try {
+
       const res = await axios.post(process.env.NX_API_URI + url, payload, {
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +43,7 @@ const authAPI = {
         withCredentials: true,
       });
       // eslint-disable-next-line no-console
-      console.log("loginC", res, payload);
+      console.log("login", res, payload);
       return res.data.result ? res.data.result : res.data;
     } catch (err: any) {
       if (err?.response?.data?.code === 401) {

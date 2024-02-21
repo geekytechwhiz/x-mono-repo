@@ -7,8 +7,10 @@
     "build": {
       "executor": "@nx/webpack:webpack",
       "cache": true,
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/authoring-web",
@@ -54,7 +56,7 @@
     },
     "serve": {
       "executor": "@nx/webpack:dev-server",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "buildTarget": "authoring-web:build",
         "hmr": true,
@@ -73,11 +75,15 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/authoring-web/jest.config.ts"
       }

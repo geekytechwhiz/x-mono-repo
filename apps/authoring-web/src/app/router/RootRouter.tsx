@@ -1,15 +1,8 @@
+/* eslint-disable no-console */
 import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
-// import PlatformXLoader from "../components/Loader/loader";
-// import PrelemSearchLoader from "../components/Skeleton-loader/prelem-search-loader";
-// import { authInfo, authUrl } from "../utils/authConstants";
-
 import axios from "axios";
-// import useUserSession from "../hooks/useUserSession/useUserSession";
-// import ChangePassword from "../pages/changePassword";
-// import authAPI from "../services/auth/Auth.api";
-// import { Store } from "../store/ContextStore";
 import { authAPI } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
@@ -20,9 +13,7 @@ import {
 } from "@platformx/utilities";
 import { createSession } from "../utils/helper";
 import { routes } from "./routes";
-// import { getSelectedSite } from "../utils/helperFunctions";
-// import routes from "../utils/routes";
-// const PlatXLogo = <img src={PlatXLogoImage} style={{ width: "24px", cursor: "pointer" }} />;
+
 const noLoaderArr = ["/prelem-search", "/content"];
 const skeltonLoaderArr = ["/prelem-search/", "/layouts", "/prelem-search/about"];
 
@@ -34,9 +25,8 @@ function RootRouter() {
   const [getSession, updateSession] = useUserSession();
   const { userInfo } = getSession();
   const code = searchParams.get("code");
-  const pages: Array<string> = ["About", "Products", "Contact", "Account"];
   const [loader, setLoader] = React.useState(true);
-  debugger;
+
   const verifySession = async () => {
     const response: any = await authAPI.verifySession("auth/verify-session");
     if (response && response?.data) {
@@ -85,40 +75,46 @@ function RootRouter() {
       redirect_uri: AUTH_INFO.redirectUri,
       tenant_id: AUTH_INFO.realm,
     };
-    const response: any = await authAPI.signIn("auth/session", payload);
-    if (response && response.data) {
-      const userDetails = { ...response.data, isActive: "true" };
-      const { roles, selected_site } = response.data;
-      // const userRole =  roles && roles.length > 0 ? roles[0].name : 'admin';
-      const userRole = roles?.find((obj) => obj.site === selected_site)?.name;
-      // const role: string = response.data?.roles.name;
-      updateSession(createSession(response.data, true, userRole));
 
-      // Send login user info to Analytics End
-      handleImpression(userDetails.eventType, userDetails);
-      setLoader(false);
-      // navigate('/dashboard');
+    try {
+      const response = await authAPI.signIn("auth/session", payload);
 
-      localStorage.setItem("selectedSite", response.data.selected_site);
+      if (response && response.data) {
+        const userDetails = { ...response.data, isActive: "true" };
+        const { roles, selected_site } = response.data;
+        const userRole = roles?.find((obj) => obj.site === selected_site)?.name;
 
-      const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
-      if (selected_site?.toLowerCase() === "system") {
-        window.location.replace(
-          `${process.env.NX_APP_BASE_URL}/${selected_site}/${defaultLang}/sites/site-listing`,
-        );
+        updateSession(createSession(response.data, true, userRole));
+
+        // Send login user info to Analytics End
+        handleImpression(userDetails.eventType, userDetails);
+
+        localStorage.setItem("selectedSite", response.data.selected_site);
+
+        const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
+        if (selected_site?.toLowerCase() === "system") {
+          window.location.replace(
+            `${process.env.NX_APP_BASE_URL}/${selected_site}/${defaultLang}/sites/site-listing`,
+          );
+        } else {
+          navigate("/dashboard");
+
+        }
       } else {
-        window.location.replace(
-          `${process.env.NX_APP_BASE_URL}/${selected_site}/${defaultLang}/dashboard`,
-        );
+        // Handle missing data in response
+        console.error("Response data is missing");
       }
-    } else {
-      navigate("/");
+    } catch (error) {
+      // Handle errors
+      console.error("Error occurred during sign-in:", error);
+      // Perform error handling actions, such as displaying an error message to the user
+    } finally {
+      setLoader(false);
     }
-    setLoader(false);
   };
 
   useEffect(() => {
-    debugger;
+
     // Check if there is no active session and redirect to the login page
     if (!getSession()?.userInfo && !code) {
       localStorage.removeItem("selectedSite");
@@ -129,30 +125,24 @@ function RootRouter() {
     console.log("useEffect location", location);
   }, [location]);
 
-  // useEffect(() => {
-  //   dispatch({ type: "CLEAR_CONTENT" });
-  // }, [location]);
-
   useEffect(() => {
     debugger;
+
     if (code && Object.entries(userInfo || {}).length === 0) {
       setLoader(true);
       handleSignIn();
     }
-    if (code) {
-      const selected_site = userInfo.selected_site;
+    if (code && Object.entries(userInfo || {}).length > 0) {
+      const { selected_site } = userInfo;
       const lang = userInfo.preferred_sites_languages?.[selected_site] || "en";
-      //navigate('/dashboard');
+
       if (selected_site?.toLowerCase() === "system") {
         window.location.replace(
           `${process.env.NX_APP_BASE_URL}/${selected_site}/${lang}/sites/site-listing`,
         );
       } else {
-        // window.location.replace(
-        //   `${process.env.NX_APP_BASE_URL}/${selected_site}/${lang}/dashboard`,
-        // );
-        // navigate(`${selected_site}/${lang}/dashboard`);
-        navigate(`dashboard`);
+        debugger;
+        navigate(`/dashboard`);
       }
     }
     if ((!code && location?.pathname === "/") || location?.pathname === "/en") {
@@ -160,7 +150,7 @@ function RootRouter() {
     }
     console.log("useEffect code", code);
     setLoader(false);
-  }, []);
+  }, [code]);
 
   const handleLogin = () => {
     console.log("login", AUTH_URL);
@@ -179,25 +169,14 @@ function RootRouter() {
       )}
     </>
   ) : (
-    <>
-      {/* {location?.pathname === '/' || location?.pathname === '/access-denied' ? (
-        <Header
-          onLoginClick={handleLogin}
-          pages={pages}
-          title={PlatXLogo}
-          sx={{ cursor: 'pointer' }}
-        />
-      ) : null} */}
+
       <Routes>
         <Route path='/' element={<>Home</>} />
-
-        {/* <Route path='/dashboard' element={<Dashboard />} /> */}
 
         {routes.map(({ path, element }) => (
           <Route key={path} path={path} element={element} />
         ))}
       </Routes>
-    </>
   );
 }
 export default RootRouter;
