@@ -51,7 +51,7 @@ export default function PlateformXStoryDialog({ isDialogOpen, closeButtonHandle 
             <Box>
               <Typography variant='h5bold'>My Story Tags</Typography>
             </Box>
-            <Box sx={{ display: "inline-flex" }}>
+            <Box className={classes.textal}>
               <Box>
                 <Typography variant='h7regular' className={classes.textupload}>
                   choosing keywords to categories and organize information for easy retrival and
@@ -70,9 +70,7 @@ export default function PlateformXStoryDialog({ isDialogOpen, closeButtonHandle 
         <Box className={classes.pageContainer} id='scrollableDiv'>
           <Box className={classes.contentContainernew}>
             <Grid container>
-              <Grid item xs={6}></Grid>
-              <Grid item>
-                {" "}
+              <Grid item md={12}>
                 <ChooseTags
                   tagData={tagData}
                   selectedTag={tagArr}

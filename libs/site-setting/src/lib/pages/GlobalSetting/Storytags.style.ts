@@ -155,6 +155,9 @@ export const useStoryStyle = makeStyles((theme) => ({
     color: "#6E7191",
     marginTop: "5px",
   },
+  textal: {
+    display: "inlineflex",
+  },
   modalboxnew: {
     marginTop: "5px",
     width: "100%",
