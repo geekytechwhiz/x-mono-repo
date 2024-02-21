@@ -6,12 +6,17 @@ import {
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
   const [handleImpression] = usePlatformAnalytics();
   const [getSession, updateSession] = useUserSession();
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get("code");
 
+  const navigate = useNavigate();
   const handleSignIn = async (authCode) => {
     const payload = {
       code: authCode,
@@ -95,28 +100,36 @@ export const useAuthentication = () => {
     }
   };
 
-  // useEffect(() => {
-  //   debugger
-  //   if (Object.entries(getSession()?.userInfo || {}).length < 1 && !location.search.includes('code')) {
-  //     localStorage.removeItem('selectedSite');
-  //   }
-  //   if (location.search.includes('code') && Object.entries(getSession()?.userInfo || {}).length === 0) {
-  //     handleSignIn(location.search.split('code=')[1]);
-  //   } else if (location.search.includes('code') && Object.entries(getSession()?.userInfo || {}).length !== 0) {
-  //     const selected_site = getSession()?.userInfo.selected_site;
-  //     const lang = getSession()?.userInfo.preferred_sites_languages?.[selected_site] || 'en';
+  useEffect(() => {
+    
+    if (
+      Object.entries(getSession()?.userInfo || {}).length < 1 &&
+      !location.search.includes("code")
+    ) {
+      localStorage.removeItem("selectedSite");
+    }
+    if (
+      location.search.includes("code") &&
+      Object.entries(getSession()?.userInfo || {}).length === 0
+    ) {
+      handleSignIn(location.search.split("code=")[1]);
+    } else if (
+      location.search.includes("code") &&
+      Object.entries(getSession()?.userInfo || {}).length !== 0
+    ) {
+      const selected_site = getSession()?.userInfo.selected_site;
+      const lang = getSession()?.userInfo.preferred_sites_languages?.[selected_site] || "en";
 
-  //     if (selected_site?.toLowerCase() === 'system') {
-  //       navigate(`/${selected_site}/${lang}/sites/site-listing`);
-  //     } else {
-
-  //       navigate(`/dashboard`);// TODO `/${selected_site}/${lang}/dashboard`);
-  //     }
-  //   } else if (!location.search && location.pathname === '/' || location.pathname === '/error') {
-  //     console.log('AUTH_URL', AUTH_URL);
-  //     window.location.replace(AUTH_URL);
-  //   }
-  // }, [location, getSession, navigate, code]);
+      if (selected_site?.toLowerCase() === "system") {
+        navigate(`/${selected_site}/${lang}/sites/site-listing`);
+      } else {
+        navigate(`/dashboard`); // TODO `/${selected_site}/${lang}/dashboard`);
+      }
+    } else if ((!location.search && location.pathname === "/") || location.pathname === "/error") {
+      console.log("AUTH_URL", AUTH_URL);
+      window.location.replace(AUTH_URL);
+    }
+  }, [code]);
 
   return { handleSignIn, verifySession };
 };

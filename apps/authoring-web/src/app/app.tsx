@@ -4,20 +4,26 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
-import { Suspense, useEffect, useState } from "react";
+import { graphqlInstance } from "@platformx/authoring-apis";
+import { store } from "@platformx/authoring-state";
+import {
+  AUTH_URL,
+  DefaultLocale,
+  LightTheme,
+  getCurrentLang,
+  getSelectedRoute,
+  useUserSession,
+} from "@platformx/utilities";
+import { Suspense, memo, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { graphqlInstance } from "@platformx/authoring-apis";
-import { store } from "@platformx/authoring-state";
-import { DefaultLocale, LightTheme, getCurrentLang, getSelectedRoute } from "@platformx/utilities";
-import { Provider } from "react-redux";
-import AppRouter from "./router/AppRouter";
+import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
-import { AUTH_URL } from "./utils/authConstants";
-import { BrowserRouter } from "react-router-dom";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -56,15 +62,25 @@ function App() {
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
 
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
+        if (
+          (pathname === "/en" ||
+          pathname === "/" ||
+          pathname === `/${routing}/en` ||
+          Object.entries(userInfo)?.length === 0)&&window.location.search===""
+        ) {
           window.location.replace(AUTH_URL);
         }
+
         const analytics = await analyticsInstance(Analytics);
+        console.log("Analytics instance:", analytics);
         setInstances(analytics);
+
         const lang = getCurrentLang();
         if (lang) {
           setLanguage(lang);
@@ -86,9 +102,10 @@ function App() {
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>
               <CssBaseline />
-              <BrowserRouter>
+              <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <AppRouter />
+                  <RootRouter />
+                  {/* <AppRouter /> */}
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
@@ -111,4 +128,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

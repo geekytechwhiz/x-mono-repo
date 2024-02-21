@@ -109,7 +109,7 @@
 //       searchTermURL?: string,
 //       sortByURL?: string
 //     ) => {
-//       // const publishPageURL = `${process.env.REACT_APP_PUBLISH_URI + i18n.language
+//       // const publishPageURL = `${process.env.NX_APP_PUBLISH_URI + i18n.language
 //       //   }/${parameter}`;
 //       const publishPageURL = `${getSubDomain()}/${i18n.language}/${parameter}`;
 //       if (

@@ -32,7 +32,7 @@ function BlogSearchBox({
   // const queryString = window.location.search;
   // const urlParams = new URLSearchParams(queryString);
   // const eventUrl = urlParams.get('path');
-  // const apiUrl = process.env.REACT_APP_BLOG_API_URI + 'blogging/fetch';
+  // const apiUrl = process.env.NX_APP_BLOG_API_URI + 'blogging/fetch';
   useEffect(() => {
     let active = true;
     if (!loading) {
