@@ -14,7 +14,7 @@ const ToastContainerHandle = () => {
       className={classes.toastContainer}
       hideProgressBar={true}
       position='bottom-center'
-      autoClose={false}
+      autoClose={4000}
       newestOnTop
       closeOnClick
       pauseOnFocusLoss
