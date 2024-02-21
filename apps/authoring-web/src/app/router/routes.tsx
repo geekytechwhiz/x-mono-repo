@@ -1,22 +1,13 @@
+import { Dashboard } from "@platformx/dashboard";
+import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-
 export const routes: RouteConfig[] = [
-  {
-    path: "/",
-    element: (
-      // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-      // <Dashboard />
-      // </ProtectedRoute>
-      <>Dashboard</>
-    ),
-  },
   {
     path: "/dashboard",
     element: (
-      // <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-
-      // <Dashboard />
-      <>Dashboard</>
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
     ),
   },
   // {

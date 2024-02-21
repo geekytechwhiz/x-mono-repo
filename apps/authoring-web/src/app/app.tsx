@@ -85,7 +85,7 @@ function App() {
           pathname === "/en" ||
           pathname === "/" ||
           pathname === `/${routing}/en` ||
-          Object.entries(userInfo)?.length === 0
+          (Object.entries(userInfo)?.length === 0 && window.location.search?.length === 0)
         ) {
           window.location.replace(AUTH_URL);
         }
