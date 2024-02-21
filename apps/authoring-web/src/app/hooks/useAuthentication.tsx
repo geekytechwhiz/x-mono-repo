@@ -101,7 +101,7 @@ export const useAuthentication = () => {
   };
 
   useEffect(() => {
-    debugger;
+    
     if (
       Object.entries(getSession()?.userInfo || {}).length < 1 &&
       !location.search.includes("code")

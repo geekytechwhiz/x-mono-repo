@@ -14,7 +14,7 @@ import {
   getSelectedRoute,
   useUserSession,
 } from "@platformx/utilities";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, memo, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -65,46 +65,33 @@ function App() {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
 
-  // useEffect(() => {
-  //   const initializeApp = async () => {
-  //     try {
-  //       if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
-  //         window.window.location.replace(AUTH_URL);
-  //       }
-  //       const analytics = await analyticsInstance(Analytics);
-  //       setInstances(analytics);
-  //       const lang = getCurrentLang();
-  //       if (lang) {
-  //         setLanguage(lang);
-  //         i18n.changeLanguage(lang);
-  //       }
-  //     } catch (error: any) {
-  //       console.error("Error during initialization:", error);
-  //       console.error("Error details:", error?.stack || error?.message || error);
-  //     }
-  //   };
-  //   initializeApp();
-  // }, []);
-
   useEffect(() => {
-    if (
-      window.location.pathname === "/en" ||
-      window.location.pathname === "/" ||
-      (window.location.pathname === `/${routing}/en` && Object.entries(userInfo || {}).length === 0)
-    ) {
-      /*` Home page will removed. Going forward Keycloak Login Page act as a landing page for X*/
-      window.location.replace(AUTH_URL);
-      // window.window.location.replace(`${process.env.NX_APP_REDIRECT_URI}`);
-    }
-    (async () => {
-      const res = await analyticsInstance(Analytics);
-      setInstances(res);
-    })();
-    const lang = getCurrentLang();
-    if (lang) {
-      setLanguage(lang);
-      // i18n.changeLanguage(lang);
-    }
+    const initializeApp = async () => {
+      try {
+        if (
+          (pathname === "/en" ||
+          pathname === "/" ||
+          pathname === `/${routing}/en` ||
+          Object.entries(userInfo)?.length === 0)&&window.location.search===""
+        ) {
+          window.location.replace(AUTH_URL);
+        }
+
+        const analytics = await analyticsInstance(Analytics);
+        console.log("Analytics instance:", analytics);
+        setInstances(analytics);
+
+        const lang = getCurrentLang();
+        if (lang) {
+          setLanguage(lang);
+          i18n.changeLanguage(lang);
+        }
+      } catch (error: any) {
+        console.error("Error during initialization:", error);
+        console.error("Error details:", error?.stack || error?.message || error);
+      }
+    };
+    initializeApp();
   }, []);
 
   return (
@@ -141,4 +128,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);
