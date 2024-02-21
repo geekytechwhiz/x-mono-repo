@@ -29,7 +29,6 @@ const skeltonLoaderArr = ["/prelem-search/", "/layouts", "/prelem-search/about"]
 function RootRouter() {
   const [handleImpression] = usePlatformAnalytics();
   const location = useLocation();
-  // const { dispatch } = useContext(Store);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [getSession, updateSession] = useUserSession();
@@ -37,7 +36,7 @@ function RootRouter() {
   const code = searchParams.get("code");
   const pages: Array<string> = ["About", "Products", "Contact", "Account"];
   const [loader, setLoader] = React.useState(true);
-
+  debugger;
   const verifySession = async () => {
     const response: any = await authAPI.verifySession("auth/verify-session");
     if (response && response?.data) {
@@ -121,12 +120,12 @@ function RootRouter() {
   useEffect(() => {
     debugger;
     // Check if there is no active session and redirect to the login page
-    // if (!getSession()?.userInfo && !code) {
-    //   localStorage.removeItem("selectedSite");
-    // }
-    // if (!code) {
-    //   verifySession();
-    // }
+    if (!getSession()?.userInfo && !code) {
+      localStorage.removeItem("selectedSite");
+    }
+    if (!code) {
+      verifySession();
+    }
     console.log("useEffect location", location);
   }, [location]);
 
@@ -136,10 +135,10 @@ function RootRouter() {
 
   useEffect(() => {
     debugger;
-    // if (code && Object.entries(userInfo || {}).length === 0) {
-    //   setLoader(true);
-    //   handleSignIn();
-    // }
+    if (code && Object.entries(userInfo || {}).length === 0) {
+      setLoader(true);
+      handleSignIn();
+    }
     if (code) {
       const selected_site = userInfo.selected_site;
       const lang = userInfo.preferred_sites_languages?.[selected_site] || "en";
@@ -156,7 +155,7 @@ function RootRouter() {
         navigate(`dashboard`);
       }
     }
-    if (!code && location?.pathname === "/") {
+    if ((!code && location?.pathname === "/") || location?.pathname === "/en") {
       window.location.href = AUTH_URL;
     }
     console.log("useEffect code", code);

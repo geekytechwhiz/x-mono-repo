@@ -64,7 +64,7 @@ function App() {
   const { pathname } = window.location;
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-
+  debugger;
   // useEffect(() => {
   //   const initializeApp = async () => {
   //     try {
@@ -87,10 +87,13 @@ function App() {
   // }, []);
 
   useEffect(() => {
+    debugger;
     if (
-      window.location.pathname === "/en" ||
-      window.location.pathname === "/" ||
-      (window.location.pathname === `/${routing}/en` && Object.entries(userInfo || {}).length === 0)
+      (window.location.pathname === "/en" ||
+        window.location.pathname === "/" ||
+        window.location.pathname === `/${routing}/en`) &&
+      !window.location?.search &&
+      Object.entries(userInfo || {}).length === 0
     ) {
       /*` Home page will removed. Going forward Keycloak Login Page act as a landing page for X*/
       window.location.replace(AUTH_URL);
