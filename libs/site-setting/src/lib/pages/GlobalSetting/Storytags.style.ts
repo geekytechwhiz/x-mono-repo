@@ -46,9 +46,13 @@ export const useStoryStyle = makeStyles((theme) => ({
     margin: "0px 0px 20px 20px",
     borderRadius: "5px",
     border: "1px solid #D9DBE9",
-    "&:active": {
+    cursor: "pointer",
+    "&:hover": {
       border: "1px solid #4B9EF9",
     },
+  },
+  selected: {
+    border: "1px solid #4B9EF9",
   },
   boxintypo: {
     flexDirection: "row",

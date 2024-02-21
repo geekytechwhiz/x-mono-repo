@@ -27,32 +27,33 @@ export default function PlateformXStoryContentDialog({
   const { t } = useTranslation();
   const [tagData, setTagData] = useState<any>({});
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]); // State to store selected items
 
   const mockData = [
     {
       contenttype: "Quiz",
       icon: Tagquiz,
-      description: "Quiz is a test of knowladge of understanding throu...",
+      description: "Quiz is a test of knowledge of understanding through...",
     },
     {
       contenttype: "Article",
       icon: Tagarticalnew,
-      description: "Article is a test of knowladge of understanding throu...",
+      description: "Article is a test of knowledge of understanding through...",
     },
     {
       contenttype: "Event",
       icon: Tagevent,
-      description: "Event is a test of knowladge of understanding throu...",
+      description: "Event is a test of knowledge of understanding through...",
     },
     {
       contenttype: "Vod",
       icon: Tagvod,
-      description: "Vod is a test of knowladge of understanding throu...",
+      description: "Vod is a test of knowledge of understanding through...",
     },
     {
       contenttype: "Poll",
       icon: Tagpoll,
-      description: "Poll is a test of knowladge of understanding throu....",
+      description: "Poll is a test of knowledge of understanding through....",
     },
   ];
 
@@ -72,6 +73,16 @@ export default function PlateformXStoryContentDialog({
     }
   }, []);
 
+  const toggleSelection = (item: string) => {
+    // Store the updated state value in a variable
+    const updatedSelectedItems = selectedItems.includes(item)
+      ? selectedItems.filter((selectedItem) => selectedItem !== item) // Deselect if already selected
+      : [...selectedItems, item]; // Select if not selected
+
+    // Use the variable to set the state
+    setSelectedItems(updatedSelectedItems);
+  };
+
   return (
     <Box className='socialsharemodal'>
       <Dialog
@@ -90,8 +101,8 @@ export default function PlateformXStoryContentDialog({
             <Box sx={{ display: "inline-flex" }}>
               <Box>
                 <Typography variant='h7regular' className={classes.textupload}>
-                  choosing keywords to categories and organize information for easy retrival and
-                  nevigation.
+                  choosing keywords to categories and organize information for easy retrieval and
+                  navigation.
                 </Typography>
               </Box>
               <Box className={classes.boxbtn}>
@@ -108,7 +119,12 @@ export default function PlateformXStoryContentDialog({
             <Grid container sx={{ position: "relative", top: "30%" }}>
               {mockData.map((transaction) => (
                 <Grid item md={6} em={4} key={transaction.contenttype}>
-                  <Box className={classes.boxin}>
+                  <Box
+                    className={`${classes.boxin} ${
+                      selectedItems.includes(transaction.contenttype) ? classes.selected : ""
+                    }`}
+                    onClick={() => toggleSelection(transaction.contenttype)} // Toggle selection on click
+                  >
                     <Box className={classes.borderbox}>
                       <Box>
                         <img src={transaction.icon} alt='vodicon' />
@@ -125,66 +141,6 @@ export default function PlateformXStoryContentDialog({
                   </Box>
                 </Grid>
               ))}
-              {/* <Grid item md={6} em={4}>
-                                <Box className={classes.boxin}>
-                                    <Box className={classes.borderbox}>
-                                        <Box>
-                                            <img src={Tagevent} alt="vodicon" />
-                                        </Box>
-                                    </Box>
-                                    <Box className={classes.boxintypo}
-                                    >
-                                        <Typography variant="h5semibold">Article</Typography>
-                                        <Typography className={classes.typobreak}>quiz is a set of knowladge of understanding thrught...</Typography>
-                                    </Box>
-
-                                </Box>
-                            </Grid> */}
-              {/* <Grid item md={6} em={4}>
-                                <Box className={classes.boxin}>
-                                    <Box className={classes.borderbox}>
-                                        <Box>
-                                            <img src={Tagevent} alt="vodicon" />
-                                        </Box>
-                                    </Box>
-                                    <Box className={classes.boxintypo}
-                                    >
-                                        <Typography variant="h5semibold">Event</Typography>
-                                        <Typography className={classes.typobreak}>quiz is a set of knowladge of understanding thrught...</Typography>
-                                    </Box>
-
-                                </Box>
-                            </Grid> */}
-              {/* <Grid item md={6} em={4}>
-                                <Box className={classes.boxin}>
-                                    <Box className={classes.borderbox}>
-                                        <Box>
-                                            <img src={Tagvod} alt="vodicon" />
-                                        </Box>
-                                    </Box>
-                                    <Box className={classes.boxintypo}
-                                    >
-                                        <Typography variant="h5semibold">Vod</Typography>
-                                        <Typography className={classes.typobreak}>quiz is a set of knowladge of understanding thrught...</Typography>
-                                    </Box>
-
-                                </Box>
-                            </Grid> */}
-              {/* <Grid item md={6} em={4}>
-                                <Box className={classes.boxin}>
-                                    <Box className={classes.borderbox}>
-                                        <Box>
-                                            <img src={Tagpoll} alt="vodicon" />
-                                        </Box>
-                                    </Box>
-                                    <Box className={classes.boxintypo}
-                                    >
-                                        <Typography variant="h5semibold">Poll</Typography>
-                                        <Typography className={classes.typobreak}>quiz is a set of knowladge of understanding thrught...</Typography>
-                                    </Box>
-
-                                </Box>
-                            </Grid> */}
             </Grid>
           </Box>
         </Box>
