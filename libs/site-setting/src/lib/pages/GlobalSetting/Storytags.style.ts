@@ -14,13 +14,21 @@ export const useStoryStyle = makeStyles((theme) => ({
       padding: "15px",
     },
     [theme.breakpoints.up("sm")]: {
-      padding: "0",
-      overflowY: "scroll",
+      padding: "0px, 250px",
     },
   },
 
   contentContainer: {
-    maxWidth: "820px",
+    maxWidth: "67%",
+    position: "relative",
+    width: "100%",
+    margin: "auto",
+    height: "calc(100vh - 160px)",
+  },
+  contentContainernew: {
+    maxWidth: "57%",
+    position: "relative",
+    width: "100%",
     margin: "auto",
     height: "calc(100vh - 160px)",
   },
@@ -30,8 +38,44 @@ export const useStoryStyle = makeStyles((theme) => ({
   typoimgtext: {
     marginLeft: "15px",
   },
+  boxin: {
+    display: "flex",
+    padding: "10px",
+    alignItems: "flex-start",
+    gap: "10px",
+    margin: "0px 0px 20px 20px",
+    borderRadius: "5px",
+    border: "1px solid #D9DBE9",
+    "&:active": {
+      border: "1px solid #4B9EF9",
+    },
+  },
+  boxintypo: {
+    flexDirection: "row",
+  },
+  borderbox: {
+    display: "flex",
+    width: "60px",
+    height: "62px",
+    padding: "20px",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "10px",
+    marginTop: "8px",
+    borderRadius: "5px",
+    background: "#FCFCFC",
+  },
   containerbox: {
     display: "flex",
+  },
+  typobreak: {
+    wordBreak: "break-all",
+    "&:active": {
+      color: "#4B9EF9",
+    },
+  },
+  typobreaknew: {
+    wordBreak: "break-all",
   },
   backicon: {
     display: "flex",
@@ -588,13 +632,13 @@ export const useStoryStyle = makeStyles((theme) => ({
   dialogboxin: {
     padding: "15px",
     display: "flex",
-    borderBottom: "1px solid black",
+    borderBottom: "1px solid #D9DBE9",
     position: "relative",
   },
   boxbtn: {
     display: "flex",
     position: "absolute",
-    right: "5px",
+    right: "10px",
     bottom: "10px",
   },
   modalbox: {

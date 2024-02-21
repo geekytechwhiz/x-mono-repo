@@ -62,15 +62,15 @@ export default function PlateformXStoryDialog({ isDialogOpen, closeButtonHandle 
                 <Button onClick={closeButtonHandle} className={classes.btn} variant='outlined'>
                   cancel
                 </Button>
-                <Button variant='outlined'>save</Button>
+                <Button variant='primaryButton'>save</Button>
               </Box>
             </Box>
           </Box>
         </Box>
         <Box className={classes.pageContainer} id='scrollableDiv'>
-          <Box className={classes.contentContainer}>
+          <Box className={classes.contentContainernew}>
             <Grid container>
-              <Grid item></Grid>
+              <Grid item xs={6}></Grid>
               <Grid item>
                 {" "}
                 <ChooseTags

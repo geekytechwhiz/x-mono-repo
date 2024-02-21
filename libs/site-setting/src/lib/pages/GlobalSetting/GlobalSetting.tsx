@@ -28,6 +28,7 @@ import {
 import { Loader } from "../../../../../utilities/src";
 import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import PlateformXStoryDialog from "./StoryTagsmodal";
+import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 
 const iconImages = [
   {
@@ -69,7 +70,8 @@ export const GlobalSetting = () => {
   const scrollDebounceRef = useRef<any>(null);
   const [srollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
-  const [assetValue, setAssetValue] = useState(false);
+  const [tagValue, setTagValue] = useState(false);
+  const [contentValue, setContentValue] = useState(false);
 
   const [getSession] = useUserSession();
   const [isLoading, setIsLoading] = useState(false);
@@ -378,7 +380,7 @@ export const GlobalSetting = () => {
                       <Box>
                         <Button
                           onClick={() => {
-                            setAssetValue(true);
+                            setTagValue(true);
                           }}
                           className={classes.btnbox}
                           sx={{
@@ -392,8 +394,8 @@ export const GlobalSetting = () => {
                           {t("Edit")}
                         </Button>
                         <PlateformXStoryDialog
-                          isDialogOpen={assetValue}
-                          closeButtonHandle={() => setAssetValue(false)}
+                          isDialogOpen={tagValue}
+                          closeButtonHandle={() => setTagValue(false)}
                         />
                       </Box>
                     </Box>
@@ -420,6 +422,10 @@ export const GlobalSetting = () => {
                       </Box>
                       <Box>
                         <Button
+                          onClick={() => {
+                            setContentValue(true);
+                          }}
+                          className={classes.btnbox}
                           sx={{
                             display: { xs: "none", sm: "block" },
                             marginTop: "10px",
@@ -430,6 +436,10 @@ export const GlobalSetting = () => {
                           variant='outlined'>
                           {t("Edit")}
                         </Button>
+                        <PlateformXStoryContentDialog
+                          isDialogOpen={contentValue}
+                          closeButtonHandle={() => setContentValue(false)}
+                        />
                       </Box>
                     </Box>
                   </Grid>

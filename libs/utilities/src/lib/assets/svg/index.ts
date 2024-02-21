@@ -178,6 +178,12 @@ import Assetmodalicon from "./icon/assetmodalicon.png";
 
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
+import Tagvod from "./tagvod.svg";
+import Tagevent from "./tagevent.svg";
+import Tagquiz from "./tagquiz.svg";
+import Tagpoll from "./tagpoll.svg";
+import Tagartical from "./tagartical.svg";
+import Tagarticalnew from "./tagarticalnew.svg";
 
 export {
   GlobalImageIcon,
@@ -355,4 +361,10 @@ export {
   Assetmodalicon,
   MorevertassetIcon,
   AssetfoldernewIcon,
+  Tagvod,
+  Tagevent,
+  Tagquiz,
+  Tagpoll,
+  Tagartical,
+  Tagarticalnew,
 };
