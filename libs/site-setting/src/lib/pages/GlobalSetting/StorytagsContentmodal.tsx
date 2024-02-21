@@ -116,7 +116,7 @@ export default function PlateformXStoryContentDialog({
         </Box>
         <Box className={classes.pageContainer} id='scrollableDiv'>
           <Box className={classes.contentContainer}>
-            <Grid container sx={{ position: "relative", top: "30%" }}>
+            <Grid container className={classes.gcontainer}>
               {mockData.map((transaction) => (
                 <Grid item md={6} em={4} key={transaction.contenttype}>
                   <Box
@@ -125,13 +125,25 @@ export default function PlateformXStoryContentDialog({
                     }`}
                     onClick={() => toggleSelection(transaction.contenttype)} // Toggle selection on click
                   >
-                    <Box className={classes.borderbox}>
-                      <Box>
+                    <Box
+                      className={`${classes.borderbox} ${
+                        selectedItems.includes(transaction.contenttype) ? classes.borderboxnew : ""
+                      }`}>
+                      <Box
+                        className={` ${
+                          selectedItems.includes(transaction.contenttype)
+                            ? classes.contenttypeicon
+                            : ""
+                        }`}>
                         <img src={transaction.icon} alt='vodicon' />
                       </Box>
                     </Box>
                     <Box className={classes.boxintypo}>
-                      <Typography className={classes.typobreak} variant='h5semibold'>
+                      <Typography
+                        className={`${classes.typobreak} ${
+                          selectedItems.includes(transaction.contenttype) ? classes.typobreakn : ""
+                        }`}
+                        variant='h5semibold'>
                         {transaction.contenttype}
                       </Typography>
                       <Typography className={classes.typobreaknew}>
