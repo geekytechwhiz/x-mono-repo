@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import BrightcoveClass from "./Brightcove";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
+import BrightcoveClass from "./Brightcove";
 
 const BrightcovePlayer = ({
   VideoData,
@@ -117,6 +117,7 @@ interface BrightcovePlayerProp {
     VideoID: string;
     PlaylistID?: string;
   };
+  // eslint-disable-next-line no-unused-vars
   setVideoContent?: ({ name }: any) => void;
   options?: any;
   analytics?: Analytics;
