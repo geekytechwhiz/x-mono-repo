@@ -17,14 +17,14 @@ export default function Menu(props) {
   const filtered = permissions
     ?.map((val) => val?.category?.toLowerCase())
     ?.filter((val, index, arr) => arr.indexOf(val) === index);
-  const fetchSchema = async () => {
+  const fetchSchema = () => {
     return contentTypeSchemaApi.getSchema();
   };
   const getSchema = async () => {
     try {
       const detailsRes: any = await fetchSchema();
       const menu: any = [];
-      detailsRes?.authoring_getDocument?.map((val, i) => {
+      detailsRes?.authoring_getDocument?.map((val) => {
         return menu.push({
           MenuName: val?.title,
           Icon: <img alt='settings' src={PollIcon} />,
@@ -35,14 +35,13 @@ export default function Menu(props) {
         });
       });
 
-      const menuArr = [{ url: "", Title: "content", id: "content", Menu: menu }];
+      // const menuArr = [{ url: "", Title: "content", id: "content", Menu: menu }];
       const temp: any = MenuData.filter((val) => {
         return val.id === "content" ? val["Menu"].push(...menu) : val;
       });
 
       setDynamicMenu(temp);
     } catch (err: any) {
-      console.info("error in MenuList", err);
       ShowToastError(t("api_error_toast"));
     }
   };

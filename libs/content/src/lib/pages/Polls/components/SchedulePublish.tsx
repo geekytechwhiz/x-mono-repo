@@ -1,17 +1,16 @@
 import { Box, Checkbox, Grid } from "@mui/material";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 // import DatePicker from "../Common/DatePicker";
 import { DatePicker, TitleSubTitle } from "@platformx/utilities";
 // import TitleSubTitle from '../Common/TitleSubTitle';
 // import { TitleSubTitle } from "@platformx/utilities";
 
-const SchedulePublish = ({ handleSchedulePublish, isEditMode, state, setState }) => {
+const SchedulePublish = ({ state, setState }) => {
   const { t } = useTranslation();
-  const [publishTime, setPublishTime] = useState<any>(null);
-  const [unpublishTime, setunpublishTime] = useState<any>(null);
-  const [schedulePagePublish, setSchedulePagePublish] = useState<boolean | null>();
-  const handlePublishValChange = (newValue, check = true) => {
+  // const [publishTime, setPublishTime] = useState<any>(null);
+  // const [unpublishTime, setunpublishTime] = useState<any>(null);
+  // const [schedulePagePublish, setSchedulePagePublish] = useState<boolean | null>();
+  const handlePublishValChange = (newValue) => {
     // setPublishTime(newValue);
     setState({ ...state, schedule_publish_datetime: newValue?.toISOString() });
     // handleSchedulePublish(
@@ -21,7 +20,7 @@ const SchedulePublish = ({ handleSchedulePublish, isEditMode, state, setState })
     //   unpublishTime?.toISOString()
     // );
   };
-  const handleUnpublishValChange = (newValue, check = true) => {
+  const handleUnpublishValChange = (newValue) => {
     // setunpublishTime(newValue);
     // handleSchedulePublish(
     //   schedulePagePublish,

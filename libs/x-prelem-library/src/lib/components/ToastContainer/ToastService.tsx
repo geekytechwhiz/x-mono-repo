@@ -1,19 +1,18 @@
 import React from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SuccessToast, ErrorToast, WarningToast, InfoToast } from "./customToast";
 
 const toastPosition = "bottom-left";
 
 const convertFontSize = (mag = "") => {
   return (
-    <React.Fragment>
-      <span
-        style={{
-          fontSize: "18px",
-        }}>
-        {mag}
-      </span>
-    </React.Fragment>
+    <span
+      style={{
+        fontSize: "18px",
+      }}>
+      {mag}
+    </span>
   );
 };
 
@@ -29,53 +28,14 @@ const ToastService = {
       position: toastPosition,
     }),
 
-  SuccessToast: (message: any, id = "") =>
-    toast.success(convertFontSize(message), {
-      toastId: id,
-      autoClose: 3000,
-      draggable: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      hideProgressBar: true,
-      position: toastPosition,
-      theme: "colored",
-      style: { background: "#2E7D32" },
-    }),
+  SuccessToast: (message: string) =>
+    toast.success(<SuccessToast title={"Success"} description={message} />),
 
-  failToast: (message: any, id = "") =>
-    toast.error(convertFontSize(message), {
-      toastId: id,
-      autoClose: 3000,
-      draggable: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      hideProgressBar: true,
-      position: toastPosition,
-      theme: "colored",
-      style: { background: "#d32f2f" },
-    }),
+  failToast: (message: any) => toast.error(<ErrorToast title={"Error"} description={message} />),
 
-  warnToast: (message: any, id = "") =>
-    toast.warn(convertFontSize(message), {
-      toastId: id,
-      autoClose: 3000,
-      draggable: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      hideProgressBar: true,
-      position: toastPosition,
-    }),
+  warnToast: (message: any) => toast.warn(<WarningToast title={"Warning"} description={message} />),
 
-  infoToast: (message: any, id = "") =>
-    toast.info(convertFontSize(message), {
-      toastId: id,
-      autoClose: 3000,
-      draggable: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      hideProgressBar: true,
-      position: toastPosition,
-    }),
+  infoToast: (message: any) => toast.info(<InfoToast title={"Info"} description={message} />),
 
   dismissToast: (toastId = "") => toast.dismiss(toastId),
 };
