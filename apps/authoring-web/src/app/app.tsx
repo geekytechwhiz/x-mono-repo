@@ -7,7 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, memo, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 // import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
@@ -34,6 +34,7 @@ import { BrowserRouter } from "react-router-dom";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
+
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
 );
