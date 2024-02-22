@@ -1,3 +1,4 @@
+import { CreateCourse } from "@platformx/course";
 import { useLocation } from "react-router";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
@@ -17,6 +18,8 @@ export const CreateContent = () => {
     case "event":
       return <CreateEvent />;
 
+    case "course":
+      return <CreateCourse></CreateCourse>;
     default:
       return <>DynamicContent</>;
   }

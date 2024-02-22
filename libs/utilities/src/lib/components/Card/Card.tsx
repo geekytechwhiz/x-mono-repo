@@ -1,15 +1,9 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import { format } from "date-fns";
-import { createElement, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { RedBlinkingDot } from "@platformx/utilities";
-import {
-  CATEGORY_CONTENT,
-  CATEGORY_PAGE,
-  CONTENT_TYPES,
-  DASHBOARD_KEYS,
-} from "../../constants/CommonConstants";
+import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 // import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
 // import CardMenu from '../../../pages/PageList/Components/CardMenu/CardMenu';
 // import { CourseMenu } from '../../../pages/QuizPollEvents/Components/QuizPollEventsMenu/CourseMenu';
@@ -49,22 +43,19 @@ export const Card = ({
 }: CardProps) => {
   const { canAccessAction } = useAccess();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
   const [subTitle, setSubTitle] = useState("");
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isDelete, setDelete] = useState(false);
   const date = new Date().toJSON();
   const handleConfirmation = async () => {
-    if (tagName == "sitepage") {
+    if (tagName === "sitepage") {
       handlePageDelete();
     } else if (
       tagName === "quiz" ||
       tagName === "poll" ||
       tagName === "event" ||
       tagName === "vod" ||
-      tagName == "article"
+      tagName === "article"
     ) {
       if (deleteContent) {
         await deleteContent(dataList);
@@ -123,6 +114,7 @@ export const Card = ({
       published: view,
       unpublished: preview,
     };
+    // eslint-disable-next-line default-case
     switch (tagName) {
       // case 'vod':
       //   handlePageView();
@@ -158,6 +150,7 @@ export const Card = ({
           edit(dataList);
         }
         break;
+      default:
     }
   };
   const handleDeleteButton = () => {
@@ -180,13 +173,13 @@ export const Card = ({
   };
 
   const getContentCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase()
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
       ? CATEGORY_PAGE
       : CATEGORY_CONTENT;
   };
 
   const getContentSubCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (
@@ -198,7 +191,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} />
+                <img src={iconsList[dataList.tagName]} alt='img' />
               </Box>
 
               <Box className='rightspace'>
@@ -228,20 +221,24 @@ export const Card = ({
                       dataList.page_state === "published" &&
                       date > dataList.eventStartDate &&
                       date < dataList.eventEndDate && (
-                        <img style={{ height: "43px", width: "43px" }} src={RedBlinkingDot} />
+                        <img
+                          style={{ height: "43px", width: "43px" }}
+                          src={RedBlinkingDot}
+                          alt=''
+                        />
                       )}
                     <Box component='div' className='mobstatusIcon'>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        <img src={statusIcons[dataList.status]} />
+                        <img src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledPublishTriggerDateTime && tagName == "sitepage" && (
-                          <img src={statusIcons["schedulePublish"]} />
+                        {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
+                          <img src={statusIcons["schedulePublish"]} alt='' />
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledUnPublishTriggerDateTime && tagName == "sitepage" && (
-                          <img src={statusIcons["scheduleUnpublish"]} />
+                        {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
+                          <img src={statusIcons["scheduleUnpublish"]} alt='' />
                         )}
                       </Typography>
                     </Box>

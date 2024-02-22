@@ -1,4 +1,5 @@
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import { SitePage } from "@platformx/site-page";
 import { CreateUser, UserListing } from "@platformx/user-management";
@@ -115,4 +116,63 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/content/create/course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory='course'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
+
+  // {
+  //   path: "/site-setting/media-handle",
+  //   element: (
+  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+  //       <MediaHandle />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/global-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <GlobalSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/feature-flag",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <FeatureFlagSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/content",
+  //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
+
+  // },
+  // {
+  //   path: "/dashboard",
+  //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
 ];
