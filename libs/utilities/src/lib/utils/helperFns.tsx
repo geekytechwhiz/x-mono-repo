@@ -661,8 +661,9 @@ export const getCurrentLang = () => {
   return lang;
 };
 
-export const onBackButtonEvent = (e, unsavedChanges, setDialogOpen, navigateTo) => {
+export const onBackButtonEvent = (e, unsavedChanges, setDialogOpen) => {
   e.preventDefault();
+  // eslint-disable-next-line no-restricted-globals
   window.history.pushState(null, "", window.location.pathname + location?.search);
   if (unsavedChanges) {
     setDialogOpen(true);

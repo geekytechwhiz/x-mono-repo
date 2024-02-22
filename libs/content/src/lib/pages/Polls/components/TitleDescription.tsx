@@ -9,15 +9,14 @@ import { useCustomStyle } from "../Poll.style";
 export const TitleDescription = ({
   state,
   setState,
-  setSaveButton,
   unsavedChanges,
   pollRef,
   isDraft,
   setFieldChanges,
 }) => {
   const { t } = useTranslation();
-  const { comments, handleCommentClick, scrollToRef, selectedElementId } = useComment();
-  const handleChange = (event) => {
+  const { scrollToRef } = useComment();
+  const handleChange = () => {
     setFieldChanges(true);
     unsavedChanges.current = true;
   };
