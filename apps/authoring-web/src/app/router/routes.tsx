@@ -20,8 +20,7 @@ export const routes: RouteConfig[] = [
     path: "/content/article",
     element: (
       <ProtectedRoute category='content' subCategory='article' name='article'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -29,8 +28,7 @@ export const routes: RouteConfig[] = [
     path: "/content/quiz",
     element: (
       <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -38,8 +36,7 @@ export const routes: RouteConfig[] = [
     path: "/content/poll",
     element: (
       <ProtectedRoute category='content' subCategory='article' name='poll'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -47,8 +44,7 @@ export const routes: RouteConfig[] = [
     path: "/content/event",
     element: (
       <ProtectedRoute category='content' subCategory='event' name='event'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -57,8 +53,7 @@ export const routes: RouteConfig[] = [
     path: "/site-page",
     element: (
       <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
-        {" "}
-        <SitePage />{" "}
+        <SitePage />
       </ProtectedRoute>
     ),
   },
@@ -66,7 +61,6 @@ export const routes: RouteConfig[] = [
     path: "/user-management/user-list",
     element: (
       <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-        {" "}
         <UserListing></UserListing>
       </ProtectedRoute>
     ),
