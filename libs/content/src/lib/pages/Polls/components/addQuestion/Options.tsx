@@ -20,7 +20,7 @@ import {
 
 export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsavedChanges }) => {
   const { t } = useTranslation();
-  const [operationType, setOperationType] = useState<string>("replace");
+  const [, setOperationType] = useState<string>("replace");
   const [answers1, setAnswers1] = useState<any>(answers);
   const [isDeleteDisable, setIsDeleteDisable] = useState(true);
   const reorder = (list, startIndex, endIndex) => {
@@ -55,21 +55,21 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
     showGallery(type, "answers", id);
     setOperationType(type);
   };
-  const handleStatusChange = (id) => {
-    qusUnsavedChanges.current = true;
-    setAnswers(
-      answers.map((answer) =>
-        answer.id === id ? { ...answer, status: !answer.status } : answer,
-      ) as [],
-    );
-  };
+  // const handleStatusChange = (id) => {
+  //   qusUnsavedChanges.current = true;
+  //   setAnswers(
+  //     answers.map((answer) =>
+  //       answer.id === id ? { ...answer, status: !answer.status } : answer,
+  //     ) as [],
+  //   );
+  // };
 
   const onAddOption = () => {
     qusUnsavedChanges.current = true;
-    let lastAnswerID = 1;
-    if (answers.length > 0) {
-      lastAnswerID = parseInt(answers[answers.length - 1].id) + 1;
-    }
+    // let lastAnswerID = 1;
+    // if (answers.length > 0) {
+    //   lastAnswerID = parseInt(answers[answers.length - 1].id) + 1;
+    // }
     if (answers.length < 10) {
       setAnswers([
         ...answers,
@@ -80,10 +80,8 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
     }
   };
   useEffect(() => {
-    console.log("temp", answers);
     setAnswers1(answers);
   }, [answers]);
-  console.log("temp 1", answers1);
   useEffect(() => {
     if (answers.length <= 2) {
       setIsDeleteDisable(true);
@@ -143,6 +141,7 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
                               borderRadius: "inherit",
                             }}
                             src={answer.image}
+                            alt=''
                           />
                           <Box
                             sx={{

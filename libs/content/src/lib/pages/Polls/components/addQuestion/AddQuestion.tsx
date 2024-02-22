@@ -18,7 +18,6 @@ import {
 import { XImageRender } from "@platformx/x-image-render";
 
 const AddQuestion = ({
-  saveQuestionCallBack,
   qusUnsavedChanges,
   showGallery,
   state,
@@ -28,7 +27,6 @@ const AddQuestion = ({
   addImage,
   setAddImage,
   setFieldChanges,
-  selectedImage,
 }) => {
   const { t } = useTranslation();
 
@@ -38,30 +36,30 @@ const AddQuestion = ({
   //   // { id: "3", option: "", image: "", status: false },
   // ]);
 
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [isImg, setImg] = useState(true);
+  const [, setBackgroundColor] = useState("");
+  const [, setImg] = useState(true);
 
-  const [operationType, setOperationType] = useState<string>("choose");
-  const { comments, handleCommentClick, scrollToRef, selectedElementId } = useComment();
-  const handleRefresh = () => {
-    setBackgroundColor("");
-    setImg(false);
-    setState({
-      ...state,
-      queBackgroundImg: "",
-      queBackgroundColor: "",
-    });
-  };
-  const handleColorPallete = (color) => {
-    qusUnsavedChanges.current = true;
-    setBackgroundColor(color);
-    setImg(false);
-    setState({
-      ...state,
-      queBackgroundImg: "",
-      queBackgroundColor: color,
-    });
-  };
+  // const [, setOperationType] = useState<string>("choose");
+  const { scrollToRef } = useComment();
+  // const handleRefresh = () => {
+  //   setBackgroundColor("");
+  //   setImg(false);
+  //   setState({
+  //     ...state,
+  //     queBackgroundImg: "",
+  //     queBackgroundColor: "",
+  //   });
+  // };
+  // const handleColorPallete = (color) => {
+  //   qusUnsavedChanges.current = true;
+  //   setBackgroundColor(color);
+  //   setImg(false);
+  //   setState({
+  //     ...state,
+  //     queBackgroundImg: "",
+  //     queBackgroundColor: color,
+  //   });
+  // };
   const handleChange = () => {
     setFieldChanges(true);
     qusUnsavedChanges.current = true;
@@ -79,18 +77,18 @@ const AddQuestion = ({
     }
   }, [state.queBackgroundColor]);
 
-  const onUploadClick = (type) => {
-    showGallery("Images", "queBackgroundImg");
-    setOperationType(type);
-    setImg(true);
-    setState({
-      ...state,
-      queBackgroundColor: "",
-    });
-  };
+  // const onUploadClick = (type) => {
+  //   showGallery("Images", "queBackgroundImg");
+  //   setOperationType(type);
+  //   setImg(true);
+  //   setState({
+  //     ...state,
+  //     queBackgroundColor: "",
+  //   });
+  // };
 
   const updateField = (updatedPartialObj) => {
-    console.info(updatedPartialObj, "checkobj");
+    // console.info(updatedPartialObj, "checkobj");
     const { original_image, published_images } = updatedPartialObj || {};
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
