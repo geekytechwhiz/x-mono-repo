@@ -11,7 +11,6 @@ import DatePicker from "./lib/components/DatePicker/DatePicker";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 import Error from "./lib/components/Error/Error";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
-import ArticleListDesktopLoader from "./lib/components/Loader/ContentListDesktopLoader";
 import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
 // import Gallery from './lib/components/Gallery/Gallery'
 import { MiniHeader } from "./lib/components/Header/MiniHeader";
@@ -127,7 +126,6 @@ export {
   AUTH_URL,
   AddImage,
   Answers,
-  ArticleListDesktopLoader,
   ArticleListMobileLoader,
   ArticleMapper,
   AutoCompleteMultiSelect,
