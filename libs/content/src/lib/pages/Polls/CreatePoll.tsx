@@ -1,13 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
-import { format } from "date-fns";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   FETCH_TAG_LIST,
   commentsApi,
@@ -15,14 +12,14 @@ import {
   useComment,
   useWorkflow,
 } from "@platformx/authoring-apis";
+import { RootState, previewContent } from "@platformx/authoring-state";
+import { CommentListPanel } from "@platformx/comment-review";
 import {
+  CATEGORY_CONTENT,
+  PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
   XLoader,
-  useUserSession,
-  workflowKeys,
-  PlateformXDialog,
-  CATEGORY_CONTENT,
   capitalizeFirstLetter,
   getCurrentLang,
   getSubDomain,
@@ -30,41 +27,29 @@ import {
   onBackButtonEvent,
   trimString,
   unloadCallback,
+  useUserSession,
+  workflowKeys,
 } from "@platformx/utilities";
-import { RootState, previewContent } from "@platformx/authoring-state";
-
-// import { postRequest } from "../../services/config/request";
-
-// import { Store } from "../../store/ContextStore";
-// import { ContentType } from "../../utils/Enums/ContentType";
-import { ContentType } from "../../enums/ContentType";
-// import { CATEGORY_CONTENT } from "../../utils/constants";
-import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
-// import DamContentGallery from "../Common/DamContentGallery/DamContentGallery";
-
-// import { previewContent } from "../Common/contentTypes/store/ContentAction";
-import { CommentListPanel } from "@platformx/comment-review";
+import { format } from "date-fns";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Analytics from "../../components/Analytics/Analytics";
-
-// import icons from "../Quiz/Constants";
+import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
+import { ContentType } from "../../enums/ContentType";
 import { icons } from "../../utils/Constants";
-
-// import { workflowKeys } from "../Submit/Utils/contstants";
 // import WorkflowHistory from "../WorkflowHistory/WorkflowHistory";
-
-import AddQuestion from "./components/addQuestion/AddQuestion";
-import ChooseTags from "./components/choosetags/ChooseTags";
-// import { ImageVideo } from "./components/ImageVideo";
-import PollPageScroll from "./components/pollsPageScroll/PollPageScroll";
-import Result from "./components/results/Result";
-import Seo from "./components/Seo";
-import SocialShare from "./components/socialshare/SocialShare";
-import { TitleDescription } from "./components/TitleDescription";
-import { DRAFT, PUBLISHED } from "./Utils/constants";
+import { DamContentGallery } from "@platformx/x-image-render";
 import { useDispatch, useSelector } from "react-redux";
 import ContentPageScroll from "../../components/ContentPageScroll";
+import { DRAFT, PUBLISHED } from "./Utils/constants";
 import ImageVideo from "./components/ImageVideo";
-// import { checkIfUnsavedChanges } from "./store/Actions";
+import Seo from "./components/Seo";
+import { TitleDescription } from "./components/TitleDescription";
+import AddQuestion from "./components/addQuestion/AddQuestion";
+import ChooseTags from "./components/choosetags/ChooseTags";
+import Result from "./components/results/Result";
+import SocialShare from "./components/socialshare/SocialShare";
 
 export const CreatePoll = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -73,9 +58,6 @@ export const CreatePoll = (): JSX.Element => {
   const params = useParams();
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
-  // const { currentPoll } = useSelector((state: RootState) => state.poll);
-  // const { state, dispatch } = useContext(Store);
-  // const { poll, content } = state;
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -132,7 +114,7 @@ export const CreatePoll = (): JSX.Element => {
     pollPageUrl.searchParams.get("open") ? true : false,
   );
   const [timerState, setTimerState] = useState(
-    localStorage.getItem("contentTypeTimerState") == "true" ? true : false,
+    localStorage.getItem("contentTypeTimerState") === "true" ? true : false,
   );
   const [lastmodifiedDate, setLastmodifiedDate] = useState(new Date().toISOString());
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
@@ -181,6 +163,7 @@ export const CreatePoll = (): JSX.Element => {
   useEffect(() => {
     setIsReload(!isReload);
   }, [comments]);
+
   useEffect(() => {
     if (Object.keys(pollInstance).length === 0 && !params.id) {
       const newPoll = {
@@ -330,7 +313,7 @@ export const CreatePoll = (): JSX.Element => {
   };
   const updatePollSettings = (pageUrl) => {
     const PollSettings = {
-      socialog_url: `${getSubDomain()}/${i18n.language}/` + `poll` + `/${pageUrl}`,
+      socialog_url: `${getSubDomain()}/${i18n.language}/poll/${pageUrl}`,
       socialog_type: "poll",
       socialog_sitename: pollRef.current?.title
         ? trimString(handleHtmlTags(pollRef.current?.title), 100)
@@ -350,7 +333,7 @@ export const CreatePoll = (): JSX.Element => {
       socialog_twitter_description: pollRef.current?.descriptionSocialShare
         ? trimString(handleHtmlTags(pollRef.current?.descriptionSocialShare), 163)
         : "",
-      socialog_twitter_url: `${getSubDomain()}/${i18n.language}/` + `poll` + `/${pageUrl}`,
+      socialog_twitter_url: `${getSubDomain()}/${i18n.language}/poll/${pageUrl}`,
       keywords: pollState?.tagsSocialShare, //pollRef.current.tags,
       seo_keywords: pollRef.current.tags,
       seo_description: pollRef.current?.description
@@ -385,7 +368,7 @@ export const CreatePoll = (): JSX.Element => {
     const url =
       currentPollData.current !== ""
         ? page_state === "PUBLISHED"
-          ? `${getSubDomain()}/${i18n.language}/` + `poll/${currentPollData.current}`
+          ? `${getSubDomain()}/${i18n.language}/poll/${currentPollData.current}`
           : currentPollData.current
         : page_state === "PUBLISHED"
         ? `${getSubDomain()}/${i18n.language}/` +
@@ -408,9 +391,6 @@ export const CreatePoll = (): JSX.Element => {
   const [createpollmutate] = useMutation(contentTypeAPIs.createContentType);
   const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
   const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
-  // const [contentType, setContentType] = useState(
-  // capitalizeFirstLetter(pollPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
-  // );
   const location = useLocation();
   const contentType = capitalizeFirstLetter(location.state);
   // const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
@@ -841,7 +821,7 @@ export const CreatePoll = (): JSX.Element => {
         setLastmodifiedDate("");
         ShowToastError(t("api_error_toast"));
         setIsLoading(false);
-        console.log(JSON.stringify(error, null, 2));
+        // console.log(JSON.stringify(error, null, 2));
       });
   };
   const handleCloseDialog = () => {
@@ -957,7 +937,7 @@ export const CreatePoll = (): JSX.Element => {
     }
   };
 
-  const handleSelectedImage = async (image, keyName, id?: any) => {
+  const handleSelectedImage = (image, keyName, id?: any) => {
     setSelectedImage(image);
     try {
       const payload = {
@@ -966,25 +946,25 @@ export const CreatePoll = (): JSX.Element => {
       };
       // const response = await postRequest("api/v1/assets/image/no-crop", payload);
       // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
-      if (keyName === "imagevideoURL") {
+      if (key === "imagevideoURL") {
         setPollState({
           ...pollState,
-          [keyName]: image?.Thumbnail,
+          [key]: image?.Thumbnail,
           thumbnailURL: image?.Thumbnail,
           // socialShareImgURL: relativeUrl,
         });
         pollRef.current = {
           ...pollRef.current,
-          [keyName]: image?.Thumbnail,
+          [key]: image?.Thumbnail,
           // socialShareImgURL: relativeUrl,
         };
 
         unsavedChanges.current = true;
         setIsEdited(true);
-      } else if (keyName === "answers") {
+      } else if (key === "answers") {
         setAnswers(
           answers.map((answer) =>
-            answer.id == id ? { ...answer, image: image?.Thumbnail } : answer,
+            answer.id === answerId ? { ...answer, image: image?.Thumbnail } : answer,
           ) as [],
         );
       } else {
@@ -1015,7 +995,7 @@ export const CreatePoll = (): JSX.Element => {
       } else if (keyName === "answers") {
         setAnswers(
           answers.map((answer) =>
-            answer.id == id ? { ...answer, image: image?.Thumbnail } : answer,
+            answer.id === id ? { ...answer, image: image?.Thumbnail } : answer,
           ) as [],
         );
       } else {
@@ -1027,7 +1007,6 @@ export const CreatePoll = (): JSX.Element => {
         };
         unsavedChanges.current = true;
       }
-      console.log(error);
       keyName === "socialShareImgURL" && ShowToastError(t("api_error_toast"));
     }
   };
@@ -1056,7 +1035,7 @@ export const CreatePoll = (): JSX.Element => {
   };
   const toggleGallery = (toggleState, type) => {
     setGalleryState(toggleState);
-    if (type == "cancel") {
+    if (type === "cancel") {
       setImageOrVideoToDefault();
     }
   };
@@ -1142,7 +1121,7 @@ export const CreatePoll = (): JSX.Element => {
         }),
       );
       setTagArr(currentContent?.tags);
-    } else if (currentPollData.current && unsavedChanges.current != true) {
+    } else if (currentPollData.current && unsavedChanges.current !== true) {
       setIsLoading(true);
       runFetchContentByPath({
         variables: { contentType: contentType, path: currentPollData.current },
@@ -1150,7 +1129,6 @@ export const CreatePoll = (): JSX.Element => {
         .then((res) => {
           if (res?.data?.authoring_getCmsContentByPath) {
             setIsLoading(false);
-            console.log("data", res?.data?.authoring_getCmsContentByPath);
             const contentObj = res?.data?.authoring_getCmsContentByPath;
             const {
               title,
@@ -1261,13 +1239,13 @@ export const CreatePoll = (): JSX.Element => {
           }
         })
         .catch((err) => {
-          console.log(JSON.stringify(err, null, 2));
+          // console.log(JSON.stringify(err, null, 2));
         });
     }
   }, [currentContent]);
 
   useEffect(() => {
-    if (Object.keys(tagData).length == 0) {
+    if (Object.keys(tagData).length === 0) {
       runFetchTagList({
         variables: { start: 0, rows: 1000 },
       })
@@ -1282,7 +1260,7 @@ export const CreatePoll = (): JSX.Element => {
           }
         })
         .catch((err) => {
-          console.log(JSON.stringify(err, null, 2));
+          // console.log(JSON.stringify(err, null, 2));
         });
     }
   }, []);
@@ -1384,13 +1362,12 @@ export const CreatePoll = (): JSX.Element => {
       question_background_content: questionBackgroundContent,
       contentType: "Poll",
     };
-    console.log("handelPreview", tempObj);
     dispatch(previewContent(tempObj));
     navigate("/content-preview");
   };
 
   useEffect(() => {
-    if (unsavedChanges.current == true) {
+    if (unsavedChanges.current === true) {
       window.history.pushState(null, "", window.location.pathname + location?.search);
       window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
       window.addEventListener("popstate", (e) =>
@@ -1408,7 +1385,7 @@ export const CreatePoll = (): JSX.Element => {
     // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
   }, [pollState]);
   //create comment
-  const createComment = async () => {
+  const createComment = () => {
     const currentLanguage = getCurrentLang();
     const createCommentRequest = {
       document_path: `/content/documents/hclplatformx/${currentLanguage}/poll/${currentPollData.current}`,
@@ -1434,9 +1411,10 @@ export const CreatePoll = (): JSX.Element => {
       });
     }
   }, [tagData?.length > 0]);
+
   return (
     <>
-      {/* <Box
+      <Box
         sx={{
           backgroundColor: "#FFF",
         }}>
@@ -1444,12 +1422,12 @@ export const CreatePoll = (): JSX.Element => {
           <DamContentGallery
             handleImageSelected={handleSelectedImage}
             toggleGallery={toggleGallery}
-            assetType={galleryType.current === "Images" ? "Image" : "Video"}
-            keyName={key}
-            id={answerId}
+            assetType={"Image"}
+            dialogOpen={galleryState}
+            isCrop={false}
           />
         )}
-      </Box> */}
+      </Box>
 
       <Box
         sx={{
@@ -1526,15 +1504,11 @@ export const CreatePoll = (): JSX.Element => {
                   setFieldChanges={setFieldChanges}
                 />
                 <ImageVideo
-                  // state={pollState}
-                  // setState={setPollState}
-                  // showGallery={showGallery}
-                  // pollRef={pollRef}
-                  // selectedImage={selectedImage}
                   state={pollState}
                   setState={setPollState}
                   pollRef={pollRef}
                   unsavedChanges={unsavedChanges}
+                  showGallery={showGallery}
                 />
                 <AddQuestion
                   saveQuestionCallBack={saveQuestionCallBack}
@@ -1550,12 +1524,6 @@ export const CreatePoll = (): JSX.Element => {
                   selectedImage={selectedImage}
                 />
                 <Result state={pollState} setState={setPollState} unsavedChanges={unsavedChanges} />
-                {/* <SchedulePublish
-              handleSchedulePublish={handleSchedulePublish}
-              isEditMode={isEditMode}
-              state={pollState}
-              setState={setPollState}
-            /> */}
                 <ChooseTags
                   tagData={tagData}
                   selectedTag={tagArr}
@@ -1585,125 +1553,8 @@ export const CreatePoll = (): JSX.Element => {
                   updateStructureData={updateStructureData}
                   answers={answers}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                  expanded={socialShareExpanded}
-                  onChange={() => setSocialShareExpanded(!socialShareExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('social_share')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <SocialShare
-                      showGallery={showGallery}
-                      state={pollState}
-                      setState={setPollState}
-                      pollRef={pollRef}
-                      unsavedChanges={unsavedChanges}
-                      selectedImage={selectedImage}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('analytics')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Analytics
-                      state={pollState}
-                      setState={setPollState}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: '40px',
-                  }}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('SEO')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Seo
-                      state={pollState}
-                      setState={setPollState}
-                      setEditedSD={setEditedSD}
-                      pollInstance={pollInstance}
-                      unsavedChanges={unsavedChanges}
-                      updateStructureData={updateStructureData}
-                      answers={answers}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
               </>
             )}
-            {/* <SocialShare
-              showGallery={showGallery}
-              state={pollState}
-              setState={setPollState}
-              pollRef={pollRef}
-              unsavedChanges={unsavedChanges}
-            />
-            <Analytics
-              state={pollState}
-              setState={setPollState}
-              unsavedChanges={unsavedChanges}
-            />
-            <Seo
-              state={pollState}
-              setState={setPollState}
-              setEditedSD={setEditedSD}
-              pollInstance={pollInstance}
-              unsavedChanges={unsavedChanges}
-              updateStructureData={updateStructureData}
-              answers={answers}
-            /> */}
           </Box>
         </Box>
         <PlateformXDialog
