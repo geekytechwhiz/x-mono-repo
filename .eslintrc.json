@@ -225,7 +225,7 @@
     "yield-star-spacing": ["error", "both"],
     "wrap-regex": 2,
     "unicode-bom": 2,
-    "template-tag-spacing": ["error", "always"],
+    "template-tag-spacing": ["error", "never"],
     "switch-colon-spacing": "error",
     "space-unary-ops": "error",
     "space-in-parens": "error",

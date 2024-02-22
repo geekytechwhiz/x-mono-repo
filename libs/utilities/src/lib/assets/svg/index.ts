@@ -24,7 +24,6 @@ import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
 import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
-import EventsListIcon5 from "./Event.svg";
 import BookIcon from "./ReadBook.svg";
 import SettingIcon from "./settingIcon.svg";
 
@@ -53,7 +52,6 @@ import PostIconMenu from "./PostsIconmenu.svg";
 import PreviewNewIcon from "./PreviewNewIcon.svg";
 import SpacePrivateIcon from "./Private.svg";
 import QuizIcon from "./QuizIcon.svg";
-import CourseIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import Refresh from "./Refresh.svg";
 import ReplyIcon from "./Reply.svg";
@@ -173,7 +171,6 @@ export {
   CommunityIcon,
   CookieIcon,
   CopyIcon,
-  CourseIcon,
   CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
@@ -183,7 +180,6 @@ export {
   EditIcon,
   EventsIcon,
   EventsListIcon,
-  EventsListIcon5,
   EyeIcon,
   FeatureStarIcon,
   FilterIcon,

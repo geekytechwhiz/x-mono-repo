@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const SAVE_MENU = gql`
   mutation authoring_createNavigation($input: authoring_Menu) {
