@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
-import "./StringTextBoxComponent.css";
 import CloseIcon from "@mui/icons-material/Close";
-import { InputAdornment, TextField } from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import { InputAdornment, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import "./StringTextBoxComponent.css";
 
 type StringOnChangeTextBoxProps = {
   maxLength?: number;
@@ -71,6 +71,11 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
   // useEffect(() => {
   //   setStateValue(value);
   // }, [value]);
+  const allowInputHandler: any = (e: any) => {
+    if (customInPutAllowField) {
+      allowInputParams(e, customInPutAllowField);
+    }
+  };
   return (
     <>
       <TextField
@@ -97,9 +102,7 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        // onInput={ TODO
-        //   customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
-        // }
+        onInput={(e) => allowInputHandler(e)}
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>
@@ -133,3 +136,7 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
   );
 };
 export default StringOnChangeTextBox;
+function allowInputParams(e: any, customInPutAllowField: string) {
+  throw new Error("Function not implemented.");
+}
+

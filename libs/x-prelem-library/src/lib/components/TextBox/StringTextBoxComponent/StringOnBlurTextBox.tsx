@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
-import "./StringTextBoxComponent.css";
 import CloseIcon from "@mui/icons-material/Close";
-import { InputAdornment, TextField } from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import { InputAdornment, TextField } from "@mui/material";
 import {
+  allowOnlyLetterInputData,
   allowOnlyNumberInputData,
   allowOnlyShippingLetterInputData,
-  allowOnlyLetterInputData,
 } from "@platformx/utilities";
+import { useEffect, useState } from "react";
+import "./StringTextBoxComponent.css";
 
 const allowInputParams = (e: any, key: string) => {
   switch (key) {
@@ -88,7 +88,11 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
   useEffect(() => {
     setStateValue(value);
   }, [value]);
-
+  const onInputHandler = (e: any) => {
+    if (customInPutAllowField) {
+      allowInputParams(e, customInPutAllowField);
+    }
+  };
   return (
     <>
       <TextField
@@ -114,9 +118,7 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        // onInput={ TODO
-        //   customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
-        // }
+        onInput={(e) => onInputHandler(e)}
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>

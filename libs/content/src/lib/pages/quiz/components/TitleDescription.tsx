@@ -1,25 +1,11 @@
 import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-// import { useComment } from "../../hooks/useComment/useComment";
-// import AutoTextArea from "../Common/AutoTextArea";
-// import TextBox from "../Common/TextBox";
-// import TitleSubTitle from "../Common/TitleSubTitle"; 
-// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
 import { useCustomStyle } from "../quiz.style";
 import { AutoTextArea, CommonBoxWithNumber, TextBox, TitleSubTitle } from "@platformx/utilities";
-import { useComment } from "@platformx/authoring-apis";
-import { CommentWrapper } from "@platformx/comment-review"
-export const TitleDescription = ({
-  state,
-  setState,
-  setSaveButton,
-  unsavedChanges,
-  quizRef,
-  isDraft,
-  setFieldChanges,
-}) => {
+import { CommentWrapper } from "@platformx/comment-review";
+
+export const TitleDescription = ({ state, setState, unsavedChanges, quizRef, setFieldChanges }) => {
   const { t } = useTranslation();
-  const { comments, handleCommentClick, scrollToRef, selectedElementId } = useComment();
   const handleChange = () => {
     setFieldChanges(true);
     unsavedChanges.current = true;
@@ -41,7 +27,7 @@ export const TitleDescription = ({
   const classes = useCustomStyle();
   return (
     <Box id='titleDescription' className={classes.mainStyleWrapper}>
-      <CommentWrapper elementId='1' scrollRef={scrollToRef}>
+      <CommentWrapper elementId='1'>
         <CommonBoxWithNumber
           number='01'
           title={t("title_head")}

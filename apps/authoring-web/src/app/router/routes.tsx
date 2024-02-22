@@ -4,6 +4,7 @@ import { RouteConfig } from "./routes.type";
 export const routes: RouteConfig[] = [
   {
     path: "/dashboard",
+    // element: <Dashboard />,
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
         <Dashboard />
@@ -23,7 +24,6 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
-
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

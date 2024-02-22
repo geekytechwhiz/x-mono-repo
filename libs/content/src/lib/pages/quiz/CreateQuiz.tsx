@@ -1,6 +1,3 @@
-/* eslint-disable require-atomic-updates */
-/* eslint-disable no-debugger */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
@@ -16,15 +13,15 @@ import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
   PlateformXDialog,
+  PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
   useUserSession,
-  workflowKeys
+  workflowKeys,
 } from "@platformx/utilities";
-import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -34,8 +31,14 @@ import Analytics from "../../components/Analytics/Analytics";
 import ContentPageScroll from "../../components/ContentPageScroll";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
-import { DRAFT, PUBLISHED, icons } from '../../utils/Constants';
-import { getCurrentQuiz, onBackButtonEvent, quizResponseMapper, unloadCallback, updateStructureData } from "../../utils/Helper";
+import { DRAFT, PUBLISHED, icons } from "../../utils/Constants";
+import {
+  getCurrentQuiz,
+  onBackButtonEvent,
+  quizResponseMapper,
+  unloadCallback,
+  updateStructureData,
+} from "../../utils/Helper";
 import { QuizType } from "./Quiz.types";
 import { TitleDescription } from "./components/TitleDescription";
 import ChooseTags from "./components/choosetags/ChooseTags";
@@ -45,16 +48,15 @@ import SocialShare from "./components/socialshare/SocialShare";
 import { createInitialQuizState, createNewQuiz } from "./helper";
 import AddQuestion from "./components/addquestion/AddQuestion";
 import QuestionListing from "./components/questionlisting/QuestionListing";
+import ImageVideo from "./components/ImageVideo";
 
 export const CreateQuiz = () => {
-
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const params = useParams();
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
   const { currentQuiz } = useSelector((state: RootState) => state.quiz);
-  // const { quiz, content } = state;
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -73,36 +75,21 @@ export const CreateQuiz = () => {
   const navigate = useNavigate();
   const [previewButton, setPreviewButton] = useState(true);
   const [publishButton] = useState(false);
-  const [saveButton, setSaveButton] = useState(false);
-  const [, setIsSideMenuOpen] = useState(false);
+  const [saveButton] = useState(false);
+  // const [, setIsSideMenuOpen] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [isQuiz] = useState(true);
-  const [galleryState, setGalleryState] = useState<boolean>(false);
-  const galleryType = useRef<string>("Images");
   const [openAddQuestion, setOpenAddQuestion] = useState(false);
   const [currentQuestionId, setCurrentQuestionId] = useState("");
   const [isClickedQueList, setIsClickedQueList] = useState(false);
   const [, setPublishUrl] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState(false);
+  // const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState({
-    Thumbnail: "",
-    title: "",
-    description: "",
-  });
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
-  const [selectedVideo, setSelectedVideo] = useState({
-    Thumbnail: "",
-    title: "",
-    description: "",
-    Url: "",
-  });
   const [workflow, setWorkflow] = useState({});
   const [tagData, setTagData] = useState<any>({});
   const [tagArr, setTagArr] = useState<any>([]);
-  const [key, setKey] = useState("");
-  const [answerId, setAnswerId] = useState("");
   const [parentToolTip, setParentToolTip] = useState("");
   const [, setFieldChanges] = useState();
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
@@ -174,15 +161,15 @@ export const CreateQuiz = () => {
   const tagRef = useRef<any>([]);
 
   const [, setPublishDisabled] = useState<boolean>(true);
-  const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
-    setQuizState({
-      ...quizState,
-      is_schedule_publish: isPublish,
-      schedule_publish_datetime: publishTime,
-      is_schedule_unpublish: isUnpublish,
-      schedule_unpublish_datetime: unPublishTime,
-    });
-  };
+  // const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
+  //   setQuizState({
+  //     ...quizState,
+  //     is_schedule_publish: isPublish,
+  //     schedule_publish_datetime: publishTime,
+  //     is_schedule_unpublish: isUnpublish,
+  //     schedule_unpublish_datetime: unPublishTime,
+  //   });
+  // };
 
   const updateCurrentInstance = (pageURL) => {
     const updatedObj = {
@@ -198,9 +185,8 @@ export const CreateQuiz = () => {
     updateField(updatedObj);
   };
 
-  const [createquizmutate] = useMutation(contentTypeAPIs.createContentType);
   const [updatequizmutate] = useMutation(contentTypeAPIs.updateContentType);
-  const [publishquizmutate] = useMutation(contentTypeAPIs.publishContentType);
+
   useEffect(() => {
     const {
       title,
@@ -226,9 +212,6 @@ export const CreateQuiz = () => {
       setPreviewButton(false);
     }
   }, [quizState]);
-  const dateFormat = (dataTime) => {
-    return dataTime && format(new Date(dataTime), "h:mm aa, dd LLLL");
-  };
   const publishPopup = useRef({
     publishTitle: "Congratulations!",
     publishDescription:
@@ -236,9 +219,8 @@ export const CreateQuiz = () => {
     publishCloseText: "Go to Listing",
     publishConfirmText: "View QUIZ",
   });
-
   const [pageStatus, setPageStatus] = useState(DRAFT);
-  const [editedSD, setEditedSD] = useState("");
+  const [editedSD] = useState("");
   const [workflowStatus, setWorkflowStatus] = useState(true);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
   const workflowSubmitRequest = async (workflowObj, status) => {
@@ -287,13 +269,18 @@ export const CreateQuiz = () => {
           setOpenPageExistModal(true);
           setPageStatus(pageState);
         } else {
-          await publishQuiz(quizRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(), quizState, publishPopup);
+          await publishQuiz(
+            quizRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
+            quizState,
+            publishPopup,
+          );
         }
       }
 
       const pageUrl = resp?.data?.authoring_createContent?.path.substring(
-        resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1
+        resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1,
       );
+      // eslint-disable-next-line require-atomic-updates
       quizRef.current.page = pageUrl;
       setDraftPageURL(pageUrl);
 
@@ -331,7 +318,16 @@ export const CreateQuiz = () => {
     }
 
     if (pageState) {
-      const resp = await createQuiz(pageState, true, isWorkflowStatus, quizState, editedSD, quizInstance, updateTempObj, isFeatured);
+      const resp = await createQuiz(
+        pageState,
+        true,
+        isWorkflowStatus,
+        quizState,
+        editedSD,
+        quizInstance,
+        updateTempObj,
+        isFeatured,
+      );
       await handleQuizCreation(resp, pageState, true, isWorkflowStatus);
     }
   };
@@ -369,8 +365,9 @@ export const CreateQuiz = () => {
         ...newTempData.CommonFields,
         ...updateTempObj.current,
         structure_data: structureData,
-        current_page_url: `/${currentQuizData.current !== "" ? currentQuizData.current : draftPageURL
-          }`,
+        current_page_url: `/${
+          currentQuizData.current !== "" ? currentQuizData.current : draftPageURL
+        }`,
         page: draftPageURL ? draftPageURL : currentQuizData.current,
         page_state: status,
         creationDate: new Date().toISOString(),
@@ -410,7 +407,11 @@ export const CreateQuiz = () => {
           // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setShowExitWarning(false);
         } else {
-          const { showPublishConfirm: hasConfirm, publishUrl } = await publishQuiz(draftPageURL ? draftPageURL : currentQuizData.current, quizState, publishPopup);
+          const { showPublishConfirm: hasConfirm, publishUrl } = await publishQuiz(
+            draftPageURL ? draftPageURL : currentQuizData.current,
+            quizState,
+            publishPopup,
+          );
           setShowPublishConfirm(hasConfirm);
           setPublishUrl(publishUrl);
         }
@@ -428,7 +429,7 @@ export const CreateQuiz = () => {
     setShowExitWarning(false);
     setQuizState({
       ...quizState,
-      "tags": tagArr,
+      tags: tagArr,
     });
 
     if (quizState?.title === "") {
@@ -446,6 +447,8 @@ export const CreateQuiz = () => {
         quizState?.schedule_unpublish_datetime === null)
     ) {
       ShowToastError(`${t("scheduled_unpublish")} ${t("is_required")}`);
+    } else if (quizState?.questions.length === 0) {
+      ShowToastError("Please add atleast one question");
     } else {
       const pageURL = currentQuizData.current
         ? currentQuizData.current
@@ -456,9 +459,18 @@ export const CreateQuiz = () => {
       }
       if (!currentQuizData.current && isDraft) {
         // createQuiz(DRAFT, false, status, props, event_step);
-        const resp = await createQuiz(DRAFT, false, status, props, event_step, quizInstance, updateTempObj, isFeatured);
+        const resp = await createQuiz(
+          DRAFT,
+          false,
+          status,
+          quizState,
+          //props,
+          event_step,
+          quizInstance,
+          updateTempObj,
+          isFeatured,
+        );
         await handleQuizCreation(resp, DRAFT, false, status);
-
       } else {
         updateQUIZ(DRAFT, status, props, event_step);
       }
@@ -469,7 +481,7 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
     setQuizState({
       ...quizState,
-      "tags": tagArr,
+      tags: tagArr,
     });
     const {
       title,
@@ -519,10 +531,17 @@ export const CreateQuiz = () => {
       }
 
       if (!currentQuizData.current && isDraft) {
-        const resp = await createQuiz("PUBLISHED", false, false, quizState, editedSD, quizInstance, updateTempObj, isFeatured);
+        const resp = await createQuiz(
+          "PUBLISHED",
+          false,
+          false,
+          quizState,
+          editedSD,
+          quizInstance,
+          updateTempObj,
+          isFeatured,
+        );
         await handleQuizCreation(resp, "PUBLISHED", false, false);
-
-        // createQuiz("PUBLISHED", false, false);
       } else {
         updateQUIZ("PUBLISHED", false);
       }
@@ -534,50 +553,10 @@ export const CreateQuiz = () => {
     }
   }, [timerState]);
 
-  const handleSelectedVideo = (video) => {
-    setSelectedVideo(video);
-    setQuizState({
-      ...quizState,
-      title: video?.title,
-      description: video?.description,
-      imagevideoURL: video?.imagevideoURL,
-      thumbnailURL: video?.thumbnailURL,
-    });
-  };
-  const setImageOrVideoToDefault = () => {
-    setSelectedImage({
-      title: "",
-      Thumbnail: "",
-      description: "",
-    });
-    setSelectedVideo({
-      title: "",
-      Thumbnail: "",
-      description: "",
-      Url: "",
-    });
-  };
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
-    if (type === "cancel") {
-      setImageOrVideoToDefault();
-    }
-  };
-  const showGallery = (gType, keyName, id?: any) => {
-    window.scrollTo(0, 0);
-    galleryType.current = gType;
-    setGalleryState(true);
-    setKey(keyName);
-    if (id) {
-      setAnswerId(id);
-    }
-  };
   const returnBack = () => {
     if (unsavedChanges.current === true) {
       setShowExitWarning(true);
     } else {
-      // dispatch(previewContent({}));
-      // navigate(-1);
       navigate("/content/quiz");
     }
   };
@@ -607,12 +586,12 @@ export const CreateQuiz = () => {
       setTagArr(tagsArray);
       setQuizState({
         ...quizState,
-        "tagsSocialShare": tagsArray,
+        tagsSocialShare: tagsArray,
       });
       quizRef.current = {
         ...quizRef.current,
-        "tags": tagsArray,
-        "tagsSocialShare": isDraft ? tagsArray : tagsArray, //[...quizState.tagsSocialShare],
+        tags: tagsArray,
+        tagsSocialShare: isDraft ? tagsArray : tagsArray, //[...quizState.tagsSocialShare],
       };
       unsavedChanges.current = true;
     }
@@ -645,12 +624,9 @@ export const CreateQuiz = () => {
     setCurrentQuestionId("");
     setOpenAddQuestion(false);
   };
-  const [contentType] = useState(
-    capitalizeFirstLetter(quizPageUrl?.pathname?.split("/")?.[4]?.split("-")?.[1]),
-  );
+
   const [runFetchContentByPath, { loading }] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   useEffect(() => {
-    debugger;
     if (
       (currentQuiz && Object.keys(currentQuiz).length > 0 && params.id) ||
       Object.keys(currentQuiz).length
@@ -659,7 +635,7 @@ export const CreateQuiz = () => {
       setTagArr(currentQuiz?.Tag);
     } else if (params.id) {
       runFetchContentByPath({
-        variables: { contentType: contentType, path: currentQuizData.current },
+        variables: { contentType: "Quiz", path: currentQuizData.current },
       })
         .then((res) => {
           if (res?.data?.authoring_getCmsContentByPath) {
@@ -679,7 +655,7 @@ export const CreateQuiz = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsEditMode(true);
+        // setIsEditMode(true);
 
         if (Object.keys(currentContent).length > 0) {
           setQuizState(currentContent);
@@ -689,7 +665,7 @@ export const CreateQuiz = () => {
           setIsLoading(true);
 
           const res = await runFetchContentByPath({
-            variables: { contentType, path: currentQuizData.current },
+            variables: { contentType: "Quiz", path: currentQuizData.current },
           });
 
           if (res?.data?.authoring_getCmsContentByPath) {
@@ -747,7 +723,8 @@ export const CreateQuiz = () => {
                       question_type: resp.data.authoring_getCmsContentByPath.question_type,
                       options_compound_fields:
                         resp.data.authoring_getCmsContentByPath.options_compound_fields,
-                      background_content: resp.data.authoring_getCmsContentByPath.background_content,
+                      background_content:
+                        resp.data.authoring_getCmsContentByPath.background_content,
                     };
                   }
                 }),
@@ -860,22 +837,21 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
   };
   const handelPreview = () => {
-    const backgroundContent = {
-      objectType: "image",
-      Url: quizState?.imagevideoURL,
-      Title: "",
-      Thumbnail: quizState?.imagevideoURL,
-      Color: "",
-    };
-    const tempObj = {
-      ...quizState,
-      background_content: backgroundContent,
-      contentType: "Quiz",
-    };
+    // const backgroundContent = {
+    //   objectType: "image",
+    //   Url: quizState?.imagevideoURL,
+    //   Title: "",
+    //   Thumbnail: quizState?.imagevideoURL,
+    //   Color: "",
+    // };
+    // const tempObj = {
+    //   ...quizState,
+    //   background_content: backgroundContent,
+    //   contentType: "Quiz",
+    // };
     // dispatch(previewContent(tempObj));
     navigate("/content-preview");
   };
-  const [changes, setChanges] = useState(unsavedChanges.current);
 
   useEffect(() => {
     if (unsavedChanges.current === true) {
@@ -891,7 +867,8 @@ export const CreateQuiz = () => {
         onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
       );
     };
-  }, [unsavedChanges.current, changes]);
+  }, [unsavedChanges.current]);
+
   useEffect(() => {
     // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
   }, [quizState]);
@@ -899,7 +876,6 @@ export const CreateQuiz = () => {
   const [isOpenedOther, setIsOpenedOther] = useState(false);
   // flat = true: open add new question or choose from list and not scroll to question container.
   useEffect(() => {
-    debugger;
     if (openAddQuestion || isClickedQueList) {
       setIsOpenedOther(true);
     } else if (isOpenedOther) {
@@ -941,20 +917,6 @@ export const CreateQuiz = () => {
   }, [tagData?.length > 0]);
   return (
     <>
-      <Box
-        sx={{
-          backgroundColor: "#FFF",
-        }}>
-        {/* {galleryState && (
-          <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={galleryType.current === "Images" ? "Image" : "Video"}
-            keyName={key}
-            id={answerId}
-          />
-        )} */}
-      </Box>
       {isClickedQueList && (
         <QuestionListing
           setIsClickedQueList={setIsClickedQueList}
@@ -978,7 +940,7 @@ export const CreateQuiz = () => {
         sx={{
           display: isClickedQueList || openAddQuestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type="linear" />}
+        {isLoading && <XLoader type='linear' />}
 
         <Box>
           <Box>
@@ -1021,7 +983,7 @@ export const CreateQuiz = () => {
               overflowX: "hidden",
             }}
             id='scrollableDiv'>
-            {!isClickedQueList && !galleryState && !enableWorkflowHistory && (
+            {!isClickedQueList && !enableWorkflowHistory && (
               <Box
                 sx={{
                   position: "fixed",
@@ -1038,27 +1000,21 @@ export const CreateQuiz = () => {
             )}
             {enableWorkflowHistory ? (
               <>WorkflowHistory</>
-              // <WorkflowHistory
-              //   workflow={workflow}
-              //   setEnableWorkflowHistory={setEnableWorkflowHistory}
-              // />
             ) : (
               <>
                 <TitleDescription
                   state={quizState}
                   setState={setQuizState}
-                  setSaveButton={setSaveButton}
                   unsavedChanges={unsavedChanges}
                   quizRef={quizRef}
-                  isDraft={isDraft}
                   setFieldChanges={setFieldChanges}
                 />
-                {/* <ImageVideo
+                <ImageVideo
                   state={quizState}
                   setState={setQuizState}
-                  showGallery={showGallery}
-                  selectedImage={selectedImage}
-                /> */}
+                  quizRef={quizRef}
+                  unsavedChanges={unsavedChanges}
+                />
                 <Question
                   quizState={quizState}
                   setQuizState={setQuizState}
@@ -1072,141 +1028,25 @@ export const CreateQuiz = () => {
                   unsavedChanges={unsavedChanges}
                   setFieldChanges={setFieldChanges}
                 />
-                {/* <SchedulePublish
-              handleSchedulePublish={handleSchedulePublish}
-              isEditMode={isEditMode}
-              state={quizState}
-              setState={setQuizState}
-              unsavedChanges={unsavedChanges}
-            /> */}
                 <ChooseTags
                   tagData={tagData}
                   selectedTag={tagArr}
                   handleTagOnChange={handleTagOnChange}
                   isEdit={currentQuizData.current ? true : false}
                 />
-
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={socialShareExpanded}
-                  onChange={() => setSocialShareExpanded(!socialShareExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('social_share')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <SocialShare
-                      showGallery={showGallery}
-                      state={quizState}
-                      setState={setQuizState}
-                      quizRef={quizRef}
-                      unsavedChanges={unsavedChanges}
-                      setFieldChanges={setFieldChanges}
-                      selectedImage={selectedImage}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
                 <SocialShare
-                  showGallery={showGallery}
                   state={quizState}
                   setState={setQuizState}
                   quizRef={quizRef}
                   unsavedChanges={unsavedChanges}
                   setFieldChanges={setFieldChanges}
-                  selectedImage={selectedImage}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={analyticsExpanded}
-                  onChange={() => setAnalyticsExpanded(!analyticsExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('analytics')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Analytics
-                      state={quizState}
-                      setState={setQuizState}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
                 <Analytics
                   number='07'
                   state={quizState}
                   setState={setQuizState}
                   unsavedChanges={unsavedChanges}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={seoExpanded}
-                  onChange={() => setSeoExpanded(!seoExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('SEO')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <Seo
-                      state={quizState}
-                      setState={setQuizState}
-                      setEditedSD={setEditedSD}
-                      quizInstance={quizInstance}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion> */}
-                {/* <Seo
-                  state={quizState}
-                  setState={setQuizState}
-                  setEditedSD={setEditedSD}
-                  quizInstance={quizInstance}
-                  unsavedChanges={unsavedChanges}
-                /> */}
               </>
             )}
           </Box>
@@ -1237,7 +1077,7 @@ export const CreateQuiz = () => {
           closeIcon={<CreateRoundedIcon />}
         />
         {showPublishConfirm || showWorkflowSubmit ? (
-          <PlateformXDialog
+          <PlateformXDialogSuccess
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
             subTitle={showPublishConfirm ? t("quiz_publish_popoup") : t("requested_action")}

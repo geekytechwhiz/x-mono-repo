@@ -3,17 +3,17 @@
 import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
+  AUTH_URL,
   getSelectedSite,
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
   const [handleImpression] = usePlatformAnalytics();
   const [getSession, updateSession] = useUserSession();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const location = useLocation();
@@ -40,7 +40,6 @@ export const useAuthentication = () => {
         const userRole = roles?.find(
           (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase(),
         )?.name;
-
         updateSession(createSession(response.data, true, userRole));
         console.log("userDetails", getSession());
         // Send login user info to Analytics End
@@ -58,10 +57,6 @@ export const useAuthentication = () => {
         // navigate(`/dashboard`, { replace: true });
         window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
       }
-      // else {
-      //   console.error('Error signing in:', response);
-      //   navigate('/error', { state: { errorCode: 500, errorMessage: 'Internal Server Error' } });
-      // }
     } catch (error: any) {
       console.error("Error signing in:", error);
     }
@@ -70,7 +65,6 @@ export const useAuthentication = () => {
   const verifySession = async () => {
     try {
       const response = await authAPI.verifySession("auth/verify-session");
-
       if (response?.data) {
         const { active } = response.data || { userDetails: {} };
 
@@ -107,6 +101,7 @@ export const useAuthentication = () => {
       } else {
         localStorage.removeItem("selectedSite");
         updateSession(null);
+        window.location.replace(AUTH_URL);
       }
     } catch (error) {
       // Handle errors as needed

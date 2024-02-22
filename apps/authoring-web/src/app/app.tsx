@@ -22,6 +22,7 @@ import "./App.css";
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import {
+  AUTH_URL,
   DefaultLocale,
   LightTheme,
   getCurrentLang,
@@ -30,10 +31,9 @@ import {
 } from "@platformx/utilities";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./router/AppRouter";
+import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
-import { AUTH_URL } from "./utils/authConstants";
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
 );
@@ -52,7 +52,7 @@ initApm({
   logLevel: "debug",
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   toastContainer: {
     width: "457px",
     "& .Toastify__toast": {
@@ -69,7 +69,7 @@ function App() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
-  const [instances, setInstances] = useState<any>({});
+  const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -117,7 +117,8 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <AppRouter />
+                  <RootRouter />
+                  {/* <AppRouter /> */}
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
@@ -140,4 +141,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

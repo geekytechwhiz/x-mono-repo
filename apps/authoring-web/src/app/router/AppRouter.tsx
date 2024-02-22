@@ -2,7 +2,7 @@
 
 import { XLoader, useUserSession } from "@platformx/utilities";
 import { memo, useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import { useAuthentication } from "../hooks/useAuthentication";
 import { MenuData } from "../hooks/useDynamicRoutes/menuData";
 import { useDynamicRoutes } from "../hooks/useDynamicRoutes/useDynamicRoutes";
@@ -12,8 +12,6 @@ function AppRouter() {
   const location = useLocation();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-
-  const navigate = useNavigate();
   const { handleSignIn, verifySession } = useAuthentication();
   const generatedRoutes = useDynamicRoutes(MenuData, routes);
   const [searchParams] = useSearchParams();
