@@ -67,4 +67,7 @@ export const useGlobalSettingStyle = makeStyles((theme) => ({
     marginRight: "15px !important",
     display: "none",
   },
+  btnboxnew: {
+    display: "flex",
+  },
 }));

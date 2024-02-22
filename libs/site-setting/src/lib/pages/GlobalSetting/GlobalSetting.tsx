@@ -254,10 +254,7 @@ export const GlobalSetting = () => {
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                        }}>
+                      <Box className={classes.btnboxnew}>
                         <Box className={classes.globalimg}>
                           <img src={GlobalImageIcon} alt='Globalimageicon' />
                         </Box>
@@ -279,10 +276,7 @@ export const GlobalSetting = () => {
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                        }}>
+                      <Box className={classes.btnboxnew}>
                         <Box sx={{ padding: "14px" }} className={classes.globalimg}>
                           <img src={GlobalVideoIcon} alt='Globalimageicon' />
                         </Box>
@@ -304,10 +298,7 @@ export const GlobalSetting = () => {
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                        }}>
+                      <Box className={classes.btnboxnew}>
                         <Box className={classes.globalimg}>
                           <img src={GlobalMiscIcon} alt='Globalimageicon' />
                         </Box>
@@ -338,10 +329,7 @@ export const GlobalSetting = () => {
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                        }}>
+                      <Box className={classes.btnboxnew}>
                         <Box className={classes.globalimg}>
                           <img src={GlobalImageIcon} alt='Globalimageicon' />
                         </Box>
@@ -374,10 +362,7 @@ export const GlobalSetting = () => {
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box
-                        sx={{
-                          display: "flex",
-                        }}>
+                      <Box className={classes.btnboxnew}>
                         <Box sx={{ padding: "14px" }} className={classes.globalimg}>
                           <img src={GlobalVideoIcon} alt='Globalimageicon' />
                         </Box>
