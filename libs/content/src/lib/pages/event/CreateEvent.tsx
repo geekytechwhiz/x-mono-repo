@@ -831,13 +831,13 @@ const CreateEvent = () => {
                 />
 
                 <EventTitleDescription
-                  // setSaveButton={setSaveButton}
+                  setSaveButton={() => {}}
                   setPreviewButton={setPreviewButton}
                   eventWholeRef={eventWholeRef}
                   state={eventState}
                   setState={setEventState}
                   unsavedChanges={unsavedChanges}
-                  // setPublishButton={setPublishButton}
+                  setPublishButton={() => {}}
                 />
 
                 <EventTimeAndLocation
@@ -886,131 +886,8 @@ const CreateEvent = () => {
                   setEditedSD={setEditedSD}
                   isEdited={isEdited}
                 />
-                {/* <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                  expanded={socialShareExpanded}
-                  onChange={() => setSocialShareExpanded(!socialShareExpanded)}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('social_share')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <EventSocialShare
-                      state={eventState}
-                      setState={setEventState}
-                      eventWholeRef={eventWholeRef}
-                      showGalleryHandle={showGalleryHandle}
-                      unsavedChanges={unsavedChanges}
-                      selectedImage={selectedImage.Thumbnail}
-                    />
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('analytics')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <EventAnalytics
-                      state={eventState}
-                      setState={setEventState}
-                      eventAnalyticsHandle={eventAnalyticsHandle}
-                      unsavedChanges={unsavedChanges}
-                    />
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion
-                  sx={{
-                    borderRadius: '0 !important',
-                    boxShadow: 'none',
-                    marginBottom: '10px',
-                    paddingLeft: { xs: '15px', md: '40px' },
-                  }}
-                >
-                  <AccordionSummary
-                    sx={{ paddingLeft: '0px' }}
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel2a-content'
-                    id='panel2a-header'
-                  >
-                    <TitleSubTitle
-                      title={t('SEO')}
-                      subTitle={t('subhead')}
-                      titleVarient='h3medium'
-                      subTitleVarient='h7regular'
-                    />
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ paddingLeft: '0px' }}>
-                    <EventSEO
-                      state={eventState}
-                      setState={setEventState}
-                      eventInstance={eventInstance}
-                      seoEvenDataHandle={seoEvenDataHandle}
-                      updateStructureData={updateStructureData}
-                      unsavedChanges={unsavedChanges}
-                      setEditedSD={setEditedSD}
-                      isEdited={isEdited}
-                    />
-                  </AccordionDetails>
-                </Accordion>*/}
               </>
             )}
-            {/* <EventSocialShare
-              state={eventState}
-              setState={setEventState}
-              eventWholeRef={eventWholeRef}
-              showGalleryHandle={showGalleryHandle}
-              unsavedChanges={unsavedChanges}
-            />
-
-            <EventAnalytics
-              state={eventState}
-              setState={setEventState}
-              eventAnalyticsHandle={eventAnalyticsHandle}
-              unsavedChanges={unsavedChanges}
-            />
-
-            <EventSEO
-              state={eventState}
-              setState={setEventState}
-              eventInstance={eventInstance}
-              seoEvenDataHandle={seoEvenDataHandle}
-              updateStructureData={updateStructureData}
-              unsavedChanges={unsavedChanges}
-              setEditedSD={setEditedSD}
-              isEdited={isEdited}
-            /> */}
           </Box>
         </Box>
       </Box>

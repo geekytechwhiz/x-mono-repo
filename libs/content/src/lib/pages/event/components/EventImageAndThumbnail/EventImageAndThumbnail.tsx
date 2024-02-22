@@ -1,26 +1,20 @@
 import { Box, Grid } from "@mui/material";
-import { CommonBoxWithNumber, TitleSubTitle, useAccess } from "@platformx/utilities";
-import React, { useEffect, useState } from "react";
+import { CommonBoxWithNumber, TitleSubTitle } from "@platformx/utilities";
+import React from "react";
 import { useTranslation } from "react-i18next";
 // import "../../../../components/Common/commonStyles/disabledStyles.css";
 import { XImageRender } from "@platformx/x-image-render";
 import { useCustomStyle } from "../../CreateEvent.styles";
 import { ImageThumbnailProp } from "../../CreateEvent.types";
-import { IMAGES, IMAGE_URL } from "../../Utils/Constants";
 
 const EventImageAndThumbnail = ({
   state,
   setState,
-  showGalleryHandle,
-  setPreviewButton,
-  selectedImage,
-}: ImageThumbnailProp) => {
+}: // showGalleryHandle,
+// setPreviewButton,
+// selectedImage,
+ImageThumbnailProp) => {
   const { t } = useTranslation();
-  const [operationType, setOperationType] = useState<string>("");
-  const { canAccessAction } = useAccess();
-  const [imageUrlLink, setImageUrlLink] = useState("");
-  console.log("state", state);
-
   const updateField = (updatedPartialObj) => {
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
@@ -29,21 +23,6 @@ const EventImageAndThumbnail = ({
     setState(modifiedData);
   };
 
-  const onUploadClick = (type) => {
-    showGalleryHandle(IMAGES, IMAGE_URL);
-    setOperationType(type);
-  };
-
-  useEffect(() => {
-    setImageUrlLink(state.imageUrl);
-    if (state.imageUrl) {
-      // setPreviewButton((prevValue) => {
-      //   if (prevValue) {
-      //     return false;
-      //   }
-      // });
-    }
-  }, [state.imageUrl]);
   const classes = useCustomStyle();
 
   return (
@@ -66,7 +45,7 @@ const EventImageAndThumbnail = ({
           <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
             <XImageRender
               callBack={updateField}
-              data={{
+              editData={{
                 original_image: state.original_image,
                 published_images: state.published_images,
               }}

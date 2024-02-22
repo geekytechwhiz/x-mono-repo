@@ -63,9 +63,8 @@ const EventChooseTags = ({
             socialShareExpanded && setScrollToView("socialShare");
           }
         })
-        .catch((err) => {
+        .catch(() => {
           setTagData([]);
-          console.log(JSON.stringify(err, null, 2));
         });
     }
   }, []);

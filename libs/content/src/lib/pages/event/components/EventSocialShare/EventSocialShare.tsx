@@ -23,13 +23,13 @@ const EventSocialShare = ({
   eventWholeRef,
   showGalleryHandle,
   unsavedChanges,
-  selectedImage,
-}: SocialShareProp) => {
+}: // selectedImage,
+SocialShareProp) => {
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const { canAccessAction } = useAccess();
 
-  const [imageUrlLink, setImageUrlLink] = useState("");
+  const [, setImageUrlLink] = useState("");
 
   const handleOnBlur = (event: any) => {
     unsavedChanges.current = true;
@@ -42,7 +42,7 @@ const EventSocialShare = ({
       [event.target.name]: event.target.value,
     };
   };
-  const onUploadClick = (type) => {
+  const onUploadClick = () => {
     showGalleryHandle(IMAGES, SOCIAL_SHARE);
   };
 
