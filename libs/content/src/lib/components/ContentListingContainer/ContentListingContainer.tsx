@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
@@ -40,14 +39,14 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   } = useContentListing('ALL');
 
   const memoizedMethods = useMemo(() => ({
-    deleteContent: useMemo(() => deleteContent, [deleteContent]),
-    duplicate: useMemo(() => duplicate, [duplicate]),
-    preview: useMemo(() => preview, [preview]),
-    unPublish: useMemo(() => unPublish, [unPublish]),
-    view: useMemo(() => view, [view]),
-    edit: useMemo(() => edit, [edit]),
-    fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
-    duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
+    deleteContent,
+    duplicate,
+    preview,
+    unPublish,
+    view,
+    edit,
+    fetchContentDetails,
+    duplicateToSite,
   }), [
     deleteContent,
     duplicate,
