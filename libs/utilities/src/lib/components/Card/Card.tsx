@@ -2,7 +2,6 @@ import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { RedBlinkingDot } from "@platformx/utilities";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 // import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
@@ -44,7 +43,6 @@ export const Card = ({
 }: CardProps) => {
   const { canAccessAction } = useAccess();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
-  const [anchorEl] = useState<null | HTMLElement>(null);
   const [subTitle, setSubTitle] = useState("");
   const { t } = useTranslation();
   const [isDelete, setDelete] = useState(false);
@@ -234,13 +232,13 @@ export const Card = ({
                         <img src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledPublishTriggerDateTime && tagName == "sitepage" && (
-                          <img src={statusIcons["schedulePublish"]} alt="/>
+                        {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
+                          <img src={statusIcons["schedulePublish"]} alt='' />
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledUnPublishTriggerDateTime && tagName == "sitepage" && (
-                          <img src={statusIcons["scheduleUnpublish"]} />
+                        {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
+                          <img src={statusIcons["scheduleUnpublish"]} alt='' />
                         )}
                       </Typography>
                     </Box>
