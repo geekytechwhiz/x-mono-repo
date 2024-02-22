@@ -1,26 +1,21 @@
-import { Typography } from '@mui/material';
-import React from 'react';
-import { Cropper } from 'react-advanced-cropper';
-import 'react-advanced-cropper/dist/style.css';
+import { Typography } from "@mui/material";
+import React from "react";
+import { Cropper } from "react-advanced-cropper";
+import "react-advanced-cropper/dist/style.css";
 
 const SelectedImageCrop = (props: any = {}) => {
   const {
-    crop = '',
+    crop = "",
     aspect = 0,
-    ratio = '',
-    imageSrc = '',
+    ratio = "",
+    imageSrc = "",
     onCropChange,
     isLoading = true,
     setIsLoading,
   } = props;
 
   const onChange = (cropper: any) => {
-    const {
-      height = 0,
-      left = 0,
-      top = 0,
-      width = 0,
-    } = cropper.getCoordinates() || {};
+    const { height = 0, left = 0, top = 0, width = 0 } = cropper.getCoordinates() || {};
     const cropVertex = [
       {
         x: left,
@@ -39,11 +34,12 @@ const SelectedImageCrop = (props: any = {}) => {
         y: height + top,
       },
     ];
-    onCropChange(cropVertex, crop);
+    // console.warn("onchange", cropVertex);
+    onCropChange(cropVertex);
   };
 
   const onError = (cropper: any) => {
-    console.error('Image is not loading', cropper);
+    console.error("Image is not loading", cropper);
     // if(isLoading) setIsLoading(false);
   };
 
@@ -51,7 +47,7 @@ const SelectedImageCrop = (props: any = {}) => {
     if (isLoading) setIsLoading(false);
   };
 
-  const defaultSize = ({ imageSize, visibleArea }: { imageSize: any, visibleArea: any }) => {
+  const defaultSize = ({ imageSize, visibleArea }: { imageSize: any; visibleArea: any }) => {
     return {
       width: (visibleArea || imageSize).width,
       height: (visibleArea || imageSize).height,
@@ -59,8 +55,7 @@ const SelectedImageCrop = (props: any = {}) => {
   };
 
   return (
-
-    <div className='crop-container'>
+    <div className='crop-container' key={crop}>
       <Cropper
         src={imageSrc}
         stencilProps={{
@@ -68,14 +63,13 @@ const SelectedImageCrop = (props: any = {}) => {
         }}
         defaultSize={defaultSize}
         onChange={onChange}
-        className="cropper"
+        className='cropper'
         onReady={onReady}
         onError={onError}
       />
       <Typography
         variant='h4bold'
-        sx={{ padding: { xs: '5px 0', md: '14px 0' }, textAlign: 'center' }}
-      >
+        sx={{ padding: { xs: "5px 0", md: "14px 0" }, textAlign: "center" }}>
         {ratio}
       </Typography>
     </div>

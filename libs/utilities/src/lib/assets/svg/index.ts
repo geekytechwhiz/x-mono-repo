@@ -89,6 +89,7 @@ import GlobalVideoIcon from "./globalvideoicon.svg";
 import GradeIcon from "./grade.svg";
 import GreenDot from "./green.svg";
 import HeaderMenuUpdated from "./headermenuupdated.svg";
+import RedDotsIcon from "./icon/RedDots.svg";
 import ImageIcon from "./image.svg";
 import InsertIcon from "./inserticon.svg";
 import LeftArrowIcon from "./leftarrow.svg";
@@ -130,7 +131,7 @@ import VODListIcon from "./vodListIcon.svg";
 import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
-// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+// import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -233,6 +234,8 @@ export {
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
+  // DialogCloseIcon,
+  RedDotsIcon,
   Refresh,
   ReplyIcon,
   ReportsIcon,
