@@ -3,7 +3,7 @@ import { Box, Divider } from "@mui/material";
 import { addMinutes } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Loader from "../../Common/Loader";
 import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 // import DamContentGallery from "../../components/Common/DamContentGallery/DamContentGallery";
@@ -12,6 +12,7 @@ import ContentPageScroll from "../../components/ContentPageScroll";
 import { eventAPIS, useWorkflow } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
+  Loader,
   PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
@@ -26,11 +27,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { AnalyticsRef, EventInstance, EventWhole, SeoRef } from "./CreateEvent.types";
 import icons, {
   BEFORE_UNLOAD,
-  CANCEL,
+  // CANCEL,
   CATEGORY_CONTENT,
   DRAFT,
   EVENT,
-  IMAGE_URL,
+  // IMAGE_URL,
   PAGE_EXIST_POP_UP,
   PATH,
   POP_STATE,
@@ -39,8 +40,8 @@ import icons, {
   SAVE_AS_DRAFT_POP_UP,
   SCROLL,
   SEO,
-  SOCIAL_SHARE,
-  SOCIAL_SHARE_IMG_URL,
+  // SOCIAL_SHARE,
+  // SOCIAL_SHARE_IMG_URL,
   seo,
 } from "./Utils/Constants";
 import {
@@ -78,16 +79,16 @@ const CreateEvent = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
   const { currentContent } = useSelector((state: RootState) => state.content);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  // const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [workflow, setWorkflow] = useState({});
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
-  const params = useParams();
+  // const params = useParams();
   const createdUser = useRef(username);
   const analyticsRef = useRef<AnalyticsRef>(analyticInputDefaultData);
   const seoRef = useRef<SeoRef>(seoInputDefaultData);
-
+  const [, setKey] = useState("");
   const quizPageUrl = new URL(window.location.href);
   const currentQuizData = useRef(
     quizPageUrl.searchParams.get("path") ? (quizPageUrl.searchParams.get("path") as string) : "",
@@ -96,18 +97,12 @@ const CreateEvent = () => {
   const [showExitWarning, setShowExitWarning] = useState(false);
   const navigate = useNavigate();
   const [previewButton, setPreviewButton] = useState(true);
-  const [publishButton, setPublishButton] = useState(true);
-  const [saveButton, setSaveButton] = useState(true);
+  // const [publishButton, setPublishButton] = useState(true);
+  // const [saveButton, setSaveButton] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
-  const [, setIsSideMenuOpen] = useState(false);
   const [galleryState, setGalleryState] = useState<boolean>(false);
-
   const galleryType = useRef<string>("Images");
-
-  const [key, setKey] = useState("");
-  const [answerId] = useState("");
   const [parentToolTip, setParentToolTip] = useState("");
-
   const [eventInstance, setEventInstance] = useState<EventInstance | unknown>({});
   const [isLoading, setIsLoading] = useState(false);
   const [editedSD, setEditedSD] = useState({});
@@ -126,12 +121,8 @@ const CreateEvent = () => {
   const [pageStatus, setPageStatus] = useState(DRAFT);
   const [onSavedModal, setOnSavedModal] = useState(false);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const [selectedImage, setSelectedImage] = useState(SelectedImageData);
+  const [selectedImage] = useState(SelectedImageData);
   const [eventState, setEventState] = useState(EventData);
-  const [socialShareExpanded, setSocialShareExpanded] = useState(
-    quizPageUrl.searchParams.get("open") ? true : false,
-  );
   const [enableWorkflowHistory, setEnableWorkflowHistory] = useState<boolean>(false);
   const publishPopup = useRef(PUBLISH_POP_UP);
   const login_user_id = userInfo?.user_id;
@@ -144,7 +135,7 @@ const CreateEvent = () => {
 
   const eventWholeRef = useRef<EventWhole>(DefEvent);
 
-  const updateCurrentInstance = (callPreview = false) => {
+  const updateCurrentInstance = () => {
     const pageURL = eventWholeRef.current?.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const updatedObj = {
       page: pageURL,
@@ -167,7 +158,7 @@ const CreateEvent = () => {
     };
     try {
       // Don't remove the data, API call to publish the event
-      const data: any = await eventAPIS.publishContentType({
+      await eventAPIS.publishContentType({
         contentType: EVENT,
         input: eventToSend,
       });
@@ -196,8 +187,8 @@ const CreateEvent = () => {
     pageState,
     IsDuplicate = false,
     isWorkflow = true,
-    props = {},
-    event_step = "",
+    // props = {},
+    // event_step = "",
   ) => {
     setIsLoading(true);
     const newTempData = JSON.parse(JSON.stringify(eventInstance));
@@ -267,7 +258,6 @@ const CreateEvent = () => {
       eventWholeRef.current.page = pageUrl;
       setDraftPageURL(pageUrl);
     } catch (error: any) {
-      console.log("error", error);
       if (error?.graphQLErrors[0]) {
         ShowToastError(error.graphQLErrors[0].message);
       } else {
@@ -298,7 +288,7 @@ const CreateEvent = () => {
     );
     try {
       // Don't remove the data, API call to update the event
-      const data = await eventAPIS.updateContentType({
+      await eventAPIS.updateContentType({
         contenttype: EVENT,
         input: updateEventToSend,
       });
@@ -322,7 +312,6 @@ const CreateEvent = () => {
     } catch (error) {
       ShowToastError(t("api_error_toast"));
       setIsLoading(false);
-      console.log(JSON.stringify(error, null, 2));
     }
   };
 
@@ -382,7 +371,7 @@ const CreateEvent = () => {
       ShowToastError(`${t("schedule_publish_unpublish_validate")}`);
     } else {
       if (!currentEventData.current && isDraft) {
-        createEvent(DRAFT, false, status, props, event_step);
+        createEvent(DRAFT, false, status);
       } else {
         updateEvent(DRAFT, status, props, event_step);
       }
@@ -458,71 +447,71 @@ const CreateEvent = () => {
     setShowWorkflowSubmit(false);
   };
 
-  const handleSelectedImage = async (image, keyName, id?: any) => {
-    setSelectedImage(image);
-    try {
-      const payload = {
-        bitstreamId: image.bitStreamId,
-        visibility: "public",
-      };
-      // const response = await postRequest("api/v1/assets/image/no-crop", payload);
-      // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
-      if (keyName === IMAGE_URL) {
-        setEventState({
-          ...eventState,
-          imageUrl: image?.Thumbnail,
-          // socialShareImgURL: relativeUrl,
-        });
-        eventWholeRef.current = {
-          ...eventWholeRef.current,
-          [keyName]: image?.Thumbnail,
-          // [SOCIAL_SHARE_IMG_URL]: relativeUrl,
-        };
-      } else if (keyName === SOCIAL_SHARE) {
-        setEventState({
-          ...eventState,
-          // socialShareImgURL: relativeUrl,
-        });
-        eventWholeRef.current = {
-          ...eventWholeRef.current,
-          // [SOCIAL_SHARE_IMG_URL]: relativeUrl,
-        };
-      }
-      unsavedChanges.current = true;
-    } catch (error) {
-      if (keyName === IMAGE_URL) {
-        setEventState({
-          ...eventState,
-          imageUrl: image?.Thumbnail,
-          socialShareImgURL: "",
-        });
-        eventWholeRef.current = {
-          ...eventWholeRef.current,
-          [keyName]: image?.Thumbnail,
-          [SOCIAL_SHARE_IMG_URL]: "",
-        };
-      } else if (keyName === SOCIAL_SHARE) {
-        setEventState({
-          ...eventState,
-          socialShareImgURL: "",
-        });
-        eventWholeRef.current = {
-          ...eventWholeRef.current,
-          [SOCIAL_SHARE_IMG_URL]: "",
-        };
-      }
-      unsavedChanges.current = true;
-      console.log(error);
-      keyName === SOCIAL_SHARE && ShowToastError(t("api_error_toast"));
-    }
-  };
+  // const handleSelectedImage = async (image, keyName, id?: any) => {
+  //   setSelectedImage(image);
+  //   try {
+  //     const payload = {
+  //       bitstreamId: image.bitStreamId,
+  //       visibility: "public",
+  //     };
+  //     // const response = await postRequest("api/v1/assets/image/no-crop", payload);
+  //     // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
+  //     if (keyName === IMAGE_URL) {
+  //       setEventState({
+  //         ...eventState,
+  //         imageUrl: image?.Thumbnail,
+  //         // socialShareImgURL: relativeUrl,
+  //       });
+  //       eventWholeRef.current = {
+  //         ...eventWholeRef.current,
+  //         [keyName]: image?.Thumbnail,
+  //         // [SOCIAL_SHARE_IMG_URL]: relativeUrl,
+  //       };
+  //     } else if (keyName === SOCIAL_SHARE) {
+  //       setEventState({
+  //         ...eventState,
+  //         // socialShareImgURL: relativeUrl,
+  //       });
+  //       eventWholeRef.current = {
+  //         ...eventWholeRef.current,
+  //         // [SOCIAL_SHARE_IMG_URL]: relativeUrl,
+  //       };
+  //     }
+  //     unsavedChanges.current = true;
+  //   } catch (error) {
+  //     if (keyName === IMAGE_URL) {
+  //       setEventState({
+  //         ...eventState,
+  //         imageUrl: image?.Thumbnail,
+  //         socialShareImgURL: "",
+  //       });
+  //       eventWholeRef.current = {
+  //         ...eventWholeRef.current,
+  //         [keyName]: image?.Thumbnail,
+  //         [SOCIAL_SHARE_IMG_URL]: "",
+  //       };
+  //     } else if (keyName === SOCIAL_SHARE) {
+  //       setEventState({
+  //         ...eventState,
+  //         socialShareImgURL: "",
+  //       });
+  //       eventWholeRef.current = {
+  //         ...eventWholeRef.current,
+  //         [SOCIAL_SHARE_IMG_URL]: "",
+  //       };
+  //     }
+  //     unsavedChanges.current = true;
+  //     console.log(error);
+  //     keyName === SOCIAL_SHARE && ShowToastError(t("api_error_toast"));
+  //   }
+  // };
 
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
-    if (type == CANCEL) {
-      return null;
-    }
-  };
+  // const toggleGallery = (toggleState, type) => {
+  //   setGalleryState(toggleState);
+  //   if (type == CANCEL) {
+  //     return null;
+  //   }
+  // };
 
   const returnBack = () => {
     if (unsavedChanges.current === true) {
@@ -575,9 +564,9 @@ const CreateEvent = () => {
       tags,
     } = eventState;
     if ([title, shortTitle, shortDesc, description, imageUrl].includes("") || tags.length === 0) {
-      setPublishButton(true);
+      // setPublishButton(true);
     } else {
-      setPublishButton(false);
+      // setPublishButton(false);
     }
   }, [eventState]);
 
@@ -616,7 +605,7 @@ const CreateEvent = () => {
 
   useEffect(() => {
     if (unsavedChanges.current === true) {
-      window.history.pushState(null, "", window.location.pathname + location?.search);
+      window.history.pushState(null, "", window.location.pathname + window.location?.search);
       window.addEventListener(BEFORE_UNLOAD, (e) => unloadCallback(e, unsavedChanges.current));
       window.addEventListener(POP_STATE, (e) =>
         onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, closeButtonHandle),
@@ -694,19 +683,19 @@ const CreateEvent = () => {
         tagsSocialShare: settingsProperties?.keywords,
       };
     } catch (err) {
-      console.log("error", err);
+      ShowToastError("Some thing went wrong");
     }
   };
 
   useEffect(() => {
     if (Object.keys(currentContent).length > 0) {
       eventWholeRef.current = currentContent?.eventWholeRef;
-      setSaveButton(false);
+      // setSaveButton(false);
       setPreviewButton(false);
       setEventState(currentContent?.eventState);
     } else if (currentEventData.current && unsavedChanges.current !== true) {
       setIsLoading(true);
-      setSaveButton(false);
+      // setSaveButton(false);
       setPreviewButton(false);
       getContentByPath();
     }
@@ -716,31 +705,29 @@ const CreateEvent = () => {
   }, [eventState]);
 
   useEffect(() => {
-    const handleResize = () => {
-      const { innerHeight } = window;
-      const ifKeyboardOpen = window.innerHeight < innerHeight;
-      setIsKeyboardOpen(ifKeyboardOpen);
-    };
-
-    const handleScroll = () => {
-      const { innerHeight } = window;
-      const ifKeyboardOpen = window.innerHeight < innerHeight;
-      setIsKeyboardOpen(ifKeyboardOpen);
-    };
-
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    // const handleResize = () => {
+    //   const { innerHeight } = window;
+    //   const ifKeyboardOpen = window.innerHeight < innerHeight;
+    //   // setIsKeyboardOpen(ifKeyboardOpen);
+    // };
+    // const handleScroll = () => {
+    //   const { innerHeight } = window;
+    //   const ifKeyboardOpen = window.innerHeight < innerHeight;
+    //   // setIsKeyboardOpen(ifKeyboardOpen);
+    // };
+    // window.addEventListener("resize", handleResize);
+    // window.addEventListener("scroll", handleScroll);
+    // return () => {
+    //   window.removeEventListener("resize", handleResize);
+    //   window.removeEventListener("scroll", handleScroll);
+    // };
   }, []);
   const styles = `.sticky-header { position: sticky; top: 0; background-color: #fff; z-index:1} 
   .sticky-header.keyboard-open { position: relative; }`;
   return (
     <>
       <style> {styles} </style>
+      {isLoading && <Loader />}
       <Box
         sx={{
           backgroundColor: "#FFF",
@@ -770,6 +757,7 @@ const CreateEvent = () => {
             <CreateHeader
               // className={isKeyboardOpen ? "sticky-header keyboard-open" : "sticky-header"}
               // previewButton={previewButton}
+              showPreview={previewButton}
               handelPreview={handelPreview}
               createText={
                 currentQuizData.current
@@ -843,13 +831,13 @@ const CreateEvent = () => {
                 />
 
                 <EventTitleDescription
-                  setSaveButton={setSaveButton}
+                  // setSaveButton={setSaveButton}
                   setPreviewButton={setPreviewButton}
                   eventWholeRef={eventWholeRef}
                   state={eventState}
                   setState={setEventState}
                   unsavedChanges={unsavedChanges}
-                  setPublishButton={setPublishButton}
+                  // setPublishButton={setPublishButton}
                 />
 
                 <EventTimeAndLocation
@@ -872,7 +860,7 @@ const CreateEvent = () => {
                   unsavedChanges={unsavedChanges}
                   isEdit={currentEventData.current ? true : false}
                   setScrollToView={setScrollToView}
-                  socialShareExpanded={socialShareExpanded}
+                  socialShareExpanded={false}
                 />
                 <EventSocialShare
                   state={eventState}
