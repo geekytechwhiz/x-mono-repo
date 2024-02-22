@@ -13,3 +13,4 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npx nx build authoring-web
 EXPOSE 3000
 CMD npm run deploy:authoring
+
