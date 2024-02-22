@@ -797,7 +797,7 @@ export const CreatePoll = (): JSX.Element => {
         input: updatePollToSend,
       },
     })
-      .then((resp) => {
+      .then(() => {
         setTimerState(true);
         setLastmodifiedDate(new Date().toISOString());
         if (status && status?.toLowerCase() === DRAFT.toLowerCase()) {
@@ -939,10 +939,10 @@ export const CreatePoll = (): JSX.Element => {
   const handleSelectedImage = (image, keyName, id?: any) => {
     setSelectedImage(image);
     try {
-      const payload = {
-        bitstreamId: image.bitStreamId,
-        visibility: "public",
-      };
+      // const payload = {s
+      //   bitstreamId: image.bitStreamId,
+      //   visibility: "public",
+      // };
       // const response = await postRequest("api/v1/assets/image/no-crop", payload);
       // const relativeUrl = `${response?.original_image_relative_path}.${response?.ext}`;
       if (key === "imagevideoURL") {
@@ -1237,7 +1237,7 @@ export const CreatePoll = (): JSX.Element => {
             taglength.current = res?.data?.authoring_getCmsContentByPath?.tags?.length;
           }
         })
-        .catch((err) => {
+        .catch(() => {
           // console.log(JSON.stringify(err, null, 2));
         });
     }
@@ -1258,13 +1258,13 @@ export const CreatePoll = (): JSX.Element => {
             );
           }
         })
-        .catch((err) => {
+        .catch(() => {
           // console.log(JSON.stringify(err, null, 2));
         });
     }
   }, []);
 
-  const isInViewport = (element, isSeo) => {
+  const isInViewport = (element) => {
     const mainElement = document.querySelector(`#${element}`);
     if (mainElement) {
       const rect = mainElement.getBoundingClientRect();
@@ -1315,13 +1315,13 @@ export const CreatePoll = (): JSX.Element => {
       navigate("/content/poll");
     }
   };
-  const handleQuesReturn = () => {
-    if (qusUnsavedChanges.current === true) {
-      setShowExitWarning(true);
-    } else {
-      setOpenAddQuestion(false);
-    }
-  };
+  // const handleQuesReturn = () => {
+  //   if (qusUnsavedChanges.current === true) {
+  //     setShowExitWarning(true);
+  //   } else {
+  //     setOpenAddQuestion(false);
+  //   }
+  // };
   const navigateTo = () => {
     navigate("/content/poll");
     // dispatch(previewContent({}));
