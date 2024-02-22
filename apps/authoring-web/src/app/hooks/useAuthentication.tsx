@@ -1,20 +1,23 @@
 /* eslint-disable no-debugger */
 
-import { authAPI, getGlobalDataWithHeader, multiSiteApi } from '@platformx/authoring-apis';
-import { AUTH_INFO, AUTH_URL, getSelectedSite, usePlatformAnalytics, useUserSession } from '@platformx/utilities';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { createSession } from '../utils/helper';
+import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
+import {
+  AUTH_INFO,
+  AUTH_URL,
+  getSelectedSite,
+  usePlatformAnalytics,
+  useUserSession,
+} from "@platformx/utilities";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
-
   const [handleImpression] = usePlatformAnalytics();
   const [getSession, updateSession] = useUserSession();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const code = searchParams.get('code');
+  const code = searchParams.get("code");
   const location = useLocation();
-
+  console.log("location", location);
   const handleSignIn = async (authCode) => {
     const payload = {
       code: authCode,
@@ -23,64 +26,50 @@ export const useAuthentication = () => {
       redirect_uri: AUTH_INFO.redirectUri,
       tenant_id: AUTH_INFO.realm,
     };
-    console.log('payload', payload);
+    console.log("payload", payload);
 
     try {
-
-      const response = await authAPI.signIn('auth/session', payload);
+      console.log("login data before");
+      const response = await authAPI.signIn("auth/session", payload);
+      console.log(response, "login data after");
 
       if (response && response.data) {
-
-        const userDetails = { ...response.data, isActive: 'true' };
+        console.log(" response.data", response.data);
+        const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find(
-          (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase()
+          (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase(),
         )?.name;
-
         updateSession(createSession(response.data, true, userRole));
-
+        console.log("userDetails", getSession());
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
 
         // await getGlobalDataWithHeader(selected_site);
 
-        localStorage.setItem('selectedSite', response.data.selected_site);
+        localStorage.setItem("selectedSite", response.data.selected_site);
 
-        const defaultLang =
-          response.data.preferred_sites_languages?.[selected_site] || 'en';
+        const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
 
         const redirectPath =
-          selected_site?.toLowerCase() === 'system'
-            ? `/sites/site-listing`
-            : `/dashboard`;
+          selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
         ///${selected_site}/${defaultLang}${redirectPath}
-        navigate(
-          `${redirectPath}`,
-          { replace: true }
-        );
-
+        // navigate(`/dashboard`, { replace: true });
+        window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
       }
-      // else {
-      //   console.error('Error signing in:', response);
-      //   navigate('/error', { state: { errorCode: 500, errorMessage: 'Internal Server Error' } });
-      // }
     } catch (error: any) {
-      console.error('Error signing in:', error);
-
+      console.error("Error signing in:", error);
     }
   };
 
-
   const verifySession = async () => {
     try {
-
-      const response = await authAPI.verifySession('auth/verify-session');
-
+      const response = await authAPI.verifySession("auth/verify-session");
       if (response?.data) {
         const { active } = response.data || { userDetails: {} };
 
         const currentSelectedSite = getSelectedSite();
-        const storedSelectedSite = localStorage.getItem('selectedSite');
+        const storedSelectedSite = localStorage.getItem("selectedSite");
 
         if (currentSelectedSite === storedSelectedSite) {
           updateSession({
@@ -88,8 +77,7 @@ export const useAuthentication = () => {
             isActive: active || false,
           });
         } else {
-
-          localStorage.setItem('selectedSite', currentSelectedSite);
+          localStorage.setItem("selectedSite", currentSelectedSite);
           const res = await multiSiteApi.getPermissions(currentSelectedSite);
 
           updateSession({
@@ -98,33 +86,28 @@ export const useAuthentication = () => {
             permissions: res.data?.data?.permissions,
             userInfo: res.data?.data,
             role: res.data?.data?.roles?.find(
-              (obj) =>
-                obj.site?.toLowerCase() ===
-                res.data?.data?.selected_site?.toLowerCase()
+              (obj) => obj.site?.toLowerCase() === res.data?.data?.selected_site?.toLowerCase(),
             )?.name,
           });
 
-          const isSystemSite = currentSelectedSite.toLowerCase() === 'system';
+          const isSystemSite = currentSelectedSite.toLowerCase() === "system";
           const hasUuidValues =
-            !localStorage.getItem('imageUuid') ||
-            !localStorage.getItem('videoUuid');
+            !localStorage.getItem("imageUuid") || !localStorage.getItem("videoUuid");
 
           if (hasUuidValues && !isSystemSite) {
             await getGlobalDataWithHeader(currentSelectedSite);
           }
         }
       } else {
-        localStorage.removeItem('selectedSite');
+        localStorage.removeItem("selectedSite");
         updateSession(null);
+        window.location.replace(AUTH_URL);
       }
     } catch (error) {
       // Handle errors as needed
-      console.error('Error verifying session:', error);
+      console.error("Error verifying session:", error);
     }
   };
-
-
-
 
   // useEffect(() => {
   //   debugger
@@ -148,8 +131,6 @@ export const useAuthentication = () => {
   //     window.location.replace(AUTH_URL);
   //   }
   // }, [location, getSession, navigate, code]);
-
-
 
   return { handleSignIn, verifySession };
 };

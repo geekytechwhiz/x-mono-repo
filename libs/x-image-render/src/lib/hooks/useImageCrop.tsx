@@ -1,13 +1,12 @@
-// useImageCrop.js
 import { useState } from "react";
 import { ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
 import { BREAKPOINTS } from "../utils/constants";
 import { usePostImageCrop } from "./usePostImageCrop";
 
-const useImageCrop = (cropImages: any, doneCropCompleted: any) => {
-  const { Thumbnail, bitStreamId } = cropImages || {};
+const useImageCrop = (originalImage: any, doneCropCompleted: any) => {
+  const { Thumbnail, bitStreamId } = originalImage || {};
   const [doneLoader, setDoneLoader] = useState(false);
-  const { postRequest, data, error: postError, isLoading } = usePostImageCrop();
+  const { postRequest, isLoading } = usePostImageCrop();
   const initialCrops = BREAKPOINTS.map(() => [
     { x: 0, y: 0 },
     { x: 0, y: 0 },
@@ -17,30 +16,28 @@ const useImageCrop = (cropImages: any, doneCropCompleted: any) => {
 
   const [crops, setCrops] = useState(initialCrops);
 
-  const apiCallBack = (data) => {
+  const apiCallBack = (data, img) => {
     if (data) {
       const {
         images = [],
         ext = "",
         original_image_relative_path = "",
         visibility = "",
+        bitstream_id = "",
       } = nullToObject(data);
       if (images?.length > 0) {
         ShowToastSuccess("Image Cropped Successfully");
         setDoneLoader(false);
-        doneCropCompleted(images, ext, original_image_relative_path, visibility);
-        // return { success: true, data: { images, ext, original_image_relative_path, visibility } };
+        doneCropCompleted(images, ext, original_image_relative_path, visibility, bitstream_id, img);
       } else {
         ShowToastError("Manual Cropping Failed");
         setDoneLoader(false);
-        doneCropCompleted(images, ext, original_image_relative_path, visibility);
-        // return { success: false, data: null };
+        doneCropCompleted();
       }
     } else {
       ShowToastError("Manual Cropping Failed");
       setDoneLoader(false);
       doneCropCompleted();
-      // return { success: false, data: null };
     }
   };
 
@@ -60,7 +57,7 @@ const useImageCrop = (cropImages: any, doneCropCompleted: any) => {
     };
 
     try {
-      await postRequest("api/v1/assets/image/manual-crop", payload, apiCallBack);
+      await postRequest("api/v1/assets/image/manual-crop", payload, apiCallBack, originalImage);
     } catch (error) {
       console.error("Error cropping image:", error);
       ShowToastError("Cropping Failed");
@@ -70,9 +67,11 @@ const useImageCrop = (cropImages: any, doneCropCompleted: any) => {
   };
 
   const onCropChange = (data: any, index: any) => {
-    const newCrops = [...crops];
-    newCrops[index] = data;
-    setCrops(newCrops);
+    setCrops((prevState) => {
+      const newCrops = [...prevState];
+      newCrops[index] = data;
+      return newCrops;
+    });
   };
 
   return {
