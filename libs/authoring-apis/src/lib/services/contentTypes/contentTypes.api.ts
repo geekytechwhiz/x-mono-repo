@@ -176,8 +176,8 @@ export const eventAPIS = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
+      if (err instanceof ApolloError) throw err;
+      return err;
     }
   },
   updateContentType: async <T>(input: any): Promise<ApiResponse<T>> => {
@@ -189,8 +189,8 @@ export const eventAPIS = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
+      if (err instanceof ApolloError) throw err;
+      return err;
     }
   },
   publishContentType: async <T>(input: any): Promise<ApiResponse<T>> => {
@@ -202,8 +202,8 @@ export const eventAPIS = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
+      if (err instanceof ApolloError) throw err;
+      return err;
     }
   },
 };

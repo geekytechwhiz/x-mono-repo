@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { getSubDomain } from "@platformx/utilities";
 import {
   AnalyticsRef,
@@ -449,7 +450,7 @@ export const trimString = (string, length) => {
 export const updateEventSettings = (eventWholeRef, eventState, authInfo, i18n) => {
   const pageURL = eventWholeRef?.current?.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
   const eventSettings = {
-    socialog_url: getSubDomain() + "/" + i18n.language + "/" + "event" + `/${pageURL}`,
+    socialog_url: getSubDomain() + `/${i18n.language}/event/${pageURL}`,
     socialog_type: "event",
     socialog_sitename: eventWholeRef?.current?.title
       ? trimString(handleHtmlTags(eventWholeRef?.current?.title), 100)
@@ -469,7 +470,7 @@ export const updateEventSettings = (eventWholeRef, eventState, authInfo, i18n) =
     socialog_twitter_description: eventWholeRef?.current?.short_descriptionSocialShare
       ? trimString(handleHtmlTags(eventWholeRef?.current?.short_descriptionSocialShare), 163)
       : "",
-    socialog_twitter_url: getSubDomain() + "/" + i18n.language + "/" + "event" + `/${pageURL}`,
+    socialog_twitter_url: getSubDomain() + `/${i18n.language}/event/${pageURL}`,
     keywords: eventState.tagsSocialShare,
     seo_keywords: eventWholeRef?.current?.tags,
     seo_description: eventWholeRef?.current?.description
@@ -557,7 +558,7 @@ export const getModifiedField = (eventState, newTempData, updatedPartialObj) => 
 
 export const onBackButtonEvent = (e, unsavedChanges, setDialogOpen, navigateTo) => {
   e.preventDefault();
-  window.history.pushState(null, "", window.location.pathname + location?.search);
+  window.history.pushState(null, "", window.location.pathname + window.location?.search);
   if (unsavedChanges) {
     setDialogOpen(true);
   } else {
