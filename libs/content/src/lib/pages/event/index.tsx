@@ -1,3 +1,3 @@
-import createEvent from './CreateEvent'
+import createEvent from "./CreateEvent";
 
-export default createEvent
+export default createEvent;
