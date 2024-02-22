@@ -79,8 +79,8 @@ export const createClickImpression = (
   analytics: Analytics,
   type: string,
   secondaryArgs: any,
-  buttonDataObj: ButtonObjInfo,
-  cardDataObj: CardDataObj,
+  buttonDataObj: ButtonObjInfo | undefined,
+  cardDataObj: CardDataObj | undefined,
 ) => {
   let buttonURL = IMPRESSIONS.NA;
   let contentTitle = IMPRESSIONS.NA;
@@ -198,13 +198,19 @@ export const snowplowPrelemClickImpression = (
   analytics: Analytics,
   type: string,
   secondaryArgs: any,
-  buttonDataObj: ButtonObjInfo,
-  cardDataObj: CardDataObj,
+  buttonDataObj: ButtonObjInfo | undefined,
+  cardDataObj: CardDataObj | undefined,
 ) => {
   return {
     schema: secondaryArgs?.clickImpressionSchema,
     data: {
-      ...createClickImpression(analytics, type, secondaryArgs, buttonDataObj, cardDataObj),
+      ...createClickImpression(
+        analytics,
+        type,
+        secondaryArgs,
+        buttonDataObj || {},
+        cardDataObj || {},
+      ),
       siteName: secondaryArgs?.sitename || IMPRESSIONS.NA,
       environment: secondaryArgs?.environment || IMPRESSIONS.NA,
     },

@@ -7,7 +7,7 @@ import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Props } from "./types";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { SecondaryArgs, Content } from "./interface";
-import { DE_FLAG, EN_FLAG, FR_FLAG } from "@platformx/utilities";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 
 const siteLevelSchema = {
   siteName: "X",

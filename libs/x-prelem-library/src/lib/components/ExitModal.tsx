@@ -1,14 +1,13 @@
 import {
   Box,
   Button,
-  IconButton,
-  Typography,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  IconButton,
+  Typography,
 } from "@mui/material";
-import React from "react";
 import { DialogCloseIcon, PopupDeleteIcon } from "@platformx/utilities";
 import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";

@@ -77,8 +77,10 @@ const ScoreScreen = ({ data, backToHome, showAnswers, fetchCroppedUrl }: any) =>
             flexDirection: "column",
             textAlign: "center",
           }}>
-          <Typography variant='h1bold' color="textColor">{title}</Typography>
-          <Typography variant='h5medium' color="textColor" sx={{ margin: "6px 0 0px 0" }}>{`${t(
+          <Typography variant='h1bold' color='textColor'>
+            {title}
+          </Typography>
+          <Typography variant='h5medium' color='textColor' sx={{ margin: "6px 0 0px 0" }}>{`${t(
             "you_scored_text",
           )} ${score} ${t("out_of")} ${quizData.length}`}</Typography>
           <Box
@@ -113,7 +115,7 @@ const ScoreScreen = ({ data, backToHome, showAnswers, fetchCroppedUrl }: any) =>
                 bottom: 0,
                 margin: "auto",
               }}></Box>
-            <Typography variant='h1bold' color="textColor">
+            <Typography variant='h1bold' color='textColor'>
               {display_scores === "Percentage" ? `${percentage}%` : `${score}/${quizData.length}`}
             </Typography>
           </Box>
@@ -140,7 +142,7 @@ const ScoreScreen = ({ data, backToHome, showAnswers, fetchCroppedUrl }: any) =>
               color: "#fff",
               textAlign: "center",
             }}>
-            <Typography variant='h1bold' color="textColor">
+            <Typography variant='h1bold' color='textColor'>
               {percentage < 25
                 ? `“${result_range_1}”`
                 : percentage > 24 && percentage < 50

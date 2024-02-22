@@ -29,7 +29,7 @@ data:
   NX_KEYCLOAK_URI: https://dev.idp.hcl-x.com
   NX_PUBLISH_URI: https://dev.hcl-x.com/
   NX_REALM: platform-x
-  NX_REDIRECT_URI: https://dev.monorepo.console.hcl-x.com/en/
+  NX_REDIRECT_URI: https://dev.monorepo.console.hcl-x.com
   NX_CHAT_GPT_PROMPT: Please write 3 paragraph article about
   NX_GCP_URL: https://storage.googleapis.com
   NX_BUCKET_NAME: cropped_image_public
@@ -50,8 +50,9 @@ data:
   NX_PRELEM_THEME: light
   NX_USERS_URI: https://dev.users.hcl-x.com/platform-x/
   NX_SITE_BASED_THEME: dev,,delhiuniversity
+
   NX_USER_REGISTER_SCHEMA: "iglu:com.hcl-x/user-registration-schema/jsonschema/1-0-2"
 kind: ConfigMap
 metadata:
-  name: hep-authoring-ui-config
-  namespace: dev-v2
+  name: hep-mono-authoring-ui-config
+  namespace: mavericks

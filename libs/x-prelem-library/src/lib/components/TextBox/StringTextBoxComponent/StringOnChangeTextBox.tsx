@@ -1,26 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "./StringTextBoxComponent.css";
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import CloseIcon from "@mui/icons-material/Close";
-import { InputAdornment, TextField } from "@mui/material";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import {
-  allowOnlyNumberInputData,
-  allowOnlyShippingLetterInputData,
-  allowOnlyLetterInputData,
-} from "@platformx/utilities";
+import { InputAdornment, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import "./StringTextBoxComponent.css";
 
-const allowInputParams = (e: any, key: string) => {
-  switch (key) {
-    case "number":
-      return allowOnlyNumberInputData(e);
-    case "CustomFirstName":
-      return allowOnlyShippingLetterInputData(e);
-    case "charter":
-      return allowOnlyLetterInputData(e);
-    default:
-      return null;
-  }
-};
 type StringOnChangeTextBoxProps = {
   maxLength?: number;
   name?: string;
@@ -152,3 +137,6 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
   );
 };
 export default StringOnChangeTextBox;
+function allowInputParams(e: any, customInPutAllowField: string) {
+  throw new Error("Function not implemented.");
+}

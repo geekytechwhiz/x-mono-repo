@@ -109,7 +109,7 @@
 //       searchTermURL?: string,
 //       sortByURL?: string
 //     ) => {
-//       // const publishPageURL = `${process.env.REACT_APP_PUBLISH_URI + i18n.language
+//       // const publishPageURL = `${process.env.NX_APP_PUBLISH_URI + i18n.language
 //       //   }/${parameter}`;
 //       const publishPageURL = `${getSubDomain()}/${i18n.language}/${parameter}`;
 //       if (
@@ -636,7 +636,7 @@
 //   //   // const folder = arr[5];
 //   //   // const pathnm = `${arr[6]}/${arr[7]}`;
 //   //   const folder = arr[6];
-//   //   const pathnm = arr[10];   
+//   //   const pathnm = arr[10];
 //   //   runFetchPageModel({
 //   //     variables: { folder: folder, path: pathnm },
 //   //   })
