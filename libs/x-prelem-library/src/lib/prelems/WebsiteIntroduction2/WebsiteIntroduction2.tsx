@@ -423,7 +423,6 @@ interface Analytics {
 
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
-  // eslint-disable-next-line to the line before.
   sendStructureDataToAuthoringCB: (structureData: string) => void;
   sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
   openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
