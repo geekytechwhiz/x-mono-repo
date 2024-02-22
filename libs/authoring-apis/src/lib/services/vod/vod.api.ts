@@ -32,6 +32,7 @@ export const fetchVodByIdAPI = {
       });
       return data;
     } catch (err: any) {
+      // eslint-disable-next-line no-console
       if (err instanceof ApolloError) console.log(err.graphQLErrors);
       throw err;
     }
