@@ -1,9 +1,24 @@
+/* eslint-disable no-debugger */
+
 import { ApolloProvider } from "@apollo/client";
 import { init as initApm } from "@elastic/apm-rum";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
+
+import { Suspense, memo, useEffect, useState } from "react";
+import { I18nextProvider, useTranslation } from "react-i18next";
+// import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+// import { CommentProvider } from './context/CommentsContext/CommentsContext';
+// import { ActionProvider } from './context/actionContext/ActionProvider';
+// import RootRouter from './router/rootRouter';
+// import { StoreProvider } from './store/ContextStore';
+// import LightTheme from './theme/lightTheme';
+// import { DefaultLocale } from './utils/constants';
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import {
@@ -14,13 +29,8 @@ import {
   getSelectedRoute,
   useUserSession,
 } from "@platformx/utilities";
-import { Suspense, memo, useEffect, useState } from "react";
-import { I18nextProvider, useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
@@ -56,23 +66,27 @@ const useStyles = makeStyles(() => ({
 }));
 
 function App() {
+  debugger;
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
-  const { pathname } = window.location;
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
+  console.log("routing", routing);
+  const { pathname } = window.location;
 
   useEffect(() => {
     const initializeApp = async () => {
+      console.log("initializeApp try out", pathname);
       try {
+        console.log("initializeApp try in ", pathname);
         if (
-          (pathname === "/en" ||
+          pathname === "/en" ||
           pathname === "/" ||
           pathname === `/${routing}/en` ||
-          Object.entries(userInfo)?.length === 0)&&window.location.search===""
+          (Object.entries(userInfo)?.length === 0 && window.location.search?.length === 0)
         ) {
           window.location.replace(AUTH_URL);
         }

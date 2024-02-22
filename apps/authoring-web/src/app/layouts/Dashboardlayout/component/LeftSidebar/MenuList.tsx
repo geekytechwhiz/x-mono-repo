@@ -4,12 +4,11 @@ import { Box } from "@mui/material";
 import { t } from "i18next";
 import { useEffect, useState } from "react";
 
-import { PollIcon } from "@platformx/utilities";
-import MenuItems from "./MenuItems";
-import { ShowToastError, useUserSession } from "@platformx/utilities";
 import { contentTypeSchemaApi } from "@platformx/authoring-apis";
+import { PollIcon, ShowToastError, useUserSession } from "@platformx/utilities";
 import MenuSitesListDropdown from "../../../../components/MenuSitesListDropdown/MenuSitesListDropdown";
 import { MenuData } from "../../../../hooks/useDynamicRoutes/menuData";
+import MenuItems from "./MenuItems";
 
 export default function Menu(props) {
   const [getSession] = useUserSession();
@@ -55,24 +54,26 @@ export default function Menu(props) {
     <Box className='menulist'>
       <MenuSitesListDropdown />
 
-      {dynamicMenu?.map((val, index) => {
-        const isShow = filtered?.includes(val.id);
-        return (
-          isShow && (
-            <MenuItems
-              key={index}
-              Title={val.Title}
-              MenuName={val.Menu}
-              open={props.open}
-              roles={val.roles}
-              props={val}
-              url={val.url}
-              handleMenuclose={props.handleMenuclose}
-              handleMenuAction={props.handleMenuAction}
-            />
-          )
-        );
-      })}
+      {dynamicMenu &&
+        dynamicMenu?.length > 0 &&
+        dynamicMenu?.map((val, index) => {
+          const isShow = filtered?.includes(val.id);
+          return (
+            isShow && (
+              <MenuItems
+                key={index}
+                Title={val.Title}
+                MenuName={val.Menu}
+                open={props.open}
+                roles={val.roles}
+                props={val}
+                url={val.url}
+                handleMenuclose={props.handleMenuclose}
+                handleMenuAction={props.handleMenuAction}
+              />
+            )
+          );
+        })}
     </Box>
   );
 }

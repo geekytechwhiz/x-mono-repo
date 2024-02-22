@@ -1,3 +1,5 @@
+/* eslint-disable no-debugger */
+
 import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
@@ -6,8 +8,7 @@ import {
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
-import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
@@ -15,8 +16,8 @@ export const useAuthentication = () => {
   const [getSession, updateSession] = useUserSession();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
-
-  const navigate = useNavigate();
+  const location = useLocation();
+  console.log("location", location);
   const handleSignIn = async (authCode) => {
     const payload = {
       code: authCode,
@@ -25,28 +26,36 @@ export const useAuthentication = () => {
       redirect_uri: AUTH_INFO.redirectUri,
       tenant_id: AUTH_INFO.realm,
     };
+    console.log("payload", payload);
+
     try {
+      console.log("login data before");
       const response = await authAPI.signIn("auth/session", payload);
+      console.log(response, "login data after");
+
       if (response && response.data) {
+        console.log(" response.data", response.data);
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find(
           (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase(),
         )?.name;
         updateSession(createSession(response.data, true, userRole));
+        console.log("userDetails", getSession());
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
+
+        // await getGlobalDataWithHeader(selected_site);
+
         localStorage.setItem("selectedSite", response.data.selected_site);
+
         const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
+
         const redirectPath =
-          selected_site?.toLowerCase() === "system" ? `sites/site-listing` : `dashboard`;
-        // navigate(`${selected_site}/${defaultLang}${redirectPath}`, { replace: true });
-        window.location.replace(
-          `${process.env.NX_BASE_URL}/${selected_site}/${defaultLang}/${redirectPath}`,
-        );
-      } else {
-        console.error("Error signing in:", response);
-        // navigate("/", { state: { errorCode: 500, errorMessage: "Internal Server Error" } });
+          selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
+        ///${selected_site}/${defaultLang}${redirectPath}
+        // navigate(`/dashboard`, { replace: true });
+        window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
       }
     } catch (error: any) {
       console.error("Error signing in:", error);
@@ -90,7 +99,7 @@ export const useAuthentication = () => {
           }
         }
       } else {
-        // localStorage.removeItem("selectedSite");
+        localStorage.removeItem("selectedSite");
         updateSession(null);
         window.location.replace(AUTH_URL);
       }
@@ -100,36 +109,28 @@ export const useAuthentication = () => {
     }
   };
 
-  useEffect(() => {
-    
-    if (
-      Object.entries(getSession()?.userInfo || {}).length < 1 &&
-      !location.search.includes("code")
-    ) {
-      localStorage.removeItem("selectedSite");
-    }
-    if (
-      location.search.includes("code") &&
-      Object.entries(getSession()?.userInfo || {}).length === 0
-    ) {
-      handleSignIn(location.search.split("code=")[1]);
-    } else if (
-      location.search.includes("code") &&
-      Object.entries(getSession()?.userInfo || {}).length !== 0
-    ) {
-      const selected_site = getSession()?.userInfo.selected_site;
-      const lang = getSession()?.userInfo.preferred_sites_languages?.[selected_site] || "en";
+  // useEffect(() => {
+  //   debugger
+  //   if (Object.entries(getSession()?.userInfo || {}).length < 1 && !location.search.includes('code')) {
+  //     localStorage.removeItem('selectedSite');
+  //   }
+  //   if (location.search.includes('code') && Object.entries(getSession()?.userInfo || {}).length === 0) {
+  //     handleSignIn(location.search.split('code=')[1]);
+  //   } else if (location.search.includes('code') && Object.entries(getSession()?.userInfo || {}).length !== 0) {
+  //     const selected_site = getSession()?.userInfo.selected_site;
+  //     const lang = getSession()?.userInfo.preferred_sites_languages?.[selected_site] || 'en';
 
-      if (selected_site?.toLowerCase() === "system") {
-        navigate(`/${selected_site}/${lang}/sites/site-listing`);
-      } else {
-        navigate(`/dashboard`); // TODO `/${selected_site}/${lang}/dashboard`);
-      }
-    } else if ((!location.search && location.pathname === "/") || location.pathname === "/error") {
-      console.log("AUTH_URL", AUTH_URL);
-      window.location.replace(AUTH_URL);
-    }
-  }, [code]);
+  //     if (selected_site?.toLowerCase() === 'system') {
+  //       navigate(`/${selected_site}/${lang}/sites/site-listing`);
+  //     } else {
+
+  //       navigate(`/dashboard`);// TODO `/${selected_site}/${lang}/dashboard`);
+  //     }
+  //   } else if (!location.search && location.pathname === '/' || location.pathname === '/error') {
+  //     console.log('AUTH_URL', AUTH_URL);
+  //     window.location.replace(AUTH_URL);
+  //   }
+  // }, [location, getSession, navigate, code]);
 
   return { handleSignIn, verifySession };
 };
