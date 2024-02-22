@@ -91,7 +91,7 @@ export const CreatePoll = (): JSX.Element => {
     title: "",
     description: "",
   });
-  const [selectedVideo, setSelectedVideo] = useState({
+  const [, setSelectedVideo] = useState({
     Thumbnail: "",
     title: "",
     description: "",
@@ -101,7 +101,7 @@ export const CreatePoll = (): JSX.Element => {
   const [isFeatured, setIsFeatured] = useState(false);
   const [tagArr, setTagArr] = useState<any>([]);
   const [workflow, setWorkflow] = useState({});
-  const [selectedTag, setselectedTag] = useState<any>([]);
+  // const [selectedTag, setselectedTag] = useState<any>([]);
   const [key, setKey] = useState("");
   const [answerId, setAnswerId] = useState("");
   const [parentToolTip, setParentToolTip] = useState("");
@@ -109,9 +109,9 @@ export const CreatePoll = (): JSX.Element => {
   const scrollDebounceRef = useRef<any>(null);
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
-  const [socialShareExpanded, setSocialShareExpanded] = useState(
-    pollPageUrl.searchParams.get("open") ? true : false,
-  );
+  // const [socialShareExpanded, setSocialShareExpanded] = useState(
+  //   pollPageUrl.searchParams.get("open") ? true : false,
+  // );
   const [timerState, setTimerState] = useState(
     localStorage.getItem("contentTypeTimerState") === "true" ? true : false,
   );
@@ -154,7 +154,7 @@ export const CreatePoll = (): JSX.Element => {
     { id: "2", option: "", image: "" },
   ]);
   const [editedSD, setEditedSD] = useState({});
-  const [filedChanges, setFieldChanges] = useState(false);
+  const [, setFieldChanges] = useState(false);
   const [isReload, setIsReload] = useState(false);
   const { comments } = useComment();
   const login_user_id = userInfo?.user_id;
@@ -226,7 +226,7 @@ export const CreatePoll = (): JSX.Element => {
       getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ContentType.Poll));
     }
   }, []);
-  const updateField = (updatedPartialObj, callPreview = false) => {
+  const updateField = (updatedPartialObj) => {
     updateTempObj.current = updatedPartialObj;
     const newTempData = JSON.parse(JSON.stringify(pollInstance));
     const tempObjField = {
@@ -295,21 +295,21 @@ export const CreatePoll = (): JSX.Element => {
   const pollRef = useRef<any>(defPoll);
   const tagRef = useRef<any>([]);
 
-  const [isPublishDisabled, setPublishDisabled] = useState<boolean>(true);
-  const [isPublishPreviewDisabled, setIsPublishPreviewDisabled] = useState<boolean>(false);
-  const [isDraftDisabled, setDraftDisabled] = useState<boolean>(true);
-  const publishViewButtonHandle = () => {
-    setShowPublishConfirm(false);
-  };
-  const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
-    setPollState({
-      ...pollState,
-      is_schedule_publish: isPublish,
-      schedule_publish_datetime: publishTime,
-      is_schedule_unpublish: isUnpublish,
-      schedule_unpublish_datetime: unPublishTime,
-    });
-  };
+  // const [isPublishDisabled, setPublishDisabled] = useState<boolean>(true);
+  // const [isPublishPreviewDisabled, setIsPublishPreviewDisabled] = useState<boolean>(false);
+  // const [isDraftDisabled, setDraftDisabled] = useState<boolean>(true);
+  // const publishViewButtonHandle = () => {
+  //   setShowPublishConfirm(false);
+  // };
+  // const handleSchedulePublish = (isPublish, publishTime, isUnpublish, unPublishTime) => {
+  //   setPollState({
+  //     ...pollState,
+  //     is_schedule_publish: isPublish,
+  //     schedule_publish_datetime: publishTime,
+  //     is_schedule_unpublish: isUnpublish,
+  //     schedule_unpublish_datetime: unPublishTime,
+  //   });
+  // };
   const updatePollSettings = (pageUrl) => {
     const PollSettings = {
       socialog_url: `${getSubDomain()}/${i18n.language}/poll/${pageUrl}`,
@@ -361,7 +361,7 @@ export const CreatePoll = (): JSX.Element => {
       current_page_url: `/${pageURL}`,
       settings: { ...updatePollSettings(pageURL) },
     };
-    updateField(updatedObj, callPreview);
+    updateField(updatedObj);
   };
   const buildUrl = (page_state) => {
     const url =
@@ -459,12 +459,12 @@ export const CreatePoll = (): JSX.Element => {
   const dateFormat = (dataTime) => {
     return dataTime && format(new Date(dataTime), "h:mm aa, dd LLLL");
   };
-  const pageExistPopup = {
-    saveAsDraftTitle: "Poll already exists!",
-    saveAsDraftDescription: "Are you sure you want to continue?",
-    saveAsDraftCloseText: "No",
-    saveAsDraftConfirmText: "Yes",
-  };
+  // const pageExistPopup = {
+  //   saveAsDraftTitle: "Poll already exists!",
+  //   saveAsDraftDescription: "Are you sure you want to continue?",
+  //   saveAsDraftCloseText: "No",
+  //   saveAsDraftConfirmText: "Yes",
+  // };
   const publishPopup = useRef({
     publishTitle: "Congratulations!",
     publishDescription:
@@ -552,8 +552,8 @@ export const CreatePoll = (): JSX.Element => {
     pageState,
     IsDuplicate = false,
     isWorkflow = true,
-    props = {},
-    event_step = "",
+    // props = {},
+    // event_step = "",
   ) => {
     setIsLoading(true);
     const structureData =
@@ -815,7 +815,7 @@ export const CreatePoll = (): JSX.Element => {
           publishPoll(draftPageURL ? draftPageURL : currentPollData.current);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         setTimerState(false);
         setLastmodifiedDate("");
         ShowToastError(t("api_error_toast"));
@@ -862,7 +862,7 @@ export const CreatePoll = (): JSX.Element => {
         setIsEdited(false);
       }
       if (!currentPollData.current && isDraft) {
-        createPoll(DRAFT, false, status, props, event_step);
+        createPoll(DRAFT, false, status);
       } else {
         updatePOLL(DRAFT, status, props, event_step);
       }
@@ -887,7 +887,7 @@ export const CreatePoll = (): JSX.Element => {
     } = pollState;
     const emptyAnswers = answers.filter((ans) => ans.option === "");
     const emptyImageOptions = answers.filter((ans) => ans.image === "");
-    const checkOptionsChars = answers.filter((ans) => ans.option.length > 50);
+    // const checkOptionsChars = answers.filter((ans) => ans.option.length > 50);
     const shortDesc = pollState.short_description;
     if (title === "") {
       ShowToastError(`${t("title")} ${t("is_required")}`);
@@ -1009,16 +1009,16 @@ export const CreatePoll = (): JSX.Element => {
       keyName === "socialShareImgURL" && ShowToastError(t("api_error_toast"));
     }
   };
-  const handleSelectedVideo = (video, id) => {
-    setSelectedVideo(video);
-    setPollState({
-      ...pollState,
-      title: video?.title,
-      description: video?.description,
-      imagevideoURL: video?.imagevideoURL,
-      thumbnailURL: video?.thumbnailURL,
-    });
-  };
+  // const handleSelectedVideo = (video, id) => {
+  //   setSelectedVideo(video);
+  //   setPollState({
+  //     ...pollState,
+  //     title: video?.title,
+  //     description: video?.description,
+  //     imagevideoURL: video?.imagevideoURL,
+  //     thumbnailURL: video?.thumbnailURL,
+  //   });
+  // };
   const setImageOrVideoToDefault = () => {
     setSelectedImage({
       title: "",
@@ -1088,12 +1088,12 @@ export const CreatePoll = (): JSX.Element => {
     navigate(`?path=${pollRef.current?.page}`);
   };
 
-  const saveAsDraftPopup = {
-    saveAsDraftTitle: "Saved as draft",
-    saveAsDraftDescription: "Your Poll has been saved successfully!",
-    saveAsDraftCloseText: "Edit",
-    saveAsDraftConfirmText: "Go to Poll Listing",
-  };
+  // const saveAsDraftPopup = {
+  //   saveAsDraftTitle: "Saved as draft",
+  //   saveAsDraftDescription: "Your Poll has been saved successfully!",
+  //   saveAsDraftCloseText: "Edit",
+  //   saveAsDraftConfirmText: "Go to Poll Listing",
+  // };
 
   const saveQuestionCallBack = (queTitle, queDesc) => {
     setPollState({
