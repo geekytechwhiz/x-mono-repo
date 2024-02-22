@@ -348,7 +348,7 @@ export const CreatePoll = (): JSX.Element => {
     return PollSettings;
   };
 
-  const updateCurrentInstance = (pageURL, callPreview = false) => {
+  const updateCurrentInstance = (pageURL) => {
     const updatedObj = {
       page: pageURL,
       title: pollRef?.current?.title,
