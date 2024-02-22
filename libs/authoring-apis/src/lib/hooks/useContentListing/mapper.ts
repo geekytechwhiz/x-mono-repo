@@ -132,98 +132,99 @@ export const mapDuplicateContent = (
   language: string,
 ) => {
   let url = "";
+  let updatedSelectedContent = selectedContent;
   if (title) {
     url = formatUrl(title);
-    selectedContent = {
+    updatedSelectedContent = {
       ...selectedContent,
       page: title,
       title: title,
       last_modifiedBy: username,
     };
   } else {
-    url = selectedContent?.page;
+    url = updatedSelectedContent?.page;
   }
   const commonFields = {
     background_content: {
-      objectType: selectedContent?.background_content?.objectType,
-      Url: selectedContent?.background_content?.Url,
+      objectType: updatedSelectedContent?.background_content?.objectType,
+      Url: updatedSelectedContent?.background_content?.Url,
       Title: "",
-      Thumbnail: selectedContent?.background_content?.Url,
-      Color: selectedContent?.background_content?.Color,
+      Thumbnail: updatedSelectedContent?.background_content?.Url,
+      Color: updatedSelectedContent?.background_content?.Color,
     },
-    display_scores: selectedContent?.display_scores,
+    display_scores: updatedSelectedContent?.display_scores,
   };
   const tempObjField =
     contentType === "Quiz"
       ? {
           ...commonFields,
-          questions: selectedContent?.questions,
-          result_range_1: selectedContent?.result_range_1,
-          result_range_2: selectedContent?.result_range_2,
-          result_range_3: selectedContent?.result_range_3,
-          result_range_4: selectedContent?.result_range_4,
+          questions: updatedSelectedContent?.questions,
+          result_range_1: updatedSelectedContent?.result_range_1,
+          result_range_2: updatedSelectedContent?.result_range_2,
+          result_range_3: updatedSelectedContent?.result_range_3,
+          result_range_4: updatedSelectedContent?.result_range_4,
         }
       : contentType === "Article"
       ? {
-          banner: selectedContent?.banner,
-          sub_title: selectedContent?.sub_title,
+          banner: updatedSelectedContent?.banner,
+          sub_title: updatedSelectedContent?.sub_title,
         }
       : contentType === "Event"
       ? {
-          banner_image: selectedContent?.banner_image,
-          thumbnail_image: selectedContent?.thumbnail_image,
-          actual_address: selectedContent?.actual_address,
-          event_end_date: selectedContent?.event_end_date,
-          event_start_date: selectedContent?.event_start_date,
-          virtual_address: selectedContent?.virtual_address,
-          google_api_address: selectedContent?.google_api_address,
+          banner_image: updatedSelectedContent?.banner_image,
+          thumbnail_image: updatedSelectedContent?.thumbnail_image,
+          actual_address: updatedSelectedContent?.actual_address,
+          event_end_date: updatedSelectedContent?.event_end_date,
+          event_start_date: updatedSelectedContent?.event_start_date,
+          virtual_address: updatedSelectedContent?.virtual_address,
+          google_api_address: updatedSelectedContent?.google_api_address,
         }
       : {
           ...commonFields,
-          question_background_content: selectedContent?.question_background_content,
-          poll_description: selectedContent?.description,
-          poll_question: selectedContent?.poll_question,
-          poll_result: selectedContent?.poll_result,
-          poll_title: selectedContent?.page,
-          options_compound_fields: selectedContent?.options_compound_fields,
+          question_background_content: updatedSelectedContent?.question_background_content,
+          poll_description: updatedSelectedContent?.description,
+          poll_question: updatedSelectedContent?.poll_question,
+          poll_result: updatedSelectedContent?.poll_result,
+          poll_title: updatedSelectedContent?.page,
+          options_compound_fields: updatedSelectedContent?.options_compound_fields,
           start_date: new Date(),
-          end_date: selectedContent?.end_date,
+          end_date: updatedSelectedContent?.end_date,
         };
   const contentToSend = {
     CommonFields: {
       analytics: "",
-      analytics_enable: selectedContent?.analytics_enable,
-      category: selectedContent?.category,
-      createdBy: selectedContent?.createdBy,
+      analytics_enable: updatedSelectedContent?.analytics_enable,
+      category: updatedSelectedContent?.category,
+      createdBy: updatedSelectedContent?.createdBy,
       creationDate: new Date().toISOString(),
       current_page_url: `/${url}`,
-      description: selectedContent?.description,
-      is_edit: selectedContent?.is_edit,
+      description: updatedSelectedContent?.description,
+      is_edit: updatedSelectedContent?.is_edit,
       modificationDate: new Date().toISOString(),
-      others: selectedContent?.others,
+      others: updatedSelectedContent?.others,
       page: url,
-      // page_lastmodifiedby: selectedContent?.createdBy,
+      // page_lastmodifiedby: updatedSelectedContent?.createdBy,
       page_state: "DRAFT",
       parent_page_url: "/",
-      robot_txt: selectedContent?.robot_txt,
-      seo_enable: selectedContent?.seo_enable,
-      settings: selectedContent?.settingsProperties,
-      short_description: selectedContent?.short_description,
-      short_title: selectedContent?.short_title,
-      site_name: selectedContent?.site_name,
-      sitemap: selectedContent?.sitemap,
+      robot_txt: updatedSelectedContent?.robot_txt,
+      seo_enable: updatedSelectedContent?.seo_enable,
+      settings: updatedSelectedContent?.settingsProperties,
+      short_description: updatedSelectedContent?.short_description,
+      short_title: updatedSelectedContent?.short_title,
+      site_name: updatedSelectedContent?.site_name,
+      sitemap: updatedSelectedContent?.sitemap,
       structure_data: JSON.stringify(
-        getUpdatedStructuredData(contentType, selectedContent, language),
+        getUpdatedStructuredData(contentType, updatedSelectedContent, language),
       ),
-      tags: selectedContent?.tags,
+      tags: updatedSelectedContent?.tags,
       title: url,
       IsConfirm: IsDuplicate,
       page_lastmodifiedby: username,
     },
     ObjectFields: {
       ...tempObjField,
-      published_images: selectedContent?.published_images,
-      original_image: selectedContent?.original_image,
+      published_images: updatedSelectedContent?.published_images,
+      original_image: updatedSelectedContent?.original_image,
     },
   };
 
