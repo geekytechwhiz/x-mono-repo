@@ -97,14 +97,14 @@ const getUpdatedStructuredData = (
   },
   language: string,
 ) => {
-  if (contentType.toLowerCase() == "Article".toLowerCase()) {
+  if (contentType.toLowerCase() === "Article".toLowerCase()) {
     return ArticleMapper.updateStructureData(
       content,
       content.banner,
       content.keywords,
       content.current_page_url,
     );
-  } else if (contentType.toLowerCase() == "Poll".toLowerCase()) {
+  } else if (contentType.toLowerCase() === "Poll".toLowerCase()) {
     const PollStructureData = {
       "@context": "https://schema.org",
       "@type": "VoteAction",
@@ -131,7 +131,6 @@ export const mapDuplicateContent = (
   username: string,
   language: string,
 ) => {
-  const temp = "";
   let url = "";
   if (title) {
     url = formatUrl(title);
