@@ -114,6 +114,7 @@ export const Card = ({
       published: view,
       unpublished: preview,
     };
+    // eslint-disable-next-line default-case
     switch (tagName) {
       // case 'vod':
       //   handlePageView();
@@ -152,7 +153,6 @@ export const Card = ({
         }
         break;
       default:
-        return "";
     }
   };
   const handleDeleteButton = () => {
@@ -175,13 +175,13 @@ export const Card = ({
   };
 
   const getContentCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase()
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
       ? CATEGORY_PAGE
       : CATEGORY_CONTENT;
   };
 
   const getContentSubCategory = () => {
-    return tagName.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
+    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (
@@ -193,7 +193,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} alt='' />
+                <img src={iconsList[dataList.tagName]} alt='img' />
               </Box>
 
               <Box className='rightspace'>

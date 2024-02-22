@@ -74,7 +74,9 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   }, [contentType]);
 
   const createContentNew = () => {
-    navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
+    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+      state: contentType?.trim()?.toLowerCase(),
+    });
   };
 
   const handleFilter = (filter: string) => {
@@ -103,6 +105,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       />
 
       <ContentListing
+        content={contentType}
         contentList={contentArray}
         deleteContent={memoizedMethods.deleteContent}
         dataList={contentArray}
