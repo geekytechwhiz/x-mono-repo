@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { updateContentList } from "@platformx/authoring-state";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { SearchCourseListQueries } from "../../graphQL/queries/courseQueries";
 import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
 import { sortedData } from "../../utils/helper";
 import { mapFetchALL } from "../useContentListing/mapper";
@@ -37,17 +38,23 @@ const useContentSearch = ({
     rows: ROW_SIZE,
   });
 
+  const variableCourse: any = { ...variables, filter: "Course", isListing: true };
+
+  // const variableCourse: any = { filter: "Course", isListing: true };
+
   const fetchQuery =
-    contentType?.toLocaleLowerCase() === "Course"
-      ? SearchContentListQueries.FETCH_COURSE_LIST
+    contentType?.toLocaleLowerCase() === "course"
+      ? SearchCourseListQueries.FETCH_COURSE_LIST
       : SearchContentListQueries.FETCH_CONTENT_TYPE_LIST;
 
   const { loading, error, data, fetchMore, refetch } = useQuery(fetchQuery, {
-    variables,
+    variables: contentType?.toLocaleLowerCase() === "course" ? variableCourse : variables,
     fetchPolicy: "no-cache",
   });
   useEffect(() => {
-    const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
+    const sortedContent = sortedData(
+      data?.authoring_getContentTypeItems || data?.authoring_recentContents || [],
+    );
 
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({

@@ -2,6 +2,7 @@ import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 
 import { Content, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { SitePage } from "@platformx/site-page";
 import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
@@ -122,6 +123,44 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
+
+  // {
+  //   path: "/site-setting/media-handle",
+  //   element: (
+  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+  //       <MediaHandle />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/global-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <GlobalSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/feature-flag",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <FeatureFlagSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
