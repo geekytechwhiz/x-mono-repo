@@ -6,6 +6,7 @@ import { SitePage } from "@platformx/site-page";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import { CreateUserGroup } from "@platformx/user-groups";
 
 export const routes: RouteConfig[] = [
   // {
@@ -92,6 +93,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/user-groups/create",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <CreateUserGroup />
       </ProtectedRoute>
     ),
   },

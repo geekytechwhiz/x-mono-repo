@@ -5,6 +5,7 @@ import {
   CookieIcon,
   CourseIcon,
   EventsIcon,
+  FeatureStarIcon,
   FooterMenuUpdated,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
@@ -17,7 +18,6 @@ import {
   SitesIcon,
   UsersIcon,
   VODIcon,
-  FeatureStarIcon,
 } from "@platformx/utilities";
 
 const ContentRoutes = {
@@ -154,6 +154,15 @@ export const MenuData = [
         id: "community_space",
         category: "Community",
         subCategory: "spaces",
+        roles: ["admin", "Super Admin"],
+      },
+      {
+        MenuName: "User Groups",
+        Icon: SitesIcon,
+        url: "/",
+        id: "community_space",
+        category: "Community",
+        subCategory: "User Groups",
         roles: ["admin", "Super Admin"],
       },
     ],
