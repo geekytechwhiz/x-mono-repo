@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
+// import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   AutoCompleteText,
@@ -15,12 +15,12 @@ import { useCustomStyle } from "../../Poll.style";
 
 const SocialShare = ({ state, setState, pollRef, unsavedChanges }) => {
   const { t } = useTranslation();
-  const [socialShareInfo, setSocialShareInfo] = useState({
-    url: "",
-    title: "",
-    description: "",
-    tags: [],
-  });
+  // const [socialShareInfo, setSocialShareInfo] = useState({
+  //   url: "",
+  //   title: "",
+  //   description: "",
+  //   tags: [],
+  // });
   const handleChange = (event) => {
     unsavedChanges.current = true;
     setState({

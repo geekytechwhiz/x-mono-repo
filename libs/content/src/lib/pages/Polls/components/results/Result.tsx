@@ -6,7 +6,7 @@ import { useCustomStyle } from "../../Poll.style";
 // import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
 import { CommonBoxWithNumber, RadioControlLabel, TitleSubTitle } from "@platformx/utilities";
 
-const Result = ({ state, setState, unsavedChanges }) => {
+const Result = ({ state, setState }) => {
   const { t } = useTranslation();
   const handleChange = (event) => {
     setState({ ...state, scoreBy: event.target.value });

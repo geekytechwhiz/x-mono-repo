@@ -73,19 +73,18 @@ export const CreatePoll = (): JSX.Element => {
   const [showExitWarning, setShowExitWarning] = useState(false);
   const unsavedChanges = useRef<boolean>(false);
   const qusUnsavedChanges = useRef<boolean>(false);
-  const [isEdited, setIsEdited] = useState<boolean>(false);
+  const [, setIsEdited] = useState<boolean>(false);
   const navigate = useNavigate();
   const [previewButton, setPreviewButton] = useState(true);
-  const [publishButton, setPublishButton] = useState(false);
+  const [publishButton] = useState(false);
   const [saveButton, setSaveButton] = useState(false);
-  const [isPoll, setisPoll] = useState(true);
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const galleryType = useRef<string>("Images");
   const [openAddQestion, setOpenAddQuestion] = useState(false);
-  const [isClickedQueList, setIsClickedQueList] = useState(false);
-  const [PublishUrl, setPublishUrl] = useState("");
+  const [isClickedQueList] = useState(false);
+  const [, setPublishUrl] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState({
     Thumbnail: "",

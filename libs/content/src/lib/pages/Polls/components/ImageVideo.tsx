@@ -7,7 +7,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useCustomStyle } from "./quiz.style";
 
-export const ImageVideo = ({ state, setState, pollRef, unsavedChanges, showGallery }) => {
+export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
   const classes = useCustomStyle();

@@ -2,9 +2,9 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useComment } from "@platformx/authoring-apis";
+// import { useComment } from "@platformx/authoring-apis";
 import { CommonBoxWithNumber, TitleSubTitle, BasicSwitchText } from "@platformx/utilities";
-// import { useComment } from "../../hooks/useComment/useComment";
+import { useComment } from "@platformx/authoring-apis";
 // import BasicSwitchText from "../Common/BasicSwitchText";
 // import TitleSubTitle from "../Common/TitleSubTitle";
 // import CommentWrapper from "../ContentRewiew/CommentWrapper";
@@ -22,8 +22,8 @@ const AnswerContent = ({
   qusUnsavedChanges,
 }) => {
   const { t } = useTranslation();
-  const [isDisable, setsDisable] = useState<boolean>(false);
-  const { comments, handleCommentClick, scrollToRef, selectedElementId } = useComment();
+  const [isDisable] = useState<boolean>(false);
+  const { scrollToRef } = useComment();
   const handleChange = (event) => {
     setAddImage(event.target.checked);
   };

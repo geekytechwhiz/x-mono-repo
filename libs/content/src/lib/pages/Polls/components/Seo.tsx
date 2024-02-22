@@ -25,9 +25,9 @@ const Seo = ({
   answers,
 }) => {
   const { t } = useTranslation();
-  const [isDisable, setIsDisable] = useState(false);
+  const [isDisable] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [copyStatus, setICopyStatus] = useState<boolean>(false);
+  // const [copyStatus, setICopyStatus] = useState<boolean>(false);
   const [isEdit, setIsEdit] = useState(false);
   const [seoInfo, setSeoInfo] = useState<any>({
     showContent: true,
@@ -90,7 +90,7 @@ const Seo = ({
     setSeoToggle({ seo_enable: state?.seo_enable, seo_shared: true });
     setIsEdit(false);
     setEditedSD("");
-  }, [state?.poll_title, state?.poll_description, answers]);
+  }, [state.poll_title, state.poll_description, answers, state?.seo_enable, setEditedSD]);
   const classes = useCustomStyle();
   return (
     <Box id='seo' className={classes.mainStyleWrapper}>
