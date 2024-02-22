@@ -1,7 +1,8 @@
-import { gql } from '@apollo/client';
+/* eslint-disable template-tag-spacing */
+import { gql } from "@apollo/client";
 
 export const SearchContentListQueries = {
-  FETCH_CONTENT_TYPE_LIST: gql `
+  FETCH_CONTENT_TYPE_LIST: gql`
     query FETCH_CONTENT_TYPE_LIST(
       $contentType: authoring_ContentTypes!
       $pageFilter: authoring_PageFilter!
@@ -30,10 +31,10 @@ export const SearchContentListQueries = {
   // isListing: $isListing
   // filter: Course
   // isListing: true
-  FETCH_COURSE_LIST: gql `
+  FETCH_COURSE_LIST: gql`
     query FETCH_COURSE_LIST(
-      $pagination: authoring_Paginate!,
-      $filter: authoring_CONTENT_FILTER!,
+      $pagination: authoring_Paginate!
+      $filter: authoring_CONTENT_FILTER!
       $isListing: Boolean!
     ) {
       authoring_recentContents(

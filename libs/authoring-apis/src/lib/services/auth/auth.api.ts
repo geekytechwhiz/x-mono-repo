@@ -33,7 +33,6 @@ const authAPI = {
   },
   signIn: async (url: string, payload = {}) => {
     try {
-
       const res = await axios.post(process.env.NX_API_URI + url, payload, {
         headers: {
           "Content-Type": "application/json",

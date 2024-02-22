@@ -1,11 +1,7 @@
-import {
-  Box,
-  Grid,
-  Typography
-} from '@mui/material';
-import { TitleSubTitle } from './SchemaComponents';
-import BasicSwitch from './Switch/Switch';
-import ThemeConstants from '../themes/authoring/lightTheme/lightThemeVariable';
+import { Box, Grid, Typography } from "@mui/material";
+import { TitleSubTitle } from "./SchemaComponents";
+import BasicSwitch from "./Switch/Switch";
+import ThemeConstants from "../themes/authoring/lightTheme/lightThemeVariable";
 
 const BasicSwitchText = ({
   state,
@@ -14,16 +10,16 @@ const BasicSwitchText = ({
   title,
   subtitle,
   keyName,
-  child = '',
+  child = "",
 }) => {
   return (
     <Box>
       <Grid
         container
         rowSpacing={1}
-      // sx={{display: 'flex',
-      // flexDirection: 'row'}}
-      // columnSpacing={{ xs: 1, sm: 2, md: 2 }}
+        // sx={{display: 'flex',
+        // flexDirection: 'row'}}
+        // columnSpacing={{ xs: 1, sm: 2, md: 2 }}
       >
         <Grid
           item
@@ -32,27 +28,27 @@ const BasicSwitchText = ({
           md={5}
           sx={{
             paddingRight: {
-              xs: '10px',
-              sm: '10px',
-              md: '55px',
+              xs: "10px",
+              sm: "10px",
+              md: "55px",
             },
             // display: 'flex',
             // flexDirection: 'column'
-          }}
-        >
+          }}>
           <TitleSubTitle
             title={title}
             subTitle={subtitle}
-            titleVariant="h6medium"
-            subTitleVariant="h7regular"
+            titleVariant='h6medium'
+            subTitleVariant='h7regular'
           />
         </Grid>
         <Grid item xs={child ? 12 : 2} sm={7} md={7}>
-          <Box sx={{
-            display: "flex",
-            alignItems: "center",
-          }}>
-            <Box sx={{ marginLeft: { xs: child ? '-10px' : null, sm: '0px' } }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}>
+            <Box sx={{ marginLeft: { xs: child ? "-10px" : null, sm: "0px" } }}>
               <BasicSwitch
                 onChange={(e: any) => handleChange(e, keyName)}
                 checked={state}
@@ -60,9 +56,11 @@ const BasicSwitchText = ({
                 color={ThemeConstants.BLACK_COLOR}
               />
             </Box>
-            {
-              child && <Box sx={{ marginBottom: "8px" }}><Typography variant="h6medium">{child}</Typography></Box>
-            }
+            {child && (
+              <Box sx={{ marginBottom: "8px" }}>
+                <Typography variant='h6medium'>{child}</Typography>
+              </Box>
+            )}
           </Box>
         </Grid>
       </Grid>

@@ -1,11 +1,11 @@
-import { Dashboard } from "@platformx/dashboard";
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { RouteConfig } from "./routes.type";
-import { Content, CreateContent } from "@platformx/content";
+import { Dashboard } from "@platformx/dashboard";
 import { SitePage } from "@platformx/site-page";
 import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
   {
@@ -105,6 +105,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/preview",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
       </ProtectedRoute>
     ),
   },

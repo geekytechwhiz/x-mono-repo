@@ -7,11 +7,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
 
-import { Suspense, memo, useEffect, useState } from "react";
-import { I18nextProvider, useTranslation } from "react-i18next";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import {
@@ -22,12 +17,16 @@ import {
   getSelectedRoute,
   useUserSession,
 } from "@platformx/utilities";
+import { Suspense, memo, useEffect, useState } from "react";
+import { I18nextProvider, useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import RootRouter from "./router/RootRouter";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+import AppRouter from "./router/AppRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
-import AppRouter from "./router/AppRouter";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),

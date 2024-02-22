@@ -4,13 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
-import { useState } from "react";
 import successGif from "../../assets/gif/Success.gif";
 
 const SocialShareStepSuccess = ({ selectedTitle }) => {
-  const [activeStep, setActiveStep] = useState(0);
-
   return (
     <Box>
       <Grid>

@@ -79,12 +79,10 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
-import {
-  //getCurrentLang,
-  getUniqueTimeZone,
-} from "./lib/utils/helperFns";
+import { getUniqueTimeZone } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
@@ -158,6 +156,7 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  StructureDataDialog,
   TaskNotFound,
   TextArea,
   TextBox,
