@@ -88,6 +88,7 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
 
@@ -168,6 +169,7 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  StructureDataDialog,
   TaskNotFound,
   TextArea,
   TextBox,

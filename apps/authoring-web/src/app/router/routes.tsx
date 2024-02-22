@@ -1,7 +1,7 @@
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 
-import { Content, CreateContent } from "@platformx/content";
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
 import { SitePage } from "@platformx/site-page";
 import { CreateUser, UserListing } from "@platformx/user-management";
@@ -120,6 +120,14 @@ export const routes: RouteConfig[] = [
         isSideBar={false}
         isHeader={false}>
         <NavTreeCreation />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/preview",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
       </ProtectedRoute>
     ),
   },

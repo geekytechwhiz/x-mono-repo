@@ -1,8 +1,4 @@
 /* eslint-disable no-console */
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
-import React, { useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import axios from "axios";
 import { authAPI } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
@@ -11,6 +7,10 @@ import {
   getSelectedSite,
   useUserSession,
 } from "@platformx/utilities";
+import axios from "axios";
+import usePlatformAnalytics from "platform-x-utils/dist/analytics";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 import { routes } from "./routes";
 
@@ -98,7 +98,6 @@ function RootRouter() {
           );
         } else {
           navigate("/dashboard");
-
         }
       } else {
         // Handle missing data in response
@@ -114,7 +113,6 @@ function RootRouter() {
   };
 
   useEffect(() => {
-
     // Check if there is no active session and redirect to the login page
     if (!getSession()?.userInfo && !code) {
       localStorage.removeItem("selectedSite");
@@ -152,11 +150,11 @@ function RootRouter() {
     setLoader(false);
   }, [code]);
 
-  const handleLogin = () => {
-    console.log("login", AUTH_URL);
-    const loginURL = AUTH_URL;
-    window.location.replace(loginURL);
-  };
+  // const handleLogin = () => {
+  //   console.log("login", AUTH_URL);
+  //   const loginURL = AUTH_URL;
+  //   window.location.replace(loginURL);
+  // };
 
   return loader ? (
     <>
@@ -169,14 +167,13 @@ function RootRouter() {
       )}
     </>
   ) : (
+    <Routes>
+      <Route path='/' element={<>Home</>} />
 
-      <Routes>
-        <Route path='/' element={<>Home</>} />
-
-        {routes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-      </Routes>
+      {routes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
+    </Routes>
   );
 }
 export default RootRouter;

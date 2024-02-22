@@ -29,7 +29,7 @@ export interface ParagraphProps {
   style?: any;
 }
 
-const StyledParagraph = styled(Typography)(({ theme }) => ({
+const StyledParagraph = styled(Typography)(() => ({
   fontFamily: ThemeConstants.FONTNAMEPRIMARY,
   padding: 0,
   margin: 0,

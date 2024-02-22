@@ -16,7 +16,7 @@ import assetsApi from "./lib/services/assetsApi/assets.api";
 import authAPI from "./lib/services/auth/auth.api";
 import commentsApi from "./lib/services/comments/comments.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
-import contentTypeAPIs from "./lib/services/contentTypes/contentTypes.api";
+import contentTypeAPIs, { eventAPIS } from "./lib/services/contentTypes/contentTypes.api";
 import dashboardApi from "./lib/services/dashboard/dashBoard.api";
 import { multiSiteApi } from "./lib/services/multisite/multisite.api";
 import { createPgModel } from "./lib/services/page/page.api";
@@ -60,6 +60,7 @@ export {
   contentTypeSchemaApi,
   createPgModel,
   dashboardApi,
+  eventAPIS,
   fetchSocialShareList,
   fetchSocialShareProfile,
   fetchVodByIdAPI,

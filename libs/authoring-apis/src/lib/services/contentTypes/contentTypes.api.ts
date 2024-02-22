@@ -1,20 +1,20 @@
-import { ApolloError } from '@apollo/client';
-import graphqlInstance from '../../config/graphqlConfig';
-
+import { ApolloError } from "@apollo/client";
+import graphqlInstance from "../../config/graphqlConfig";
 import {
   CREATE_CONTENT_TYPE,
   DELETE_CONTENT_TYPE,
   PUBLISH_CONTENT_TYPE,
   UPDATE_CONTENT_TYPE,
-} from '../../graphQL/mutations/contentTypeMutations';
+} from "../../graphQL/mutations/contentTypeMutations";
 import {
   FETCH_CONTENT_BY_PATH,
   FETCH_CONTENT_TYPE_LIST_ALL,
-} from '../../graphQL/queries/contentTypesQueries';
-import { SearchContentListQueries } from '../../graphQL/queries/searchQueries';
-import { ROW_SIZE } from '../../utils/constants';
-import { sortedData } from '../../utils/helper';
-import { mapFetchALL } from './mapper';
+} from "../../graphQL/queries/contentTypesQueries";
+import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
+import { ROW_SIZE } from "../../utils/constants";
+import { sortedData } from "../../utils/helper";
+import { ApiResponse } from "../../utils/types";
+import { mapFetchALL } from "./mapper";
 
 // FetchQueries
 export const fetchContentByPath = FETCH_CONTENT_BY_PATH;
@@ -38,12 +38,11 @@ const contentTypeAPIs = {
       const { data } = await graphqlInstance.query({
         query: FETCH_CONTENT_BY_PATH,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError)
-        throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
   fetchContentAll: async (input: any) => {
@@ -51,12 +50,11 @@ const contentTypeAPIs = {
       const { data } = await graphqlInstance.query({
         query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError)
-        throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -72,16 +70,11 @@ const contentTypeAPIs = {
       start: reloadContent ? 0 : startIndex,
       rows: ROW_SIZE,
     };
-    const variables = mapFetchALL(
-      location.state,
-      filter,
-      contentType,
-      newPagination,
-    );
+    const variables = mapFetchALL(location.state, filter, contentType, newPagination);
     const { data } = await graphqlInstance.query({
       query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
       variables: variables,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
 
@@ -102,12 +95,11 @@ const contentTypeAPIs = {
       const { data, loading } = await graphqlInstance.query({
         query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return { data: data, loading: loading };
     } catch (err: any) {
-      if (err instanceof ApolloError)
-        throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
   fetchSuggestions: async (input: any) => {
@@ -115,12 +107,11 @@ const contentTypeAPIs = {
       const { data, loading } = await graphqlInstance.query({
         query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return { data: data, loading: loading };
     } catch (err: any) {
-      if (err instanceof ApolloError)
-        throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -145,12 +136,12 @@ const contentTypeAPIs = {
     const { data } = await graphqlInstance.query({
       query: SearchContentListQueries.FETCH_COURSE_LIST,
       variables: variables,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     const sortedContent = sortedData(data?.authoring_recentContents || []);
 
     return {
-      type: 'UPDATE_CONTENT',
+      type: "UPDATE_CONTENT",
       content: reloadContent
         ? [...JSON.parse(JSON.stringify(sortedContent))]
         : [...contentList, ...JSON.parse(JSON.stringify(sortedContent))],
@@ -162,3 +153,57 @@ const contentTypeAPIs = {
 };
 
 export default contentTypeAPIs;
+
+export const eventAPIS = {
+  fetchContent: async (input: any) => {
+    try {
+      const { data } = await graphqlInstance.query({
+        query: FETCH_CONTENT_BY_PATH,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      return data;
+    } catch (err: any) {
+      if (err instanceof ApolloError) throw err;
+    }
+  },
+  createContentType: async <T>(input: any): Promise<ApiResponse<T>> => {
+    try {
+      const { data } = await graphqlInstance.query({
+        query: CREATE_CONTENT_TYPE,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      return data;
+    } catch (err: any) {
+      if (err instanceof ApolloError) throw err;
+      return err;
+    }
+  },
+  updateContentType: async <T>(input: any): Promise<ApiResponse<T>> => {
+    try {
+      const { data } = await graphqlInstance.query({
+        query: UPDATE_CONTENT_TYPE,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      return data;
+    } catch (err: any) {
+      if (err instanceof ApolloError) throw err;
+      return err;
+    }
+  },
+  publishContentType: async <T>(input: any): Promise<ApiResponse<T>> => {
+    try {
+      const { data } = await graphqlInstance.query({
+        query: PUBLISH_CONTENT_TYPE,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      return data;
+    } catch (err: any) {
+      if (err instanceof ApolloError) throw err;
+      return err;
+    }
+  },
+};

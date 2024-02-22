@@ -8,16 +8,14 @@ import {
   usePlatformAnalytics,
   useUserSession,
 } from "@platformx/utilities";
-import { useLocation, useSearchParams } from "react-router-dom";
+// import { useLocation, useSearchParams } from "react-router-dom";
 import { createSession } from "../utils/helper";
 
 export const useAuthentication = () => {
   const [handleImpression] = usePlatformAnalytics();
   const [getSession, updateSession] = useUserSession();
-  const [searchParams] = useSearchParams();
-  const code = searchParams.get("code");
-  const location = useLocation();
-  console.log("location", location);
+  // const [searchParams] = useSearchParams();
+  // const location = useLocation();
   const handleSignIn = async (authCode) => {
     const payload = {
       code: authCode,
@@ -26,22 +24,17 @@ export const useAuthentication = () => {
       redirect_uri: AUTH_INFO.redirectUri,
       tenant_id: AUTH_INFO.realm,
     };
-    console.log("payload", payload);
 
     try {
-      console.log("login data before");
       const response = await authAPI.signIn("auth/session", payload);
-      console.log(response, "login data after");
 
       if (response && response.data) {
-        console.log(" response.data", response.data);
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find(
           (obj) => obj.site?.toLowerCase() === selected_site?.toLowerCase(),
         )?.name;
         updateSession(createSession(response.data, true, userRole));
-        console.log("userDetails", getSession());
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
 
@@ -49,10 +42,10 @@ export const useAuthentication = () => {
 
         localStorage.setItem("selectedSite", response.data.selected_site);
 
-        const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
+        // const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
 
-        const redirectPath =
-          selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
+        // const redirectPath =
+        //   selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
         ///${selected_site}/${defaultLang}${redirectPath}
         // navigate(`/dashboard`, { replace: true });
         window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
