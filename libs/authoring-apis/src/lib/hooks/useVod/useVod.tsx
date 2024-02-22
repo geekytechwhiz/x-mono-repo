@@ -87,7 +87,7 @@ const useVod = () => {
   const onCopy = (pageUrl) => {
     if (pageUrl) {
       navigator.clipboard.writeText(
-        `${process.env.NX_APP_PUBLISH_URI + i18n.language}/` + `video${pageUrl}`,
+        `${process.env.NX_APP_PUBLISH_URI + i18n.language}/video${pageUrl}`,
       );
       ShowToastSuccess(t("url_copy_toast"));
     } else {

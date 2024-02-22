@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 // import { Store } from '../../store/ContextStore';
 import { RootState } from "@platformx/authoring-state";
-import { AUTH_INFO, ThemeConstants } from "@platformx/utilities";
+import { ThemeConstants } from "@platformx/utilities";
 import { useSelector } from "react-redux";
 
 // import { ThemeConstantForPrelemThemeBasedOnSite } from '../../utils/helperFunctions';
@@ -25,13 +25,13 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 
-const prelemAuthoringHelper = {
-  isAuthoring: true,
-};
-const secondaryArgs = {
-  gcpUrl: AUTH_INFO.gcpUri,
-  bucketName: AUTH_INFO.gcpBucketName,
-};
+// const prelemAuthoringHelper = {
+//   isAuthoring: true,
+// };
+// const secondaryArgs = {
+//   gcpUrl: AUTH_INFO.gcpUri,
+//   bucketName: AUTH_INFO.gcpBucketName,
+// };
 const ContentPreview = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -46,48 +46,48 @@ const ContentPreview = () => {
     return newCache;
   });
   const [height, setHeight] = useState(300);
-  const [previewObject, setPreviewObject] = useState({
-    title: "",
-    short_description: "",
-    background_content: {
-      objectType: "",
-      Url: "",
-      Color: "",
-    },
-    display_scores: "",
-    result_range_1: "",
-    result_range_2: "",
-    result_range_3: "",
-    result_range_4: "",
-    questions: [
-      {
-        question_type: "",
-        question: "",
-        short_description: "",
-        background_content: {
-          Url: "",
-          IsImage: Boolean,
-          Title: "",
-          Description: "",
-          ColorCode: "",
-        },
-        is_image_option: Boolean,
-        options_compound_fields: [
-          {
-            option_id: Number,
-            option_image: {
-              url: "",
-              title: "",
-            },
-            is_correct: Boolean,
-            option_text: "",
-          },
-        ],
-      },
-    ],
-    options_compound_fields: "",
-    contentType: "",
-  });
+  // const [previewObject, setPreviewObject] = useState({
+  //   title: "",
+  //   short_description: "",
+  //   background_content: {
+  //     objectType: "",
+  //     Url: "",
+  //     Color: "",
+  //   },
+  //   display_scores: "",
+  //   result_range_1: "",
+  //   result_range_2: "",
+  //   result_range_3: "",
+  //   result_range_4: "",
+  //   questions: [
+  //     {
+  //       question_type: "",
+  //       question: "",
+  //       short_description: "",
+  //       background_content: {
+  //         Url: "",
+  //         IsImage: Boolean,
+  //         Title: "",
+  //         Description: "",
+  //         ColorCode: "",
+  //       },
+  //       is_image_option: Boolean,
+  //       options_compound_fields: [
+  //         {
+  //           option_id: Number,
+  //           option_image: {
+  //             url: "",
+  //             title: "",
+  //           },
+  //           is_correct: Boolean,
+  //           option_text: "",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   options_compound_fields: "",
+  //   contentType: "",
+  // });
   const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}
   <style>
     body {
@@ -105,7 +105,7 @@ const ContentPreview = () => {
   };
   useEffect(() => {
     if (Object.keys(currentContent).length > 0) {
-      setPreviewObject(currentContent);
+      // setPreviewObject(currentContent);
     } else {
       window.history.back();
     }
@@ -148,13 +148,13 @@ const ContentPreview = () => {
               sx={{
                 display: "flex",
                 backgroundColor:
-                  deviceType == tab.type
+                  deviceType === tab.type
                     ? ThemeConstants.PRIMARY_MAIN_COLOR
                     : ThemeConstants.WHITE_COLOR,
                 transition: "all 0.50s",
                 padding: "12px 27px",
                 borderRadius: "24px",
-                cursor: deviceType == tab.type ? "pointer" : "default",
+                cursor: deviceType === tab.type ? "pointer" : "default",
               }}
               onClick={() => {
                 setDeviceType(tab.type);
@@ -163,7 +163,7 @@ const ContentPreview = () => {
                 sx={{
                   fontSize: ThemeConstants.FONTSIZE_H2,
                   color:
-                    deviceType == tab.type
+                    deviceType === tab.type
                       ? ThemeConstants.WHITE_COLOR
                       : ThemeConstants.PRIMARY_MAIN_COLOR,
                   cursor: "pointer",
