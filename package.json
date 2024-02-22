@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "storybook:build:all": "nx run-many --target=build-storybook --all",
     "storybook:build:utilities": "nx run utilities:build-storybook",
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build": "nx build authoring-web",
-    "start": "nx serve authoring-web"
+    "start": "nx serve authoring-web",
+    "serve": "serve -s dist/apps/authoring-web",
+    "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
+    "deploy:userexp": "serve dist/apps/react-test -p 3000"
   },
   "private": true,
   "dependencies": {
@@ -57,8 +61,6 @@
     "@types/react-swipeable-views": "^0.13.1",
     "@types/react-swipeable-views-utils": "^0.13.3",
     "@types/styled-components": "^5.1.32",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
-    "@typescript-eslint/parser": "^6.9.1",
     "analytics": "^0.8.9",
     "axios": "^1.6.2",
     "clean-webpack-plugin": "^4.0.0",
@@ -67,7 +69,6 @@
     "dayjs": "^1.11.6",
     "dotenv": "^16.3.1",
     "dotenv-webpack": "^8.0.1",
-    "eslint-config-prettier": "^9.0.0",
     "formik": "^2.2.9",
     "graphql": "^16.3.0",
     "i18next": "23.6.0",
@@ -133,13 +134,13 @@
     "@nx/eslint": "17.2.0",
     "@nx/eslint-plugin": "17.2.0",
     "@nx/jest": "17.2.0",
-    "@nx/js": "17.2.0",
+    "@nx/js": "17.2.8",
     "@nx/next": "17.2.0",
     "@nx/playwright": "17.2.0",
-    "@nx/react": "17.2.0",
+    "@nx/react": "17.2.8",
     "@nx/rollup": "17.2.0",
     "@nx/storybook": "17.2.0",
-    "@nx/vite": "17.2.0",
+    "@nx/vite": "17.2.8",
     "@nx/web": "17.2.0",
     "@nx/webpack": "17.2.0",
     "@nx/workspace": "17.2.0",
@@ -153,7 +154,7 @@
     "@storybook/react": "^7.6.3",
     "@storybook/react-vite": "7.6.3",
     "@storybook/react-webpack5": "7.6.3",
-    "@storybook/test-runner": "^0.13.0",
+    "@storybook/test-runner": "0.13.0",
     "@storybook/testing-library": "^0.2.2",
     "@svgr/rollup": "^8.0.1",
     "@svgr/webpack": "^8.0.1",
@@ -170,30 +171,35 @@
     "@types/react-is": "18.2.2",
     "@types/styled-components": "5.1.26",
     "@types/use-analytics": "^0.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.58.0",
     "@vitejs/plugin-react": "4.2.0",
+    "@vitest/coverage-v8": "~0.34.6",
     "@vitest/ui": "0.34.7",
     "babel-jest": "^29.4.1",
     "babel-plugin-styled-components": "1.10.7",
     "core-js": "^3.6.5",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.1",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jsx-a11y": "6.7.1",
-    "eslint-plugin-playwright": "^0.15.3",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-babel-module": "^5.3.2",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "file-loader": "^6.2.0",
     "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.5.3",
+    "husky": "^8.0.0",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
     "jsdom": "~22.1.0",
     "lint-staged": "^15.2.0",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
+    "serve": "^14.2.1",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.5.1",
     "ts-node": "10.9.1",
@@ -201,8 +207,34 @@
     "url-loader": "^4.1.1",
     "vite": "5.0.0",
     "vite-plugin-dts": "~2.3.0",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-voie": "^0.7.3",
     "vitest": "0.34.6",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
+  },
+  "lint-staged": {
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.tsx": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.ts": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.jsx": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.js": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.css": [
+      "prettier --write"
+    ]
   }
 }

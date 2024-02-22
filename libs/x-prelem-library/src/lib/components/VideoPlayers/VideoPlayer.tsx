@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { playIcon } from "../../assets/svg";
+import { PlayIcon } from "@platformx/utilities";
 
 const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
   const {
@@ -31,20 +31,20 @@ const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
       loop={playerProp.loop}
       playsinline={true}
       playIcon={
-        <img alt='play' height='44px' width='44px' className='smallPlayIcon' src={playIcon} />
+        <img alt='play' height='44px' width='44px' className='smallPlayIcon' src={PlayIcon} />
       }
-      css={{
-        objectFit: "cover",
-        position: "absolute",
-        top: 0,
-        left: 0,
-      }}
+      // css={{
+      //   objectFit: "cover",
+      //   position: "absolute",
+      //   top: 0,
+      //   left: 0,
+      // }}
     />
   );
 };
 interface VideoPlayerProp {
   playerProp: {
-    videoUrl: string;
+    videoUrl?: string;
     posterImg: string;
     width?: string;
     height?: string;

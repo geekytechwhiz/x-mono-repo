@@ -3,8 +3,6 @@ import German from "./de_flag.png";
 import English from "./en_flag.png";
 import Franch from "./fr_flag.png";
 
-import avtarImg from "./avatar.png";
-import fallBackImage from "./fallBackImage.png";
 import fbGray from "./fb-gray.png";
 import fbGreen from "./fb-green.png";
 import inGray from "./in-gray.png";
@@ -20,6 +18,11 @@ export { default as check_circle } from "./check_circle.png";
 export { default as description_black } from "./description_black.png";
 export { default as LadyImage } from "./lady_Image.svg";
 export { default as NoResults } from "./no-results.png";
+
+import avtarImg from "./avatar.png";
+import fallBackImage from "./fallBackImage.png";
+import noResults from "./no-results.png";
+
 export {
   CATSvg,
   English,
@@ -32,5 +35,6 @@ export {
   fbGreen,
   inGray,
   inGreen,
+  noResults,
   successGif,
 };

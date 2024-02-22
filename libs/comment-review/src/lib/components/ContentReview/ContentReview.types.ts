@@ -18,7 +18,7 @@ export type Reply = {
 };
 export type WrapperProps = {
   elementId: string;
-  scrollRef: React.RefObject<any>;
+  scrollRef?: React.RefObject<any>;
   comments?: ReviewComment[];
   children: React.ReactNode;
   workflow?: any;

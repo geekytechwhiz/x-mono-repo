@@ -1,12 +1,19 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Typewriter from "typewriter-effect";
 import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
-import { assetsPng } from "../../assets/index";
+import {
+  completeButtonUrl,
+  Frame1,
+  Frame2,
+  Frame3,
+  formCroppedUrl,
+  SecondaryArgs,
+  Analytics,
+  AuthoringHelper,
+} from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./AboutUS2.style";
@@ -61,7 +68,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: AboutU
         url: completeButtonUrl(
           content?.Button1_Action,
           content?.Button1_RedirectURL,
-          secondaryArgs.prelemBaseEndpoint.buttonBaseUrl,
+          secondaryArgs?.prelemBaseEndpoint?.buttonBaseUrl,
         ),
         image: img,
       };
@@ -205,13 +212,13 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: AboutU
           </Typography>
         </Box>
         <Box className='imageWrapper1'>
-          <img alt='About us' src={assetsPng.frame1} className='frame1' width='200' height='87' />
+          <img alt='About us' src={Frame1} className='frame1' width='200' height='87' />
         </Box>
         <Box className='imageWrapper2'>
-          <img alt='About us' src={assetsPng.frame2} className='frame2' width='170' height='72' />
+          <img alt='About us' src={Frame2} className='frame2' width='170' height='72' />
         </Box>
         <Box className='imageWrapper3'>
-          <img alt='About us' src={assetsPng.frame3} className='frame3' width='232' height='40' />
+          <img alt='About us' src={Frame3} className='frame3' width='232' height='40' />
         </Box>
       </Box>
     );
@@ -240,36 +247,9 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: AboutU
 interface AboutUs2Props {
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
+  authoringHelper: AuthoringHelper;
+  secondaryArgs: SecondaryArgs;
 }
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
-}
-
 interface Content {
   primary_heading?: string;
   typescript_heading: string;

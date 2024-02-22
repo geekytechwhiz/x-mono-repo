@@ -1,18 +1,33 @@
-import {ApprovalStatus, EventsIcon, HamburgerMenuIcon, PollIcon, PostIconMenu,
-  QuizIcon,CourseIcon,SitesIcon, UsersIcon,VideoIcon, ArticleIcon, CookieIcon, FooterMenuUpdated,
-  HeaderMenuUpdated, MediaIcon, MyDashboardIcon, PagesIcon, 
-  //FeatureStar, AssetvideoIcon, AssetdocIcon
-} from '@platformx/utilities';
+import {
+  ApprovalStatus,
+  EventsIcon,
+  HamburgerMenuIcon,
+  PollIcon,
+  PostIconMenu,
+  QuizIcon,
+  CourseIcon,
+  SitesIcon,
+  UsersIcon,
+  VODIcon,
+  ArticleIcon,
+  CookieIcon,
+  FooterMenuUpdated,
+  HeaderMenuUpdated,
+  MediaIcon,
+  MyDashboardIcon,
+  PagesIcon,
+  //FeatureStar, AssetVODIcon, AssetdocIcon
+} from "@platformx/utilities";
 
 export const SNOWPLOW = {
-  NA: 'NA',
-  SNOWPLOW: 'snowplow',
-  TRACKID: 'selfDescribingEvent',
-  IMPRESSIONTYPE: 'user register Impression',
-  REGISTERFROM: 'Rendering',
-  COLLECTOR_URL: 'collector.hcl-x.com',
-  APP_ID: 'x',
-  APP_NAME: 'plateform-x-authoring-app',
+  NA: "NA",
+  SNOWPLOW: "snowplow",
+  TRACKID: "selfDescribingEvent",
+  IMPRESSIONTYPE: "user register Impression",
+  REGISTERFROM: "Rendering",
+  COLLECTOR_URL: "collector.hcl-x.com",
+  APP_ID: "x",
+  APP_NAME: "plateform-x-authoring-app",
 };
 
 export const MenuData = [
@@ -55,12 +70,12 @@ export const MenuData = [
   {
     Title: "pages",
     id: "page",
-    url: "/Sitepage",
+    url: "/site-page",
     Menu: [
       {
         MenuName: "Pages",
         Icon: PagesIcon,
-        url: "/Sitepage",
+        url: "/site-page",
         id: "pages",
         category: "page",
         subCategory: "",
@@ -82,7 +97,7 @@ export const MenuData = [
       },
       {
         MenuName: "VOD",
-        Icon: VideoIcon,
+        Icon: VODIcon,
         url: "/content/vod",
         category: "content",
         subCategory: "vod",
@@ -300,7 +315,7 @@ export const MenuData = [
   //     },
   //     {
   //       MenuName: 'Videos',
-  //       Icon: AssetvideoIcon,
+  //       Icon: AssetVODIcon,
   //       url: '/asset/videos',
   //       id: 'Videos',
   //       category: 'Assets',

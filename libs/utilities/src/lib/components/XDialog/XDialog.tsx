@@ -3,7 +3,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import { memo } from 'react'
 import { useDispatch } from 'react-redux'
-import DialogCloseIcon from '../../assets/svg/DialogCloseIcon.svg'
+import DialogCloseIcon from '../../assets/svg/icon/DialogCloseIcon.svg'
 import FormatSubtitle from './FormatSubtitle'
 import {
   XDialogActions,

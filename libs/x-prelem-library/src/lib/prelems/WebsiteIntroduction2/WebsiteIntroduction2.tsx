@@ -1,15 +1,19 @@
 import { Box, Container, Typography } from "@mui/material";
+import {
+  RedDots,
+  SecondaryArgs,
+  formCroppedUrl,
+  structureDataUrlPoint,
+} from "@platformx/utilities";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-// import RedDots from "../../assets/RedDots.svg";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { formCroppedUrl, structureDataUrlPoint } from "@platformx/utilities";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./WebsiteIntroduction2.style";
-import prelemTypes from "../../globalStyle";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./WebsiteIntroduction2.style";
 
 const WebsiteIntroduction2 = ({
   content,
@@ -366,10 +370,10 @@ WebsiteIntroduction2Prop) => {
             />
           </Box>
           <Box className='dottedImgFirst'>
-            <img alt='intor3' src='' width='140' height='63' />
+            <img alt='intor3' src={RedDots} width='140' height='63' />
           </Box>
           <Box className='dottedImgSecond'>
-            <img alt='intro4' src='' width='140' height='63' />
+            <img alt='intro4' src={RedDots} width='140' height='63' />
           </Box>
         </Box>
       </Box>
@@ -400,7 +404,7 @@ interface WebsiteIntroduction2Prop {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface Analytics {
@@ -419,6 +423,7 @@ interface Analytics {
 
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
+  // eslint-disable-next-line to the line before.
   sendStructureDataToAuthoringCB: (structureData: string) => void;
   sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
   openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;

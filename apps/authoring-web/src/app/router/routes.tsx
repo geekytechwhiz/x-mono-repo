@@ -1,50 +1,63 @@
-import { CreateContent } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
+
+import { Content, CreateContent } from "@platformx/content";
 import { SitePage } from "@platformx/site-page";
 import { CreateUser, UserListing } from "@platformx/user-management";
-
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
-import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
   {
-    path: "/",
-    element: (
-      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-        {" "}
-        <Dashboard />{" "}
-      </ProtectedRoute>
-    ),
-  },
-  {
     path: "/dashboard",
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/article",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='article'>
         {" "}
-        <Dashboard />{" "}
+        <Content></Content>{" "}
       </ProtectedRoute>
     ),
   },
   {
-    path: "/prelem",
+    path: "/content/quiz",
     element: (
-      <ProtectedRoute
-        category='dashboard'
-        subCategory='dashboard'
-        name='dashboard'
-        isSideBar={false}
-        isHeader={false}>
-        <PrelemComponent />
+      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
+        {" "}
+        <Content></Content>{" "}
       </ProtectedRoute>
     ),
   },
   {
-    path: "/Sitepage",
+    path: "/content/poll",
     element: (
-      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+      <ProtectedRoute category='content' subCategory='article' name='poll'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/event",
+    element: (
+      <ProtectedRoute category='content' subCategory='event' name='event'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/site-page",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
         {" "}
         <SitePage />{" "}
       </ProtectedRoute>
@@ -104,7 +117,7 @@ export const routes: RouteConfig[] = [
         category='menu'
         subCategory=''
         isSideBar={false}
-        isHeader={true}>
+        isHeader={false}>
         <NavTreeCreation />
       </ProtectedRoute>
     ),
@@ -117,18 +130,4 @@ export const routes: RouteConfig[] = [
   // {
   //   path: "/dashboard",
   //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
-
-  // },
-  // {
-  //   path: "content/article",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <Content />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/error",
-  //   element: <Error errorCode={404} errorMessage="Page not found" />,
-  // }
 ];

@@ -70,18 +70,21 @@ jobs:
       - name: Debug Nx CLI location
         run: which nx
 
-      - name: Build affected libraries
+      # - name: Build affected libraries
         # run: /usr/local/bin/nx affected --target=build --base=main --head=$GITHUB_SHA
         # run: npx nx affected --target=build --base=main --head=$GITHUB_SHA
-        run: nx build authoring-web
+        # run: nx build authoring-web
 
 
       # Deploying Docker image to GKE clusters based on branches
 
       - name: Deploy Configmap on stg branch
         if: ${{ github.ref == 'refs/heads/stg' }}
-        run: kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-stg.yaml
-
+        run: kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-develop.yaml
+      - name: Build affected libraries and deploy authoring-web
+        run: |
+          
+          nx serve authoring-web --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }} 
       # Deploying Docker image to GKE clusters based on branches
 
       - name: Deploy to GKE (dev, qa, stg, etc.)
@@ -94,8 +97,9 @@ jobs:
         if: |
           contains('refs/heads/develop refs/heads/qa', github.ref)
         run: |
-          nx run authoring-web:deploy
-
+          # nx run authoring-web:deploy
+          nx serve authoring-web --namespace=${{ secrets.NAMESPACE_NAME_DEVELOP }} 
+          
       - name: Deploy React App on stg branch
         if: |
           contains('refs/heads/stg', github.ref)

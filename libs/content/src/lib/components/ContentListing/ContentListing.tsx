@@ -146,10 +146,11 @@ const ContentListing = ({
   return (
     <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
       <InfiniteScroll
-        dataLength={contentList?.length || 0}
+        dataLength={contentList?.length}
         next={fetchMore}
-        hasMore={!loading}
+        hasMore={loading}
         loader={<ContentListDesktopLoader />}
+        endMessage={<NoSearchResult />}
         scrollableTarget='scrollableDiv'
         style={{ overflowX: "hidden" }}>
         <Box sx={{ padding: "0 10px 0 15px" }}>
@@ -194,7 +195,6 @@ const ContentListing = ({
           </Box>
         </Box>
       </InfiniteScroll>
-      {!loading && contentList?.length === 0 && <NoSearchResult />}
     </Box>
   );
 };

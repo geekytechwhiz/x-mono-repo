@@ -1,0 +1,19 @@
+.Platform-x-Button-root.dropdown-btn{
+    background-color: white;
+    color: black;
+    border: none;
+    font-family: 'inter';
+    font-size: '14px';
+    font-weight: 400;
+    right: '16px';
+    
+}
+.dropdown-btn:hover,
+.dropdown-btn:active{
+    background-color: white !important;
+    color: #4B9EF9
+   
+  }
+#demo-customized-menu{
+    z-index: 1500;
+}

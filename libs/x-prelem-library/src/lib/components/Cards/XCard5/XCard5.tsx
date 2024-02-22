@@ -1,8 +1,8 @@
-import React from "react";
 import { Box, CardMedia, Typography } from "@mui/material";
+import { getImage, onClickCardUrlNavigate } from "@platformx/utilities";
+import React from "react";
+import { getIcon } from "../../Utils/helperFns";
 import { useCustomStyle } from "./XCard5.style";
-import { getIcon, onClickCardUrlNavigate } from "../../Utils/helperFns";
-import { getImage } from "utils/helperFns";
 
 const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
   const classes = useCustomStyle();
@@ -27,7 +27,7 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
           <CardMedia
             component={imageUrl ? "img" : "div"}
             image={imageUrl ? imageUrl : ""}
-            alt={imageUrl ? content?.Thumbnail?.AltText : null}
+            title={imageUrl ? content?.Thumbnail?.AltText : "image"}
             sx={{ backgroundColor: color ? color : "", height: "100%", width: "100%" }}
           />
           <Box className='mainContentBox'>
@@ -69,9 +69,9 @@ interface Analytics {
 }
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
+  sendStructureDataToAuthoringCB: () => void;
+  sendDefaultStructureDataForResetToAuthoringCB: () => void;
+  openButtonEditWindowInAuthoringCB: () => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;

@@ -2,6 +2,7 @@ import Tooltip from '@mui/material/Tooltip';
 import ThemeConstants from '../../themes/authoring/lightTheme/lightThemeVariable';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+
 interface PropType {
   component: JSX.Element;
   doAccess: boolean;
@@ -12,9 +13,9 @@ interface PropType {
 
 export const ErrorTooltip: FC<PropType> = ({
   component: Component,
-  doAccess: doAccess,
+  doAccess,
   position = 'left',
-  className: className,
+  className,
   tooltipMsg = '',
 }) => {
   const { t } = useTranslation();
