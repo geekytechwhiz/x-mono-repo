@@ -9,16 +9,9 @@ import { makeStyles } from "@mui/styles";
 
 import { Suspense, memo, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
-// import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-// import { CommentProvider } from './context/CommentsContext/CommentsContext';
-// import { ActionProvider } from './context/actionContext/ActionProvider';
-// import RootRouter from './router/rootRouter';
-// import { StoreProvider } from './store/ContextStore';
-// import LightTheme from './theme/lightTheme';
-// import { DefaultLocale } from './utils/constants';
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import {
@@ -34,6 +27,7 @@ import { BrowserRouter } from "react-router-dom";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
+import AppRouter from "./router/AppRouter";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -44,9 +38,7 @@ initApm({
   active: process.env?.NX_APM_TRACING === "true" || false,
   // Set required service name
   serviceName: "platormx-authoring-ui-service",
-  // Set custom APM Server URL
   serverUrl: process.env.NX_APM_SERVER_URL,
-  //The environment where the service being monitored is deployed (e.g. "production", "development")
   environment: process.env.NX_APM_ENVIRONMENT,
   distributedTracing: true,
   distributedTracingOrigins: (process.env?.NX_APM_TRACING_ORIGINS || "").split(","),
@@ -66,7 +58,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 function App() {
-  debugger;
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
@@ -74,14 +65,11 @@ function App() {
   const routing = getSelectedRoute();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-  console.log("routing", routing);
   const { pathname } = window.location;
 
   useEffect(() => {
     const initializeApp = async () => {
-      console.log("initializeApp try out", pathname);
       try {
-        console.log("initializeApp try in ", pathname);
         if (
           pathname === "/en" ||
           pathname === "/" ||
@@ -92,7 +80,6 @@ function App() {
         }
 
         const analytics = await analyticsInstance(Analytics);
-        console.log("Analytics instance:", analytics);
         setInstances(analytics);
 
         const lang = getCurrentLang();
@@ -118,8 +105,7 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <RootRouter />
-                  {/* <AppRouter /> */}
+                  <AppRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
