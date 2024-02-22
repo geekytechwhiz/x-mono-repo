@@ -3,13 +3,13 @@ import {
   CONTENT_TYPES,
   useContentListing,
   useContentSearch,
-} from '@platformx/authoring-apis';
-import { RootState } from '@platformx/authoring-state';
-import { memo, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import ContentListing from '../ContentListing/ContentListing';
-import ContentListingHeader from '../ContentListingHeader/ContentListingHeader';
+} from "@platformx/authoring-apis";
+import { RootState } from "@platformx/authoring-state";
+import { memo, useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import ContentListing from "../ContentListing/ContentListing";
+import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const location = useLocation();
   const [isSpinning, setIsSpinning] = useState(false);
 
-  const [filterValue, setFilterValue] = useState('ALL');
+  const [filterValue, setFilterValue] = useState("ALL");
   const { contentArray } = useSelector((state: RootState) => state.content);
   const { loading, refetch, fetchMore } = useContentSearch({
     contentType,
@@ -36,27 +36,30 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     edit,
     fetchContentDetails,
     duplicateToSite,
-  } = useContentListing('ALL');
+  } = useContentListing("ALL");
 
-  const memoizedMethods = useMemo(() => ({
-    deleteContent,
-    duplicate,
-    preview,
-    unPublish,
-    view,
-    edit,
-    fetchContentDetails,
-    duplicateToSite,
-  }), [
-    deleteContent,
-    duplicate,
-    preview,
-    unPublish,
-    view,
-    edit,
-    fetchContentDetails,
-    duplicateToSite,
-  ]);
+  const memoizedMethods = useMemo(
+    () => ({
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
+    }),
+    [
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
+    ],
+  );
 
   useEffect(() => {
     const fetchData = async () => {
