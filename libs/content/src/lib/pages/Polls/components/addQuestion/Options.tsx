@@ -92,10 +92,9 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
 
   const onDeleteOption = (id) => {
     qusUnsavedChanges.current = true;
-    if (answers.length <= 2) {
-    } else {
-      setAnswers(answers.filter((item) => item.id !== id));
-    }
+    // if (answers.length <= 2) {
+    // } else {
+    setAnswers(answers.filter((item) => item.id !== id));
   };
   return (
     <>
