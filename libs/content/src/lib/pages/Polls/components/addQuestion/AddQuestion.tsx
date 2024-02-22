@@ -177,7 +177,7 @@ const AddQuestion = ({
                 /> */}
                 <XImageRender
                   callBack={updateField}
-                  data={{
+                  editData={{
                     original_image: state.question_original_image,
                     published_images: state.question_published_images,
                   }}

@@ -8,32 +8,20 @@ import {
   CommonBoxWithNumber,
   TextBox,
   TitleSubTitle,
-  AddImage,
 } from "@platformx/utilities";
 import { XImageRender } from "@platformx/x-image-render";
-// import AddImage from "../Common/AddImage";
-// import AutoCompleteText from "../Common/AutoCompleteText";
-// import AutoTextArea from "../Common/AutoTextArea";
-// import TextBox from "../Common/TextBox";
-// import TitleSubTitle from "../Common/TitleSubTitle";
-import { useCustomStyle } from "../../Poll.style";
-// import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
-// import {
-//   relativeImageURL,
-// } from "@platformx/utilities";
-// eslint-disable-next-line no-duplicate-imports
-import { relativeImageURL } from "@platformx/utilities";
 
-const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, selectedImage }) => {
+import { useCustomStyle } from "../../Poll.style";
+
+const SocialShare = ({ state, setState, pollRef, unsavedChanges }) => {
   const { t } = useTranslation();
-  const [operationType, setOperationType] = useState<string>("replace");
   const [socialShareInfo, setSocialShareInfo] = useState({
     url: "",
     title: "",
     description: "",
     tags: [],
   });
-  const handleChange = (event, key) => {
+  const handleChange = (event) => {
     unsavedChanges.current = true;
     setState({
       ...state,
@@ -45,17 +33,12 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
     };
   };
   const updateField = (data) => {
-    console.warn("final data", data);
     setState({ ...state, socialShareImgURL: data.relativeUrl });
     pollRef.current = {
       ...pollRef.current,
       socialShareImgURL: data.relativeUrl,
     };
     unsavedChanges.current = true;
-  };
-  const onUploadClick = (type) => {
-    showGallery("Images", "socialShareImgURL");
-    setOperationType(type);
   };
   const classes = useCustomStyle();
   return (
@@ -84,7 +67,7 @@ const SocialShare = ({ showGallery, state, setState, pollRef, unsavedChanges, se
             /> */}
             <XImageRender
               callBack={updateField}
-              data={{
+              editData={{
                 relativeUrl: state.socialShareImgURL,
               }}
               isCrop={false}
