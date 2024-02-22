@@ -1,40 +1,33 @@
-import { useLazyQuery, useMutation } from '@apollo/client'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import CancelIcon from '@mui/icons-material/Cancel'
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
-import TelegramIcon from '@mui/icons-material/Telegram'
-import LoadingButton from '@mui/lab/LoadingButton'
-import { Box, Button, TextField, Typography } from '@mui/material'
-import Dialog from '@mui/material/Dialog'
-import FormControl from '@mui/material/FormControl'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Select from '@mui/material/Select'
-import {
-  delete_menu,
-  fetch_menu_list,
-  publish_menu,
-  update_menu,
-} from '@platformx/authoring-apis'
-import { RootState } from '@platformx/authoring-state'
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CancelIcon from "@mui/icons-material/Cancel";
+import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import FormControl from "@mui/material/FormControl";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import { RootState } from "@platformx/authoring-state";
 import {
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
   useUserSession,
-} from '@platformx/utilities'
-import React, { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import DeleteDialog from './DeleteDialog'
-import './Header.css'
-import { Drag, DragAndDrop, Drop } from './drag-and-drop'
-import { updateMainMenuScoreAndReorder } from './helper'
-import './styles.css'
-import { MenulistProps } from './utils/types'
+} from "@platformx/utilities";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import DeleteDialog from "./DeleteDialog";
+import "./Header.css";
+import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
+import { updateMainMenuScoreAndReorder } from "./helper";
+import "./styles.css";
+import { MenulistProps } from "./utils/types";
 
 export default function NavTree({
   handleSelectedType,
@@ -51,86 +44,82 @@ export default function NavTree({
   publish,
   deleteMenu,
 }) {
-  const { t } = useTranslation()
-  const searchPageUrl = new URL(window.location.href)
+  const { t } = useTranslation();
+  const searchPageUrl = new URL(window.location.href);
 
-  const [selectedType, setSelectedType] = useState<string>(
-    searchPageUrl.searchParams.get('searchCat')
-      ? (searchPageUrl.searchParams.get('searchCat') as string)
-      : 'All',
-  )
-  const [isOpen, setIsOpen] = React.useState(false)
-  const dispatch = useDispatch()
+  const [, setSelectedType] = useState<string>(
+    searchPageUrl.searchParams.get("searchCat")
+      ? (searchPageUrl.searchParams.get("searchCat") as string)
+      : "All",
+  );
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  const { navTreeArray } = useSelector((state: RootState) => state.menu)
-  const [leftSideBarContent, setLeftSideContent] = useState(navTreeArray)
-  const [listMenu, setListMenu] = useState<null | HTMLElement>(null)
-  const [openRenameDialog, setRenameDialog] = useState(false)
-  const [rename, setRename] = useState('')
-  const [listSubMenu, setListSubMenu] = useState<null | HTMLElement>(null)
-  const [subMenu, setSubMenu] = React.useState('')
-  const openListMenu = Boolean(listMenu)
-  const openListSubMenu = Boolean(listSubMenu)
-  const [currentButton, setCurrentButton] = React.useState(null)
-  const [hideTextId, setHideTextId] = React.useState(0)
-  const [mutateDeleteMenu] = useMutation(delete_menu)
-  const [selectedItem, setSelectedItem] = useState<MenulistProps>()
-  const [updatemutate] = useMutation(update_menu)
-  const [runFetchMenuList] = useLazyQuery(fetch_menu_list)
-  const [publishmutate] = useMutation(publish_menu)
-  const [row, setRow] = useState(navTreeArray?.length)
-  const [isDeleteDialog, setisdeleteDialog] = useState(false)
-  const reorderMenu: any = JSON.parse(JSON.stringify(leftSideBarContent))
-  const menuCount = useRef(0)
-  const [getSession] = useUserSession()
-  const { userInfo } = getSession()
-  const newMenu = useRef<any>([])
-  const username = `${userInfo.first_name} ${userInfo.last_name}`
-  const [isLoaded, setIsLoaded] = useState(false)
+  const { navTreeArray } = useSelector((state: RootState) => state.menu);
+  const [leftSideBarContent, setLeftSideContent] = useState(navTreeArray);
+  const [listMenu, setListMenu] = useState<null | HTMLElement>(null);
+  const [openRenameDialog, setRenameDialog] = useState(false);
+  const [rename, setRename] = useState("");
+  const [listSubMenu, setListSubMenu] = useState<null | HTMLElement>(null);
+  const [subMenu, setSubMenu] = React.useState("");
+  const openListMenu = Boolean(listMenu);
+  const openListSubMenu = Boolean(listSubMenu);
+  const [currentButton, setCurrentButton] = React.useState(null);
+  const [, setHideTextId] = React.useState(0);
+  const [selectedItem, setSelectedItem] = useState<MenulistProps>();
+
+  const [row, setRow] = useState(navTreeArray?.length);
+  const [isDeleteDialog, setisdeleteDialog] = useState(false);
+  const reorderMenu: any = JSON.parse(JSON.stringify(leftSideBarContent));
+  const menuCount = useRef(0);
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
+  const newMenu = useRef<any>([]);
+  const username = `${userInfo.first_name} ${userInfo.last_name}`;
+  const [isLoaded, setIsLoaded] = useState(false);
   // const [menus, setMenus] = useState<any>()
   const [menuToPublish, setMenuToPublish] = useState<
     {
-      Title: string
-      Menu_Id: string
-      ParentId: string
+      Title: string;
+      Menu_Id: string;
+      ParentId: string;
     }[]
-  >([])
+  >([]);
   const handleListClose = () => {
-    setListMenu(null)
-    setCurrentButton(null)
+    setListMenu(null);
+    setCurrentButton(null);
     setTimeout(() => {
-      menuCount.current = 0
-    }, 500)
-  }
+      menuCount.current = 0;
+    }, 500);
+  };
   const handleSubListClose = () => {
-    setListSubMenu(null)
-  }
+    setListSubMenu(null);
+  };
   const handleChangeSetMenu = (event) => {
-    setSubMenu(event.target.value)
-  }
+    setSubMenu(event.target.value);
+  };
   const handleListClick = (event: React.MouseEvent<HTMLElement>, itemList) => {
-    event.stopPropagation()
-    setListMenu(event.currentTarget)
-    setSelectedItem(itemList)
-    if (itemList.ParentId === '0') {
+    event.stopPropagation();
+    setListMenu(event.currentTarget);
+    setSelectedItem(itemList);
+    if (itemList.ParentId === "0") {
       for (let i = 0; i < leftSideBarContent.length; i++) {
         if (leftSideBarContent[i].ParentId === itemList.Menu_Id) {
-          menuCount.current++
+          menuCount.current++;
         }
       }
     }
-  }
+  };
   const handleSubListClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation()
-    setListSubMenu(event.currentTarget)
+    event.stopPropagation();
+    setListSubMenu(event.currentTarget);
     // setSelectedArticle(selectedArticle);
-  }
+  };
 
   React.useEffect(() => {
-    setLeftSideContent(navTreeArray)
-    setMenuToPublish([])
-    navTreeArray.map((values) => {
-      if (values.ParentId == '0') {
+    setLeftSideContent(navTreeArray);
+    setMenuToPublish([]);
+    navTreeArray.forEach((values) => {
+      if (values.ParentId === "0") {
         setMenuToPublish((prevEmployees) => [
           ...prevEmployees,
           {
@@ -138,11 +127,11 @@ export default function NavTree({
             Menu_Id: values.Menu_Id,
             ParentId: values.ParentId,
           },
-        ])
+        ]);
       }
 
-      navTreeArray.map((value1) => {
-        if (value1.ParentId == values.Menu_Id) {
+      navTreeArray.forEach((value1) => {
+        if (value1.ParentId === values.Menu_Id) {
           setMenuToPublish((prevEmployees) => [
             ...prevEmployees,
             {
@@ -150,45 +139,44 @@ export default function NavTree({
               Menu_Id: value1.Menu_Id,
               ParentId: value1.ParentId,
             },
-          ])
+          ]);
         }
-      })
-    })
-  }, [navTreeArray])
+      });
+    });
+  }, [navTreeArray]);
   const onButtonClicked = (id) => {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
     if (currentButton === id) {
-      setCurrentButton(null)
+      setCurrentButton(null);
     } else {
-      setCurrentButton(id)
-      setHideTextId(id)
+      setCurrentButton(id);
+      setHideTextId(id);
     }
-  }
+  };
 
   const onRename = (label) => {
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
     const isItemExist = tempArr.find((val) => {
       return val
-        ? val.Label.toLowerCase() === label.toLowerCase() &&
-            val.Menu_Id !== selectedItem?.Menu_Id
-        : ''
-    })
+        ? val.Label.toLowerCase() === label.toLowerCase() && val.Menu_Id !== selectedItem?.Menu_Id
+        : "";
+    });
     if (isItemExist) {
-      ShowToastError(t('menu_exist'))
+      ShowToastError(t("menu_exist"));
     } else {
       tempArr.forEach((value, i) => {
         if (value.Menu_Id === selectedItem?.Menu_Id) {
-          tempArr[i].Label = label
-          tempArr[i].Status = 'DRAFT'
+          tempArr[i].Label = label;
+          tempArr[i].Status = "DRAFT";
         }
-      })
+      });
 
-      const { created_by: createdBy } = menus
+      const { created_by: createdBy } = menus;
       const menuToUpdate = {
         lastModifiedBy: username,
         createdBy,
         menu_content: tempArr,
-      }
+      };
 
       // updatemutate({
       //   variables: {
@@ -196,35 +184,35 @@ export default function NavTree({
       //   },
       // })
       updateMenu(menuToUpdate)
-        .then((resp) => {
-          setRename('')
-          ShowToastSuccess(`${t('menu')} ${t('updated_toast')}`)
+        .then(() => {
+          setRename("");
+          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           if (error.graphQLErrors[0]) {
-            ShowToastError(error.graphQLErrors[0].message)
+            ShowToastError(error.graphQLErrors[0].message);
           } else {
-            ShowToastError(t('api_error_toast'))
+            ShowToastError(t("api_error_toast"));
           }
-        })
+        });
     }
-  }
+  };
   const onSetSubMenu = (parent_Id) => {
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
 
     tempArr.forEach((value, i) => {
       if (value.Menu_Id === selectedItem?.Menu_Id) {
-        tempArr[i].ParentId = parent_Id
-        tempArr[i].Status = 'DRAFT'
+        tempArr[i].ParentId = parent_Id;
+        tempArr[i].Status = "DRAFT";
       }
-    })
+    });
 
-    const { created_by: createdBy } = menus
+    const { created_by: createdBy } = menus;
     const menuToUpdate = {
       lastModifiedBy: username,
       createdBy,
       menu_content: tempArr,
-    }
+    };
 
     // updatemutate({
     //   variables: {
@@ -232,69 +220,67 @@ export default function NavTree({
     //   },
     // })
     updateMenu(menuToUpdate)
-      .then((resp) => {
+      .then(() => {
         // setIsrenamed(!isrenamed);
-        setSubMenu('')
-        ShowToastSuccess(`${t('menu')} ${t('updated_toast')}`)
+        setSubMenu("");
+        ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {
-          ShowToastError(error.graphQLErrors[0].message)
+          ShowToastError(error.graphQLErrors[0].message);
         } else {
-          ShowToastError(t('api_error_toast'))
+          ShowToastError(t("api_error_toast"));
         }
-      })
-  }
+      });
+  };
 
   const publishMenu = () => {
-    const defaultTimeZone = `${
-      Intl.DateTimeFormat().resolvedOptions().timeZone
-    }`
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    const defaultTimeZone = `${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
     const isHomePage = tempArr.find((val) => {
       if (val.HomePage === true) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
-    })
+    });
     if (isHomePage) {
-      handleReorderMenu(defaultTimeZone)
+      handleReorderMenu(defaultTimeZone);
     } else {
-      ShowToastError('Please select Home Page')
+      ShowToastError("Please select Home Page");
     }
-  }
+  };
   const onEdit = () => {
-    setEditData(selectedItem)
-    setOpenCreateMenu(true)
-    setisedit(true)
-    setIsCreate(false)
-  }
+    setEditData(selectedItem);
+    setOpenCreateMenu(true);
+    setisedit(true);
+    setIsCreate(false);
+  };
 
   const handlePageList = (item) => {
-    handleSelectedType(item)
-  }
+    handleSelectedType(item);
+  };
   const handlePagesType = (item) => {
-    setSelectedType(item.name)
-    handlePageList(item)
-  }
+    setSelectedType(item.name);
+    handlePageList(item);
+  };
 
   const handleReorderMenu = (defaultTimeZone) => {
-    const { created_by: createdBy } = menus
+    const { created_by: createdBy } = menus;
     const menuToUpdate = {
       lastModifiedBy: username,
       createdBy,
       menu_content: reorderMenu,
-    }
-    setIsLoaded(true)
+    };
+    setIsLoaded(true);
     // updatemutate({
     //   variables: {
     //     input: menuToUpdate,
     //   },
     // })
     updateMenu(menuToUpdate)
-      .then((resp) => {
-        setRename('')
+      .then(() => {
+        setRename("");
         // publishmutate({
         //   variables: {
         //     input: {
@@ -303,42 +289,42 @@ export default function NavTree({
         //   },
         // })
         publish(defaultTimeZone)
-          .then((resp) => {
-            setIsLoaded(false)
+          .then(() => {
+            setIsLoaded(false);
 
-            ShowToastSuccess(`${t('menu')} ${t('published_toast')}`)
+            ShowToastSuccess(`${t("menu")} ${t("published_toast")}`);
           })
           .catch((error) => {
             if (error.graphQLErrors[0]) {
-              ShowToastError(error.graphQLErrors[0].message)
+              ShowToastError(error.graphQLErrors[0].message);
             } else {
-              ShowToastError(t('api_error_toast'))
+              ShowToastError(t("api_error_toast"));
             }
-          })
+          });
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {
-          ShowToastError(error.graphQLErrors[0].message)
+          ShowToastError(error.graphQLErrors[0].message);
         } else {
-          ShowToastError(t('api_error_toast'))
+          ShowToastError(t("api_error_toast"));
         }
-      })
-  }
+      });
+  };
   const handleDragEnd = (result) => {
-    const { type, source, destination } = result
-    if (!destination) return
-    const sourceleftSideBarContentId = source.droppableId
-    const destinationleftSideBarContentId = destination.droppableId
+    const { type, source, destination } = result;
+    if (!destination) return;
+    const sourceleftSideBarContentId = source.droppableId;
+    const destinationleftSideBarContentId = destination.droppableId;
     // Reordering items
-    if (type === 'droppable-item') {
+    if (type === "droppable-item") {
       if (sourceleftSideBarContentId === destinationleftSideBarContentId) {
         const updatedCategories = updateMainMenuScoreAndReorder(
           leftSideBarContent,
           source?.index,
           destination?.index,
-        )
+        );
         if (updatedCategories) {
-          setLeftSideContent(updatedCategories)
+          setLeftSideContent(updatedCategories);
           const menu = [
             {
               Menu_Id: updatedCategories[source?.index].Menu_Id,
@@ -350,28 +336,26 @@ export default function NavTree({
               Score: updatedCategories[destination?.index].Score,
               ParentId: updatedCategories[destination?.index].ParentId,
             },
-          ]
-          newMenu.current.value = menu
+          ];
+          newMenu.current.value = menu;
         }
         reorderMenu.forEach((value, i) => {
           if (value.Menu_Id === newMenu.current.value[i]?.Menu_Id) {
-            reorderMenu[i].Score = newMenu.current.value[i].Score
-            reorderMenu[i].ParentId = newMenu.current.value[i].ParentId
+            reorderMenu[i].Score = newMenu.current.value[i].Score;
+            reorderMenu[i].ParentId = newMenu.current.value[i].ParentId;
           }
-        })
+        });
       }
     }
     // Reordering categories
-    if (type === 'droppable-category') {
+    if (type === "droppable-category") {
       const updatedCategories = updateMainMenuScoreAndReorder(
         leftSideBarContent,
         source?.index,
         destination?.index,
-      )
+      );
       if (updatedCategories) {
-        console.log('cate', updatedCategories)
-
-        setLeftSideContent(updatedCategories)
+        setLeftSideContent(updatedCategories);
         const menu = [
           {
             Menu_Id: updatedCategories[source?.index].Menu_Id,
@@ -383,20 +367,19 @@ export default function NavTree({
             Score: updatedCategories[destination?.index].Score,
             ParentId: updatedCategories[destination?.index].ParentId,
           },
-        ]
-        newMenu.current.value = menu
+        ];
+        newMenu.current.value = menu;
       }
       reorderMenu.forEach((value, i) => {
         if (value.Menu_Id === newMenu.current.value[i]?.Menu_Id) {
-          reorderMenu[i].Score = newMenu.current.value[i].Score
-          reorderMenu[i].ParentId = newMenu.current.value[i].ParentId
+          reorderMenu[i].Score = newMenu.current.value[i].Score;
+          reorderMenu[i].ParentId = newMenu.current.value[i].ParentId;
         }
-      })
-      console.log('temp', reorderMenu)
+      });
     }
-  }
+  };
   useEffect(() => {
-    setIsCall(!isCall)
+    setIsCall(!isCall);
     // runFetchMenuList({
     //   variables: {
     //     pagePath: '',
@@ -416,20 +399,19 @@ export default function NavTree({
     //   .catch((err) => {
     //     console.log(JSON.stringify(err, null, 2))
     //   })
-  }, [row, rename, editDone, isConfirm, subMenu])
+  }, [row, rename, editDone, isConfirm, subMenu]);
   const handleDeleteMenu = () => {
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
     const itemToDelete = tempArr.filter(
       (value) =>
-        value.Menu_Id !== selectedItem?.Menu_Id &&
-        value.ParentId !== selectedItem?.Menu_Id,
-    )
-    const { created_by: createdBy } = menus
+        value.Menu_Id !== selectedItem?.Menu_Id && value.ParentId !== selectedItem?.Menu_Id,
+    );
+    const { created_by: createdBy } = menus;
     const menuToUpdate = {
       lastModifiedBy: username,
       createdBy,
       menu_content: itemToDelete,
-    }
+    };
 
     // mutateDeleteMenu({
     //   variables: {
@@ -438,44 +420,42 @@ export default function NavTree({
     // })
     deleteMenu(menuToUpdate)
       .then(() => {
-        setRow(row - 1)
-        ShowToastSuccess(`${t('menu')} ${t('deleted_toast')}`)
+        setRow(row - 1);
+        ShowToastSuccess(`${t("menu")} ${t("deleted_toast")}`);
       })
       .catch(() => {
-        ShowToastError(t('api_error_toast'))
-      })
-  }
+        ShowToastError(t("api_error_toast"));
+      });
+  };
 
   return (
     <>
       <Box
         sx={{
           display: {
-            xs: 'none',
-            sm: 'none',
-            md: 'none',
-            em: 'flex',
-            lg: 'flex',
+            xs: "none",
+            sm: "none",
+            md: "none",
+            em: "flex",
+            lg: "flex",
           },
-          flexDirection: 'column',
-          position: 'relative',
-        }}
-      >
+          flexDirection: "column",
+          position: "relative",
+        }}>
         <Box
-          id="scrollableDiv"
-          className="navTreeMenuBox"
+          id='scrollableDiv'
+          className='navTreeMenuBox'
           sx={{
             display: {
-              xs: 'none',
-              sm: 'none',
-              md: 'none',
-              em: 'block',
-              lg: 'block',
+              xs: "none",
+              sm: "none",
+              md: "none",
+              em: "block",
+              lg: "block",
             },
-            height: 'calc(100vh - 124px)',
-            overflowY: leftSideBarContent?.length > 5 ? 'auto' : 'none',
-          }}
-        >
+            height: "calc(100vh - 124px)",
+            overflowY: leftSideBarContent?.length > 5 ? "auto" : "none",
+          }}>
           {/* <InfiniteScroll
                       dataLength={leftSideBarContent?.length > 0 ? leftSideBarContent?.length : 0}
                       next={()=>{}}
@@ -484,7 +464,7 @@ export default function NavTree({
                       scrollableTarget="scrollableDiv"
                     > */}
           <DragAndDrop onDragEnd={handleDragEnd}>
-            <Drop id="droppable" type="droppable-category">
+            <Drop id='droppable' type='droppable-category'>
               {leftSideBarContent?.length > 0 &&
                 leftSideBarContent?.map((item, index) => {
                   {
@@ -492,27 +472,26 @@ export default function NavTree({
                   }
                   return (
                     <div key={index}>
-                      {item.ParentId == '0' && (
+                      {item.ParentId === "0" && (
                         <Drag
-                          className="draggable-category"
+                          className='draggable-category'
                           key={item.Menu_Id + item.Score}
                           id={item.Menu_Id + item.Score}
                           index={index}
                           // style={{display:'flex',alignItems:'flex-start'}}
                         >
-                          <div className="category-container">
+                          <div className='category-container'>
                             {/* {item.ParentId == "0" &&  */}
                             <Box
                               sx={{
-                                boxShadow: 'none',
+                                boxShadow: "none",
                                 // padding: '10px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexDirection: 'row',
+                                display: "flex",
+                                alignItems: "center",
+                                flexDirection: "row",
                                 // width:'90%',
-                                position: 'relative',
-                              }}
-                            >
+                                position: "relative",
+                              }}>
                               {/* <DragHandleIcon
                           sx={{
                             // color: a == index ? '#89909a' : '#2d2d39',
@@ -521,10 +500,8 @@ export default function NavTree({
                             marginRight: '10px',
                             width: '16px',
                           }} /> */}
-                              <Typography variant="h6regular">
-                                {item.Label}
-                              </Typography>
-                              <Box className="NavTreeHomeIcon">
+                              <Typography variant='h6regular'>{item.Label}</Typography>
+                              <Box className='NavTreeHomeIcon'>
                                 {item.HomePage === true ? (
                                   <HomeOutlinedIcon
                                     sx={{
@@ -533,19 +510,16 @@ export default function NavTree({
                                     }}
                                   />
                                 ) : (
-                                  ''
+                                  ""
                                 )}
                               </Box>
                               <Box
                                 id={String(index)}
-                                onClick={(event) =>
-                                  handleListClick(event, item)
-                                }
-                                className="NavTreeSettingIcon"
-                              >
+                                onClick={(event) => handleListClick(event, item)}
+                                className='NavTreeSettingIcon'>
                                 <img
                                   src={SettingIcon}
-                                  alt="Setting Icon"
+                                  alt='Setting Icon'
                                   onClick={() => onButtonClicked(index)}
                                 />
                               </Box>
@@ -556,43 +530,37 @@ export default function NavTree({
                             <Drop
                               key={index.toString()}
                               id={index.toString()}
-                              type="droppable-item"
-                            >
+                              type='droppable-item'>
                               {leftSideBarContent?.length > 0 &&
                                 leftSideBarContent?.map((item1, index1) => {
                                   return (
                                     <>
-                                      {item1.ParentId == item.Menu_Id && (
+                                      {item1.ParentId === item.Menu_Id && (
                                         <Drag
-                                          className="draggable"
+                                          className='draggable'
                                           key={item1.Label + item1.Menu_Id}
                                           id={item1.Label + item1.Menu_Id}
-                                          index={index1}
-                                        >
+                                          index={index1}>
                                           {/* {item1.ParentId==item.Menu_Id &&     */}
                                           <Box
                                             sx={{
-                                              boxShadow: 'none',
+                                              boxShadow: "none",
                                               // padding: '10px',
-                                              display: 'flex',
-                                              alignItems: 'center',
-                                              flexDirection: 'row',
-                                              position: 'relative',
-                                              width: '100%',
+                                              display: "flex",
+                                              alignItems: "center",
+                                              flexDirection: "row",
+                                              position: "relative",
+                                              width: "100%",
                                             }}
-                                            onClick={() =>
-                                              handlePagesType(item1)
-                                            }
-                                          >
+                                            onClick={() => handlePagesType(item1)}>
                                             <Typography
-                                              variant="h6regular"
+                                              variant='h6regular'
                                               sx={{
-                                                display: 'flex',
-                                                alignItems: 'center',
+                                                display: "flex",
+                                                alignItems: "center",
                                                 // width: '100%'
                                                 // fontSize: '15px',
-                                              }}
-                                            >
+                                              }}>
                                               {/* <DragHandleIcon
                                     sx={{
                                       color: '#89909a',
@@ -606,17 +574,12 @@ export default function NavTree({
                                             </Typography>
                                             <Box
                                               id={String(index)}
-                                              onClick={(event) =>
-                                                handleListClick(event, item1)
-                                              }
-                                              className="NavTreeSettingIcon"
-                                            >
+                                              onClick={(event) => handleListClick(event, item1)}
+                                              className='NavTreeSettingIcon'>
                                               <img
                                                 src={SettingIcon}
-                                                alt="Setting Icon"
-                                                onClick={() =>
-                                                  onButtonClicked(index1)
-                                                }
+                                                alt='Setting Icon'
+                                                onClick={() => onButtonClicked(index1)}
                                               />
                                             </Box>
                                           </Box>
@@ -625,7 +588,7 @@ export default function NavTree({
                                         </Drag>
                                       )}
                                     </>
-                                  )
+                                  );
                                 })}
                             </Drop>
                             {/* </DragAndDrop> */}
@@ -634,7 +597,7 @@ export default function NavTree({
                       )}
                       {/* {item.ParentId == '0' && <Divider />} */}
                     </div>
-                  )
+                  );
                 })}
             </Drop>
           </DragAndDrop>
@@ -642,28 +605,26 @@ export default function NavTree({
         </Box>
         <Box
           sx={{
-            display: 'block',
-            padding: '0 15px 15px 15px',
-            width: '100%',
-          }}
-        >
+            display: "block",
+            padding: "0 15px 15px 15px",
+            width: "100%",
+          }}>
           <LoadingButton
             disabled={menuToPublish.length > 0 ? false : true}
             loading={isLoaded}
-            loadingPosition="end"
+            loadingPosition='end'
             startIcon={<TelegramIcon />}
-            variant="contained"
+            variant='contained'
             sx={{
-              height: '47px',
-              width: '100%',
+              height: "47px",
+              width: "100%",
             }}
             disableElevation
-            onClick={publishMenu}
-          >
+            onClick={publishMenu}>
             {/* <SaveOutlinedIcon
               sx={{ marginRight: '5px', width: '18px', height: '18px' }}
             /> */}
-            {t('publish')}
+            {t("publish")}
           </LoadingButton>
           {/* <Button
             disabled={menuToPublish.length > 0 ? false : true}
@@ -678,76 +639,72 @@ export default function NavTree({
       </Box>
       <Menu
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+          vertical: "bottom",
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         anchorEl={listMenu}
         open={openListMenu}
         onClose={handleListClose}
         sx={{
-          '.Platform-x-Menu-paper': {
-            boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-            borderRadius: '7px',
-            marginTop: '5px',
+          ".Platform-x-Menu-paper": {
+            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+            borderRadius: "7px",
+            marginTop: "5px",
           },
-          '.Platform-x-Menu-list': {
-            borderRadius: '4px',
-            boxShadow: '0 0 2px 0 rgba(115, 114, 114, 0.14)',
-            border: 'solid 1px rgba(112, 112, 112, 0.1)',
+          ".Platform-x-Menu-list": {
+            borderRadius: "4px",
+            boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
+            border: "solid 1px rgba(112, 112, 112, 0.1)",
           },
-          '.Platform-x-MenuItem-root': {
-            '.Platform-x-SvgIcon-root': {
+          ".Platform-x-MenuItem-root": {
+            ".Platform-x-SvgIcon-root": {
               fontSize: 20,
-              marginRight: '10px',
+              marginRight: "10px",
             },
-            paddingLeft: '18px',
+            paddingLeft: "18px",
             fontSize: ThemeConstants.FONTSIZE_XS,
           },
           left: 195,
-        }}
-      >
+        }}>
         <MenuItem
           disableRipple
           onClick={() => {
-            setRenameDialog(true)
-            setRename(selectedItem?.Label)
-            handleListClose()
+            setRenameDialog(true);
+            setRename(selectedItem?.Label);
+            handleListClose();
             // setListMenu(null);
-          }}
-        >
-          {t('rename')}
+          }}>
+          {t("rename")}
         </MenuItem>
         <MenuItem disableRipple disabled>
-          {t('hide')}
+          {t("hide")}
         </MenuItem>
         <MenuItem
           disableRipple
           onClick={() => {
-            handleListClose()
-            onEdit()
-          }}
-        >
-          {t('edit')}
+            handleListClose();
+            onEdit();
+          }}>
+          {t("edit")}
         </MenuItem>
         <MenuItem
           disableRipple
           disabled={menuCount.current > 0 ? true : false}
           onClick={(e) => {
-            handleSubListClick(e)
+            handleSubListClick(e);
           }}
-          sx={{ color: listSubMenu ? '#e83527' : '' }}
-        >
-          {t('set_as_sub_menu')}
+          sx={{ color: listSubMenu ? "#e83527" : "" }}>
+          {t("set_as_sub_menu")}
           <ArrowForwardIosIcon
             sx={{
-              width: '11px',
-              height: '11px',
-              ml: '6px',
-              color: listSubMenu ? '#e83527' : '#2d2d39',
+              width: "11px",
+              height: "11px",
+              ml: "6px",
+              color: listSubMenu ? "#e83527" : "#2d2d39",
             }}
           />
         </MenuItem>
@@ -759,18 +716,17 @@ export default function NavTree({
           //     handleDeleteArticle();
           //   }}
         >
-          {t('duplicate')}
+          {t("duplicate")}
         </MenuItem>
         <MenuItem
           disableRipple
           disabled={selectedItem?.HomePage ? true : false}
           onClick={() => {
-            handleListClose()
-            setisdeleteDialog(true)
+            handleListClose();
+            setisdeleteDialog(true);
             // handleDeleteMenu();
-          }}
-        >
-          {t('delete')}
+          }}>
+          {t("delete")}
         </MenuItem>
       </Menu>
       <Dialog
@@ -778,181 +734,167 @@ export default function NavTree({
         onClose={() => setRenameDialog(false)}
         sx={{
           display: {
-            xs: 'none',
-            sm: 'none',
-            md: 'none',
-            em: 'block',
-            lg: 'block',
+            xs: "none",
+            sm: "none",
+            md: "none",
+            em: "block",
+            lg: "block",
           },
-          '.Platform-x-Dialog-paper': {
-            maxWidth: '600px',
-            maxHeight: '350px',
+          ".Platform-x-Dialog-paper": {
+            maxWidth: "600px",
+            maxHeight: "350px",
             // bottom: 50,left:{md:50}
           },
           // width: '790px',
           // height: 500,
-          margin: '150px 238.9px 150px 288px',
+          margin: "150px 238.9px 150px 288px",
           // padding: '39px 39.6px 56px 56px'
-        }}
-      >
+        }}>
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            flexDirection: 'column',
-          }}
-        >
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}>
           <Typography
-            variant="h5"
+            variant='h5'
             sx={{
-              margin: '55px 358px 0px 348px',
-            }}
-          >
-            {t('rename')}
+              margin: "55px 358px 0px 348px",
+            }}>
+            {t("rename")}
           </Typography>
           <TextField
-            size="small"
+            size='small'
             value={rename}
             onChange={(e) => {
-              setRename(e.target.value)
+              setRename(e.target.value);
             }}
-            sx={{ width: '400px', mt: '30px' }}
-          ></TextField>
+            sx={{ width: "400px", mt: "30px" }}></TextField>
           <Box
             sx={{
               display: {
-                xs: 'none',
-                sm: 'none',
-                md: 'none',
-                em: 'block',
-                lg: 'block',
+                xs: "none",
+                sm: "none",
+                md: "none",
+                em: "block",
+                lg: "block",
               },
-              padding: '15px',
-              textAlign: 'right',
-              mt: '50px',
-              mb: '50px',
-            }}
-          >
+              padding: "15px",
+              textAlign: "right",
+              mt: "50px",
+              mb: "50px",
+            }}>
             <Button
-              variant="contained"
+              variant='contained'
               sx={{
                 backgroundColor: ThemeConstants.WHITE_COLOR,
                 color: ThemeConstants.BLACK_COLOR,
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: ThemeConstants.WHITE_COLOR,
                   color: ThemeConstants.BLACK_COLOR,
                 },
-                width: '68px',
-                height: '45px',
-                marginRight: '15px',
-                border: '1px solid #000000',
-                borderRadius: '3px',
+                width: "68px",
+                height: "45px",
+                marginRight: "15px",
+                border: "1px solid #000000",
+                borderRadius: "3px",
               }}
               disableElevation
-              onClick={() => setRenameDialog(false)}
-            >
-              <CancelIcon
-                sx={{ marginRight: '5px', width: '14px', height: '14px' }}
-              />
-              {t('cancel')}
+              onClick={() => setRenameDialog(false)}>
+              <CancelIcon sx={{ marginRight: "5px", width: "14px", height: "14px" }} />
+              {t("cancel")}
             </Button>
             <Button
-              variant="contained"
+              variant='contained'
               sx={{
                 backgroundColor: ThemeConstants.BLACK_COLOR,
                 color: ThemeConstants.WHITE_COLOR,
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: ThemeConstants.BLACK_COLOR,
                   color: ThemeConstants.WHITE_COLOR,
                 },
                 // minWidth: '130px',
-                width: '68px',
-                height: '45px',
-                borderRadius: '3px',
+                width: "68px",
+                height: "45px",
+                borderRadius: "3px",
               }}
               disableElevation
               onClick={() => {
-                onRename(rename)
-                setRenameDialog(false)
-              }}
-            >
-              <SaveOutlinedIcon
-                sx={{ marginRight: '5px', width: '18px', height: '18px' }}
-              />
-              {t('done')}
+                onRename(rename);
+                setRenameDialog(false);
+              }}>
+              <SaveOutlinedIcon sx={{ marginRight: "5px", width: "18px", height: "18px" }} />
+              {t("done")}
             </Button>
           </Box>
         </Box>
       </Dialog>
       <Menu
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
+          vertical: "bottom",
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         anchorEl={listSubMenu}
         open={openListSubMenu}
         onClose={handleSubListClose}
         sx={{
-          '.Platform-x-Menu-paper': {
-            boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-            borderRadius: '7px',
-            marginTop: '5px',
+          ".Platform-x-Menu-paper": {
+            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+            borderRadius: "7px",
+            marginTop: "5px",
           },
-          '.Platform-x-Menu-list': {
-            borderRadius: '4px',
-            boxShadow: '0 0 2px 0 rgba(115, 114, 114, 0.14)',
-            border: 'solid 1px rgba(112, 112, 112, 0.1)',
+          ".Platform-x-Menu-list": {
+            borderRadius: "4px",
+            boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
+            border: "solid 1px rgba(112, 112, 112, 0.1)",
           },
-          '.Platform-x-MenuItem-root': {
-            '.Platform-x-SvgIcon-root': {
+          ".Platform-x-MenuItem-root": {
+            ".Platform-x-SvgIcon-root": {
               fontSize: 20,
-              marginRight: '10px',
+              marginRight: "10px",
             },
-            paddingLeft: '18px',
+            paddingLeft: "18px",
             fontSize: ThemeConstants.FONTSIZE_XS,
           },
           left: 320,
           height: 500,
-        }}
-      >
+        }}>
         <MenuItem
           disableRipple
           sx={{
-            '&:hover': {
+            "&:hover": {
               backgroundColor: ThemeConstants.WHITE_COLOR,
-              cursor: 'default',
+              cursor: "default",
               // color: ThemeConstants.BLACK_COLOR,
             },
-          }}
-        >
-          {t('select_menu_item')}
+          }}>
+          {t("select_menu_item")}
         </MenuItem>
         <MenuItem
           disableRipple
           sx={{
-            '&:hover': {
+            "&:hover": {
               backgroundColor: ThemeConstants.WHITE_COLOR,
             },
-          }}
-        >
+          }}>
           <FormControl>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
               // disabled={radioSelected=='Main Menu'?true:false}
-              size="small"
-              sx={{ width: '250px', mt: '5px' }}
+              size='small'
+              sx={{ width: "250px", mt: "5px" }}
               value={subMenu}
               onChange={handleChangeSetMenu}
               // IconComponent={() => <ExpandMoreIcon/>}
             >
               {leftSideBarContent.map(
                 (val) =>
-                  val.ParentId === '0' &&
+                  val.ParentId === "0" &&
                   val.Menu_Id !== selectedItem?.Menu_Id &&
                   val.Menu_Id !== selectedItem?.ParentId && (
                     <MenuItem value={val.Menu_Id} key={val.Menu_Id}>
@@ -966,73 +908,65 @@ export default function NavTree({
         <MenuItem
           disableRipple
           sx={{
-            '&:hover': {
+            "&:hover": {
               backgroundColor: ThemeConstants.WHITE_COLOR,
-              cursor: 'default',
+              cursor: "default",
             },
-          }}
-        >
+          }}>
           <Box
             sx={{
               display: {
-                xs: 'none',
-                sm: 'none',
-                md: 'none',
-                em: 'block',
-                lg: 'block',
+                xs: "none",
+                sm: "none",
+                md: "none",
+                em: "block",
+                lg: "block",
               },
-              padding: '15px',
-              textAlign: 'right',
-              mt: '120px',
-              mb: '0px',
-            }}
-          >
+              padding: "15px",
+              textAlign: "right",
+              mt: "120px",
+              mb: "0px",
+            }}>
             <Button
-              variant="contained"
+              variant='contained'
               sx={{
                 backgroundColor: ThemeConstants.WHITE_COLOR,
                 color: ThemeConstants.BLACK_COLOR,
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: ThemeConstants.WHITE_COLOR,
                   color: ThemeConstants.BLACK_COLOR,
                 },
-                width: '80px',
-                height: '40px',
-                marginRight: '15px',
-                border: '1px solid #000000',
+                width: "80px",
+                height: "40px",
+                marginRight: "15px",
+                border: "1px solid #000000",
               }}
               disableElevation
-              onClick={handleSubListClose}
-            >
-              <CancelIcon
-                sx={{ marginRight: '5px', width: '14px', height: '14px' }}
-              />
-              {t('cancel')}
+              onClick={handleSubListClose}>
+              <CancelIcon sx={{ marginRight: "5px", width: "14px", height: "14px" }} />
+              {t("cancel")}
             </Button>
             <Button
-              variant="contained"
+              variant='contained'
               sx={{
                 backgroundColor: ThemeConstants.BLACK_COLOR,
                 color: ThemeConstants.WHITE_COLOR,
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: ThemeConstants.BLACK_COLOR,
                   color: ThemeConstants.WHITE_COLOR,
                 },
                 // minWidth: '130px',
-                width: '80px',
-                height: '40px',
+                width: "80px",
+                height: "40px",
               }}
               disableElevation
               onClick={() => {
-                onSetSubMenu(subMenu)
-                handleSubListClose()
-                handleListClose()
-              }}
-            >
-              <DoneOutlinedIcon
-                sx={{ marginRight: '5px', width: '18px', height: '18px' }}
-              />
-              {t('done')}
+                onSetSubMenu(subMenu);
+                handleSubListClose();
+                handleListClose();
+              }}>
+              <DoneOutlinedIcon sx={{ marginRight: "5px", width: "18px", height: "18px" }} />
+              {t("done")}
             </Button>
           </Box>
         </MenuItem>
@@ -1043,12 +977,10 @@ export default function NavTree({
           handleDeleteMenu={handleDeleteMenu}
           isDeleteDialog={isDeleteDialog}
           setisdeleteDialog={setisdeleteDialog}
-          title={t('delete_title')}
-          subTitle={`${t('delete_confirm')} ${t('menu_item')}?. ${t(
-            'process_undone',
-          )}`}
+          title={t("delete_title")}
+          subTitle={`${t("delete_confirm")} ${t("menu_item")}?. ${t("process_undone")}`}
         />
       )}
     </>
-  )
+  );
 }

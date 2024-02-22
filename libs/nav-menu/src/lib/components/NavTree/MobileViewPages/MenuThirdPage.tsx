@@ -1,15 +1,15 @@
-import { useMutation } from '@apollo/client'
-import Step from '@material-ui/core/Step'
-import StepConnector from '@material-ui/core/StepConnector'
-import StepLabel from '@material-ui/core/StepLabel'
-import Stepper from '@material-ui/core/Stepper'
-import { withStyles } from '@material-ui/core/styles'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined'
-import { Box, Button, Divider, Typography } from '@mui/material'
-import { save_menu, update_menu } from '@platformx/authoring-apis'
-import { addMenu } from '@platformx/authoring-state'
+import { useMutation } from "@apollo/client";
+import Step from "@material-ui/core/Step";
+import StepConnector from "@material-ui/core/StepConnector";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
+import { withStyles } from "@material-ui/core/styles";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
+import { Box, Button, Divider, Typography } from "@mui/material";
+import { save_menu, update_menu } from "@platformx/authoring-apis";
+import { addMenu } from "@platformx/authoring-state";
 import {
   Loader,
   ShowToastError,
@@ -17,17 +17,17 @@ import {
   ThemeConstants,
   dateFormat,
   useUserSession,
-} from '@platformx/utilities'
-import { useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+} from "@platformx/utilities";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
-const steps = ['Create', 'Add', 'Confirm']
+const steps = ["Create", "Add", "Confirm"];
 const styles = (theme) => ({
   stepIcon: {
-    color: '#2d2d39 !important',
+    color: "#2d2d39 !important",
   },
-})
+});
 function MenuThirdPage({
   setIsMenuThirdPg,
   setIsMenuSecondPg,
@@ -60,96 +60,96 @@ function MenuThirdPage({
   setClickConfirm,
   editData,
 }) {
-  const { t } = useTranslation()
-  const dispatch = useDispatch()
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
 
-  const [getSession] = useUserSession()
-  const { userInfo } = getSession()
-  const [isLoading, setIsLoading] = useState(false)
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const username = `${userInfo.first_name} ${userInfo.last_name}`
-  const [updatemutate] = useMutation(update_menu)
+  const username = `${userInfo.first_name} ${userInfo.last_name}`;
+  const [updatemutate] = useMutation(update_menu);
   const getHighestScore = () => {
     const temp =
       (leftSideBarContent?.length !== 0 &&
         leftSideBarContent.map((val) => {
-          return Number(val.Score)
+          return Number(val.Score);
         })) ||
-      []
+      [];
     const max =
       (temp?.length !== 0 &&
         temp.reduce((acc, val) => {
-          return acc > val ? acc : val
+          return acc > val ? acc : val;
         })) ||
-      0
-    return max
-  }
+      0;
+    return max;
+  };
   const onBack = () => {
-    handleBack()
-    setIsMenuSecondPg(true)
-    setIsMenuThirdPg(false)
-  }
+    handleBack();
+    setIsMenuSecondPg(true);
+    setIsMenuThirdPg(false);
+  };
   const createMenuItem = () => {
-    const parentId = radioSelected === 'Main Menu' ? '0' : menuId
+    const parentId = radioSelected === "Main Menu" ? "0" : menuId;
     const newMenu = {
       Title: menuItemName,
       ParentId: parentId,
-      URL: '/navMenu-01',
-      Tagging: 'Navigation',
-      Description: '',
+      URL: "/navMenu-01",
+      Tagging: "Navigation",
+      Description: "",
       Label: menuItemName,
-      Score: '',
+      Score: "",
       createdBy: username,
       LastModificationDate: new Date().toISOString(),
-      Menu_State: '',
+      Menu_State: "",
       Internal: false,
       IsHidden: false,
       HomePage: isHomePage,
-      menuicon: '',
+      menuicon: "",
       content_type_value: {},
-    }
-    dispatch(addMenu(newMenu))
-  }
-  const [savedmutate] = useMutation(save_menu)
-  const mainMenuLength = useRef(0)
+    };
+    dispatch(addMenu(newMenu));
+  };
+  const [savedmutate] = useMutation(save_menu);
+  const mainMenuLength = useRef(0);
   const onSave = () => {
-    const parentId = radioSelected === 'Main Menu' ? '0' : menuId
+    const parentId = radioSelected === "Main Menu" ? "0" : menuId;
     const menuToSend = {
       ParentId: parentId,
       URL: url,
-      Tagging: 'Navigation',
+      Tagging: "Navigation",
       Description: menuDescription,
       Label: menuItemName,
       Score: getHighestScore() + 1,
-      Status: 'DRAFT',
+      Status: "DRAFT",
       Internal: true,
       IsHidden: false,
       isCurrentTab: true,
       HomePage: isHomePage,
       menuicon: selectedIcon,
       content_type_value: { ...selectedItem },
-    }
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    };
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
     isHomePage &&
       tempArr.forEach((value, i) => {
         if (value.HomePage === true) {
-          tempArr[i].HomePage = false
+          tempArr[i].HomePage = false;
         }
-      })
+      });
     const isItemExist = tempArr.find((val) => {
-      return val ? val.Label.toLowerCase() === menuItemName.toLowerCase() : ''
-    })
+      return val ? val.Label.toLowerCase() === menuItemName.toLowerCase() : "";
+    });
     if (isItemExist) {
-      ShowToastError(t('menu_exist'))
+      ShowToastError(t("menu_exist"));
     } else {
-      tempArr.push(menuToSend)
+      tempArr.push(menuToSend);
       const menuToCreate = {
         lastModifiedBy: username,
         createdBy: username,
         menu_content: tempArr,
         // menu_state: 'draft',
-      }
-      setIsLoading(true)
+      };
+      setIsLoading(true);
 
       savedmutate({
         variables: {
@@ -157,85 +157,82 @@ function MenuThirdPage({
         },
       })
         .then((resp) => {
-          createMenuItem()
-          setIsLoading(false)
-          handleNext()
-          setIsMenuThirdPg(false)
-          setIsMenuSecondPg(false)
-          setOpenFirstPage(false)
-          setActiveStep(0)
-          setMenuItemName('')
-          setRadioSelected('Main Menu')
-          setSubMenuValue('')
-          setAlignment('Page')
-          setPageName('')
-          setCurrentButton('')
-          setIsDone(false)
-          setClickConfirm(!clickConfirm)
-          if (
-            resp.data.authoring_createOrUpdateNavigation.message === 'Success'
-          ) {
-            ShowToastSuccess(t('menu_toast_added'))
+          createMenuItem();
+          setIsLoading(false);
+          handleNext();
+          setIsMenuThirdPg(false);
+          setIsMenuSecondPg(false);
+          setOpenFirstPage(false);
+          setActiveStep(0);
+          setMenuItemName("");
+          setRadioSelected("Main Menu");
+          setSubMenuValue("");
+          setAlignment("Page");
+          setPageName("");
+          setCurrentButton("");
+          setIsDone(false);
+          setClickConfirm(!clickConfirm);
+          if (resp.data.authoring_createOrUpdateNavigation.message === "Success") {
+            ShowToastSuccess(t("menu_toast_added"));
           } else {
-            ShowToastSuccess(t('api_error_toast'))
+            ShowToastSuccess(t("api_error_toast"));
           }
         })
         .catch((error) => {
-          setIsLoading(false)
+          setIsLoading(false);
           if (error.graphQLErrors[0]) {
-            ShowToastError(error.graphQLErrors[0].message)
+            ShowToastError(error.graphQLErrors[0].message);
           } else {
-            ShowToastError(t('api_error_toast'))
+            ShowToastError(t("api_error_toast"));
           }
-        })
+        });
     }
-  }
+  };
   const onEdit = () => {
-    const parentId = radioSelected === 'Main Menu' ? '0' : menuId
+    const parentId = radioSelected === "Main Menu" ? "0" : menuId;
     const menuToSend = {
-      Tagging: 'Navigation',
+      Tagging: "Navigation",
       Description: menuDescription,
       ParentId: parentId ? parentId : editData?.ParentId,
       Label: menuItemName,
       Internal: true,
       Score: editData?.Score,
       IsHidden: false,
-      Status: 'DRAFT',
+      Status: "DRAFT",
       HomePage: isHomePage,
       isCurrentTab: true,
       URL: url,
       menuicon: selectedIcon,
       content_type_value: { ...selectedItem },
       Menu_Id: editData?.Menu_Id,
-    }
-    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent))
+    };
+    const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
     isHomePage &&
       tempArr.forEach((value, i) => {
         if (value.HomePage === true) {
-          tempArr[i].HomePage = false
+          tempArr[i].HomePage = false;
         }
-      })
+      });
     const isItemExist = tempArr.find((val) => {
       return val
-        ? val.Label.toLowerCase() === menuItemName.toLowerCase() &&
-            val.Menu_Id !== editData.Menu_Id
-        : ''
-    })
+        ? val.Label.toLowerCase() === menuItemName.toLowerCase() && val.Menu_Id !== editData.Menu_Id
+        : "";
+    });
     if (isItemExist) {
-      ShowToastError(t('menu_exist'))
+      ShowToastError(t("menu_exist"));
     } else {
       tempArr.forEach((value, i) => {
         if (value.Menu_Id === editData?.Menu_Id) {
-          tempArr[i] = menuToSend
+          tempArr[i] = menuToSend;
         }
-      })
+      });
       const menuToCreate = {
         lastModifiedBy: username,
         createdBy: username,
         menu_content: tempArr,
         // menu_state: 'draft',
-      }
-      setIsLoading(true)
+      };
+      setIsLoading(true);
 
       updatemutate({
         variables: {
@@ -243,60 +240,60 @@ function MenuThirdPage({
         },
       })
         .then((resp) => {
-          handleNext()
-          setClickConfirm(!clickConfirm)
-          setIsMenuThirdPg(false)
-          setIsMenuSecondPg(false)
-          setOpenFirstPage(false)
-          setActiveStep(0)
-          setIsLoading(false)
+          handleNext();
+          setClickConfirm(!clickConfirm);
+          setIsMenuThirdPg(false);
+          setIsMenuSecondPg(false);
+          setOpenFirstPage(false);
+          setActiveStep(0);
+          setIsLoading(false);
 
-          ShowToastSuccess(`${t('menu')} ${t('updated_toast')}`)
+          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
-          setIsLoading(false)
+          setIsLoading(false);
           if (error.graphQLErrors[0]) {
-            ShowToastError(error.graphQLErrors[0].message)
+            ShowToastError(error.graphQLErrors[0].message);
           } else {
-            ShowToastError(t('api_error_toast'))
+            ShowToastError(t("api_error_toast"));
           }
-        })
+        });
     }
-  }
+  };
   const onConfirm = () => {
-    if (radioSelected === 'Main Menu') {
+    if (radioSelected === "Main Menu") {
       for (let i = 0; i < leftSideBarContent.length; i++) {
-        if (leftSideBarContent[i].ParentId === '0') {
-          mainMenuLength.current++
+        if (leftSideBarContent[i].ParentId === "0") {
+          mainMenuLength.current++;
         }
       }
     } else {
       for (let i = 0; i < leftSideBarContent.length; i++) {
         if (leftSideBarContent[i].ParentId === menuId) {
-          mainMenuLength.current++
+          mainMenuLength.current++;
         }
       }
     }
     if (editData) {
-      onEdit()
+      onEdit();
     } else {
       if (mainMenuLength.current < 10) {
-        onSave()
+        onSave();
       } else {
-        ShowToastError(t('menu_length_toast'))
-        mainMenuLength.current = 0
-        handleNext()
-        setIsMenuThirdPg(false)
-        setIsMenuSecondPg(false)
-        setOpenFirstPage(false)
-        setActiveStep(0)
-        setMenuItemName('')
-        setRadioSelected('Main Menu')
-        setSubMenuValue('')
-        setAlignment('Page')
-        setPageName('')
-        setCurrentButton('')
-        setIsDone(false)
+        ShowToastError(t("menu_length_toast"));
+        mainMenuLength.current = 0;
+        handleNext();
+        setIsMenuThirdPg(false);
+        setIsMenuSecondPg(false);
+        setOpenFirstPage(false);
+        setActiveStep(0);
+        setMenuItemName("");
+        setRadioSelected("Main Menu");
+        setSubMenuValue("");
+        setAlignment("Page");
+        setPageName("");
+        setCurrentButton("");
+        setIsDone(false);
         // setIsLoading(false);
       }
       // handleNext();
@@ -312,7 +309,7 @@ function MenuThirdPage({
       // setCurrentButton('');
       // setIsDone(false);
     }
-  }
+  };
 
   return (
     <>
@@ -321,74 +318,69 @@ function MenuThirdPage({
 
       <Box
         sx={{
-          width: { xs: '100%' },
-          display: { xs: 'block', sm: 'none' },
-          height: '100%',
-          overflowY: 'scroll',
+          width: { xs: "100%" },
+          display: { xs: "block", sm: "none" },
+          height: "100%",
+          overflowY: "scroll",
           // height: activeStep==1|| activeStep===2?'550px':null
-        }}
-      >
+        }}>
         <Box
           sx={{
-            width: '100%',
-            backgroundColor: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '13px',
-          }}
-        >
+            width: "100%",
+            backgroundColor: "#fff",
+            display: "flex",
+            alignItems: "center",
+            padding: "13px",
+          }}>
           <ArrowBackIosIcon
             onClick={onBack}
             sx={{
-              width: '20px',
-              height: '20px',
-              cursor: 'pointer',
+              width: "20px",
+              height: "20px",
+              cursor: "pointer",
               margin: 1,
             }}
           />
 
           <Typography
-            variant="h4medium"
+            variant='h4medium'
             sx={{
-              width: '393px',
-              height: '35px',
+              width: "393px",
+              height: "35px",
               // margin: '5px 0px 0px 0px',
-              display: 'flex',
-              alignItems: 'center',
-              color: '#2d2d39',
-            }}
-          >
-            {t('menu_create_button')}
+              display: "flex",
+              alignItems: "center",
+              color: "#2d2d39",
+            }}>
+            {t("menu_create_button")}
           </Typography>
         </Box>
         <Divider />
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: "100%" }}>
           <Stepper
             activeStep={activeStep}
             alternativeLabel
             style={{
-              padding: '15px',
+              padding: "15px",
             }}
             connector={
               <StepConnector
                 style={{
-                  width: '40px',
-                  margin: '0px 19.5px 0px 13.5px',
-                  backgroundColor: '#2d2d39',
+                  width: "40px",
+                  margin: "0px 19.5px 0px 13.5px",
+                  backgroundColor: "#2d2d39",
                 }}
               />
-            }
-          >
+            }>
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel
-                  style={{ marginTop: '0px' }}
+                  style={{ marginTop: "0px" }}
                   StepIconProps={{
                     classes: {
                       root: classes.stepIcon,
                     },
-                  }}
-                >
+                  }}>
                   {t(label.toLowerCase())}
                 </StepLabel>
               </Step>
@@ -397,106 +389,88 @@ function MenuThirdPage({
         </Box>
         <Typography
           sx={{
-            margin: '15px 0px 0px 20px',
+            margin: "15px 0px 0px 20px",
             fontSize: ThemeConstants.FONTSIZE_MD,
-          }}
-        >
-          {t('menu_item_details')}
+          }}>
+          {t("menu_item_details")}
         </Typography>
         <Box
           sx={{
-            backgroundColor: '#fff', //margin: '-13px 20px 0px 12px',
-            margin: '18px',
-          }}
-        >
-          <Box sx={{ marginTop: '-16px' }}>
+            backgroundColor: "#fff", //margin: '-13px 20px 0px 12px',
+            margin: "18px",
+          }}>
+          <Box sx={{ marginTop: "-16px" }}>
             <Box
               sx={{
-                marginLeft: '17px',
-                marginTop: '40px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', mt: '18px' }}
-              >
-                <Typography variant="h6medium">
-                  {' '}
-                  {t('menu_added_title')}
-                </Typography>
-                <Typography variant="h7regular" sx={{ color: '#89909a' }}>
-                  {' '}
-                  {t('menu_added_subtitle')}
+                marginLeft: "17px",
+                marginTop: "40px",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+              <Box sx={{ display: "flex", flexDirection: "column", mt: "18px" }}>
+                <Typography variant='h6medium'> {t("menu_added_title")}</Typography>
+                <Typography variant='h7regular' sx={{ color: "#89909a" }}>
+                  {" "}
+                  {t("menu_added_subtitle")}
                 </Typography>
               </Box>
               <Box
                 sx={{
                   marginTop: 1,
                   mr: 2,
-                  color: '#89909a',
-                  border: 'solid 1px #ced3d9',
-                  backgroundColor: '#f5f6f8',
-                  borderRadius: '3px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '50px',
-                }}
-              >
+                  color: "#89909a",
+                  border: "solid 1px #ced3d9",
+                  backgroundColor: "#f5f6f8",
+                  borderRadius: "3px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "50px",
+                }}>
                 <Typography
                   sx={{
                     fontSize: ThemeConstants.FONTSIZE_DEFAULT,
                     p: 2,
-                    color: '#89909a',
-                  }}
-                >
+                    color: "#89909a",
+                  }}>
                   {pageName}
                 </Typography>
               </Box>
             </Box>
             <Box
               sx={{
-                marginLeft: '17px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', mt: '25px' }}
-              >
-                <Typography variant="h6medium">
-                  {t('menu_item_name')}
-                </Typography>
+                marginLeft: "17px",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+              <Box sx={{ display: "flex", flexDirection: "column", mt: "25px" }}>
+                <Typography variant='h6medium'>{t("menu_item_name")}</Typography>
                 <Typography
                   sx={{
                     fontSize: ThemeConstants.FONTSIZE_XS,
-                    color: '#89909a',
-                  }}
-                >
-                  {' '}
-                  {t('menu_subname')}
+                    color: "#89909a",
+                  }}>
+                  {" "}
+                  {t("menu_subname")}
                 </Typography>
               </Box>
               <Box
                 sx={{
                   marginTop: 1,
                   mr: 2,
-                  color: '#89909a',
-                  border: 'solid 1px #ced3d9',
-                  backgroundColor: '#f5f6f8',
-                  borderRadius: '3px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '50px',
-                }}
-              >
+                  color: "#89909a",
+                  border: "solid 1px #ced3d9",
+                  backgroundColor: "#f5f6f8",
+                  borderRadius: "3px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "50px",
+                }}>
                 <Typography
                   sx={{
                     fontSize: ThemeConstants.FONTSIZE_DEFAULT,
                     p: 2,
-                    color: '#89909a',
-                  }}
-                >
+                    color: "#89909a",
+                  }}>
                   {menuItemName}
                 </Typography>
               </Box>
@@ -504,49 +478,40 @@ function MenuThirdPage({
             {menuDescription && (
               <Box
                 sx={{
-                  marginLeft: '17px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <Box
-                  sx={{ display: 'flex', flexDirection: 'column', mt: '25px' }}
-                >
-                  <Typography variant="h6medium">
-                    {' '}
-                    {t('menu_description')}
-                  </Typography>
+                  marginLeft: "17px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}>
+                <Box sx={{ display: "flex", flexDirection: "column", mt: "25px" }}>
+                  <Typography variant='h6medium'> {t("menu_description")}</Typography>
                   <Typography
                     sx={{
                       fontSize: ThemeConstants.FONTSIZE_XS,
-                      color: '#89909a',
-                    }}
-                  >
-                    {' '}
-                    {t('menu_subdes')}
+                      color: "#89909a",
+                    }}>
+                    {" "}
+                    {t("menu_subdes")}
                   </Typography>
                 </Box>
                 <Box
                   sx={{
                     marginTop: 1,
                     mr: 2,
-                    color: '#89909a',
-                    border: 'solid 1px #ced3d9',
-                    backgroundColor: '#f5f6f8',
-                    borderRadius: '3px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: '75px',
-                    overflowWrap: 'anywhere',
-                  }}
-                >
+                    color: "#89909a",
+                    border: "solid 1px #ced3d9",
+                    backgroundColor: "#f5f6f8",
+                    borderRadius: "3px",
+                    display: "flex",
+                    alignItems: "center",
+                    height: "75px",
+                    overflowWrap: "anywhere",
+                  }}>
                   <Typography
                     sx={{
                       fontSize: ThemeConstants.FONTSIZE_DEFAULT,
                       p: 2,
-                      color: '#89909a',
-                    }}
-                  >
+                      color: "#89909a",
+                    }}>
                     {menuDescription}
                   </Typography>
                 </Box>
@@ -554,183 +519,150 @@ function MenuThirdPage({
             )}
             <Box
               sx={{
-                marginLeft: '17px',
-                display: 'flex',
-                flexDirection: 'column',
-                mt: '25px',
-              }}
-            >
-              <Typography variant="h6medium">
-                {' '}
-                {t('menu_added_icon')}
-              </Typography>
+                marginLeft: "17px",
+                display: "flex",
+                flexDirection: "column",
+                mt: "25px",
+              }}>
+              <Typography variant='h6medium'> {t("menu_added_icon")}</Typography>
               <Box sx={{ marginTop: 1, mr: 2 }}>
                 <img
                   src={selectedIcon}
+                  alt='icon'
                   style={{
-                    width: '26px',
-                    height: '26px',
-                    objectFit: 'cover',
-                    padding: '5px',
-                    marginRight: '3px',
-                    border: 'solid 1px #ced3d9',
-                    backgroundColor: '#f5f6f8',
-                    borderRadius: '5px',
+                    width: "26px",
+                    height: "26px",
+                    objectFit: "cover",
+                    padding: "5px",
+                    marginRight: "3px",
+                    border: "solid 1px #ced3d9",
+                    backgroundColor: "#f5f6f8",
+                    borderRadius: "5px",
                   }}
                 />
               </Box>
             </Box>
             <Box
               sx={{
-                marginLeft: '17px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <Box
-                sx={{ display: 'flex', flexDirection: 'column', mt: '25px' }}
-              >
-                <Typography variant="h6medium">
-                  {t('menu_item_type')}
-                </Typography>
+                marginLeft: "17px",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+              <Box sx={{ display: "flex", flexDirection: "column", mt: "25px" }}>
+                <Typography variant='h6medium'>{t("menu_item_type")}</Typography>
               </Box>
               <Box
                 sx={{
                   marginTop: 1,
                   mr: 2,
-                  color: '#89909a',
-                  border: 'solid 1px #ced3d9',
-                  backgroundColor: '#f5f6f8',
-                  borderRadius: '3px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  height: '50px',
-                }}
-              >
+                  color: "#89909a",
+                  border: "solid 1px #ced3d9",
+                  backgroundColor: "#f5f6f8",
+                  borderRadius: "3px",
+                  display: "flex",
+                  alignItems: "center",
+                  height: "50px",
+                }}>
                 <Typography
                   sx={{
                     fontSize: ThemeConstants.FONTSIZE_DEFAULT,
                     p: 2,
-                    color: '#89909a',
-                  }}
-                >
+                    color: "#89909a",
+                  }}>
                   {radioSelected}
                 </Typography>
               </Box>
             </Box>
-            {subMenuValue !== 'No Menu Item Selected' && (
+            {subMenuValue !== "No Menu Item Selected" && (
               <Box
                 sx={{
-                  marginLeft: '17px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <Box
-                  sx={{ display: 'flex', flexDirection: 'column', mt: '25px' }}
-                >
-                  <Typography variant="h6medium">
-                    {' '}
-                    {t('menu_item_selected')}
-                  </Typography>
+                  marginLeft: "17px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}>
+                <Box sx={{ display: "flex", flexDirection: "column", mt: "25px" }}>
+                  <Typography variant='h6medium'> {t("menu_item_selected")}</Typography>
                 </Box>
                 <Box
                   sx={{
                     marginTop: 1,
                     mr: 2,
-                    color: '#89909a',
-                    border: 'solid 1px #ced3d9',
-                    backgroundColor: '#f5f6f8',
-                    borderRadius: '3px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: '50px',
-                    mb: '20px',
-                  }}
-                >
+                    color: "#89909a",
+                    border: "solid 1px #ced3d9",
+                    backgroundColor: "#f5f6f8",
+                    borderRadius: "3px",
+                    display: "flex",
+                    alignItems: "center",
+                    height: "50px",
+                    mb: "20px",
+                  }}>
                   <Typography
                     sx={{
                       fontSize: ThemeConstants.FONTSIZE_DEFAULT,
                       p: 2,
-                      color: '#89909a',
-                    }}
-                  >
+                      color: "#89909a",
+                    }}>
                     {subMenuValue}
                   </Typography>
                 </Box>
               </Box>
             )}
-            {selectedItem.Title !== '' && (
+            {selectedItem.Title !== "" && (
               <Box
                 sx={{
-                  marginLeft: '17px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  mt: '25px',
-                }}
-              >
-                <Typography variant="h6medium"> Added content type</Typography>
+                  marginLeft: "17px",
+                  display: "flex",
+                  flexDirection: "column",
+                  mt: "25px",
+                }}>
+                <Typography variant='h6medium'> Added content type</Typography>
                 <Box
                   sx={{
                     marginTop: 1,
                     mr: 2,
-                    mb: '10px',
-                    cursor: 'pointer',
-                    height: '227px',
-                    width: { md: '356px', sm: '260px' },
-                    position: 'relative',
-                  }}
-                >
+                    mb: "10px",
+                    cursor: "pointer",
+                    height: "227px",
+                    width: { md: "356px", sm: "260px" },
+                    position: "relative",
+                  }}>
                   <img
                     src={selectedItem.Image}
-                    width="100%"
-                    height="100%"
-                    style={{ borderRadius: '5px' }}
+                    alt='icon'
+                    width='100%'
+                    height='100%'
+                    style={{ borderRadius: "5px" }}
                   />
                   <div
                     style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      background:
-                        'linear-gradient(180deg, rgba(0,0,0,0.0001) 0%, #000000 100%)',
-                      mixBlendMode: 'normal',
-                      opacity: '0.5',
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      background: "linear-gradient(180deg, rgba(0,0,0,0.0001) 0%, #000000 100%)",
+                      mixBlendMode: "normal",
+                      opacity: "0.5",
                       top: 0,
-                      borderRadius: '5px',
-                    }}
-                  ></div>
+                      borderRadius: "5px",
+                    }}></div>
                   <Box
                     sx={{
-                      position: 'relative',
-                      marginTop: '-85px',
-                      marginLeft: '21px',
-                    }}
-                  >
+                      position: "relative",
+                      marginTop: "-85px",
+                      marginLeft: "21px",
+                    }}>
                     <Typography
-                      variant="h5medium"
-                      component="div"
-                      sx={{ color: '#fff', marginBottom: '5px' }}
-                      className="singlebr"
-                    >
+                      variant='h5medium'
+                      component='div'
+                      sx={{ color: "#fff", marginBottom: "5px" }}
+                      className='singlebr'>
                       {selectedItem.Title}
                     </Typography>
-                    <Typography
-                      variant="h7medium"
-                      component="div"
-                      sx={{ color: '#ced3d9' }}
-                    >
+                    <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
                       {selectedItem.Author}
                     </Typography>
-                    <Typography
-                      variant="h7medium"
-                      component="div"
-                      sx={{ color: '#ced3d9' }}
-                    >
-                      {' '}
-                      {selectedItem?.CreatedDate
-                        ? dateFormat(selectedItem?.CreatedDate)
-                        : ''}
+                    <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
+                      {" "}
+                      {selectedItem?.CreatedDate ? dateFormat(selectedItem?.CreatedDate) : ""}
                     </Typography>
                   </Box>
                 </Box>
@@ -738,23 +670,23 @@ function MenuThirdPage({
             )}
           </Box>
         </Box>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: '18px' }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mb: "18px" }}>
           <Button
-            variant="outlined"
+            variant='outlined'
             disableElevation
             onClick={onBack}
             sx={{
-              width: '165px',
-              height: '50px',
+              width: "165px",
+              height: "50px",
               fontSize: ThemeConstants.FONTSIZE_SM,
-              backgroundColor: '#fff',
-              color: '#2d2d39',
-              textTransform: 'none',
+              backgroundColor: "#fff",
+              color: "#2d2d39",
+              textTransform: "none",
               //   margin: '54px 20px 18px 20px',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '3px',
-              '&:hover': {
+              display: "flex",
+              alignItems: "center",
+              borderRadius: "3px",
+              "&:hover": {
                 backgroundColor: ThemeConstants.WHITE_COLOR,
                 color: ThemeConstants.BLACK_COLOR,
               },
@@ -764,22 +696,22 @@ function MenuThirdPage({
           >
             <ChevronLeftIcon />
 
-            {t('back')}
+            {t("back")}
           </Button>
           <Button
-            variant="contained"
+            variant='contained'
             disableElevation
             sx={{
-              width: '165px',
-              height: '50px',
+              width: "165px",
+              height: "50px",
               fontSize: ThemeConstants.FONTSIZE_SM,
-              backgroundColor: '#2d2d39',
-              color: '#fff',
-              textTransform: 'none',
-              ml: '16px',
+              backgroundColor: "#2d2d39",
+              color: "#fff",
+              textTransform: "none",
+              ml: "16px",
               //   margin: '54px 20px 18px 20px',
-              borderRadius: '3px',
-              '&:hover': {
+              borderRadius: "3px",
+              "&:hover": {
                 backgroundColor: ThemeConstants.BLACK_COLOR,
                 color: ThemeConstants.WHITE_COLOR,
               },
@@ -787,13 +719,13 @@ function MenuThirdPage({
             onClick={onConfirm}
             //  onClick={() => onDuplicatePage(false, undefined)}
           >
-            <DoneOutlinedIcon sx={{ marginRight: '10px' }} />
-            {editData ? 'Update' : t('confirm')}
+            <DoneOutlinedIcon sx={{ marginRight: "10px" }} />
+            {editData ? "Update" : t("confirm")}
           </Button>
         </Box>
       </Box>
     </>
-  )
+  );
 }
 
-export default withStyles(styles)(MenuThirdPage)
+export default withStyles(styles)(MenuThirdPage);

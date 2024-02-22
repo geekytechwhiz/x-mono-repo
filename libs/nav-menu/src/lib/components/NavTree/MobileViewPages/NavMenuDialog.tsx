@@ -1,18 +1,19 @@
-import { Box, Divider } from '@mui/material'
-import Dialog from '@mui/material/Dialog'
-import DialogTitle from '@mui/material/DialogTitle'
-import Slide from '@mui/material/Slide'
-import { Category, ContentAction } from '@platformx/content'
-import { useAccess } from '@platformx/utilities'
-import React from 'react'
+import { Box, Divider } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import { Category, ContentAction } from "@platformx/content";
+import { useAccess } from "@platformx/utilities";
+import React from "react";
+
 const Transition = React.forwardRef(function Transition(
   props: {
-    children: React.ReactElement<any, any>
+    children: React.ReactElement<any, any>;
   },
   ref: React.Ref<unknown>,
 ) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
+  return <Slide direction='up' ref={ref} {...props} />;
+});
 export default function NavMenuDialog({
   isOpen,
   setIsOpen,
@@ -30,32 +31,32 @@ export default function NavMenuDialog({
    opacity: 0.38;
    pointer-events: none;
    cursor: default;
-  }`
-  const { canAccessAction } = useAccess()
+  }`;
+  const { canAccessAction } = useAccess();
   const handleClose = () => {
-    setIsOpen(false)
+    setIsOpen(false);
     setTimeout(() => {
-      menuCount.current = 0
-    }, 500)
-  }
+      menuCount.current = 0;
+    }, 500);
+  };
   const onEditHandle = () => {
-    setOpenFirstPage(true)
-    setEditData(selectedMenu)
-    handleClose()
-  }
+    setOpenFirstPage(true);
+    setEditData(selectedMenu);
+    handleClose();
+  };
 
   return (
     <div>
       <style>{minCss}</style>
       <Dialog
         sx={{
-          display: { sm: 'none' },
-          '.Platform-x-Dialog-paper': {
-            boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-            borderRadius: '10px 10px 0 0',
-            width: '100%',
+          display: { sm: "none" },
+          ".Platform-x-Dialog-paper": {
+            boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+            borderRadius: "10px 10px 0 0",
+            width: "100%",
             margin: 0,
-            position: 'absolute',
+            position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
@@ -65,32 +66,23 @@ export default function NavMenuDialog({
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle sx={{ marginLeft: '13px' }}>{name}</DialogTitle>
+        aria-describedby='alert-dialog-slide-description'>
+        <DialogTitle sx={{ marginLeft: "13px" }}>{name}</DialogTitle>
         <Divider />
         <Box
-          classes={
-            !canAccessAction(Category.Menu, '', ContentAction.Update) &&
-            'disable'
-          }
+          classes={!canAccessAction(Category.Menu, "", ContentAction.Update) && "disable"}
           onClick={() => {
-            setIsRenameOpen(true)
-            handleClose()
+            setIsRenameOpen(true);
+            handleClose();
           }}
-          sx={{ display: 'flex', marginLeft: '23px', p: '15px' }}
-        >
-          <Box sx={{ fontSize: '16px' }}>Rename</Box>
+          sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
+          <Box sx={{ fontSize: "16px" }}>Rename</Box>
         </Box>
         <Box
-          classes={
-            !canAccessAction(Category.Menu, '', ContentAction.Update) &&
-            'disable'
-          }
+          classes={!canAccessAction(Category.Menu, "", ContentAction.Update) && "disable"}
           onClick={onEditHandle}
-          sx={{ display: 'flex', marginLeft: '23px', p: '15px' }}
-        >
-          <Box sx={{ fontSize: '16px' }}>Edit</Box>
+          sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
+          <Box sx={{ fontSize: "16px" }}>Edit</Box>
         </Box>
         {/* <Box
           onClick={() => {
@@ -101,15 +93,14 @@ export default function NavMenuDialog({
         >
           <Box sx={{ fontSize: '16px' }}>Hide</Box>
         </Box> */}
-        {menuCount.current == 0 ? (
+        {menuCount.current === 0 ? (
           <Box
             onClick={() => {
-              setIsSubMenu(true)
-              handleClose()
+              setIsSubMenu(true);
+              handleClose();
             }}
-            sx={{ display: 'flex', marginLeft: '23px', p: '15px' }}
-          >
-            <Box sx={{ fontSize: '16px' }}>Set as sub-menu</Box>
+            sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
+            <Box sx={{ fontSize: "16px" }}>Set as sub-menu</Box>
           </Box>
         ) : null}
         {/* <Box
@@ -123,21 +114,20 @@ export default function NavMenuDialog({
         </Box> */}
         <Box
           onClick={() => {
-            setIsDeleteOpen(true)
-            handleClose()
+            setIsDeleteOpen(true);
+            handleClose();
           }}
           className={
-            canAccessAction(Category.Menu, '', ContentAction.Delete)
+            canAccessAction(Category.Menu, "", ContentAction.Delete)
               ? selectedMenu?.HomePage
-                ? 'disabled'
-                : ''
-              : 'disable'
+                ? "disabled"
+                : ""
+              : "disable"
           }
-          sx={{ display: 'flex', marginLeft: '23px', p: '15px' }}
-        >
-          <Box sx={{ fontSize: '16px' }}>Delete</Box>
+          sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
+          <Box sx={{ fontSize: "16px" }}>Delete</Box>
         </Box>
       </Dialog>
     </div>
-  )
+  );
 }
