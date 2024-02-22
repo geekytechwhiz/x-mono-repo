@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const SearchContentListQueries = {
-  FETCH_CONTENT_TYPE_LIST: gql`
+  FETCH_CONTENT_TYPE_LIST: gql `
     query FETCH_CONTENT_TYPE_LIST(
       $contentType: authoring_ContentTypes!
       $pageFilter: authoring_PageFilter!
@@ -26,11 +26,15 @@ export const SearchContentListQueries = {
       )
     }
   `,
-  FETCH_COURSE_LIST: gql`
+  // filter: $filter
+  // isListing: $isListing
+  // filter: Course
+  // isListing: true
+  FETCH_COURSE_LIST: gql `
     query FETCH_COURSE_LIST(
-      $pagination: authoring_Paginate!
-      $filter: authoring_CONTENT_FILTER!
-      $isListing: Boolean
+      $pagination: authoring_Paginate!,
+      $filter: authoring_CONTENT_FILTER!,
+      $isListing: Boolean!
     ) {
       authoring_recentContents(
         pagination: $pagination
@@ -38,7 +42,6 @@ export const SearchContentListQueries = {
         searchTerm: ""
 
         filter: $filter
-
         isListing: $isListing
       )
     }

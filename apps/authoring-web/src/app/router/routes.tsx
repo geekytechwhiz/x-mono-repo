@@ -1,4 +1,5 @@
 import { Dashboard } from "@platformx/dashboard";
+import { CreateCourse } from "@platformx/course";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 import { Content, CreateContent } from "@platformx/content";
@@ -17,23 +18,39 @@ export const routes: RouteConfig[] = [
   },
   {
     path: "/content/article",
-    element: <ProtectedRoute category="content" subCategory="article" name="article" >  <Content></Content> </ProtectedRoute>,
-
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='article'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/content/quiz",
-    element: <ProtectedRoute category="content" subCategory="quiz" name="quiz" >  <Content></Content> </ProtectedRoute>,
-
+    element: (
+      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/content/poll",
-    element: <ProtectedRoute category="content" subCategory="article" name="poll" >  <Content></Content> </ProtectedRoute>,
-
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='poll'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/content/event",
-    element: <ProtectedRoute category="content" subCategory="event" name="event" >  <Content></Content> </ProtectedRoute>,
-
+    element: (
+      <ProtectedRoute category='content' subCategory='event' name='event'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
   },
 
   {
@@ -91,5 +108,63 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/content/create/course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory='course'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
 
+  // {
+  //   path: "/site-setting/media-handle",
+  //   element: (
+  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+  //       <MediaHandle />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/global-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <GlobalSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/feature-flag",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <FeatureFlagSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/content",
+  //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
+
+  // },
+  // {
+  //   path: "/dashboard",
+  //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
 ];

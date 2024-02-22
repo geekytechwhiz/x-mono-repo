@@ -47,6 +47,7 @@ export type CardClickProps = {
 
 export type ContentListingProps = {
   contentType?: string;
+  content?: any;
   contentList?: any;
   dataList?: any;
   loading: boolean;
