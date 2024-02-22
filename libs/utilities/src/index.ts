@@ -79,12 +79,10 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
-import {
-  //getCurrentLang,
-  getUniqueTimeZone,
-} from "./lib/utils/helperFns";
+import { getUniqueTimeZone } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 
@@ -159,6 +157,7 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  StructureDataDialog,
   TaskNotFound,
   TextArea,
   TextBox,

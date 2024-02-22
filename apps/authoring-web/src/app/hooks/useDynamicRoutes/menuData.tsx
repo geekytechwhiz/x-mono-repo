@@ -6,6 +6,7 @@ import {
   CookieIcon,
   CourseIcon,
   EventsIcon,
+  FeatureStarIcon,
   FooterMenuUpdated,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
@@ -18,8 +19,8 @@ import {
   SitesIcon,
   UsersIcon,
   VODIcon,
-  FeatureStarIcon,
 } from "@platformx/utilities";
+import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
   url: "",
@@ -205,6 +206,7 @@ export const MenuData = [
         id: "workflow_management",
         category: "Workflow",
         subCategory: "",
+        component: <WorkflowManagement></WorkflowManagement>,
       },
     ],
   },

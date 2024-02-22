@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CloseIcon from "@mui/icons-material/Close";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -139,4 +140,3 @@ export default StringOnChangeTextBox;
 function allowInputParams(e: any, customInPutAllowField: string) {
   throw new Error("Function not implemented.");
 }
-

@@ -5,11 +5,8 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { SuccessIcon } from "@platformx/utilities";
-import * as React from "react";
 
 const SocialShareStepSuccess = ({ selectedTitle }) => {
-  const [activeStep, setActiveStep] = React.useState(0);
-
   return (
     <Box>
       <Grid>
