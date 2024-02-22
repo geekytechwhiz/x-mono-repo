@@ -1,14 +1,10 @@
-import { ArrowBack } from "@mui/icons-material";
 import { Box } from "@mui/material";
-
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { PlatXLogo } from "@platformx/utilities";
 import { useStyles } from "./Header.styles";
 
-const Header = ({ returnBack }) => {
+const Header = () => {
   const classes = useStyles();
-  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Box className={classes.createCoursetophead}>

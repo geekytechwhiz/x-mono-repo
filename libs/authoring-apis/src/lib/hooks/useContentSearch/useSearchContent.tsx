@@ -30,7 +30,6 @@ const useContentSearch = ({
   locationState,
   filter,
   startIndex,
-  reloadContent,
 }: UseContentSearchProps): UseContentSearchResult => {
   const [contents, setContents] = useState<any>([]);
   const dispatch = useDispatch();
@@ -83,8 +82,7 @@ const useContentSearch = ({
       const combinedData: any = [...contents, ...fetchMoreData];
       dispatch(updateContentList(combinedData));
       setContents(combinedData);
-
-      console.log(result);
+      // eslint-disable-next-line no-shadow
     } catch (error) {
       console.error(error);
     }

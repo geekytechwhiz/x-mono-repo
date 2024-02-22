@@ -1,6 +1,5 @@
 import useTheme from "@mui/material/styles/useTheme";
 import { makeStyles } from "@mui/styles";
-import { ThemeConstants } from "@platformx/utilities";
 
 export const useCustomStyle = makeStyles(() => {
   const theme = useTheme();
