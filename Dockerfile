@@ -22,12 +22,10 @@ WORKDIR /server
 # copy source files
 COPY . /server
 # install dependencies
-RUN npm install -g @nrwl/nx
 RUN npm install --legacy-peer-deps
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
-RUN npx nx build react-test
+RUN npx nx build authoring-web --verbose
+# RUN npx nx affected --target=build --base=develop --head=$GITHUB_SHA --parallel 
 EXPOSE 3000
 CMD npm run start
-# CMD npm run deploy:react-test
-# CMD serve dist/apps/react-test -p 3000

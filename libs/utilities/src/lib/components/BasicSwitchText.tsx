@@ -68,5 +68,5 @@ const BasicSwitchText = ({
       </Grid>
     </Box>
   );
-}
-export default BasicSwitchText
+};
+export default BasicSwitchText;

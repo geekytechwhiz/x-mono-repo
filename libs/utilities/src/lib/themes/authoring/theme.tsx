@@ -1,14 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 import React from "react";
 import ThemeConstants from './lightTheme/lightThemeVariable';
+
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
-    xs: true;  
+    xs: true;
     sm: true;
     md: true;
     lg: true;
     xl: true;
-    em: true;   
+    em: true;
   }
 }
 declare module "@mui/material/Typography" {

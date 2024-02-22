@@ -1,5 +1,5 @@
-import { Typography, styled } from '@mui/material';
-import ThemeConstants from  '../../../themes/authoring/lightTheme/lightThemeVariable';
+import { Typography, styled } from "@mui/material";
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 // import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
 // import ThemeConstants from '../../theme/variable';
 
@@ -13,19 +13,19 @@ import ThemeConstants from  '../../../themes/authoring/lightTheme/lightThemeVari
 export interface ParagraphProps {
   label: string;
   variant:
-  | 'p2bold'
-  | 'p2semibold'
-  | 'p2medium'
-  | 'p2regular'
-  | 'p3bold'
-  | 'p3semibold'
-  | 'p3medium'
-  | 'p3regular'
-  | 'p4bold'
-  | 'p4semibold'
-  | 'p4medium'
-  | 'p4regular';
-  TextAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
+    | "p2bold"
+    | "p2semibold"
+    | "p2medium"
+    | "p2regular"
+    | "p3bold"
+    | "p3semibold"
+    | "p3medium"
+    | "p3regular"
+    | "p4bold"
+    | "p4semibold"
+    | "p4medium"
+    | "p4regular";
+  TextAlign?: "center" | "inherit" | "justify" | "left" | "right";
   style?: any;
 }
 
@@ -35,21 +35,10 @@ const StyledParagraph = styled(Typography)(({ theme }) => ({
   margin: 0,
 }));
 
-export const XParagraph = ({
-  variant,
-  label,
-  TextAlign,
-  style,
-  ...rest
-}: ParagraphProps) => (
+export const XParagraph = ({ variant, label, TextAlign, style, ...rest }: ParagraphProps) => (
   <>
     {/* <style>{fontStyle}</style> */}
-    <StyledParagraph
-      variant={variant}
-      align={TextAlign}
-      {...rest}
-      style={style}
-    >
+    <StyledParagraph variant={variant} align={TextAlign} {...rest} style={style}>
       {label}
     </StyledParagraph>
   </>
