@@ -62,9 +62,9 @@ export const useGlobalSettingStyle = makeStyles((theme) => ({
     marginTop: "5px",
   },
   btnbox: {
-    marginTop: "10px",
-    height: "50px",
-    marginRight: "15px",
+    marginTop: "10px !important",
+    height: "50px !important",
+    marginRight: "15px !important",
     display: "none",
   },
 }));

@@ -266,17 +266,7 @@ export const GlobalSetting = () => {
                         </Box>
                       </Box>
                       <Box>
-                        <Button
-                          className={classes.btnbox}
-                          sx={{
-                            display: { xs: "none", sm: "block" },
-                            marginTop: "10px",
-                            height: "50px",
-
-                            marginRight: "15px",
-                          }}
-                          variant='outlined'
-                          disabled>
+                        <Button className={classes.btnbox} variant='outlined' disabled>
                           {t("view")}
                         </Button>
                       </Box>
@@ -301,16 +291,7 @@ export const GlobalSetting = () => {
                         </Box>
                       </Box>
                       <Box>
-                        <Button
-                          sx={{
-                            display: { xs: "none", sm: "block" },
-                            marginTop: "10px",
-                            height: "50px",
-
-                            marginRight: "15px",
-                          }}
-                          variant='outlined'
-                          disabled>
+                        <Button className={classes.btnbox} variant='outlined' disabled>
                           {t("view")}
                         </Button>
                       </Box>
@@ -335,16 +316,7 @@ export const GlobalSetting = () => {
                         </Box>
                       </Box>
                       <Box>
-                        <Button
-                          sx={{
-                            display: { xs: "none", sm: "block" },
-                            marginTop: "10px",
-                            height: "50px",
-
-                            marginRight: "15px",
-                          }}
-                          variant='outlined'
-                          disabled>
+                        <Button className={classes.btnbox} variant='outlined' disabled>
                           {t("view")}
                         </Button>
                       </Box>
@@ -383,13 +355,6 @@ export const GlobalSetting = () => {
                             setTagValue(true);
                           }}
                           className={classes.btnbox}
-                          sx={{
-                            display: { xs: "none", sm: "block" },
-                            marginTop: "10px",
-                            height: "50px",
-
-                            marginRight: "15px",
-                          }}
                           variant='outlined'>
                           {t("Edit")}
                         </Button>
@@ -426,13 +391,6 @@ export const GlobalSetting = () => {
                             setContentValue(true);
                           }}
                           className={classes.btnbox}
-                          sx={{
-                            display: { xs: "none", sm: "block" },
-                            marginTop: "10px",
-                            height: "50px",
-
-                            marginRight: "15px",
-                          }}
                           variant='outlined'>
                           {t("Edit")}
                         </Button>
