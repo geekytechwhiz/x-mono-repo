@@ -21,22 +21,13 @@ const PieChartWithTicks = ({ itemData }: any) => {
   const tickLength = 8; //length of tick
   const gapDistance = 15; // Adjust the gap distance as needed
   const tickCount = 11; // Number of ticks (0, 10, 20, ..., 100)
+  const tickInterval = 10; // Interval between ticks
 
-  const chartContainerRef = useRef<HTMLDivElement | null>(null);
+  const chartContainerRef: any = useRef(null);
   const [chartDimensions, setChartDimensions] = useState({
     width: 500, // initial width
     height: 400, // initial height
   });
-  const roundToNearest100 = (number) => {
-    if (number % 100 === 0) {
-      return number;
-    }
-    const higherMultiple = Math.floor(number / 100) * 100 + 100;
-    return higherMultiple;
-  };
-  const needleValue = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0;
-  const t = roundToNearest100(needleValue);
-  const tickInterval = t / 10; // Interval between ticks
   const handleResize = () => {
     if (chartContainerRef.current) {
       setChartDimensions({
@@ -63,9 +54,7 @@ const PieChartWithTicks = ({ itemData }: any) => {
   const cy = 280;
   const iR = 100;
   const oR = 120;
-  const moveNeedle = tickInterval / 10;
-  const value = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] / moveNeedle : 0; //actual value for needle
-  const actualTickValue = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0;
+  const value = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0; //actual value for needle
 
   const getColorsValueByIndex = () => {
     let cumulativeSum = 0;
@@ -106,7 +95,7 @@ const PieChartWithTicks = ({ itemData }: any) => {
         key='path'
       />,
       <text key='text' x={x0 - 13} y={y0 + 30} fontSize='20' fill={color}>
-        {actualTickValue.toFixed(2)}
+        {value.toFixed(2)}
       </text>,
     ];
   };

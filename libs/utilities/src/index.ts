@@ -67,8 +67,7 @@ import {
   onBackButtonEvent,
   trimString,
   unloadCallback,
-} from "./lib/utils/helperFns";
-import i18next from "./lib/utils/i18next";
+} from "./lib/utils/helperFns"; 
 // import { LanguageList } from "./lib/utils/helperConstants";
 import NoResultsFound from "./lib/components/NoResultsFound";
 import {
@@ -91,7 +90,9 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
-import prelemTypes from "./lib/themes/prelems/globalStyle";
+import prelemTypes from "./lib/themes/prelems/globalStyle"; 
+import { getUniqueTimeZone } from "./lib/utils/helperFns";
+import i18next from "./lib/utils/i18next"; 
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -183,7 +184,6 @@ export {
   XTextArea,
   getUniqueTimeZone,
   i18next,
-  prelemTypes,
   useAccess,
   usePlatformAnalytics,
   usePrelemImpression,
