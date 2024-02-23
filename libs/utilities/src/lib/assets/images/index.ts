@@ -36,5 +36,4 @@ export {
   inGreen,
   noResults,
   successGif,
-  successGif,
 };
