@@ -3,13 +3,19 @@ import NavTreeCreation from "@platformx/nav-menu";
 
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { SitePage } from "@platformx/site-page";
-import { CreateUser, UserListing } from "@platformx/user-management";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        {" "}
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/dashboard",
     element: (
@@ -60,48 +66,79 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
         {" "}
-        <SitePage />{" "}
+        <Dashboard />{" "}
       </ProtectedRoute>
     ),
   },
   {
-    path: "/user-management/user-list",
+    path: "/page-list",
     element: (
-      <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+      <ProtectedRoute category='page-list' subCategory='page-list' name='page-list'>
         {" "}
-        <UserListing></UserListing>
+        {/* <XImageRender />{" "} */}
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/workflow/workflow-list",
-    element: (
-      <ProtectedRoute name='article' subCategory='article' category='content'>
-        <WorkflowManagement />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/workflow/workflow-details",
-    element: (
-      <ProtectedRoute name='article' subCategory='article' category='content'>
-        <WorkflowDetails />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "user-management/user-create",
-    element: (
-      <ProtectedRoute
-        name='user'
-        category='UserManagement'
-        subCategory=''
-        isHeader={false}
-        isSideBar={false}>
-        <CreateUser />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/prelem",
+  //   element: (
+  //     <ProtectedRoute
+  //       category='dashboard'
+  //       subCategory='dashboard'
+  //       name='dashboard'
+  //       isSideBar={false}
+  //       isHeader={false}>
+  //       <PrelemComponent />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/Sitepage",
+  //   element: (
+  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+  //       {" "}
+  //       {/* <SitePage />{" "} */}
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/user-management/user-list",
+  //   element: (
+  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+  //       {" "}
+  //       <UserListing></UserListing>
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-list",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowManagement />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-details",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowDetails />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "user-management/user-create",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='user'
+  //       category='UserManagement'
+  //       subCategory=''
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateUser />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/content/create",
     element: (

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
+import ThemeConstants from "../themes/authoring/lightTheme/lightThemeVariable";
 import { TitleSubTitle } from "./SchemaComponents";
 import BasicSwitch from "./Switch/Switch";
-import ThemeConstants from "../themes/authoring/lightTheme/lightThemeVariable";
 
 const BasicSwitchText = ({
   state,

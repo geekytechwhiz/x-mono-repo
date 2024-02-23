@@ -33,12 +33,12 @@ const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
       playIcon={
         <img alt='play' height='44px' width='44px' className='smallPlayIcon' src={PlayIcon} />
       }
-      // css={{
-      //   objectFit: "cover",
-      //   position: "absolute",
-      //   top: 0,
-      //   left: 0,
-      // }}
+      css={{
+        objectFit: "cover",
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }}
     />
   );
 };

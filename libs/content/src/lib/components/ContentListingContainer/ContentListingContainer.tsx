@@ -3,6 +3,7 @@ import {
   CONTENT_TYPES,
   useContentListing,
   useContentSearch,
+  usePage,
 } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -37,6 +38,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     fetchContentDetails,
     duplicateToSite,
   } = useContentListing("ALL");
+  const { editPage, previewPage, handleDeleteData, handlePageDelete, viewPage } = usePage();
 
   const memoizedMethods = useMemo(
     () => ({
@@ -116,6 +118,11 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
+        viewPage={viewPage}
+        previewPage={previewPage}
+        editPage={editPage}
+        handleDeleteData={handleDeleteData}
+        handlePageDelete={handlePageDelete}
       />
     </>
   );

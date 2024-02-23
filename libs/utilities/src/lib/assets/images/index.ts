@@ -9,6 +9,7 @@ import fbGray from "./fb-gray.png";
 import fbGreen from "./fb-green.png";
 import inGray from "./in-gray.png";
 import inGreen from "./in-green.png";
+
 import Logo from "./logo.png";
 import noResults from "./no-results.png";
 import successGif from "./success.gif";
@@ -34,5 +35,6 @@ export {
   inGray,
   inGreen,
   noResults,
+  successGif,
   successGif,
 };

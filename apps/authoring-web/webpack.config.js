@@ -10,11 +10,8 @@ module.exports = composePlugins(
     // svgr: false
   }),
   (config) => {
-    config.devServer = {
-      ...config.devServer,
-      historyApiFallback: true,
-    };
-
+    // Update the webpack config as needed here.
+    // e.g. `config.plugins.push(new MyPlugin())`
     return config;
   },
 );

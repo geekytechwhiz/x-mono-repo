@@ -1,3 +1,4 @@
-import { SitePage } from './lib/site-page';
+import PageMenu from "./lib/components/PageMenu/PageMenu";
+import { SitePage } from "./lib/site-page";
 
-export { SitePage }
+export { PageMenu, SitePage };

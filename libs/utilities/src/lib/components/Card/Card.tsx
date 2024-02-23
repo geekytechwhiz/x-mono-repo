@@ -1,8 +1,8 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { RedBlinkingDot } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { RedBlinkingDot } from "@platformx/utilities";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 // import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
 // import CardMenu from '../../../pages/PageList/Components/CardMenu/CardMenu';
@@ -22,10 +22,10 @@ import PlateformXDialog from "../Popups/PlateformXDialog";
 // import CardMenu from '../CardMenu/CardMenu';
 // import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
 import useAccess from "../../hooks/useAccess/useAccess";
-import { CardProps } from "./List.types";
-import { iconsList, statusIcons } from "./constants";
 import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
+import { CardProps } from "./List.types";
+import { iconsList, statusIcons } from "./constants";
 
 export const Card = ({
   CustomMenuList,
@@ -49,7 +49,7 @@ export const Card = ({
   const date = new Date().toJSON();
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
-      handlePageDelete();
+      handlePageDelete(dataList);
     } else if (
       tagName === "quiz" ||
       tagName === "poll" ||
@@ -130,6 +130,8 @@ export const Card = ({
       case "vod":
         ContentAction[dataList.status](dataList);
         break;
+      default:
+        return "";
     }
   };
 

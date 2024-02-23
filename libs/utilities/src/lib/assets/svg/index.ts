@@ -31,7 +31,6 @@ import ArrowUpwardIcon from "./ArrowUp.svg";
 import GreenFolderIcon from "./Folder-green.svg";
 import ProgressIcon from "./Frame.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
-import Icon from "./Icon.svg";
 import IconPreview from "./IconPreview.svg";
 import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
@@ -43,6 +42,7 @@ import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
 
+import Icon from "./Icon.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
@@ -138,7 +138,8 @@ import VODListIcon from "./vodListIcon.svg";
 import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
-// import DialogCloseIcon from "./DialogCloseIcon.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -174,6 +175,7 @@ export {
   CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
+  DialogCloseIcon,
   DraftIcon,
   DraftStatusIcon,
   EcommerceIcon,
@@ -241,7 +243,6 @@ export {
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
-  // DialogCloseIcon,
   RedDotsIcon,
   Refresh,
   ReplyIcon,
