@@ -10,7 +10,7 @@ const CreateCourse = () => {
 
   return (
     <>
-      <Header returnBack={returnBack} />
+      <Header />
       <IframeDetails returnBack={returnBack} />
     </>
   );
