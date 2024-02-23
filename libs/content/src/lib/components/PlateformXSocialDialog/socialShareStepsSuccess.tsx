@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { SuccessIcon } from "@platformx/utilities";
+import { successGif } from "@platformx/utilities";
 
 const SocialShareStepSuccess = ({ selectedTitle }) => {
   return (
@@ -18,7 +18,7 @@ const SocialShareStepSuccess = ({ selectedTitle }) => {
               padding: "50px",
             }}>
             <Box>
-              <img src={SuccessIcon} alt='Success' />
+              <img src={successGif} alt='Success' />
             </Box>
             <Box>
               <Typography variant='h3medium'>{`“${selectedTitle}” Has been`}</Typography>

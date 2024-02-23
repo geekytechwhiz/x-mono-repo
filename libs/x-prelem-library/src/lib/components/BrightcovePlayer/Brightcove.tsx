@@ -44,7 +44,7 @@ class Brightcove {
           smoothQualityChange: true,
         },
       },
-      autoplay: false,
+      autoplay: true,
       bigPlayButton: false,
       debug: false,
     };
@@ -52,6 +52,7 @@ class Brightcove {
 
   addPlayer() {
     let playerHTML;
+    // console.log("playlist", this.videoData.PlaylistID, this.videoData);
     if (this.videoData.PlaylistID === "playlist") {
       playerHTML =
         '<div class="vjs-playlist-player-container" style="width: 100%; height: inherit;"><video-js id="myPlayerID-' +
@@ -105,21 +106,11 @@ class Brightcove {
         mainContainer = container;
       }
     }
+
     if (mainContainer) {
       mainContainer.innerHTML = playerHTML;
       const id = "brightcove-player";
-      const srcOfScriptTag = mainDocument?.getElementById(id)?.getAttribute("src");
-      if (
-        !mainDocument.getElementById(id) ||
-        srcOfScriptTag?.split("/")[3] !== this.videoData?.AccountID
-      ) {
-        //remove exisiting script tag if there is a change in accountId
-        if (
-          mainDocument.getElementById(id) &&
-          srcOfScriptTag?.split("/")[3] !== this.videoData?.AccountID
-        ) {
-          mainDocument.getElementById(id)?.remove();
-        }
+      if (!mainDocument.getElementById(id)) {
         // Add and execute the player script tag
         const s = document.createElement("script");
         s.id = id;

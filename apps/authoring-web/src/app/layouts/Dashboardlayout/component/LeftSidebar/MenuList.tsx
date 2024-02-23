@@ -53,26 +53,24 @@ export default function Menu(props) {
     <Box className='menulist'>
       <MenuSitesListDropdown />
 
-      {dynamicMenu &&
-        dynamicMenu?.length > 0 &&
-        dynamicMenu?.map((val, index) => {
-          const isShow = filtered?.includes(val.id);
-          return (
-            isShow && (
-              <MenuItems
-                key={index}
-                Title={val.Title}
-                MenuName={val.Menu}
-                open={props.open}
-                roles={val.roles}
-                props={val}
-                url={val.url}
-                handleMenuclose={props.handleMenuclose}
-                handleMenuAction={props.handleMenuAction}
-              />
-            )
-          );
-        })}
+      {dynamicMenu?.map((val, index) => {
+        const isShow = filtered?.includes(val.id);
+        return (
+          isShow && (
+            <MenuItems
+              key={index}
+              Title={val.Title}
+              MenuName={val.Menu}
+              open={props.open}
+              roles={val.roles}
+              props={val}
+              url={val.url}
+              handleMenuclose={props.handleMenuclose}
+              handleMenuAction={props.handleMenuAction}
+            />
+          )
+        );
+      })}
     </Box>
   );
 }

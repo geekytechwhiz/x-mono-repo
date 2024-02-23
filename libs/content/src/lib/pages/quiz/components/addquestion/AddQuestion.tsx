@@ -1,26 +1,12 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Divider, Grid, RadioGroup, Typography } from "@mui/material";
-import {
-  ArrowUpwardIcon,
-  AutoTextArea,
-  CATEGORY_CONTENT,
-  CommonBoxWithNumber,
-  DuplicateContentPopup,
-  Icon,
-  PlateformXDialog,
-  RadioControlLabel,
-  Refresh,
-  TextBox,
-  ThemeConstants,
-  TitleSubTitle,
-  XLoader,
-} from "@platformx/utilities";
+import { ArrowUpwardIcon, AutoTextArea, CATEGORY_CONTENT, CommonBoxWithNumber, DuplicateContentPopup, Icon, PlateformXDialog, RadioControlLabel, Refresh, TextBox, ThemeConstants, TitleSubTitle, XLoader } from "@platformx/utilities";
+import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateHeader } from "../../../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../../../enums/ContentType";
 import useQuestion from "../../../../hooks/useQuestion/useQuestion";
-import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useCustomStyle } from "../../quiz.style";
 import AnswerContent from "./AnswerContent";
 
@@ -73,7 +59,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     answers,
     addImage,
     setExitPopUp,
-    questionId,
+    questionId
   );
 
   const getDuplicateTitle = () => {
@@ -228,7 +214,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
         )}
       </Box> */}
       <Box>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <XLoader type="linear" />}
 
         <Box
         // sx={{
@@ -238,9 +224,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
           <Box>
             <CreateHeader
               hasPreviewButton
-              createText={
-                questionId !== "" ? `${t("add")} ${t("quiz_question_head")}` : t("add_questions")
-              }
+              createText={questionId !== "" ? `${t("add")} ${t("quiz_question_head")}` : t("add_questions")}
               handleReturn={OnBackClick}
               isQuiz
               hasPublishButton={false}
@@ -253,8 +237,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
               saveVariant='contained'
               category={CATEGORY_CONTENT}
               subCategory={ContentType.Quiz}
-              isFeatured={false}
-            />
+              isFeatured={false} />
             <Divider></Divider>
           </Box>
           <Box
@@ -520,7 +503,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                         justifyContent: "center",
                         cursor: "pointer",
                       }}>
-                      <img src={Icon} alt='Icon' />
+                      <img src={Icon} alt="Icon" />
                     </Box>
 
                     {colorCode.map((val, index) => {
@@ -561,7 +544,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                           lg: "0px 0px 8px 0px",
                         },
                       }}>
-                      <img src={Refresh} alt='Refresh' />
+                      <img src={Refresh} alt="Refresh" />
                     </Box>
                   </Box>
                 </Grid>
