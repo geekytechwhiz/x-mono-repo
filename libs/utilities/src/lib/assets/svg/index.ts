@@ -15,7 +15,7 @@ import FilterIcon from "./FilterIcon.svg";
 
 import { default as VODIcon } from "./VODIcon.svg";
 
-import DraftIcon from "./draftIcon.svg";
+import DraftIcon from "./DraftIcon.svg";
 
 // import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
