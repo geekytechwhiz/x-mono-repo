@@ -70,6 +70,7 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 import XDialog from "./lib/components/XDialog/XDialog";
 import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
@@ -80,7 +81,9 @@ import i18next from "./lib/utils/i18next";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
+export * from "./lib/assets/footer";
 export * from "./lib/assets/gif";
+export * from "./lib/assets/header";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
@@ -147,6 +150,7 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  StructureDataDialog,
   TaskNotFound,
   TextArea,
   TextBox,

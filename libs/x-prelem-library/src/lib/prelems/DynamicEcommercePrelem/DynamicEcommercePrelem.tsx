@@ -1,21 +1,21 @@
+/* eslint-disable no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { Box, Button, Container, Grid, Link, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import loadergif from "../../assets/Data-loader.gif";
-import { nullToArray } from "../../utils/helperFns";
-import "./DynamicEcommercePrelem.css";
-import { getProductDetails } from "./helper";
-import { useTranslation } from "react-i18next";
-import ActualPrice from "../Ecommerce/ProductDetail/SharedComponents/ActualPrice";
-import { addToCartGetCartId } from "../Ecommerce/hepler";
-import "../../service/i18n";
-import { useCustomStyle } from "./DynamicEcommercePrelem.style";
 import fallBackImage from "../../assets/fallBackImage.png";
-import { usePrelemImpression } from "Common/ImpressionHooks/PrelemImpressionHook";
+import "../../service/i18n";
+// import ActualPrice from "../Ecommerce/ProductDetail/SharedComponents/ActualPrice";
+// import { addToCartGetCartId } from "../Ecommerce/hepler";
+import { nullToArray, usePrelemImpression } from "@platformx/utilities";
+import "./DynamicEcommercePrelem.css";
+import { useCustomStyle } from "./DynamicEcommercePrelem.style";
+import { getProductDetails } from "./helper";
 
 const DynamicEcommercePrelem = ({
   content,
@@ -25,15 +25,13 @@ const DynamicEcommercePrelem = ({
 }: DynamicEcommercePrelemProps) => {
   const classes = useCustomStyle();
 
-  const [sliderRef, setSliderRef] = useState(null);
+  const [sliderRef, setSliderRef] = useState<any>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [slots, setSlots] = useState([]);
   const [loading, setLoading] = useState(false);
   const fromBack = useRef(false);
   const { t } = useTranslation();
-  const [queryParamfordata, setQueryParamfordata] = useState<QueryParamfordata>(
-    content?.QueryParam,
-  );
+  const [queryParamfordata, setQueryParamfordata] = useState<any>(content?.QueryParam);
 
   const getProducts = async () => {
     setLoading(true);
@@ -159,7 +157,7 @@ const DynamicEcommercePrelem = ({
   };
 
   const addtoCartAndRedirect = (id: string) => {
-    addToCartGetCartId(secondaryArgs, id, 1, true, {}, t("errorRequest"));
+    // addToCartGetCartId(secondaryArgs, id, 1, true, {}, t("errorRequest"));
   };
   usePrelemImpression(analytics, inView, secondaryArgs);
 
@@ -331,12 +329,12 @@ const DynamicEcommercePrelem = ({
                             variant='p3semibold'>
                             {card?.ecomx_name}
                           </Typography>
-                          <ActualPrice
+                          {/* <ActualPrice
                             price={card?.ecomx_sale_price}
                             currency={card?.ecomx_currency_code}
                             variant='p3regular'
                             className='priceItem'
-                          />
+                          /> */}
                         </Box>
                       </Grid>
                     ))}

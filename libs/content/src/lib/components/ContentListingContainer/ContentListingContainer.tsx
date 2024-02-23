@@ -1,16 +1,16 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
   useContentListing,
   useContentSearch,
-} from '@platformx/authoring-apis';
-import { RootState } from '@platformx/authoring-state';
-import { memo, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import ContentListing from '../ContentListing/ContentListing';
-import ContentListingHeader from '../ContentListingHeader/ContentListingHeader';
+  usePage,
+} from "@platformx/authoring-apis";
+import { RootState } from "@platformx/authoring-state";
+import { memo, useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import ContentListing from "../ContentListing/ContentListing";
+import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const location = useLocation();
   const [isSpinning, setIsSpinning] = useState(false);
 
-  const [filterValue, setFilterValue] = useState('ALL');
+  const [filterValue, setFilterValue] = useState("ALL");
   const { contentArray } = useSelector((state: RootState) => state.content);
   const { loading, refetch, fetchMore } = useContentSearch({
     contentType,
@@ -37,27 +37,31 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     edit,
     fetchContentDetails,
     duplicateToSite,
-  } = useContentListing('ALL');
+  } = useContentListing("ALL");
+  const { editPage, previewPage, handleDeleteData, handlePageDelete, viewPage } = usePage();
 
-  const memoizedMethods = useMemo(() => ({
-    deleteContent: useMemo(() => deleteContent, [deleteContent]),
-    duplicate: useMemo(() => duplicate, [duplicate]),
-    preview: useMemo(() => preview, [preview]),
-    unPublish: useMemo(() => unPublish, [unPublish]),
-    view: useMemo(() => view, [view]),
-    edit: useMemo(() => edit, [edit]),
-    fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
-    duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
-  }), [
-    deleteContent,
-    duplicate,
-    preview,
-    unPublish,
-    view,
-    edit,
-    fetchContentDetails,
-    duplicateToSite,
-  ]);
+  const memoizedMethods = useMemo(
+    () => ({
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
+    }),
+    [
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
+    ],
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +74,9 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   }, [contentType]);
 
   const createContentNew = () => {
-    navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
+    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+      state: contentType?.trim()?.toLowerCase(),
+    });
   };
 
   const handleFilter = (filter: string) => {
@@ -99,6 +105,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       />
 
       <ContentListing
+        content={contentType}
         contentList={contentArray}
         deleteContent={memoizedMethods.deleteContent}
         dataList={contentArray}
@@ -111,6 +118,11 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
+        viewPage={viewPage}
+        previewPage={previewPage}
+        editPage={editPage}
+        handleDeleteData={handleDeleteData}
+        handlePageDelete={handlePageDelete}
       />
     </>
   );
