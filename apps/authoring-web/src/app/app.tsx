@@ -21,7 +21,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import AppRouter from "./router/AppRouter";
+import XRouter from "./router/XRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
 
@@ -94,7 +94,7 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <AppRouter />
+                  <XRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
