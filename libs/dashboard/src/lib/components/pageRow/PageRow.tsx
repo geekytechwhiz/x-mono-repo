@@ -1,12 +1,17 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-shadow */
 import { useLazyQuery } from "@apollo/client";
 import EastIcon from "@mui/icons-material/East";
 import { Box, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { formatContentTitle, capitalizeWords } from "@platformx/utilities";
-import { PageQueries, fetchPrelemValidation } from "@platformx/authoring-apis";
-import { fetchPageModel } from "@platformx/authoring-apis";
-import { dateTimeFormat, getSubDomain } from "@platformx/utilities";
+import { PageQueries, fetchPrelemValidation, fetchPageModel } from "@platformx/authoring-apis";
+import {
+  dateTimeFormat,
+  getSubDomain,
+  formatContentTitle,
+  capitalizeWords,
+} from "@platformx/utilities";
 import { RecentPage } from "../recentPages/RecentPages.types";
 import { useStyles } from "./PageRow.styles";
 import { useDispatch } from "react-redux";
