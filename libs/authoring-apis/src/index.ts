@@ -9,7 +9,7 @@ import {
   fetchVodById,
   publish_vod,
   update_vod,
-  // fetchVodByIdAPI,
+  fetchVodByIdAPI,
 } from "./lib/services/vod/vod.api";
 import { WorkflowQueries } from "./lib/graphQL/queries/workflowQueries";
 import { snowplowTrackingHook } from "./lib/hooks/customHook/snowplowTrackingHook";
@@ -35,7 +35,7 @@ import {
   scheduleSocialShare,
 } from "./lib/services/socialShare/socialShare.api";
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
-import fetchVodByIdAPI from "./lib/services/vod/vod.api";
+// import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
 
 export * from "./lib/context/actionContext/ActionContext.types";
