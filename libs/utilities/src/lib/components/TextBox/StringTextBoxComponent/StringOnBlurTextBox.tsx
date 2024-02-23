@@ -3,19 +3,24 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { InputAdornment, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import "./StringTextBoxComponent.css";
+import {
+  allowOnlyLetterInputData,
+  allowOnlyNumberInputData,
+  allowOnlyShippingLetterInputData,
+} from "@platformx/utilities";
 
-// const allowInputParams = (e: any, key: string) => {
-//   switch (key) {
-//     case 'number':
-//       return allowOnlyNumberInputData(e);
-//     case 'CustomFirstName':
-//       return allowOnlyShippingLetterInputData(e);
-//     case 'charter':
-//       return allowOnlyLetterInputData(e);
-//     default:
-//       return null;
-//   }
-// };
+const allowInputParams = (e: any, key: string) => {
+  switch (key) {
+    case "number":
+      return allowOnlyNumberInputData(e);
+    case "CustomFirstName":
+      return allowOnlyShippingLetterInputData(e);
+    case "charter":
+      return allowOnlyLetterInputData(e);
+    default:
+      return null;
+  }
+};
 
 type StringOnBlurTextBoxProps = {
   maxLength?: number;
@@ -50,7 +55,7 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
     isPasswordField,
     errorMessage = "",
     isCloseIcon = true,
-    // customInPutAllowField = '',
+    customInPutAllowField = "",
   } = props;
 
   const [stateValue, setStateValue] = useState("");
