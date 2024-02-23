@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
+import { dateFormat, fallBackImage, handleHtmlTags } from "@platformx/utilities";
 import React from "react";
-import { dateFormat, handleHtmlTags, fallBackImage } from "@platformx/utilities";
 import CardSkeleton from "../CardSkeleton";
 import { useCustomStyle } from "./XCard1.style";
 
@@ -88,9 +88,9 @@ interface Analytics {
 }
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
+  sendStructureDataToAuthoringCB: () => void;
+  sendDefaultStructureDataForResetToAuthoringCB: () => void;
+  openButtonEditWindowInAuthoringCB: () => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;
