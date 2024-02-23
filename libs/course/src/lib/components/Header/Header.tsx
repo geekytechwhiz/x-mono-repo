@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { PlatXLogo } from "@platformx/utilities";
+import { useNavigate } from "react-router-dom";
 import { useStyles } from "./Header.styles";
 
 const Header = () => {
