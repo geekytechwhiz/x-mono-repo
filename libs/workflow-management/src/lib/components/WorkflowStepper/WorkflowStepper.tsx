@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
@@ -37,7 +38,6 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   };

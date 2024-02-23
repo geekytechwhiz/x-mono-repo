@@ -33,7 +33,7 @@ export const StyledConnector = withStyles((theme) => ({
 
 export const StyledStepIcon = styled("div")<{
   ownerState: { active?: boolean; completed?: boolean };
-}>(({ theme, ownerState }) => ({
+}>(({ ownerState }) => ({
   alignItems: "center",
   color: ThemeConstants.PRIMARY_COLOR[600],
   backgroundColor: ThemeConstants.PRIMARY_COLOR[400],

@@ -47,7 +47,7 @@ export const QuizPollEventMenu = ({
   view,
   edit,
   fetchContentDetails,
-  sitelist,
+  // sitelist,
   duplicateToSite,
 }: any) => {
   const classes = useStyles();
@@ -83,7 +83,7 @@ export const QuizPollEventMenu = ({
     navigate(`/content/create-blog?path=${path}`);
   };
 
-  const createContent = (IsDuplicate = false, title = "", isCalled = false) => {
+  const createContent = (IsDuplicate = false, title = "") => {
     duplicate(IsDuplicate, title, language, selectedContent);
     onClose();
   };

@@ -27,7 +27,6 @@ function WorkflowHistory({ workflow, setEnableWorkflowHistory }) {
       setIsLoading(false);
     } catch (err: any) {
       setIsLoading(false);
-      console.log("error", err);
     }
   };
 
