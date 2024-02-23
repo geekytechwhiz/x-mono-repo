@@ -184,7 +184,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
-  XDatePicker,
-  ErrorHandleAutoTextArea,
   Icons,
 };

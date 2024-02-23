@@ -22,7 +22,7 @@ export const publish_vod = PUBLISH_VOD;
 export const delete_vod = DELETE_VOD;
 export const unpublish_vod = UNPUBLISH_VOD;
 
-export const fetchVodByIdAPI = {
+const fetchVodByIdAPI = {
   fetchContent: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data } = await graphqlInstance.query({

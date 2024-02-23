@@ -1,3 +1,5 @@
+import { VODIcon, MenuIcon2, MenuIcon4, MenuIcon8 } from "@platformx/utilities";
+
 export const DEF_VOD = {
   DsapceVideoUrl: "",
   Thumbnail: "",
@@ -5,17 +7,11 @@ export const DEF_VOD = {
   Description: "",
   Tags: [],
 };
-import { VideoIcon, MenuIcon2, MenuIcon4, MenuIcon8 } from "@platformx/utilities";
-
-// import { ReactComponent as VodIcon1 } from '../../../../assets/svg/VODIcon.svg';
-// import { ReactComponent as VodIcon2 } from '../../../../assets/MenuIcons-8.svg';
-// import { ReactComponent as VodIcon3 } from '../../../../assets/MenuIcons-2.svg';
-// import { ReactComponent as VodIcon4 } from '../../../../assets/MenuIcons-4.svg';
 
 const createVodFlatIcon = [
   {
     id: "VideoAndThumbnail",
-    iconName: VideoIcon,
+    iconName: VODIcon,
     tooltip: "Video And Thumbnail",
   },
   {

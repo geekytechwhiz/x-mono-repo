@@ -7,17 +7,18 @@ import { ErrorTooltip, Icons } from "@platformx/utilities";
 
 type HeadButtonProps = {
   variant: any;
-  icon?: any;
+  // icon?: any;
   onclickHandler: () => void;
   canAccess: boolean;
   isDisabled: boolean;
   text: string;
+  // eslint-disable-next-line react/require-default-props
   iconType?: string;
 };
 export const HeadButton = ({
   variant,
   canAccess,
-  icon: Icon,
+  // icon: Icon,
   isDisabled,
   onclickHandler,
   text,
