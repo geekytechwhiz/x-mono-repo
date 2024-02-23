@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Box } from "@mui/material";
 import { AutoCompleteText, AutoTextArea, TextBox, TitleSubTitle } from "@platformx/utilities";
 import { XImageRender } from "@platformx/x-image-render";
@@ -56,7 +57,7 @@ function SocialShare({
       </Box>
       <XImageRender
         callBack={uploadSocialImage}
-        data={{
+        editData={{
           original_image: state?.ObjectFields?.original_image,
           published_images: state?.ObjectFields?.published_images,
         }}

@@ -6,7 +6,7 @@ export const usePostImageCrop = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const postRequest = async (path: string, payload: any, callback: any, selectedImg: any) => {
+  const postRequest = async (path: string, payload: any, callback: any, selectedImg?: any) => {
     try {
       setIsLoading(true);
       const res = await axios.post("https://dev.api.hcl-x.com/platform-x/" + path, payload, {

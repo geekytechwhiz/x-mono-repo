@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import { CircularProgress, Paper } from "@mui/material";
 import { styled } from "@mui/system";
@@ -26,7 +27,7 @@ const ArticleImageRender = (props: any = {}) => {
     originalImage, //we are saving image, bitstreamid and auto(boolean) in original image for edit
     publishedImages, //all the cropped images(manual, auto)
     operationType = "choose", //dspace operation type
-    resetSelectedImage,
+    // resetSelectedImage,
     isArticleCrop,
     isCropLoading = false,
     isUploadArticle,
