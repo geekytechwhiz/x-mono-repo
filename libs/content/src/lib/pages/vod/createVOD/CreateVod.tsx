@@ -1,10 +1,8 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { ArrowBack } from "@mui/icons-material";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
-import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
-import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
@@ -12,8 +10,6 @@ import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import {
   TitleSubTitle,
   TextBox,
-  AddImage,
-  TextArea,
   PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
@@ -28,10 +24,6 @@ import {
   SubmitButton,
 } from "@platformx/utilities";
 import {
-  // FETCH_TAG_LIST,
-  // commentsApi,
-  // contentTypeAPIs,
-  useComment,
   useWorkflow,
   FETCH_TAG_LIST,
   create_vod,
@@ -48,29 +40,23 @@ import ContentPageScroll from "../../../components/ContentPageScroll";
 // import { Store } from "../../../store/ContextStore";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import TagListing from "../Components/TagListing";
-import { checkIfUnsavedChanges, previewVod } from "../store/Actions";
 // import { DEF_VOD } from './Utils/constats';
 // import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
 // import Submit from "../../../components/Submit/Submit";
-import icons, { DEF_VOD, SEO, seo } from "./Utils/constats";
-import {
-  createVodInstance,
-  isInViewport,
-  updateStructureData,
-  updateVodSettings,
-} from "./Utils/helper";
+import icons, { DEF_VOD } from "./Utils/constats";
+import { createVodInstance, updateStructureData, updateVodSettings } from "./Utils/helper";
 import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
 import "./createVod.css";
 import { useStyles } from "./createVod.styles";
 import { DspaceObject } from "./createVod.types";
-import MarkFeatured from "libs/utilities/src/lib/components/MarkFeatured/MarkedFeatured";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, previewContent } from "@platformx/authoring-state";
+// import MarkFeatured from "libs/utilities/src/lib/components/MarkFeatured/MarkedFeatured";
+import { useSelector } from "react-redux";
+import { RootState } from "@platformx/authoring-state";
 
 export const CreateVod = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
-  const [workflowStatus, setWorkflowStatus] = useState(true);
-  const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
+  // const [workflowStatus, setWorkflowStatus] = useState(true);
+  const [, setShowWorkflowSubmit] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const workflowSubmitRequest = async (workflowObj, status) => {
     const { success, workflow_status } = await workflowRequest(workflowObj, status);
@@ -89,7 +75,6 @@ export const CreateVod = () => {
   // const { state, dispatch } = useContext(Store);
   // const { vod } = state;
   const { currentContent } = useSelector((state: RootState) => state.content);
-  console.log("111111currentContent", currentContent);
   //   const { currentVod} = useSelector((state: RootState) => state.vod);
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
@@ -102,8 +87,8 @@ export const CreateVod = () => {
     vodPageUrl.searchParams.get("path") ? true : false,
   );
   const [runFetchVodById] = useLazyQuery(fetchVodById);
-  const [parentToolTip, setParentToolTip] = useState("");
-  const [scrollToView, setScrollToView] = useState("");
+  const [parentToolTip] = useState("");
+  // const [scrollToView, setScrollToView] = useState("");
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
   const [mutatePublish] = useMutation(publish_vod);
   const currentVodData = useRef(
@@ -140,16 +125,16 @@ export const CreateVod = () => {
       navigate("/vod-preview");
     }
   };
-  const scrollHandler = () => {
-    if (isInViewport(seo, true)) {
-      setParentToolTip(SEO);
-    } else {
-      const active = icons.find((i) => isInViewport(i.id, false));
-      if (active && active.tooltip !== parentToolTip) {
-        setParentToolTip(active.tooltip);
-      }
-    }
-  };
+  // const scrollHandler = () => {
+  //   if (isInViewport(seo, true)) {
+  //     setParentToolTip(SEO);
+  //   } else {
+  //     const active = icons.find((i) => isInViewport(i.id, false));
+  //     if (active && active.tooltip !== parentToolTip) {
+  //       setParentToolTip(active.tooltip);
+  //     }
+  //   }
+  // };
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
   const [isEdited, setIsEdited] = useState<boolean>(false);
@@ -308,6 +293,7 @@ export const CreateVod = () => {
       })
       .catch((error) => {
         ShowToastError(t("api_error_toast"));
+        // eslint-disable-next-line no-console
         console.log(JSON.stringify(error, null, 2));
       });
   };
@@ -377,13 +363,13 @@ export const CreateVod = () => {
         timeZone: timeZone,
       },
     })
-      .then((res) => {
+      .then(() => {
         ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);
       })
-      .catch((error) => {
+      .catch(() => {
         ShowToastError(t("api_error_toast"));
       });
   };
@@ -403,7 +389,7 @@ export const CreateVod = () => {
   };
 
   const saveAsDraftCrossButtonHandle = (event, reason) => {
-    if (reason && (reason == "backdropClick" || "escapeKeyDown")) return;
+    if (reason && (reason === "backdropClick" || "escapeKeyDown")) return;
     setOpenSaveModal(false);
     navigate(`?path=${vodInstance?.Page}`);
   };
@@ -434,7 +420,7 @@ export const CreateVod = () => {
     disableSave.current = true;
     setDraftDisabled(false);
   };
-  const toggleGallery = (toggleState, type) => {
+  const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
   };
   const showGallery = (gType) => {
@@ -470,7 +456,7 @@ export const CreateVod = () => {
     setVodInstance({ ...vodInstance, Tags: tagsArray });
     unsavedChanges.current = true;
     setIsEdited(true);
-    const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
+    // const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
     if (isVodCreated && Object.keys(tagArrTemp).length > 0 && tagArrTemp.Tags.length > 0) {
       setPublishDisabled(false);
     } else {
@@ -500,7 +486,7 @@ export const CreateVod = () => {
   };
 
   const backToVodList = () => {
-    if (unsavedChanges.current == true) {
+    if (unsavedChanges.current === true) {
       if (
         // vod?.currentVod?.Title
         currentContent?.currentVod?.Title
@@ -514,7 +500,7 @@ export const CreateVod = () => {
   };
   const unloadCallback = (event) => {
     event.preventDefault();
-    if (unsavedChanges.current == true) {
+    if (unsavedChanges.current === true) {
       event.returnValue = "";
       return "";
     } else {
@@ -526,17 +512,20 @@ export const CreateVod = () => {
     if (unsavedChanges.current) {
       backToVodList();
     } else {
+      // eslint-disable-next-line no-restricted-globals
       window.history.pushState(null, "", window.location.pathname + location?.search);
       backToVodList();
     }
   };
   const pageExistCrossButtonHandle = () => {
     setOpenPageExistModal(false);
+    // eslint-disable-next-line no-restricted-globals
     window.history.pushState(null, "", window.location.pathname + location?.search);
     window.addEventListener("popstate", onBackButtonEvent);
   };
   useEffect(() => {
     if (isEdited) {
+      // eslint-disable-next-line no-restricted-globals
       window.history.pushState(null, "", window.location.pathname + location?.search);
     }
     window.addEventListener("beforeunload", unloadCallback);
@@ -554,6 +543,7 @@ export const CreateVod = () => {
       tagData.map((categories, index) => {
         return (
           <TagListing
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             categories={categories}
             updateTagField={handleTagOnChange}
@@ -567,7 +557,7 @@ export const CreateVod = () => {
   useEffect(() => {
     const tagArrTemp = { ...vodRef.current };
     delete tagArrTemp.Description;
-    const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
+    // const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
     if (isVodCreated && Object.keys(tagArrTemp).length > 0 && tagArrTemp?.Tags?.length > 0) {
       setPublishDisabled(false);
     } else {
@@ -581,7 +571,6 @@ export const CreateVod = () => {
   }, [vodRef.current, errors]);
 
   const onUploadClick = (type) => {
-    console.log("555555check");
     showGallery(type);
   };
   useEffect(() => {
@@ -621,7 +610,7 @@ export const CreateVod = () => {
   ]);
 
   useEffect(() => {
-    if (currentVodData.current && unsavedChanges.current != true) {
+    if (currentVodData.current && unsavedChanges.current !== true) {
       runFetchVodById({
         variables: { folder: "vodcontent", path: currentVodData.current },
       })
@@ -673,10 +662,11 @@ export const CreateVod = () => {
           }
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(JSON.stringify(err, null, 2));
         });
     }
-    if (Object.keys(tagData).length == 0) {
+    if (Object.keys(tagData).length === 0) {
       runFetchTagList({
         variables: { start: 0, rows: 1000 },
       })
@@ -686,6 +676,7 @@ export const CreateVod = () => {
           }
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.log(JSON.stringify(err, null, 2));
         });
     }
@@ -736,10 +727,10 @@ export const CreateVod = () => {
               display='flex'
               justifyContent='flex-end'
               alignItems='flex-end'>
-              <MarkFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
+              <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
               <HeadButton
                 variant='secondaryButton'
-                icon={VisibilityRoundedIcon}
+                // icon={VisibilityRoundedIcon}
                 onclickHandler={handelPreview}
                 canAccess={true}
                 isDisabled={isDraftDisabled}
@@ -749,7 +740,7 @@ export const CreateVod = () => {
               <Box sx={{ margin: { xs: "0 5px", md: "0 10px" } }}>
                 <HeadButton
                   variant='secondaryButton'
-                  icon={SaveAsRoundedIcon}
+                  // icon={SaveAsRoundedIcon}
                   onclickHandler={saveVod}
                   canAccess={canAccessAction(CATEGORY_CONTENT, ContentType.Vod, "Create")}
                   isDisabled={isDraftDisabled}
