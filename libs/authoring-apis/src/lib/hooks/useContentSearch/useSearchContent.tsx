@@ -3,8 +3,8 @@ import { useQuery } from "@apollo/client";
 import { updateContentList } from "@platformx/authoring-state";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
 import { SearchCourseListQueries } from "../../graphQL/queries/courseQueries";
+import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
 import { sortedData } from "../../utils/helper";
 import { mapFetchALL } from "../useContentListing/mapper";
 
@@ -82,9 +82,8 @@ const useContentSearch = ({
       const combinedData: any = [...contents, ...fetchMoreData];
       dispatch(updateContentList(combinedData));
       setContents(combinedData);
-      // eslint-disable-next-line no-shadow
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
     }
   };
   const refresh = async () => {

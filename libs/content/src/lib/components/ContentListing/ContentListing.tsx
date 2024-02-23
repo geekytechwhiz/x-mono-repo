@@ -1,20 +1,20 @@
 /* eslint-disable no-console */
 import { Box } from "@mui/material";
-import { Key, memo, useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
 import {
+  Card,
   ContentListDesktopLoader,
   NoSearchResult,
   capitalizeFirstLetter,
-  convertToLowerCase,
-  handleHtmlTags,
   capitalizeWords,
-  Card,
+  convertToLowerCase,
   formatContentTitle,
+  handleHtmlTags,
   useUserSession,
 } from "@platformx/utilities";
+import { Key, memo, useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { ContentListingProps, ListItem } from "../../utils/List.types";
-import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
 import ContentTypeMenuList from "../MenuList/ContentTypeMenuList";
 
 const ContentListing = ({

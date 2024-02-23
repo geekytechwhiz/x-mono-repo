@@ -1,4 +1,3 @@
-/* eslint-disable template-tag-spacing */
 import { gql } from "@apollo/client";
 
 export const SearchContentListQueries = {
