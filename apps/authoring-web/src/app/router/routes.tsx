@@ -1,6 +1,8 @@
+import { Dashboard } from "@platformx/dashboard";
+import NavTreeCreation from "@platformx/nav-menu";
+
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { Dashboard } from "@platformx/dashboard";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -146,23 +148,23 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/preview",
+    path: "/navtree",
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
-        <ContentPreview />
+      <ProtectedRoute
+        name='navigation'
+        category='menu'
+        subCategory=''
+        isSideBar={false}
+        isHeader={false}>
+        <NavTreeCreation />
       </ProtectedRoute>
     ),
   },
   {
-    path: "/content/create/course",
+    path: "/content/preview",
     element: (
-      <ProtectedRoute
-        name='course'
-        subCategory='course'
-        category='content'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateContent />
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
       </ProtectedRoute>
     ),
   },
