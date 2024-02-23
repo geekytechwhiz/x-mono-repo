@@ -1,14 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 import React from "react";
-import ThemeConstants from './lightTheme/lightThemeVariable';
+import ThemeConstants from "./lightTheme/lightThemeVariable";
+
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
-    xs: true;  
+    xs: true;
     sm: true;
     md: true;
     lg: true;
     xl: true;
-    em: true;   
+    em: true;
   }
 }
 declare module "@mui/material/Typography" {
@@ -124,7 +125,7 @@ declare module "@mui/material/styles" {
     borderRadius: {
       value: string;
       value1: string;
-    }
+    };
   }
   interface ThemeOptions {
     prelemMargin?: {
@@ -139,15 +140,15 @@ declare module "@mui/material/styles" {
     borderRadius?: {
       value: React.CSSProperties["borderRadius"];
       value1: React.CSSProperties["borderRadius"];
-    }
+    };
   }
   interface Palette {
-    primaryColor?: Palette['primary'];
-    secondaryColor?: Palette['secondary'];
-    warningColor?: Palette['warning'];
-    successColor?: Palette['success'];
-    errorColor?: Palette['error'];
-    warningVal?: Palette['error'];
+    primaryColor?: Palette["primary"];
+    secondaryColor?: Palette["secondary"];
+    warningColor?: Palette["warning"];
+    successColor?: Palette["success"];
+    errorColor?: Palette["error"];
+    warningVal?: Palette["error"];
     overlay?: any;
     autoRenewIcon?: any;
     textColor?: string;
@@ -174,85 +175,85 @@ declare module "@mui/material/styles" {
   }
   interface PaletteOptions {
     primaryColor?: {
-      main: string,
-      contrastText: string,
-      950: string,
-      900: string,
-      800: string,
-      700: string,
-      600: string,
-      500: string,
-      400: string,
-      300: string,
-      200: string,
-      100: string,
+      main: string;
+      contrastText: string;
+      950: string;
+      900: string;
+      800: string;
+      700: string;
+      600: string;
+      500: string;
+      400: string;
+      300: string;
+      200: string;
+      100: string;
     };
     secondaryColor?: {
-      main: string,
-      contrastText: string,
-      950: string,
-      900: string,
-      800: string,
-      700: string,
-      600: string,
-      500: string,
-      400: string,
-      300: string,
-      200: string,
-      100: string,
+      main: string;
+      contrastText: string;
+      950: string;
+      900: string;
+      800: string;
+      700: string;
+      600: string;
+      500: string;
+      400: string;
+      300: string;
+      200: string;
+      100: string;
     };
     warningColor?: {
-      main: string,
-      contrastText: string,
-      950: string,
-      900: string,
-      800: string,
-      700: string,
-      600: string,
-      500: string,
-      400: string,
-      300: string,
-      200: string,
-      100: string,
+      main: string;
+      contrastText: string;
+      950: string;
+      900: string;
+      800: string;
+      700: string;
+      600: string;
+      500: string;
+      400: string;
+      300: string;
+      200: string;
+      100: string;
     };
     successColor?: {
-      main: string,
-      contrastText: string,
-      950: string,
-      900: string,
-      800: string,
-      700: string,
-      600: string,
-      500: string,
-      400: string,
-      300: string,
-      200: string,
-      100: string,
+      main: string;
+      contrastText: string;
+      950: string;
+      900: string;
+      800: string;
+      700: string;
+      600: string;
+      500: string;
+      400: string;
+      300: string;
+      200: string;
+      100: string;
     };
     errorColor?: {
-      main: string,
-      contrastText: string,
-      950: string,
-      900: string,
-      800: string,
-      700: string,
-      600: string,
-      500: string,
-      400: string,
-      300: string,
-      200: string,
-      100: string,
+      main: string;
+      contrastText: string;
+      950: string;
+      900: string;
+      800: string;
+      700: string;
+      600: string;
+      500: string;
+      400: string;
+      300: string;
+      200: string;
+      100: string;
     };
     overlay?: {
       editOverlay: string;
       bgOverlay: string;
       cardOverlay?: string;
-    }
-    primaryText?: string,
-    secondaryText?: string,
-    successText?: string,
-    warningText?: string,
-    errorText?: string,
+    };
+    primaryText?: string;
+    secondaryText?: string;
+    successText?: string;
+    warningText?: string;
+    errorText?: string;
     linkText?: string;
     bgLight?: string;
     bgWeak?: string;
@@ -294,8 +295,8 @@ const LightTheme = createTheme({
     value: "12px",
   },
   borderRadius: {
-    value: '5px',
-    value1: '8px',
+    value: "5px",
+    value1: "8px",
   },
   breakpoints: {
     values: {
@@ -449,10 +450,10 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_COLOR[900],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[800],
@@ -512,11 +513,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_COLOR[950],
               color: ThemeConstants.WHITE_COLOR,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[600],
@@ -576,11 +577,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.WHITE_COLOR,
               color: ThemeConstants.PRIMARY_COLOR[950],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[800],
@@ -639,11 +640,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.SECONDRY_COLOR[500],
               color: ThemeConstants.WHITE_COLOR,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
@@ -698,11 +699,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: "transparent",
               color: ThemeConstants.SECONDRY_COLOR[500],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
@@ -756,10 +757,10 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.SECONDRY_COLOR[200],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[800],
@@ -817,13 +818,13 @@ const LightTheme = createTheme({
             padding: 0,
             lineHeight: 1.6,
             textAlign: "left",
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: "transparent",
               color: ThemeConstants.PRIMARY_COLOR[950],
               borderRadius: 0,
               lineHeight: 1.6,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               fontSize: ThemeConstants.FONTSIZE_14,
@@ -872,11 +873,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.WARNING_COLOR[950],
               color: ThemeConstants.WARNING_COLOR[100],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -931,11 +932,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: "transparent",
               color: ThemeConstants.WARNING_COLOR[950],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -989,11 +990,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.ERROR_COLOR[950],
               color: ThemeConstants.ERROR_COLOR[100],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -1048,11 +1049,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: "transparent",
               color: ThemeConstants.ERROR_COLOR[950],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -1106,11 +1107,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.SUCCESS_COLOR[950],
               color: ThemeConstants.SUCCESS_COLOR[100],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -1165,11 +1166,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.sm,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH_SMALL}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: "transparent",
               color: ThemeConstants.SUCCESS_COLOR[950],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               height: ThemeConstants.ELEMENT.BUTTON.SMALL_HEIGHT,
@@ -1212,7 +1213,7 @@ const LightTheme = createTheme({
         },
         /*old variant */
         {
-          props: { variant: 'contained' },
+          props: { variant: "contained" },
           style: {
             fontFamily: ThemeConstants.FONTNAMESECONDARY,
             backgroundColor: ThemeConstants.PRIMARY_COLOR[950],
@@ -1224,10 +1225,10 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_COLOR[900],
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[800],
@@ -1274,7 +1275,7 @@ const LightTheme = createTheme({
           },
         },
         {
-          props: { variant: 'outlined' },
+          props: { variant: "outlined" },
           style: {
             fontFamily: ThemeConstants.FONTNAMESECONDARY,
             backgroundColor: "transparent",
@@ -1287,11 +1288,11 @@ const LightTheme = createTheme({
             height: ThemeConstants.ELEMENT.BUTTON.MEDIUM_HEIGHT,
             padding: ThemeConstants.ELEMENT.BUTTON.PADDING.md,
             minWidth: `${ThemeConstants.ELEMENT.BUTTON.MIN_WIDTH}`,
-            boxShadow: 'none',
+            boxShadow: "none",
             "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_COLOR[950],
               color: ThemeConstants.WHITE_COLOR,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
             "&:disabled": {
               color: ThemeConstants.PRIMARY_COLOR[600],
@@ -1338,66 +1339,66 @@ const LightTheme = createTheme({
           },
         },
         {
-          props: { variant: 'redbutton' },
+          props: { variant: "redbutton" },
           style: {
-            textTransform: 'capitalize',
+            textTransform: "capitalize",
             fontWeight: ThemeConstants.FONTWEIGHT_REGULAR,
             backgroundColor: ThemeConstants.WHITE_COLOR,
             borderRadius: ThemeConstants.DEFAULT_BORDER_RADIUS_CTA,
             fontSize: ThemeConstants.FONTSIZE_SM,
             color: ThemeConstants.ARCHIVE_COLOR,
             border: `solid 0.5px ${ThemeConstants.ARCHIVE_COLOR}`,
-            height: '40px',
-            padding: '15px 20px',
-            minWidth: '120px',
-            boxShadow: 'none',
+            height: "40px",
+            padding: "15px 20px",
+            minWidth: "120px",
+            boxShadow: "none",
             [`@media (max-width:${ThemeConstants.XL}px)`]: {
-              padding: '10px 20px',
-              minWidth: '200px',
+              padding: "10px 20px",
+              minWidth: "200px",
             },
-            '&:hover': {
+            "&:hover": {
               color: ThemeConstants.ARCHIVE_COLOR,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
-            '&:disabled': {
+            "&:disabled": {
               color: ThemeConstants.WHITE_COLOR,
             },
           },
         },
         {
-          props: { variant: 'whitebutton' },
+          props: { variant: "whitebutton" },
           style: {
             fontWeight: ThemeConstants.FONTWEIGHT_MEDIUM,
             backgroundColor: ThemeConstants.WHITE_COLOR,
             borderRadius: ThemeConstants.DEFAULT_BORDER_RADIUS,
             fontSize: ThemeConstants.FONTSIZE_CTA,
             color: ThemeConstants.BLACK_COLOR_VARIANT1,
-            boxShadow: 'none',
-            height: '40px',
-            textTransform: 'capitalize',
-            padding: '15px 18px',
-            minWidth: '100px',
+            boxShadow: "none",
+            height: "40px",
+            textTransform: "capitalize",
+            padding: "15px 18px",
+            minWidth: "100px",
             [`@media (max-width:${ThemeConstants.XL}px)`]: {
-              padding: '10px 18px',
-              minWidth: '100px',
+              padding: "10px 18px",
+              minWidth: "100px",
             },
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
-              padding: '10px 18px',
-              minWidth: '100px',
+              padding: "10px 18px",
+              minWidth: "100px",
             },
             [`@media (max-width:${ThemeConstants.SM}px)`]: {
-              padding: '10px 18px',
-              minWidth: '100px',
-              height: '40px',
+              padding: "10px 18px",
+              minWidth: "100px",
+              height: "40px",
             },
-            '&:hover': {
+            "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
               color: ThemeConstants.WHITE_COLOR,
-              boxShadow: 'none',
+              boxShadow: "none",
             },
-            '&:disabled': {
-              background: '#ced3d9',
-              color: '#89909a',
+            "&:disabled": {
+              background: "#ced3d9",
+              color: "#89909a",
             },
           },
         },
@@ -1407,31 +1408,31 @@ const LightTheme = createTheme({
       styleOverrides: {
         root: {
           // this is styles for the new variants
-          '&.menu-drawer': {
-            display: 'block',
-            padding: '1rem 0',
+          "&.menu-drawer": {
+            display: "block",
+            padding: "1rem 0",
             color: ThemeConstants.WHITE_COLOR,
           },
-          '&.app-menu': {
-            padding: '0 1rem',
+          "&.app-menu": {
+            padding: "0 1rem",
             color: ThemeConstants.WHITE_COLOR,
           },
-          '&.footer-link': {
+          "&.footer-link": {
             color: ThemeConstants.LIGHT_GREY_COLOR,
           },
-          '&.button-link': {
-            textTransform: 'capitalize',
+          "&.button-link": {
+            textTransform: "capitalize",
             backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
             borderRadius: ThemeConstants.DEFAULT_BORDER_RADIUS,
             color: ThemeConstants.WHITE_COLOR,
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
             },
-            padding: '11px 35px',
-            '&:hover': {
+            padding: "11px 35px",
+            "&:hover": {
               backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
             },
-            '&:disabled': {
+            "&:disabled": {
               color: ThemeConstants.WHITE_COLOR,
             },
           },
@@ -1991,23 +1992,23 @@ const LightTheme = createTheme({
       styleOverrides: {
         root: {
           // this is styles for the new variants
-          '&.secondary-typography': {
+          "&.secondary-typography": {
             color: ThemeConstants.WHITE_COLOR,
           },
-          '&.secondary-desvription': {
+          "&.secondary-desvription": {
             fontSize: ThemeConstants.FONTSIZE_SECONDARY_DEFAULT,
             [`@media (max-width:${ThemeConstants.SM}px)`]: {
               fontSize: ThemeConstants.FONTSIZE_DEFAULT,
             },
           },
-          '&.article-title-typography': {
+          "&.article-title-typography": {
             color: ThemeConstants.BLACK_COLOR,
           },
-          '&.article-subtitle-typography': {
+          "&.article-subtitle-typography": {
             color: ThemeConstants.LIGHT_GREY_COLOR,
             fontSize: ThemeConstants.FONTSIZE_LG,
           },
-          '&.subtitle-typography': {
+          "&.subtitle-typography": {
             color: ThemeConstants.WHITE_COLOR,
             [`@media (max-width:${ThemeConstants.MD}px)`]: {
               fontSize: ThemeConstants.FONTSIZE_LG,
@@ -2016,12 +2017,12 @@ const LightTheme = createTheme({
               fontSize: ThemeConstants.FONTSIZE_DEFAULT,
             },
           },
-          '&.drawer-label': {
-            '.Platform-x-Box-root': {
-              display: 'none',
+          "&.drawer-label": {
+            ".Platform-x-Box-root": {
+              display: "none",
             },
-            '&:hover .Platform-x-Box-root': {
-              display: 'flex',
+            "&:hover .Platform-x-Box-root": {
+              display: "flex",
             },
           },
         },
@@ -2030,72 +2031,72 @@ const LightTheme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          '&.search-box': {
-            borderRadius: '3px',
-            marginLeft: '100px',
-            marginRight: '40px',
-            height: '40px',
+          "&.search-box": {
+            borderRadius: "3px",
+            marginLeft: "100px",
+            marginRight: "40px",
+            height: "40px",
             backgroundColor: ThemeConstants.OFF_WHITE_COLOR,
           },
-          '&.search-box-mobile': {
-            borderRadius: '3px',
-            height: '46px',
+          "&.search-box-mobile": {
+            borderRadius: "3px",
+            height: "46px",
             backgroundColor: ThemeConstants.OFF_WHITE_COLOR,
           },
-          '& input::placeholder': {
+          "& input::placeholder": {
             fontFamily: `${ThemeConstants.FONTNAMEPRIMARY} !important`,
           },
-          '& input': {
+          "& input": {
             fontFamily: `${ThemeConstants.FONTNAMEPRIMARY} !important`,
           },
-          '& textarea::placeholder': {
+          "& textarea::placeholder": {
             fontFamily: `${ThemeConstants.FONTNAMEPRIMARY} !important`,
           },
-          '& textarea': {
+          "& textarea": {
             fontFamily: `${ThemeConstants.FONTNAMEPRIMARY} !important`,
           },
         },
       },
       variants: [
         {
-          props: { variant: 'outlined' },
+          props: { variant: "outlined" },
           style: {
-            width: '100%',
+            width: "100%",
             fontSize: ThemeConstants.FONTSIZE_H7,
-            '& .Platform-x-InputBase-root ': {
-              minHeight: '48px',
-              '&.Mui-focused fieldset ': {
+            "& .Platform-x-InputBase-root ": {
+              minHeight: "48px",
+              "&.Mui-focused fieldset ": {
                 borderColor: ThemeConstants.PRIMARY_MAIN_COLOR,
               },
-              '&.Mui-error fieldset': {
+              "&.Mui-error fieldset": {
                 borderColor: ThemeConstants.RED_COLOR,
               },
             },
           },
         },
         {
-          props: { variant: 'filled' },
+          props: { variant: "filled" },
           style: {
-            '.Platform-x-FilledInput-root': {
-              boxShadow: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.16)',
-              backgroundColor: '#f6f7f8',
-              borderRadius: '4px',
-              borderBottom: '0px',
+            ".Platform-x-FilledInput-root": {
+              boxShadow: "inset 0 1px 4px 0 rgba(0, 0, 0, 0.16)",
+              backgroundColor: "#f6f7f8",
+              borderRadius: "4px",
+              borderBottom: "0px",
             },
-            '.Platform-x-FilledInput-root:before': {
-              borderBottom: '0px',
+            ".Platform-x-FilledInput-root:before": {
+              borderBottom: "0px",
             },
-            '&:hover .Platform-x-FilledInput-root:before': {
-              borderBottom: '0px',
+            "&:hover .Platform-x-FilledInput-root:before": {
+              borderBottom: "0px",
             },
-            '.Platform-x-FilledInput-root:after': {
-              borderBottom: '0px',
+            ".Platform-x-FilledInput-root:after": {
+              borderBottom: "0px",
             },
-            '&:hover .Platform-x-FilledInput-root:after': {
-              borderBottom: '0px',
+            "&:hover .Platform-x-FilledInput-root:after": {
+              borderBottom: "0px",
             },
-            '.Platform-x-FilledInput-root:hover:not(.Mui-disabled):before': {
-              borderBottom: '0px',
+            ".Platform-x-FilledInput-root:hover:not(.Mui-disabled):before": {
+              borderBottom: "0px",
             },
           },
         },
@@ -2112,8 +2113,8 @@ const LightTheme = createTheme({
       styleOverrides: {
         root: {
           [`@media (max-width:${ThemeConstants.XL}px)`]: {
-            width: '35px',
-            height: '35px',
+            width: "35px",
+            height: "35px",
           },
         },
       },
@@ -2122,7 +2123,7 @@ const LightTheme = createTheme({
       styleOverrides: {
         root: {
           // this is styles for the new variants
-          '&.footer-link-grid': {
+          "&.footer-link-grid": {
             fontSize: ThemeConstants.FONTSIZE_XS,
           },
         },
@@ -2132,30 +2133,30 @@ const LightTheme = createTheme({
       styleOverrides: {
         root: {
           // this is styles for the new variants
-          '&.header-appbar': {
+          "&.header-appbar": {
             backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
             color: ThemeConstants.WHITE_COLOR,
-            padding: '10px 0',
-            position: 'relative',
+            padding: "10px 0",
+            position: "relative",
             [`@media (min-width:${ThemeConstants.MD}px)`]: {
-              padding: '15px 0',
+              padding: "15px 0",
             },
             // [`@media (min-width:${ThemeConstants.SM}px)`]: {
             //   minHeight: '64px',
             // },
-            '.logo': {
-              width: '36px',
+            ".logo": {
+              width: "36px",
               [`@media (min-width:${ThemeConstants.MD}px)`]: {
-                width: '42px',
+                width: "42px",
               },
               img: {
-                maxWidth: '100%',
-                display: 'block',
+                maxWidth: "100%",
+                display: "block",
               },
             },
-            '& .Platform-x-OutlinedInput-root': {
-              '& fieldset': {
-                border: 'none',
+            "& .Platform-x-OutlinedInput-root": {
+              "& fieldset": {
+                border: "none",
               },
             },
           },
@@ -2165,13 +2166,13 @@ const LightTheme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: '0 0 2px 0 rgba(115, 114, 114, 0.14)',
-          border: 'solid 1px rgba(112, 112, 112, 0.0)',
-          '&.footer-wrapper': {
+          boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
+          border: "solid 1px rgba(112, 112, 112, 0.0)",
+          "&.footer-wrapper": {
             backgroundColor: ThemeConstants.PRIMARY_MAIN_COLOR,
             color: ThemeConstants.WHITE_COLOR,
-            minHeight: '7rem',
-            borderRadius: '0',
+            minHeight: "7rem",
+            borderRadius: "0",
           },
         },
       },
@@ -2186,9 +2187,9 @@ const LightTheme = createTheme({
     MuiAccordion: {
       styleOverrides: {
         root: {
-          borderRadius: '7px',
-          boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-          position: 'static',
+          borderRadius: "7px",
+          boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+          position: "static",
         },
       },
     },
@@ -2207,9 +2208,9 @@ const LightTheme = createTheme({
       styleOverrides: {
         tooltip: {
           color: ThemeConstants.WHITE_COLOR,
-          opacity: '0.95',
-          borderRadius: '4px',
-          backgroundColor: '#2d2d39',
+          opacity: "0.95",
+          borderRadius: "4px",
+          backgroundColor: "#2d2d39",
         },
       },
     },
