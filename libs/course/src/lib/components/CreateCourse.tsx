@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../components/header/Header";
+import Header from "./Header/Header";
 import { IframeDetails } from "./IframeDetails";
 
 const CreateCourse = () => {
