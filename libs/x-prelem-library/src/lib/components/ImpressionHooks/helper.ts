@@ -204,7 +204,13 @@ export const snowplowPrelemClickImpression = (
   return {
     schema: secondaryArgs?.clickImpressionSchema,
     data: {
-      ...createClickImpression(analytics, type, secondaryArgs, buttonDataObj, cardDataObj),
+      ...createClickImpression(
+        analytics,
+        type,
+        secondaryArgs,
+        buttonDataObj || {},
+        cardDataObj || {},
+      ),
       siteName: secondaryArgs?.sitename || IMPRESSIONS.NA,
       environment: secondaryArgs?.environment || IMPRESSIONS.NA,
     },

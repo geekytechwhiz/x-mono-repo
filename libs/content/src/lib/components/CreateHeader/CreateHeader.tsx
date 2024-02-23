@@ -40,6 +40,7 @@ export const CreateHeader = ({
   category,
   subCategory,
   workflow,
+  // setEnableWorkflowHistory,
   hasTimerState,
   lastModifiedDate,
   createComment,
@@ -155,7 +156,6 @@ export const CreateHeader = ({
         {
           // enableReferBack(workflow) ||
           comments?.length > 0 ? (
-            // <Badge badgeContent={comments?.length} color='info'>
             <Box sx={{ position: "relative" }} className={classes.buttonWrapper}>
               <span
                 color='error'
@@ -179,24 +179,20 @@ export const CreateHeader = ({
                 aria-label='chat'
                 onClick={handleReview}
                 className='iconBtn'
-                startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-
-                {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-              </Button>
+                startIcon={
+                  <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                }></Button>
             </Box>
           ) : (
-            // </Badge>
             enableReferBack(workflow) && (
               <Box className={classes.buttonWrapper}>
                 <Button
                   aria-label='chat'
                   onClick={handleReview}
                   className='iconBtn'
-                  startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                  {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-                  {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-                </Button>
+                  startIcon={
+                    <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                  }></Button>
               </Box>
             )
           )
@@ -264,11 +260,10 @@ export const CreateHeader = ({
         </Tooltip>
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
         {showPreview && (
-          // <WorkflowHistoryIcon TODO enable workflow history
-          //   enableWorkflowHistory={setEnableWorkflowHistory}
-          //   workflow_status={workflow?.workflow_status}
-          // />
-          <>WorkflowHistoryIcon</>
+          <WorkflowHistoryIcon
+            enableWorkflowHistory={setEnableWorkflowHistory}
+            workflow_status={workflow?.workflow_status}
+          />
         )}
         <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
       </Grid>

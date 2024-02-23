@@ -1,16 +1,17 @@
+/* eslint-disable require-await */
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, Dialog, DialogContent, Drawer, Grid } from "@mui/material";
+import { assetsApi } from "@platformx/authoring-apis";
+import { AUTH_INFO, ThemeConstants, capitalizeFirstLetter } from "@platformx/utilities";
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { ASSETS, AUTHOR, SUBCOMMUNITIES } from "../../utils/constants";
+import useDamContent from "./DamContent.style";
 import DamContentCard from "./DamContentCard";
 import DamContentLeftSidebar from "./DamContentLeftSidebar";
 import DamContentTopHeading from "./DamContentTopHeading";
-import "./DamGallery.css";
-import axios from "axios";
-import { assetsApi } from "@platformx/authoring-apis";
-import { ThemeConstants, AUTH_INFO, capitalizeFirstLetter } from "@platformx/utilities";
 import DamDropdown from "./DamDropdown";
-import useDamContent from "./DamContent.style";
-import { ASSETS, AUTHOR, SUBCOMMUNITIES } from "../../utils/constants";
+import "./DamGallery.css";
 
 type DamContentGalleryProps = {
   assetType: "Image" | "Video";
@@ -38,7 +39,7 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
     toggleGallery,
     keyName,
     processing,
-    isCrop = "false",
+    isCrop = false,
   } = _props;
   const { fetchFacet, fetchDAMContent } = assetsApi;
   const [data, setData] = useState(COLLECTION_ITEM);
@@ -84,7 +85,7 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
       });
       setLabel({ author: authoring_getFacets });
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
   const getDAMData = async (index, filter, searchTerm = "") => {
@@ -117,7 +118,6 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setIsLazyLoad(false);
     }
@@ -157,7 +157,6 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
       });
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setIsLazyLoad(false);
     }
@@ -198,7 +197,6 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
 
       setCategoryLoading(false);
     } catch (error) {
-      console.log(error);
       setCategoryLoading(false);
     }
   };
@@ -213,9 +211,9 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
   };
   const handleSearch = (searchTerm) => {
     const nextIndex = 0;
-    const filter = {
-      author: author,
-    };
+    //const filter = {
+    //  author: author,
+    //};
     setStartIndex(() => nextIndex);
     setSearchTerm(searchTerm);
     // getDAMcontent(nextIndex, filter, searchTerm);
@@ -236,7 +234,7 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
 
         handleSelectedVideo({ ...imageData, Url: videoUrl });
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
       toggleGallery(false, "done", keyName);
     }

@@ -1,4 +1,3 @@
-/* eslint-disable no-duplicate-imports */
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
 import Challenge_community from "./Challenge_community.svg";
@@ -8,6 +7,7 @@ import CardOptionCopyUrlIcon from "./CopyUrlIconOptionMenu.svg";
 import DefaultStateCommentIcon from "./DefaultStateCommentIcon.svg";
 import DeleteIcon from "./Delete.svg";
 import CardOptionDeleteIcon from "./DeleteIconOptionMenu.svg";
+import DraftIcon from "./DraftIcon.svg";
 import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
 import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
@@ -29,14 +29,12 @@ import CourseIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import ReplyIcon from "./Reply.svg";
 import SaveNewIcon from "./SaveNewIcon.svg";
-import SearchBlackSvg from "./SearchBlack.svg"; //  SearchIcon,
+import SearchBlackSvg from "./SearchBlack.svg";
 import SendIcon from "./Send.svg";
 import SettingNewIcon from "./SettingNewIcon.svg";
 import CardOptionShareIcon from "./ShareIconOptionMenu.svg";
 import SitesIcon from "./SitesIcon.svg";
 import SpaceListIcon from "./Space.svg";
-
-import DraftIcon from "./DraftIcon.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
 import VODIcon from "./VODIcon.svg";
@@ -105,7 +103,6 @@ import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
 import GreenFolderIcon from "./Folder-green.svg";
-import ProgressIcon from "./Frame.svg";
 import Icon from "./Icon.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
 import MenuIcon2 from "./MenuIcons-2.svg";
@@ -125,6 +122,7 @@ import FeatureStarIcon from "./featurestar.svg";
 import GlobalImageIcon from "./globalimageicon.svg";
 import GlobalMiscIcon from "./globalmiscicon.svg";
 import GlobalVideoIcon from "./globalvideoicon.svg";
+import RedDotsIcon from "./icon/RedDots.svg";
 import ImageIcon from "./image.svg";
 import LeftArrowIcon from "./leftarrow.svg";
 import PictureIcon from "./pictureIcon.svg";
@@ -138,6 +136,8 @@ import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
+import ProgressIcon from "./Frame.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -174,6 +174,7 @@ export {
   CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
+  DialogCloseIcon,
   DraftIcon,
   DraftStatusIcon,
   EcommerceIcon,
@@ -241,6 +242,7 @@ export {
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
+  RedDotsIcon,
   Refresh,
   ReplyIcon,
   ReportsIcon,

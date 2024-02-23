@@ -34,7 +34,6 @@ const ImageCrop = (props: any = {}) => {
 
   return (
     <Dialog
-      fullScreen
       open={open}
       onClose={backTo}
       aria-labelledby='modal-modal-title'

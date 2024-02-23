@@ -77,10 +77,10 @@ const XDialog = ({
             if (handleClose) dispatch(handleClose());
           }}
           aria-label='close'>
-          <img src={DialogCloseIcon} />
+          <img src={DialogCloseIcon} alt='icon' />
         </IconButton>
         <XDialogImageContainer>
-          <img src={imageIcon} />
+          <img src={imageIcon} alt='icon' />
         </XDialogImageContainer>
         {title && (
           <DialogTitle
@@ -111,18 +111,17 @@ const XDialog = ({
         )}
 
         <XDialogActions>
-          {leftButtonText && (
-            <XDialogButton
-              variant='outlined'
-              sx={{
-                marginRight: "12px",
-              }}
-              onClick={() => {
-                if (handleClose) dispatch(handleClose());
-              }}>
-              {leftButtonText}
-            </XDialogButton>
-          )}
+          <XDialogButton
+            variant='outlined'
+            sx={{
+              marginRight: "12px",
+            }}
+            onClick={() => {
+              if (handleClose) dispatch(handleClose());
+            }}>
+            {leftButtonText}
+          </XDialogButton>
+
           <XDialogButton
             variant='contained'
             onClick={() => {

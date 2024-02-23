@@ -1,4 +1,5 @@
-import { CreateContent } from "@platformx/content";
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
@@ -17,6 +18,51 @@ export const routes: RouteConfig[] = [
     path: "/dashboard",
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/article",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='article'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/quiz",
+    element: (
+      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/poll",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='poll'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/event",
+    element: (
+      <ProtectedRoute category='content' subCategory='event' name='event'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/site-page",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
         {" "}
         <Dashboard />{" "}
       </ProtectedRoute>
@@ -100,14 +146,43 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create/article",
+    path: "/content/preview",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create/course",
     element: (
       <ProtectedRoute
-        name='article'
-        subCategory='article'
+        name='course'
+        subCategory='course'
         category='content'
         isHeader={false}
         isSideBar={false}>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute name='article' category='content' subCategory='article'>
         <CreateContent />
       </ProtectedRoute>
     ),
@@ -144,18 +219,4 @@ export const routes: RouteConfig[] = [
   // {
   //   path: "/dashboard",
   //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
-
-  // },
-  // {
-  //   path: "content/article",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <Content />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/error",
-  //   element: <Error errorCode={404} errorMessage="Page not found" />,
-  // }
 ];

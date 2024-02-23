@@ -1,15 +1,22 @@
+/* eslint-disable no-unused-vars */
+import React from "react";
+
 export interface SecondaryArgs {
   prelemBaseEndpoint?: PrelemBaseEndpoint;
   editState?: boolean;
   gcpUrl?: string;
   bucketName?: string;
   sitename?: string;
+  multiSlot?: any;
+  currentPageURL?: string;
 }
 export interface PrelemBaseEndpoint {
-  PublishEndPoint?: string;
-  APIEndPoint?: string;
-  deliveryEndPoint?: string;
+  PublishEndPoint: string;
+  APIEndPoint: string;
+  deliveryEndPoint: string;
   language?: string;
+  buttonBaseUrl?: string;
+  device?: string;
 }
 export interface Analytics {
   pageId?: number;
@@ -25,14 +32,22 @@ export interface Analytics {
   isSeoEnabled: boolean;
 }
 
-interface AuthoringHelper {
-  innerRef: any;
+export interface AuthoringHelper {
+  innerRef: React.Ref<HTMLDivElement>;
   sendStructureDataToAuthoringCB: (structureData: string) => void;
   sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
+  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
+  selectedButtonNameForEditing: string;
   isEditing: boolean;
+  buttonRef?: React.Ref<HTMLButtonElement>;
+  buttonContentEditable?: boolean;
   lastSavedStructuredData?: string;
-  isModalShow?: boolean;
+  isEditPage?: boolean;
   authoringHoverShow?: boolean;
+  isModalShow?: boolean;
+}
+interface MultiSlot {
+  onToggleContentGallery?: (contentType: string, imageVideoContentGallery: boolean) => void;
 }
 export interface Content {
   Description?: string;

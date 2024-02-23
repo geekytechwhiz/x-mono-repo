@@ -7,15 +7,10 @@
     "resolveJsonModule": true,
     "strict": true,
     "noImplicitAny": false,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": false
   },
   "files": [],
-  "include": [
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   "references": [
     {
       "path": "./tsconfig.app.json"

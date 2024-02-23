@@ -1,6 +1,7 @@
 import { createClickImpression, snowplowPrelemClickImpression } from "./helper";
 import { IMPRESSIONS } from "./constants";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
+import { Analytics, PrelemBaseEndpoint, SecondaryArgs } from "@platformx/utilities";
 
 export const useClickImpression = () => {
   const [handleTrack] = usePlatformAnalytics();
@@ -63,36 +64,8 @@ export const useClickImpression = () => {
   };
   return { triggerClickAnalytics, triggerClickAnalyticsForContentType };
 };
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface SecondaryArgs {
-  prelemBaseEndpoint?: PrelemBaseEndpoint;
-  editState: boolean;
-  bucketName: string;
-  gcpUrl: string;
-  sitename?: string;
-}
 interface SecondaryArgsForContent {
   prelemBaseEndpoint?: PrelemBaseEndpoint;
   gcpUrl: string;
   bucketName: string;
-}
-interface PrelemBaseEndpoint {
-  PublishEndPoint?: string;
-  APIEndPoint?: string;
-  deliveryEndPoint?: string;
-  language?: string;
 }

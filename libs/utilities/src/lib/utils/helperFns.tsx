@@ -2,11 +2,11 @@ import axios from "axios";
 import { format } from "date-fns";
 import FallBackImage from "../assets/images/fallBackImage.png";
 import ToastService from "../components/ToastContainer/ToastService";
+import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
 import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
-import { AUTH_INFO } from "../constants/AuthConstant";
-import { SecondaryArgs, Content } from "./interface";
 
 const siteLevelSchema = {
   siteName: "X",
@@ -722,6 +722,7 @@ export const trimString = (string: string, length: number) => {
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace Intl {
   type Key = "calendar" | "collation" | "currency" | "numberingSystem" | "timeZone" | "unit";
+  // eslint-disable-next-line no-unused-vars
   function supportedValuesOf(input: Key): string[];
 }
 
@@ -788,7 +789,7 @@ export const timeZoneData = () => {
 const aryIannaTimeZones = timeZoneData();
 export const getUniqueTimeZone = () => {
   const data: any = [];
-  aryIannaTimeZones.forEach((timeZone, i) => {
+  aryIannaTimeZones.forEach((timeZone) => {
     // let strTime = new Date().toLocaleTimeString([], {
     //   timeZone: `${timeZone}`,
     //   hour12: false,
@@ -800,10 +801,10 @@ export const getUniqueTimeZone = () => {
     const time = new Date(strTime).toTimeString().slice(0, -21);
     data.push({ label: `${timeZone} ${time}(IST)`, time: `${strTime}` });
   });
-  const uniqueItems = data.filter(
-    (item: any, index: any, self: any) =>
-      index === self.findIndex((x: any) => x.time === item.time),
-  );
+  // const uniqueItems = data.filter(
+  //   (item: any, index: any, self: any) =>
+  //     index === self.findIndex((x: any) => x.time === item.time),
+  // );
   return data;
 };
 

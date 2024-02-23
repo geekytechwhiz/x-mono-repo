@@ -1,28 +1,31 @@
+/* eslint-disable no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, CardMedia, Container, Grid, Typography } from "@mui/material";
+import {
+  Analytics,
+  ArrowAnimated,
+  Business,
+  Fashion,
+  Lifestyle,
+  SecondaryArgs,
+  Sports,
+  TechNews,
+  Travel,
+  getImage,
+  getLandingPageURL,
+  noResults,
+} from "@platformx/utilities";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
-import {
-  formCroppedUrl,
-  getImage,
-  getLandingPageURL,
-  Business,
-  Fashion,
-  Lifestyle,
-  Sports,
-  TechNews,
-  Travel,
-  ArrowAnimated,
-} from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import "./ContentDisplayWithCategories.css";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContentDisplayWithCategories.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
 const ContentDisplayWithCategories = ({
   content,
@@ -258,12 +261,13 @@ const ContentDisplayWithCategories = ({
                   <React.Fragment>
                     <Box className='noDataFoundWrapper'>
                       <img
-                        src={formCroppedUrl(
-                          secondaryArgs?.gcpUrl,
-                          secondaryArgs?.bucketName,
-                          secondaryArgs?.noResultImg?.Url,
-                          "png",
-                        )}
+                        src={noResults}
+                        // src={formCroppedUrl(
+                        //   secondaryArgs?.gcpUrl,
+                        //   secondaryArgs?.bucketName,
+                        //   secondaryArgs?.noResultImg?.Url,
+                        //   "png",
+                        // )}
                         alt='NoDataFound'
                       />
                     </Box>
@@ -442,20 +446,7 @@ interface ContentDisplayWithCategoriesProp {
   content: Content;
   analytics: Analytics;
   authoringHelper?: AuthoringHelper;
-  secondaryArgs?: any;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
+  secondaryArgs: SecondaryArgs;
 }
 
 interface AuthoringHelper {

@@ -13,4 +13,4 @@ const prelemTypes = makeStyles(() => {
     },
   };
 });
-export default prelemTypes
+export default prelemTypes;

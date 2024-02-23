@@ -12,6 +12,7 @@ import CloudIcon from "./CloudIcon.png";
 import avtarImg from "./avatar.png";
 import fallBackImage from "./fallBackImage.png";
 import Logo from "./logo.png";
+import noResults from "./no-results.png";
 import successGif from "./success.gif";
 
 export {
@@ -27,5 +28,6 @@ export {
   fbGreen,
   inGray,
   inGreen,
+  noResults,
   successGif,
 };
