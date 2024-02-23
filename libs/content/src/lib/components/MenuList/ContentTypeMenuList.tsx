@@ -1,10 +1,10 @@
 /* eslint-disable no-debugger */
 import { Box, IconButton } from "@mui/material";
 import { usePage } from "@platformx/authoring-apis";
-import { PageMenu } from "@platformx/site-page";
 import { MoreHorizIcon } from "@platformx/utilities";
 import React, { memo, useState } from "react";
 import { QuizPollEventMenu } from "../QuizPollEventsMenu/QuizPollEventsMenu";
+import PageMenu from "../PageMenu/PageMenu";
 
 const ContentTypeMenuList = ({
   item,
