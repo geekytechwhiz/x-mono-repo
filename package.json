@@ -8,8 +8,8 @@
     "storybook:build:utilities": "nx run utilities:build-storybook",
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build": "nx build authoring-web",
-    "deploy:authoring": "serve dist/apps/authoring-web -p 3000",
-    "deploy:userexp": "serve dist/apps/react-test -p 3000"
+    "start": "serve dist/apps/authoring-web -p 3000",
+    "deploy:authoring": "serve dist/apps/authoring-web -p 3000"
   },
   "private": true,
   "dependencies": {
