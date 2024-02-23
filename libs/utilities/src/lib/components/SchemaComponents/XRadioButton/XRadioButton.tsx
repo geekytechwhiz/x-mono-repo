@@ -1,7 +1,7 @@
-/* eslint-disable react/require-default-props */
-import { Radio, RadioProps, styled } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
+import { Radio, RadioProps, styled } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+// import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
+import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
 
 const fontStyle = `
 @font-face {
@@ -10,11 +10,16 @@ const fontStyle = `
   font-display: block;
 }`;
 export interface XRadioProps {
-  labelPlacement?: "top" | "start" | "bottom" | "end";
-  size?: "small" | "medium" | "large";
+  labelPlacement?: 'top' | 'start' | 'bottom' | 'end';
+  size?: 'small' | 'medium' | 'large';
   label?: string;
   value?: string;
-  color?: "primaryColor" | "secondaryColor" | "warningColor" | "successColor" | "errorColor";
+  color?:
+  | 'primaryColor'
+  | 'secondaryColor'
+  | 'warningColor'
+  | 'successColor'
+  | 'errorColor';
   disabled?: boolean;
 }
 const StyledFormControlLabel = styled(FormControlLabel)(() => ({

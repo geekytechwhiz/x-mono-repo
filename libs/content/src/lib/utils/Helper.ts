@@ -152,8 +152,8 @@ export const buildStructureData = (content) => {
 };
 
 export const relativeImageURL = (url) => {
-  const gcpUrl = process.env.NX_APP_GCP_URL;
-  const bucketName = process.env.NX_APP_BUCKET_NAME;
+  const gcpUrl = process.env.REACT_APP_GCP_URL;
+  const bucketName = process.env.REACT_APP_BUCKET_NAME;
   if (url?.includes("dam")) {
     // this if condition will be removed after relative img for all content type
     return url;

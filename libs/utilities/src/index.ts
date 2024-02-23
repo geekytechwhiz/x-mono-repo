@@ -82,7 +82,6 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
-import prelemTypes from "./lib/themes/prelems/globalStyle";
 import { getUniqueTimeZone } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
 
@@ -178,7 +177,6 @@ export {
   XTextArea,
   getUniqueTimeZone,
   i18next,
-  prelemTypes,
   useAccess,
   usePlatformAnalytics,
   usePrelemImpression,

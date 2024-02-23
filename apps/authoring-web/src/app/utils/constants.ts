@@ -70,12 +70,12 @@ export const MenuData = [
   {
     Title: "pages",
     id: "page",
-    url: "/site-page",
+    url: "/Sitepage",
     Menu: [
       {
         MenuName: "Pages",
         Icon: PagesIcon,
-        url: "/site-page",
+        url: "/Sitepage",
         id: "pages",
         category: "page",
         subCategory: "",

@@ -1,7 +1,7 @@
 import Tooltip from "@mui/material/Tooltip";
-import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
+import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 
 interface PropType {
   component: JSX.Element;

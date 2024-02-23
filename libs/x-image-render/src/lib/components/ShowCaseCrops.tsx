@@ -1,6 +1,6 @@
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Button, Dialog, DialogContent, Grid, IconButton, Typography } from "@mui/material";
-import { XLoader, formCroppedUrlInCrop, nullToObject } from "@platformx/utilities";
+import { XLoader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { RATIOS } from "../utils/constants";
 
@@ -55,7 +55,7 @@ const ShowCaseCrops = (props: any = {}) => {
             color='inherit'
             onClick={() => backTo()}
             aria-label='close'>
-            <img alt='close button' />
+            <img src={DialogCloseIcon} alt='' />
           </IconButton>
           <Button
             className='editIconfixed'

@@ -108,11 +108,9 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        // onInput={TODO: need to check
-        //   customInPutAllowField
-        //     ? (e: any) => allowInputParams(e, customInPutAllowField)
-        //     : null
-        // }
+        onInput={
+          customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
+        }
         InputProps={{
           endAdornment: (
             <InputAdornment position='end'>
