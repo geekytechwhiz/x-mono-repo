@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import './StringTextBoxComponent.css';
-import CloseIcon from '@mui/icons-material/Close';
-import { InputAdornment, TextField } from '@mui/material';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import CloseIcon from "@mui/icons-material/Close";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import { InputAdornment, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import "./StringTextBoxComponent.css";
 import {
+  allowOnlyLetterInputData,
   allowOnlyNumberInputData,
   allowOnlyShippingLetterInputData,
-  allowOnlyLetterInputData,
-} from '../../../utils/helperFns';
+} from "@platformx/utilities";
 
 const allowInputParams = (e: any, key: string) => {
   switch (key) {
-    case 'number':
+    case "number":
       return allowOnlyNumberInputData(e);
-    case 'CustomFirstName':
+    case "CustomFirstName":
       return allowOnlyShippingLetterInputData(e);
-    case 'charter':
+    case "charter":
       return allowOnlyLetterInputData(e);
     default:
       return null;
@@ -53,35 +53,35 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
     maxLength = 0,
     handleChange,
     isPasswordField,
-    errorMessage = '',
+    errorMessage = "",
     isCloseIcon = true,
-    customInPutAllowField = '',
+    customInPutAllowField = "",
   } = props;
 
-  const [stateValue, setStateValue] = useState('');
-  const [textBoxType, setTextBoxType] = useState('text');
+  const [stateValue, setStateValue] = useState("");
+  const [textBoxType, setTextBoxType] = useState("text");
 
   const onChange = (e: any) => {
-    const { target: { value: val = '' } = {} } = e;
+    const { target: { value: val = "" } = {} } = e;
     setStateValue(val);
   };
 
-  const clearText = (names = '') => {
+  const clearText = (names = "") => {
     handleChange({
       target: {
         name: names,
-        value: '',
+        value: "",
       },
     });
-    setStateValue('');
+    setStateValue("");
   };
 
   const showHideShowText = () => {
-    setTextBoxType(textBoxType === 'text' ? 'password' : 'text');
+    setTextBoxType(textBoxType === "text" ? "password" : "text");
   };
 
   useEffect(() => {
-    isPasswordField ? setTextBoxType('password') : setTextBoxType('text');
+    isPasswordField ? setTextBoxType("password") : setTextBoxType("text");
   }, [isPasswordField]);
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
         // label={null}
         label={label}
         value={stateValue}
-        variant="filled"
+        variant='filled'
         onChange={onChange}
         onBlur={handleChange}
         // placeholder={label}
@@ -111,31 +111,25 @@ const StringOnBlurTextBox = (props: StringOnBlurTextBoxProps) => {
         multiline={multiline ? true : false}
         disabled={isDisabled ? true : false}
         className={`${
-          errorMessage ? 'error' : 'primary'
+          errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
         onInput={
-          customInPutAllowField
-            ? (e: any) => allowInputParams(e, customInPutAllowField)
-            : null
+          customInPutAllowField ? (e: any) => allowInputParams(e, customInPutAllowField) : null
         }
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment position='end'>
               {/* <span className="textfield-icon-left">
                 <AccountCircle />
               </span> */}
               {isCloseIcon && (
-                <CloseIcon
-                  className="textfield-close-icon"
-                  onClick={() => clearText(name)}
-                />
+                <CloseIcon className='textfield-close-icon' onClick={() => clearText(name)} />
               )}
 
               {isPasswordField && (
                 <RemoveRedEyeOutlinedIcon
                   onClick={() => showHideShowText()}
-                  className="show-hide-icon"
-                ></RemoveRedEyeOutlinedIcon>
+                  className='show-hide-icon'></RemoveRedEyeOutlinedIcon>
               )}
             </InputAdornment>
           ),

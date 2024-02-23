@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { unstable_ClassNameGenerator } from "@mui/material/utils";
 import { makeStyles } from "@mui/styles";
+
 import { graphqlInstance } from "@platformx/authoring-apis";
 import { store } from "@platformx/authoring-state";
 import {
@@ -12,16 +13,15 @@ import {
   LightTheme,
   getCurrentLang,
   getSelectedRoute,
-  useUserSession,
 } from "@platformx/utilities";
-import { Suspense, memo, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import RootRouter from "./router/RootRouter";
+import XRouter from "./router/XRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
 
@@ -62,25 +62,15 @@ function App() {
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
-  const [getSession] = useUserSession();
-  const { userInfo } = getSession();
 
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        if (
-          (pathname === "/en" ||
-          pathname === "/" ||
-          pathname === `/${routing}/en` ||
-          Object.entries(userInfo)?.length === 0)&&window.location.search===""
-        ) {
+        if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
           window.location.replace(AUTH_URL);
         }
-
         const analytics = await analyticsInstance(Analytics);
-        console.log("Analytics instance:", analytics);
         setInstances(analytics);
-
         const lang = getCurrentLang();
         if (lang) {
           setLanguage(lang);
@@ -104,8 +94,7 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <RootRouter />
-                  {/* <AppRouter /> */}
+                  <XRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
@@ -128,4 +117,4 @@ function App() {
   );
 }
 
-export default memo(App);
+export default App;
