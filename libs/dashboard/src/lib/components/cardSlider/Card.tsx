@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useMutation } from "@apollo/client";
 import EastIcon from "@mui/icons-material/East";
 import { Box, Button } from "@mui/material";
-import { usePlatformAnalytics, capitalizeWords } from "@platformx/utilities";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ import {
   getSelectedSite,
   getSubDomain,
   setDefaultPageSettings,
+  usePlatformAnalytics,
+  capitalizeWords,
 } from "@platformx/utilities";
 import { createPgModel } from "@platformx/authoring-apis";
 // import {
