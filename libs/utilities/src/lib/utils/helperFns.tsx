@@ -790,11 +790,14 @@ export const capitalizeWords = (title = "") => {
 export const timeZoneData = () => {
   return Intl.supportedValuesOf("timeZone");
 };
-// const aryIannaTimeZones = timeZoneData();
+const aryIannaTimeZones = timeZoneData();
 export const getUniqueTimeZone = () => {
-  const aryIannaTimeZones = timeZoneData();
-  const data: { label: string; time: string }[] = [];
+  const data: any = [];
   aryIannaTimeZones.forEach((timeZone) => {
+    // let strTime = new Date().toLocaleTimeString([], {
+    //   timeZone: `${timeZone}`,
+    //   hour12: false,
+    // });
     const strTime = new Date().toLocaleString([], {
       timeZone: `${timeZone}`,
       hour12: false,
@@ -802,6 +805,10 @@ export const getUniqueTimeZone = () => {
     const time = new Date(strTime).toTimeString().slice(0, -21);
     data.push({ label: `${timeZone} ${time}(IST)`, time: `${strTime}` });
   });
+  // const uniqueItems = data.filter(
+  //   (item: any, index: any, self: any) =>
+  //     index === self.findIndex((x: any) => x.time === item.time),
+  // );
   return data;
 };
 
@@ -891,7 +898,7 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
 };
 export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
   const {
-    Thumbnail: { Url: url = "", ext = "", Color: color2 = "" } = {},
+    Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
@@ -900,7 +907,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     color: null,
     imageUrl: null,
   };
-  if (color === "" && color2 === "") {
+  if (color === "") {
     const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
     const httpRegex = /https?:\/\//g;
     const httpCount = (urlOfImage.match(httpRegex) || []).length;
@@ -916,7 +923,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
       };
     }
   } else {
-    return { ...imageColorObject, color: color || color2 };
+    return { ...imageColorObject, color };
   }
 };
 export const getCommunityFallBackImageBasedOnContentType = (
