@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { IframeDetails } from "./IframeDetails";
 import Header from "./Header/Header";
+import { IframeDetails } from "./IframeDetails";
 
 const CreateCourse = () => {
   const navigate = useNavigate();
