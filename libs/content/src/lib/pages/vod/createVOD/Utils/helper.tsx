@@ -1,5 +1,4 @@
-// import { authInfo } from "../../../../utils/authConstants";
-import { AUTH_INFO } from "@platformx/utilities";
+/* eslint-disable no-useless-concat */
 // import { getSubDomain, handleHtmlTags, trimString } from "../../../../utils/helperFunctions";
 import { getSubDomain, handleHtmlTags, trimString } from "@platformx/utilities";
 
@@ -43,6 +42,7 @@ export const updateVodSettings = (vodRef, currentVodData, language) => {
   const pageURL = currentVodData.current ? currentVodData.current : pageURLData; //edit and create
 
   const VodSettings = {
+    // eslint-disable-next-line no-useless-concat
     SocialOgURL: `${getSubDomain()}/${language}/` + `video` + `/${pageURL}`,
     SocialOgTwitterURL: `${getSubDomain()}/${language}/` + `video` + `/${pageURL}`,
     SocialOgType: "video article",

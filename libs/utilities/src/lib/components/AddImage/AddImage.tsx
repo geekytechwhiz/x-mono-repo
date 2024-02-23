@@ -88,6 +88,7 @@ const AddImage = ({
                 borderRadius: "15px",
               }}
               src={url}
+              alt=''
             />
           )}
           <Box

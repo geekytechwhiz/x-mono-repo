@@ -1,18 +1,15 @@
-import { ArrowUpwardIcon } from "@platformx/utilities";
+import { ArrowUpwardIcon, ErrorTooltip, useAccess } from "@platformx/utilities";
 import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { ErrorTooltip, useAccess } from "@platformx/utilities";
+// import { ErrorTooltip, useAccess } from "@platformx/utilities";
 // import "../../../../../components/Common/commonStyles/disabledStyles.css";
 import { useStyles } from "./ChooseVideoTray.styles";
 import { ChooseVideoTrayProps } from "./ChooseVideoTray.types";
 import { Category, ContentAction, ContentType } from "../../../../../enums/ContentType";
 
-export const ChooseVideoTray: FC<ChooseVideoTrayProps> = ({
-  ifVideoUrl: ifVideoUrl,
-  onUploadClick: onUploadClick,
-}) => {
+export const ChooseVideoTray: FC<ChooseVideoTrayProps> = ({ ifVideoUrl, onUploadClick }) => {
   const { t } = useTranslation();
   const { canAccessAction } = useAccess();
   const classes = useStyles();
@@ -44,16 +41,14 @@ export const ChooseVideoTray: FC<ChooseVideoTrayProps> = ({
               </Box>
             </Box>
           ) : (
-            <>
-              <Box className={classes.chooseTray} onClick={() => onUploadClick("Videos")}>
-                <Box className={classes.arrowUpContainer} mr={1}>
-                  <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
-                </Box>
-                <Box className={classes.chooseTextContainer}>
-                  <Typography variant='h5medium'>{t("video_subtitle")}</Typography>
-                </Box>
+            <Box className={classes.chooseTray} onClick={() => onUploadClick("Videos")}>
+              <Box className={classes.arrowUpContainer} mr={1}>
+                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               </Box>
-            </>
+              <Box className={classes.chooseTextContainer}>
+                <Typography variant='h5medium'>{t("video_subtitle")}</Typography>
+              </Box>
+            </Box>
           )}
         </Box>
       }
