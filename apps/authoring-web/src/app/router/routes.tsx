@@ -3,7 +3,6 @@ import NavTreeCreation from "@platformx/nav-menu";
 
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { QuizMfe } from "@platformx/quiz-mfe";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -80,14 +79,7 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/quiz",
-    element: (
-      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
-        <QuizMfe contentType='quiz' id='kanpur-1706005225007' langCode='en' host='localhost' />
-      </ProtectedRoute>
-    ),
-  },
+
   // {
   //   path: "/prelem",
   //   element: (
