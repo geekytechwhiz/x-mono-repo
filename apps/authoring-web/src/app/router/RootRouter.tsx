@@ -80,7 +80,6 @@ function RootRouter() {
       const response = await authAPI.signIn("auth/session", payload);
 
       if (response && response.data) {
-        debugger;
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find((obj) => obj.site === selected_site)?.name;
@@ -167,7 +166,7 @@ function RootRouter() {
     </>
   ) : (
     <Routes>
-      <Route path='/' element={<>Home</>} />
+      {/* <Route path='/' element={<>Home</>} /> */}
 
       {routes.map(({ path, element }) => (
         <Route key={path} path={path} element={element} />

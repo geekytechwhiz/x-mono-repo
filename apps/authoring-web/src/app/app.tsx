@@ -62,7 +62,6 @@ function App() {
   const classes = useStyles();
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
-  debugger;
   const { pathname } = window.location;
 
   useEffect(() => {
