@@ -4,6 +4,7 @@ import { CreateUser, UserListing } from "@platformx/user-management";
 import { CreateContent } from "@platformx/content";
 import { SitePage } from "@platformx/site-page";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
+import { XPoll } from "@platformx/x-poll";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -92,6 +93,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/poll",
+    element: (
+      <ProtectedRoute name='poll' subCategory='poll' category='content'>
+        <XPoll contentType='poll' id='jio-users-1705996546088' langCode='en' host='localhost' />
       </ProtectedRoute>
     ),
   },

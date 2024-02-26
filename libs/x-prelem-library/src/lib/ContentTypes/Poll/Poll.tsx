@@ -1,20 +1,19 @@
 import { ArrowRightAlt } from "@mui/icons-material";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import React, { useEffect, useRef, useState } from "react";
+import {
+  Analytics,
+  CloseIcon,
+  LoaderGif,
+  getRelativeImageURL,
+  nullToObject,
+} from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
-import "../../utils/service/i18n";
-import {
-  nullToObject,
-  getRelativeImageURL,
-  LoaderGif,
-  CloseIcon,
-  Analytics,
-  AuthoringHelper,
-} from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
+import "../../utils/service/i18n";
 import PollContext from "./PollContext";
 import QuestionIndex from "./QuestionIndex";
 import Result from "./Result";
@@ -484,7 +483,7 @@ interface PollProps {
   onSubmit: (a: any) => void;
   results: any;
   analytics: Analytics;
-  authoringHelper: AuthoringHelper;
+  authoringHelper: any; //AuthoringHelper;
   secondaryArgs: any;
   enablePreview?: boolean;
 }

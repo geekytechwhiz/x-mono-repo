@@ -24,6 +24,7 @@
       "@platformx/comment-review": ["libs/comment-review/src/index.ts"],
       "@platformx/content": ["libs/content/src/index.ts"],
       "@platformx/context-library": ["libs/context-library/src/index.ts"],
+      "@platformx/course": ["libs/course/src/index.ts"],
       "@platformx/dashboard": ["libs/dashboard/src/index.ts"],
       "@platformx/micro-frontends": ["libs/micro-frontends/src/index.ts"],
       "@platformx/prelems-library": ["libs/prelems-library/src/index.ts"],
