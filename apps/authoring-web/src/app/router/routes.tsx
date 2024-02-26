@@ -1,6 +1,4 @@
 import { Dashboard } from "@platformx/dashboard";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { RouteConfig } from "./routes.type";
 import {
   MediaHandle,
   FeatureFlagSetting,
@@ -15,6 +13,10 @@ import NavTreeCreation from "@platformx/nav-menu";
 
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
+import { UserListing } from "@platformx/user-management";
+import { WorkflowManagement } from "@platformx/workflow-management";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
   {
@@ -150,7 +152,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create",
+    path: "/content/create/*",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -179,7 +181,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create-course",
+    path: "/content/course",
     element: (
       <ProtectedRoute
         name='course'
@@ -296,4 +298,36 @@ export const routes: RouteConfig[] = [
   // {
   //   path: "/dashboard",
   //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
+  {
+    path: "/content/vod",
+    element: (
+      <ProtectedRoute category='content' subCategory='vod' name='vod'>
+        <Content></Content>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sitepage",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
+        <Content />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow/workflow-list",
+    element: (
+      <ProtectedRoute category='Workflow' subCategory='' name='workflow-list'>
+        <WorkflowManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/user-management/user-list",
+    element: (
+      <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
+        <UserListing />
+      </ProtectedRoute>
+    ),
+  },
 ];
