@@ -10,8 +10,11 @@ import {
   CookieSetting,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateAssest, AssetListing } from "@platformx/assets-manager";
-import { CreateContent } from "@platformx/content";
+import { CreateAsset, AssetListing } from "@platformx/assets-manager";
+import NavTreeCreation from "@platformx/nav-menu";
+
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 
 export const routes: RouteConfig[] = [
   {
@@ -27,6 +30,51 @@ export const routes: RouteConfig[] = [
     path: "/dashboard",
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/article",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='article'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/quiz",
+    element: (
+      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/poll",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='poll'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/event",
+    element: (
+      <ProtectedRoute category='content' subCategory='event' name='event'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/site-page",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
         {" "}
         <Dashboard />{" "}
       </ProtectedRoute>
@@ -110,18 +158,36 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/asset/images",
+    path: "/navtree",
     element: (
-      <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetListing />
+      <ProtectedRoute
+        name='navigation'
+        category='menu'
+        subCategory=''
+        isSideBar={false}
+        isHeader={false}>
+        <NavTreeCreation />
       </ProtectedRoute>
     ),
   },
   {
-    path: "/asset/videos",
+    path: "/content/preview",
     element: (
-      <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetListing />
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
       </ProtectedRoute>
     ),
   },
@@ -129,7 +195,23 @@ export const routes: RouteConfig[] = [
     path: "/create_asset",
     element: (
       <ProtectedRoute name='footer' category='Assets' subCategory=''>
-        <CreateAssest />
+        <CreateAsset />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/images",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/videos",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <AssetListing />
       </ProtectedRoute>
     ),
   },
@@ -205,6 +287,7 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
@@ -213,18 +296,4 @@ export const routes: RouteConfig[] = [
   // {
   //   path: "/dashboard",
   //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
-
-  // },
-  // {
-  //   path: "content/article",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <Content />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/error",
-  //   element: <Error errorCode={404} errorMessage="Page not found" />,
-  // }
 ];

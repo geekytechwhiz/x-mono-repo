@@ -2,12 +2,11 @@ import axios from "axios";
 import { format } from "date-fns";
 import FallBackImage from "../assets/images/fallBackImage.png";
 import ToastService from "../components/ToastContainer/ToastService";
+import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
 import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
-import { AUTH_INFO } from "../constants/AuthConstant";
-import { SecondaryArgs, Content } from "./interface";
-import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 
 const siteLevelSchema = {
   siteName: "X",
@@ -675,13 +674,14 @@ export const getSelectedSite = () => {
 
 export const getSelectedRoute = () => {
   let site = "";
+  const selectedSite = localStorage.getItem("selectedSite");
   const split = window?.location.pathname.split("/");
   const [, x] = split;
   site = x;
   if (site === "en" || site === "fr" || site === "de") {
     return "";
   } else {
-    return site;
+    return selectedSite ?? site;
   }
 };
 
@@ -787,11 +787,14 @@ export const capitalizeWords = (title = "") => {
 export const timeZoneData = () => {
   return Intl.supportedValuesOf("timeZone");
 };
-// const aryIannaTimeZones = timeZoneData();
+const aryIannaTimeZones = timeZoneData();
 export const getUniqueTimeZone = () => {
-  const aryIannaTimeZones = timeZoneData();
-  const data: { label: string; time: string }[] = [];
+  const data: any = [];
   aryIannaTimeZones.forEach((timeZone) => {
+    // let strTime = new Date().toLocaleTimeString([], {
+    //   timeZone: `${timeZone}`,
+    //   hour12: false,
+    // });
     const strTime = new Date().toLocaleString([], {
       timeZone: `${timeZone}`,
       hour12: false,
@@ -799,6 +802,10 @@ export const getUniqueTimeZone = () => {
     const time = new Date(strTime).toTimeString().slice(0, -21);
     data.push({ label: `${timeZone} ${time}(IST)`, time: `${strTime}` });
   });
+  // const uniqueItems = data.filter(
+  //   (item: any, index: any, self: any) =>
+  //     index === self.findIndex((x: any) => x.time === item.time),
+  // );
   return data;
 };
 
@@ -888,7 +895,7 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
 };
 export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
   const {
-    Thumbnail: { Url: url = "", ext = "", Color: color2 = "" } = {},
+    Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
@@ -897,7 +904,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     color: null,
     imageUrl: null,
   };
-  if (color === "" && color2 === "") {
+  if (color === "") {
     const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
     const httpRegex = /https?:\/\//g;
     const httpCount = (urlOfImage.match(httpRegex) || []).length;
@@ -913,7 +920,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
       };
     }
   } else {
-    return { ...imageColorObject, color: color || color2 };
+    return { ...imageColorObject, color };
   }
 };
 export const getCommunityFallBackImageBasedOnContentType = (
@@ -982,50 +989,4 @@ export const getCommunityFallBackImageBasedOnContentType = (
 
 export const createIconUrl = (secondaryArgs: any, imgUrl: string) => {
   return `${secondaryArgs?.gcpUrl}${imgUrl}`;
-};
-
-export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
-  return gcpUrl + "/" + bucketName + "/" + img;
-};
-
-export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
-  const windowWidth = window.innerWidth;
-  let itemsPerSlide;
-  if (windowWidth >= 1280) {
-    itemsPerSlide = itemsPerRow.lg;
-  } else if (windowWidth >= 768) {
-    itemsPerSlide = itemsPerRow.md;
-  } else if (windowWidth >= 500) {
-    itemsPerSlide = itemsPerRow.sm;
-  } else {
-    itemsPerSlide = itemsPerRow.xs;
-  }
-
-  const sliderArray: object[][] = [];
-  if (originalArray && originalArray.length) {
-    for (let i = 0; i < originalArray.length; i += itemsPerSlide) {
-      sliderArray.push(originalArray.slice(i, i + itemsPerSlide));
-    }
-    return sliderArray;
-  }
-};
-export const getRelativeImageURL = (
-  gcpUrl: string,
-  bucketName: string,
-  url: string,
-  ext: string,
-) => {
-  return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
-};
-export const getFlag = (code = "") => {
-  switch (code || getCurrentLang()) {
-    case "en":
-      return EN_FLAG;
-    case "fr":
-      return FR_FLAG;
-    case "de":
-      return DE_FLAG;
-    default:
-      return EN_FLAG;
-  }
 };

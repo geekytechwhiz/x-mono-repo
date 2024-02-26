@@ -21,11 +21,11 @@ export const getSelectedSite = () => {
   const split = location.pathname.split("/");
   const [, selectedSite] = split;
   site = selectedSite;
-  if (site === "en" || site === "fr" || site === "de") {
-    return localStorage.getItem("selectedSite");
-  } else {
-    return site;
-  }
+  // if (site === "en" || site === "fr" || site === "de") {
+  return localStorage.getItem("selectedSite") ?? site;
+  // } else {
+  //   return site;
+  // }
 };
 
 export const getLocale = (language: string, location: string) => {
@@ -34,7 +34,11 @@ export const getLocale = (language: string, location: string) => {
 };
 
 export const sortedData = (data: any[]) => {
-  return data?.sort((a, b) => b?.last_modification_date - a.last_modification_date);
+  return data?.sort(
+    (a, b) =>
+      (b?.last_modification_date || b?.last_modified_date) -
+      (a?.last_modification_date || a?.last_modified_date),
+  );
 };
 
 export const formatUrl = (enteredVal: string) => {

@@ -1,3 +1,2 @@
-export * from "./lib/assets-manager";
-export * from "./lib/pages/CreateAsset";
-export * from "./lib/pages/AssetListing";
+export { CreateAsset } from "./lib/pages/CreateAsset";
+export { AssetListing } from "./lib/pages/AssetListing";

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import BrightcoveClass from "./Brightcove";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
+import BrightcoveClass from "./Brightcove";
 
 const BrightcovePlayer = ({
   VideoData,
@@ -140,7 +140,7 @@ interface Analytics {
 BrightcovePlayer.defaultProps = {
   analyticsEnable: true,
   VideoData: {
-    AccountID: "6415745389001",
+    AccountID: "6312397989001",
     PlayerID: "default",
     VideoID: "6340658248112",
     PlaylistID: "PlaylistID",
