@@ -24,6 +24,7 @@ import "./App.css";
 import XRouter from "./router/XRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
+import RootRouter from "./router/RootRouter";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -94,7 +95,7 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <XRouter />
+                  <RootRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
