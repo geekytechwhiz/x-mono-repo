@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 export const FETCH_FOOTER_SETTING = gql`
   query FETCH_FOOTER_SETTING($pagePath: String!) {
     authoring_getFooterSettings(pagePath: $pagePath) {

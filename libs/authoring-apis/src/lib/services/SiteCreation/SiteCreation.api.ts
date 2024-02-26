@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import { ApiResponse } from "../utils/common.types";
@@ -20,7 +21,6 @@ export const fetchSites = async <T>(input: T): Promise<any> => {
     });
     return data;
   } catch (err: any) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
 };
@@ -34,7 +34,6 @@ export const createSiteConfig = async <T>(input: T): Promise<any> => {
     return data;
   } catch (error) {
     if (error instanceof ApolloError) {
-      console.log(error.graphQLErrors);
       ShowToastError(`${error.graphQLErrors[0].message}`);
     }
     throw error;
@@ -49,7 +48,6 @@ export const updateSiteConfig = async <T>(input: T): Promise<ApiResponse<T>> => 
     });
     return data;
   } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
 };
@@ -62,7 +60,6 @@ export const publishMultisiteInfo = async <T>(input: T): Promise<ApiResponse<T>>
     });
     return data;
   } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
 };
@@ -75,7 +72,6 @@ export const siteTitleValidation = async <T>(input: T): Promise<ApiResponse<T>> 
     });
     return data;
   } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
 };
@@ -88,7 +84,6 @@ export const subdomainValidation = async <T>(input: T): Promise<ApiResponse<T>> 
     });
     return data;
   } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
 };
