@@ -1,8 +1,8 @@
-import React from "react";
 import { Box, CardMedia, Typography } from "@mui/material";
-import { useCustomStyle } from "./XCard5.style";
-import { getIcon } from "../../Utils/helperFns";
 import { getImage, onClickCardUrlNavigate } from "@platformx/utilities";
+import React from "react";
+import { getIcon } from "../../Utils/helperFns";
+import { useCustomStyle } from "./XCard5.style";
 
 const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
   const classes = useCustomStyle();
@@ -69,9 +69,9 @@ interface Analytics {
 }
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
+  sendStructureDataToAuthoringCB: () => void;
+  sendDefaultStructureDataForResetToAuthoringCB: () => void;
+  openButtonEditWindowInAuthoringCB: () => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;

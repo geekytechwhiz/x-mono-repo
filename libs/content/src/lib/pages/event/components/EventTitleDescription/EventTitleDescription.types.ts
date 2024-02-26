@@ -1,4 +1,4 @@
-import { EventWhole, SetState, State } from '../../CreateEvent.types';
+import { EventWhole, SetState, State } from "../../CreateEvent.types";
 
 export type ComponentProp = {
   state: State;

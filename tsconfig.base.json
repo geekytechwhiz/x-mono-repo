@@ -26,14 +26,15 @@
       "@platformx/course": ["libs/course/src/index.ts"],
       "@platformx/dashboard": ["libs/dashboard/src/index.ts"],
       "@platformx/micro-frontends": ["libs/micro-frontends/src/index.ts"],
+      "@platformx/nav-menu": ["libs/nav-menu/src/index.ts"],
       "@platformx/prelems-library": ["libs/prelems-library/src/index.ts"],
+      "@platformx/utilities": ["libs/utilities/src/index.ts"],
+      "@platformx/x-image-render": ["libs/x-image-render/src/index.ts"],
+      "@platformx/workflow-management": ["libs/workflow-management/src/index.ts"],
       "@platformx/site-page": ["libs/site-page/src/index.ts"],
       "@platformx/site-setting": ["libs/site-setting/src/index.ts"],
       "@platformx/theme-library": ["libs/theme-library/src/index.ts"],
       "@platformx/user-management": ["libs/user-management/src/index.ts"],
-      "@platformx/utilities": ["libs/utilities/src/index.ts"],
-      "@platformx/workflow-management": ["libs/workflow-management/src/index.ts"],
-      "@platformx/x-image-render": ["libs/x-image-render/src/index.ts"],
       "@platformx/x-prelem-library": ["libs/x-prelem-library/src/index.ts"]
     }
   },

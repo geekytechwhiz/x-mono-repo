@@ -1,29 +1,36 @@
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
-import ArrowUpwardIcon from "./ArrowUp.svg";
 import Challenge_community from "./Challenge_community.svg";
 import CommentPlaceHolder from "./CommentPlaceHolder.svg";
 import CopyIcon from "./CopyIcon.svg";
 import CardOptionCopyUrlIcon from "./CopyUrlIconOptionMenu.svg";
+import DefaultStateCommentIcon from "./DefaultStateCommentIcon.svg";
+import DeleteIcon from "./Delete.svg";
+import CardOptionDeleteIcon from "./DeleteIconOptionMenu.svg";
+import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
+import CardOptionEditIcon from "./EditIconOptionMenu.svg";
+import EventsIcon from "./Event.svg";
+import EyeIcon from "./Eye.svg";
+import FilterIcon from "./FilterIcon.svg";
+
+import { default as VODIcon } from "./VODIcon.svg";
+
+import DraftIcon from "./DraftIcon.svg";
+
+// import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
 import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
-import DefaultStateCommentIcon from "./DefaultStateCommentIcon.svg";
-import DeleteIcon from "./Delete.svg";
-import CardOptionDeleteIcon from "./DeleteIconOptionMenu.svg";
-import DraftIcon from "./DraftIcon.svg";
-import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
-import CardOptionEditIcon from "./EditIconOptionMenu.svg";
-import EventsIcon from "./Event.svg";
-import EyeIcon from "./Eye.svg";
-import FilterIcon from "./FilterIcon.svg";
+import BookIcon from "./ReadBook.svg";
+import SettingIcon from "./settingIcon.svg";
+
+import ArrowUpwardIcon from "./ArrowUp.svg";
 import GreenFolderIcon from "./Folder-green.svg";
 import ProgressIcon from "./Frame.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
-import Icon from "./Icon.svg";
 import IconPreview from "./IconPreview.svg";
 import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
@@ -34,6 +41,8 @@ import MenuIcon5 from "./MenuIcons-5.svg";
 import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
+
+import Icon from "./Icon.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
@@ -43,7 +52,6 @@ import PostIconMenu from "./PostsIconmenu.svg";
 import PreviewNewIcon from "./PreviewNewIcon.svg";
 import SpacePrivateIcon from "./Private.svg";
 import QuizIcon from "./QuizIcon.svg";
-import CourseIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import Refresh from "./Refresh.svg";
 import ReplyIcon from "./Reply.svg";
@@ -57,7 +65,6 @@ import SpaceListIcon from "./Space.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
-import VODIcon from "./VODIcon.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
 import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
 import warning from "./activeUserIcon.svg";
@@ -131,7 +138,8 @@ import VODListIcon from "./vodListIcon.svg";
 import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
-// import DialogCloseIcon from "./DialogCloseIcon.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import DialogCloseIcon from "./DialogCloseIcon.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -146,6 +154,7 @@ export {
   AssetManagerIcon,
   BackButton,
   BlueDot,
+  BookIcon,
   CalenderIcon,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
@@ -163,10 +172,10 @@ export {
   CommunityIcon,
   CookieIcon,
   CopyIcon,
-  CourseIcon,
   CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
+  DialogCloseIcon,
   DraftIcon,
   DraftStatusIcon,
   EcommerceIcon,
@@ -234,7 +243,6 @@ export {
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
-  // DialogCloseIcon,
   RedDotsIcon,
   Refresh,
   ReplyIcon,
@@ -249,6 +257,7 @@ export {
   SearchGraySvg,
   SearchIcon,
   SendIcon,
+  SettingIcon,
   SettingNewIcon,
   SitesIcon,
   SpaceListIcon,

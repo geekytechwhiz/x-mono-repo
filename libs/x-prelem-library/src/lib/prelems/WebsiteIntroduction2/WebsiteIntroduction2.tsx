@@ -1,19 +1,19 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  formCroppedUrl,
-  structureDataUrlPoint,
   RedDots,
   SecondaryArgs,
+  formCroppedUrl,
+  structureDataUrlPoint,
 } from "@platformx/utilities";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./WebsiteIntroduction2.style";
-import prelemTypes from "../../globalStyle";
+import React, { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./WebsiteIntroduction2.style";
 
 const WebsiteIntroduction2 = ({
   content,

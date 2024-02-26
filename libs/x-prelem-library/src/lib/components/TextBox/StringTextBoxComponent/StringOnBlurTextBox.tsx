@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useState } from "react";
+import "./StringTextBoxComponent.css";
 import CloseIcon from "@mui/icons-material/Close";
-import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { InputAdornment, TextField } from "@mui/material";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import {
-  allowOnlyLetterInputData,
   allowOnlyNumberInputData,
   allowOnlyShippingLetterInputData,
+  allowOnlyLetterInputData,
 } from "@platformx/utilities";
-import { useEffect, useState } from "react";
-import "./StringTextBoxComponent.css";
 
 const allowInputParams = (e: any, key: string) => {
   switch (key) {

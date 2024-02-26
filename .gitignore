@@ -62,6 +62,7 @@ docs/
 *.so
 *.dylib
 *.next
+
 # Ignore environment-specific files
 # .env.local
 # .env.development.local

@@ -1,6 +1,7 @@
+import { Dashboard } from "@platformx/dashboard";
+import NavTreeCreation from "@platformx/nav-menu";
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { Dashboard } from "@platformx/dashboard";
 import { SitePage } from "@platformx/site-page";
 import { CreateSpace } from "@platformx/community";
 import { CreateUser, UserListing } from "@platformx/user-management";
@@ -9,6 +10,15 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        {" "}
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/dashboard",
     element: (
@@ -59,7 +69,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/user-management/user-list",
+    path: "/page-list",
     element: (
       <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
         <UserListing></UserListing>
@@ -95,6 +105,66 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  // {
+  //   path: "/prelem",
+  //   element: (
+  //     <ProtectedRoute
+  //       category='dashboard'
+  //       subCategory='dashboard'
+  //       name='dashboard'
+  //       isSideBar={false}
+  //       isHeader={false}>
+  //       <PrelemComponent />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/Sitepage",
+  //   element: (
+  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+  //       {" "}
+  //       {/* <SitePage />{" "} */}
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/user-management/user-list",
+  //   element: (
+  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+  //       {" "}
+  //       <UserListing></UserListing>
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-list",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowManagement />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-details",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowDetails />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "user-management/user-create",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='user'
+  //       category='UserManagement'
+  //       subCategory=''
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateUser />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/content/create",
     element: (
@@ -117,23 +187,23 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/preview",
+    path: "/navtree",
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
-        <ContentPreview />
+      <ProtectedRoute
+        name='navigation'
+        category='menu'
+        subCategory=''
+        isSideBar={false}
+        isHeader={false}>
+        <NavTreeCreation />
       </ProtectedRoute>
     ),
   },
   {
-    path: "/content/create/course",
+    path: "/content/preview",
     element: (
-      <ProtectedRoute
-        name='course'
-        subCategory='course'
-        category='content'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateContent />
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
       </ProtectedRoute>
     ),
   },

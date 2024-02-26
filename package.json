@@ -8,10 +8,8 @@
     "storybook:build:utilities": "nx run utilities:build-storybook",
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build": "nx build authoring-web",
-    "start": "nx serve authoring-web",
-    "serve": "serve -s dist/apps/authoring-web",
-    "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
-    "deploy:userexp": "serve dist/apps/react-test -p 3000"
+    "start": "serve dist/apps/authoring-web -p 3000",
+    "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000"
   },
   "private": true,
   "dependencies": {
@@ -172,7 +170,6 @@
     "@types/styled-components": "5.1.26",
     "@types/use-analytics": "^0.0.3",
     "@vitejs/plugin-react": "4.2.0",
-    "@vitest/coverage-v8": "~0.34.6",
     "@vitest/ui": "0.34.7",
     "babel-jest": "^29.4.1",
     "babel-plugin-styled-components": "1.10.7",
