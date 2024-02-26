@@ -1,6 +1,5 @@
 import { MenuItem, Select } from "@mui/material";
 import { Box } from "@mui/system";
-import { ArrowDown } from "@platformx/utilities";
 import { German, English, Franch } from "@platformx/utilities";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 

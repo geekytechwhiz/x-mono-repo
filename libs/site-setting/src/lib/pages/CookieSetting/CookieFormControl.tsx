@@ -1,44 +1,31 @@
-import { Grid, Box, Typography } from '@mui/material';
-import React from 'react';
-import {
-    TitleSubTitle,
-    AutoTextArea,
-    TextBox,
-    Loader,
-
-  } from "@platformx/utilities";
-import { t } from 'i18next';
-import { useStyles } from './CookieSetting.style';
-import CookieTextArea from './CookieTextArea';
-// import CookieTextBox from './CookieTextBox';
-// import CookieTextArea from './CookieTextArea';
+import { Grid, Box, Typography } from "@mui/material";
+import React from "react";
+import { TitleSubTitle, TextBox } from "@platformx/utilities";
+import { t } from "i18next";
+import { useStyles } from "./CookieSetting.style";
+import CookieTextArea from "./CookieTextArea";
 
 const CookieFormControl = ({
-  name = '',
-  type = '',
+  name = "",
+  type = "",
   maxLength = null,
-  placeHolder = '',
-  title = '',
-  subTitle = '',
-  titleVarient = '',
-  subTitleVarient = '',
+  placeHolder = "",
+  title = "",
+  subTitle = "",
+  titleVarient = "",
+  subTitleVarient = "",
   value,
   handleChange,
-  skeleton = '',
-  skeletonTitle = '',
+  skeleton = "",
+  skeletonTitle = "",
   isShowPreview = false,
   index = 0,
 }) => {
   const classes = useStyles();
-  const isLimitChar =
-    title === 'manage_save_setting_consent_button_text' ||
-    title === 'cookie_manage_setting_consent_button_text' ||
-    title === 'cookie_manage_settings_cookie_button_text' ||
-    title === 'cookie_accept_consent_cookie_button_text';
 
   const renderControl = (controlType) => {
     switch (controlType) {
-      case 'textbox':
+      case "textbox":
         return (
           <TextBox
             name={name}
@@ -48,7 +35,7 @@ const CookieFormControl = ({
             handleChange={handleChange}
           />
         );
-      case 'textarea':
+      case "textarea":
         return (
           <CookieTextArea
             name={name}
@@ -64,14 +51,7 @@ const CookieFormControl = ({
   };
   return (
     <>
-      <Grid
-        item
-        xs={12}
-        sm={12}
-        md={12}
-        lg={12}
-        className={index > 0 ? classes.leftGridItem : ''}
-      >
+      <Grid item xs={12} sm={12} md={12} lg={12} className={index > 0 ? classes.leftGridItem : ""}>
         <TitleSubTitle
           title={t(title)}
           subTitle={t(subTitle)}
@@ -88,15 +68,12 @@ const CookieFormControl = ({
         md={12}
         lg={12}
         // sx={{ marginTop: { sm: "40px", xs: "14px" } }}
-        className={classes.rightGridItem}
-      >
+        className={classes.rightGridItem}>
         {renderControl(type)}
       </Grid>
       {isShowPreview && skeleton && (
         <Box className={classes.previewContainer}>
-          <Typography className={classes.informativeSkeletonTitle}>
-            {t(skeletonTitle)}
-          </Typography>
+          <Typography className={classes.informativeSkeletonTitle}>{t(skeletonTitle)}</Typography>
           {skeleton}
         </Box>
       )}

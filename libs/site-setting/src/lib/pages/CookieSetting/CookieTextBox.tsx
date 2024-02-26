@@ -1,8 +1,7 @@
-import { TextField, Typography } from '@mui/material';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { convertToLowerCase } from '@platformx/utilities';
-import { useCookieSkeletonStyle } from './CookieSkeleton.style';
+import { TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useCookieSkeletonStyle } from "./CookieSkeleton.style";
 
 type TextBoxProps = {
   name?: any;
@@ -40,27 +39,17 @@ const CookieTextBox = ({
   placeHolderStyle,
 }: TextBoxProps) => {
   const { t } = useTranslation();
-  const textPlaceHolder = placeHolder ? placeHolder : t('write_your_text_here');
-  const textBoxType = (name === 'cookie_informative_expiry_time' || name === 'cookie_consent_expiry_time') ? 'number' : 'text';
-  const [restOfChar, setRestOfChar] = useState({
+  const textPlaceHolder = placeHolder ? placeHolder : t("write_your_text_here");
+  const textBoxType =
+    name === "cookie_informative_expiry_time" || name === "cookie_consent_expiry_time"
+      ? "number"
+      : "text";
+  const [restOfChar] = useState({
     lengthOfState: 0,
     restOfLength: 0,
     reachLimit: false,
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
-  const handleLength = (valueData = '') => {
-    if (maxCharLength) {
-      const lengthOfChar = convertToLowerCase(valueData).length;
-      const rest = valueData ? maxCharLength - lengthOfChar : 0;
-
-      setRestOfChar({
-        ...restOfChar,
-        restOfLength: rest,
-        lengthOfState: lengthOfChar,
-        reachLimit: maxCharLength === lengthOfChar ? true : false,
-      });
-    }
-  };
 
   const onChange = (event: any = {}) => {
     if (handleChange) {
@@ -74,9 +63,10 @@ const CookieTextBox = ({
       <style>{`.Platform-x-FormControl-root.Platform-x-FormControl-fullWidth.Platform-x-TextField-root{
       shadow-box:none
     }`}</style>
-      <TextField className={classes.cookieTextfield}
+      <TextField
+        className={classes.cookieTextfield}
         name={name}
-        type= {textBoxType}
+        type={textBoxType}
         label={textPlaceHolder}
         variant='filled'
         disabled={isDisabled}
@@ -90,26 +80,20 @@ const CookieTextBox = ({
       />
 
       {error && helperText && (
-        <Typography
-          variant='h7regular'
-          className={classes.cookieTypo}
-        >
+        <Typography variant='h7regular' className={classes.cookieTypo}>
           {helperText}
         </Typography>
       )}
 
-      {!error && name !== 'site_address' && maxCharLength && (
-        <Typography
-          variant='h7regular'
-          className={classes.cookietextboxtypo}
-        >
+      {!error && name !== "site_address" && maxCharLength && (
+        <Typography variant='h7regular' className={classes.cookietextboxtypo}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
           ) : (
             <>
               {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
+                ? `${restOfLength} ${t("characters")} ${t("left")} `
+                : `${maxCharLength} ${t("characters")} ${t("max")}`}
             </>
           )}
         </Typography>

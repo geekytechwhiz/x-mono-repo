@@ -2,7 +2,7 @@ import { Button, FormControl, Grid, Menu, Radio, RadioGroup, Typography } from "
 import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { DeleteIcon, FilterIcon, backAssetIcon } from "@platformx/utilities";
 import { FormControlCustom } from "@platformx/content";
 import AssetBreadsum from "../pages/AssetBreadscum";

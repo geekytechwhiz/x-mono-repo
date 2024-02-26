@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import { Box, Grid, SelectChangeEvent, Typography } from "@mui/material";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { t } from "i18next";
@@ -175,9 +176,9 @@ export const AddSite = () => {
   };
 
   const [newSiteForm, setNewSiteForm] = useState(initForm(formConfigData(adminDomainList)));
-  const [damForm, setDamForm] = useState(initForm(damFormConfig));
-  const [vodForm, setVodForm] = useState(initForm(vodFormConfig));
-  const [cmsForm, setCmsForm] = useState(initForm(cmsFormConfig));
+  const [damForm] = useState(initForm(damFormConfig));
+  const [vodForm] = useState(initForm(vodFormConfig));
+  const [cmsForm] = useState(initForm(cmsFormConfig));
 
   const fetchSiteDetail = async () => {
     try {
@@ -199,9 +200,7 @@ export const AddSite = () => {
         ...newSiteFormClone,
         { name: "site_title_url", value: siteDetail.site_title_url },
       ]);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchAdminDomain = async () => {
@@ -218,9 +217,7 @@ export const AddSite = () => {
         user_id: obj.user_id,
       }));
       setAdminDomain(() => ({ adminList: admin || [], domainList: domain || [] }));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const validate = async (input, type) => {
@@ -273,11 +270,11 @@ export const AddSite = () => {
     let tempStartPos = 0;
     const listPos = iconList.map((icon) => {
       const sectionStartPos = tempStartPos;
-      tempStartPos = icon.sectionRef?.current?.offsetTop!;
+      tempStartPos = icon.sectionRef?.current?.offsetTop || 0;
       return {
         ...icon,
         start: sectionStartPos,
-        end: icon?.sectionRef?.current?.offsetHeight! + sectionStartPos,
+        end: (icon?.sectionRef?.current?.offsetHeight || 0) + sectionStartPos,
       };
     });
     return listPos;
@@ -355,7 +352,7 @@ export const AddSite = () => {
       const input = {
         search: newSiteForm[2]?.value,
       };
-      newSiteForm[2]?.value != "" && validate(input, "site_title");
+      newSiteForm[2]?.value !== "" && validate(input, "site_title");
     } else {
       const input = {
         search: newSiteForm[1]?.value
@@ -414,7 +411,6 @@ export const AddSite = () => {
         }
       }
     } catch (error: any) {
-      console.log(error?.graphQLErrors);
       setIsLoading(false);
     }
   };
@@ -435,7 +431,6 @@ export const AddSite = () => {
       setIsLoading(false);
       setIsSaved(false);
     } catch (error: any) {
-      console.log(error?.graphQLErrors);
       setIsLoading(false);
     }
   };
@@ -451,7 +446,7 @@ export const AddSite = () => {
   }, [newSiteForm, cmsForm, damForm, vodForm]);
 
   const handleDropDownChange = (event: SelectChangeEvent, controlName) => {
-    const control = newSiteForm.find((control) => control.name === controlName);
+    const control = newSiteForm.find((ctrl) => ctrl.name === controlName);
     control.value = event.target.value;
     setNewSiteForm([...newSiteForm]);
 
@@ -461,7 +456,7 @@ export const AddSite = () => {
   };
 
   const handleTextChange = (ctrl, form, setForm) => (event) => {
-    let value = event.target.value;
+    let { value } = event.target;
     if (ctrl.name === "site_address") {
       value = value
         ?.replace(/[^a-zA-Z0-9.]/g, "")

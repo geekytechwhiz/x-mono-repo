@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useCookieSkeletonStyle } from './CookieSkeleton.style';
-import { AutoTextArea,  convertToLowerCase  } from '@platformx/utilities';
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useCookieSkeletonStyle } from "./CookieSkeleton.style";
+import { AutoTextArea, convertToLowerCase } from "@platformx/utilities";
 
 interface CookieTextAreaProps {
   name?: any;
@@ -36,7 +36,7 @@ const CookieTextArea = ({
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
 
-  const handleLength = (valueData = '') => {
+  const handleLength = (valueData = "") => {
     if (maxCharLength) {
       const lengthOfChar = convertToLowerCase(valueData).length;
       const rest = valueData ? maxCharLength - lengthOfChar : 0;
@@ -48,14 +48,6 @@ const CookieTextArea = ({
         reachLimit: maxCharLength === lengthOfChar ? true : false,
       });
     }
-  };
-
-  const onChange = (event: any = {}) => {
-    if (handleChange) {
-      handleChange(event);
-    }
-    const { target: { value = '' } = {} } = event;
-    handleLength(value);
   };
 
   useEffect(() => {
@@ -85,17 +77,14 @@ const CookieTextArea = ({
         name={name}
       />
       {maxCharLength ? (
-        <Typography
-          variant='h7regular'
-          className={classes.cookieTextAreaTypo}
-        >
+        <Typography variant='h7regular' className={classes.cookieTextAreaTypo}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
           ) : (
             <>
               {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
+                ? `${restOfLength} ${t("characters")} ${t("left")} `
+                : `${maxCharLength} ${t("characters")} ${t("max")}`}
             </>
           )}
         </Typography>

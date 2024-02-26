@@ -64,7 +64,7 @@ const CustomTextBox = ({
   };
 
   const handleKeydown = (e) => {
-    if (e.keyCode == 70) {
+    if (e.keyCode === 70) {
       e.stopPropagation();
     }
   };
