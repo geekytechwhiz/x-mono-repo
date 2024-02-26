@@ -13,8 +13,8 @@ const userGroupsApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError);
-      throw err;
+      if (err instanceof ApolloError) throw err;
+      return err;
     }
   },
 };

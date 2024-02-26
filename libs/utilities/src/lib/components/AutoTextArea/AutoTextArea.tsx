@@ -14,6 +14,8 @@ interface AutoTextAreaProps {
   isDisabled?: any;
   minRows?: number;
   maxRows?: number;
+  error?: boolean;
+  helperText?: string;
 }
 const AutoTextArea = ({
   name,
@@ -24,6 +26,8 @@ const AutoTextArea = ({
   handleOnBlur,
   isDisabled,
   minRows = 6,
+  error,
+  helperText,
 }: AutoTextAreaProps) => {
   const { t } = useTranslation();
   const inlineCss = `
@@ -106,12 +110,21 @@ const AutoTextArea = ({
           width: "100%",
           resize: "none",
           padding: "12px",
-          border: "solid 1px #ced3d9",
+          border: error ? "1px solid red" : "solid 1px #ced3d9",
           borderRadius: "5px",
           backgroundColor: "#fff",
           fontFamily: "Inter",
         }}
       />
+      {error && (
+        <Typography
+          variant='h7regular'
+          sx={{
+            color: "#B71C1C",
+          }}>
+          {helperText}
+        </Typography>
+      )}
       {maxCharLength ? (
         <Typography variant='h7regular' sx={{ color: "#5c6574", marginTop: "10px" }}>
           {reachLimit ? (
@@ -127,15 +140,3 @@ const AutoTextArea = ({
   );
 };
 export default AutoTextArea;
-
-AutoTextArea.defaultProps = {
-  name: "",
-  placeHolder: "",
-  handleChange: () => {},
-  maxCharLength: 0,
-  state: {},
-  handleOnBlur: () => {},
-  isDisabled: false,
-  minRows: 0,
-  maxRows: 0,
-};
