@@ -9,10 +9,13 @@ import {
   CopyIcon,
   SettingIcon,
   PencilIcon,
-  SitePlaceholder
+  SitePlaceholder,
+  capitalizeFirstLetter,
+  getCurrentLang,
+  NoSearchResult,
+  ShowToastSuccess,
 } from "@platformx/utilities";
-import { fetchMultisiteListing } from "@platformx/authoring-apis"
-import { capitalizeFirstLetter, getCurrentLang, NoSearchResult, ShowToastSuccess } from "@platformx/utilities";
+import { fetchMultisiteListing } from "@platformx/authoring-apis";
 import EmptyResult from "./EmptyResult";
 import {
   SiteDesTypo,
@@ -25,10 +28,9 @@ import {
 import { SiteListingLoader } from "./SiteListingLoader";
 import ContentListingHeader from "libs/content/src/lib/components/ContentListingHeader/ContentListingHeader";
 
-
- export const SiteListing = () => {
+export const SiteListing = () => {
   const navigate = useNavigate();
-  const [datalist, setDatalist] = useState<any>([]);;
+  const [datalist, setDatalist] = useState<any>([]);
   const [startIndex, setStartIndex] = useState<any>(0);
   const [isFetchMore, setFetchMore] = useState(true);
   const [refreshState, setRefreshState] = useState(false);
@@ -78,7 +80,6 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
       }
       setRefreshState(false);
     } catch (error) {
-      console.log(error);
       setFetchMore(false);
       setRefreshState(false);
     }
@@ -102,7 +103,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
 
   const onDashBoardRedirect = (site) => {
     const dashboardUrl = `${getUrl(site)}/dashboard`;
-    if (site?.status?.toLowerCase() == "published") {
+    if (site?.status?.toLowerCase() === "published") {
       window.open(dashboardUrl, "_self");
     }
     return;
@@ -182,6 +183,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                               onClick={() => onDashBoardRedirect(site)}>
                               <img
                                 className={classes.siteImg}
+                                alt='logo'
                                 src={
                                   site.header_logo
                                     ? `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/${site.header_logo}`
@@ -195,9 +197,9 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                             <Box className={classes.sitenameTypo}>
                               <Box
                                 className={
-                                  site?.status?.toLowerCase() == "published"
+                                  site?.status?.toLowerCase() === "published"
                                     ? classes.statusPublish
-                                    : site?.status?.toLowerCase() == "draft"
+                                    : site?.status?.toLowerCase() === "draft"
                                     ? classes.statusDraft
                                     : classes.statusUnpublish
                                 }>
@@ -214,7 +216,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                 <IconButton
                                   onClick={() => copyDomainName(generateDomain(site))}
                                   aria-label='copy domain name'>
-                                 <img src={CopyIcon} alt="" />
+                                  <img src={CopyIcon} alt='' />
                                 </IconButton>
                               </SiteDomainTypo>
                             </Box>
@@ -261,7 +263,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                   onClick={() =>
                                     navigate(`/sites/site-creation/${site.site_title_url}`)
                                   }>
-                                  <img src={PencilIcon} />
+                                  <img src={PencilIcon} alt='edit' />
                                 </IconButton>
                               </Tooltip>
 
@@ -278,7 +280,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                   }
                                   disabled={isNotPublished}
                                   className={isNotPublished ? classes.opacity : ""}>
-                                  <img src={PeopleIcon} />
+                                  <img src={PeopleIcon} alt='icon' />
                                 </IconButton>
                               </Tooltip>
                               <Tooltip title={t("Settings")} placement='top' enterTouchDelay={0}>
@@ -291,7 +293,7 @@ import ContentListingHeader from "libs/content/src/lib/components/ContentListing
                                   }
                                   disabled={isNotPublished}
                                   className={isNotPublished ? classes.opacity : ""}>
-                                  <img src={SettingIcon} />
+                                  <img src={SettingIcon} alt='icon' />
                                 </IconButton>
                               </Tooltip>
                             </Stack>
