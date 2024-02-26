@@ -38,4 +38,4 @@ const graphqlInstance = new ApolloClient({
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
 });
-export default graphqlInstance; 
+export default graphqlInstance;
