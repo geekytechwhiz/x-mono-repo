@@ -1,17 +1,6 @@
-import { ApolloError } from '@apollo/client';
-import graphqlInstance from '../../config/graphqlConfig';
-import {
-  FETCH_ADMIN_LIST,
-  FETCH_COOKIE_POLICY,
-  FETCH_COUNTRY,
-  FETCH_DOMAIN_LIST,
-  FETCH_FOOTER_SETTING,
-  FETCH_GLOBAL_SETTING,
-  FETCH_HEADER_SETTING,
-  FETCH_MEDIA_HANDLE,
-  FETCH_MULTISITE_LISTING,
-  FETCH_USER_SITE
-} from '../../graphQL/queries/siteSettingQueries';
+/* eslint-disable no-console */
+import { ApolloError } from "@apollo/client";
+import graphqlInstance from "../../config/graphqlConfig";
 import {
   PUBLISH_COOKIE_SETTING,
   PUBLISH_FOOTER_SETTING,
@@ -23,17 +12,27 @@ import {
   UPDATE_GLOBAL_SETTING,
   UPDATE_HEADER_SETTING,
   UPDATE_MEDIA_HANDLE,
-} from '../../graphQL/mutations/siteSettingMutations';
-import { ApiResponse } from '../../utils/types';
-
-
+} from "../../graphQL/mutations/siteSettingMutations";
+import {
+  FETCH_ADMIN_LIST,
+  FETCH_COOKIE_POLICY,
+  FETCH_COUNTRY,
+  FETCH_DOMAIN_LIST,
+  FETCH_FOOTER_SETTING,
+  FETCH_GLOBAL_SETTING,
+  FETCH_HEADER_SETTING,
+  FETCH_MEDIA_HANDLE,
+  FETCH_MULTISITE_LISTING,
+  FETCH_USER_SITE,
+} from "../../graphQL/queries/siteSettingQueries";
+import { ApiResponse } from "../../utils/types";
 
 export const fetchFooterSetting = async <T>(input: T): Promise<any> => {
   try {
     const { data } = await graphqlInstance.query({
       query: FETCH_FOOTER_SETTING,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err: any) {
@@ -42,9 +41,7 @@ export const fetchFooterSetting = async <T>(input: T): Promise<any> => {
   }
 };
 
-export const updateSiteSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const updateSiteSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: UPDATE_FOOTER_SETTING,
@@ -57,9 +54,7 @@ export const updateSiteSetting = async <T>(
   }
 };
 
-export const publishFooterSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const publishFooterSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: PUBLISH_FOOTER_SETTING,
@@ -72,9 +67,7 @@ export const publishFooterSetting = async <T>(
   }
 };
 
-export const updateHeaderSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const updateHeaderSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: UPDATE_HEADER_SETTING,
@@ -87,9 +80,7 @@ export const updateHeaderSetting = async <T>(
   }
 };
 
-export const updateGlobalSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const updateGlobalSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: UPDATE_GLOBAL_SETTING,
@@ -107,7 +98,7 @@ export const fetchMediaHandle = async <T>(input: T): Promise<any> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_MEDIA_HANDLE,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err: any) {
@@ -116,9 +107,7 @@ export const fetchMediaHandle = async <T>(input: T): Promise<any> => {
   }
 };
 
-export const updateMediaHanle = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const updateMediaHanle = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: UPDATE_MEDIA_HANDLE,
@@ -131,9 +120,7 @@ export const updateMediaHanle = async <T>(
   }
 };
 
-export const publishMediaHanle = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const publishMediaHanle = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: PUBLISH_MEDIA_HANDLE,
@@ -151,7 +138,7 @@ export const fetchCookiePolicy = async <T>(input: T): Promise<any> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_COOKIE_POLICY,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err) {
@@ -160,9 +147,7 @@ export const fetchCookiePolicy = async <T>(input: T): Promise<any> => {
   }
 };
 
-export const mutateCookiePolicy = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const mutateCookiePolicy = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: UPDATE_COOKIE_POLICY,
@@ -175,9 +160,7 @@ export const mutateCookiePolicy = async <T>(
   }
 };
 
-export const publishCookiePolicy = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const publishCookiePolicy = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: PUBLISH_COOKIE_SETTING,
@@ -195,7 +178,7 @@ export const fetchCountries = async <T>(input: T): Promise<any> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_COUNTRY,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err: any) {
@@ -208,7 +191,7 @@ export const fetchHeaderSetting = async <T>(input: T): Promise<any> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_HEADER_SETTING,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err) {
@@ -222,7 +205,7 @@ export const fetchGlobalSetting = async <T>(input: T): Promise<any> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_GLOBAL_SETTING,
       variables: input,
-      fetchPolicy: 'no-cache',
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err) {
@@ -236,8 +219,8 @@ export const fetchGlobalSettingWithHeader = async <T>(input: T, headers: T): Pro
     const { data } = await graphqlInstance.query({
       query: FETCH_GLOBAL_SETTING,
       variables: input,
-      fetchPolicy: 'no-cache',
-      context: headers
+      fetchPolicy: "no-cache",
+      context: headers,
     });
     return data;
   } catch (err) {
@@ -246,9 +229,7 @@ export const fetchGlobalSettingWithHeader = async <T>(input: T, headers: T): Pro
   }
 };
 
-export const publishHeaderSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const publishHeaderSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: PUBLISH_HEADER_SETTING,
@@ -261,9 +242,7 @@ export const publishHeaderSetting = async <T>(
   }
 };
 
-export const publishGlobalSetting = async <T>(
-  input: T
-): Promise<ApiResponse<T>> => {
+export const publishGlobalSetting = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.mutate({
       mutation: PUBLISH_GLOBAL_SETTING,
@@ -281,14 +260,14 @@ export const fetchMultisiteListing = async <T>(input: T): Promise<ApiResponse<T>
     const { data } = await graphqlInstance.query({
       query: FETCH_MULTISITE_LISTING,
       variables: input,
-      fetchPolicy: 'no-cache'
+      fetchPolicy: "no-cache",
     });
     return data;
   } catch (err: any) {
     if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
-}
+};
 
 export const fetchDomainList = async <T>(): Promise<ApiResponse<T>> => {
   try {
@@ -300,7 +279,7 @@ export const fetchDomainList = async <T>(): Promise<ApiResponse<T>> => {
     if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
-}
+};
 
 export const fetchAdminList = async <T>(): Promise<ApiResponse<T>> => {
   try {
@@ -312,7 +291,7 @@ export const fetchAdminList = async <T>(): Promise<ApiResponse<T>> => {
     if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
-}
+};
 
 export const fetchUserSitePermissionList = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
@@ -325,22 +304,21 @@ export const fetchUserSitePermissionList = async <T>(input: T): Promise<ApiRespo
     if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
-}
+};
 
 export const fetchGlobalSettingData = async () => {
   try {
     const { authoring_getSitedetails = {} } = await fetchGlobalSetting({
-      page: 'global-item',
+      page: "global-item",
     });
 
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split('|')?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split('|')?.pop();
-    imageUuid && localStorage.setItem('imageUuid', imageUuid);
-    videoUuid && localStorage.setItem('videoUuid', videoUuid);
-    return {}
-
+    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
+    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    imageUuid && localStorage.setItem("imageUuid", imageUuid);
+    videoUuid && localStorage.setItem("videoUuid", videoUuid);
+    return {};
   } catch (error) {
-    return {}
+    return {};
   }
 };
 
@@ -348,20 +326,22 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
   try {
     // eslint-disable-next-line no-debugger
 
-    const { authoring_getSitedetails = {} } = await fetchGlobalSettingWithHeader({
-      page: 'global-item',
-    }, {
-      headers: {
-        sitename: sitename
+    const { authoring_getSitedetails = {} } = await fetchGlobalSettingWithHeader(
+      {
+        page: "global-item",
       },
-    });
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split('|')?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split('|')?.pop();
-    imageUuid && localStorage.setItem('imageUuid', imageUuid);
-    videoUuid && localStorage.setItem('videoUuid', videoUuid);
-    return {}
-
+      {
+        headers: {
+          sitename: sitename,
+        },
+      },
+    );
+    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
+    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    imageUuid && localStorage.setItem("imageUuid", imageUuid);
+    videoUuid && localStorage.setItem("videoUuid", videoUuid);
+    return {};
   } catch (error) {
-    return {}
+    return {};
   }
 };
