@@ -5,7 +5,7 @@ import "../../Style.css";
 import { useCustomStyle } from "./AnimationOnPageScroll.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
+import { Analytics, SecondaryArgs } from "@platformx/utilities";
 
 const AnimationOnPageScroll = ({
   content,
@@ -227,7 +227,7 @@ interface AnimationOnPageScrollProp {
   secondaryArgs: SecondaryArgs;
   content: Content;
   analytics: Analytics;
-  authoringHelper?: AuthoringHelper;
+  authoringHelper: any;
 }
 
 interface Content {

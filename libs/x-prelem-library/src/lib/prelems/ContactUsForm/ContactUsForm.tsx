@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import "libs/utilities/src/lib/utils/i18next";
+import "../../utils/service/i18n";
 import { useTranslation } from "react-i18next";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContactUsForm.style";

@@ -19,7 +19,7 @@ import {
   createSliderArray,
   debounce,
   fallBackImage,
-  ArticleIconComponent,
+  ArticleIcon,
 } from "@platformx/utilities";
 
 const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
@@ -145,14 +145,27 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                         <PlayCircleOutlineRoundedIcon sx={{ color: "white", fontSize: "40px" }} />
                       </Box>
                     ) : (
-                      <ArticleIconComponent
+                      // <ArticleIconComponent
+                      //   style={{
+                      //     position: "absolute",
+                      //     marginTop: "94px",
+                      //     marginLeft: "8px",
+                      //     width: "30px",
+                      //     height: "30px",
+                      //   }}></ArticleIconComponent>
+
+                      <img
+                        alt='RecentCarousel'
+                        src={ArticleIcon}
+                        height='40'
+                        width='40'
+                        loading='lazy'
                         style={{
                           position: "absolute",
                           marginTop: "94px",
-                          marginLeft: "8px",
-                          width: "30px",
-                          height: "30px",
-                        }}></ArticleIconComponent>
+                          marginLeft: "3px",
+                        }}
+                      />
                     )}
                     <CardContent style={{ padding: "10px 10px 0px 10px", flexGrow: 1 }}>
                       <Typography

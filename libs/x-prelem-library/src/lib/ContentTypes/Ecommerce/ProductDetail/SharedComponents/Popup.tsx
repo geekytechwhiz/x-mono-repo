@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardActionArea, CardMedia, Dialog, IconButton, Box } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import { next as IconNextSvg, prev as IconPrevSvg } from "@platformx/utilities";
+import { IconNextSvg, IconPrevSvg } from "@platformx/utilities";
 import "./Popup.css";
 
 interface ImageDialogProps {

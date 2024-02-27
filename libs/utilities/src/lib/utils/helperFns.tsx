@@ -1,6 +1,5 @@
 import axios from "axios";
 import { format } from "date-fns";
-import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
 import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
@@ -9,6 +8,7 @@ import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/Commo
 import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
+import getConfig from "next/config";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
