@@ -4,7 +4,7 @@ import { FC } from "react";
 
 interface PropType {
   component: JSX.Element;
-  Title: any;
+  Title?: any;
   position?: any;
   className?: string;
 }
