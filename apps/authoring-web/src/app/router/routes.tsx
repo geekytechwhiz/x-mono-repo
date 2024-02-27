@@ -10,11 +10,12 @@ import {
 import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateAsset, AssetListing } from "@platformx/assets-manager";
 import NavTreeCreation from "@platformx/nav-menu";
-
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
-import { UserListing } from "@platformx/user-management";
-import { WorkflowManagement } from "@platformx/workflow-management";
+import { SitePage } from "@platformx/site-page";
+import { CreateSpace } from "@platformx/community";
+import { CreateUser, UserListing } from "@platformx/user-management";
+import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -40,8 +41,7 @@ export const routes: RouteConfig[] = [
     path: "/content/article",
     element: (
       <ProtectedRoute category='content' subCategory='article' name='article'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -49,8 +49,7 @@ export const routes: RouteConfig[] = [
     path: "/content/quiz",
     element: (
       <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -58,8 +57,7 @@ export const routes: RouteConfig[] = [
     path: "/content/poll",
     element: (
       <ProtectedRoute category='content' subCategory='article' name='poll'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -67,8 +65,7 @@ export const routes: RouteConfig[] = [
     path: "/content/event",
     element: (
       <ProtectedRoute category='content' subCategory='event' name='event'>
-        {" "}
-        <Content></Content>{" "}
+        <Content></Content>
       </ProtectedRoute>
     ),
   },
@@ -77,20 +74,48 @@ export const routes: RouteConfig[] = [
     path: "/site-page",
     element: (
       <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
-        {" "}
-        <Dashboard />{" "}
+        <SitePage />
       </ProtectedRoute>
     ),
   },
   {
     path: "/page-list",
     element: (
-      <ProtectedRoute category='page-list' subCategory='page-list' name='page-list'>
-        {" "}
-        {/* <XImageRender />{" "} */}
+      <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+        <UserListing></UserListing>
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/workflow/workflow-list",
+    element: (
+      <ProtectedRoute name='article' subCategory='article' category='content'>
+        <WorkflowManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow/workflow-details",
+    element: (
+      <ProtectedRoute name='article' subCategory='article' category='content'>
+        <WorkflowDetails />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "user-management/user-create",
+    element: (
+      <ProtectedRoute
+        name='user'
+        category='UserManagement'
+        subCategory=''
+        isHeader={false}
+        isSideBar={false}>
+        <CreateUser />
+      </ProtectedRoute>
+    ),
+  },
+
   // {
   //   path: "/prelem",
   //   element: (
@@ -156,6 +181,19 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/community/create-space",
+    element: (
+      <ProtectedRoute
+        name='space'
+        category='public'
+        subCategory='public'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateSpace />
       </ProtectedRoute>
     ),
   },
@@ -289,7 +327,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
+{
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute name='article' category='content' subCategory='article'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

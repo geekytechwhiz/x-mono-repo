@@ -1,20 +1,20 @@
-import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import {
   Analytics,
   AuthoringHelper,
+  SecondaryArgs,
   formCroppedUrl,
   handleHtmlTags,
-  SecondaryArgs,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./CoreHighlights.style";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./CoreHighlights.style";
 
 // ts-ignore
 const CoreHighlights = ({

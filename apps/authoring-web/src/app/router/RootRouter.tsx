@@ -128,6 +128,9 @@ function RootRouter() {
       setLoader(true);
       handleSignIn();
     }
+    if ((!code && location?.pathname === "/") || location?.pathname === "/en") {
+      window.location.href = AUTH_URL;
+    }
     if (code && Object.entries(userInfo || {}).length > 0) {
       const { selected_site } = userInfo;
       const lang = userInfo.preferred_sites_languages?.[selected_site] || "en";
@@ -140,10 +143,10 @@ function RootRouter() {
         debugger;
         navigate(`/dashboard`);
       }
-    }
-    if ((!code && location?.pathname === "/") || location?.pathname === "/en") {
+    } else {
       window.location.href = AUTH_URL;
     }
+
     console.log("useEffect code", code);
     setLoader(false);
   }, [code]);

@@ -74,7 +74,7 @@ export const Dashboard = () => {
               <Title titleVarient='h2bold' title={userInfo?.name} />
             </Box>
             {/* #TODO Commenting for X-Launch */}
-            <Typography variant='h6medium' mt='5px'>
+            <Typography variant='h6medium' mt='5px' mb='10px'>
               {taskLength > 0 && ` ${t("you_have")} ${taskLength} ${t("new_task")}`}{" "}
               {overDueTaskLength() > 0 &&
                 `${t("and")} ${overDueTaskLength()} ${t("overdue_task_text")}`}

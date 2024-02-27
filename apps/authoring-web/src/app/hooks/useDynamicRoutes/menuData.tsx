@@ -1,4 +1,5 @@
 import { Content } from "@platformx/content";
+import { Space } from "@platformx/community";
 import {
   ApprovalStatus,
   ArticleIcon,
@@ -156,6 +157,7 @@ export const MenuData = [
         category: "Community",
         subCategory: "spaces",
         roles: ["admin", "Super Admin"],
+        component: <Space />,
       },
     ],
   },
@@ -204,7 +206,7 @@ export const MenuData = [
         id: "workflow_management",
         category: "Workflow",
         subCategory: "",
-        component: <WorkflowManagement></WorkflowManagement>,
+        component: <WorkflowManagement />,
       },
     ],
   },

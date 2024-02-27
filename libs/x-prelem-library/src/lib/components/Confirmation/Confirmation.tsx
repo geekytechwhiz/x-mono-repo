@@ -1,8 +1,9 @@
-import * as React from "react";
-import "./Confirmation.css";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/require-default-props */
 import CloseIcon from "@mui/icons-material/Close";
+import { Box, Button, Dialog, DialogContent, Grid, Typography } from "@mui/material";
+import "./Confirmation.css";
 import { useCustomStyle } from "./Confirmation.style";
-import { Box, Dialog, Button, Typography, DialogContent, Grid } from "@mui/material";
 
 type ConfirmationProps = {
   img?: string;

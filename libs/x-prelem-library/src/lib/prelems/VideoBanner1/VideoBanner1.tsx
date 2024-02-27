@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Typography } from "@mui/material";
-import { Analytics } from "@platformx/utilities";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useCustomStyle } from "./VideoBanner1.style";
+import "./VideoBanner1.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import "./VideoBanner1.css";
-import { useCustomStyle } from "./VideoBanner1.style";
+import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
-  const [setVal] = useState(1);
+  const [, setVal] = useState(1);
   const scrollRef = useRef("DOWN");
   const scrollValueRef = useRef(1);
   const { ref, inView } = useInView({

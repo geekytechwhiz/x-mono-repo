@@ -1,19 +1,27 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
-import AudioFileIcon from '@mui/icons-material/AudioFile';
-import CancelScheduleSendOutlinedIcon from '@mui/icons-material/CancelScheduleSendOutlined';
-import SaveAsIcon from '@mui/icons-material/SaveAs';
-import ScheduleSendRoundedIcon from '@mui/icons-material/ScheduleSendRounded';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import UnpublishedIcon from '@mui/icons-material/Unpublished';
+import AudioFileIcon from "@mui/icons-material/AudioFile";
+import CancelScheduleSendOutlinedIcon from "@mui/icons-material/CancelScheduleSendOutlined";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+import ScheduleSendRoundedIcon from "@mui/icons-material/ScheduleSendRounded";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import UnpublishedIcon from "@mui/icons-material/Unpublished";
 
 import {
-  MenuIcon1, MenuIcon2, MenuIcon3, MenuIcon4, MenuIcon5, MenuIcon6, MenuIcon7, MenuIcon8,
   ArticleListIcon,
   Challenge_community,
   CourseListIcon,
   DraftStatusIcon,
   EventsListIcon,
   General_community,
+  MenuIcon1,
+  MenuIcon2,
+  MenuIcon3,
+  MenuIcon4,
+  MenuIcon5,
+  MenuIcon6,
+  MenuIcon7,
+  MenuIcon8,
   News_community,
   PagesListIcon,
   PollListIcon,
@@ -26,56 +34,56 @@ import {
   SpacePublicIcon,
   UnpublishedStatusIcon,
   VODListIcon,
-} from '@platformx/utilities';
+} from "@platformx/utilities";
 
 export const icons = [
   {
-    id: 'titleDescription',
+    id: "titleDescription",
     iconName: MenuIcon1,
-    tooltip: 'title_description',
+    tooltip: "title_description",
   },
   {
-    id: 'imageVideo',
+    id: "imageVideo",
     iconName: MenuIcon8,
-    tooltip: 'image_video',
+    tooltip: "image_video",
   },
   {
-    id: 'questions',
+    id: "questions",
     iconName: MenuIcon2,
-    tooltip: 'questions',
+    tooltip: "questions",
   },
   {
-    id: 'results',
+    id: "results",
     iconName: MenuIcon3,
-    tooltip: 'results',
+    tooltip: "results",
   },
   {
-    id: 'tags',
+    id: "tags",
     iconName: MenuIcon4,
-    tooltip: 'choose_tags',
+    tooltip: "choose_tags",
   },
   {
-    id: 'socialShare',
+    id: "socialShare",
     iconName: MenuIcon5,
-    tooltip: 'social_share',
+    tooltip: "social_share",
   },
   {
-    id: 'Analytics',
+    id: "Analytics",
     iconName: MenuIcon6,
-    tooltip: 'analytics',
+    tooltip: "analytics",
   },
   {
-    id: 'seo',
+    id: "seo",
     iconName: MenuIcon7,
-    tooltip: 'seo',
+    tooltip: "seo",
   },
 ];
 
-export const SORT_ORDER = 'DESC';
+export const SORT_ORDER = "DESC";
 export const statusColors = {
-  draft: '#ffcd41',
-  published: '#0fa069',
-  unpublished: '#777777',
+  draft: "#ffcd41",
+  published: "#0fa069",
+  unpublished: "#777777",
 };
 export const statusIcons: any = {
   draft: UnpublishedIcon,
@@ -103,23 +111,23 @@ export const iconsList: any = {
   courses: CourseListIcon,
   news: News_community,
   general: General_community,
-  'challenges-announcement': Challenge_community,
+  "challenges-announcement": Challenge_community,
   Space: SpaceListIcon,
 };
 export const enum WorkFlowStatus {
-  draft = 'Draft',
-  review = 'review pending',
-  approval = 'Approval pending',
-  publish = 'publish pending',
-  published = 'published',
+  draft = "Draft",
+  review = "review pending",
+  approval = "Approval pending",
+  publish = "publish pending",
+  published = "published",
 }
 export const enum StatusKey {
-  draft = 'draft',
-  review = 'review',
-  approval = 'approval',
-  publish = 'publish',
-  published = 'published',
-  unpublish = 'unpublish',
+  draft = "draft",
+  review = "review",
+  approval = "approval",
+  publish = "publish",
+  published = "published",
+  unpublish = "unpublish",
 }
 
 export type PageType = {
@@ -130,70 +138,70 @@ export type PageType = {
 
 export const STATUS = [
   {
-    name: 'All',
+    name: "All",
   },
   {
-    name: 'draft',
+    name: "draft",
   },
   {
-    name: 'published',
+    name: "published",
   },
 ];
 
 export const PAGE_TYPES: PageType[] = [
   {
-    type: 'All Pages',
-    name: 'ALL',
+    type: "All Pages",
+    name: "ALL",
     icon: AudioFileIcon,
   },
   {
-    type: 'Published',
-    name: 'PUBLISHED',
+    type: "Published",
+    name: "PUBLISHED",
     icon: TelegramIcon,
   },
   {
-    type: 'Drafts',
-    name: 'DRAFT',
+    type: "Drafts",
+    name: "DRAFT",
     icon: SaveAsIcon,
   },
 
   {
-    type: 'Unpublished',
-    name: 'UNPUBLISHED',
+    type: "Unpublished",
+    name: "UNPUBLISHED",
     icon: UnpublishedIcon,
   },
   {
-    type: 'Scheduled Publish',
-    name: 'SCHEDULED_PUBLISH',
+    type: "Scheduled Publish",
+    name: "SCHEDULED_PUBLISH",
     icon: ScheduleSendRoundedIcon,
   },
   {
-    type: 'Scheduled Unpublish',
-    name: 'SCHEDULED_UNPUBLISH',
+    type: "Scheduled Unpublish",
+    name: "SCHEDULED_UNPUBLISH",
     icon: CancelScheduleSendOutlinedIcon,
   },
 ];
 
 export const CARD_MENUS = {
   EDIT: {
-    displayName: 'Edit',
-    permission: 'page.edit',
+    displayName: "Edit",
+    permission: "page.edit",
   },
   DUPLICATE: {
-    displayName: 'duplicate',
-    permission: 'page.duplicate',
+    displayName: "duplicate",
+    permission: "page.duplicate",
   },
   DELETE: {
-    displayName: 'delete',
-    permission: 'page.delete',
+    displayName: "delete",
+    permission: "page.delete",
   },
   UNPUBLISH: {
-    displayName: 'Unpublish',
-    permission: 'page.publish',
+    displayName: "Unpublish",
+    permission: "page.publish",
   },
   RESCHEDULE_PUBLISH: {
-    displayName: 'reschedule_publish',
-    permission: 'page.publish',
+    displayName: "reschedule_publish",
+    permission: "page.publish",
   },
 };
 
@@ -204,5 +212,33 @@ const defaultImage = process.env.NX_DEFAULT_IMAGE;
 export const DEFAULT_EMBED_IMAGE = `${gcpUrl}/${BucketName}/${defaultImage}`;
 export const DEFAULT_SOCIAL_IMAGE = `${gcpUrl}/${BucketName}/${defaultImage}`;
 
-export const DRAFT = 'DRAFT';
-export const PUBLISHED = 'PUBLISHED';
+export const DRAFT = "DRAFT";
+export const PUBLISHED = "PUBLISHED";
+export const CATEGORY_CONTENT = "content";
+
+export enum ContentType {
+  Page = "page",
+  Quiz = "quiz",
+  Poll = "poll",
+  Event = "event",
+  Vod = "vod",
+  Article = "article",
+}
+
+export enum ContentAction {
+  Create = "Create",
+  Update = "Update",
+  Delete = "Delete",
+  Publish = "Publish",
+  UnPublish = "UnPublish",
+  View = "View",
+  ShareToSite = "ShareToSite",
+}
+
+export enum Category {
+  Page = "Page",
+  Content = "Content",
+  Menu = "Menu",
+}
+
+export const ContentTypeList = ["article", "page", "quiz", "poll", "event"];

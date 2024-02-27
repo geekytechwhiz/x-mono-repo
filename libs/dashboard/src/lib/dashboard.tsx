@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import Title from "./components/common/Title";
-import { useStyles } from "./dashboard.styles";
+import { useStyles } from "./dashboards.styles";
 import { useDashboardData } from "@platformx/authoring-apis";
 import { useUserSession } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";

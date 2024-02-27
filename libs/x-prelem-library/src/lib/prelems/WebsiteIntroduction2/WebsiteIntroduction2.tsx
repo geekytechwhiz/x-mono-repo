@@ -1,19 +1,20 @@
+/* eslint-disable no-unused-vars */
 import { Box, Container, Typography } from "@mui/material";
-import {
-  RedDots,
-  SecondaryArgs,
-  formCroppedUrl,
-  structureDataUrlPoint,
-} from "@platformx/utilities";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import BasicButton from "../../components/BasicButton/BasicButton";
 import ImageRender from "../../components/ImageRender";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import prelemTypes from "../../globalStyle";
+import {
+  formCroppedUrl,
+  structureDataUrlPoint,
+  RedDots,
+  SecondaryArgs,
+} from "@platformx/utilities";
+import BasicButton from "../../components/BasicButton/BasicButton";
 import { useCustomStyle } from "./WebsiteIntroduction2.style";
+import prelemTypes from "../../globalStyle";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 const WebsiteIntroduction2 = ({
   content,

@@ -1,13 +1,21 @@
-import { useMutation } from '@apollo/client';
-import EastIcon from '@mui/icons-material/East';
-import { Box, Button } from '@mui/material';
-import { usePlatformAnalytics, capitalizeWords } from '@platformx/utilities';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import Title from '../common/Title';
-import { useUserSession, getCurrentLang, getSelectedSite, getSubDomain, setDefaultPageSettings } from '@platformx/utilities';
-import { createPgModel } from '@platformx/authoring-apis';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useMutation } from "@apollo/client";
+import EastIcon from "@mui/icons-material/East";
+import { Box, Button } from "@mui/material";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import Title from "../common/Title";
+import {
+  useUserSession,
+  getCurrentLang,
+  getSelectedSite,
+  getSubDomain,
+  setDefaultPageSettings,
+  usePlatformAnalytics,
+  capitalizeWords,
+} from "@platformx/utilities";
+import { createPgModel } from "@platformx/authoring-apis";
 // import {
 //   createPageModel,
 //   updatePageSettings,
@@ -15,9 +23,9 @@ import { createPgModel } from '@platformx/authoring-apis';
 // } from '../../../../store/Actions';
 // import { PageProps } from '@platformx/authoring-state';
 // import CreatePage from '../../../createPage';
-import './Card.css';
-import { PAGE_MODEL_INSTANCE } from './utils/constants';
-import { useDispatch } from 'react-redux';
+import "./Card.css";
+import { PAGE_MODEL_INSTANCE } from "./utils/constants";
+import { useDispatch } from "react-redux";
 
 type CardProps = {
   ImageUrl: string;
@@ -36,7 +44,7 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
   const navigate = useNavigate();
   const [handleImpression] = usePlatformAnalytics();
 
- // const [items, setItems] = useState<PageProps[]>([]);
+  // const [items, setItems] = useState<PageProps[]>([]);
 
   //function redirect to create page
   const [createPage, setCreatePage] = useState<boolean>(false);
@@ -51,8 +59,8 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
   const [mutate] = useMutation(createPgModel, {
     context: {
       headers: {
-        language: localStorage.getItem('lang'),
-        sitename: getSelectedSite()
+        language: localStorage.getItem("lang"),
+        sitename: getSelectedSite(),
       },
     },
   });
@@ -83,9 +91,9 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
   //   );
   //   dispatch(updateSaveWarning(false));
   // };
-  const confirmButtonHandle = (pageName = '', pageUrl = '') => {
+  const confirmButtonHandle = (pageName = "", pageUrl = "") => {
     if (pageName.trim().length > 0) {
-     // createPageByName(pageName, pageUrl);
+      // createPageByName(pageName, pageUrl);
     }
   };
 
@@ -97,7 +105,7 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
             <img src={ImageUrl} className='imgbox' alt={CTAText} />
           </Box>
         </Box>
-        <Button className='nobghover ctabox'>
+        <Button className='ctabox'>
           <Title titleVarient='h5regular' title={capitalizeWords(CTAText)} />
           <Box className='icon'>
             <EastIcon />

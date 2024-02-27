@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createTheme } from "@mui/material/styles";
 import React from "react";
 import ThemeConstants from "./LightTheme";
