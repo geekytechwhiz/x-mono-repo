@@ -327,3 +327,26 @@ export const defaultImages = {
   kudos: "machine_assets/1699618312963/public/png/Kudos",
   ext: "png",
 };
+export const SliderSetting = {
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: false,
+  dots: false,
+  arrow: false,
+  responsive: [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
