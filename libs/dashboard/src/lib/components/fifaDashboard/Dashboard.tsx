@@ -1,12 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import {
-  ProgressIcon,
-  AccountBalanceWalletIcon,
-  GradeIcon,
-  CourseIcon,
-  TotalrevIcon,
-} from "@platformx/utilities";
+
 import { useDashboardData } from "@platformx/authoring-apis";
 import { courseListMapper } from "../../utils/mapper";
 import AllStudents from "./components/AllStudents";

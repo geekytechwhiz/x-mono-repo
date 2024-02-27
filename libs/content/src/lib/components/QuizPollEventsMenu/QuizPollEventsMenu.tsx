@@ -83,7 +83,7 @@ export const QuizPollEventMenu = ({
     navigate(`/content/create-blog?path=${path}`);
   };
 
-  const createContent = (IsDuplicate = false, title = "") => {
+  const createContent = (IsDuplicate = false, title = "", isCalled = false) => {
     duplicate(IsDuplicate, title, language, selectedContent);
     onClose();
   };

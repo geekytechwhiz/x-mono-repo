@@ -61,6 +61,7 @@ docs/
 *.dll
 *.so
 *.dylib
+*.next
 
 # Ignore environment-specific files
 # .env.local
@@ -71,4 +72,4 @@ docs/
 # Ignore miscellaneous files
 Thumbs.db
 .DS_Store
-Desktop.ini 
+Desktop.ini

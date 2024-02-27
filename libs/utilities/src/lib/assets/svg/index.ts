@@ -20,6 +20,8 @@ import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
+import { default as VODIcon } from "./VODIcon.svg";
+// import  DraftIcon from './draftIcon.svg';
 import GreenFolderIcon from "./Folder-green.svg";
 import ProgressIcon from "./Frame.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
@@ -43,7 +45,7 @@ import PostIconMenu from "./PostsIconmenu.svg";
 import PreviewNewIcon from "./PreviewNewIcon.svg";
 import SpacePrivateIcon from "./Private.svg";
 import QuizIcon from "./QuizIcon.svg";
-import CourseIcon from "./ReadBook.svg";
+import BookIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import Refresh from "./Refresh.svg";
 import ReplyIcon from "./Reply.svg";
@@ -57,7 +59,6 @@ import SpaceListIcon from "./Space.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
-import VODIcon from "./VODIcon.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
 import DraftedIcon from "./WorkflowHistory/Draft.svg";
 import EditorIcon from "./WorkflowHistory/Editor.svg";
@@ -79,7 +80,8 @@ import IconCancelSvg from "./cancel.svg";
 import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
-import CourseListIcon from "./course-icon.svg";
+import SettingIcon from "./settingIcon.svg";
+// import CourseListIcon from "./course-icon.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
@@ -137,7 +139,12 @@ import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import IconCopySvg from "./Copy.svg";
+import CloseIcon from "./Cross.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
+import IconFacebookSvg from "./Facebook.svg";
+import CourseIcon from "./course-icon.svg";
+// import IconLinkedInSvg from "./linkedinIcon.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -152,6 +159,7 @@ export {
   AssetManagerIcon,
   BackButton,
   BlueDot,
+  BookIcon,
   CalenderIcon,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
@@ -164,6 +172,7 @@ export {
   CardOptionViewIcon,
   Challenge_community,
   ChatGPTSvg,
+  CloseIcon,
   CloseSearchSvg,
   CommentPlaceHolder,
   CommunityIcon,
@@ -171,7 +180,7 @@ export {
   CookieIcon,
   CopyIcon,
   CourseIcon,
-  CourseListIcon,
+  // CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
   DialogCloseIcon,
@@ -199,7 +208,9 @@ export {
   HeaderMenuUpdated,
   Icon,
   IconCancelSvg,
+  IconCopySvg,
   IconFaceBookLogoIconSvg,
+  IconFacebookSvg,
   IconLinkedinIconSvg,
   IconListViewSvg,
   IconPlayCircleSvg,
@@ -260,6 +271,7 @@ export {
   SearchGraySvg,
   SearchIcon,
   SendIcon,
+  SettingIcon,
   SettingNewIcon,
   SitesIcon,
   SpaceListIcon,

@@ -83,13 +83,11 @@ function RootRouter() {
         const userDetails = { ...response.data, isActive: "true" };
         const { roles, selected_site } = response.data;
         const userRole = roles?.find((obj) => obj.site === selected_site)?.name;
-
+        localStorage.setItem("selectedSite", selected_site);
         updateSession(createSession(response.data, true, userRole));
 
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
-
-        localStorage.setItem("selectedSite", response.data.selected_site);
 
         const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
         if (selected_site?.toLowerCase() === "system") {
@@ -97,7 +95,7 @@ function RootRouter() {
             `${process.env.NX_APP_BASE_URL}/${selected_site}/${defaultLang}/sites/site-listing`,
           );
         } else {
-          navigate("/dashboard");
+          navigate(`/dashboard`); //${selected_site}
         }
       } else {
         // Handle missing data in response
@@ -168,7 +166,7 @@ function RootRouter() {
     </>
   ) : (
     <Routes>
-      <Route path='/' element={<>Home</>} />
+      {/* <Route path='/' element={<>Home</>} /> */}
 
       {routes.map(({ path, element }) => (
         <Route key={path} path={path} element={element} />

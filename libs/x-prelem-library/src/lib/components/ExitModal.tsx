@@ -1,12 +1,16 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
+import {
+  Box,
+  Button,
+  IconButton,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 import React from "react";
-import DialogCloseIcon from "../assets/svgIcon/DialogCloseIcon.svg";
-import DeleteIcon from "../assets/svgIcon/errorPopupIcon.svg";
-import { prelemTypes } from "../theme/globalStyle";
+import { DialogCloseIcon, PopupDeleteIcon } from "@platformx/utilities";
+import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
 
 export default function ExitModal({
@@ -71,7 +75,7 @@ export default function ExitModal({
             <img src={DialogCloseIcon} alt='' />
           </IconButton>
           <Box className='BoxImage'>
-            <img src={DeleteIcon} alt='' />
+            <img src={PopupDeleteIcon} alt='' />
           </Box>
           {title ? (
             <DialogTitle className='BoxDialogTitle' id='alert-dialog-title' variant='h4bold'>
