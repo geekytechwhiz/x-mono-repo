@@ -109,6 +109,7 @@ FullWidthBanner3Prop) => {
   useEffect(() => {
     if (navigator) {
       const regex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+
       if (regex.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
