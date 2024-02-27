@@ -5,12 +5,16 @@ WORKDIR /server
 # copy source files
 COPY . /server
 # install dependencies
-# RUN npm cache clean --force 
+# Install Python and other necessary build tools
+RUN apk add --no-cache python2 make g++
+
+RUN npm cache clean --force 
+# Install global packages
 RUN npm install -g @nrwl/nx
+# Install project dependencies
 RUN npm install --legacy-peer-deps
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npx nx build authoring-web --verbose
 EXPOSE 3000
 CMD npm run deploy:authoring
-
