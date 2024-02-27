@@ -1,3 +1,5 @@
+/* eslint-disable require-await */
+/* eslint-disable array-callback-return */
 /* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
@@ -181,12 +183,9 @@ const useContentListing = (filter = "ALL") => {
   const edit = async (listItemDetails: { tagName: string; page: any }) => {
     dispatch(previewContent({}));
     dispatch(previewArticle({}));
-    navigate(
-      `/content/create/${listItemDetails.tagName?.toLowerCase()}?path=${listItemDetails.page}`,
-      {
-        state: listItemDetails.tagName?.toLowerCase(),
-      },
-    );
+    navigate(`/content/create?path=${listItemDetails.page}`, {
+      state: listItemDetails.tagName?.toLowerCase(),
+    });
   };
 
   const preview = async (listItemDetails: any) => {

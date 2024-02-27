@@ -3,7 +3,13 @@ import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { formCroppedUrl, openPageInNewTab } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrl,
+  openPageInNewTab,
+} from "@platformx/utilities";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./TeamMembers.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -193,37 +199,9 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
 
 interface TeamMembersProps {
   content: Content;
-  secondaryArgs?: any;
+  secondaryArgs: SecondaryArgs;
   authoringHelper?: AuthoringHelper;
   analytics: Analytics;
-}
-
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
-
-interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: (structureData: string) => void;
-  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
-  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
-  selectedButtonNameForEditing: string;
-  isEditing: boolean;
-  authoringHoverShow?: boolean;
-  buttonRef?: React.Ref<HTMLButtonElement>;
-  buttonContentEditable?: boolean;
-  lastSavedStructuredData?: string;
-  isEditPage?: boolean;
 }
 
 interface Content {

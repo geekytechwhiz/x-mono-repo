@@ -2,10 +2,10 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { formCroppedUrl } from "@platformx/utilities";
 import { useCustomStyle } from "./ImageCards.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import ImageRender from "../../components/ImageRender";
 
 const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: ImageCardsProp) => {
   const firstRender = useRef(true);
@@ -13,19 +13,6 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
     /* Optional options */
     threshold: 0,
   });
-
-  const getImg = (index: number) => {
-    const ImageCompound_index = `ImageCompound_${index}`;
-    const { original_image_relative_path, ext }: any =
-      (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) || {};
-    const img = formCroppedUrl(
-      secondaryArgs?.gcpUrl,
-      secondaryArgs?.bucketName,
-      original_image_relative_path,
-      ext,
-    );
-    return img;
-  };
 
   const defaultStructureData = () => {
     let ImageCardsStructureData;
@@ -40,7 +27,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
             position: 1,
             item: {
               "@type": "ImageObject",
-              contentUrl: getImg(1),
+              // contentUrl: getImg(1),
               name: content?.ImageText1,
             },
           },
@@ -49,7 +36,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
             position: 2,
             item: {
               "@type": "ImageObject",
-              contentUrl: getImg(2),
+              // contentUrl: getImg(2),
               name: content?.ImageText2,
             },
           },
@@ -111,7 +98,22 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
         <Grid container>
           <Grid item xs={12} sm={6} p={1}>
             <Box className='imageContentWrapper'>
-              <img alt='ImageCard' src={getImg(1)} width='654' height='460' />
+              {/* <img alt='ImageCard' src={getImg(1)} width='654' height='460' /> */}
+              <Box className='imageWrapper'>
+                <ImageRender
+                  originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
+                  publishedImages={content?.ImageCompound?.ImageCompound_1?.published_images}
+                  secondaryArgs={secondaryArgs}
+                  imgOrder={{
+                    1440: "square",
+                    1280: "square",
+                    1024: "square",
+                    768: "square",
+                    600: "square",
+                    320: "square",
+                  }}
+                />
+              </Box>
               <Typography variant='p1semibold' id='ImageText1'>
                 {content?.ImageText1}
               </Typography>
@@ -119,7 +121,21 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
           </Grid>
           <Grid item xs={12} sm={6} p={1}>
             <Box className='imageContentWrapper'>
-              <img alt='ImageCard' src={getImg(2)} width='654' height='460' />
+              <Box className='imageWrapper'>
+                <ImageRender
+                  originalImage={content?.ImageCompound?.ImageCompound_2?.original_image}
+                  publishedImages={content?.ImageCompound?.ImageCompound_2?.published_images}
+                  secondaryArgs={secondaryArgs}
+                  imgOrder={{
+                    1440: "square",
+                    1280: "square",
+                    1024: "square",
+                    768: "square",
+                    600: "square",
+                    320: "square",
+                  }}
+                />
+              </Box>
               <Typography variant='p1semibold' id='ImageText2'>
                 {content?.ImageText2}
               </Typography>

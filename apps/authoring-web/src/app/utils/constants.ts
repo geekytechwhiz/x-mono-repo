@@ -5,7 +5,7 @@ import {
   PollIcon,
   PostIconMenu,
   QuizIcon,
-  CourseIcon,
+  courseIcon,
   SitesIcon,
   UsersIcon,
   VODIcon,
@@ -129,7 +129,7 @@ export const MenuData = [
       },
       {
         MenuName: "Courses",
-        Icon: CourseIcon,
+        Icon: courseIcon,
         url: "/content/course",
         category: "content",
         subCategory: "",

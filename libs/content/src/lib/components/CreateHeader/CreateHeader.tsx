@@ -40,6 +40,7 @@ export const CreateHeader = ({
   category,
   subCategory,
   workflow,
+  // setEnableWorkflowHistory,
   hasTimerState,
   lastModifiedDate,
   createComment,
@@ -155,7 +156,6 @@ export const CreateHeader = ({
         {
           // enableReferBack(workflow) ||
           comments?.length > 0 ? (
-            // <Badge badgeContent={comments?.length} color='info'>
             <Box sx={{ position: "relative" }} className={classes.buttonWrapper}>
               <span
                 color='error'
@@ -186,7 +186,6 @@ export const CreateHeader = ({
               </Button>
             </Box>
           ) : (
-            // </Badge>
             enableReferBack(workflow) && (
               <Box className={classes.buttonWrapper}>
                 <Button

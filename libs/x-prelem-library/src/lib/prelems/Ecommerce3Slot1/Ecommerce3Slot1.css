@@ -1,0 +1,56 @@
+.discover-article {
+  position: relative;
+  overflow: hidden;
+}
+
+.discover-headerArea {
+  text-align: left;
+  position: absolute;
+  right: 0;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+}
+
+.discover-image1 {
+  height: 637px;
+}
+
+.discover-image2 {
+  height: 303px;
+}
+
+.arrowIcon {
+  margin-top: 3px;
+  margin-left: 5px;
+  font-size: 14px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .discover-image1 {
+    height: 300px;
+  }
+
+  .discover-image2 {
+    height: 300px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .headerArea {
+    left: 48px !important;
+  }
+
+  .discover-image1 {
+    height: 430px;
+  }
+
+  .discover-image2 {
+    height: 270px;
+  }
+
+  .discover-header {
+    text-align: left;
+    padding-left: 32px;
+  }
+}

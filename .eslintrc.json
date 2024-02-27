@@ -14,6 +14,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
+  "ignorePatterns": ["**/*.css", "**/*.scss"],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -24,8 +25,10 @@
     "sourceType": "module",
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": ["react", "jsx-a11y", "import", "@typescript-eslint", "react-hooks"],
+  "plugins": ["react", "jsx-a11y", "import", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-function": 0,
     "react/prop-types": 0,
     "@typescript-eslint/no-var-requires": 0,
     "react/react-in-jsx-scope": "off",
@@ -150,7 +153,6 @@
     "react/button-has-type": "error",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "warn",
-    "@typescript-eslint/no-empty-function": "off",
     "react/jsx-indent": [0],
     "prefer-const": 2,
     "react/prefer-es6-class": 0,
@@ -164,7 +166,7 @@
     "camelcase": [0],
     "no-underscore-dangle": [0, "always"],
     "no-var": [2],
-    "@typescript-eslint/no-unused-vars": [2],
+    "no-unused-vars": 0,
     "react/jsx-key": 2,
     "no-useless-escape": 1,
     "no-duplicate-imports": 2,
@@ -217,13 +219,13 @@
     "no-console": [
       "error",
       {
-        "allow": [""]
+        "allow": ["error"]
       }
     ],
     "yield-star-spacing": ["error", "both"],
-    "wrap-regex": 1,
+    "wrap-regex": 2,
     "unicode-bom": 2,
-    "template-tag-spacing": ["error", "always"],
+    "template-tag-spacing": ["error", "never"],
     "switch-colon-spacing": "error",
     "space-unary-ops": "error",
     "space-in-parens": "error",

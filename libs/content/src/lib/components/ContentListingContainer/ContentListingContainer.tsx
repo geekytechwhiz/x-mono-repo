@@ -1,9 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
   useContentListing,
   useContentSearch,
+  usePage,
 } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -38,17 +38,18 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     fetchContentDetails,
     duplicateToSite,
   } = useContentListing("ALL");
+  const { editPage, previewPage, handleDeleteData, handlePageDelete, viewPage } = usePage();
 
   const memoizedMethods = useMemo(
     () => ({
-      deleteContent: useMemo(() => deleteContent, [deleteContent]),
-      duplicate: useMemo(() => duplicate, [duplicate]),
-      preview: useMemo(() => preview, [preview]),
-      unPublish: useMemo(() => unPublish, [unPublish]),
-      view: useMemo(() => view, [view]),
-      edit: useMemo(() => edit, [edit]),
-      fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
-      duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
+      deleteContent,
+      duplicate,
+      preview,
+      unPublish,
+      view,
+      edit,
+      fetchContentDetails,
+      duplicateToSite,
     }),
     [
       deleteContent,
@@ -104,6 +105,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       />
 
       <ContentListing
+        content={contentType}
         contentList={contentArray}
         deleteContent={memoizedMethods.deleteContent}
         dataList={contentArray}
@@ -116,6 +118,11 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
+        viewPage={viewPage}
+        previewPage={previewPage}
+        editPage={editPage}
+        handleDeleteData={handleDeleteData}
+        handlePageDelete={handlePageDelete}
       />
     </>
   );
