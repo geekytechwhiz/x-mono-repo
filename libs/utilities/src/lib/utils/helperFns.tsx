@@ -1,12 +1,16 @@
 import axios from "axios";
 import { format } from "date-fns";
+import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
 import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
+
+const { publicRuntimeConfig = {} } = getConfig() || {};
 
 const siteLevelSchema = {
   siteName: "X",
@@ -674,13 +678,14 @@ export const getSelectedSite = () => {
 
 export const getSelectedRoute = () => {
   let site = "";
+  const selectedSite = localStorage.getItem("selectedSite");
   const split = window?.location.pathname.split("/");
   const [, x] = split;
   site = x;
   if (site === "en" || site === "fr" || site === "de") {
     return "";
   } else {
-    return site;
+    return selectedSite ?? site;
   }
 };
 
@@ -988,4 +993,117 @@ export const getCommunityFallBackImageBasedOnContentType = (
 
 export const createIconUrl = (secondaryArgs: any, imgUrl: string) => {
   return `${secondaryArgs?.gcpUrl}${imgUrl}`;
+};
+
+export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
+  return gcpUrl + "/" + bucketName + "/" + img;
+};
+
+export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
+  const windowWidth = window.innerWidth;
+  let itemsPerSlide;
+  if (windowWidth >= 1280) {
+    itemsPerSlide = itemsPerRow.lg;
+  } else if (windowWidth >= 768) {
+    itemsPerSlide = itemsPerRow.md;
+  } else if (windowWidth >= 500) {
+    itemsPerSlide = itemsPerRow.sm;
+  } else {
+    itemsPerSlide = itemsPerRow.xs;
+  }
+
+  const sliderArray: object[][] = [];
+  if (originalArray && originalArray.length) {
+    for (let i = 0; i < originalArray.length; i += itemsPerSlide) {
+      sliderArray.push(originalArray.slice(i, i + itemsPerSlide));
+    }
+    return sliderArray;
+  }
+};
+export const getRelativeImageURL = (
+  gcpUrl: string,
+  bucketName: string,
+  url: string,
+  ext: string,
+) => {
+  return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
+};
+export const getFlag = (code = "") => {
+  switch (code || getCurrentLang()) {
+    case "en":
+      return EN_FLAG;
+    case "fr":
+      return FR_FLAG;
+    case "de":
+      return DE_FLAG;
+    default:
+      return EN_FLAG;
+  }
+};
+export const locationApiCallService = async () => {
+  const res = await axios.get(
+    `${publicRuntimeConfig.NEXT_GEOLOCATION_API_URL}?apiKey=${publicRuntimeConfig.NEXT_GEOLOCATION_API_KEY}`,
+  );
+  const { data: locationData = {} }: any = res;
+  return locationData || {};
+};
+export const getDomainUrl = (host) => {
+  return `http://${host}/`;
+};
+
+export const sendBaseUrl = () => {
+  return process.env.NX_PUBLISH_API_URL_GENERIC;
+};
+
+export const sendBlogUrl = () => {
+  return process.env.NX_BLOGS_API;
+};
+
+export const sendBtnBaseUrl = () => {
+  return process.env.NX_PUBLISH_APP_URL;
+};
+
+export const trimmedBaseUrl = () => {
+  const { NX_PUBLISH_API_URL = "" } = process.env;
+  return NX_PUBLISH_API_URL.replace("api/v1/web/en/delivery", "");
+};
+
+export const getNextApiUrl = () => {
+  return process.env.NX_API_URL;
+};
+
+export const baseEndpointObj = (host) => {
+  return {
+    APIEndPoint: sendBaseUrl(),
+    PublishEndPoint: getDomainUrl(host),
+    buttonBaseUrl: getDomainUrl(host),
+    deliveryEndPoint: trimmedBaseUrl(),
+    usersEndPoint: getNextApiUrl(),
+    blogEndPoint: sendBlogUrl(),
+    loyaltyEndPoint: process.env.NX_LOYALTY_END_POINT,
+    loyaltyPortalEndPoint: process.env.NX_LOYALTY_PORTAL_END_POINT,
+  };
+};
+
+export const snowplowSchemaUrl = () => {
+  return {
+    pageImpressionSchema: process.env.NX_PAGE_IMPRESSIONS_SCHEMA,
+    prelemImpressionSchema: process.env.NX_SNOWPLOW_PRELEM_IMPRESSIONS,
+    clickImpressionSchema: process.env.NX_SNOWPLOW_CLICK_IMPRESSIONS,
+    userRegisterImpressionSchema: process.env.NX_SNOWPLOW_REGISTER_USER_IMPRESSIONS,
+    environment: process.env.NX_ELASTIC_APM_ENVIRONMENT,
+    gcpUrl: process.env.NX_GCP_URL,
+    bucketName: process.env.NX_BUCKET_NAME,
+  };
+};
+
+export const getSecondaryArgs = (langCode, query, hostName) => {
+  return {
+    ...snowplowSchemaUrl(),
+    baseEndpoint: {
+      language: langCode,
+      query: query,
+      ...baseEndpointObj(hostName),
+    },
+  };
 };

@@ -122,7 +122,7 @@ const ProductSummary3 = ({
         }
         ref={ref}>
         <Grid container ref={ref}>
-          <Grid md={12} em={8}>
+          <Grid item md={12} em={8}>
             <Box className='imageWrapper widthheight100'>
               <ImageRender
                 originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
