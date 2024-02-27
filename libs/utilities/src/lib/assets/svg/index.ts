@@ -11,6 +11,7 @@ import DraftIcon from "./DraftIcon.svg";
 import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
 import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
+import AssetnoIcon from "./Assetnoicon.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
 import { default as VODIcon } from "./VODIcon.svg";
@@ -39,6 +40,7 @@ import MenuIcon8 from "./MenuIcons-8.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
+import EmptySiteBox from "./emptysitebox.svg";
 import PollIcon from "./PollIcon.svg";
 import PostsIcon from "./PostsIcon.svg";
 import PostIconMenu from "./PostsIconmenu.svg";
@@ -84,6 +86,7 @@ import FooterMenuUpdated from "./footermenuupdated.svg";
 import GradeIcon from "./grade.svg";
 import GreenDot from "./green.svg";
 import HeaderMenuUpdated from "./headermenuupdated.svg";
+import ImageIcon from "./image.svg";
 import RedDotsIcon from "./icon/RedDots.svg";
 import InsertIcon from "./inserticon.svg";
 import IconLinkedinIconSvg from "./linkedinIcon.svg";
@@ -91,8 +94,13 @@ import MediaIcon from "./mediaIcon.svg";
 import MenuIcon from "./menu.svg";
 import MobileMenuIconSvg from "./mobileMenuIconSvg.svg";
 import MoreHorizIcon from "./moreHoriz.svg";
+import MorevertassetIcon from "./morevertasseticon.svg";
 import MyDashboardIcon from "./myDashboardIcon.svg";
 import PagesIcon from "./pagesIcon.svg";
+import Folder from "./folder.svg";
+import backAssetIcon from "./backAssetIcon.svg";
+import NewfolderIcon from "./newfoldericon.svg";
+import AssetfoldernewIcon from "./assetfoldernew.svg";
 import PagesListIcon from "./pagesListIcon.svg";
 import IconPlayCircleSvg from "./play_circle.svg";
 import PollListIcon from "./polls-fill.svg";
@@ -121,11 +129,54 @@ import VODListIcon from "./vodListIcon.svg";
 import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
+import PeopleIcon from "./2PeopleIcon.svg";
+import PencilIcon from "./PencilIcon.svg";
+import VectorIconSvg from "./VectorIcon.svg";
+import Location from "./Location.svg";
+import Envelop from "./Envelop.svg";
+import Phone from "./Phone.svg";
+import Searchheadericon from "./Searchheadericon.svg";
+import Headerpublic from "./headerpublic.svg";
+import Ctaround from "./ctaround.svg";
+import Ctasearch from "./ctasearch.svg";
+import SitePlaceholder from "../site-placeholder.png";
+import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
+import Aboutusupdateicon from "./Aboutusupdateicon.svg";
+import Contactusupdateicon from "./Contactusupdateicon.svg";
+import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import Assetmedia from "./icon/assetmedia.png";
+import MorehorAsset from "./MorehorAsset.svg";
+import AssetyesIcon from "./Assetyesicon.svg";
+import Imageasset from "./Imagesasset.svg";
+import video from "./video.svg";
+import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
+import Newsletterupdateicon from "./Newsletterupdateicon.svg";
+import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
+import FaviconupdateIcon from "./Faviconupdateicon.svg";
+import SearchnupdateIcon from "./Searchupdateicon.svg";
+import LanguageupdateIcon from "./Languageupdateicon.svg";
+import CtaupdateIcon from "./CTAupdateicon.svg";
+import AssetcatIcon from "./icon/assetcaricon.png";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import Pencil from "./Pencil.svg";
+import MenuTwoDash from "./MenuTwoDash.svg";
+import LongLeftArrow from "./LongLeftArrow.svg";
+import SaveIcon from "./Save.svg";
+import ArrowDown from "./ArrowDown.svg";
+import FileUploadicon from "./fileupload.svg";
+import Assetmodalicon from "./icon/assetmodalicon.png";
+
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import AnalyticsIcon from "./AnalyticsIcon.svg";
 import IconCopySvg from "./Copy.svg";
 import CloseIcon from "./Cross.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
+import Tagvod from "./tagvod.svg";
+import Tagevent from "./tagevent.svg";
+import Tagquiz from "./tagquiz.svg";
+import Tagpoll from "./tagpoll.svg";
+import Tagartical from "./tagartical.svg";
+import Tagarticalnew from "./tagarticalnew.svg";
 import IconFacebookSvg from "./Facebook.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
 import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
@@ -134,7 +185,6 @@ import FolderIcon from "./footercoloricon.svg";
 import GlobalImageIcon from "./globalimageicon.svg";
 import GlobalMiscIcon from "./globalmiscicon.svg";
 import GlobalVideoIcon from "./globalvideoicon.svg";
-import ImageIcon from "./image.svg";
 import LeftArrowIcon from "./leftArrow.svg";
 import PictureIcon from "./pictureIcon.svg";
 import PlayIcon from "./playIcon.svg";
@@ -143,6 +193,7 @@ import SocialShareIcon from "./social_share.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
 
 export {
+  ArrowDown,
   AccountBalanceWalletIcon,
   AiSvg,
   AiSvg2,
@@ -150,7 +201,6 @@ export {
   AllIcon,
   AnalyticsIcon,
   ApprovalStatus,
-  ArrowUpwardIcon,
   ArticleIcon,
   ArticleListIcon,
   AssetManagerIcon,
@@ -177,7 +227,6 @@ export {
   CopyIcon, CourseListIcon as CourseIcon, CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
-  DialogCloseIcon,
   DraftIcon,
   DraftStatusIcon,
   EcommerceIcon,
@@ -233,7 +282,6 @@ export {
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
-  RedDotsIcon,
   Refresh,
   ReplyIcon,
   ReportsIcon, RightArrowIcon, SaveNewIcon,
@@ -259,6 +307,57 @@ export {
   WarningIcon,
   WorkflowDetails,
   WorkflowIcon,
+  ArrowUpwardIcon,
+  VectorIconSvg,
+  Searchheadericon,
+  Headerpublic,
+  Ctaround,
+  Ctasearch,
+  Location,
+  Envelop,
+  Phone,
+  Sitelogoupdateicon,
+  Aboutusupdateicon,
+  Contactusupdateicon,
+  Addlinkupdateicon,
+  CopyrightUpdateIcon,
+  Newsletterupdateicon,
+  MediahandleUpdateIcon,
+  FaviconupdateIcon,
+  SearchnupdateIcon,
+  LanguageupdateIcon,
+  CtaupdateIcon,
+  Pencil,
+  MenuTwoDash,
+  LongLeftArrow,
+  SaveIcon,
+  PeopleIcon,
+  EmptySiteBox,
+  PencilIcon,
+  SitePlaceholder,
+  Folder,
+  MorehorAsset,
+  AssetnoIcon,
+  AssetyesIcon,
+  NewfolderIcon,
+  video,
+  Imageasset,
+  backAssetIcon,
+  DialogCloseIcon,
+  RedDotsIcon as RedDots,
+  RedDotsIcon,
+  Assetmedia,
+  AssetcatIcon,
+  FileUploadicon,
+  Assetmodalicon,
+  MorevertassetIcon,
+  AssetfoldernewIcon,
+  Tagvod,
+  Tagevent,
+  Tagquiz,
+  Tagpoll,
+  Tagartical,
+  Tagarticalnew,
   WorkflowTimerIcon,
   warning
 };

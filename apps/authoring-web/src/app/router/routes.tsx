@@ -1,11 +1,21 @@
 import { Dashboard } from "@platformx/dashboard";
+import {
+  MediaHandle,
+  FeatureFlagSetting,
+  GlobalSetting,
+  FooterSetting,
+  HeaderSetting,
+  CookieSetting,
+} from "@platformx/site-setting";
+import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateAsset, AssetListing } from "@platformx/assets-manager";
 import NavTreeCreation from "@platformx/nav-menu";
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
-import { CreateCourse } from "@platformx/course"; 
+import { CreateCourse } from "@platformx/course";
 import { SitePage } from "@platformx/site-page";
 import { CreateSpace } from "@platformx/community";
 import { CreateUser, UserListing } from "@platformx/user-management";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management"; 
+import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -222,6 +232,102 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
+    path: "/create_asset",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <CreateAsset />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/images",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/videos",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/media-handle",
+    element: (
+      <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+        <MediaHandle />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/global-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <GlobalSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/footer-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='FooterSetting'>
+        <FooterSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/header-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='HeaderSetting'>
+        <HeaderSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/cookie-setting",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='CookieSetting'>
+        <CookieSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/feature-flag",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <FeatureFlagSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <AddSite />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-creation/:siteName",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
+        <AddSite />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sites/site-listing",
+    element: (
+      <ProtectedRoute category='site' subCategory='Sites'>
+        <SiteListing />
+      </ProtectedRoute>
+    ),
+  },
+{
     path: "/content/create/article",
     element: (
       <ProtectedRoute name='article' category='content' subCategory='article'>
@@ -229,30 +335,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/site-setting/media-handle",
-  //   element: (
-  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
-  //       <MediaHandle />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/site-setting/global-setting",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <GlobalSetting />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/site-setting/feature-flag",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <FeatureFlagSetting />
-  //     </ProtectedRoute>
-  //   ),
-  // },
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,

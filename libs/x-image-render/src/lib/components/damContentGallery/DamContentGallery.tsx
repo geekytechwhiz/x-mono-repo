@@ -367,7 +367,6 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
                   fetchMoreData={fetchMoreData}
                   isLoading={loading}
                   setImageData={setImageData}
-                  imageData={imageData}
                 />
               </Grid>
             </Grid>

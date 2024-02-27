@@ -31,6 +31,21 @@ import {
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
 import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
+import useAsset from "./lib/hooks/useAsset/useAsset";
+
+export * from "./lib/services/SiteCreation/SiteCreation.api";
+export * from "./lib/services/siteSetting/SiteSetting";
+export * from "./lib/graphQL/queries/pageQueries";
+export * from "./lib/graphQL/queries/prelemQueries";
+export * from "./lib/utils/constants";
+export * from "./lib/services/prelems/prelems.api";
+export * from "./lib/services/page/page.api";
+export * from "./lib/context/actionContext/ActionContext.types";
+export * from "./lib/graphQL/queries/pageQueries";
+export * from "./lib/graphQL/queries/prelemQueries";
+export * from "./lib/hooks/useComment/useComment";
+export * from "./lib/services/siteSetting/SiteSetting";
+export * from "./lib/utils/constants";
 
 export * from "./lib/context/actionContext/ActionContext.types";
 export * from "./lib/graphQL/queries/pageQueries";
@@ -82,4 +97,5 @@ export {
   usePage,
   userManagementAPI,
   workflowApi,
+  useAsset,
 };

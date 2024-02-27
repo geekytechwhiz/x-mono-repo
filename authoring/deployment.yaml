@@ -20,10 +20,10 @@ spec:
           image: gcr.io/PROJECT_ID/IMAGE:TAG
           resources:
             limits:
-              cpu: '4'
+              cpu: "4"
               memory: 12Gi
             requests:
-              cpu: '3'
+              cpu: "3"
               memory: 8Gi
           env:
             - name: NX_API_URI
