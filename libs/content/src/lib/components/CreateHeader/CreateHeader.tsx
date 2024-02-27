@@ -179,11 +179,9 @@ export const CreateHeader = ({
                 aria-label='chat'
                 onClick={handleReview}
                 className='iconBtn'
-                startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-
-                {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-              </Button>
+                startIcon={
+                  <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                }></Button>
             </Box>
           ) : (
             enableReferBack(workflow) && (
@@ -192,10 +190,9 @@ export const CreateHeader = ({
                   aria-label='chat'
                   onClick={handleReview}
                   className='iconBtn'
-                  startIcon={<img src={DefaultStateCommentIcon} alt='comments' width='20px' />}>
-                  {/* <ReviewsOutlinedIcon color={'info'}></ReviewsOutlinedIcon> */}
-                  {/* <DefaultStateCommentIcon height='24px' width='24px' /> */}
-                </Button>
+                  startIcon={
+                    <img src={DefaultStateCommentIcon} alt='comments' width='20px' />
+                  }></Button>
               </Box>
             )
           )
@@ -263,11 +260,10 @@ export const CreateHeader = ({
         </Tooltip>
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
         {showPreview && (
-          // <WorkflowHistoryIcon TODO enable workflow history
-          //   enableWorkflowHistory={setEnableWorkflowHistory}
-          //   workflow_status={workflow?.workflow_status}
-          // />
-          <>WorkflowHistoryIcon</>
+          <WorkflowHistoryIcon
+            enableWorkflowHistory={setEnableWorkflowHistory}
+            workflow_status={workflow?.workflow_status}
+          />
         )}
         <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
       </Grid>

@@ -184,7 +184,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute name='article' category='content' subCategory='article'>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/site-setting/media-handle",
   //   element: (

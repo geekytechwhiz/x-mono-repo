@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //@ts-check
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

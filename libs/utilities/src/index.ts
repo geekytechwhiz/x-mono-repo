@@ -85,6 +85,7 @@ import { getCurrentLang, getFormattedImageUrl, getUniqueTimeZone } from "./lib/u
 import i18next from "./lib/utils/i18next";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
+import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -95,7 +96,6 @@ export * from "./lib/assets/header";
 // export * from "./lib/assets";
 export * from "./lib/assets/icons";
 export * from "./lib/assets/images";
-export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
 export * from "./lib/assets/footer";
 export * from "./lib/assets/gif";
@@ -119,12 +119,12 @@ export * from "./lib/utils/helper";
 export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
 export * from "./lib/utils/interface";
-
 export {
   AUTH_INFO,
   AUTH_URL,
   AddImage,
   Answers,
+  ArticleListMobileLoader,
   ArticleMapper,
   AutoCompleteMultiSelect,
   AutoTextArea,
@@ -175,6 +175,8 @@ export {
   TitleSubTitle,
   ToastContainerHandle,
   ToolTip,
+  // TitleSubTitle,
+  // TitleSubTitle,
   // TitleSubTitle,
   USERNAME_EMAIL_EXIST,
   WorkflowHistoryIcon,

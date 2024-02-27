@@ -7,30 +7,25 @@ import CardOptionCopyUrlIcon from "./CopyUrlIconOptionMenu.svg";
 import DefaultStateCommentIcon from "./DefaultStateCommentIcon.svg";
 import DeleteIcon from "./Delete.svg";
 import CardOptionDeleteIcon from "./DeleteIconOptionMenu.svg";
+import DraftIcon from "./DraftIcon.svg";
 import CardOptionDuplicateIcon from "./DuplicateIconOptionMenu.svg";
 import CardOptionEditIcon from "./EditIconOptionMenu.svg";
 import EventsIcon from "./Event.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
-
 import { default as VODIcon } from "./VODIcon.svg";
-
-import DraftIcon from "./DraftIcon.svg";
-
 // import  DraftIcon from './draftIcon.svg';
+import ArrowUpwardIcon from "./ArrowUp.svg";
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
 import PersonalisationIcon from "./DashBoardBoostContent/Personalisation.svg";
 import ReportsIcon from "./DashBoardBoostContent/Reports&Analytics.svg";
 import CommunityIcon from "./DashBoardBoostContent/community.svg";
-import BookIcon from "./ReadBook.svg";
-import SettingIcon from "./settingIcon.svg";
-
-import ArrowUpwardIcon from "./ArrowUp.svg";
 import GreenFolderIcon from "./Folder-green.svg";
 import ProgressIcon from "./Frame.svg";
 import HamburgerMenuIcon from "./HamburgerMenuIcon.svg";
+import Icon from "./Icon.svg";
 import IconPreview from "./IconPreview.svg";
 import CardOptionImbedIcon from "./ImbedIconOptionMenu.svg";
 import MenuIcon1 from "./MenuIcons-1.svg";
@@ -41,8 +36,6 @@ import MenuIcon5 from "./MenuIcons-5.svg";
 import MenuIcon6 from "./MenuIcons-6.svg";
 import MenuIcon7 from "./MenuIcons-7.svg";
 import MenuIcon8 from "./MenuIcons-8.svg";
-
-import Icon from "./Icon.svg";
 import NoContentFoundSvg from "./NoContentFound.svg";
 import PlatXLogo from "./PlatX-logo.svg";
 import PlatXLogoWhite from "./PlatXWhite-logo.svg";
@@ -52,6 +45,7 @@ import PostIconMenu from "./PostsIconmenu.svg";
 import PreviewNewIcon from "./PreviewNewIcon.svg";
 import SpacePrivateIcon from "./Private.svg";
 import QuizIcon from "./QuizIcon.svg";
+import BookIcon from "./ReadBook.svg";
 import RedBlinkingDot from "./RedBlinkingDot.gif";
 import Refresh from "./Refresh.svg";
 import ReplyIcon from "./Reply.svg";
@@ -62,7 +56,6 @@ import SettingNewIcon from "./SettingNewIcon.svg";
 import CardOptionShareIcon from "./ShareIconOptionMenu.svg";
 import SitesIcon from "./SitesIcon.svg";
 import SpaceListIcon from "./Space.svg";
-
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
@@ -117,6 +110,7 @@ import {
 } from "./scheduleUnpublishIcon.svg";
 import SearchGraySvg from "./searchGray.svg";
 import SearchIcon from "./searchiconnn.svg";
+import SettingIcon from "./settingIcon.svg";
 import IconListViewSvg from "./sideMenuListView.svg";
 import IconTimerSvg from "./timerIcon.svg";
 import TotalrevIcon from "./totalrev.svg";

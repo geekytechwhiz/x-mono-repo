@@ -204,7 +204,7 @@ export const MenuData = [
         id: "workflow_management",
         category: "Workflow",
         subCategory: "",
-        component: <WorkflowManagement></WorkflowManagement>,
+        component: <WorkflowManagement />,
       },
     ],
   },
