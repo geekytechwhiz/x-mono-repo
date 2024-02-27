@@ -143,8 +143,7 @@ function RootRouter() {
         debugger;
         navigate(`/dashboard`);
       }
-    }else
-    {
+    } else {
       window.location.href = AUTH_URL;
     }
 
