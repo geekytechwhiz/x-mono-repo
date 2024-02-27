@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable default-param-last */
 /* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
@@ -95,9 +97,9 @@ const useContentListing = (filter = "ALL") => {
             ...contentToSend,
           },
         });
-        const {
-          authoring_deleteContent: { message },
-        } = response.data;
+        // const {
+        //   authoring_deleteContent: { message },
+        // } = response.data;
         if (response) {
           const searchResponse = await contentTypeAPIs.fetchSearchContent(
             capitalizeFirstLetter(listItemDetails.tagName),
@@ -153,11 +155,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
 
-  const view = async (listItemDetails: {
-    tagName: string;
-    currentPageUrl: any;
-    course_id: any;
-  }) => {
+  const view = (listItemDetails: { tagName: string; currentPageUrl: any; course_id: any }) => {
     // eslint-disable-line
 
     if (listItemDetails.tagName.toUpperCase() === "VOD") {
@@ -178,12 +176,15 @@ const useContentListing = (filter = "ALL") => {
     }
   };
 
-  const edit = async (listItemDetails: { tagName: string; page: any }) => {
+  const edit = (listItemDetails: { tagName: string; page: any }) => {
     dispatch(previewContent({}));
     dispatch(previewArticle({}));
-    navigate(`/content/create?path=${listItemDetails.page}`, {
-      state: listItemDetails.tagName?.toLowerCase(),
-    });
+    navigate(
+      `/content/create/${listItemDetails.tagName?.toLowerCase()}?path=${listItemDetails.page}`,
+      {
+        state: listItemDetails.tagName?.toLowerCase(),
+      },
+    );
   };
 
   const preview = async (listItemDetails: any) => {
@@ -207,9 +208,10 @@ const useContentListing = (filter = "ALL") => {
                     qusArry.push(qusObj);
                   }
                 })
-                .catch((err) => {
-                  console.log(JSON.stringify(err, null, 2));
+                .catch(() => {
+                  // console.log(JSON.stringify(err, null, 2));
                 });
+              return "";
             });
             const tempObj = {
               ...selectedItem,
@@ -273,7 +275,7 @@ const useContentListing = (filter = "ALL") => {
         );
         const selectedLanguage = LanguageList.filter((langObj) => language.includes(langObj.value));
         const promises = selectedLanguage.map(async (lang) => {
-          return createMutate({
+          return await createMutate({
             variables: {
               contenttype: capitalizeFirstLetter(listItemDetails.tagName),
               input: { ...contentToSend },
@@ -311,7 +313,6 @@ const useContentListing = (filter = "ALL") => {
         duplicateVod({ IsDuplicate, title, language, selectedItem });
       }
     } catch (error: any) {
-      console.log(error);
       ShowToastError(
         error.graphQLErrors[0]
           ? `${error.graphQLErrors[0].message} ${t("for")} ` //${l.value}
@@ -358,7 +359,6 @@ const useContentListing = (filter = "ALL") => {
         return result;
       }
     } catch (error: any) {
-      console.log(error);
       ShowToastError(
         error.graphQLErrors[0]
           ? `${error.graphQLErrors[0].message} ${t("for")} ` //${l.value}

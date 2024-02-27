@@ -1,24 +1,25 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-debugger */
 import { useLazyQuery } from "@apollo/client";
 import AddIcon from "@mui/icons-material/Add";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Box, Button, Divider, Fab, Typography } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { contentTypeAPIs } from "@platformx/authoring-apis";
 import {
-  NoContentFoundSvg,
-  DesktopListing,
-  ContentListMobileLoader,
   ContentListDesktopLoader,
+  ContentListMobileLoader,
+  DesktopListing,
   ListHeader,
   ListSubHeader,
   MobileListing,
-  ThemeConstants,
+  NoContentFoundSvg,
   ShowToastError,
+  ThemeConstants,
   debounce,
 } from "@platformx/utilities";
+import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const QuestionListing = ({
   setIsClickedQueList,
