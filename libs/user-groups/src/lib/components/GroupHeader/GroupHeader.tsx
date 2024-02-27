@@ -13,9 +13,11 @@ const GroupHeader = ({ buttonText, returnBack, onSave, arrowText }: groupHeaderP
   return (
     <Box className={classes.container}>
       <Box className={classes.logoContainer}>
-        <ArrowBackIcon onClick={returnBack} />
+        <Box className={classes.logo}>
+          <ArrowBackIcon onClick={returnBack} />
+        </Box>
+        <Typography variant='h3medium'>{arrowText}</Typography>
       </Box>
-      <Typography variant='h3medium'>{arrowText}</Typography>
       <Box>
         <Button onClick={onSave} variant='primaryButton' className='sm'>
           {buttonText}

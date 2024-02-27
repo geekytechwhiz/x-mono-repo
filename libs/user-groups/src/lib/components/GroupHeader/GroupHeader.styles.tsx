@@ -8,11 +8,16 @@ export const useStyles = makeStyles(() => ({
     borderBottom: "1px solid #D9DBE9",
   },
   logoContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  logo: {
     border: "1px solid #D9DBE9",
     padding: "5px",
     display: "flex",
     borderRadius: "5px",
     alignItems: "center",
     cursor: "pointer",
+    marginRight: "10px",
   },
 }));

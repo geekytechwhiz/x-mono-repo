@@ -1,5 +1,5 @@
 import usePage from "./usePage/usePage";
-import useUserGroups from "./useUserGroups/userUserGroups";
+import { useUserGroupList, useUserGroups } from "./useUserGroups/useUserGroups";
 import useWorkflow from "./useWorkflow/useWorkflow";
 
-export { usePage, useUserGroups, useWorkflow };
+export { usePage, useUserGroupList, useUserGroups, useWorkflow };

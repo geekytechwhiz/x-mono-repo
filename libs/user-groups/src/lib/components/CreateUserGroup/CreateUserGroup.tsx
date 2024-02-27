@@ -1,9 +1,19 @@
 import { Grid } from "@mui/material";
 import { useUserGroups } from "@platformx/authoring-apis";
-import { AutoTextArea, CommonBoxWithNumber, TextBox, TitleSubTitle } from "@platformx/utilities";
-import React, { useState } from "react";
+import { handleDialog } from "@platformx/authoring-state";
+import {
+  AutoTextArea,
+  CommonBoxWithNumber,
+  SuccessIcon,
+  TextBox,
+  TitleSubTitle,
+} from "@platformx/utilities";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+import { useSearchParams } from "react-router-dom";
+import { userGroupMapper } from "../../Utils/helper";
 import GroupHeader from "../GroupHeader/GroupHeader";
 import MultiTagSelect from "../MultiTagSelect/MultiTagSelect";
 import { userGroupsProps } from "./CreateUserGroup.types";
@@ -11,6 +21,11 @@ import { userGroupsProps } from "./CreateUserGroup.types";
 const CreateUserGroup = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get("name");
+  const locationObj = location?.state;
+  const dispatch = useDispatch();
   const { createUserGroup } = useUserGroups();
   const [userGroup, setUserGroup] = useState<userGroupsProps>({
     name: "",
@@ -38,8 +53,25 @@ const CreateUserGroup = () => {
     return emptyFields;
   };
 
-  const handleCreateUserGroup = () => {
-    handleValidation() && createUserGroup(userGroup);
+  const returnBack = () => {
+    navigate("/community/user-groups");
+  };
+
+  const handleCreateUserGroup = async () => {
+    if (handleValidation()) {
+      const response: any = await createUserGroup(userGroupMapper(userGroup));
+      if (response?.success) {
+        const dialogContent = {
+          imageIcon: SuccessIcon,
+          isOpen: true,
+          title: t("congratulations"),
+          subTitle: t("the group has been created successfully"),
+          rightButtonText: t("go_to_listing"),
+          handleCallback: returnBack,
+        };
+        dispatch(handleDialog(dialogContent));
+      }
+    }
   };
 
   const updateErrorState = (field, state) => {
@@ -51,7 +83,7 @@ const CreateUserGroup = () => {
 
   const handleUserGroupState = (event: React.ChangeEvent<HTMLInputElement>, val = []) => {
     if (event.target.name === undefined || event.target.name === "tags") {
-      if (val.length) {
+      if (val?.length) {
         updateErrorState("tags", false);
       }
       setUserGroup({ ...userGroup, tags: val });
@@ -68,14 +100,19 @@ const CreateUserGroup = () => {
       updateErrorState(event.target.name, false);
     }
   };
-  const returnBack = () => {
-    navigate("/user-groups");
-  };
+
+  useEffect(() => {
+    if (code && locationObj) {
+      const { name = "", description = "", tags = [] } = locationObj;
+      setUserGroup({ name, description, tags });
+    }
+  }, [code, locationObj]);
+
   return (
     <>
       <GroupHeader
-        arrowText='Create Group'
-        buttonText='Save'
+        arrowText={code ? "Update Group" : "Create Group"}
+        buttonText={code ? "Update" : "Save"}
         returnBack={returnBack}
         onSave={handleCreateUserGroup}
       />

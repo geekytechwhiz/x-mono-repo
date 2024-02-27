@@ -1,12 +1,12 @@
 import { Dashboard } from "@platformx/dashboard";
 import { CreateUser, UserListing } from "@platformx/user-management";
 // import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
-import { CreateContent } from "@platformx/content";
+import { Content, CreateContent } from "@platformx/content";
 import { SitePage } from "@platformx/site-page";
+import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { CreateUserGroup } from "@platformx/user-groups";
 
 export const routes: RouteConfig[] = [
   // {
@@ -97,10 +97,26 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/user-groups/create",
+    path: "/create/user-groups",
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
         <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/update/user-groups",
+    element: (
+      <ProtectedRoute name='user-groups' subCategory='' category='community'>
+        <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/community/user-groups",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
+        <UserGroupListing />
       </ProtectedRoute>
     ),
   },
@@ -126,4 +142,12 @@ export const routes: RouteConfig[] = [
   //   path: "/error",
   //   element: <Error errorCode={404} errorMessage="Page not found" />,
   // }
+  {
+    path: "/content/quiz",
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Content />
+      </ProtectedRoute>
+    ),
+  },
 ];
