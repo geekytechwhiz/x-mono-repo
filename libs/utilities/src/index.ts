@@ -91,6 +91,8 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
+import prelemTypes from "./lib/themes/prelems/globalStyle";
+import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -203,4 +205,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  CommonPlateformXDialog,
 };
