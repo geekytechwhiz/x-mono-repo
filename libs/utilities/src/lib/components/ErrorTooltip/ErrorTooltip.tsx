@@ -33,6 +33,7 @@ export const ErrorTooltip: FC<PropType> = ({
             textAlign: "center",
             padding: "5px 20px",
             border: "0.1px solid rgba(0, 0, 0, 0.1)",
+            marginRight: "5px",
           },
         },
       }}

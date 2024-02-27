@@ -1,9 +1,9 @@
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { iconsList } from "@platformx/content";
-import { ShowToastError, WarningIcon, XDialog, dateTimeFormat } from "@platformx/utilities";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { iconsList } from "@platformx/content";
+import { ShowToastError, dateTimeFormat, XDialog, WarningIcon } from "@platformx/utilities";
 import { TaskPage } from "../taskPages/TaskPages.type";
 import { useStyles } from "./TaskRow.styles";
 
@@ -70,7 +70,7 @@ const Tasks = ({
             display: "flex",
             alignItems: { xs: "flex-start", em: "center" },
           }}>
-          <Grid xs={12} md={12} lg={6}>
+          <Grid xs={12} md={12} lg={7}>
             <Box
               sx={{
                 display: { xs: "flex", em: "none" },
@@ -88,7 +88,7 @@ const Tasks = ({
               sx={{
                 display: "flex",
                 alignItems: "center",
-                margin: "0px 10px",
+                margin: "0px 10px 0 0",
 
                 justifyContent: "space-between",
                 paddingBottom: { md: "20px", em: "0px" },
@@ -103,19 +103,19 @@ const Tasks = ({
                   <img
                     src={iconsList[document_type?.toLowerCase()]}
                     style={{ width: "100%", objectFit: "cover" }}
-                    alt='img'
+                    alt=''
                   />
                 </Box>
                 <Box
                   sx={{
-                    maxWidth: { md: "575px", em: "376px", lg: "396px" },
+                    maxWidth: { md: "575px", em: "376px", lg: "630px" },
                     display: "flex",
                     justifyItems: "center",
                     flexDirection: "column",
                   }}>
                   <Typography
                     className={classes.Title}
-                    variant='h5bold'
+                    variant='h5semibold'
                     sx={{
                       marginBottom: "2px",
                     }}
@@ -215,7 +215,7 @@ const Tasks = ({
               </Box>
             </Box>
           </Grid>
-          <Grid xs={12} md={12} lg={6}>
+          <Grid xs={12} md={12} lg={5}>
             <Box
               sx={{
                 display: "flex",
@@ -228,21 +228,23 @@ const Tasks = ({
                   display: { xs: "none", em: "flex" },
                   padding: {
                     xs: "0 10px",
-                    em: "0 20px",
+                    em: "0 15px",
                   },
-                  minWidth: { xs: "auto", em: "150px" },
+                  minWidth: { xs: "auto", em: "145px" },
                   borderLeft: {
                     xs: "1px solid #CED3D9",
                     em: "1px solid #CED3D9",
                   },
                   borderRight: {
                     xs: "1px solid #CED3D9",
-                    em: "1px solid #CED3D9",
+                    em: "0",
                   },
                   minHeight: { xs: "20px", em: "40px" },
                 }}>
                 <Box className={classes.BoxReview}>
-                  <Typography variant='h7regular' sx={{ padding: "3px 4px", whiteSpace: "nowrap" }}>
+                  <Typography
+                    variant='h7regular'
+                    sx={{ padding: "3px 12px", whiteSpace: "nowrap" }}>
                     Ready for review
                   </Typography>
                 </Box>
@@ -258,22 +260,21 @@ const Tasks = ({
                   padding: {
                     xs: "0 10px 0 0",
                     md: "0 15px 0 0",
-                    em: "0 30px",
+                    em: "0 15px",
                   },
-                  minWidth: { xs: "auto", em: "170px" },
+                  minWidth: { xs: "auto", em: "190px" },
+                  maxWidth: { xs: "auto", em: "190px" },
                   marginRight: { xs: "15px" },
                   minHeight: { xs: "20px", em: "40px" },
                   borderLeft: { xs: "0", em: "1px solid #CED3D9" },
                   borderRight: "1px solid #CED3D9;",
                 }}>
                 <Box>
-                  {" "}
-                  <Typography variant='h7regular' component='div'>
+                  <Typography variant='p4medium' component='div'>
                     {created_by}
                   </Typography>
                 </Box>
                 <Box>
-                  {" "}
                   <Typography variant='h7regular' component='div'>
                     {dateTimeFormat(creation_date)}
                   </Typography>
@@ -290,8 +291,6 @@ const Tasks = ({
                     sx={{
                       justifyContent: "center",
                       display: { xs: "none", em: "flex" },
-                      width: " 163px",
-                      margin: "0 3px",
                       cursor: "pointer",
                     }}>
                     <Button
@@ -307,7 +306,6 @@ const Tasks = ({
                       sx={{
                         display: { xs: "none", em: "flex" },
                         alignItems: "center",
-                        paddingLeft: "10px",
                       }}>
                       <Button
                         variant='contained'
@@ -327,7 +325,6 @@ const Tasks = ({
                         display: {
                           xs: "none",
                           em: "flex",
-                          marginRight: "10px",
                         },
                       }}>
                       <CloseIcon fontSize='small' />

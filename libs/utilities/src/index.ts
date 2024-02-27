@@ -86,6 +86,8 @@ import i18next from "./lib/utils/i18next";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import XDialog from "./lib/components/XDialog/XDialog";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
+import prelemTypes from "./lib/themes/prelems/globalStyle";
+import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -124,6 +126,7 @@ export {
   AUTH_URL,
   AddImage,
   Answers,
+  prelemTypes,
   ArticleListMobileLoader,
   ArticleMapper,
   AutoCompleteMultiSelect,
@@ -200,4 +203,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  CommonPlateformXDialog,
 };

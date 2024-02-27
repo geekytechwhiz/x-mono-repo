@@ -22,6 +22,7 @@
       "@platformx/authoring-apis": ["libs/authoring-apis/src/index.ts"],
       "@platformx/authoring-state": ["libs/authoring-state/src/index.ts"],
       "@platformx/comment-review": ["libs/comment-review/src/index.ts"],
+      "@platformx/community": ["libs/community/src/index.ts"],
       "@platformx/content": ["libs/content/src/index.ts"],
       "@platformx/context-library": ["libs/context-library/src/index.ts"],
       "@platformx/course": ["libs/course/src/index.ts"],
