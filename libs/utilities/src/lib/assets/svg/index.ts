@@ -81,7 +81,7 @@ import IconCancelSvg from "./cancel.svg";
 import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
-import CourseListIcon from "./course-icon.svg";
+// import CourseListIcon from "./course-icon.svg";
 import FolderIcon from "./descriptionsubicon.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
@@ -139,7 +139,12 @@ import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import IconCopySvg from "./Copy.svg";
+import CloseIcon from "./Cross.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
+import IconFacebookSvg from "./Facebook.svg";
+import CourseIcon from "./course-icon.svg";
+// import IconLinkedInSvg from "./linkedinIcon.svg";
 
 export {
   AccountBalanceWalletIcon,
@@ -167,12 +172,14 @@ export {
   CardOptionViewIcon,
   Challenge_community,
   ChatGPTSvg,
+  CloseIcon,
   CloseSearchSvg,
   CommentPlaceHolder,
   CommunityIcon,
   CookieIcon,
   CopyIcon,
-  CourseListIcon,
+  CourseIcon,
+  // CourseListIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
   DialogCloseIcon,
@@ -198,7 +205,9 @@ export {
   HeaderMenuUpdated,
   Icon,
   IconCancelSvg,
+  IconCopySvg,
   IconFaceBookLogoIconSvg,
+  IconFacebookSvg,
   IconLinkedinIconSvg,
   IconListViewSvg,
   IconPlayCircleSvg,

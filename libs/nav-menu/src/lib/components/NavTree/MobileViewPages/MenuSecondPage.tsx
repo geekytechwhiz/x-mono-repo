@@ -3,7 +3,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Box, Button, Divider, Slide, Typography } from "@mui/material";
 import { fetchPageListAll } from "@platformx/authoring-apis";
-import { ArticleListMobileLoader, NoResults, ThemeConstants } from "@platformx/utilities";
+import { ContentListMobileLoader, NoResults, ThemeConstants } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -178,7 +178,7 @@ export default function MenuSecondPage({
           <Box sx={{ display: { sm: "none" } }}>
             {isloading ? (
               <>
-                <ArticleListMobileLoader />
+                <ContentListMobileLoader />
               </>
             ) : (
               <>
@@ -206,7 +206,7 @@ export default function MenuSecondPage({
                   dataLength={items !== undefined ? items.length : 0}
                   next={fetchMoreData}
                   hasMore={isLazyLoad}
-                  loader={<ArticleListMobileLoader />}
+                  loader={<ContentListMobileLoader />}
                   scrollableTarget='scrollableDiv2'>
                   <Box>
                     {items?.map((item, index) => (
@@ -264,7 +264,7 @@ export default function MenuSecondPage({
         <Box sx={{ display: { sm: "none" } }}>
           {isloading ? (
             <>
-              <ArticleListMobileLoader />
+              <ContentListMobileLoader />
             </>
           ) : (
             <>
@@ -284,7 +284,7 @@ export default function MenuSecondPage({
                 dataLength={items !== undefined ? items.length : 0}
                 next={fetchMoreData}
                 hasMore={isLazyLoad}
-                loader={<ArticleListMobileLoader />}
+                loader={<ContentListMobileLoader />}
                 scrollableTarget='scrollableDiv2'>
                 <Box>
                   {items?.map((item, index) => (
