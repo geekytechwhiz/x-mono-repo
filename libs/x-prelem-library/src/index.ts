@@ -1,4 +1,5 @@
-import AboutUs2 from "./lib/prelems/AboutUs2/AboutUs2";
+import Quiz from "./lib/ContentTypes/Quiz/Quiz";
 
-export { AboutUs2 };
+export * from "./lib/ContentTypes";
 export * from "./lib/prelems";
+export { Quiz };

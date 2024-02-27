@@ -1,8 +1,8 @@
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Box, Button, CardMedia, Typography } from "@mui/material";
 import React from "react";
-import { getIcon } from "../../Utils/helperFns";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useCustomStyle } from "./XCard4.style";
+import { getIcon } from "../../Utils/helperFns";
 // import { t } from "i18next";
 // import "../../../service/i18n";
 import { dateTimeFormat, getImage, onClickCardUrlNavigate } from "@platformx/utilities";
@@ -88,9 +88,9 @@ interface Analytics {
 }
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: () => void;
-  sendDefaultStructureDataForResetToAuthoringCB: () => void;
-  openButtonEditWindowInAuthoringCB: () => void;
+  sendStructureDataToAuthoringCB: (structureData: string) => void;
+  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
+  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;
