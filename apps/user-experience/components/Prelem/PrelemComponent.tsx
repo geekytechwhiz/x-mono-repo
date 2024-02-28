@@ -4,9 +4,9 @@ import {
   nullToArray,
   nullToObject,
   snowplowSchemaUrl,
-} from "../utils/helperFunctions";
+} from "../../utils/helperFunctions";
 import { useEffect, useState } from "react";
-import { dynamicListHandle } from "../dynamic/dynamicImport";
+import { dynamicListHandle } from "../../dynamic/dynamicImport";
 import getConfig from "next/config";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};

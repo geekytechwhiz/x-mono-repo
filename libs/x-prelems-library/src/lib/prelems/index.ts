@@ -78,10 +78,16 @@ import VideoLandingPage from "../ContentTypes/VideoLandingPage/VideoLandingPage"
 import Article from "../ContentTypes/Article/Article";
 import EventLandingPage from "../ContentTypes/EventLandingPage/EventLandingPage";
 import Blogs from "../ContentTypes/Blogs/Blogs";
+import ExpertiseShowcase from "./ExpertiseShowcase/ExpertiseShowcase";
+import AnimationOnPageScroll from "./AnimationOnPageScroll/AnimationOnPageScroll";
+import MultiSlot2 from "./MultiSlot2/MultiSlot2";
 import { ChangePassword, Profile, SignUp } from "../ContentTypes/User/User";
 import { TestComponent } from "./TestComponnet";
 
 export {
+  MultiSlot2,
+  AnimationOnPageScroll,
+  ExpertiseShowcase,
   TestComponent,
   ContactUsForm,
   Ecommerce3Slot2,

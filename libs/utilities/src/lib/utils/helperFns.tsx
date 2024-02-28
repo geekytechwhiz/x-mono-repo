@@ -911,7 +911,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
   if (color === "") {
     const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
     const httpRegex = /https?:\/\//g;
-    const httpCount = (urlOfImage.match(httpRegex) || []).length;
+    const httpCount = ((urlOfImage || "").match(httpRegex) || []).length;
     if (httpCount === 1) {
       return {
         ...imageColorObject,

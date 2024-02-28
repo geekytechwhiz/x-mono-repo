@@ -110,8 +110,8 @@ Gallery1Prop) => {
   useEffect(() => {
     if (content?.Slots) {
       const midLength = content?.Slots?.length / 2;
-      const gallery1 = content?.Slots.slice(0, midLength);
-      const gallery2 = content?.Slots.slice(midLength, content?.Slots?.length);
+      const gallery1 = content?.Slots?.slice(0, midLength);
+      const gallery2 = content?.Slots?.slice(midLength, content?.Slots?.length);
       setGallery1(gallery1);
       setGallery2(gallery2);
     }

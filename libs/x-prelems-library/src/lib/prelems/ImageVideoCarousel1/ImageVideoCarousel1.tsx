@@ -64,7 +64,7 @@ const ImageVideoCarousel1 = ({
       ImageVideoCarouselStructureData = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        itemListElement: content?.Slots.slice(0, 6)?.map((item: any, index: number) => {
+        itemListElement: content?.Slots?.slice(0, 6)?.map((item: any, index: number) => {
           return {
             "@type": "ListItem",
             position: index + 1,

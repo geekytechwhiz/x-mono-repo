@@ -223,10 +223,10 @@ const ContentDisplayWithCategories = ({
                     },
                   },
                 }}>
-                {content?.Slots.length > 0 ? (
+                {content?.Slots?.length > 0 ? (
                   <Slider {...settings}>
                     {content?.Slots &&
-                      content?.Slots.map((value: any, index: any) => {
+                      content?.Slots?.map((value: any, index: any) => {
                         const formedUrl = getImage(value, secondaryArgs);
                         const { color, imageUrl } = formedUrl;
                         return (

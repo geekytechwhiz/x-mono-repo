@@ -115,7 +115,7 @@ const MultiSlot = ({ content, analytics, authoringHelper, secondaryArgs }: Multi
             </Typography>
           </Box>
           <Grid container>
-            {content?.Slots.map((item: any, index: any) => {
+            {content?.Slots?.map((item: any, index: any) => {
               return (
                 <Grid item xs={12} sm={6} em={3} rowSpacing={1} p={1} key={index}>
                   {content &&

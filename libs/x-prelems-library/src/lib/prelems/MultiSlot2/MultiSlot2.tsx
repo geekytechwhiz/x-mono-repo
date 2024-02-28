@@ -151,7 +151,7 @@ const MultiSlot2 = ({ content, analytics, authoringHelper, secondaryArgs }: Mult
             </Typography>
           </Box>
           <Slider {...sliderSettings} dots={false} infinite={false}>
-            {content?.Slots.map((item: any, index: number) => {
+            {content?.Slots?.map((item: any, index: number) => {
               return (
                 <Box key={`card-${item.Id}`} p={1}>
                   {Object.keys(item).length !== 0 && (
