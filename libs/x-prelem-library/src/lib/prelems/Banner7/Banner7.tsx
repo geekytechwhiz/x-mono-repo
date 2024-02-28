@@ -123,7 +123,7 @@ Banner7Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");
