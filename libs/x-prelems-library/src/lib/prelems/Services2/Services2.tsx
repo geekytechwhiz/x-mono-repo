@@ -124,7 +124,7 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
                 },
               }}>
               {content?.Slots &&
-                Object.keys(content?.Slots.slice(0, Math.ceil(Number(content?.Slots.length) / 2)))
+                Object.keys(content?.Slots?.slice(0, Math.ceil(Number(content?.Slots?.length) / 2)))
                   .map((keys) => {
                     return Number(keys);
                   })
@@ -138,7 +138,7 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
                         }>
                         <Grid container item ref={ref}>
                           {content?.Slots &&
-                            Object.entries(content?.Slots.slice(value1 * 2, (value1 + 1) * 2)).map(
+                            Object.entries(content?.Slots?.slice(value1 * 2, (value1 + 1) * 2)).map(
                               ([key, value]) => (
                                 <Grid
                                   item

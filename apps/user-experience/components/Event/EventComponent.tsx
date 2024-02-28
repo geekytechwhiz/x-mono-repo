@@ -1,9 +1,5 @@
 import dynamic from "next/dynamic";
 
-// const EventPrelem: any = dynamic(() => import(`platform-x-prelems/prelems/EventLandingPage`), {
-//   ssr: false,
-// });
-
 const EventPrelem = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Event), {
   ssr: false,
 });

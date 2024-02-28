@@ -185,7 +185,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
                 </Box>
               </Paper>
             </Grid>
-            {content?.Slots.slice(0, 2).map((item: any, index: any) => {
+            {content?.Slots?.slice(0, 2).map((item: any, index: any) => {
               return (
                 <Grid
                   key={`${index.toString()}_ES`}
