@@ -225,7 +225,8 @@ export const Card = ({
                       date < dataList.eventEndDate && (
                         <img
                           style={{ height: "43px", width: "43px" }}
-                          src={RedBlinkingDot}
+                          // src={RedBlinkingDot}
+                          src='imggepath'
                           alt=''
                         />
                       )}
