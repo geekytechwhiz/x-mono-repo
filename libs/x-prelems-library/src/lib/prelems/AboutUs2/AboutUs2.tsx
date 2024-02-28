@@ -1,24 +1,15 @@
 import { Box, Container, Typography } from "@mui/material";
+import { Frame1, Frame2, Frame3, completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Typewriter from "typewriter-effect";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import {
-  completeButtonUrl,
-  Frame1,
-  Frame2,
-  Frame3,
-  formCroppedUrl,
-  SecondaryArgs,
-  Analytics,
-  AuthoringHelper,
-} from "@platformx/utilities";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./AboutUS2.style";
-import "../../Style.css";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -243,40 +234,6 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
     </div>
   );
 };
-
-interface AboutUs2Props {
-  content: Content;
-  analytics: Analytics;
-  authoringHelper: AuthoringHelper;
-  secondaryArgs: SecondaryArgs;
-}
-interface Content {
-  primary_heading?: string;
-  typescript_heading: string;
-  description?: string;
-  secondary_heading?: string;
-  TagName?: string;
-  Button1_Action?: string;
-  Button1_Content?: string;
-  Button1_Name?: string;
-  Button1_RedirectURL?: string;
-  Button1_RestEndPonit?: string;
-  Button1_Type?: string;
-  Button1_Value?: string;
-  ImageCompound: {
-    ImageCompound_1: {
-      published_images: Image[];
-      original_image: object;
-    };
-  };
-}
-interface Image {
-  aspect_ratio: string;
-  bucket_path: string;
-  folder_path: string;
-  visibility: string;
-  ext: string;
-}
 
 AboutUs2.defaultProps = {
   content: {
