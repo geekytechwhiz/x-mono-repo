@@ -1,15 +1,32 @@
 FROM node:alpine
+
+# Install Python and other necessary packages
+RUN apk update && \
+    apk add --no-cache python3 && \
+    ln -sf python3 /usr/bin/python && \
+    apk add --no-cache --virtual .build-deps \
+    build-base \
+    python3-dev \
+    py3-pip \
+    libc-dev \
+    libffi-dev \
+    openssl-dev \
+    cargo
+
 # create & set working directory
 RUN mkdir -p /server
 WORKDIR /server
+
 # copy source files
 COPY . /server
+
 # install dependencies
-# RUN npm cache clean --force 
 RUN npm install -g @nrwl/nx
 RUN npm install --legacy-peer-deps
+
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npx nx build authoring-web --verbose
+
 EXPOSE 3000
 CMD npm run deploy:authoring
