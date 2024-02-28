@@ -9,8 +9,10 @@ import Quiz from "./Quiz/Quiz";
 import Poll from "./Poll/Poll";
 import Event from "./EventLandingPage/Events";
 import Video from "./VideoLandingPage/VideoLandingPage";
+import PlayerDetail from "./PlayerDetail/PlayerDetail";
 
 export {
+  PlayerDetail,
   Quiz,
   Video,
   Event,

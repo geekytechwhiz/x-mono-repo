@@ -19,7 +19,7 @@ import {
   createSliderArray,
   debounce,
   fallBackImage,
-  ArticleIconComponent,
+  ArticleIcon,
 } from "@platformx/utilities";
 
 const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
@@ -147,7 +147,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                     ) : (
                       <img
                         alt=''
-                        src={ArticleIconComponent}
+                        src={ArticleIcon}
                         style={{
                           position: "absolute",
                           marginTop: "94px",
