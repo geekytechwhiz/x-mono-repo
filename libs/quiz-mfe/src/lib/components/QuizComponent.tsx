@@ -1,4 +1,4 @@
-import { Quiz } from "@platformx/x-prelem-library";
+import { Quiz } from "@platformx/x-prelems-library";
 
 export const QuizComponent = (props) => {
   const { pageData = {}, secondaryArgs } = props || {};

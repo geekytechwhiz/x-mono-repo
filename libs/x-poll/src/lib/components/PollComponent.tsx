@@ -1,6 +1,6 @@
 import { usePollApi } from "@platformx/authoring-apis";
 import { nullToObject } from "@platformx/utilities";
-import { Poll } from "@platformx/x-prelem-library";
+import { Poll } from "@platformx/x-prelems-library";
 import { useEffect } from "react";
 import { PollComponentProps } from "./Poll.types";
 

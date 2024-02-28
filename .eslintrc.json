@@ -223,7 +223,7 @@
       }
     ],
     "yield-star-spacing": ["error", "both"],
-    "wrap-regex": 2,
+    "wrap-regex": 0,
     "unicode-bom": 2,
     "template-tag-spacing": ["error", "never"],
     "switch-colon-spacing": "error",

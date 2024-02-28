@@ -73,7 +73,7 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
-import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
+//import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
 import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
@@ -178,7 +178,7 @@ export {
   ToolTip,
   // TitleSubTitle,
   USERNAME_EMAIL_EXIST,
-  WorkflowHistoryIcon,
+  //WorkflowHistoryIcon,
   XButton,
   XCheckBox,
   XDatePicker,
