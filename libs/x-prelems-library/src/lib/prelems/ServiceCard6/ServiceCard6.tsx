@@ -74,7 +74,7 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
         ),
         itemListElement:
           content?.Slots &&
-          content?.Slots.map((value, index) => {
+          content?.Slots?.map((value, index) => {
             return {
               "@type": "ListItem",
               position: index + 1,

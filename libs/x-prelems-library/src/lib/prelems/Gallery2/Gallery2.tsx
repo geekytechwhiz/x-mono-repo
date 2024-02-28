@@ -99,10 +99,10 @@ Gallery2Prop) => {
   3. if its not available we are setting false
 */
   useEffect(() => {
-    if (content?.Slots && content?.Slots.length > 0) {
+    if (content?.Slots && content?.Slots?.length > 0) {
       const midLength = content?.Slots?.length / 2;
-      const Gall2 = content?.Slots.slice(0, midLength);
-      const gall2 = content?.Slots.slice(midLength + 1, content?.Slots?.length);
+      const Gall2 = content?.Slots?.slice(0, midLength);
+      const gall2 = content?.Slots?.slice(midLength + 1, content?.Slots?.length);
       setGallery1(Gall2);
       setGallery2(gall2);
     }

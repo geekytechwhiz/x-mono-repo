@@ -15,11 +15,11 @@ import {
   CardOptionViewIcon,
   ErrorTooltip,
   PlateformXDialog,
-  WorkflowStepper,
   capitalizeFirstLetter,
   getCurrentLang,
   useAccess,
 } from "@platformx/utilities";
+import { WorkflowStepper } from "@platformx/workflow-management";
 import { useStyles } from "./PageMenu.styles";
 
 const PageMenu = (props) => {

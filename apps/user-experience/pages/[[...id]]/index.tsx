@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from "next";
 import getConfig from "next/config";
 import ErrorBoundary from "../../components/Common/ErrorBoundary";
 import HeaderFooterLayout from "../../components/HeaderFooterLayout/HeaderFooterLayout";
-import PrelemComponent from "../../components/PrelemComponent";
+import PrelemComponent from "../../components/Prelem/PrelemComponent";
 import PageHead from "../../components/pageHead";
 import {
   getDomainUrl,
