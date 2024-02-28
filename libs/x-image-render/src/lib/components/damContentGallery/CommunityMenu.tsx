@@ -10,8 +10,9 @@ import {
   GreenSubFolderIcon,
   FolderIcon,
   SubFolderIcon,
+  ThemeConstants,
+  AUTH_INFO,
 } from "@platformx/utilities";
-import { ThemeConstants, AUTH_INFO } from "@platformx/utilities";
 import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 
 interface Community {

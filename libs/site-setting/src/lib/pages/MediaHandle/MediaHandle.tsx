@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-shadow */
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
@@ -21,10 +22,8 @@ import { userMediaHanleStyle } from "./MediaHandle.style";
 
 export const MediaHandle: React.FC = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
-  const galleryType = useRef<string>("Images");
   const currentMediaHandleIndex = useRef<number | null>(null);
   const [galleryState, setGalleryState] = useState<boolean>(false);
-  const [key, setKey] = useState<string>("");
   const toastMessage = useRef<string | null>(null);
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -73,12 +72,6 @@ export const MediaHandle: React.FC = () => {
 
   const fetchMediaHandleData = async () => {
     try {
-      // const { authoring_getMediaHandle: { mediahandle = [] } = {} } = await fetchMediaHandle({
-      //   pagePath: "social-media-item",
-      // });
-
-      // const formData = initForm(mediahandle);
-      // setForm(formData);
       const { authoring_getMediaHandle: { mediahandle = [] } = {} } = await fetchMediaHandle({
         pagePath: "social-media-item",
       });
@@ -152,13 +145,13 @@ export const MediaHandle: React.FC = () => {
   useEffect(() => {
     fetchMediaHandleData();
   }, []);
+
   const classes = userMediaHanleStyle();
   return (
     <>
       {!galleryState && (
         <Box className={classes.pageContainer}>
           <Divider />
-
           <Grid container className={classes.contentContainer}>
             {isLoading && <Loader />}
             {form.map((control, index) => (
