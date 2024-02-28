@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 
-const EventPrelem: any = dynamic(() => import(`platform-x-prelems/prelems/EventLandingPage`), {
+const QuizPrelem = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Quiz), {
   ssr: false,
 });
 
-export const EventComponent = (props) => {
-  const { pageData = {}, secondaryArgs = {} } = props || {};
+export const QuizComponent = (props) => {
+  const { pageData = {}, secondaryArgs } = props || {};
   const prelemAnalyticsProp = {
     pageId: pageData?.page,
     pageTitle: pageData?.title,
@@ -21,7 +21,7 @@ export const EventComponent = (props) => {
   };
 
   return (
-    <EventPrelem
+    <QuizPrelem
       content={pageData}
       analytics={prelemAnalyticsProp}
       authoringHelper={prelemAuthoringHelper}

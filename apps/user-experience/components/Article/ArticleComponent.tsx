@@ -1,9 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const ArticlePrelem: any = dynamic(() => import(`platform-x-prelems/prelems/Article`), {
-  ssr: false,
-});
+const ArticlePrelem = dynamic(
+  () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
+  {
+    ssr: false,
+  },
+);
 
 export const ArticleComponent = (props) => {
   const { pageData = {}, secondaryArgs = {} } = props || {};
