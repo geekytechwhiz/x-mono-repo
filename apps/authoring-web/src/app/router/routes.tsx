@@ -1,20 +1,9 @@
 //import { AssetListing, CreateAsset } from "@platformx/assets-manager";
-import { CreateSpace } from "@platformx/community";
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
-import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
-// import {
-//   CookieSetting,
-//   FeatureFlagSetting,
-//   FooterSetting,
-//   GlobalSetting,
-//   HeaderSetting,
-//   MediaHandle,
-// } from "@platformx/site-setting";
-// import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateUser, UserListing } from "@platformx/user-management";
+
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
@@ -78,14 +67,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/page-list",
-    element: (
-      <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-        <UserListing></UserListing>
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/page-list",
+  //   element: (
+  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+  //       <UserListing></UserListing>
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/workflow/workflow-list",
     element: (
@@ -102,19 +91,19 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "user-management/user-create",
-    element: (
-      <ProtectedRoute
-        name='user'
-        category='UserManagement'
-        subCategory=''
-        isHeader={false}
-        isSideBar={false}>
-        <CreateUser />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "user-management/user-create",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='user'
+  //       category='UserManagement'
+  //       subCategory=''
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateUser />
+  //     </ProtectedRoute>
+  //   ),
+  // },
 
   // {
   //   path: "/prelem",
@@ -184,19 +173,19 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/community/create-space",
-    element: (
-      <ProtectedRoute
-        name='space'
-        category='public'
-        subCategory='public'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateSpace />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/community/create-space",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='space'
+  //       category='public'
+  //       subCategory='public'
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateSpace />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/navtree",
     element: (
@@ -218,19 +207,19 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/content/course",
-    element: (
-      <ProtectedRoute
-        name='course'
-        subCategory=''
-        category='content'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateCourse />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/content/course",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='course'
+  //       subCategory=''
+  //       category='content'
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateCourse />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   // {
   //   path: "/create_asset",
   //   element: (
@@ -367,12 +356,12 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/user-management/user-list",
-    element: (
-      <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
-        <UserListing />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/user-management/user-list",
+  //   element: (
+  //     <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
+  //       <UserListing />
+  //     </ProtectedRoute>
+  //   ),
+  // },
 ];
