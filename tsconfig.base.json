@@ -41,7 +41,8 @@
       "@platformx/user-management": ["libs/user-management/src/index.ts"],
       "@platformx/x-poll": ["libs/x-poll/src/index.ts"],
       "@platformx/x-poll/server": ["libs/x-poll/src/server.ts"],
-      "@platformx/x-prelem-library": ["libs/x-prelem-library/src/index.ts"]
+      "@platformx/x-prelem-library": ["libs/x-prelem-library/src/index.ts"],
+      "@platformx/x-prelems-library": ["libs/x-prelems-library/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
