@@ -29,7 +29,7 @@ const AddCart = (props: ecommerceAddcartProps) => {
     productId = "",
     parentPage,
     productFullDetails = {},
-    addToProductInCart = () => { },
+    addToProductInCart = () => {},
     productInStockInfo,
     cartData,
   } = nullToObject(props);
@@ -132,7 +132,7 @@ const AddCart = (props: ecommerceAddcartProps) => {
             variant='primaryButton1'
             type='button'
             disabled={cartData?.line_item?.length > 0 ? false : true}
-            onClick={cartData?.line_item?.length > 0 ? () => buyNowHandle() : () => { }}>
+            onClick={cartData?.line_item?.length > 0 ? () => buyNowHandle() : () => {}}>
             {t("buy_now")}
           </Button>
         </Box>

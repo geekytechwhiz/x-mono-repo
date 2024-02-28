@@ -100,7 +100,7 @@ const Header = ({
   langCode,
   isCartIconEnable = true,
   isProductUpdateCount = null,
-  navigateToCartPage = () => { },
+  navigateToCartPage = () => {},
   gcpUrl,
   bucketName,
   onLogin,
@@ -264,8 +264,9 @@ const Header = ({
                       component='a'
                       key={`${key}_${menu.Menu_Id}`}
                       id={`menu_${menu.Menu_Id}`}
-                      className={`x-app-menu ${(currentMenu ? currentMenu === menu?.Menu_Id : false) ? "active" : ""
-                        }`}
+                      className={`x-app-menu ${
+                        (currentMenu ? currentMenu === menu?.Menu_Id : false) ? "active" : ""
+                      }`}
                       aria-controls={
                         (currentMenu ? currentMenu === menu?.Menu_Id : false)
                           ? `submenu_${menu.Menu_Id}`
@@ -287,9 +288,9 @@ const Header = ({
                       onClick={
                         menu?.Submenu.length > 0
                           ? (e) => handleSubMenuOpen(e, menu?.Menu_Id)
-                          : () => { }
+                          : () => {}
                       }
-                    //onMouseOver={menu?.Submenu.length > 0 ? (e) => handleSubMenuOpen(e, menu?.Menu_Id) : () => {}}
+                      //onMouseOver={menu?.Submenu.length > 0 ? (e) => handleSubMenuOpen(e, menu?.Menu_Id) : () => {}}
                     >
                       <Typography component='span' variant='h6regular' className='my0'>
                         {menu?.Label}
@@ -328,13 +329,13 @@ const Header = ({
                                   margin: menu.Submenu.length === subkey + 1 ? "0" : "0 0 10px 0",
                                 }}
                                 key={subkey}
-                              // onClick={() =>
-                              //   handleRedirect(
-                              //     submenu?.URL,
-                              //     submenu?.Internal,
-                              //     submenu.IsCurrentTab
-                              //   )
-                              // }
+                                // onClick={() =>
+                                //   handleRedirect(
+                                //     submenu?.URL,
+                                //     submenu?.Internal,
+                                //     submenu.IsCurrentTab
+                                //   )
+                                // }
                               >
                                 <ListItemButton
                                   component='a'

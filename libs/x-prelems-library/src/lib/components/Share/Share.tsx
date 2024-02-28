@@ -86,7 +86,7 @@ const Share = (props: Sharetype) => {
     }
   };
 
-  const onShareWindowClose = () => { };
+  const onShareWindowClose = () => {};
   const [openEmbedModal, setOpenEmbedModal] = useState(false);
   const emptyToastHandle = (shareUrlData = "") => {
     if (!shareUrlData) {

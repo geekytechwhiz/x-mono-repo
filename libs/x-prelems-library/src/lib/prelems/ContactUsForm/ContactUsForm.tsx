@@ -439,9 +439,9 @@ ContactUsForm.defaultProps = {
   },
   authoringHelper: {
     innerRef: null,
-    sendStructureDataToAuthoringCB: () => { },
-    sendDefaultStructureDataForResetToAuthoringCB: () => { },
-    openButtonEditWindowInAuthoringCB: () => { },
+    sendStructureDataToAuthoringCB: () => {},
+    sendDefaultStructureDataForResetToAuthoringCB: () => {},
+    openButtonEditWindowInAuthoringCB: () => {},
     selectedButtonNameForEditing: "",
     isEditing: false,
     buttonRef: null,

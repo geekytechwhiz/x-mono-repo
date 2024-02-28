@@ -51,12 +51,11 @@ body {
 }
 
 .react-player__shadow {
-  background: #14142B !important;
+  background: #14142b !important;
 }
 
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) {
-
     h4,
     h1 {
       letter-spacing: -1px;

@@ -10,8 +10,8 @@ const QuantityButton = (_props: any) => {
   const classes = useCustomStyle();
   const {
     cartQuantity = 0,
-    addToQuantity = () => { },
-    removeQuantity = () => { },
+    addToQuantity = () => {},
+    removeQuantity = () => {},
     loading = false,
     disabled = false,
   } = nullToObject(_props);

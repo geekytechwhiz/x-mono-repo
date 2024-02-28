@@ -10,7 +10,7 @@ import CartTotal from "./SharedComponent/CartTotal";
 import "./Cart.css";
 import { useCustomStyle } from "./Cart.style";
 
-const Cart = ({ secondaryArgs = {}, cartCountUpdate = () => { } }: any) => {
+const Cart = ({ secondaryArgs = {}, cartCountUpdate = () => {} }: any) => {
   const classes = useCustomStyle();
   const [addedCartDetails, setAddedCartDetails] = useState({});
   const [loading, setLoading] = useState(false);

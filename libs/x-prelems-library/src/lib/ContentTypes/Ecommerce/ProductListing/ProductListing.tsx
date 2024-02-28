@@ -24,7 +24,7 @@ const ProductListing = ({
   secondaryArgs = {},
   fromPage = "",
   attributes,
-  cartCountUpdate = () => { },
+  cartCountUpdate = () => {},
 }: ProductListingProps) => {
   const rowData = 12;
   const classes = useCustomStyle();

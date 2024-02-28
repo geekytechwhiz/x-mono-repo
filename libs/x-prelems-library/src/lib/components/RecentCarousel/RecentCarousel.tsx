@@ -145,14 +145,16 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                         <PlayCircleOutlineRoundedIcon sx={{ color: "white", fontSize: "40px" }} />
                       </Box>
                     ) : (
-                      <img alt="" src={ArticleIconComponent} style={{
-                        position: "absolute",
-                        marginTop: "94px",
-                        marginLeft: "8px",
-                        width: "30px",
-                        height: "30px",
-                      }}></img>
-
+                      <img
+                        alt=''
+                        src={ArticleIconComponent}
+                        style={{
+                          position: "absolute",
+                          marginTop: "94px",
+                          marginLeft: "8px",
+                          width: "30px",
+                          height: "30px",
+                        }}></img>
                     )}
                     <CardContent style={{ padding: "10px 10px 0px 10px", flexGrow: 1 }}>
                       <Typography

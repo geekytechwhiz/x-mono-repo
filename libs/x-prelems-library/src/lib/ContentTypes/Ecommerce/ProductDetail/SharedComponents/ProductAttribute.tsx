@@ -15,7 +15,7 @@ type ProductAttributeProps = {
 };
 
 const ProductAttribute = (_props: ProductAttributeProps) => {
-  const { productFullDetails = {}, variantsHandle = () => { } } = nullToObject(_props);
+  const { productFullDetails = {}, variantsHandle = () => {} } = nullToObject(_props);
 
   const theme = useTheme();
   const classes = useCustomStyle();

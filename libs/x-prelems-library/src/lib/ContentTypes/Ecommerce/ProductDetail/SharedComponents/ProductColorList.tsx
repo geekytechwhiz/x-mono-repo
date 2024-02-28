@@ -13,7 +13,7 @@ type ProductColorListProps = {
   productFullDetails: any;
 };
 const ProductColorList = (_props: ProductColorListProps) => {
-  const { productFullDetails = {}, variantsHandle = () => { } } = nullToObject(_props);
+  const { productFullDetails = {}, variantsHandle = () => {} } = nullToObject(_props);
   const { attribute = {} } = nullToObject(productFullDetails);
   const classes = useCustomStyle();
   const { colour = [] } = nullToObject(attribute);

@@ -53,8 +53,8 @@ type PaymentDetailProps = {
 const PaymentDetail = ({
   secondaryArgs,
   enableLogin = false,
-  cartCountUpdate = () => { },
-  takeToLoginPage = () => { },
+  cartCountUpdate = () => {},
+  takeToLoginPage = () => {},
 }: PaymentDetailProps) => {
   const browserUrl = window.location.href;
   const classes = useCustomStyle();
@@ -423,8 +423,9 @@ const PaymentDetail = ({
                 {t("billing_address")}
               </Typography>
               <Box
-                className={`payment-detail-section paymentDetail ${isSecondryAddres ? "same-address" : ""
-                  }`}>
+                className={`payment-detail-section paymentDetail ${
+                  isSecondryAddres ? "same-address" : ""
+                }`}>
                 <Box className='radio-wrapper'>
                   <RadioGroupItems
                     arrData={arrBilling}

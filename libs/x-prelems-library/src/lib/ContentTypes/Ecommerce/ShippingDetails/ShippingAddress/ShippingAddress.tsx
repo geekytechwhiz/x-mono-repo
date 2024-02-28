@@ -18,9 +18,9 @@ const ShippingAddress = (_props: any) => {
     stateManage = {},
     secondaryArgs = {},
     stateErrorManage = {},
-    handleChange = () => { },
-    preViewAddress = () => { },
-    handleChange1 = () => { },
+    handleChange = () => {},
+    preViewAddress = () => {},
+    handleChange1 = () => {},
   } = _props;
   const { addressError = "", firstNameError = "", contactNumberError = "" } = stateErrorManage;
 

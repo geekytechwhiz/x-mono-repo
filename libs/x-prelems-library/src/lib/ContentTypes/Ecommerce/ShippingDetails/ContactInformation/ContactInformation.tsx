@@ -10,7 +10,7 @@ import { useCustomStyle } from "./ContactInformation.style";
 const ContactInformation = (_props: any) => {
   const classes = useCustomStyle();
   const theme = useTheme();
-  const { stateManage = {}, handleChange = () => { }, stateErrorManage = {} } = _props;
+  const { stateManage = {}, handleChange = () => {}, stateErrorManage = {} } = _props;
   const { email = "" } = stateManage;
   const { emailError = "" } = stateErrorManage;
   const { t } = useTranslation();

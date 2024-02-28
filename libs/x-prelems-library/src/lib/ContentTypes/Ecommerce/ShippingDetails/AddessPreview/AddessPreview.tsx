@@ -14,7 +14,7 @@ type ecomAddessPreviewProps = {
 const AddessPreview = (_props: ecomAddessPreviewProps) => {
   const { t } = useTranslation();
   const classes = useCustomStyle();
-  const { stateManage = {}, preViewAddress = () => { } } = nullToObject(_props);
+  const { stateManage = {}, preViewAddress = () => {} } = nullToObject(_props);
   const {
     city = "",
     state = "",
@@ -66,11 +66,11 @@ const AddessPreview = (_props: ecomAddessPreviewProps) => {
           {renderData(
             t("ship_to"),
             commaAdded(address) +
-            commaAdded(city) +
-            commaAdded(state) +
-            commaAdded(pincode) +
-            " " +
-            landmark,
+              commaAdded(city) +
+              commaAdded(state) +
+              commaAdded(pincode) +
+              " " +
+              landmark,
           )}
           {renderData(`${t("contact_no")}`, contactNumber)}
           {renderData(`${t("alternate_no")}`, alterNumber)}

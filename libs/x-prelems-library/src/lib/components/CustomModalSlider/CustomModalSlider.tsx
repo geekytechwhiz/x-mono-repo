@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import ClearIcon from "@mui/icons-material/Clear";
 import { Box, Button, Modal, Typography } from "@mui/material";
+import { formCroppedUrl, getFormattedImageUrl } from "@platformx/utilities";
 import React from "react";
-import Slider from "../Slider/Slider";
 import "../../Style.css";
-import { getFormattedImageUrl } from "@platformx/utilities";
+import Slider from "../Slider/Slider";
 import VideoPlayer from "../VideoPlayers/VideoPlayer";
-import { formCroppedUrl } from "@platformx/utilities";
 import { useCustomStyle } from "./CustomModalSlider.style";
 
 const CustomModalSlider = ({
@@ -30,7 +29,7 @@ const CustomModalSlider = ({
   const settings = {
     sliderName: ".slider-nav",
     infinite: true,
-    initialIndex: indexPos ? indexPos > 0 ? indexPos : 0 : 0,
+    initialIndex: indexPos ? (indexPos > 0 ? indexPos : 0) : 0,
     showThumb: true,
   };
   return (

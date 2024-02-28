@@ -244,8 +244,8 @@ AnimationOnPageScroll.defaultProps = {
   },
   authoringHelper: {
     innerRef: null,
-    sendStructureDataToAuthoringCB: () => { },
-    openButtonEditWindowInAuthoringCB: () => { },
+    sendStructureDataToAuthoringCB: () => {},
+    openButtonEditWindowInAuthoringCB: () => {},
     selectedButtonNameForEditing: "",
     isEditing: false,
     buttonRef: null,

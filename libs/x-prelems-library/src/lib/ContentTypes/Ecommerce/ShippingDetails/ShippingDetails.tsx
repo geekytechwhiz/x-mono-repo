@@ -32,7 +32,7 @@ type ShippingDetailsProps = {
 
 const ShippingDetails = ({
   secondaryArgs = {},
-  cartCountUpdate = () => { },
+  cartCountUpdate = () => {},
 }: ShippingDetailsProps) => {
   const { t, i18n } = useTranslation();
   const classes = useCustomStyle();

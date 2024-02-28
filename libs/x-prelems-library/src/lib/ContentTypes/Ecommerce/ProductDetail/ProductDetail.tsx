@@ -15,7 +15,7 @@ import ProductDisplay from "./SharedComponents/ProductDisplay";
 const ProductDetail = ({
   productId = "",
   secondaryArgs = {},
-  cartCountUpdate = () => { },
+  cartCountUpdate = () => {},
   showAdditionalDetails = true,
 }: any) => {
   const { t, i18n } = useTranslation();
