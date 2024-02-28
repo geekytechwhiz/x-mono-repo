@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+import { Box, ThemeProvider } from "@mui/material";
 import { fetchContentData } from "@platformx/authoring-apis";
 import { ErrorBoundary, PrelemTheme, getSecondaryArgs } from "@platformx/utilities";
 import { useEffect, useState } from "react";
@@ -11,10 +10,12 @@ export function QuizMfe({ contentType, id, langCode, host }: QuizMfeProps) {
   const [pageData, setPageData] = useState({} as any);
 
   useEffect(() => {
-    fetchContentData(contentType, id, langCode, host).then((res) => {
-      setPageData(res?.data?.data?.fetchQuizContent);
-    });
-  }, []);
+    if (contentType && id) {
+      fetchContentData(contentType, id, langCode, host).then((res) => {
+        setPageData(res?.data?.data?.fetchQuizContent);
+      });
+    }
+  }, [contentType, id]);
   const { ref } = useInView({
     /* Optional options */
     threshold: 0,

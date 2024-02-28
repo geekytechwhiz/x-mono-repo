@@ -1,26 +1,16 @@
 import { Dashboard } from "@platformx/dashboard";
-import { CreateUser, UserListing } from "@platformx/user-management";
-// import PrelemComponent from "../components/PrelemLibrary/PrelemComponent";
-import { CreateContent } from "@platformx/content";
-import { SitePage } from "@platformx/site-page";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
-import { XPoll } from "@platformx/x-poll";
+import NavTreeCreation from "@platformx/nav-menu";
+
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
+import { UserListing } from "@platformx/user-management";
+import { WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
-  // {
-  //   path: "/",
-  //   element: (
-  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-  //       {" "}
-  //       <Dashboard />{" "}
-  //     </ProtectedRoute>
-  //   ),
-  // },
   {
-    path: "/dashboard",
-    // element: <Dashboard />,
+    path: "/",
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
         {" "}
@@ -28,6 +18,70 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/article",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='article'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/quiz",
+    element: (
+      <ProtectedRoute category='content' subCategory='quiz' name='quiz'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/poll",
+    element: (
+      <ProtectedRoute category='content' subCategory='article' name='poll'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/event",
+    element: (
+      <ProtectedRoute category='content' subCategory='event' name='event'>
+        {" "}
+        <Content></Content>{" "}
+      </ProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/site-page",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
+        {" "}
+        <Dashboard />{" "}
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/page-list",
+    element: (
+      <ProtectedRoute category='page-list' subCategory='page-list' name='page-list'>
+        {" "}
+        {/* <XImageRender />{" "} */}
+      </ProtectedRoute>
+    ),
+  },
+
   // {
   //   path: "/prelem",
   //   element: (
@@ -41,55 +95,55 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
+  // {
+  //   path: "/Sitepage",
+  //   element: (
+  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
+  //       {" "}
+  //       {/* <SitePage />{" "} */}
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/user-management/user-list",
+  //   element: (
+  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
+  //       {" "}
+  //       <UserListing></UserListing>
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-list",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowManagement />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/workflow/workflow-details",
+  //   element: (
+  //     <ProtectedRoute name='article' subCategory='article' category='content'>
+  //       <WorkflowDetails />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "user-management/user-create",
+  //   element: (
+  //     <ProtectedRoute
+  //       name='user'
+  //       category='UserManagement'
+  //       subCategory=''
+  //       isHeader={false}
+  //       isSideBar={false}>
+  //       <CreateUser />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
-    path: "/Sitepage",
-    element: (
-      <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-        {" "}
-        <SitePage />{" "}
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/user-management/user-list",
-    element: (
-      <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-        {" "}
-        <UserListing></UserListing>
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/workflow/workflow-list",
-    element: (
-      <ProtectedRoute name='article' subCategory='article' category='content'>
-        <WorkflowManagement />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/workflow/workflow-details",
-    element: (
-      <ProtectedRoute name='article' subCategory='article' category='content'>
-        <WorkflowDetails />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "user-management/user-create",
-    element: (
-      <ProtectedRoute
-        name='user'
-        category='UserManagement'
-        subCategory=''
-        isHeader={false}
-        isSideBar={false}>
-        <CreateUser />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/content/create",
+    path: "/content/create/*",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -97,13 +151,64 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/poll",
+    path: "/navtree",
     element: (
-      <ProtectedRoute name='poll' subCategory='poll' category='content'>
-        <XPoll contentType='poll' id='jio-users-1705996546088' langCode='en' host='localhost' />
+      <ProtectedRoute
+        name='navigation'
+        category='menu'
+        subCategory=''
+        isSideBar={false}
+        isHeader={false}>
+        <NavTreeCreation />
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/content/preview",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+        <ContentPreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
+
+  // {
+  //   path: "/site-setting/media-handle",
+  //   element: (
+  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+  //       <MediaHandle />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/global-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <GlobalSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/feature-flag",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <FeatureFlagSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
@@ -112,18 +217,36 @@ export const routes: RouteConfig[] = [
   // {
   //   path: "/dashboard",
   //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
-
-  // },
-  // {
-  //   path: "content/article",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <Content />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/error",
-  //   element: <Error errorCode={404} errorMessage="Page not found" />,
-  // }
+  {
+    path: "/content/vod",
+    element: (
+      <ProtectedRoute category='content' subCategory='vod' name='vod'>
+        <Content></Content>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/sitepage",
+    element: (
+      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
+        <Content />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/workflow/workflow-list",
+    element: (
+      <ProtectedRoute category='Workflow' subCategory='' name='workflow-list'>
+        <WorkflowManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/user-management/user-list",
+    element: (
+      <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
+        <UserListing />
+      </ProtectedRoute>
+    ),
+  },
 ];
