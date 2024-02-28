@@ -1,11 +1,11 @@
+import { CreateSpace } from "@platformx/community";
+import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
-import { Content, ContentPreview, CreateContent } from "@platformx/content";
-import { CreateCourse } from "@platformx/course"; 
 import { SitePage } from "@platformx/site-page";
-import { CreateSpace } from "@platformx/community";
 import { CreateUser, UserListing } from "@platformx/user-management";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management"; 
+import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
@@ -290,6 +290,19 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
         <UserListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute
+        name='quiz'
+        subCategory='quiz'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateContent />
       </ProtectedRoute>
     ),
   },
