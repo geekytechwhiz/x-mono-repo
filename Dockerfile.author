@@ -24,9 +24,13 @@ COPY . /server
 
 # install dependencies
 RUN npm install -g @nrwl/nx
+
+# Set higher memory limit for Node.js
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 RUN npm install --force
-# start app
-ENV NODE_OPTIONS="--max_old_space_size=8192"
+
+# start app 
 RUN npx nx build authoring-web --verbose
 
 EXPOSE 3000
