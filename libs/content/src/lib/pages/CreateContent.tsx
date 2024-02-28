@@ -12,15 +12,19 @@ export const CreateContent = () => {
   switch (contentType) {
     case "profile":
       return <DynamicContentType contentType={contentType}></DynamicContentType>;
+
     case "quiz":
       return <CreateQuiz></CreateQuiz>;
-    case "article":
-      return <CreateArticle />;
+
     case "event":
       return <CreateEvent />;
 
     case "course":
       return <CreateCourse></CreateCourse>;
+
+    case "article":
+      return <CreateArticle />;
+
     default:
       return <>DynamicContent</>;
   }
