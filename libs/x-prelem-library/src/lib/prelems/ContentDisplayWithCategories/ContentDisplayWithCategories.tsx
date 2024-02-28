@@ -1,31 +1,30 @@
-/* eslint-disable no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, CardMedia, Container, Grid, Typography } from "@mui/material";
-import {
-  Analytics,
-  ArrowAnimated,
-  Business,
-  Fashion,
-  Lifestyle,
-  SecondaryArgs,
-  Sports,
-  TechNews,
-  Travel,
-  getImage,
-  getLandingPageURL,
-  noResults,
-} from "@platformx/utilities";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import prelemTypes from "../../globalStyle";
+import {
+  getImage,
+  getLandingPageURL,
+  Business,
+  Fashion,
+  Lifestyle,
+  Sports,
+  TechNews,
+  Travel,
+  ArrowAnimated,
+  Analytics,
+  SecondaryArgs,
+  noResults,
+} from "@platformx/utilities";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import "./ContentDisplayWithCategories.css";
+import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContentDisplayWithCategories.style";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
 const ContentDisplayWithCategories = ({
   content,

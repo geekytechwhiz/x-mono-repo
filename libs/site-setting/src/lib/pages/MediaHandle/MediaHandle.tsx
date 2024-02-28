@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-shadow */
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -6,24 +8,20 @@ import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 import {
   BasicSwitch,
+  TextBox,
   ShowToastSuccess,
   useUserSession,
+  PlateformXDialog,
   Loader,
   PictureIcon,
-  PlateformXDialogSuccess,
 } from "@platformx/utilities";
-import { CreateHeader } from "@platformx/content";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
 import { userMediaHanleStyle } from "./MediaHandle.style";
-import { DamContentGallery } from "@platformx/x-image-render";
-import CustomTextBox from "../../components/CustomTextBox";
-import { usePostImageCrop } from "libs/x-image-render/src/lib/hooks/usePostImageCrop";
 
 export const MediaHandle: React.FC = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
-  const { postRequest } = usePostImageCrop();
   const currentMediaHandleIndex = useRef<number | null>(null);
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const toastMessage = useRef<string | null>(null);
@@ -39,37 +37,15 @@ export const MediaHandle: React.FC = () => {
     media_url: string;
     errorMessage: string;
     enable: string;
-    media_name: string;
   }
 
   const initForm = (list: FormItem[]) =>
     (list || []).map((item) => ({
       ...item,
       value: JSON.parse(item.enable),
-      name: item.media_name,
       errorMessage: "",
     }));
   const [form, setForm] = useState<FormItem[]>([]);
-
-  const noCropCallBack = (data) => {
-    const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
-    const cloneForm = [...form];
-    cloneForm[currentMediaHandleIndex.current!].icon_image = relativeUrl;
-    setForm([...cloneForm]);
-  };
-
-  const handleSelectedImage = async (image) => {
-    try {
-      const payload = {
-        bitstreamId: image.bitStreamId,
-        visibility: "public",
-      };
-
-      await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack, image);
-    } catch (error) {
-      // showToastError(t("api_error_toast"));
-    }
-  };
 
   const toggleGallery = (toggleState: boolean) => {
     setGalleryState(toggleState);
@@ -82,7 +58,7 @@ export const MediaHandle: React.FC = () => {
   const navigate = useNavigate();
 
   const switchChange = (controlName: string) => {
-    const control = form.find((contro) => contro?.name === controlName);
+    const control = form.find((control) => control?.name === controlName);
     if (!control) return;
     control.value = !control.value;
     setForm([...form]);
@@ -116,7 +92,7 @@ export const MediaHandle: React.FC = () => {
       },
     };
     publishMediaHanle(input)
-      .then(() => {
+      .then((response) => {
         toastMessage.current = "media_settings_success";
         setIsSuccessPopup(true);
       })
@@ -175,31 +151,7 @@ export const MediaHandle: React.FC = () => {
     <>
       {!galleryState && (
         <Box className={classes.pageContainer}>
-          <CreateHeader
-            createText={t("media_handle")}
-            handleReturn={() => {
-              navigate("/dashboard");
-            }}
-            isQuiz
-            hasPublishButton={true}
-            hasPreviewButton={false}
-            hasSaveButton={false}
-            saveText={t("update")}
-            handelPreview={() => {
-              /* your function code */
-            }}
-            handlePublish={onSave}
-            handleSaveOrPublish={onSave}
-            previewText='Preview'
-            showPreview={false}
-            toolTipText='Unable to preview please add required details'
-            saveVariant='contained'
-            category={"content"}
-            subCategory={"quiz"}
-            isFeatured={false}
-          />
           <Divider />
-
           <Grid container className={classes.contentContainer}>
             {isLoading && <Loader />}
             {form.map((control, index) => (
@@ -255,7 +207,7 @@ export const MediaHandle: React.FC = () => {
                     )}
                   </Box>
                   <Box className={classes.textBox}>
-                    <CustomTextBox
+                    <TextBox
                       name='title'
                       state={control?.media_url}
                       handleChange={(event) => handleTextChange(event, control?.name)}
@@ -265,7 +217,7 @@ export const MediaHandle: React.FC = () => {
               </Fragment>
             ))}
             {isSuccessPopup && (
-              <PlateformXDialogSuccess
+              <PlateformXDialog
                 isDialogOpen={isSuccessPopup}
                 title={t("congratulations")}
                 subTitle={`${t("media_settings_success")}`}
@@ -281,14 +233,17 @@ export const MediaHandle: React.FC = () => {
         </Box>
       )}
       {galleryState && (
-        <DamContentGallery
-          handleImageSelected={handleSelectedImage}
-          toggleGallery={toggleGallery}
-          assetType='Image'
-          keyName=''
-          dialogOpen={galleryState}
-        />
+        <Box className={classes.galleryBox}>
+          {/* <DamContentGallery
+            handleImageSelected={handleSelectedImage}
+            toggleGallery={toggleGallery}
+            assetType={galleryType.current === "Images" ? "Image" : "Video"}
+            keyName={key}
+          /> */}
+        </Box>
       )}
     </>
   );
 };
+
+//export default MediaHandle;

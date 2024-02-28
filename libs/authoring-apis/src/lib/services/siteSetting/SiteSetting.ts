@@ -2,17 +2,6 @@
 import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import {
-  FETCH_ADMIN_DOMAIN,
-  FETCH_COOKIE_POLICY,
-  FETCH_COUNTRY,
-  FETCH_FOOTER_SETTING,
-  FETCH_GLOBAL_SETTING,
-  FETCH_HEADER_SETTING,
-  FETCH_MEDIA_HANDLE,
-  FETCH_MULTISITE_LISTING,
-  FETCH_USER_SITE,
-} from "../../graphQL/queries/siteSettingQueries";
-import {
   PUBLISH_COOKIE_SETTING,
   PUBLISH_FOOTER_SETTING,
   PUBLISH_GLOBAL_SETTING,
@@ -24,6 +13,18 @@ import {
   UPDATE_HEADER_SETTING,
   UPDATE_MEDIA_HANDLE,
 } from "../../graphQL/mutations/siteSettingMutations";
+import {
+  FETCH_ADMIN_LIST,
+  FETCH_COOKIE_POLICY,
+  FETCH_COUNTRY,
+  FETCH_DOMAIN_LIST,
+  FETCH_FOOTER_SETTING,
+  FETCH_GLOBAL_SETTING,
+  FETCH_HEADER_SETTING,
+  FETCH_MEDIA_HANDLE,
+  FETCH_MULTISITE_LISTING,
+  FETCH_USER_SITE,
+} from "../../graphQL/queries/siteSettingQueries";
 import { ApiResponse } from "../../utils/types";
 
 export const fetchFooterSetting = async <T>(input: T): Promise<any> => {
@@ -268,10 +269,22 @@ export const fetchMultisiteListing = async <T>(input: T): Promise<ApiResponse<T>
   }
 };
 
-export const fetchAdminDomainList = async <T>(): Promise<ApiResponse<T>> => {
+export const fetchDomainList = async <T>(): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.query({
-      query: FETCH_ADMIN_DOMAIN,
+      query: FETCH_DOMAIN_LIST,
+    });
+    return data;
+  } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
+};
+
+export const fetchAdminList = async <T>(): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_ADMIN_LIST,
     });
     return data;
   } catch (err: any) {

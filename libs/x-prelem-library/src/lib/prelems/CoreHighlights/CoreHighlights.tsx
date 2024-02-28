@@ -1,20 +1,20 @@
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import React, { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import ImageRender from "../../components/ImageRender";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
-  SecondaryArgs,
   formCroppedUrl,
   handleHtmlTags,
+  SecondaryArgs,
 } from "@platformx/utilities";
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import ImageRender from "../../components/ImageRender";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./CoreHighlights.style";
+import prelemTypes from "../../globalStyle";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 // ts-ignore
 const CoreHighlights = ({
@@ -82,7 +82,7 @@ CoreHighlightsProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

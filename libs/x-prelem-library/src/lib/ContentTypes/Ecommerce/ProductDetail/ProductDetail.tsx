@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../../utils/service/i18n";
+import "libs/utilities/src/lib/utils/i18next";
 import { useTranslation } from "react-i18next";
 import { Grid, Box } from "@mui/material";
 import { nullToObject, nullToString } from "@platformx/utilities";

@@ -1,4 +1,4 @@
-import { getRestApiCall, nullToObject } from "@platformx/utilities";
+import { getRestApiCall, nullToObject } from "../../utils/helperFns";
 
 export const getProductDetails = (inputData: any, secondaryArgs: any) => {
   const { prelemBaseEndpoint: { deliveryEndPoint = "", language = "en" } = {}, sitename = "" } =

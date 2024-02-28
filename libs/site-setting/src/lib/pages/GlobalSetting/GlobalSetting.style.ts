@@ -38,10 +38,6 @@ export const useGlobalSettingStyle = makeStyles((theme) => ({
     borderColor: "#D9DBE9",
     backgroundColor: "#FCFCFC",
     overflow: "hidden",
-    marginTop: "10px",
-  },
-  containertypo: {
-    marginTop: "10px !important",
   },
   globalimg: {
     width: "45px",
@@ -60,14 +56,5 @@ export const useGlobalSettingStyle = makeStyles((theme) => ({
   },
   marginTop5px: {
     marginTop: "5px",
-  },
-  btnbox: {
-    marginTop: "10px !important",
-    height: "50px !important",
-    marginRight: "15px !important",
-    display: "none",
-  },
-  btnboxnew: {
-    display: "flex",
   },
 }));

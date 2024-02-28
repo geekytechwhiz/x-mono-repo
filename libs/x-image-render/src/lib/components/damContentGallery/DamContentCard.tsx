@@ -6,7 +6,14 @@ import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderComponent from "./LoaderComponent";
 
-const DamContentCard = ({ fetchMoreData, isLazyLoad, isLoading, data, setImageData }) => {
+const DamContentCard = ({
+  fetchMoreData,
+  isLazyLoad,
+  isLoading,
+  data,
+  setImageData,
+  imageData,
+}) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(null);
 
   const handleSelectCard = (index) => {
@@ -30,6 +37,7 @@ const DamContentCard = ({ fetchMoreData, isLazyLoad, isLoading, data, setImageDa
           content={item}
           isLoading={isLoading}
           setImageData={setImageData}
+          imageData={imageData}
           selectedCardIndex={selectedCardIndex}
           onSelectCard={() => handleSelectCard(item.uuid)}
         />

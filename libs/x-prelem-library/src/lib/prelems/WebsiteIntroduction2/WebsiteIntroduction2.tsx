@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";

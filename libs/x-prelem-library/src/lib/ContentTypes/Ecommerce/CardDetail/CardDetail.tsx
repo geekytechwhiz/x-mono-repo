@@ -9,7 +9,7 @@ import SubTotal from "../ShippingDetails/SubTotal/SubTotal";
 import Confirmation from "../Common/Confirmation/Confirmation";
 import "libs/utilities/src/lib/utils/i18next";
 import { useCustomStyle } from "./CardDetail.style";
-import { SuccessIconGif } from "@platformx/utilities";
+import { ordersuccess as SuccessIcon } from "@platformx/utilities";
 
 const CardDetail = ({ secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -64,7 +64,7 @@ const CardDetail = ({ secondaryArgs }: any) => {
       {confirm && (
         <Confirmation
           open={true}
-          img={SuccessIconGif}
+          img={SuccessIcon}
           handleClose={handleClose}
           text={t("order_success")}
           title={t("order_placed")}

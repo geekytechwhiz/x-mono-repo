@@ -26,7 +26,7 @@ type Sharetype = {
 const Share = (props: Sharetype) => {
   const theme = useTheme();
   const { shareUrl = "", domainUrl = "", enablePreview } = nullToObject(props);
-  const ShareCount = (shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>;
+  // const ShareCount = (shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>;
   /**
    * back ground color will change based on their own brand based
    * @param bgColor string default black
@@ -130,8 +130,8 @@ const Share = (props: Sharetype) => {
             src={IconFacebookSvg}
             style={{ ...imgCommon() }}
           />
-          {/* {(shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>} */}
-          <ShareCount />
+          {(shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>}
+          {/* <ShareCount /> */}
         </Box>
       </FacebookShareButton>
 

@@ -6,7 +6,14 @@ import { ImageIcon, VODIcon } from "@platformx/utilities";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import useContentGlleryStyle from "./DamContentGllery.style";
 
-const ContentTypeCard = ({ content, isLoading, selectedCardIndex, onSelectCard, setImageData }) => {
+const ContentTypeCard = ({
+  content,
+  isLoading,
+  selectedCardIndex,
+  onSelectCard,
+  setImageData,
+  imageData,
+}) => {
   const minCss = `
     .singlebr {
       display: -webkit-box;

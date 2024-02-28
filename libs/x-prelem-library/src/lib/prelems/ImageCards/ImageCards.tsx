@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import ImageRender from "../../components/ImageRender";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ImageCards.style";
+import prelemTypes from "../../globalStyle";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import ImageRender from "../../components/ImageRender";
 
 const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: ImageCardsProp) => {
   const firstRender = useRef(true);

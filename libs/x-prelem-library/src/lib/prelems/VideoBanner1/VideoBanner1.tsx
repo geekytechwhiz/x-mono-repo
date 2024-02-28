@@ -9,7 +9,7 @@ import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 import { Analytics, AuthoringHelper } from "@platformx/utilities";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
-  const [, setVal] = useState(1);
+  const [val, setVal] = useState(1);
   const scrollRef = useRef("DOWN");
   const scrollValueRef = useRef(1);
   const { ref, inView } = useInView({

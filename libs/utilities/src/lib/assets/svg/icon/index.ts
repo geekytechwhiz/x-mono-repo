@@ -26,14 +26,6 @@ import AwardsWinnerCompanyIcon from "./AwardsWinnerCompany.svg";
 import PrelemsDeployedIcon from "./PrelemsDeployed.svg";
 import ProjectsCompletedIcon from "./ProjectsCompletedIcon.svg";
 import ServiceCard2Background from "./ServiceCard2Background.svg";
-import IconFbSvg from "./FaceBookIcon.svg";
-import IconGoogleSvg from "./Gplus.svg";
-import IconNextSvg from "./next.svg";
-import IconPrevSvg from "./prev.svg";
-import IconVisaCardSvg from "./VisaCard.svg";
-import IconMasterCardSvg from "./MasterCard.svg";
-import IconDelete1svg from "./Delete1.svg";
-import SearchIcon from "./SearchIcon.svg";
 
 export {
   MaskImg,
@@ -64,12 +56,4 @@ export {
   PrelemsDeployedIcon,
   ProjectsCompletedIcon,
   ServiceCard2Background,
-  IconFbSvg,
-  IconGoogleSvg,
-  IconNextSvg,
-  IconPrevSvg,
-  IconVisaCardSvg,
-  IconMasterCardSvg,
-  IconDelete1svg,
-  SearchIcon,
 };

@@ -1,4 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
+import React, { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import ImageRender from "../../components/ImageRender";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
@@ -6,15 +10,11 @@ import {
   formCroppedUrl,
   handleHtmlTags,
 } from "@platformx/utilities";
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import ImageRender from "../../components/ImageRender";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./InfoBox.style";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import prelemTypes from "../../globalStyle";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 // ts-ignore
 const InfoBox = ({
@@ -100,7 +100,7 @@ InfoBoxProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

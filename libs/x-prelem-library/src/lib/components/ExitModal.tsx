@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import React from "react";
-import { DialogCloseIcon, DeleteIcon } from "@platformx/utilities";
+import { DialogCloseIcon, PopupDeleteIcon } from "@platformx/utilities";
 import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
 
@@ -75,7 +75,7 @@ export default function ExitModal({
             <img src={DialogCloseIcon} alt='' />
           </IconButton>
           <Box className='BoxImage'>
-            <img src={DeleteIcon} alt='' />
+            <img src={PopupDeleteIcon} alt='' />
           </Box>
           {title ? (
             <DialogTitle className='BoxDialogTitle' id='alert-dialog-title' variant='h4bold'>

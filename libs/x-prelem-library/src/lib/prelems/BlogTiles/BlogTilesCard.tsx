@@ -1,5 +1,7 @@
-/* eslint-disable no-unused-vars */
 import { Box, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import axios from "axios";
+import { format } from "date-fns";
+import React, { useEffect, useState } from "react";
 import {
   Analytics,
   SecondaryArgs,
@@ -7,12 +9,9 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
 } from "@platformx/utilities";
-import axios from "axios";
-import { format } from "date-fns";
-import { useEffect, useState } from "react";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import { getIcon } from "../../components/Utils/helperFns";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
+import { getIcon } from "../../components/Utils/helperFns";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
 const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTilesCardProps) => {
   const [modalStatus, setModalStatus] = useState(false);

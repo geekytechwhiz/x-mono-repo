@@ -11,11 +11,11 @@ import {
   PreviewNewIcon,
   SubmitButton,
   Timer,
-  WorkflowHistoryIcon,
   XToolTip,
   enableReferBack,
   useAccess,
 } from "@platformx/utilities";
+import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useStyles } from "./CreateHeader.style";
@@ -40,7 +40,6 @@ export const CreateHeader = ({
   category,
   subCategory,
   workflow,
-  // setEnableWorkflowHistory,
   hasTimerState,
   lastModifiedDate,
   createComment,

@@ -5,13 +5,8 @@ WORKDIR /server
 # copy source files
 COPY . /server
 # install dependencies
-# Install Python and other necessary build tools
-RUN apk add --no-cache python2 make g++
-
-RUN npm cache clean --force 
-# Install global packages
+# RUN npm cache clean --force 
 RUN npm install -g @nrwl/nx
-# Install project dependencies
 RUN npm install --legacy-peer-deps
 # start app
 ENV NODE_OPTIONS="--max_old_space_size=8192"

@@ -20,15 +20,6 @@ import GreenTick from "./greenTick.png";
 import IconLinkedInSvg from "./linkedin.png";
 import DottedRound from "./mask-dotted.png";
 import Shopping_bag from "./shopping_bag.png";
-import SignUpSvg from "./signUp.png";
-import Xlogo from "./logo.png";
-import CoinIcon from "./coin.png";
-import ChangePasswordImg from "./changepassword.png";
-import RoyalIcon from "./RoyalAntwerp.png";
-import OGCIcon from "./OGC.png";
-import AZIcon from "./AZ.png";
-import CoinImage from "./CoinImage.png";
-import LoyalityPointIcon from "./LoyalityPointIcon.png";
 
 export {
   Awards,
@@ -53,13 +44,4 @@ export {
   Shopping_bag,
   Testimonial,
   TestimonialImg,
-  SignUpSvg,
-  Xlogo,
-  CoinIcon,
-  ChangePasswordImg,
-  RoyalIcon,
-  OGCIcon,
-  AZIcon,
-  CoinImage,
-  LoyalityPointIcon,
 };

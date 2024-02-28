@@ -1,4 +1,11 @@
 import { Box, Container, Typography } from "@mui/material";
+import DOMPurify from "isomorphic-dompurify";
+import React, { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
+import ImageRender from "../../components/ImageRender";
+import "../../Style.css";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
@@ -9,17 +16,10 @@ import {
   nullToString,
   structureDataUrlPoint,
 } from "@platformx/utilities";
-import DOMPurify from "isomorphic-dompurify";
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
-import ImageRender from "../../components/ImageRender";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContactUs.style";
+import prelemTypes from "../../globalStyle";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 // ts-ignore
 const ContactUs = ({
@@ -124,7 +124,7 @@ ContactUsProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
-import { Button, Divider, Grid, Typography } from "@mui/material";
+import { Button, Divider, Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
@@ -11,7 +11,6 @@ import {
   publishGlobalSetting,
   updateGlobalSetting,
 } from "@platformx/authoring-apis";
-import { CreateHeader } from "@platformx/content";
 import GlobalHeaderbreadscum from "../../components/GlobalHeaderbreadscum";
 
 import { useGlobalSettingStyle } from "./GlobalSetting.style";
@@ -20,15 +19,12 @@ import {
   CommonBoxWithNumber,
   ShowToastError,
   useUserSession,
+  PlateformXDialog,
   GlobalImageIcon,
   GlobalVideoIcon,
   GlobalMiscIcon,
-  PlateformXDialogSuccess,
 } from "@platformx/utilities";
 import { Loader } from "../../../../../utilities/src";
-import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
-import PlateformXStoryDialog from "./StoryTagsmodal";
-import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 
 const iconImages = [
   {
@@ -64,14 +60,12 @@ export const GlobalSetting = () => {
     lastModifiedBy: "",
   });
   const imagesRef = useRef<HTMLElement>(null);
-  // const videosRef = useRef<HTMLElement>(null);
-  // const miscellaneousRef = useRef<HTMLElement>(null);
+  const videosRef = useRef<HTMLElement>(null);
+  const miscellaneousRef = useRef<HTMLElement>(null);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const scrollDebounceRef = useRef<any>(null);
-  const [srollToView] = useState<any>();
+  const [srollToView, setsrollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
-  const [tagValue, setTagValue] = useState(false);
-  const [contentValue, setContentValue] = useState(false);
 
   const [getSession] = useUserSession();
   const [isLoading, setIsLoading] = useState(false);
@@ -204,36 +198,34 @@ export const GlobalSetting = () => {
   const classes = useGlobalSettingStyle();
   return (
     <>
-      <CreateHeader
-        createText={t("global_setting")}
-        handleReturn={() => {
+      {/* <CreateHeader
+        createText={
+          t("global_setting")
+        }
+        returnBack={() => {
           navigate("/dashboard");
         }}
         isQuiz
-        hasPublishButton={true}
-        hasPreviewButton={false}
-        hasSaveButton={false}
-        saveText={t("update")}
-        handelPreview={() => {
-          /* your function code */
-        }}
-        handlePublish={onSaveClick}
-        handleSaveOrPublish={onSaveClick}
+        publishButton={true}
+        previewButton={false}
+        saveButton={false}
+        handelPreview={false}
+        saveText={t('done')}
+        saveorPublish={onSaveClick}
         previewText='Preview'
         showPreview={false}
         toolTipText='Unable to preview please add required details'
         saveVariant='contained'
-        category={"content"}
-        subCategory={"quiz"}
-        isFeatured={false}
-      />
+        category={'content'}
+        subCategory={'quiz'}
+      /> */}
       <Divider />
       <Box className={classes.globalnewcontain}>
-        <ContentPageScroll
-          icons={iconImages}
-          parentToolTip={parentToolTip}
-          srollToView={srollToView}
-        />
+        {/* <QuizPageScroll
+            icons={iconImages}
+            parentToolTip={parentToolTip}
+            srollToView={srollToView}
+          /> */}
       </Box>
 
       <Box className={classes.pageContainer} id='scrollableDiv'>
@@ -243,18 +235,18 @@ export const GlobalSetting = () => {
 
             <CommonBoxWithNumber
               number='01'
-              title={t("Assets Picker Images")}
+              title={t("images")}
               subTitle={t("subhead")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
-              <Typography variant='h5medium' className={classes.containertypo}>
-                Images
-              </Typography>
               {form.image?.map((image, i) => (
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box className={classes.btnboxnew}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                        }}>
                         <Box className={classes.globalimg}>
                           <img src={GlobalImageIcon} alt='Globalimageicon' />
                         </Box>
@@ -263,51 +255,16 @@ export const GlobalSetting = () => {
                         </Box>
                       </Box>
                       <Box>
-                        <Button className={classes.btnbox} variant='outlined' disabled>
-                          {t("view")}
-                        </Button>
-                      </Box>
-                    </Box>
-                  </Grid>
-                </Grid>
-              ))}
-              <Typography className={classes.containertypo}>Videos</Typography>
-              {form.video?.map((video, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
-                  <Grid item xs={12}>
-                    <Box className={classes.globalContainer}>
-                      <Box className={classes.btnboxnew}>
-                        <Box sx={{ padding: "14px" }} className={classes.globalimg}>
-                          <img src={GlobalVideoIcon} alt='Globalimageicon' />
-                        </Box>
-                        <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={video} />
-                        </Box>
-                      </Box>
-                      <Box>
-                        <Button className={classes.btnbox} variant='outlined' disabled>
-                          {t("view")}
-                        </Button>
-                      </Box>
-                    </Box>
-                  </Grid>
-                </Grid>
-              ))}
-              <Typography className={classes.containertypo}>Miscellaneous</Typography>
-              {form.misc?.map((misc, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
-                  <Grid item xs={12}>
-                    <Box className={classes.globalContainer}>
-                      <Box className={classes.btnboxnew}>
-                        <Box className={classes.globalimg}>
-                          <img src={GlobalMiscIcon} alt='Globalimageicon' />
-                        </Box>
-                        <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={misc} />
-                        </Box>
-                      </Box>
-                      <Box>
-                        <Button className={classes.btnbox} variant='outlined' disabled>
+                        <Button
+                          sx={{
+                            display: { xs: "none", sm: "block" },
+                            marginTop: "10px",
+                            height: "50px",
+
+                            marginRight: "15px",
+                          }}
+                          variant='outlined'
+                          disabled>
                           {t("view")}
                         </Button>
                       </Box>
@@ -316,53 +273,22 @@ export const GlobalSetting = () => {
                 </Grid>
               ))}
             </CommonBoxWithNumber>
+          </Box>
+          <Box id='videos' ref={videosRef}>
             <CommonBoxWithNumber
               number='02'
-              title={t("My Story Tags")}
+              title={t("videos")}
               subTitle={t("subhead")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
-              <Typography variant='h5medium' className={classes.containertypo}>
-                My Story Tags
-              </Typography>
-              {form.image?.map((image, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
-                  <Grid item xs={12}>
-                    <Box className={classes.globalContainer}>
-                      <Box className={classes.btnboxnew}>
-                        <Box className={classes.globalimg}>
-                          <img src={GlobalImageIcon} alt='Globalimageicon' />
-                        </Box>
-                        <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={image} />
-                        </Box>
-                      </Box>
-                      <Box>
-                        <Button
-                          onClick={() => {
-                            setTagValue(true);
-                          }}
-                          className={classes.btnbox}
-                          variant='outlined'>
-                          {t("Edit")}
-                        </Button>
-                        <PlateformXStoryDialog
-                          isDialogOpen={tagValue}
-                          closeButtonHandle={() => setTagValue(false)}
-                        />
-                      </Box>
-                    </Box>
-                  </Grid>
-                </Grid>
-              ))}
-              <Typography variant='h5medium' className={classes.containertypo}>
-                My Story Contant Type
-              </Typography>
               {form.video?.map((video, i) => (
                 <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
-                      <Box className={classes.btnboxnew}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                        }}>
                         <Box sx={{ padding: "14px" }} className={classes.globalimg}>
                           <img src={GlobalVideoIcon} alt='Globalimageicon' />
                         </Box>
@@ -372,17 +298,59 @@ export const GlobalSetting = () => {
                       </Box>
                       <Box>
                         <Button
-                          onClick={() => {
-                            setContentValue(true);
+                          sx={{
+                            display: { xs: "none", sm: "block" },
+                            marginTop: "10px",
+                            height: "50px",
+
+                            marginRight: "15px",
                           }}
-                          className={classes.btnbox}
-                          variant='outlined'>
-                          {t("Edit")}
+                          variant='outlined'
+                          disabled>
+                          {t("view")}
                         </Button>
-                        <PlateformXStoryContentDialog
-                          isDialogOpen={contentValue}
-                          closeButtonHandle={() => setContentValue(false)}
-                        />
+                      </Box>
+                    </Box>
+                  </Grid>
+                </Grid>
+              ))}
+            </CommonBoxWithNumber>
+          </Box>
+          <Box id='miscellaneous' ref={miscellaneousRef}>
+            <CommonBoxWithNumber
+              number='03'
+              title={t("miscellanious")}
+              subTitle={t("subhead")}
+              titleVarient='p3semibold'
+              subTitleVarient='p4regular'>
+              {form.misc?.map((misc, i) => (
+                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
+                  <Grid item xs={12}>
+                    <Box className={classes.globalContainer}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                        }}>
+                        <Box className={classes.globalimg}>
+                          <img src={GlobalMiscIcon} alt='Globalimageicon' />
+                        </Box>
+                        <Box className={classes.globalbread}>
+                          <GlobalHeaderbreadscum value={misc} />
+                        </Box>
+                      </Box>
+                      <Box>
+                        <Button
+                          sx={{
+                            display: { xs: "none", sm: "block" },
+                            marginTop: "10px",
+                            height: "50px",
+
+                            marginRight: "15px",
+                          }}
+                          variant='outlined'
+                          disabled>
+                          {t("view")}
+                        </Button>
                       </Box>
                     </Box>
                   </Grid>
@@ -394,7 +362,7 @@ export const GlobalSetting = () => {
       </Box>
 
       {showPublishConfirm && (
-        <PlateformXDialogSuccess
+        <PlateformXDialog
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={`${t("global_setting")}${"  "}${t("updated_toast")}`}

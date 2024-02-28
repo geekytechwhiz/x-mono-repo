@@ -6,14 +6,6 @@ import { useNavigate } from "react-router";
 import { useStyles } from "./CardMenu.styles";
 // import EmbedDialog from '@platformx/utilities';
 import {
-  ErrorTooltip,
-  PlateformXDialog,
-  ShowToastError,
-  ShowToastSuccess,
-  convertToLowerCase,
-  getSubDomain,
-  useAccess,
-  DuplicateContentPopup,
   CardOptionApprovalStatusIcon,
   CardOptionCopyUrlIcon,
   CardOptionDeleteIcon,
@@ -23,11 +15,19 @@ import {
   CardOptionShareIcon,
   CardOptionUnPublishIcon,
   CardOptionViewIcon,
-  WorkflowStepper,
+  DuplicateContentPopup,
+  ErrorTooltip,
+  PlateformXDialog,
   PlateformXSocialDialog,
+  ShowToastError,
+  ShowToastSuccess,
+  convertToLowerCase,
+  getSubDomain,
+  useAccess,
 } from "@platformx/utilities";
 
 import { useMediaQuery, useTheme } from "@mui/material";
+import { WorkflowStepper } from "@platformx/workflow-management";
 import { getEmbedTempData, getSocialShareData } from "../../utils/Helper";
 import { MenuActions } from "../CourseMenu/CardMenu.types";
 import EmbedDialog from "../EmbedDialog/EmbedDialog";
@@ -47,7 +47,7 @@ export const QuizPollEventMenu = ({
   view,
   edit,
   fetchContentDetails,
-  sitelist,
+  // sitelist,
   duplicateToSite,
 }: any) => {
   const classes = useStyles();

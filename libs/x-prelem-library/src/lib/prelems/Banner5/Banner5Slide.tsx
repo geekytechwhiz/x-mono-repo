@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
-import EastIcon from "@mui/icons-material/East";
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Typography, Box } from "@mui/material";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import ImageRender from "../../components/ImageRender";
+import EastIcon from "@mui/icons-material/East";
 import "./Banner5.css";
+import ImageRender from "../../components/ImageRender";
 
 const Banner5Slide = ({
   idfortitle,

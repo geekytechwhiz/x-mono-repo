@@ -1,15 +1,14 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Container, Typography } from "@mui/material";
-import { completeButtonUrl, getImg } from "@platformx/utilities";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import { completeButtonUrl, getImg } from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import ImageRender from "../../components/ImageRender";
+import { useCustomStyle } from "./ImageCarousel1.style";
+import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import Slider from "../../components/Slider/Slider";
-import prelemTypes from "../../globalStyle";
-import { useCustomStyle } from "./ImageCarousel1.style";
 
 const ImageCrousel1 = ({
   content,

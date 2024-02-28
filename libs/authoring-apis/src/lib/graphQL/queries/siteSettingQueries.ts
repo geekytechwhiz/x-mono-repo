@@ -102,10 +102,15 @@ export const FETCH_MULTISITE_LISTING = gql`
   }
 `;
 
-export const FETCH_ADMIN_DOMAIN = gql`
-  query FETCH_ADMIN_DOMAIN {
-    admin: authoring_getAdminDomainList(siteConfig: Admin)
-    domain: authoring_getAdminDomainList(siteConfig: Domain)
+export const FETCH_DOMAIN_LIST = gql`
+  query FETCH_DOMAIN_LIST {
+    authoring_getAdminDomainList(siteConfig: Domain)
+  }
+`;
+
+export const FETCH_ADMIN_LIST = gql`
+  query FETCH_ADMIN_LIST {
+    authoring_getAdminDomainList(siteConfig: Admin)
   }
 `;
 

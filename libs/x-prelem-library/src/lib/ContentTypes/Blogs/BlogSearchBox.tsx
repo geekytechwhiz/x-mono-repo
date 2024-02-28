@@ -3,7 +3,7 @@ import { TextField, Autocomplete, Box, InputAdornment } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { debounce, SearchIcon } from "@platformx/utilities";
+import { debounce, BlogSearchIcon } from "@platformx/utilities";
 // import SearchIcon from "assets/svgIcon/SearchIcon.svg";
 import "./BlogSearchBox.css";
 
@@ -117,7 +117,7 @@ function BlogSearchBox({
         }}>
         <img
           alt='searchicon'
-          src={SearchIcon}
+          src={BlogSearchIcon}
           style={{ verticalAlign: "middle", cursor: "pointer" }}
           onClick={searchIconClicked}
         />
@@ -167,7 +167,7 @@ function BlogSearchBox({
             }}
             InputProps={{
               ...params.InputProps,
-              startAdornment: <img alt='searchicon' src={SearchIcon} />,
+              startAdornment: <img alt='searchicon' src={BlogSearchIcon} />,
               endAdornment: (
                 <InputAdornment position='end'>
                   {inputValue && (

@@ -14,7 +14,6 @@ import usePage from "./lib/hooks/usePage/usePage";
 import articleApi from "./lib/services/article/article";
 import assetsApi from "./lib/services/assetsApi/assets.api";
 import authAPI from "./lib/services/auth/auth.api";
-import { createChatGptRequest } from "./lib/services/chatGpt/chatGpt.api";
 import commentsApi from "./lib/services/comments/comments.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
 import contentTypeAPIs, { eventAPIS } from "./lib/services/contentTypes/contentTypes.api";
@@ -31,21 +30,6 @@ import {
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
 import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
-import useAsset from "./lib/hooks/useAsset/useAsset";
-
-export * from "./lib/services/SiteCreation/SiteCreation.api";
-export * from "./lib/services/siteSetting/SiteSetting";
-export * from "./lib/graphQL/queries/pageQueries";
-export * from "./lib/graphQL/queries/prelemQueries";
-export * from "./lib/utils/constants";
-export * from "./lib/services/prelems/prelems.api";
-export * from "./lib/services/page/page.api";
-export * from "./lib/context/actionContext/ActionContext.types";
-export * from "./lib/graphQL/queries/pageQueries";
-export * from "./lib/graphQL/queries/prelemQueries";
-export * from "./lib/hooks/useComment/useComment";
-export * from "./lib/services/siteSetting/SiteSetting";
-export * from "./lib/utils/constants";
 
 export * from "./lib/context/actionContext/ActionContext.types";
 export * from "./lib/graphQL/queries/pageQueries";
@@ -53,10 +37,10 @@ export * from "./lib/graphQL/queries/prelemQueries";
 export * from "./lib/graphQL/queries/tagQueries";
 export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
-export * from "./lib/services/contentGallery/contentGallery.api";
 export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";
+export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/utils/constants";
 export * from "./lib/hooks";
@@ -78,7 +62,6 @@ export {
   commentsApi,
   contentTypeAPIs,
   contentTypeSchemaApi,
-  createChatGptRequest,
   createPgModel,
   dashboardApi,
   eventAPIS,
@@ -97,5 +80,4 @@ export {
   usePage,
   userManagementAPI,
   workflowApi,
-  useAsset,
 };

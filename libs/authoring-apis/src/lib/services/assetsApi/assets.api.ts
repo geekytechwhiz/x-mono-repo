@@ -1,4 +1,5 @@
 /* eslint-disable no-useless-catch */
+import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import {
   CREATE_COLLECTION,
@@ -7,8 +8,6 @@ import {
   FETCH_COMMUNITY_COLLECTION,
   FETCH_CONTENT,
   GET_FACET,
-  FETCH_COLLECTION_ITEM,
-  DELETE_COMMUNITY,
 } from "../../graphQL/queries/assetQueries";
 
 const assetsApi = {
@@ -21,7 +20,7 @@ const assetsApi = {
       });
       return data;
     } catch (err: any) {
-      throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -34,18 +33,7 @@ const assetsApi = {
       });
       return data;
     } catch (err: any) {
-      throw err;
-    }
-  },
-  deleteCommunity: async <T>(input: T): Promise<any> => {
-    try {
-      const { data } = await graphqlInstance.mutate({
-        mutation: DELETE_COMMUNITY,
-        variables: input,
-      });
-      return data;
-    } catch (err: any) {
-      throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -58,7 +46,7 @@ const assetsApi = {
       });
       return data;
     } catch (err: any) {
-      throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -84,21 +72,7 @@ const assetsApi = {
       });
       return data;
     } catch (err: any) {
-      throw err;
-    }
-  },
-
-  fetchCollectionItem: async <T>(input: T, reload: boolean): Promise<any> => {
-    try {
-      const { data } = await graphqlInstance.query({
-        query: FETCH_COLLECTION_ITEM,
-        variables: input,
-        //fetchPolicy: reload ? 'network-only' : 'cache-first',
-        fetchPolicy: "network-only",
-      });
-      return data;
-    } catch (err: any) {
-      throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 
@@ -110,7 +84,7 @@ const assetsApi = {
       });
       return data;
     } catch (err: any) {
-      throw err;
+      if (err instanceof ApolloError) throw err;
     }
   },
 };

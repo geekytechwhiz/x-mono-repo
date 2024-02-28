@@ -1,19 +1,19 @@
-import { Dashboard } from "@platformx/dashboard";
-import {
-  MediaHandle,
-  FeatureFlagSetting,
-  GlobalSetting,
-  FooterSetting,
-  HeaderSetting,
-  CookieSetting,
-} from "@platformx/site-setting";
-import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateAsset, AssetListing } from "@platformx/assets-manager";
-import NavTreeCreation from "@platformx/nav-menu";
+import { AssetListing, CreateAsset } from "@platformx/assets-manager";
+import { CreateSpace } from "@platformx/community";
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
+import { Dashboard } from "@platformx/dashboard";
+import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
-import { CreateSpace } from "@platformx/community";
+import {
+  CookieSetting,
+  FeatureFlagSetting,
+  FooterSetting,
+  GlobalSetting,
+  HeaderSetting,
+  MediaHandle,
+} from "@platformx/site-setting";
+import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -327,7 +327,7 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-{
+  {
     path: "/content/create/article",
     element: (
       <ProtectedRoute name='article' category='content' subCategory='article'>

@@ -1,20 +1,17 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable no-console */
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Avatar, Box, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
-  SettingNewIcon,
-  useUserSession,
-  getFirstTwoletters,
   NoSearchResult,
+  SettingNewIcon,
+  getFirstTwoletters,
+  useUserSession,
 } from "@platformx/utilities";
 import { useState } from "react";
 import usePopupStyle from "./SitesPopup.style";
 import SitesSearchBox from "./SitesSeachBox";
-import CloseIcon from "@mui/icons-material/Close";
-import { t } from "i18next";
-import { multiSiteApi, getGlobalDataWithHeader } from "@platformx/authoring-apis";
 
 export default function SitesPopup(props) {
   const { isVisible, setIsVisible } = props;
@@ -26,26 +23,22 @@ export default function SitesPopup(props) {
   const [getSession, updateSession] = useUserSession();
   const storedSession = JSON.parse(sessions);
   const accessible_sites = storedSession?.userInfo?.accessible_sites;
-  const storedSite = localStorage.getItem("selectedSite");
   const [filteredSites, setfilteredSites] = useState(
-    accessible_sites.filter((a) => a !== "System" && a !== storedSite),
+    accessible_sites.filter((a) => a !== "System"),
   );
 
   const handleSearch = (value) => {
     setfilteredSites(
-      accessible_sites
-        .filter((a) => a.includes(value))
-        .filter((a) => a !== "System" && a !== storedSite),
+      accessible_sites.filter((a) => a.includes(value)).filter((a) => a !== "System"),
     );
   };
-  const handleSiteChange = async (e, sitetitle) => {
-    const isSiteSystem = sitetitle?.toLowerCase() === "administrator";
-
+  const handleSiteChange = async (e) => {
+    const isSiteSystem = e.target.textContent?.toLowerCase() === "administrator";
     try {
-      const res = await multiSiteApi.getPermissions(isSiteSystem ? "system" : sitetitle);
-      await getGlobalDataWithHeader(isSiteSystem ? "system" : sitetitle);
+      const res = await multiSiteApi.getPermissions(isSiteSystem ? "system" : e.target.textContent);
+      await getGlobalDataWithHeader(isSiteSystem ? "system" : e.target.textContent);
 
-      localStorage.setItem("selectedSite", sitetitle);
+      localStorage.setItem("selectedSite", e.target.textContent);
       updateSession({
         ...getSession(),
         permissions: res.data?.data?.permissions,
@@ -54,16 +47,16 @@ export default function SitesPopup(props) {
           (obj) => obj.site?.toLowerCase() === res.data?.data?.selected_site?.toLowerCase(),
         )?.name,
       });
-
-      const lang = res.data?.data?.preferred_sites_languages?.[sitetitle] || "en";
-      handleClose();
-      const redirectUrl = isSiteSystem
-        ? `system/${lang}/sites/site-listing`
-        : `${sitetitle}/${lang}/dashboard`;
-
-      window.location.replace(`${window.location.origin}/${redirectUrl}`);
+      const lang = res.data?.data?.preferred_sites_languages?.[e.target.textContent] || "en";
+      if (isSiteSystem) {
+        window.location.replace(`${window.location.origin}/system/${lang}/sites/site-listing`);
+      } else {
+        window.location.replace(
+          `${window.location.origin}/${e.target.textContent}/${lang}/dashboard`,
+        );
+      }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   return (
@@ -78,7 +71,7 @@ export default function SitesPopup(props) {
         <Box>
           <Box className={classes.boxsize}>
             <Box className={classes.toptypography}>
-              <Typography variant='h4medium'>{t("your_site")}</Typography>
+              <Typography variant='h4medium'>Your Site</Typography>
               <Box className={classes.popupCloseButton} onClick={handleClose}>
                 <CloseIcon />
               </Box>
@@ -90,11 +83,8 @@ export default function SitesPopup(props) {
             <Box className={classes.containerboxsize}>
               {filteredSites.map((val, index) => {
                 return (
-                  <Box
-                    className={classes.container}
-                    onClick={(event) => handleSiteChange(event, val)}
-                    key={index}>
-                    <Box className={classes.innercontainer}>
+                  <Box className={classes.container} key={index}>
+                    <Box className={classes.innercontainer} onClick={handleSiteChange}>
                       <Avatar className={classes.avatarbox}>{getFirstTwoletters(val)}</Avatar>
                       <Box className={classes.sitescontent}>
                         <Typography
@@ -115,11 +105,9 @@ export default function SitesPopup(props) {
             <Box className={classes.borderbottomtype}></Box>
 
             {accessible_sites?.includes("System") && (
-              <Box
-                onClick={(event) => handleSiteChange(event, "Administrator")}
-                className={classes.typographyadmin}>
-                <img className={classes.settingicon} src={SettingNewIcon} alt='icon' />
-                <Typography variant='h6medium'>{t("administrator")}</Typography>
+              <Box onClick={handleSiteChange} className={classes.typographyadmin}>
+                <img alt='settings' src={SettingNewIcon} />
+                <Typography variant='h6medium'>Administrator</Typography>
               </Box>
             )}
           </Box>

@@ -1,15 +1,14 @@
-import { Box, Grid, Typography, Divider } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useStyles } from "./FeatureFlagSetting.style";
+/* eslint-disable no-shadow */
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import {
-  ThemeConstants,
-  TitleSubTitle,
   BasicSwitch,
   CommonBoxWithNumber,
+  ThemeConstants,
+  TitleSubTitle,
 } from "@platformx/utilities";
-import { CreateHeader } from "@platformx/content";
+import { t } from "i18next";
+import { useState } from "react";
+import { useStyles } from "./FeatureFlagSetting.style";
 
 export const FeatureFlagSetting = () => {
   const [feature, setFeature] = useState({
@@ -22,16 +21,12 @@ export const FeatureFlagSetting = () => {
     snowplow_tracking: false,
   });
   const classes = useStyles();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-  const onSaveClick = async () => {
-    // setIsLoading(true);
-  };
+
   const handleChange = (name) => {
     setFeature((prev) => ({ ...prev, [name]: !prev[name] }));
   };
   const masterControl = () => {
-    setFeature(() => {
+    setFeature((feature) => {
       const istrue = feature.article || feature.quiz || feature.vod || feature.poll;
       return {
         ...feature,
@@ -45,29 +40,13 @@ export const FeatureFlagSetting = () => {
 
   return (
     <>
-      <CreateHeader
-        createText={t("feature_flag_setting")}
-        handleReturn={() => {
-          navigate("/dashboard");
+      {/* <SiteTopBar
+        siteLabel={t('feature_flag_setting')}
+        returnBack={() => {
+          navigate('/dashboard');
         }}
-        isQuiz
-        hasPublishButton={true}
-        hasPreviewButton={false}
-        hasSaveButton={false}
-        saveText={t("update")}
-        handelPreview={() => {
-          /* your function code */
-        }}
-        handlePublish={onSaveClick}
-        handleSaveOrPublish={onSaveClick}
-        previewText='Preview'
-        showPreview={false}
-        toolTipText='Unable to preview please add required details'
-        saveVariant='contained'
-        category={"content"}
-        subCategory={"quiz"}
-        isFeatured={false}
-      />
+        onSaveClick={onSaveClick}
+      /> */}
       <Divider />
       <Box className={classes.pageContainer}>
         <Box className={classes.contentContainer}>
@@ -171,7 +150,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box className={classes.featurebox}>
+                        <Box sx={{ display: "flex" }}>
                           <BasicSwitch
                             checked={feature.vod}
                             onChange={() => handleChange("vod")}
@@ -184,7 +163,7 @@ export const FeatureFlagSetting = () => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <Box className={classes.featurebox}>
+                        <Box sx={{ display: "flex" }}>
                           <BasicSwitch
                             checked={feature.poll}
                             onChange={() => handleChange("poll")}
