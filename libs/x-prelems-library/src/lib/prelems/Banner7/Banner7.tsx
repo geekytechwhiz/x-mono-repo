@@ -1,9 +1,4 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import Slider from "react-slick";
-import BasicButton from "../../components/BasicButton/BasicButton";
 import {
   Analytics,
   AuthoringHelper,
@@ -11,11 +6,16 @@ import {
   formCroppedUrl,
   handleHtmlTags,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./Banner7.style";
-import "./Banner7.css";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import Slider from "react-slick";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import "./Banner7.css";
+import { useCustomStyle } from "./Banner7.style";
 
 // ts-ignore
 const Banner7 = ({
