@@ -22,13 +22,14 @@ import {
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
+import { WorkflowHistory } from "@platformx/workflow-management";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import Analytics from "../../components/Analytics/Analytics";
 import ContentPageScroll from "../../components/ContentPageScroll";
+import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
 import { DRAFT, PUBLISHED, icons } from "../../utils/Constants";
@@ -40,15 +41,15 @@ import {
   updateStructureData,
 } from "../../utils/Helper";
 import { QuizType } from "./Quiz.types";
+import ImageVideo from "./components/ImageVideo";
 import { TitleDescription } from "./components/TitleDescription";
+import AddQuestion from "./components/addquestion/AddQuestion";
 import ChooseTags from "./components/choosetags/ChooseTags";
 import { Question } from "./components/question/Question";
+import QuestionListing from "./components/questionlisting/QuestionListing";
 import Result from "./components/result/Result";
 import SocialShare from "./components/socialshare/SocialShare";
 import { createInitialQuizState, createNewQuiz } from "./helper";
-import AddQuestion from "./components/addquestion/AddQuestion";
-import QuestionListing from "./components/questionlisting/QuestionListing";
-import ImageVideo from "./components/ImageVideo";
 
 export const CreateQuiz = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
@@ -999,7 +1000,10 @@ export const CreateQuiz = () => {
               </Box>
             )}
             {enableWorkflowHistory ? (
-              <>WorkflowHistory</>
+              <WorkflowHistory
+                workflow={workflow}
+                setEnableWorkflowHistory={setEnableWorkflowHistory}
+              />
             ) : (
               <>
                 <TitleDescription

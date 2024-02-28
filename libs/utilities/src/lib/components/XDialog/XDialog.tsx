@@ -30,9 +30,7 @@ const XDialog = ({
       <Dialog
         fullWidth={true}
         open={open}
-        onClose={() => {
-          if (handleClose) dispatch(handleClose());
-        }}
+        onClose={handleClose}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         sx={{

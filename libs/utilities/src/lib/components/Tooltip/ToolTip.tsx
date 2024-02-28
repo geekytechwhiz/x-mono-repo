@@ -1,11 +1,10 @@
 import Tooltip from "@mui/material/Tooltip";
 import { ThemeConstants } from "@platformx/utilities";
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
 
 interface PropType {
   component: JSX.Element;
-  Title: any;
+  Title?: any;
   position?: any;
   className?: string;
 }
@@ -16,7 +15,6 @@ export const ToolTip: FC<PropType> = ({
   Title,
   className,
 }) => {
-  const { t } = useTranslation();
   return (
     <Tooltip
       className={className}
