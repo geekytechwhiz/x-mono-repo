@@ -46,6 +46,7 @@ export * from "./lib/utils/constants";
 export * from "./lib/hooks";
 export * from "./lib/services/space/space.api";
 export * from "./lib/graphQL/mutations/spaceMutations";
+export * from "./lib/services/SiteCreation/SiteCreation.api";
 
 export {
   ArticleMutations,

@@ -70,6 +70,7 @@ import {
   XTable,
   XTextArea,
   workflowKeys,
+  MultiSelect,
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
@@ -200,4 +201,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  MultiSelect,
 };
