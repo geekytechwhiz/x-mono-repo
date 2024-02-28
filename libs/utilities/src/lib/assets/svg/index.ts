@@ -198,7 +198,7 @@ import Tagvod from "./tagvod.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
 import IconVisaCardSvg from "./VisaCard.svg";
 import IconMasterCardSvg from "./MasterCard.svg";
-import IconDelete1svg from "./delete1.svg";
+import IconDelete1svg from "./Delete1.svg";
 import SuccessIcon from "./successIcon.svg";
 import IconFbSvg from "./facebookIcon.svg";
 import IconGoogleSvg from "./googlesearchnicon.svg";
