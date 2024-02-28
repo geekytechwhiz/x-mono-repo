@@ -9,7 +9,7 @@ import "../../utils/service/i18n";
 import {
   nullToObject,
   getRelativeImageURL,
-  LoaderGif,
+  loadergif,
   CloseIcon,
   Analytics,
   AuthoringHelper,
@@ -463,7 +463,7 @@ const Poll = ({
                     }}>
                     <img
                       alt='Poll1'
-                      src={LoaderGif}
+                      src={loadergif}
                       style={{ width: "80px", borderRadius: "5px" }}
                     />
                   </Box>

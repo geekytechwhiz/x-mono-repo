@@ -196,8 +196,21 @@ import Tagpoll from "./tagpoll.svg";
 import Tagquiz from "./tagquiz.svg";
 import Tagvod from "./tagvod.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
+import IconVisaCardSvg from "./VisaCard.svg";
+import IconMasterCardSvg from "./MasterCard.svg";
+import IconDelete1svg from "./delete1.svg";
+import SuccessIcon from "./successIcon.svg";
+import IconFbSvg from "./facebookIcon.svg";
+import IconGoogleSvg from "./googlesearchnicon.svg";
 
 export {
+  RedBlinkingDot as liveIcon,
+  IconFbSvg,
+  IconGoogleSvg,
+  IconVisaCardSvg,
+  IconDelete1svg,
+  SuccessIcon,
+  IconMasterCardSvg,
   Aboutusupdateicon,
   AccountBalanceWalletIcon,
   Addlinkupdateicon,

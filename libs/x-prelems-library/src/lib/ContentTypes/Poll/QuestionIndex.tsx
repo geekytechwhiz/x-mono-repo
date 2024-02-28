@@ -4,7 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ExitModal from "../../components/ExitModal";
-import { LoaderGif, CloseIcon, Analytics } from "@platformx/utilities";
+import { loadergif, CloseIcon, Analytics } from "@platformx/utilities";
 import ImageQuestion from "./ImageQuestion";
 import PollContext from "./PollContext";
 import SingleQuestion from "./SingleQuestion";
@@ -191,7 +191,7 @@ const QuestionIndex = ({
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-              <img alt='qus1' src={LoaderGif} style={{ width: "80px", borderRadius: "5px" }} />
+              <img alt='qus1' src={loadergif} style={{ width: "80px", borderRadius: "5px" }} />
             </Box>
           ) : (
             <>
