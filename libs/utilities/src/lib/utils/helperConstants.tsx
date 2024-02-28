@@ -328,3 +328,26 @@ export const defaultImages = {
   ext: "png",
 };
 export const MESSAGE_API_ERROR = "Error in fetching data";
+export const SliderSetting = {
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: false,
+  dots: false,
+  arrow: false,
+  responsive: [
+    {
+      breakpoint: 900,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};

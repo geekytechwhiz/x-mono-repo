@@ -1,8 +1,8 @@
-import { Box, IconButton } from '@mui/material';
-import React, { memo, useState } from 'react';
-import { MoreHorizIcon } from '@platformx/utilities';
-import { QuizPollEventMenu } from '@platformx/content';
-import { getSelectedObject } from './utils/Mapper';
+import { Box, IconButton } from "@mui/material";
+import React, { memo, useState } from "react";
+import { MoreHorizIcon } from "@platformx/utilities";
+import { QuizPollEventMenu } from "@platformx/content";
+import { getSelectedObject } from "./utils/Mapper";
 
 const MenuList = ({
   item,
@@ -15,7 +15,7 @@ const MenuList = ({
   fetchContentDetails,
 }: any) => {
   const selectedItem = getSelectedObject(item);
-  const contentType = selectedItem.contentType;
+  const { contentType } = selectedItem;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -23,28 +23,28 @@ const MenuList = ({
   const open = Boolean(anchorEl);
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <Box
         sx={{
-          margin: '0px',
+          margin: "0px",
         }}
-        onClick={handleClickListItem}
-      >
+        onClick={handleClickListItem}>
         <IconButton>
           <img
             src={MoreHorizIcon}
             style={{
-              objectFit: 'cover',
-              transform: 'rotate(90deg)',
-              padding: '4px 0px',
+              objectFit: "cover",
+              transform: "rotate(90deg)",
+              padding: "4px 0px",
             }}
+            alt=''
           />
         </IconButton>
       </Box>
-      {(contentType === 'quiz' ||
-        contentType === 'poll' ||
-        contentType === 'event' ||
-        contentType === 'article') && (
+      {(contentType === "quiz" ||
+        contentType === "poll" ||
+        contentType === "event" ||
+        contentType === "article") && (
         <QuizPollEventMenu
           anchorEl={anchorEl}
           open={open}

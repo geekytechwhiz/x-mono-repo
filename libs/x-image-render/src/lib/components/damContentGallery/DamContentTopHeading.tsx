@@ -1,47 +1,25 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import DoneIcon from "@mui/icons-material/Done";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Button, Fab, Grid, Grow, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { MobileMenuIconSvg, SearchBlackSvg, ThemeConstants } from "@platformx/utilities";
-import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import DamContentSearchBox from "./DamContentSearchBox";
 import "./DamContentTopHeading.css";
-import LoadingButton from "@mui/lab/LoadingButton";
+import useContentGlleryStyle from "./contentTypeCard/DamContentGllery.style";
 
-type damcontentTopHeadingprops = {
-  loading?: boolean;
-  onSearch?: any;
-  inputValue?: string;
-  onNodeIdHandle?: any;
-  categoriesFilter?: any;
-  setInputValueHandle?: any;
-  setUuid: Dispatch<SetStateAction<string>>;
-  assetType: string;
-  toggleGallery: any;
-  keyName: string;
-  handleDoneClick: any;
-  imageData: any;
-  menuData: any;
-  toggleDrawer: any;
-};
-
-const DamContentTopHeading = (_props: any) => {
-  const {
-    loading = false,
-    onSearch = () => {},
-    categoriesFilter = [],
-    onNodeIdHandle = () => {},
-    setInputValueHandle = () => {},
-    assetType,
-    toggleGallery,
-    handleDoneClick,
-    imageData,
-    menuData,
-    toggleDrawer,
-  } = _props;
-
+const DamContentTopHeading = ({
+  loading = false,
+  onSearch = () => {},
+  setInputValueHandle = () => {},
+  assetType,
+  toggleGallery,
+  handleDoneClick,
+  imageData,
+  toggleDrawer,
+}: any) => {
   const { t } = useTranslation();
   const [showSearch, setShowSearch] = useState(false);
   const classes = useContentGlleryStyle();
@@ -51,7 +29,6 @@ const DamContentTopHeading = (_props: any) => {
   };
 
   const searchCloseToggle = () => {
-    //  onSearch("");
     setInputValueHandle("");
     setShowSearch(!showSearch);
   };
@@ -135,13 +112,6 @@ const DamContentTopHeading = (_props: any) => {
             <Button variant='secondaryButton' onClick={() => toggleGallery(false, "cancel")}>
               {t("cancel")}
             </Button>
-            {/* <Button
-              disabled={!imageData.bitStreamId}
-              onClick={handleDoneClick}
-              variant='primaryButton'
-              sx={{ marginLeft: "12px" }}>
-              {t("done")}
-            </Button> */}
             <LoadingButton
               onClick={handleDoneClick}
               loading={loading}

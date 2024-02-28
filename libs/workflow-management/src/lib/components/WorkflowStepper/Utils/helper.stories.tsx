@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { lineBreak } from './helper';
+import type { Meta, StoryObj } from "@storybook/react";
+import { lineBreak } from "./helper";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { expect } from "@storybook/jest";
+import { within } from "@storybook/testing-library";
 
 const meta: Meta<typeof lineBreak> = {
   component: lineBreak,
-  title: 'lineBreak',
+  title: "lineBreak",
 };
 export default meta;
 type Story = StoryObj<typeof lineBreak>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to lineBreak!/gi)).toBeTruthy();
   },
