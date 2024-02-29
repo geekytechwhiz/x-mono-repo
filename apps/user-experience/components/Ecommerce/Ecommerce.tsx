@@ -78,13 +78,27 @@ export const Ecommerce = ({
   const loadEcommPageOnRoute = () => {
     switch (ecommPage) {
       case PRODUCT_LIST:
-        return <ProductListing secondaryArgs={secondaryArgs} cartCountUpdate={cartCountUpdate} />;
+        return (
+          <ProductListing
+            secondaryArgs={secondaryArgs}
+            cartCountUpdate={cartCountUpdate}
+            fromPage={undefined}
+            attributes={{
+              key: "",
+              value: [],
+            }}
+          />
+        );
       case PRODUCT_DETAIL:
         return (
           <ProductDetail
             secondaryArgs={secondaryArgs}
             cartCountUpdate={cartCountUpdate}
-            productId={router?.query?.productId}
+            fromPage={undefined}
+            attributes={{
+              key: "",
+              value: [],
+            }} // productId={router?.query?.productId}
           />
         );
       case PRODUCT_CART:

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { formCroppedUrl } from "../utils/helperFns";
 import { breakpoints, ratios } from "./ConstantData";
 import fallBackImage from "../assets/fallBackImage.png";
+import Image from "next/image";
 
 const ImageRender = (props: any = {}) => {
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ const ImageRender = (props: any = {}) => {
   return (
     <>
       {error ? (
-        <img
+        <Image
           src={fallBackImage}
           style={{ objectFit: "contain" }}
           alt='fallbackimage'
@@ -73,7 +74,7 @@ const ImageRender = (props: any = {}) => {
                   </React.Fragment>
                 );
               })}
-              <img
+              <Image
                 alt='cropped-img'
                 src='https://storage.googleapis.com/cropped_image_public/machine_assets/1689934844153xyz/public/png/WebsiteIntroduction.png'
                 onError={handleError}
@@ -106,7 +107,7 @@ const ImageRender = (props: any = {}) => {
                 <source
                   srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                 />
-                <img
+                <Image
                   src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                   onError={handleError}
                   width='100%'

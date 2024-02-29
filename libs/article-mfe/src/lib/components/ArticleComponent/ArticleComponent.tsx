@@ -1,4 +1,4 @@
-import { Article } from "@platformx/x-prelem-library";
+import { Article } from "@platformx/x-prelems-library";
 
 export const ArticleComponent = (props) => {
   const { pageData = {}, secondaryArgs = {} } = props || {};

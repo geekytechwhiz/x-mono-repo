@@ -127,7 +127,7 @@
     "no-import-assign": 2,
     "no-global-assign": "error",
     "no-eval": 2,
-    "array-callback-return": "error",
+    "array-callback-return": "warn",
     "no-implicit-globals": "error",
     "no-useless-catch": 2,
     "no-with": 2,

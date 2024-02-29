@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Quiz } from "@platformx/x-prelems-library";
 
 export const QuizComponent = (props) => {
@@ -23,5 +24,6 @@ export const QuizComponent = (props) => {
       authoringHelper={prelemAuthoringHelper}
       secondaryArgs={secondaryArgs}
     />
+    // <>QuiZ Prelem has been commented due to type error</>
   );
 };

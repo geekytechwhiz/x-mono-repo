@@ -20,8 +20,24 @@ import GreenTick from "./greenTick.png";
 import IconLinkedInSvg from "./linkedin.png";
 import DottedRound from "./mask-dotted.png";
 import Shopping_bag from "./shopping_bag.png";
+import LoyalityPointIcon from "./LoyalityPointIcon.png";
+import CoinImage from "./CoinImage.png";
+import RoyalIcon from "./RoyalAntwerp.png";
+import OGCIcon from "./OGC.png";
+import AZIcon from "./AZ.png";
+import ChangePasswordImg from "./changepassword.png";
+import Coin from "./coin.png";
+import SignUpSvg from "./signUp.png";
 
 export {
+  SignUpSvg,
+  Coin,
+  ChangePasswordImg,
+  AZIcon,
+  OGCIcon,
+  RoyalIcon,
+  CoinImage,
+  LoyalityPointIcon,
   Awards,
   BigArrow,
   CardBgImg,

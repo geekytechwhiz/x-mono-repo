@@ -3,8 +3,8 @@ import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/mat
 import {
   Analytics,
   CloseIcon,
-  LoaderGif,
   getRelativeImageURL,
+  loadergif,
   nullToObject,
 } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
@@ -462,7 +462,7 @@ const Poll = ({
                     }}>
                     <img
                       alt='Poll1'
-                      src={LoaderGif}
+                      src={loadergif}
                       style={{ width: "80px", borderRadius: "5px" }}
                     />
                   </Box>

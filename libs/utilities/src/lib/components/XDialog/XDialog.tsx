@@ -11,6 +11,7 @@ import {
   XDialogContent,
   XDialogImageContainer,
 } from "./XDialog.styles";
+import Image from "next/image";
 // import { XDialogProps } from './XDialog.types'
 
 const XDialog = ({
@@ -75,10 +76,10 @@ const XDialog = ({
             if (handleClose) dispatch(handleClose());
           }}
           aria-label='close'>
-          <img src={DialogCloseIcon} alt='icon' />
+          <Image src={DialogCloseIcon} alt='icon' />
         </IconButton>
         <XDialogImageContainer>
-          <img src={imageIcon} alt='icon' />
+          <Image src={imageIcon} alt='icon' />
         </XDialogImageContainer>
         {title && (
           <DialogTitle

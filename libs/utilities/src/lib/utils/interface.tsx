@@ -32,12 +32,13 @@ export interface Analytics {
 }
 
 export interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
-  sendStructureDataToAuthoringCB: () => void;
-  sendDefaultStructureDataForResetToAuthoringCB: () => void;
-  openButtonEditWindowInAuthoringCB: () => void;
+  innerRef: React.RefObject<HTMLDivElement>;
+  sendStructureDataToAuthoringCB: (structureData: string) => void;
+  sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
+  openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
+  isAuthoring: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;
   buttonContentEditable?: boolean;
   lastSavedStructuredData?: string;

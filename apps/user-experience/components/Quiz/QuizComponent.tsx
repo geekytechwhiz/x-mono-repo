@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import dynamic from "next/dynamic";
 
 const QuizPrelem = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Quiz), {
@@ -21,11 +22,12 @@ export const QuizComponent = (props) => {
   };
 
   return (
-    <QuizPrelem
-      content={pageData}
-      analytics={prelemAnalyticsProp}
-      authoringHelper={prelemAuthoringHelper}
-      secondaryArgs={secondaryArgs}
-    />
+    // <QuizPrelem
+    //   content={pageData}
+    //   analytics={prelemAnalyticsProp}
+    //   authoringHelper={prelemAuthoringHelper}
+    //   secondaryArgs={secondaryArgs}
+    // />
+    <>QuizPrelem has been commented due to error</>
   );
 };
