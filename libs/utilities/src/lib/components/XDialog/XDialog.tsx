@@ -71,7 +71,9 @@ const XDialog = ({
           className='popupCloseIcon'
           edge='end'
           color='inherit'
-          onClick={handleClose}
+          onClick={() => {
+            if (handleClose) dispatch(handleClose());
+          }}
           aria-label='close'>
           <img src={DialogCloseIcon} alt='img' />
         </IconButton>
