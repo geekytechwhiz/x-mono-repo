@@ -8,6 +8,7 @@ import German from "../../assets/images/de_flag.png";
 import French from "../../assets/images/fr_flag.png";
 import { getCurrentLang, getCurrentPathName, getSelectedSite } from "../../utils/helperFns";
 import { LanguageList } from "../../utils/helperConstants";
+import Image from "next/image";
 
 const LanguageDropDown = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -38,7 +39,7 @@ const LanguageDropDown = () => {
 
   return (
     <Box className={classes.languageDropdownmenuWrapper}>
-      <img
+      <Image
         alt='language'
         src={
           language === "en"
@@ -71,7 +72,7 @@ const LanguageDropDown = () => {
               onClick={() => handleLanguageChange(l.id)}>
               <Box className={classes.dropdownmenuItemImgWrap}>
                 <Box className={classes.dropdownmenuItemImgWrap1}>
-                  <img
+                  <Image
                     alt='language'
                     className={classes.dropdownmenuItemImg}
                     src={
