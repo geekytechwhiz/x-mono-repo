@@ -13,6 +13,7 @@ import {
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./TeamMembers.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: TeamMembersProps) => {
   //const [contentType, setContentType] = useState("image");
@@ -150,7 +151,7 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                               ? null
                               : openPageInNewTab(item?.AttributtonLink)
                           }>
-                          <img
+                          <Image
                             alt='team1'
                             className='teamMemberImg'
                             src={formCroppedUrl(

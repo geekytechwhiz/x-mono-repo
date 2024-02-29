@@ -11,6 +11,7 @@ import ProgressBar from "./ProgressBar";
 import QuizContext from "./QuizContext";
 import SingleQuestion from "./SingleQuestion";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const QuestionIndex = ({
   data,
@@ -181,7 +182,7 @@ const QuestionIndex = ({
                           padding: { xs: 0 },
                           marginRight: "7px",
                         }}>
-                        <img src={CloseIcon} alt='Close Icon' />
+                        <Image src={CloseIcon} alt='Close Icon' />
                       </Button>
                     )}
                   </Box>

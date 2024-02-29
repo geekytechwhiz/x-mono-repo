@@ -5,6 +5,7 @@ import { dateFormat, handleHtmlTags, fallBackImage } from "@platformx/utilities"
 import { XButton } from "../../XButton/XButton";
 import CardSkeleton from "../CardSkeleton";
 import { useCustomStyle } from "./XCard2.style";
+import Image from "next/image";
 
 const XCard2 = ({ content, Icon, onCardClick }: XCard2Props) => {
   const classes = useCustomStyle();
@@ -15,7 +16,7 @@ const XCard2 = ({ content, Icon, onCardClick }: XCard2Props) => {
           <Grid container>
             <Grid xs={12} md={6}>
               <Box className='imgWrapper'>
-                <img
+                <Image
                   src={content?.teaser_image || fallBackImage}
                   onError={(e: any) => {
                     if (e.target.src !== fallBackImage) {
@@ -24,13 +25,12 @@ const XCard2 = ({ content, Icon, onCardClick }: XCard2Props) => {
                     }
                   }}
                   alt=''
-                  style={{ objectFit: "cover", height: "100%" }}
-                  width='100%'
+                  style={{ objectFit: "cover", width: "100%", height: "100%" }}
                 />
 
                 <Box className='iconWrapper'>
                   <Box className='imgIconBox'>
-                    <img src={Icon} alt='' />
+                    <Image src={Icon} alt='' />
                   </Box>
                 </Box>
               </Box>
@@ -118,12 +118,12 @@ interface Content {
   teaser_image?: string;
   ImageCompound: {
     ImageCompound_1: {
-      published_images: Image[];
+      published_images: ImageType[];
       original_image: object;
     };
   };
 }
-interface Image {
+interface ImageType {
   aspect_ratio: string;
   bucket_path: string;
   folder_path: string;

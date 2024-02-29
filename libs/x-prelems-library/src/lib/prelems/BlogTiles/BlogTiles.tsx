@@ -11,6 +11,7 @@ import "./BlogTiles.css";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./BlogTiles.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -224,7 +225,7 @@ const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) 
             ) : (
               <React.Fragment>
                 <Box className='noDataFoundWrapper'>
-                  <img
+                  <Image
                     src={formCroppedUrl(
                       gcpUrl,
                       bucketName,

@@ -18,6 +18,7 @@ import {
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./MultiSlotCard.style";
 import prelemTypes from "../../globalStyle";
+import Image from "next/image";
 
 const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -115,12 +116,12 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
 
             {content.ContentType.toLowerCase() === "Event".toLowerCase() && (
               <Box className='IconBox'>
-                <img alt='EventIcon' src={EventIcon} />
+                <Image alt='EventIcon' src={EventIcon} />
               </Box>
             )}
             {content.ContentType.toLowerCase() === "Article".toLowerCase() && (
               <Box className='IconBox'>
-                <img alt='ArticleIcon' src={articleIcon} />
+                <Image alt='ArticleIcon' src={articleIcon} />
               </Box>
             )}
             <CardContent>
@@ -227,7 +228,7 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
               <Box className='imgboxOverlay'></Box>
             </Box>
             <Box className='IconBox'>
-              <img alt='card11' src={pollIcon} />
+              <Image alt='card11' src={pollIcon} />
             </Box>
             <CardContent>
               <Typography gutterBottom variant='h4semibold' className='cardTitle'>
@@ -267,7 +268,7 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
               <Box className='imgboxOverlay'></Box>
             </Box>
             <Box className='IconBox'>
-              <img alt='card12' src={quizIcon} />
+              <Image alt='card12' src={quizIcon} />
             </Box>
             <CardContent>
               <Typography variant='h4semibold' className='cardTitle'>

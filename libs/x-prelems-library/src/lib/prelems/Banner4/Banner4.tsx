@@ -15,6 +15,7 @@ import { useCustomStyle } from "./Banner4.style";
 import ImageRender from "../../components/ImageRender";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components//ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4Props) => {
   const classes = useCustomStyle();
@@ -106,10 +107,10 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
       className={`${classes.banner4Wrapper} ${globalClasses.prelemType3} prelem prelemType3 banner4 banner4Bgwrapper`}>
       <Box className={`prelem-pb prelemBox`} ref={ref}>
         <Box className='dottedRound1'>
-          <img alt='BAnner4img1' src={DottedRound} height='159' width='234' className='fullWidth' />
+          <Image alt='BAnner4img1' src={DottedRound} height={159} width={234} className='fullWidth' />
         </Box>
         <Box className='dottedRound2'>
-          <img alt='BAnner4img2' src={DottedRound} height='159' width='234' className='fullWidth' />
+          <Image alt='BAnner4img2' src={DottedRound} height={159} width={234} className='fullWidth' />
         </Box>
         <Container className={authoringHelper?.isEditPage ? "grid_full_width" : "grid_container"}>
           <Grid container ref={ref} className='container'>

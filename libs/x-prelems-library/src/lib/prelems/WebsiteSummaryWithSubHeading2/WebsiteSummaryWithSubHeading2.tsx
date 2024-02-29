@@ -16,6 +16,7 @@ import { useCustomStyle } from "./WebsiteSummaryWithSubHeading2.style";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const WebsiteSummaryWithSubHeading2 = ({
   content,
@@ -155,7 +156,7 @@ const WebsiteSummaryWithSubHeading2 = ({
     return (
       <Box className='rightGridItem widthheight100'>
         <Box className='dottedBg'>
-          <img alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
+          <Image alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
         </Box>
         <Box className='rightImageWrapper'>
           <ImageRender

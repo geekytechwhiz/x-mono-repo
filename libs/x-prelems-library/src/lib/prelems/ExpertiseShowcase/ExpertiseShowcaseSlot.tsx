@@ -4,6 +4,7 @@ import { Box, Button } from "@mui/material";
 import ImageVideoGalleryModalSlider from "../../components/ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./ExpertiseShowcaseSlot.style";
 import { SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import Image from "next/image";
 
 const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlotProps) => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -57,7 +58,7 @@ const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlot
         }}
         onClick={toggleModalStatus}>
         <Box className='imgWrapper'>
-          <img
+          <Image
             alt='Expert4img'
             src={formCroppedUrl(
               secondaryArgs?.gcpUrl,

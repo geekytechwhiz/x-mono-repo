@@ -11,6 +11,7 @@ import { useCustomStyle } from "./videoLandingPage.style";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 import "../../Style.css";
 import "../../utils/service/i18n";
+import Image from "next/image";
 
 const BrightcovePlayer: any = React.lazy(
   () => import("../../components/BrightcovePlayer/BrightcovePlayer"),
@@ -303,7 +304,7 @@ const VideoLandingPage = (props: any) => {
                       lg: "500px",
                     },
                   }}>
-                  <img
+                  <Image
                     src={content.Thumbnail}
                     alt={"Thumbnail_Image"}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}

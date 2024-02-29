@@ -10,6 +10,7 @@ import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpr
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./AboutUS2.style";
+import Image from "next/image";
 
 const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -203,13 +204,13 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
           </Typography>
         </Box>
         <Box className='imageWrapper1'>
-          <img alt='About us' src={Frame1} className='frame1' width='200' height='87' />
+          <Image alt='About us' src={Frame1} className='frame1' width='200' height='87' />
         </Box>
         <Box className='imageWrapper2'>
-          <img alt='About us' src={Frame2} className='frame2' width='170' height='72' />
+          <Image alt='About us' src={Frame2} className='frame2' width='170' height='72' />
         </Box>
         <Box className='imageWrapper3'>
-          <img alt='About us' src={Frame3} className='frame3' width='232' height='40' />
+          <Image alt='About us' src={Frame3} className='frame3' width='232' height='40' />
         </Box>
       </Box>
     );

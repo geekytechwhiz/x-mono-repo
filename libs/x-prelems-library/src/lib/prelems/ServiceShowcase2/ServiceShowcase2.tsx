@@ -16,6 +16,7 @@ import { useCustomStyle } from "./ServiceShowcase2.style";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 let i = 0;
 const ServiceShowcase2 = ({
@@ -244,7 +245,7 @@ const ServiceShowcase2 = ({
                           <CardContent className='cardContent'>
                             <Box className='boxWrapper'>
                               <Box className='imageWrapper'>
-                                <img
+                                <Image
                                   src={formCroppedUrl(
                                     gcpUrl,
                                     bucketName,

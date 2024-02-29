@@ -9,6 +9,7 @@ import ExpertiseShowcaseSlot from "./ExpertiseShowcaseSlot";
 import { useCustomStyle } from "./ExpertiseShowcase.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const { ref, inView } = useInView({
@@ -146,7 +147,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
                   }}
                   className='overlay-wrapper'>
                   <Box className='imgWrapper'>
-                    <img alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
+                    <Image alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
                     <Box className='bottomButton'>
                       <BasicButton
                         openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}

@@ -16,6 +16,7 @@ import "./ServiceCard7.css";
 import { useCustomStyle } from "./ServiceCard7.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 let i = 0;
 const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard7Prop) => {
@@ -288,7 +289,7 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                           <Card className='card'>
                             <CardContent className='cardcontent'>
                               <Box className='imgWrapper'>
-                                <img
+                                <Image
                                   alt='card7'
                                   src={formCroppedUrl(
                                     gcpUrl,
@@ -296,8 +297,8 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                                     value?.IconImage?.Url,
                                     value?.IconImage?.ext,
                                   )}
-                                  width='42'
-                                  height='42'
+                                  width={42}
+                                  height={42}
                                 />
                               </Box>
                               <Box className='boxContainer'>

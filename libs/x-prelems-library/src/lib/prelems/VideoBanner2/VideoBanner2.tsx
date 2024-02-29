@@ -8,6 +8,7 @@ import { useCustomStyle } from "./VideoBanner2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import Image from "next/image";
 
 const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner2Prop) => {
   const classes = useCustomStyle();
@@ -86,7 +87,7 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               WebkitMaskSize: "contain",
             }}>
             {secondaryArgs?.editState ? (
-              <img
+              <Image
                 alt='banner2'
                 src={content.Videos.Video_1.Thumbnail}
                 className='backgroundImage'
@@ -107,7 +108,7 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               />
             )}
             <Box className='maskImageWrapper'>
-              <img alt='banner3' src={imgUrl} className='silhouette' width='100%' height='auto' />
+              <Image alt='banner3' src={imgUrl} className='silhouette' style={{ width: "100%", height: "auto" }} />
             </Box>
           </Box>
         </Box>

@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import "./Gallery1.css";
 import { formCroppedUrl } from "@platformx/utilities";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import Image from "next/image";
 
 function GallerySecond({ GalleryTwo, handleOpen, secondaryArgs }: any) {
   return (
@@ -14,7 +15,7 @@ function GallerySecond({ GalleryTwo, handleOpen, secondaryArgs }: any) {
             key={`${item?.Title}_${index.toString()}`}
             onClick={() => handleOpen(GalleryTwo, index)}>
             {!("Thumbnail" in item) ? (
-              <img
+              <Image
                 alt='gallery 1'
                 src={formCroppedUrl(
                   secondaryArgs?.gcpUrl,

@@ -7,6 +7,7 @@ import ProfileListingCard from "./ProfileListingCard";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ProfileListing.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const ProfileListing = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const getCardArr = (data: any) => {
@@ -85,7 +86,7 @@ const ProfileListing = ({ content, analytics, authoringHelper, secondaryArgs }: 
             ) : (
               <>
                 <Box className='noDataFoundWrapper'>
-                  <img
+                  <Image
                     src='https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/3b8398a0-299a-4b4e-ad6f-2a5bbb306e9a/content'
                     alt='NoDataFound'
                   />

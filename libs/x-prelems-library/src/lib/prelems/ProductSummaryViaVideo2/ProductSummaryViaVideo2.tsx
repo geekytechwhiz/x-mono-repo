@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl, formCroppedUrlString } from "@platformx/utilities";
 import { useCustomStyle } from "./ProductSummaryViaVideo2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
@@ -94,12 +94,12 @@ ProductSummaryProp) => {
           {content?.Videos?.Video_1.Url && (
             <VideoPlayer
               playerProp={{
-                posterImg: formCroppedUrl(
+                posterImg: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   content?.Videos?.Video_1.Thumbnail,
                   content?.Videos?.Video_1.ext,
-                ),
+                ).src,
                 videoUrl: content?.Videos?.Video_1.Url,
               }}
             />

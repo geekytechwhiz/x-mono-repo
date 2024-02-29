@@ -21,6 +21,7 @@ import {
   fallBackImage,
   ArticleIcon,
 } from "@platformx/utilities";
+import Image from "next/image";
 
 const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
   const platform = secondaryArgs?.platform;
@@ -145,7 +146,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                         <PlayCircleOutlineRoundedIcon sx={{ color: "white", fontSize: "40px" }} />
                       </Box>
                     ) : (
-                      <img
+                      <Image
                         alt=''
                         src={ArticleIcon}
                         style={{
@@ -154,7 +155,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                           marginLeft: "8px",
                           width: "30px",
                           height: "30px",
-                        }}></img>
+                        }}></Image>
                     )}
                     <CardContent style={{ padding: "10px 10px 0px 10px", flexGrow: 1 }}>
                       <Typography

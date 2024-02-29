@@ -16,6 +16,7 @@ import "./CustomerTestimonial2.css";
 import { useCustomStyle } from "./CustomerTestimonial2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
   const { content = {}, analytics, authoringHelper, secondaryArgs } = nullToObject(props);
@@ -196,11 +197,11 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
               className='sliderWrapper'
               sx={{ opacity: currentIndex === key ? 1 : 0.5 }}
               onClick={(e) => handleClickProduts(e, items, key)}>
-              <img
+              <Image
                 src={formCroppedUrl(gcpUrl, bucketName, items?.image?.Url, items?.image?.ext)}
                 alt='Testimonial'
-                width='83'
-                height='83'
+                width={83}
+                height={83}
                 className='sliderImage'
               />
             </Box>
@@ -223,7 +224,7 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
             </Typography>
           </Box>
           <Typography variant='h2semibold' color='secondaryTitle' className='centerText'>
-            {/* <img
+            {/* <Image
                   alt="quotes"
                   src={IconDoubleQutoesSvg}
                   width="70"
@@ -254,7 +255,7 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
 
             <Box className='iconUparrowWrapper'>
               <Box className='iconUparrow'>
-                <img alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
+                <Image alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
               </Box>
               <React.Fragment>
                 <Box className='sliderWidth'>

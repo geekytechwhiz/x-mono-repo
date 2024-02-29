@@ -18,6 +18,7 @@ import {
 import { useCustomStyle } from "./Description.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const Description = ({ content, analytics, authoringHelper, secondaryArgs }: DescriptionProp) => {
   const { editState = false } = nullToObject(secondaryArgs);
@@ -83,7 +84,7 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
       <Box className='rightWrapper'>
         <Box className='imgBoxColorWrapper'>
           <Box className='imgBoxWrapper widthheight100'>
-            {/* <img alt="descriptionImage" src={getImg(1)} /> */}
+            {/* <Image alt="descriptionImage" src={getImg(1)} /> */}
             <ImageRender
               originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
               publishedImages={content?.ImageCompound?.ImageCompound_1?.published_images}
@@ -99,10 +100,10 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
             />
           </Box>
           <Box className='dottedImgFirst'>
-            <img alt='descriptionImage1' src={RedDots} width='140' height='63' />
+            <Image alt='descriptionImage1' src={RedDots} width={140} height={63} />
           </Box>
           <Box className='rightBottomImg'>
-            {/* <img
+            {/* <Image
               alt="descriptionImage3"
               src={getImg(2)}
               width="130"

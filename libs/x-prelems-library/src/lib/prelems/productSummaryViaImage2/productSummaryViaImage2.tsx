@@ -16,6 +16,7 @@ import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout
 import { useCustomStyle } from "./ProductSummaryViaImage2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const ProductSummaryViaImage2 = ({
   content,
@@ -148,7 +149,7 @@ const ProductSummaryViaImage2 = ({
           }}
         />
         <Box className='dottedImageWrapper'>
-          <img alt='summary5' src={RedDots} width='140' height='63' />
+          <Image alt='summary5' src={RedDots} width='140' height='63' />
         </Box>
       </Box>
     );
@@ -232,12 +233,12 @@ interface Content {
   TagName?: string;
   ImageCompound: {
     ImageCompound_1: {
-      published_images: Image[];
+      published_images: ImageType[];
       original_image?: object;
     };
   };
 }
-interface Image {
+interface ImageType {
   aspect_ratio: string;
   bucket_path: string;
   folder_path: string;

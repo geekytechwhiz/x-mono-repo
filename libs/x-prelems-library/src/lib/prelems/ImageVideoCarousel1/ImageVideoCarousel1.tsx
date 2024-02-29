@@ -15,6 +15,7 @@ import { useCustomStyle } from "./ImageVideoCarousel1.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import Image from "next/image";
 
 const ImageVideoCarousel1 = ({
   content,
@@ -185,7 +186,7 @@ const ImageVideoCarousel1 = ({
                 </Box>
               ) : (
                 <Box className='imgWrapper'>
-                  <img
+                  <Image
                     alt='carousel1'
                     src={formCroppedUrl(
                       gcpUrl,
@@ -202,13 +203,13 @@ const ImageVideoCarousel1 = ({
                   {loaded && (
                     <Box onClick={playVodEnable} className='videoEnable'>
                       <Box className='iconWrapper'>
-                        <img alt='play' src={PlayIcon} onClick={playVodEnable} />
+                        <Image alt='play' src={PlayIcon} onClick={playVodEnable} />
                       </Box>
                     </Box>
                   )}
                   {!loaded ? (
                     <Box className='imageWrapper1'>
-                      <img src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
+                      <Image src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
                     </Box>
                   ) : null}
                 </Box>
@@ -232,7 +233,7 @@ const ImageVideoCarousel1 = ({
                 />
                 {!loaded && (
                   <Box className='imgWrapper2'>
-                    <img src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
+                    <Image src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
                   </Box>
                 )}
               </>

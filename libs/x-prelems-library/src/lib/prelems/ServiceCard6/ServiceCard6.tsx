@@ -21,6 +21,7 @@ import { useTheme } from "@mui/material/styles";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 let i = 0;
 const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard6Prop) => {
@@ -221,7 +222,7 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                               sx={{
                                 backgroundColor: `rgba(${ICON_BACKGROUND[i - 1]})`,
                               }}>
-                              <img
+                              <Image
                                 src={formCroppedUrl(
                                   secondaryArgs?.gcpUrl,
                                   secondaryArgs?.bucketName,
@@ -229,8 +230,8 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                                   value?.IconImage?.ext,
                                 )}
                                 alt={value?.IconImage?.AltText}
-                                width='25px'
-                                height='25px'
+                                width={25}
+                                 height={25}
                                 className='cardItemImg'
                               />
                             </Box>

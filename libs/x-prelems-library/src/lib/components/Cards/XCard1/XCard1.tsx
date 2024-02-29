@@ -25,7 +25,7 @@ const XCard1 = ({ content, Icon, onCardClick }: XCard1Props) => {
             />
             <Box className='iconWrapper'>
               <Box className='imgIconBox'>
-                <img src={Icon} alt='' />
+                <Image src={Icon} alt='' />
               </Box>
             </Box>
           </Box>
