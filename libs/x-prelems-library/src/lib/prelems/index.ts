@@ -18,7 +18,7 @@ import ImageAndVideoGallery from "./ImageAndVideoGallery/ImageAndVideoGallery";
 import ProductSummaryViaImage2 from "./productSummaryViaImage2/productSummaryViaImage2";
 import AboutUsThree from "./AboutUsThree/AboutUsThree";
 import DynamicPrelemWithCarousel2 from "./DynamicPrelemWithCarousel2/DynamicPrelemWithCarousel2";
-import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
+// import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
 import Banner6 from "./Banner6/Banner6";
 import FullWidthImage from "./fullWidthImage/fullWidthImage";
 import FullWidthVideo from "./fullWidthVideo/fullWidthVideo";
@@ -118,7 +118,7 @@ export {
   BlogTiles,
   // DynamicPrelemOne,
   Banner6,
-  DynamicPrelemWithCarousel1,
+  // DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,
   AboutUsThree,
   // AboutUs2,
