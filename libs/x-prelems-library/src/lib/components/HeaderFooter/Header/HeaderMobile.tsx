@@ -246,7 +246,7 @@ const HeaderMobile = ({
           </Box>
 
           <Box onClick={() => setIsOpen(true)} className='headerFlagIcon'>
-            <img src={getFlag()} alt='flagimage' width='24px' height='24px' />
+            <img src={getFlag(langCode)} alt='flagimage' width='24px' height='24px' />
           </Box>
           {/* <IconButton
             size="large"

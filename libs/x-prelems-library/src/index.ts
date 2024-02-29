@@ -4,3 +4,4 @@ export { AboutUs2 };
 export * from "./lib/prelems";
 export * from "./lib/ContentTypes";
 export * from "./lib/components";
+export * from "./lib/utils";
