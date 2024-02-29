@@ -27,7 +27,7 @@ import Banner3 from "./Banner3/Banner3";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
 import ImageCarousel from "./ImageCarousel1/ImageCarousel1";
-import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
+// import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
 import BlogTiles from "./BlogTiles/BlogTiles";
 import CustomerTestimonial2 from "./CustomerTestimonial2/CustomerTestimonial2";
 import ContentDisplayWithCategories from "./ContentDisplayWithCategories/ContentDisplayWithCategories";
@@ -116,7 +116,7 @@ export {
   ContentDisplayWithCategories,
   CustomerTestimonial2,
   BlogTiles,
-  DynamicPrelemOne,
+  // DynamicPrelemOne,
   Banner6,
   DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,
