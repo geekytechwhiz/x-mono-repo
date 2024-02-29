@@ -107,14 +107,14 @@ const ImageRender = (props: any = {}) => {
                 <source
                   srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                 />
-                <Image
-                  src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
-                  onError={handleError}
-                  width='100%'
-                  height='100%'
-                  style={{ objectFit: "cover", display: "flex" }}
-                  alt='prelem default image'
-                />
+                <div style={{ width: "100%", height: "100%" }}>
+                  <Image
+                    src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
+                    onError={handleError}
+                    style={{ objectFit: "cover", display: "flex" }}
+                    alt='prelem default image'
+                  />
+                </div>
               </picture>
             </Paper>
           )}
