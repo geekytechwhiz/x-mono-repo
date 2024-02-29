@@ -1,6 +1,7 @@
-import { ButtonGroup, IconButton, Tooltip } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { useStyles } from './VerticalScrollTab.styles';
+import { ButtonGroup, IconButton, Tooltip } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useStyles } from "./VerticalScrollTab.styles";
+import Image from "next/image";
 
 const VerticalScrollTab = ({ icons, handleScroll, activeScroll }) => {
   const { t } = useTranslation();
@@ -17,40 +18,36 @@ const VerticalScrollTab = ({ icons, handleScroll, activeScroll }) => {
             componentsProps={{
               tooltip: {
                 sx: {
-                  bgcolor: '#fff',
-                  color: '#2d2d39',
-                  boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.06)',
-                  paddingRight: '5px',
-                  '& .MuiTooltip-arrow': {
-                    color: 'black',
+                  bgcolor: "#fff",
+                  color: "#2d2d39",
+                  boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.06)",
+                  paddingRight: "5px",
+                  "& .MuiTooltip-arrow": {
+                    color: "black",
                   },
                 },
               },
-            }}
-          >
+            }}>
             <IconButton
               onClick={() => handleScroll(index)}
               sx={{
-                borderRadius: '0',
-                backgroundColor:
-                  activeScroll === icon.tooltip ? '#D7ECFD' : 'transparent',
-                ':hover': {
-                  backgroundColor:
-                    activeScroll === icon.tooltip ? '#D7ECFD' : '#f5f6f8',
+                borderRadius: "0",
+                backgroundColor: activeScroll === icon.tooltip ? "#D7ECFD" : "transparent",
+                ":hover": {
+                  backgroundColor: activeScroll === icon.tooltip ? "#D7ECFD" : "#f5f6f8",
                 },
-              }}
-            >
+              }}>
               {activeScroll === icon.tooltip ? (
-                <img
+                <Image
                   src={icon.iconName}
                   alt=''
                   style={{
                     filter:
-                      'brightness(0) saturate(100%) invert(55%) sepia(48%) saturate(2094%) hue-rotate(188deg) brightness(100%) contrast(96%)',
+                      "brightness(0) saturate(100%) invert(55%) sepia(48%) saturate(2094%) hue-rotate(188deg) brightness(100%) contrast(96%)",
                   }}
                 />
               ) : (
-                <img src={icon.iconName} alt='' />
+                <Image src={icon.iconName} alt='' />
               )}
             </IconButton>
           </Tooltip>

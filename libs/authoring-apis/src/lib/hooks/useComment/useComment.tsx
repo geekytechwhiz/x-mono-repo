@@ -1,10 +1,9 @@
+/* eslint-disable no-shadow */
 import { RootState, setSelectedComment } from "@platformx/authoring-state";
-import { useUserSession } from "@platformx/utilities";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export function useComment() {
-  const [userInfo] = useUserSession();
   const dispatch = useDispatch();
   const { comments } = useSelector((state: RootState) => state.comment.commentInfo);
   const [selectedElementId, setSelectedElementId] = useState<string>("");

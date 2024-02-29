@@ -3,7 +3,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
-  CourseIcon,
+  courseIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -19,6 +19,7 @@ import {
   UsersIcon,
   VODIcon,
 } from "@platformx/utilities";
+import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
   url: "",
@@ -81,7 +82,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "Courses",
-      Icon: CourseIcon,
+      Icon: courseIcon,
       url: "/content/course",
       category: "content",
       subCategory: "",
@@ -155,6 +156,7 @@ export const MenuData = [
         category: "Community",
         subCategory: "spaces",
         roles: ["admin", "Super Admin"],
+        component: <>Space has been commented</>,
       },
       {
         MenuName: "User groups",
@@ -212,6 +214,7 @@ export const MenuData = [
         id: "workflow_management",
         category: "Workflow",
         subCategory: "",
+        component: <WorkflowManagement></WorkflowManagement>,
       },
     ],
   },

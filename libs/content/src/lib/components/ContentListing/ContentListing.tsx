@@ -1,23 +1,24 @@
 /* eslint-disable no-console */
 import { Box } from "@mui/material";
-import { Key, memo, useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
 import {
+  Card,
   ContentListDesktopLoader,
   NoSearchResult,
   capitalizeFirstLetter,
-  convertToLowerCase,
-  handleHtmlTags,
   capitalizeWords,
-  Card,
+  convertToLowerCase,
   formatContentTitle,
+  handleHtmlTags,
   useUserSession,
 } from "@platformx/utilities";
+import { Key, memo, useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { ContentListingProps, ListItem } from "../../utils/List.types";
-import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
 import ContentTypeMenuList from "../MenuList/ContentTypeMenuList";
 
 const ContentListing = ({
+  content,
   contentList,
   loading,
   fetchMore,
@@ -69,7 +70,8 @@ const ContentListing = ({
       title: capitalizeFirstLetter(item.title),
       description: handleHtmlTags(item.description),
       author: item.author,
-      lastModifiedDate: item.last_modification_date || item?.modificationDate,
+      lastModifiedDate:
+        item.last_modification_date || item?.modificationDate || item?.last_modified_date,
       status: item.status || item?.page_state,
       path: item?.path,
       page: item?.page,
@@ -161,9 +163,7 @@ const ContentListing = ({
                   <Box key={index}>
                     <Card
                       dataList={
-                        contentType === "Course"
-                          ? makeCourseContentData(item)
-                          : makeContentData(item)
+                        content === "Course" ? makeCourseContentData(item) : makeContentData(item)
                       }
                       deleteContent={deleteContent}
                       preview={preview}

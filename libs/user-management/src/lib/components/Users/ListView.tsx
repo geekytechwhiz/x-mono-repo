@@ -3,23 +3,19 @@ import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
-import {
-  BlueDot,
-  EditIcon,
-  GreenDot,
-  Loader,
-  RedDot,
-  WarningIcon,
-  warning,
-} from "@platformx/utilities";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { DialogBoxContentProps, UserManagementQueries } from "@platformx/authoring-apis";
+import { UserManagementQueries } from "@platformx/authoring-apis";
 import {
   BasicSwitch,
+  BlueDot,
+  EditIcon,
+  GreenDot,
+  Loader,
+  RedDot,
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
@@ -29,6 +25,7 @@ import { ListViewProps } from "../UserManagement.Types";
 import AcceptRejectButton from "./AcceptRejectButton";
 import MoreDialog from "./MoreDialog";
 import { ADMIN_ACTIONS, ADMIN_ACTIONS_BUTTON, USERTYPES } from "./Utils/constant";
+
 const ListView = ({
   first_name,
   last_name,
@@ -36,7 +33,7 @@ const ListView = ({
   email,
   user_id,
   enabled,
-  timezone,
+  // timezone,
   action_pending,
   created_timestamp,
   handleReload,
@@ -44,18 +41,18 @@ const ListView = ({
   filterValue,
   adminAction = "",
 }: ListViewProps) => {
-  const [userMutate] = useMutation(UserManagementQueries.ACTIVATE_DEACTIVATE_USERS);
-  const [reSendEmailMutate] = useMutation(UserManagementQueries.RESEND_EMAIL_TO_USERS);
+  // const [userMutate] = useMutation(UserManagementQueries.ACTIVATE_DEACTIVATE_USERS);
+  // const [reSendEmailMutate] = useMutation(UserManagementQueries.RESEND_EMAIL_TO_USERS);
   const [approveRejectUser] = useMutation(UserManagementQueries.APPROVE_REJECT_USER);
   const rolename = roles?.find((obj) => obj?.site === getSelectedSite())?.name || "";
   const { t } = useTranslation();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  // const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
-  const open = Boolean(anchorEl);
+  // const [openDialog, setOpenDialog] = useState(false);
+  // const open = Boolean(anchorEl);
   // const dialog = useDialog();
-  const [checked, setChecked] = useState(enabled);
-  const [isDelete, setIsDelete] = useState(false);
+  const [checked] = useState(enabled);
+  // const [isDelete, setIsDelete] = useState(false);
   // const role: string = localStorage.getItem('role');
   const DateTime = format(new Date(created_timestamp || 0), "LLL dd, yyyy | H:mm");
   const isPendingWithAdmin = adminAction === ADMIN_ACTIONS.PENDING;
@@ -68,79 +65,79 @@ const ListView = ({
       : adminAction === ADMIN_ACTIONS.APPROVED
       ? "Approved"
       : "";
-  const handleDialogClose = () => {
-    setOpenDialog(false);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleDialogClose = () => {
+  //   setOpenDialog(false);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
   const confirmDelete = () => {
-    setIsDelete(true);
+    // setIsDelete(true);
   };
 
-  const handleConfirm = async () => {
-    setIsLoading(true);
-    setChecked(!checked);
-    try {
-      const response = await userMutate({
-        variables: {
-          input: { id: user_id, enabled: !enabled },
-        },
-        onCompleted: (res) => {
-          handleReload();
-        },
-      });
-      setIsLoading(false);
-      {
-        checked
-          ? ShowToastSuccess(t("deactivate_message"))
-          : ShowToastSuccess(t("activate_message"));
-      }
-    } catch (err: any) {
-      ShowToastError(
-        err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
-      );
-      setIsLoading(false);
-    }
-  };
+  // const handleConfirm = async () => {
+  //   setIsLoading(true);
+  //   setChecked(!checked);
+  //   try {
+  //     const response = await userMutate({
+  //       variables: {
+  //         input: { id: user_id, enabled: !enabled },
+  //       },
+  //       onCompleted: (res) => {
+  //         handleReload();
+  //       },
+  //     });
+  //     setIsLoading(false);
+  //     {
+  //       checked
+  //         ? ShowToastSuccess(t("deactivate_message"))
+  //         : ShowToastSuccess(t("activate_message"));
+  //     }
+  //   } catch (err: any) {
+  //     ShowToastError(
+  //       err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
+  //     );
+  //     setIsLoading(false);
+  //   }
+  // };
 
-  const handleconfirmResend = async () => {
-    setIsLoading(true);
+  // const handleconfirmResend = async () => {
+  //   setIsLoading(true);
 
-    try {
-      const responseEmail = await reSendEmailMutate({
-        variables: {
-          input: { user_id: user_id },
-        },
-      });
-      setIsLoading(false);
-      ShowToastSuccess(responseEmail.data.authoring_reinviteUser.message);
-    } catch (err: any) {
-      ShowToastError(
-        err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
-      );
-      setIsLoading(false);
-    }
-  };
+  //   try {
+  //     const responseEmail = await reSendEmailMutate({
+  //       variables: {
+  //         input: { user_id: user_id },
+  //       },
+  //     });
+  //     setIsLoading(false);
+  //     ShowToastSuccess(responseEmail.data.authoring_reinviteUser.message);
+  //   } catch (err: any) {
+  //     ShowToastError(
+  //       err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
+  //     );
+  //     setIsLoading(false);
+  //   }
+  // };
 
-  const handleChange = (checked: boolean) => {
-    const dialogContent: DialogBoxContentProps = {
-      Image: checked ? warning : WarningIcon,
-      Title: checked ? t("deactivate_title") : t("activate_title"),
-      Subtitle: checked
-        ? `${t("deactivate_subtitle_pre")}
-    #${first_name} ${" "}${last_name} ?.#${t("deactivate_subtitle_post")}`
-        : `${t("activate_subtitle_pre")}
-    #${first_name} ${" "} ${last_name} ?.# ${t("activate_subtitle_post")} `,
-      LeftButtonText: t("text_left_button"),
-      RightButtonText: checked
-        ? t("text_deactivate_right_button")
-        : t("text_activate_right_button"),
-      SubTitle2: checked ? t("deactivate_subtitle2") : t("activate_subtitle2"),
-    };
+  // const handleChange = (checked: boolean) => {
+  //   const dialogContent: DialogBoxContentProps = {
+  //     Image: checked ? warning : WarningIcon,
+  //     Title: checked ? t("deactivate_title") : t("activate_title"),
+  //     Subtitle: checked
+  //       ? `${t("deactivate_subtitle_pre")}
+  //   #${first_name} ${" "}${last_name} ?.#${t("deactivate_subtitle_post")}`
+  //       : `${t("activate_subtitle_pre")}
+  //   #${first_name} ${" "} ${last_name} ?.# ${t("activate_subtitle_post")} `,
+  //     LeftButtonText: t("text_left_button"),
+  //     RightButtonText: checked
+  //       ? t("text_deactivate_right_button")
+  //       : t("text_activate_right_button"),
+  //     SubTitle2: checked ? t("deactivate_subtitle2") : t("activate_subtitle2"),
+  //   };
 
-    // dialog.show(dialogContent, handleConfirm, handleDialogClose);
-  };
+  //   // dialog.show(dialogContent, handleConfirm, handleDialogClose);
+  // };
 
   const handleApproveReject = async (actionType: string) => {
     setIsLoading(true);
@@ -162,16 +159,15 @@ const ListView = ({
   };
 
   const handleReSendMail = () => {
-    const dialogContent: DialogBoxContentProps = {
-      Image: WarningIcon,
-      Title: t("resend_invite"),
-      Subtitle: `${t("resend_subtitle_pre")}
-   #${email}# ${"  "}${t("")}`,
-
-      LeftButtonText: t("resend_text_left_button"),
-      RightButtonText: t("resend_text_right_button"),
-      SubTitle2: `${t("resend_subtitle_post")}`,
-    };
+    //   const dialogContent: DialogBoxContentProps = {
+    //     Image: WarningIcon,
+    //     Title: t("resend_invite"),
+    //     Subtitle: `${t("resend_subtitle_pre")}
+    //  #${email}# ${"  "}${t("")}`,
+    //     LeftButtonText: t("resend_text_left_button"),
+    //     RightButtonText: t("resend_text_right_button"),
+    //     SubTitle2: `${t("resend_subtitle_post")}`,
+    //   };
     // dialog.show(dialogContent, handleconfirmResend, handleDialogClose);
   };
 
@@ -190,7 +186,7 @@ const ListView = ({
             <Box className='d-flex align-items-center'>
               <Box className='img'>
                 {image ? (
-                  <img src={image} style={{ width: "100%", objectFit: "cover" }} />
+                  <img src={image} style={{ width: "100%", objectFit: "cover" }} alt='' />
                 ) : (
                   <Avatar src='/broken-image.jpg' variant='rounded' />
                 )}
@@ -368,7 +364,7 @@ const ListView = ({
                           }}>
                           <BasicSwitch
                             checked={checked}
-                            onChange={() => handleChange(checked)}
+                            // onChange={() => handleChange(checked)}
                             color={checked ? ThemeConstants.GREEN_COLOR : "red"}
                             disabled={isRejectedUser}
                           />
@@ -386,7 +382,7 @@ const ListView = ({
                       first_name={first_name}
                       last_name={last_name}
                       checked={checked}
-                      onChange={handleChange}
+                      // onChange={handleChange}
                       handleDelete={confirmDelete}
                       handleEditUser={handleEditUser}
                       action_pending={action_pending}

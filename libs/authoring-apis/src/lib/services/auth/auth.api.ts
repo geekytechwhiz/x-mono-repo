@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
+import { LOGOUT_URL } from "@platformx/utilities";
 import axios from "axios";
 import graphqlInstance from "../../config/graphqlConfig";
-import { LOGOUT_URL } from "@platformx/utilities";
 import { AuthQueries } from "../../graphQL/queries/authQueries";
 import { ApiResponse } from "../../utils/types";
 
@@ -20,8 +20,6 @@ const authAPI = {
         },
         withCredentials: true,
       });
-      // eslint-disable-next-line no-console
-      console.log("loginV", res);
       return res.data;
     } catch (err: any) {
       if (err?.response?.data?.code === 401 && !url.includes("verify")) {
@@ -41,7 +39,7 @@ const authAPI = {
         withCredentials: true,
       });
       // eslint-disable-next-line no-console
-      console.log("loginC", res, payload);
+      console.log("login", res, payload);
       return res.data.result ? res.data.result : res.data;
     } catch (err: any) {
       if (err?.response?.data?.code === 401) {
@@ -59,11 +57,8 @@ const authAPI = {
       });
       return data?.authoring_permissionList || null;
     } catch (err: any) {
-      if (err instanceof ApolloError) {
-        // eslint-disable-next-line no-console
-        console.log(err.graphQLErrors);
-      }
-      throw err;
+      if (err instanceof ApolloError) throw err;
+      return err;
     }
   },
 };
