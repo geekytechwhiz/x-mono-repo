@@ -163,7 +163,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
           cursor: "pointer",
         }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Avatar src={ProfileImageData} onClick={handleOpen} />
+          {/* <Avatar src={ProfileImageData} onClick={handleOpen} /> */}
           {showUserDetails && (
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography component='div' variant='h6medium' ml={2}>
