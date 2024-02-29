@@ -7,7 +7,7 @@ import {
   Analytics,
   AuthoringHelper,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
   RedDots,
   SecondaryArgs,
 } from "@platformx/utilities";
@@ -51,12 +51,12 @@ const ProductSummaryViaImage2 = ({
     let ProductSummaryViaImage2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       ProductSummaryViaImage2StructureData = {

@@ -1,21 +1,21 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, CardMedia, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
 import {
   Analytics,
   AuthoringHelper,
-  formCroppedUrl,
   PlayIcon,
   ProgressiveLoader,
   SecondaryArgs,
+  formCroppedUrlString
 } from "@platformx/utilities";
-import { useCustomStyle } from "./ImageVideoCarousel1.style";
-import prelemTypes from "../../globalStyle";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import Image from "next/image";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ImageVideoCarousel1.style";
 
 const ImageVideoCarousel1 = ({
   content,
@@ -72,13 +72,13 @@ const ImageVideoCarousel1 = ({
             item: {
               "@type": item?.Thumbnail ? "VideoObject" : "ImageObject",
               ...(!item?.Thumbnail && {
-                image: formCroppedUrl(gcpUrl, bucketName, item?.Url, item?.ext),
+                image: formCroppedUrlString(gcpUrl, bucketName, item?.Url, item?.ext).src,
                 description: item?.Description,
               }),
               ...(item?.Thumbnail && {
                 name: item?.Name,
                 description: item?.Description,
-                thumbnailURL: formCroppedUrl(gcpUrl, bucketName, item?.Thumbnail, item?.ext),
+                thumbnailURL: formCroppedUrlString(gcpUrl, bucketName, item?.Thumbnail, item?.ext).src,
               }),
               contenturl: item?.Url,
             },
@@ -188,12 +188,12 @@ const ImageVideoCarousel1 = ({
                 <Box className='imgWrapper'>
                   <Image
                     alt='carousel1'
-                    src={formCroppedUrl(
+                    src={formCroppedUrlString(
                       gcpUrl,
                       bucketName,
                       cardArr[active]?.Thumbnail,
                       cardArr[active]?.ext,
-                    )}
+                      ).src}
                     onLoad={() => handleImageLoad()}
                     className='imgProp'
                     style={{
@@ -218,12 +218,12 @@ const ImageVideoCarousel1 = ({
               <>
                 <CardMedia
                   component='img'
-                  image={formCroppedUrl(
+                  image={formCroppedUrlString(
                     gcpUrl,
                     bucketName,
                     cardArr[active]?.Url,
                     cardArr[active]?.ext,
-                  )}
+                  ).src}
                   alt={cardArr[active]?.AltText}
                   onLoad={() => handleImageLoad()}
                   className='imgProp2'

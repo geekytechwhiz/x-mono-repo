@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import ClearIcon from "@mui/icons-material/Clear";
 import { Box, Button, Modal, Typography } from "@mui/material";
-import { formCroppedUrl, getFormattedImageUrl } from "@platformx/utilities";
+import { formCroppedUrlString, getFormattedImageUrl } from "@platformx/utilities";
 import Image from "next/image";
 import React from "react";
 import "../../Style.css";
@@ -19,12 +19,12 @@ const CustomModalSlider = ({
   const thumbImg =
     sliderData &&
     sliderData.map((item: any) => {
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         item.Thumbnail ? item.Thumbnail : item.Url,
         item.ext,
-      );
+        ).src;
     });
   const settings = {
     sliderName: ".slider-nav",

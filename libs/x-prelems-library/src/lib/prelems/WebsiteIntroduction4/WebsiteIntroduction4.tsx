@@ -7,7 +7,7 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
 } from "@platformx/utilities";
 import prelemTypes from "../../globalStyle";
@@ -36,12 +36,12 @@ WebsiteIntroduction4Prop) => {
     let WebsiteIntroduction4StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       WebsiteIntroduction4StructureData = {

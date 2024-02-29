@@ -1,5 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
-import { Frame1, Frame2, Frame3, completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
+import { Frame1, Frame2, Frame3, completeButtonUrl, formCroppedUrlString } from "@platformx/utilities";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Typewriter from "typewriter-effect";
@@ -10,7 +11,6 @@ import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpr
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./AboutUS2.style";
-import Image from "next/image";
 
 const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -42,12 +42,12 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
     let aboutUs2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       aboutUs2StructureData = {

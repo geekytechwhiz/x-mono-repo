@@ -9,7 +9,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import { useCustomStyle } from "./WebsiteSummaryWithSubHeading.style";
 import BasicButton from "../../components/BasicButton/BasicButton";
@@ -54,12 +54,12 @@ const WebsiteSummaryWithSubHeading = ({
     let WebsiteSummaryWithSubHeadingStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       WebsiteSummaryWithSubHeadingStructureData = {

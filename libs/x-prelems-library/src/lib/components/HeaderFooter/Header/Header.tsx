@@ -43,57 +43,8 @@ import HeaderMobile from "./HeaderMobile";
 import EcomHeader from "./EcomHeader";
 import LanguageDesktopView from "./LanguageHeader/LanguageDesktopView";
 import { AdvanceSearchPopup } from "../../AdvanceSearch/AdvanceSearch";
+import { HeaderProps, Menus } from "./Header.types";
 
-interface Menus {
-  Label: string;
-  Description: string;
-  URL: string;
-  Submenu: [];
-  content_type_value: {
-    Image: string;
-    Title: string;
-    Description?: string;
-    RedirectionUrl?: string;
-    ContentType: string;
-    Internal: boolean;
-    CreatedDate: string;
-    Author: string;
-  };
-  MegaMenu?: boolean;
-  Menu_Id: number;
-  Internal: boolean;
-  IsCurrentTab: boolean;
-  menuicon: string;
-}
-
-interface IHeader {
-  search: string;
-  language: string;
-  // HeaderLogo: string;
-  userInfo: { name: string; img: string };
-  Menus: Menus[];
-  cta_title: string;
-  cta_url: string;
-  header_logo: string;
-}
-
-interface Props {
-  data?: IHeader;
-  homePageUrl: string;
-  logoutButtonHandle?: any;
-  langCode: string;
-  isCartIconEnable?: boolean;
-  isProductUpdateCount?: any;
-  navigateToCartPage?: any;
-  gcpUrl?: string;
-  bucketName?: string;
-  onLogin: () => void;
-  handleChangePassword?: () => void;
-  handleMyProfile?: () => void;
-  isLoginEnabled: boolean;
-  userData?: any;
-  secondaryArgs?: any;
-}
 const Header = ({
   homePageUrl,
   data,
@@ -110,7 +61,7 @@ const Header = ({
   handleMyProfile,
   userData,
   secondaryArgs,
-}: Props) => {
+}: HeaderProps) => {
   const theme = useTheme();
   const isLogin = userData || localStorage.getItem("userLoginDetails");
   const { data: userLoginData = {} } = nullToObject(parseStringDetails(isLogin));

@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-key */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Grid, Typography } from "@mui/material";
+import { formCroppedUrlString } from "@platformx/utilities";
+import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { formCroppedUrl } from "@platformx/utilities";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import "./BlogTiles.css";
+import { useCustomStyle } from "./BlogTiles.style";
 import BlogTilesCard from "./BlogTilesCard";
 import BlogTilesCard2 from "./BlogTilesCard2";
-import "./BlogTiles.css";
-import prelemTypes from "../../globalStyle";
-import { useCustomStyle } from "./BlogTiles.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
 
 const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
@@ -226,12 +226,12 @@ const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) 
               <React.Fragment>
                 <Box className='noDataFoundWrapper'>
                   <Image
-                    src={formCroppedUrl(
+                    src={formCroppedUrlString(
                       gcpUrl,
                       bucketName,
                       secondaryArgs?.noResultImg,
                       secondaryArgs?.ext,
-                    )}
+                      ).src}
                     alt='NoDataFound'
                   />
                 </Box>

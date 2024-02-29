@@ -2,7 +2,7 @@
 import { Container, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
 import { useCustomStyle } from "./Sponsor.style";
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
@@ -29,12 +29,12 @@ SponsorProp) => {
     const ImageCompound_index = `ImageCompound_${index}`;
     const { original_image_relative_path, ext }: any =
       (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
     return img;
   };
 

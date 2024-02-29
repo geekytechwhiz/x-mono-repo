@@ -1,13 +1,13 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl, formCroppedUrlString } from "@platformx/utilities";
-import { useCustomStyle } from "./ProductSummaryViaVideo2.style";
-import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ProductSummaryViaVideo2.style";
 
 const ProductSummaryViaVideo2 = ({
   content,
@@ -40,12 +40,12 @@ ProductSummaryProp) => {
               description: content?.Description,
               embedUrl: content?.Videos?.Video_1?.Url,
               thumbnailUrl: {
-                "@id": formCroppedUrl(
+                "@id": formCroppedUrlString(
                   gcpUrl,
                   bucketName,
                   content?.Videos?.Video_1.Thumbnail,
                   content?.Videos?.Video_1.ext,
-                ),
+                  ).src,
               },
             },
           ],

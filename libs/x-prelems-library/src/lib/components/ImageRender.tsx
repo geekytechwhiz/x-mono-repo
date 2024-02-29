@@ -1,8 +1,8 @@
 import { CardMedia, Paper } from "@mui/material";
-import React, { useState } from "react";
-import { formCroppedUrl, fallBackImage } from "@platformx/utilities";
-import { breakpoints, ratios } from "./ConstantData";
+import { fallBackImage, formCroppedUrlString } from "@platformx/utilities";
 import Image from "next/image";
+import React, { useState } from "react";
+import { breakpoints, ratios } from "./ConstantData";
 
 const ImageRender = (props: any = {}) => {
   const [error, setError] = useState(false);
@@ -56,19 +56,19 @@ const ImageRender = (props: any = {}) => {
                 width: width,
               }}>
               {breakpoints.map(({ breakpoint, ratio }, key) => {
-                const img = publishedImages.find(
-                  ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
-                );
+                // const img = publishedImages.find(
+                //   ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
+                // );
                 // const { folder_path: imgPath = "" } = img || {};
                 return (
                   <React.Fragment key={key}>
                     {/* <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, "webp")}
+                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, "webp")}
                     />
                     <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, ext)}
+                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, ext)}
                     /> */}
                     source has been commented
                   </React.Fragment>
@@ -102,14 +102,14 @@ const ImageRender = (props: any = {}) => {
               <picture>
                 Soure has been commented
                 {/* <source
-                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, "webp")}
+                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, "webp")}
                   type='image/webp'
                 />
                 <source
-                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
+                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext)}
                 /> */}
                 <Image
-                  src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
+                  src={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src}
                   onError={handleError}
                   // width='100%'
                   // height='100%'

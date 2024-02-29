@@ -1,20 +1,20 @@
 import { Box, Container, Grid, Hidden, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import "../../Style.css";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString
 } from "@platformx/utilities";
-import "./FeatureTiles.css";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import prelemTypes from "../../globalStyle";
-import { useCustomStyle } from "./FeatureTiles.style";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import "./FeatureTiles.css";
+import { useCustomStyle } from "./FeatureTiles.style";
 
 const FeatureTiles = ({ content, analytics, authoringHelper, secondaryArgs }: FeatureTilesProp) => {
   const classes = useCustomStyle();
@@ -134,12 +134,12 @@ const FeatureTiles = ({ content, analytics, authoringHelper, secondaryArgs }: Fe
       const { original_image_relative_path, ext } =
         (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) ||
         {};
-      const img = formCroppedUrl(
+      const img = formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         original_image_relative_path,
         ext,
-      );
+        ).src;
       return img;
     };
 

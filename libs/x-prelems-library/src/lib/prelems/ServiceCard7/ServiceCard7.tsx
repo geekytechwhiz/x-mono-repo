@@ -9,7 +9,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import "./ServiceCard7.css";
@@ -64,7 +64,7 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
               position: index + 1,
               item: {
                 "@type": "ImageObject",
-                contentUrl: formCroppedUrl(
+                contentUrl: formCroppedUrlString(
                   gcpUrl,
                   bucketName,
                   value?.IconImage?.Url,
@@ -291,12 +291,12 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                               <Box className='imgWrapper'>
                                 <Image
                                   alt='card7'
-                                  src={formCroppedUrl(
+                                  src={formCroppedUrlString(
                                     gcpUrl,
                                     bucketName,
                                     value?.IconImage?.Url,
                                     value?.IconImage?.ext,
-                                  )}
+                                    ).src}
                                   width={42}
                                   height={42}
                                 />
