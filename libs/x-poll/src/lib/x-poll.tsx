@@ -7,15 +7,15 @@ import { useInView } from "react-intersection-observer";
 import { PollComponent } from "./components/PollComponent";
 import { XPollProps } from "./x-poll.types";
 
-export function XPoll({ contentType, id, langCode, host }: XPollProps) {
+export function XPoll({ contentId, langCode }: XPollProps) {
   const [pageData, setPageData] = useState({} as any);
 
   useEffect(() => {
-    if (contentType && id)
-      fetchContentData(contentType, id, langCode, host).then((res) => {
+    if (contentId)
+      fetchContentData("poll", contentId, langCode, process.env.NX_AUTHOR_URI).then((res) => {
         setPageData(res?.data?.data?.fetchPoll);
       });
-  }, [contentType, id]);
+  }, [contentId]);
   const { ref } = useInView({
     /* Optional options */
     threshold: 0,
@@ -27,7 +27,7 @@ export function XPoll({ contentType, id, langCode, host }: XPollProps) {
         <ThemeProvider theme={PrelemTheme}>
           <PollComponent
             pageData={pageData}
-            secondaryArgs={getSecondaryArgs(langCode, contentType, host)}
+            secondaryArgs={getSecondaryArgs(langCode, "poll", process.env.NX_AUTHOR_URI)}
           />
         </ThemeProvider>
       </ErrorBoundary>

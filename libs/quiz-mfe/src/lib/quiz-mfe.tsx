@@ -6,16 +6,16 @@ import { useInView } from "react-intersection-observer";
 import { QuizComponent } from "./components/QuizComponent";
 import { QuizMfeProps } from "./quiz-mfe.types";
 
-export function QuizMfe({ contentType, id, langCode, host }: QuizMfeProps) {
+export function QuizMfe({ contentId, langCode }: QuizMfeProps) {
   const [pageData, setPageData] = useState({} as any);
 
   useEffect(() => {
-    if (contentType && id) {
-      fetchContentData(contentType, id, langCode, host).then((res) => {
+    if (contentId) {
+      fetchContentData("quiz", contentId, langCode, process.env.NX_AUTHOR_URI).then((res) => {
         setPageData(res?.data?.data?.fetchQuizContent);
       });
     }
-  }, [contentType, id]);
+  }, [contentId]);
   const { ref } = useInView({
     /* Optional options */
     threshold: 0,
@@ -26,7 +26,7 @@ export function QuizMfe({ contentType, id, langCode, host }: QuizMfeProps) {
         <ThemeProvider theme={PrelemTheme}>
           <QuizComponent
             pageData={pageData}
-            secondaryArgs={getSecondaryArgs(langCode, contentType, host)}
+            secondaryArgs={getSecondaryArgs(langCode, "quiz", process.env.NX_AUTHOR_URI)}
           />
         </ThemeProvider>
       </ErrorBoundary>

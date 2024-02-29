@@ -1,6 +1,4 @@
 export type QuizMfeProps = {
-  contentType: string;
-  id: string;
+  contentId: string;
   langCode: string;
-  host: string;
 };

@@ -1,6 +1,4 @@
 export type XPollProps = {
-  contentType: string;
-  id: string;
+  contentId: string;
   langCode: string;
-  host: string;
 };
