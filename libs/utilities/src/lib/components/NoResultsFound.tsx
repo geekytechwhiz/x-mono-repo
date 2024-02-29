@@ -7,6 +7,7 @@ const NoResultsFound = () => {
   const { t } = useTranslation();
   return (
     <Box sx={{ textAlign: "center", marginTop: "5%" }}>
+      {/* Check Next img works with React  lib and nextJS */}
       <Image alt='NoResult' src={NoResults} />
       <Typography
         variant='h3regular'
