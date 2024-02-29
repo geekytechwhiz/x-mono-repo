@@ -1,8 +1,4 @@
 import { Box, Container, Typography } from "@mui/material";
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
@@ -10,9 +6,13 @@ import {
   formCroppedUrl,
   handleHtmlTags,
 } from "@platformx/utilities";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./WebsiteIntroduction4.style";
 
 // ts-ignore
