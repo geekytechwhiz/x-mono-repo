@@ -99,7 +99,6 @@ export * from "./lib/assets/header";
 export * from "./lib/assets/footer";
 export * from "./lib/assets/gif";
 export * from "./lib/assets/header";
-export * from "./lib/assets/icons";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
