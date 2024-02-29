@@ -72,7 +72,7 @@ export function useUserGroups() {
       const response: any = await userGroupsApi.createUserGroups({
         input: props,
       });
-      if (response?.authoring_createUserGroup?.message === "Successfully created!!!") {
+      if (response?.data?.authoring_createUserGroup?.message === "Successfully created!!!") {
         return {
           success: true,
         };
@@ -95,5 +95,28 @@ export function useUserGroups() {
     }
   };
 
-  return { createUserGroup };
+  const updateUserGroup = async (props): Promise<userGroupsResponse> => {
+    try {
+      const response: any = await userGroupsApi.updateUserGroups({
+        input: props,
+      });
+      if (response?.data?.authoring_updateUserGroup?.message === "Successfully updated!!!") {
+        return {
+          success: true,
+        };
+      } else {
+        ShowToastError("Something went wrong!!!");
+        return {
+          success: false,
+        };
+      }
+    } catch (err) {
+      ShowToastError("INTERNAL SERVER ERROR");
+      return {
+        success: false,
+      };
+    }
+  };
+
+  return { createUserGroup, updateUserGroup };
 }

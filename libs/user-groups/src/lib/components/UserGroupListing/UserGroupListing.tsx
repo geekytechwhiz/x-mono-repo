@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useUserGroupList } from "@platformx/authoring-apis";
 import { ContentListDesktopLoader, NoSearchResult } from "@platformx/utilities";
+import { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router";
 import UserGroupCard from "../UserGroupCard/UserGroupCard";
@@ -14,6 +15,10 @@ const UserGroupListing = () => {
   const HandleCreateGroup = () => {
     navigate("/create/user-groups");
   };
+
+  useEffect(() => {
+    localStorage.removeItem("groupDetails");
+  }, []);
 
   return (
     <Box>

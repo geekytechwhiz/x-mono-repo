@@ -4,6 +4,7 @@ import { handleDialog } from "@platformx/authoring-state";
 import {
   AutoTextArea,
   CommonBoxWithNumber,
+  ShowToastSuccess,
   SuccessIcon,
   TextBox,
   TitleSubTitle,
@@ -11,9 +12,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { userGroupMapper } from "../../Utils/helper";
+import { userGroupCreateMapper, userGroupUpdateMapper } from "../../Utils/helper";
 import GroupHeader from "../GroupHeader/GroupHeader";
 import MultiTagSelect from "../MultiTagSelect/MultiTagSelect";
 import { userGroupsProps } from "./CreateUserGroup.types";
@@ -21,12 +22,11 @@ import { userGroupsProps } from "./CreateUserGroup.types";
 const CreateUserGroup = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("name");
-  const locationObj = location?.state;
+  const [locationObj] = useState(JSON.parse(localStorage.getItem("groupDetails") || "{}"));
   const dispatch = useDispatch();
-  const { createUserGroup } = useUserGroups();
+  const { createUserGroup, updateUserGroup } = useUserGroups();
   const [userGroup, setUserGroup] = useState<userGroupsProps>({
     name: "",
     description: "",
@@ -54,23 +54,39 @@ const CreateUserGroup = () => {
   };
 
   const returnBack = () => {
+    localStorage.removeItem("groupDetails");
     navigate("/community/user-groups");
   };
 
-  const handleCreateUserGroup = async () => {
+  const updateGroup = async () => {
+    const response: any = await updateUserGroup(userGroupUpdateMapper(userGroup, locationObj));
+    if (response?.success) {
+      localStorage.setItem(
+        "groupDetails",
+        JSON.stringify(userGroupUpdateMapper(userGroup, locationObj)),
+      );
+      ShowToastSuccess(t("Group updated successfully"));
+    }
+  };
+
+  const createGroup = async () => {
+    const response: any = await createUserGroup(userGroupCreateMapper(userGroup));
+    if (response?.success) {
+      const dialogContent = {
+        imageIcon: SuccessIcon,
+        isOpen: true,
+        title: t("congratulations"),
+        subTitle: t("the group has been created successfully"),
+        rightButtonText: t("go_to_listing"),
+        handleCallback: returnBack,
+      };
+      dispatch(handleDialog(dialogContent));
+    }
+  };
+
+  const handleCreateUserGroup = () => {
     if (handleValidation()) {
-      const response: any = await createUserGroup(userGroupMapper(userGroup));
-      if (response?.success) {
-        const dialogContent = {
-          imageIcon: SuccessIcon,
-          isOpen: true,
-          title: t("congratulations"),
-          subTitle: t("the group has been created successfully"),
-          rightButtonText: t("go_to_listing"),
-          handleCallback: returnBack,
-        };
-        dispatch(handleDialog(dialogContent));
-      }
+      code && locationObj ? updateGroup() : createGroup();
     }
   };
 
@@ -102,9 +118,9 @@ const CreateUserGroup = () => {
   };
 
   useEffect(() => {
-    if (code && locationObj) {
-      const { name = "", description = "", tags = [] } = locationObj;
-      setUserGroup({ name, description, tags });
+    if (code && Object.keys(locationObj)?.length) {
+      const { label = "", description = "", tags = [] } = locationObj;
+      setUserGroup({ name: label, description, tags });
     }
   }, [code, locationObj]);
 
@@ -112,7 +128,7 @@ const CreateUserGroup = () => {
     <>
       <GroupHeader
         arrowText={code ? "Update Group" : "Create Group"}
-        buttonText={code ? "Update" : "Save"}
+        buttonText={code ? "Update" : "Create"}
         returnBack={returnBack}
         onSave={handleCreateUserGroup}
       />

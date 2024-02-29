@@ -31,6 +31,23 @@ const MultiTagSelect = ({ tags, handleCallback, error, errorText }: multiTagSele
             name='tags'
           />
         )}
+        sx={{
+          ".Platform-x-OutlinedInput-root ": {
+            display: "flex",
+            flexWrap: "wrap",
+            padding: "10px",
+          },
+          ".Platform-x-Autocomplete-tag": {
+            margin: "0 5px 5px 0",
+          },
+          ".Platform-x-Chip-label": {
+            padding: "0 5px",
+          },
+          ".Platform-x-InputBase-input": {
+            padding: 0,
+            width: "auto",
+          },
+        }}
       />
       {error && (
         <Typography

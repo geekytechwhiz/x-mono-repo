@@ -1,5 +1,5 @@
 import graphqlInstance from "../../config/graphqlConfig";
-import { userGroups } from "../../graphQL/mutations/userGroups";
+import { userGroupsMutations } from "../../graphQL/mutations/userGroupsMutations";
 import { userGroupsQueries } from "../../graphQL/queries/userGroupsQueries";
 import { ApiResponse } from "../../utils/types";
 
@@ -7,7 +7,7 @@ const userGroupsApi = {
   createUserGroups: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data, errors } = await graphqlInstance.query({
-        query: userGroups.CREATE_USER_GROUP,
+        query: userGroupsMutations.CREATE_USER_GROUP,
         variables: input,
         fetchPolicy: "no-cache",
       });
@@ -29,5 +29,19 @@ const userGroupsApi = {
       return err;
     }
   },
+  updateUserGroups: async <T>(input: any): Promise<ApiResponse<T>> => {
+    try {
+      const { data, errors } = await graphqlInstance.query({
+        query: userGroupsMutations.UPDATE_USER_GROUP,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      const errorMsg = (errors?.length && errors[0]?.message) || "";
+      return { data, error: { message: errorMsg, status: 200 }, loading: false };
+    } catch (err: any) {
+      return err;
+    }
+  },
 };
+
 export default userGroupsApi;
