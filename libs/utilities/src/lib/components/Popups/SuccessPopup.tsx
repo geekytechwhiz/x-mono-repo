@@ -74,7 +74,7 @@ export default function PlateformXDialogSuccess({
                 height: { xs: "90px", md: "100px" },
                 margin: "auto !important",
               }}>
-              <Image  src={DeleteIcon} style={{ width: "100%" }} />
+              <Image alt='' src={DeleteIcon} style={{ width: "100%" }} />
             </Box>
           </Box>
           {title ? (

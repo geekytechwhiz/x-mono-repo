@@ -1,96 +1,83 @@
-import { Box, IconButton, MenuItem } from '@mui/material'
-import DeleteIcon from '../../assets/svg//deleteIcon.svg'
-import EditIcon from '../../assets/svg//editIcon.svg'
+import { Box, IconButton, MenuItem } from "@mui/material";
+import DeleteIcon from "../../assets/svg//deleteIcon.svg";
+import EditIcon from "../../assets/svg//editIcon.svg";
 // import MoreHorizIcon from '../../assets/svg/moreHoriz.svg';
-import { useState } from 'react'
-import { ErrorTooltip } from '../ErrorTooltip/ErrorTooltip'
+import { useState } from "react";
+import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
+import Image from "next/image";
 
 const CardOption = (props: any) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const {
     getContentCategory,
     getContentSubCategory,
     dataList = {},
-    tagName = '',
+    tagName = "",
     handleEdit = () => {},
     canAccessAction,
     handleDeleteButton = () => {},
-  } = props
+  } = props;
 
   return (
-    <>
-      <Box
-        color="#89909A"
-        className="d-inline-flex align-items-center justify-content-end"
-        sx={{ minWidth: '104px' }}
-      >
-        <Box className="d-flex align-items-center">
-          {(dataList?.scheduledPublishTriggerDateTime == null ||
-            dataList?.scheduledPublishTriggerDateTime == undefined) &&
-          (dataList?.scheduledUnPublishTriggerDateTime == null ||
-            dataList?.scheduledUnPublishTriggerDateTime == undefined) ? (
-            <ErrorTooltip
-              component={
-                <MenuItem
-                  className="icons"
-                  disableRipple
-                  onClick={handleEdit}
-                  disabled={
-                    !canAccessAction(
-                      getContentCategory(),
-                      getContentSubCategory(),
-                      'Update',
-                    ) || tagName === 'courses'
-                  }
-                >
-                  <IconButton className="hoverIcon">
-                    <Image  src={EditIcon} style={{ objectFit: 'cover' }} />
-                  </IconButton>
-                </MenuItem>
-              }
-              doAccess={
-                !canAccessAction(
-                  getContentCategory(),
-                  getContentSubCategory(),
-                  'Update',
-                ) || tagName === 'courses'
-              }
-            />
-          ) : null}
-        </Box>
-        <Box className="d-flex align-items-center">
+    <Box
+      color='#89909A'
+      className='d-inline-flex align-items-center justify-content-end'
+      sx={{ minWidth: "104px" }}>
+      <Box className='d-flex align-items-center'>
+        {(dataList?.scheduledPublishTriggerDateTime === null ||
+          dataList?.scheduledPublishTriggerDateTime === undefined) &&
+        (dataList?.scheduledUnPublishTriggerDateTime === null ||
+          dataList?.scheduledUnPublishTriggerDateTime === undefined) ? (
           <ErrorTooltip
             component={
               <MenuItem
-                className="icons"
+                className='icons'
                 disableRipple
-                onClick={handleDeleteButton}
+                onClick={handleEdit}
                 disabled={
-                  !canAccessAction(
-                    getContentCategory(),
-                    getContentSubCategory(),
-                    'Delete',
-                  ) || tagName === 'courses'
-                }
-              >
-                <IconButton className="hoverIcon">
-                  <Image  src={DeleteIcon} style={{ objectFit: 'cover' }} />
+                  !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+                  tagName === "courses"
+                }>
+                <IconButton className='hoverIcon'>
+                  {/* <Image src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
+                  <Image src={EditIcon} alt='' />
                 </IconButton>
               </MenuItem>
             }
             doAccess={
-              !canAccessAction(
-                getContentCategory(),
-                getContentSubCategory(),
-                'Delete',
-              ) || tagName === 'courses'
+              !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+              tagName === "courses"
             }
           />
-          {/* <IconButton
+        ) : null}
+      </Box>
+      <Box className='d-flex align-items-center'>
+        <ErrorTooltip
+          component={
+            <MenuItem
+              className='icons'
+              disableRipple
+              onClick={handleDeleteButton}
+              disabled={
+                !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
+                tagName === "courses"
+              }>
+              <IconButton className='hoverIcon'>
+                {/* <Image src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
+                <Image src={DeleteIcon} alt='' />
+              </IconButton>
+            </MenuItem>
+          }
+          doAccess={
+            !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
+            tagName === "courses"
+          }
+        />
+        {/* <IconButton
             aria-label='settings'
             id='long-button'
             aria-controls={open ? 'long-menu' : undefined}
@@ -101,10 +88,9 @@ const CardOption = (props: any) => {
           >
             <Image  src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
           </IconButton> */}
-        </Box>
       </Box>
-    </>
-  )
-}
+    </Box>
+  );
+};
 
-export default CardOption
+export default CardOption;

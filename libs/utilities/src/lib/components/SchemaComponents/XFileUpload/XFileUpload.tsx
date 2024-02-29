@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 // import CommonImageRender from "../../pages/Gallery/CommonImageRender";
-import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 import { XTypography } from "../XTypography/XTypography";
 import Image from "next/image";
 
@@ -82,6 +82,7 @@ const XFileUpload = ({
                   borderRadius: "15px",
                 }}
                 src={url}
+                alt=''
               />
             )
           ) : chooseType === "video" ? (
