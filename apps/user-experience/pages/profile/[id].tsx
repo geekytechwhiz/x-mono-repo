@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
+import getConfig from "next/config";
+import { GetServerSidePropsContext } from "next";
 import PageHead from "../../components/pageHead";
 import { useInView } from "react-intersection-observer";
 import ErrorBoundary from "../../components/Common/ErrorBoundary";
 import { ProfileComponent } from "../../components/Profile/Profile";
-import HeaderFooterLayout from "../../components/HeaderFooterLayout/HeaderFooterLayout";
-import { prelemBaseEndpointObj, snowplowSchemaUrl } from "../../utils/helperFunctions";
-import getConfig from "next/config";
-import { GetServerSidePropsContext } from "next";
 import { getInitalProfileData } from "../../utils/helperInitialData";
 import { CONTENT_TYPES, SNOWPLOW } from "../../constants/CommonConstants";
+import { prelemBaseEndpointObj, snowplowSchemaUrl } from "../../utils/helperFunctions";
+import HeaderFooterLayout from "../../components/HeaderFooterLayout/HeaderFooterLayout";
 import { usePageImpression } from "../../components/Common/customHook/PageImpressionHook";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
