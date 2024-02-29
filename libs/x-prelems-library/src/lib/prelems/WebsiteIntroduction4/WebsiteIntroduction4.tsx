@@ -1,3 +1,4 @@
+/* eslint-disable wrap-regex */
 import { Box, Container, Typography } from "@mui/material";
 import {
   Analytics,
