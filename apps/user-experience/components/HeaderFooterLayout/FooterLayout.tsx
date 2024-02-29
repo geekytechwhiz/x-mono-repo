@@ -12,7 +12,7 @@ const FooterLayout = (props: any) => {
   };
 
   const DynamicFooter: any = dynamic(
-    () => import(`platform-x-prelems/prelems/HeaderFooter`).then((mod) => mod.Footer),
+    () => import(`@platformx/x-prelems-library`).then((mod) => mod.Footer),
     { ssr: false },
   );
   // const DynamicFooter = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Footer), {

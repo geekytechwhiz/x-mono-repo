@@ -1,8 +1,8 @@
-import getConfig from "next/config";
-import dynamic from "next/dynamic";
 import React from "react";
-import { getDomainUrl, navigateTo } from "../../utils/helperFunctions";
+import dynamic from "next/dynamic";
+import getConfig from "next/config";
 import { useRouter } from "next/router";
+import { getDomainUrl, navigateTo } from "../../utils/helperFunctions";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -27,7 +27,7 @@ const HeaderLayout = (props: any) => {
   };
 
   const DynamicHeader: any = dynamic(
-    () => import(`platform-x-prelems/prelems/HeaderFooter`).then((mod) => mod.Header),
+    () => import(`@platformx/x-prelems-library`).then((mod) => mod.Header),
     { ssr: false },
   );
 
