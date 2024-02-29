@@ -3,6 +3,7 @@ import React from "react";
 import { dateFormat, handleHtmlTags, fallBackImage } from "@platformx/utilities";
 import CardSkeleton from "../CardSkeleton";
 import { useCustomStyle } from "./XCard1.style";
+import Image from "next/image";
 
 const XCard1 = ({ content, Icon, onCardClick }: XCard1Props) => {
   const classes = useCustomStyle();
@@ -11,7 +12,7 @@ const XCard1 = ({ content, Icon, onCardClick }: XCard1Props) => {
       {Object.keys(content)?.length > 0 ? (
         <Box className='XCard1innderBox' onClick={onCardClick}>
           <Box className='imgWrapper'>
-            <img
+            <Image
               src={content?.teaser_image || fallBackImage}
               onError={(e: any) => {
                 if (e.target.src !== fallBackImage) {
@@ -20,9 +21,7 @@ const XCard1 = ({ content, Icon, onCardClick }: XCard1Props) => {
                 }
               }}
               alt=''
-              style={{ objectFit: "cover" }}
-              width='100%'
-              height='100%'
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
             <Box className='iconWrapper'>
               <Box className='imgIconBox'>
@@ -107,12 +106,12 @@ interface Content {
   teaser_image?: string;
   ImageCompound: {
     ImageCompound_1: {
-      published_images: Image[];
+      published_images: ImageType[];
       original_image: object;
     };
   };
 }
-interface Image {
+interface ImageType {
   aspect_ratio: string;
   bucket_path: string;
   folder_path: string;
