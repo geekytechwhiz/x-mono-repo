@@ -48,7 +48,7 @@ const CardOption = (props: any) => {
                   }
                 >
                   <IconButton className="hoverIcon">
-                    <img src={EditIcon} style={{ objectFit: 'cover' }} />
+                    <Image  src={EditIcon} style={{ objectFit: 'cover' }} />
                   </IconButton>
                 </MenuItem>
               }
@@ -78,7 +78,7 @@ const CardOption = (props: any) => {
                 }
               >
                 <IconButton className="hoverIcon">
-                  <img src={DeleteIcon} style={{ objectFit: 'cover' }} />
+                  <Image  src={DeleteIcon} style={{ objectFit: 'cover' }} />
                 </IconButton>
               </MenuItem>
             }
@@ -99,7 +99,7 @@ const CardOption = (props: any) => {
             onClick={handleClick}
             className='viewallctamob'
           >
-            <img src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
+            <Image  src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
           </IconButton> */}
         </Box>
       </Box>

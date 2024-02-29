@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
+import Image from "next/image";
 // import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
 // import CardMenu from '../../../pages/PageList/Components/CardMenu/CardMenu';
 // import { CourseMenu } from '../../../pages/QuizPollEvents/Components/QuizPollEventsMenu/CourseMenu';
@@ -193,7 +194,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} alt='img' />
+                <Image src={iconsList[dataList.tagName]} alt='img' />
               </Box>
 
               <Box className='rightspace'>
@@ -223,7 +224,7 @@ export const Card = ({
                       dataList.page_state === "published" &&
                       date > dataList.eventStartDate &&
                       date < dataList.eventEndDate && (
-                        <img
+                        <Image
                           style={{ height: "43px", width: "43px" }}
                           // src={RedBlinkingDot}
                           src='imggepath'
@@ -232,16 +233,16 @@ export const Card = ({
                       )}
                     <Box component='div' className='mobstatusIcon'>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        <img src={statusIcons[dataList.status]} alt='' />
+                        <Image src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
-                          <img src={statusIcons["schedulePublish"]} alt='' />
+                          <Image src={statusIcons["schedulePublish"]} alt='' />
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
-                          <img src={statusIcons["scheduleUnpublish"]} alt='' />
+                          <Image src={statusIcons["scheduleUnpublish"]} alt='' />
                         )}
                       </Typography>
                     </Box>

@@ -14,6 +14,7 @@ import { getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import PlateformXDialog from "../Popups/PlateformXDialog";
+import Image from "next/image";
 
 const saveWarningMessage = {
   saveWarnTitle: "Unsaved Changes",
@@ -144,7 +145,7 @@ export const Header = (props) => {
         }}>
         {isActive ? (
           <Box onClick={handleLogoClick} sx={{ cursor: "pointer" }}>
-            <img src={Logo} height='30' alt='logo-img' />
+            <Image src={Logo} height='30' alt='logo-img' />
           </Box>
         ) : (
           <Typography

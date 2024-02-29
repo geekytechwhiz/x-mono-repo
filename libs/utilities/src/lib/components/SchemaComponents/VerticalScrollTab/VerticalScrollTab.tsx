@@ -1,6 +1,7 @@
 import { ButtonGroup, IconButton, Tooltip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './VerticalScrollTab.styles';
+import Image from "next/image";
 
 const VerticalScrollTab = ({ icons, handleScroll, activeScroll }) => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ const VerticalScrollTab = ({ icons, handleScroll, activeScroll }) => {
               }}
             >
               {activeScroll === icon.tooltip ? (
-                <img
+                <Image
                   src={icon.iconName}
                   alt=''
                   style={{
@@ -50,7 +51,7 @@ const VerticalScrollTab = ({ icons, handleScroll, activeScroll }) => {
                   }}
                 />
               ) : (
-                <img src={icon.iconName} alt='' />
+                <Image src={icon.iconName} alt='' />
               )}
             </IconButton>
           </Tooltip>

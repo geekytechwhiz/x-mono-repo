@@ -1,4 +1,3 @@
-
 import CachedIcon from '@mui/icons-material/Cached';
 import { Box, TextField, Typography } from '@mui/material';
 import React from 'react';
@@ -6,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import ArrowUpwardIcon from '../../assets/svg/UploadThumbnail.svg';
 import ThemeConstants from '../../themes/authoring/lightTheme/lightThemeVariable';
 // import CommonImageRender from '../Gallery/CommonImageRender';
+import Image from "next/image";
 
 interface ImageProps {
   url?: any;
@@ -72,7 +72,8 @@ const AddImage = ({
             // />
             <div>CommonImageRender</div>
           ) : (
-            <img
+            <Image
+            alt='image'
               style={{
                 width: '100%',
                 height: '206px',
@@ -162,9 +163,9 @@ const AddImage = ({
               m={1}
             >
               {diffIcon ? (
-                <img src={ArrowUpwardIcon} alt="ArrowUpwardIcon" />
+                <Image src={ArrowUpwardIcon} alt="ArrowUpwardIcon" />
               ) : (
-                <img src={ArrowUpwardIcon} alt="ArrowUpwardIcon" />
+                <Image src={ArrowUpwardIcon} alt="ArrowUpwardIcon" />
               )}
             </Box>
             <Box

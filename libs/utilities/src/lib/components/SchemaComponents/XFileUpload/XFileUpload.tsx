@@ -6,6 +6,7 @@ import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 // import CommonImageRender from "../../pages/Gallery/CommonImageRender";
 import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
 import { XTypography } from "../XTypography/XTypography";
+import Image from "next/image";
 
 export interface XFileProps {
   url?: any;
@@ -72,7 +73,7 @@ const XFileUpload = ({
               // />
               <Typography>TO DO</Typography>
             ) : (
-              <img
+              <Image
                 style={{
                   width: "100%",
                   height: "206px",
@@ -153,9 +154,9 @@ const XFileUpload = ({
               }}
               m={1}>
               {diffIcon ? (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               ) : (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               )}
             </Box>
             <Box

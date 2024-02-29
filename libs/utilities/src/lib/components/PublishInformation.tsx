@@ -3,8 +3,9 @@ import { Box, Tooltip, Typography, } from '@mui/material';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { ShowToastError } from '../components/ToastNotification/ToastNotification';
-import { convertToLowerCase } from "../utils/helperFns"
+import { convertToLowerCase } from "../utils/helperFns";
 import { stateIcons } from './Card/constants';
+import Image from "next/image";
 
 type PublishInformationProps = {
   dataList: any;
@@ -25,11 +26,11 @@ export const PublishInformation = (props: PublishInformationProps) => {
 
   const redirect = (pageUrl) => {
     if (pageUrl) {
-      window.open(pageUrl, '_blank', 'noopener,noreferrer')
+      window.open(pageUrl, '_blank', 'noopener,noreferrer');
     } else {
       ShowToastError(t('api_error_toast'));
     }
-  }
+  };
 
   const handleCardClicks = () => {
     if (convertToLowerCase(contentType) === "community") {
@@ -37,8 +38,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
     } else {
       handleCardClick();
     }
-  }
-
+  };
 
   return (
     <>
@@ -47,7 +47,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
         <Tooltip placement='top-start' title={t(`${dataList.status}`)}>
           <Typography sx={{ marginLeft: '10px' }}>
             {convertToLowerCase(contentType) === "community" ?
-              <img src={stateIcons.published} alt={stateIcons.published} /> : <img alt='status' src={stateIcons[dataList.status]}
+              <Image src={stateIcons.published} alt={stateIcons.published} /> : <Image alt='status' src={stateIcons[dataList.status]}
               />}
           </Typography>
         </Tooltip>
@@ -68,7 +68,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
             {(dataList.scheduledPublishTriggerDateTime != undefined ||
               null) &&
               tagName == 'sitepage' && (
-                <img src={stateIcons['schedulePublish']} />
+                <Image src={stateIcons['schedulePublish']} alt=''/>
               )}
           </Typography>
         </Tooltip>
@@ -90,7 +90,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
             {(dataList.scheduledUnPublishTriggerDateTime != undefined ||
               dataList.scheduledUnPublishTriggerDateTime != null) &&
               tagName == 'sitepage' && (
-                <img src={stateIcons['scheduleUnpublish']} />
+                <Image src={stateIcons['scheduleUnpublish']} alt='un publish' />
               )}
           </Typography>
         </Tooltip>
