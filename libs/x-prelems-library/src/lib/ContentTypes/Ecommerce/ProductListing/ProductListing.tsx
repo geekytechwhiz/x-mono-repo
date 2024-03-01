@@ -10,6 +10,7 @@ import "./ProductListing.css";
 import { useCustomStyle } from "./ProductListing.style";
 import ActualPrice from "../ProductDetail/SharedComponents/ActualPrice";
 import ProductLoader from "./ProductLoader";
+import Image from "next/image";
 
 type ProductListingProps = {
   secondaryArgs: any;
@@ -157,7 +158,7 @@ const ProductListing = ({
                     onClick={() => onViewDetails(card.id)}>
                     <Box className='image-container'>
                       <Box className='imgWrapper'>
-                        <img
+                        <Image
                           className='image'
                           onError={(e: any) => {
                             if (e.target.src !== fallBackImage) {

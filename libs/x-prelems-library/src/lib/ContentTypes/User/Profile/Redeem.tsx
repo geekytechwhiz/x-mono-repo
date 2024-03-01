@@ -45,6 +45,8 @@ type RedeemProps = {
 
 const Redeem = (props: RedeemProps) => {
   const { secondaryArgs = {} } = props;
+  const GreenTickIcon: any = GreenTick;
+
   const { prelemBaseEndpoint: { loyaltyEndPoint = "", loyaltyPortalEndPoint = "" } = {} } =
     nullToObject(secondaryArgs);
 
@@ -296,7 +298,7 @@ const Redeem = (props: RedeemProps) => {
       {showPopup && (
         <Confirmation
           open={true}
-          img={GreenTick}
+          img={GreenTickIcon.src}
           text={messageRef.current}
           title={t("voucher_generated")}
           handleClose={confirmationClose}

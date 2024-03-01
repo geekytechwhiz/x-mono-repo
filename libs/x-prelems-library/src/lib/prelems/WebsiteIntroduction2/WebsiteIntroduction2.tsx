@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  formCroppedUrl,
+  formCroppedUrlString,
   structureDataUrlPoint,
   RedDots,
   SecondaryArgs,
@@ -14,6 +14,7 @@ import { useCustomStyle } from "./WebsiteIntroduction2.style";
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const WebsiteIntroduction2 = ({
   content,
@@ -116,12 +117,12 @@ WebsiteIntroduction2Prop) => {
     let websiteIntroduction2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       websiteIntroduction2StructureData = {
@@ -370,10 +371,10 @@ WebsiteIntroduction2Prop) => {
             />
           </Box>
           <Box className='dottedImgFirst'>
-            <img alt='intor3' src={RedDots} width='140' height='63' />
+            <Image alt='intor3' src={RedDots} width='140' height='63' />
           </Box>
           <Box className='dottedImgSecond'>
-            <img alt='intro4' src={RedDots} width='140' height='63' />
+            <Image alt='intro4' src={RedDots} width='140' height='63' />
           </Box>
         </Box>
       </Box>
@@ -483,12 +484,12 @@ interface Content {
   TagName?: string;
   ImageCompound: {
     ImageCompound_1: {
-      published_images: Image[];
+      published_images: ImageType[];
       original_image?: object;
     };
   };
 }
-interface Image {
+interface ImageType {
   aspect_ratio: string;
   bucket_path: string;
   folder_path: string;

@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardMedia, Dialog, IconButton, Box } from "@mui/m
 import { Close } from "@mui/icons-material";
 import { IconNextSvg, IconPrevSvg } from "@platformx/utilities";
 import "./Popup.css";
+import Image from "next/image";
 
 interface ImageDialogProps {
   isOpen: boolean;
@@ -55,7 +56,7 @@ const Popup: React.FC<ImageDialogProps> = ({
         transform: "translateY(-50%)",
         pointerEvents: "none",
       }}>
-      <img src={IconPrevSvg} alt='next' />
+      <Image src={IconPrevSvg} alt='next' />
     </IconButton>
     <IconButton
       aria-label='Next'
@@ -68,7 +69,7 @@ const Popup: React.FC<ImageDialogProps> = ({
         transform: "translateY(-50%)",
         pointerEvents: "none",
       }}>
-      <img src={IconNextSvg} alt='next' />
+      <Image src={IconNextSvg} alt='next' />
     </IconButton>
     <Card>
       <CardActionArea onClick={handleNext} disableRipple>

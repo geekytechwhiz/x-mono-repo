@@ -7,6 +7,7 @@ import ImageQuestion from "./ImageQuestion";
 import { CloseIcon } from "@platformx/utilities";
 import PollContext from "./PollContext";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 interface ResultProps {
   data: {
@@ -116,7 +117,7 @@ const Result = ({ data, callBack, onClickClose, fetchCroppedUrl }: ResultProps) 
             top: { xs: "20px", md: "53px" },
           }}
           onClick={onClickClose}>
-          <img src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
+          <Image src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
         </Button>
         <Box
           className='animatedWarp'

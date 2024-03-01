@@ -12,7 +12,7 @@ import prelemTypes from "../../globalStyle";
 import "./ServiceCard4.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
-
+import Image from "next/image";
 // ts-ignore
 const ServiceCard4 = ({
   content,
@@ -176,7 +176,7 @@ const ServiceCard4 = ({
                       </Box>
                       <Slide direction='left' in={true} timeout={1500}>
                         <Box className='imageWrapper' id='Image'>
-                          <img alt='card4' src={item?.Image_1?.Url} />
+                          <Image alt='card4' src={item?.Image_1?.Url || ""} />
                         </Box>
                       </Slide>
                     </Box>

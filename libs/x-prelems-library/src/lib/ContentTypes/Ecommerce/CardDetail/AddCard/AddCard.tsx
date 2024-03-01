@@ -7,7 +7,7 @@ import StringTextBox from "../../../../components/TextBox/StringTextBoxComponent
 import DropDown from "../../../../components/DropDown/Dropdown";
 import DateTextBox from "../../../../components/TextBox/DateTextBox";
 import StringOnBlurTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
-
+import Image from "next/image";
 import { useCustomStyle } from "./AddCard.style";
 
 const AddCard = ({ confirmOrder }: any) => {
@@ -162,7 +162,7 @@ const AddCard = ({ confirmOrder }: any) => {
                 formValues.cardHolderName.error && formValues.cardHolderName.errorMessage
               }></StringTextBox>
             <Box className='card-type-image'>
-              <img src={IconMasterCardSvg} alt='visa' />
+              <Image src={IconMasterCardSvg} alt='visa' />
             </Box>
           </Grid>
           <Grid item xs={12} className='form-field-container'>

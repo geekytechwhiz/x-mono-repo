@@ -13,6 +13,7 @@ import ToastService from "../ToastContainer/ToastService";
 import { errorRequest, linkCopy } from "../ConstantData";
 import ToastContainerHandle from "../ToastContainer/ToastContainerHandle";
 import EmbedDialog from "../EmbededModal/EmbededModal";
+import Image from "next/image";
 
 type Sharetype = {
   shareUrl?: string;
@@ -123,10 +124,10 @@ const Share = (props: Sharetype) => {
             cursor: !enablePreview ? "pointer" : "default",
           }}
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
-          <img
+          <Image
             alt='share1'
-            width='15px'
-            height='15px'
+            width={15}
+            height={15}
             src={IconFacebookSvg}
             style={{ ...imgCommon() }}
           />
@@ -137,13 +138,13 @@ const Share = (props: Sharetype) => {
 
       {/* <TwitterShareButton url={shareUrl} style={buttonStyle}>
         <Box sx={{ ...styleCommon('#229af1') }}>
-          <img alt="share2" src={Twitter} />
+          <Image alt="share2" src={Twitter} />
         </Box>
       </TwitterShareButton>
 
       <WhatsappShareButton url={shareUrl} style={buttonStyle}>
         <Box sx={{ ...styleCommon('#61db77') }}>
-          <img alt="share3" src={Whatsapp} />
+          <Image alt="share3" src={Whatsapp} />
         </Box>
       </WhatsappShareButton> */}
 
@@ -159,10 +160,10 @@ const Share = (props: Sharetype) => {
             cursor: !enablePreview ? "pointer" : "default",
           }}
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
-          <img
+          <Image
             alt='share4'
-            width='15px'
-            height='15px'
+            width={15}
+            height={15}
             src={IconLinkedInSvg}
             style={{ ...imgCommon() }}
           />
@@ -175,7 +176,7 @@ const Share = (props: Sharetype) => {
           cursor: !enablePreview ? "pointer" : "default",
         }}
         onClick={() => !enablePreview && copyClipBoardData()}>
-        <img alt='share5' width='15px' height='15px' src={IconCopySvg} style={{ ...imgCommon() }} />
+        <Image alt='share5' width={15} height={15} src={IconCopySvg} style={{ ...imgCommon() }} />
       </Box>
 
       <Box
@@ -187,7 +188,7 @@ const Share = (props: Sharetype) => {
         onClick={() => {
           !enablePreview && handleEmbed();
         }}>
-        <img alt='share6' width='20px' height='20px' src={IconEmbed} style={{ ...imgCommon() }} />
+        <Image alt='share6' width={15} height={15} src={IconEmbed} style={{ ...imgCommon() }} />
       </Box>
       {openEmbedModal ? (
         <EmbedDialog

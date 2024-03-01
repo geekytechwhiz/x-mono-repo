@@ -6,6 +6,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DoneIcon from "@mui/icons-material/Done";
 import QuizContext from "./QuizContext";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl }: any) => {
   const { objectType = "Color", Url = "", Color = "black" } = background || {};
@@ -144,7 +145,7 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
                                   maxWidth: { xs: "144px", md: "152px" },
                                   maxHeight: { xs: "114px", md: "120px" },
                                 }}>
-                                <img
+                                <Image
                                   src={option.option_image}
                                   alt='ans1'
                                   style={{ width: "100%" }}
@@ -252,7 +253,7 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
                           maxWidth: { xs: "144px", md: "152px" },
                           maxHeight: { xs: "114px", md: "120px" },
                         }}>
-                        <img
+                        <Image
                           src={question.options.find((x: any) => x.is_correct).option_image}
                           alt='ans2'
                           style={{ width: "100%" }}

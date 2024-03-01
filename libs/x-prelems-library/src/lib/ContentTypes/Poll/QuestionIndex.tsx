@@ -9,6 +9,7 @@ import ImageQuestion from "./ImageQuestion";
 import PollContext from "./PollContext";
 import SingleQuestion from "./SingleQuestion";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 interface QuestionIndexProps {
   data: {
@@ -191,7 +192,7 @@ const QuestionIndex = ({
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-              <img alt='qus1' src={loadergif} style={{ width: "80px", borderRadius: "5px" }} />
+              <Image alt='qus1' src={loadergif} style={{ width: "80px", borderRadius: "5px" }} />
             </Box>
           ) : (
             <>
@@ -222,7 +223,7 @@ const QuestionIndex = ({
                         top: { xs: "20px", md: "53px" },
                       }}
                       onClick={handleClickOpen}>
-                      <img src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
+                      <Image src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
                     </Button>
                   )}
                 </Box>

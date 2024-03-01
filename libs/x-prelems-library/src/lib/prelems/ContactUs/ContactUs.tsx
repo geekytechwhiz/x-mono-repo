@@ -1,25 +1,25 @@
 import { Box, Container, Typography } from "@mui/material";
-import DOMPurify from "isomorphic-dompurify";
-import React, { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
-import ImageRender from "../../components/ImageRender";
-import "../../Style.css";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
   nullToObject,
   nullToString,
   structureDataUrlPoint,
 } from "@platformx/utilities";
+import DOMPurify from "isomorphic-dompurify";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./ContactUs.style";
-import prelemTypes from "../../globalStyle";
+import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ContactUs.style";
 
 // ts-ignore
 const ContactUs = ({
@@ -71,13 +71,12 @@ ContactUsProp) => {
     let contactUsStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
-
+    ).src;
     try {
       contactUsStructureData = {
         "@context": "http://schema.org/",

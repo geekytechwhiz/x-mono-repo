@@ -16,6 +16,7 @@ import {
   EventIcon,
 } from "@platformx/utilities";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const typeInfo = {
   Article: {
@@ -139,11 +140,11 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
                 <Box>
                   <Box className='textUnderline'>
                     <Box display='flex' alignItems='center'>
-                      <img
+                      <Image
                         src={typeInfo[content.ContentType]?.icon}
                         alt={content.ContentType}
-                        width='16px'
-                        height='16px'
+                        width={16}
+                        height={16}
                       />
                       <Typography variant='p4regular' className='contentTypeName' color='textColor'>
                         {typeInfo[content.ContentType]?.text || content.ContentType}
@@ -188,11 +189,11 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
               <Box>
                 <Box className='textUnderline'>
                   <Box display='flex' alignItems='center'>
-                    <img
+                    <Image
                       src={typeInfo[content.ContentType]?.icon}
                       alt={content.ContentType}
-                      width='16px'
-                      height='16px'
+                      width={16}
+                      height={16}
                     />
                     <Typography variant='p4regular' className='contentTypeName' color='textColor'>
                       {typeInfo[content.ContentType]?.text || content.ContentType}

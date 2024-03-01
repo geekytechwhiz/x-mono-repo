@@ -9,6 +9,7 @@ import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/Commo
 import { LanguageList, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
+import { fallBackImage } from "../assets/images";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -236,6 +237,32 @@ export const formCroppedUrlInCrop = (url = "", ext = "") => {
   }
   return FallBackImage;
 };
+type CroppedURL = {
+  src: string;
+};
+export const formCroppedUrlString = (
+  gcpUrl = "",
+  bucketName = "",
+  url = "",
+  ext = "",
+  contentType = "",
+  bannerType = "",
+): CroppedURL => {
+  if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
+    return { src: url };
+  } else {
+    if (url && ext) {
+      if (bannerType !== "") {
+        return {
+          src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`),
+        };
+      } else {
+        return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}.${ext}`) };
+      }
+    }
+  }
+  return { src: "" }; // Return an empty string URL if conditions are not met
+};
 
 export const formCroppedUrl = (
   gcpUrl = "",
@@ -261,6 +288,19 @@ export const formCroppedUrl = (
   // else if (bannerType !== "")
   //   return `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`;
   // else return `${gcpUrl}/${bucketName}/${url}.${ext}`;
+};
+// export const checkImageUrlPathString: string = (imgUrl) => {
+//   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
+//     return imgUrl; // Return the URL as a string
+//   }
+//   return FallBackImage as string; // Assuming FallBackImage is a string URL
+// };
+export const checkImageUrlPathString: (imgUrl: string) => string = (imgUrl) => {
+  const imagePath: string = "";
+  if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
+    return imgUrl; // Return the URL as a string
+  }
+  return imagePath; // Assuming FallBackImage is a string URL
 };
 
 // export const relativeImageURL = (
@@ -866,6 +906,18 @@ export const getFormattedImageUrl = (path: string, ext: string, secondaryArgs: a
   }
   return FallBackImage;
 };
+export const getFormattedImageUrlString = (path: string, ext: string, secondaryArgs: any) => {
+  // const imgPath:string=FallBackImage; #TODO Need to check
+  if (path && ext) {
+    const url = `${secondaryArgs?.gcpUrl}/${secondaryArgs?.bucketName}/${path}.${ext}`;
+    if (url.match(/^https?:\/\/.+\/.+$/)) {
+      return { src: url };
+    }
+    return { src: "" };
+  }
+  return { src: "" };
+};
+
 export const getRandomNumber = (answerArray: any, min: number, max: number) => {
   if (answerArray?.length < max) {
     const existingNumbers = answerArray.map((arr: any) => arr.id);
@@ -897,19 +949,22 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
     return FallBackImage;
   }
 };
-export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
+export const getImage = (
+  content: Content,
+  secondaryArgs: SecondaryArgs,
+): { imageUrl: string; color: string | null } => {
   const {
     Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
   const { gcpUrl = "", bucketName = "" } = nullToObject(secondaryArgs);
-  const imageColorObject: { color: string | null; imageUrl: string | null } = {
+  const imageColorObject: { imageUrl: string; color: string | null } = {
+    imageUrl: "",
     color: null,
-    imageUrl: null,
   };
   if (color === "") {
-    const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
+    const urlOfImage: string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
     const httpRegex = /https?:\/\//g;
     let httpCount = 0;
     if (typeof urlOfImage === "string") {
@@ -924,13 +979,14 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     } else {
       return {
         ...imageColorObject,
-        imageUrl: getFallBackImage(content, secondaryArgs),
+        imageUrl: getFallBackImage(content, secondaryArgs).toString(),
       };
     }
   } else {
     return { ...imageColorObject, color };
   }
 };
+
 export const getCommunityFallBackImageBasedOnContentType = (
   contentType: string,
   secondaryArgs: SecondaryArgs,

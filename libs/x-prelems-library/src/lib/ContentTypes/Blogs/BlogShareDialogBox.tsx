@@ -7,6 +7,7 @@ import { errorRequest, linkCopy } from "../../utils/constants/constant";
 import ToastService from "../../components/ToastContainer/ToastService";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
 import { IconLinkedInSvg, IconFacebookSvg, IconCopySvg } from "@platformx/utilities";
+import Image from "next/image";
 
 type blogShareDialogBoxType = {
   shareUrl: string;
@@ -88,7 +89,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
             {/* faceBook */}
             <FacebookShareButton url={shareUrl}>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <img alt='share1' src={IconFacebookSvg} />
+                <Image alt='share1' src={IconFacebookSvg} />
 
                 {/* text */}
                 <Box component='span' sx={{ display: "block" }}>
@@ -106,7 +107,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
             <Box>
               <LinkedinShareButton url={shareUrl}>
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <img alt='share1' src={IconLinkedInSvg} />
+                  <Image alt='share1' src={IconLinkedInSvg} />
 
                   {/* text */}
                   <Box component='span' sx={{ display: "block" }}>
@@ -122,7 +123,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
 
             {/* copyIcon */}
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <img alt='share1' src={IconCopySvg} />
+              <Image alt='share1' src={IconCopySvg} />
 
               {/* text */}
               <Box component='span' sx={{ display: "block" }}>

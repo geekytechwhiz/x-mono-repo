@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import {
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
   SecondaryArgs,
   Analytics,
   AuthoringHelper,
@@ -46,12 +46,12 @@ const ProductSummary3 = ({
   });
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const defaultStructureData = () => {
     let ProductSummary3StructureData;

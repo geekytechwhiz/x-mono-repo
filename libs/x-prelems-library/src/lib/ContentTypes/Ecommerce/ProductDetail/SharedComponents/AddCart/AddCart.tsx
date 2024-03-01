@@ -10,6 +10,7 @@ import ToastContainerHandle from "../../../../../components/ToastContainer/Toast
 import ToastService from "../../../../../components/ToastContainer/ToastService";
 import { useCustomStyle } from "./AddCart.style";
 import PopupDialog from "./PopupDialog";
+import Image from "next/image";
 
 type ecommerceAddcartProps = {
   rewardPoints?: string | number;
@@ -141,7 +142,7 @@ const AddCart = (props: ecommerceAddcartProps) => {
         <Box className={`${classes.mainEarningPointLoyality} mainEarningPoint`}>
           <Box className='BoxLoyalityPoint1'>
             <Box className='BoxImageLoyalityPoint'>
-              <img alt=' ' src={frame1} />
+              <Image alt=' ' src={frame1} />
             </Box>
 
             <Box className='MainBoxText'>
