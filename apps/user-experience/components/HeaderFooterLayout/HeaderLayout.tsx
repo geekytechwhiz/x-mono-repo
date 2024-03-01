@@ -34,7 +34,7 @@ const HeaderLayout = (props: any) => {
   // #TODO - This is a temporary fix to hide the footer
 
   const DynamicHeader = dynamic(
-    () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
+    () => import("@platformx/x-prelems-library").then((mod) => mod.Header),
     {
       ssr: false,
     },
