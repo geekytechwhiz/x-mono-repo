@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { format } from "date-fns";
@@ -11,6 +12,7 @@ import {
 } from "@platformx/utilities";
 import { getIcon } from "../../components/Utils/helperFns";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const BlogTilesCard2 = ({ content, secondaryArgs, analytics, cardIndex }: BlogTilesCard2Props) => {
   const { triggerClickAnalytics } = useClickImpression();
@@ -104,10 +106,12 @@ const BlogTilesCard2 = ({ content, secondaryArgs, analytics, cardIndex }: BlogTi
                   lg: "479px",
                 },
               }}
-              image={imageUrl ? imageUrl : ""}>
+              // image={imageUrl ? imageUrl : ""}> #TODO: Fix this
+              image={ ""}>
+
               <Box className='cardOverlay1'>
                 <Box className='contentIcons1'>
-                  <img
+                  <Image
                     alt='BlogTilesCard2Img'
                     src={getIcon(content.ContentType)}
                     className='fullwidth'

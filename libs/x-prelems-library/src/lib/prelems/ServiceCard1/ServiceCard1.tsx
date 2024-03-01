@@ -10,7 +10,7 @@ import "../../Style.css";
 import "./ServiceCard1.css";
 import { useCustomStyle } from "./ServiceCard1.style";
 import prelemTypes from "../../globalStyle";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
@@ -35,12 +35,12 @@ const ServiceCard1 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
               position: index + 1,
               item: {
                 "@type": "ImageObject",
-                contentUrl: formCroppedUrl(
+                contentUrl: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   value?.IconImage?.Url,
                   value?.IconImage?.ext,
-                ),
+                  ).src,
                 name: value?.Title,
                 key: key,
               },
@@ -193,12 +193,12 @@ const ServiceCard1 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                       <Box className='cardMediaWrapper'>
                         <CardMedia
                           component='img'
-                          image={formCroppedUrl(
+                          image={formCroppedUrlString(
                             secondaryArgs?.gcpUrl,
                             secondaryArgs?.bucketName,
                             value?.IconImage?.Url,
                             value?.IconImage?.ext,
-                          )}
+                            ).src}
                           alt={value?.IconImage?.AltText}
                         />
                       </Box>

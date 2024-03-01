@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import ClearIcon from "@mui/icons-material/Clear";
 import { Box, Button, Modal, Typography } from "@mui/material";
-import { formCroppedUrl, getFormattedImageUrl } from "@platformx/utilities";
+import { formCroppedUrlString, getFormattedImageUrl } from "@platformx/utilities";
+import Image from "next/image";
 import React from "react";
 import "../../Style.css";
 import Slider from "../Slider/Slider";
-import VideoPlayer from "../VideoPlayers/VideoPlayer";
 import { useCustomStyle } from "./CustomModalSlider.style";
 
 const CustomModalSlider = ({
@@ -19,12 +19,12 @@ const CustomModalSlider = ({
   const thumbImg =
     sliderData &&
     sliderData.map((item: any) => {
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         item.Thumbnail ? item.Thumbnail : item.Url,
         item.ext,
-      );
+        ).src;
     });
   const settings = {
     sliderName: ".slider-nav",
@@ -46,18 +46,20 @@ const CustomModalSlider = ({
                       <Typography variant='h3regular' className='oneLineEllipsis' color='textColor'>
                         {slide?.Title}
                       </Typography>
-                      <img
+                      {/* <Image
                         alt='gallery1'
                         className='img'
                         src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
-                      />
+                      /> */}
+                      <Image alt='gallery1' src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}/>
                     </Box>
                   ) : (
                     <Box className='slider-container-wrapper'>
                       <Typography variant='h3regular' className='oneLineEllipsis' color='textColor'>
                         {slide?.Title}
                       </Typography>
-                      <VideoPlayer
+                      <Typography >VideoPlayer has been commented</Typography>
+                      {/* <VideoPlayer
                         playerProp={{
                           posterImg: getFormattedImageUrl(
                             slide?.Thumbnail,
@@ -67,7 +69,7 @@ const CustomModalSlider = ({
                           videoUrl: slide.Url,
                           classname: "react-player-wrap img",
                         }}
-                      />
+                      /> */}
                     </Box>
                   )}
                 </React.Fragment>

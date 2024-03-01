@@ -1,20 +1,21 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
 import {
-  completeButtonUrl,
-  formCroppedUrl,
-  DottedRound,
   Analytics,
   AuthoringHelper,
+  DottedRound,
   SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrlString
 } from "@platformx/utilities";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components//ImpressionHooks/PrelemImpressionHook";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./Banner4.style";
 import ImageRender from "../../components/ImageRender";
 import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components//ImpressionHooks/PrelemImpressionHook";
+import { useCustomStyle } from "./Banner4.style";
 
 const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4Props) => {
   const classes = useCustomStyle();
@@ -43,12 +44,12 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
 
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+    ).src;
 
   const defaultStructureData = () => {
     let Banner4StructureData;
@@ -106,10 +107,10 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
       className={`${classes.banner4Wrapper} ${globalClasses.prelemType3} prelem prelemType3 banner4 banner4Bgwrapper`}>
       <Box className={`prelem-pb prelemBox`} ref={ref}>
         <Box className='dottedRound1'>
-          <img alt='BAnner4img1' src={DottedRound} height='159' width='234' className='fullWidth' />
+          <Image alt='BAnner4img1' src={DottedRound} height={159} width={234} className='fullWidth' />
         </Box>
         <Box className='dottedRound2'>
-          <img alt='BAnner4img2' src={DottedRound} height='159' width='234' className='fullWidth' />
+          <Image alt='BAnner4img2' src={DottedRound} height={159} width={234} className='fullWidth' />
         </Box>
         <Container className={authoringHelper?.isEditPage ? "grid_full_width" : "grid_container"}>
           <Grid container ref={ref} className='container'>

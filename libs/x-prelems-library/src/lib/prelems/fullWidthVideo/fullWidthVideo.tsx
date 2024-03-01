@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
-import { useCustomStyle } from "./FullWidthVideo.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import { useCustomStyle } from "./FullWidthVideo.style";
 
 const FullWidthVideo = ({
   content,
@@ -34,12 +34,12 @@ const FullWidthVideo = ({
               name: content?.Videos?.Video_1?.Title,
               description: content?.Videos?.Video_1?.Description,
               embedUrl: content?.Videos?.Video_1?.Url,
-              thumbnailUrl: formCroppedUrl(
+              thumbnailUrl: formCroppedUrlString(
                 gcpUrl,
                 bucketName,
                 content?.Videos?.Video_1.Thumbnail,
                 content?.Videos?.Video_1.ext,
-              ),
+                ).src
             },
           ],
         };
@@ -78,12 +78,12 @@ const FullWidthVideo = ({
       <Box ref={ref} className={`${classes.fullWidthVideoWrapper} fullWidthVideoProp`}>
         <VideoPlayer
           playerProp={{
-            posterImg: formCroppedUrl(
+            posterImg: formCroppedUrlString(
               secondaryArgs?.gcpUrl,
               secondaryArgs?.bucketName,
               content?.Videos?.Video_1.Thumbnail,
               content?.Videos?.Video_1.ext,
-            ),
+            ).src,
             videoUrl: content?.Videos?.Video_1.Url ? content?.Videos?.Video_1.Url : "",
           }}
         />

@@ -4,6 +4,7 @@ import axios from "axios";
 import CountUp from "react-countup";
 import "../../../utils/service/i18n";
 import { nullToObject, Coin } from "@platformx/utilities";
+import Image from "next/image";
 
 type CoinsProps = {
   secondaryArgs: any;
@@ -57,7 +58,7 @@ const Coins = (props: CoinsProps) => {
               Available Points{" "}
             </Typography>
             <Box className='coinBox'>
-              <img src={Coin} alt='coin' className='coinImg' />
+              <Image src={Coin} alt='coin' className='coinImg' />
               <Typography variant='h2bold' sx={{ textAlign: "left" }}>
                 <CountUp enableScrollSpy={true} start={0} end={userPoints} delay={0}>
                   {({ countUpRef }) => <span ref={countUpRef} />}
@@ -75,7 +76,7 @@ const Coins = (props: CoinsProps) => {
               Voucher Value
             </Typography>
             <Box className='coinBox'>
-              <img src={Coin} alt='coin' className='coinImg' />
+              <Image src={Coin} alt='coin' className='coinImg' />
               <Typography variant='h2bold' sx={{ textAlign: "left" }}>
                 ${" "}
                 <CountUp enableScrollSpy={true} start={0} end={voucherPoints} delay={0}>

@@ -9,7 +9,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import { useCustomStyle } from "./productSummaryViaImage.style";
@@ -50,12 +50,12 @@ const ProductSummaryViaImage = ({
     let ProductSummaryViaImageStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       ProductSummaryViaImageStructureData = {

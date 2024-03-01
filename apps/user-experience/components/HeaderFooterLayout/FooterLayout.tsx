@@ -11,13 +11,17 @@ const FooterLayout = (props: any) => {
     Menus: MenuData,
   };
 
-  const DynamicFooter: any = dynamic(
-    () => import(`platform-x-prelems/prelems/HeaderFooter`).then((mod) => mod.Footer),
-    { ssr: false },
+  // const DynamicFooter: any = dynamic(
+  //   () => import(`@platformx/x-prelems-library`).then((mod) => mod.Footer),
+  //   { ssr: false },
+  // );
+  // #TODO - This is a temporary fix to hide the footer
+  const DynamicFooter = dynamic(
+    () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
+    {
+      ssr: false,
+    },
   );
-  // const DynamicFooter = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Footer), {
-  //   ssr: false,
-  // });
 
   const tempHide = true;
   return (

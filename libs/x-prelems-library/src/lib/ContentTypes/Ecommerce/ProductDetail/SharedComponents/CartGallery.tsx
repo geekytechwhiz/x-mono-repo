@@ -15,6 +15,7 @@ import "./CartGallery.css";
 import { useCustomStyle } from "./CartGallery.style";
 
 const CartGallery = (props: any = {}) => {
+  const FallBackImage:any=fallBackImage;
   const classes = useCustomStyle();
   const { loading = true, productFullDetails = {} } = nullToObject(props);
   const { attr_images: images = [] } = nullToObject(productFullDetails);
@@ -102,7 +103,7 @@ const CartGallery = (props: any = {}) => {
                     {loading ? (
                       <Box className='skeleton'></Box>
                     ) : (
-                      <CardMedia className='skeleton' component='img' image={fallBackImage} />
+                      <CardMedia className='skeleton' component='img' image={FallBackImage.src} />
                     )}
                   </CardActionArea>
                 </Card>

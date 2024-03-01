@@ -7,6 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import useTheme from "@mui/material/styles/useTheme";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 import { Box, Button, Checkbox, FormControlLabel, Grid, Link, Stack } from "@mui/material";
 import { IconFbSvg, IconGoogleSvg } from "@platformx/utilities";
@@ -80,14 +81,14 @@ const ReturnCustomer = () => {
               variant='primaryButton2'
               size='large'
               className={`facebook-button-icon borderLine`}
-              startIcon={<img src={IconFbSvg} alt='facebook' />}>
+              startIcon={<Image src={IconFbSvg} alt='facebook' />}>
               Facebook
             </Button>
             <Button
               variant='primaryButton2'
               size='large'
               className={`google-button-icon borderLine`}
-              startIcon={<img src={IconGoogleSvg} alt='Google' />}>
+              startIcon={<Image src={IconGoogleSvg} alt='Google' />}>
               Google
             </Button>
           </Stack>

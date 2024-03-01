@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import { useCustomStyle } from "./Slider.style";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import Image from "next/image";
 
 type SliderProps = {
   speed?: number;
@@ -152,7 +153,7 @@ const Slider = (props: SliderProps) => {
                   className={slide === i ? "active thumb" : "thumb"}
                   key={i}
                   onClick={() => dotNext(i)}>
-                  <img src={slider} alt={`thumb-${i}`} className='thumbImage' />
+                  <Image src={slider} alt={`thumb-${i}`} className='thumbImage' />
                 </div>
               );
             })}

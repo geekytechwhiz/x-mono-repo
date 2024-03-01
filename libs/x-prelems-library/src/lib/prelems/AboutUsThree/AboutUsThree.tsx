@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import DoneIcon from "@mui/icons-material/Done";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./AboutUsThree.style";
 import {
-  completeButtonUrl,
-  formCroppedUrl,
-  SecondaryArgs,
   Analytics,
   AuthoringHelper,
+  SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrlString
 } from "@platformx/utilities";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./AboutUsThree.style";
 
 const AboutUsThree = ({
   content,
@@ -51,12 +51,12 @@ const AboutUsThree = ({
     let AboutUsThreeStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
     try {
       AboutUsThreeStructureData = {
         "@context": "http://schema.org/",
@@ -149,12 +149,13 @@ const AboutUsThree = ({
                     {content?.Videos?.Video_1.Url && (
                       <VideoPlayer
                         playerProp={{
-                          posterImg: formCroppedUrl(
-                            secondaryArgs?.gcpUrl,
-                            secondaryArgs?.bucketName,
-                            content?.Videos?.Video_1.Thumbnail,
-                            content?.Videos?.Video_1.ext,
-                          ),
+                          posterImg: "",
+                          // posterImg: formCroppedUrlString(
+                          //   secondaryArgs?.gcpUrl,
+                          //   secondaryArgs?.bucketName,
+                          //   content?.Videos?.Video_1.Thumbnail,
+                          //   content?.Videos?.Video_1.ext,
+                          // ),
                           videoUrl: content?.Videos?.Video_1.Url,
                         }}
                       />

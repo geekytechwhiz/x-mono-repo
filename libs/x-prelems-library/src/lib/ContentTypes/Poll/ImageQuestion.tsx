@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Typography, Box } from "@mui/material";
 import VoteProgress from "./VoteProgress";
+import Image from "next/image";
 
 interface ImageQuestionProps {
   data: [];
@@ -71,7 +72,7 @@ const ImageQuestion = ({
                   display: "flex",
                   overflow: "hidden",
                 }}>
-                <img
+                <Image
                   src={optionImg.url}
                   alt={optionText}
                   style={{ width: "100%", objectFit: "cover" }}

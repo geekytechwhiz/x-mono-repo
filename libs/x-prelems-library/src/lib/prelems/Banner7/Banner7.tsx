@@ -3,8 +3,8 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
-  handleHtmlTags,
+  formCroppedUrlString,
+  handleHtmlTags
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -69,12 +69,12 @@ Banner7Prop) => {
     let Banner7StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       Banner7StructureData = {
@@ -123,7 +123,7 @@ Banner7Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

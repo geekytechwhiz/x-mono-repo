@@ -6,6 +6,7 @@ import axios from "axios";
 import { debounce, SearchIcon } from "@platformx/utilities";
 // import SearchIcon from "assets/svgIcon/SearchIcon.svg";
 import "./BlogSearchBox.css";
+import Image from "next/image";
 
 interface Content {
   title: string;
@@ -115,7 +116,7 @@ function BlogSearchBox({
           display: { xs: showSearch ? "none" : "block", md: "none" },
           marginRight: "13px",
         }}>
-        <img
+        <Image
           alt='searchicon'
           src={SearchIcon}
           style={{ verticalAlign: "middle", cursor: "pointer" }}
@@ -167,7 +168,7 @@ function BlogSearchBox({
             }}
             InputProps={{
               ...params.InputProps,
-              startAdornment: <img alt='searchicon' src={SearchIcon} />,
+              startAdornment: <Image alt='searchicon' src={SearchIcon} />,
               endAdornment: (
                 <InputAdornment position='end'>
                   {inputValue && (

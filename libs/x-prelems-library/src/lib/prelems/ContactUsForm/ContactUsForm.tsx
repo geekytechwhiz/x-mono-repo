@@ -31,6 +31,7 @@ import {
 } from "@platformx/utilities";
 import { useInView } from "react-intersection-observer";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const ContactUsForm = ({
   content,
@@ -38,6 +39,7 @@ const ContactUsForm = ({
   authoringHelper,
   analytics,
 }: ContactUsFormProps) => {
+  const GreenTickIcon:any=GreenTick;
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const theme = useTheme();
@@ -288,13 +290,13 @@ const ContactUsForm = ({
                             renderOption={(props, option) => (
                               <Box component='li' className='flagRow' {...props}>
                                 <Box className='flagIcon'>
-                                  <img
+                                  <Image
                                     loading='lazy'
                                     alt='country flag'
                                     title='country flag'
                                     width='25'
                                     src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
-                                    srcSet={`https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 2x`}
+                                    // srcSet={`https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 2x`}
                                   />
                                 </Box>
                                 {option.label}
@@ -310,9 +312,9 @@ const ContactUsForm = ({
                                   ...params.InputProps,
                                   startAdornment: (
                                     <InputAdornment position='start' className='flagWrapper'>
-                                      <img
+                                      <Image
                                         src={getCountryFlag(stateManage.country)}
-                                        srcSet={getCountryFlag(stateManage.country) + ` 2x`}
+                                        // srcSet={getCountryFlag(stateManage.country) + ` 2x`}
                                         alt='flag'
                                         className='flagImage'
                                       />
@@ -406,7 +408,7 @@ const ContactUsForm = ({
         {successPopUp && (
           <Confirmation
             open={true}
-            img={GreenTick}
+            img={GreenTickIcon.src}
             text={""}
             title={t("form_update_message")}
             handleClose={confirmationPopUpClose}
