@@ -99,16 +99,6 @@ InfoBoxProp) => {
   };
 
   useEffect(() => {
-    if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
-        // console.log("mobile");
-      } else {
-        // console.log("not mobile");
-      }
-    }
-  }, []);
-
-  useEffect(() => {
     if (analytics?.isAuthoring && analytics?.isSeoEnabled) {
       const structureData = generateStructureData();
       const stringifyStructureData = structureData && JSON.stringify(structureData);
