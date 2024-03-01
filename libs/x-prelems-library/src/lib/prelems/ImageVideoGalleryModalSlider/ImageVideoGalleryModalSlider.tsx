@@ -4,8 +4,13 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
 import "../../Style.css";
-import { SecondaryArgs, getFormattedImageUrl } from "@platformx/utilities";
+import {
+  SecondaryArgs,
+  getFormattedImageUrl,
+  getFormattedImageUrlString,
+} from "@platformx/utilities";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import Image from "next/image";
 
 const SlickStyle = `
   .image-video-gallery .slick-slider {
@@ -393,7 +398,7 @@ const ImageVideoGalleryModalSlider = ({
                       }}>
                       {slide?.Title}
                     </Typography>
-                    <img
+                    <Image
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -410,11 +415,11 @@ const ImageVideoGalleryModalSlider = ({
                     </Typography>
                     <VideoPlayer
                       playerProp={{
-                        posterImg: getFormattedImageUrl(
+                        posterImg: getFormattedImageUrlString(
                           slide?.Thumbnail,
                           slide?.ext,
                           secondaryArgs,
-                        ),
+                        ).src,
                         videoUrl: slide.Url,
                         classname: "react-player-wrap",
                         playing: currentSlide === index ? true : false,
@@ -433,7 +438,7 @@ const ImageVideoGalleryModalSlider = ({
               {sliderData?.map((slide: any, index: any) => (
                 <div key={index}>
                   {!slide?.Thumbnail ? (
-                    <img
+                    <Image
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -447,7 +452,7 @@ const ImageVideoGalleryModalSlider = ({
                           objectFit: "cover",
                         },
                       }}>
-                      <img
+                      <Image
                         alt='gallery1'
                         src={getFormattedImageUrl(slide?.Thumbnail, slide?.ext, secondaryArgs)}
                         style={{

@@ -1,8 +1,9 @@
+import { Box, Typography } from "@mui/material";
+import { onClickCardUrlNavigate } from "@platformx/utilities";
 import React from "react";
-import { Box, CardMedia, Typography } from "@mui/material";
-import { useCustomStyle } from "./XCard5.style";
 import { getIcon } from "../../Utils/helperFns";
-import { getImage, onClickCardUrlNavigate } from "@platformx/utilities";
+import { useCustomStyle } from "./XCard5.style";
+import Image from "next/image";
 
 const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
   const classes = useCustomStyle();
@@ -15,8 +16,8 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
     }
   };
 
-  const formedUrl = getImage(content, secondaryArgs);
-  const { color, imageUrl } = formedUrl;
+  // const formedUrl = getImage(content, secondaryArgs);
+  // const { color, imageUrl } = formedUrl;
 
   return (
     <Box
@@ -24,16 +25,17 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
       onClick={(e) => onClickCard(e, content?.EditorialItemPath)}>
       <Box className='XCard5innderBox'>
         <Box className='imgWrapper'>
-          <CardMedia
+          <Typography> VideoPlayer has been commented</Typography>
+          {/* <CardMedia
             component={imageUrl ? "img" : "div"}
             image={imageUrl ? imageUrl : ""}
             title={imageUrl ? content?.Thumbnail?.AltText : "image"}
             sx={{ backgroundColor: color ? color : "", height: "100%", width: "100%" }}
-          />
+          /> */}
           <Box className='mainContentBox'>
             <Box className='contentWrapperCard5Box'>
               <Box className='iconWrapper'>
-                <img src={getIcon(content?.ContentType)} alt='' />
+                <Image src={getIcon(content?.ContentType)} alt='' />
               </Box>
               <Box className='titleWrapper'>
                 <Typography variant='p1regular' color='textColor'>

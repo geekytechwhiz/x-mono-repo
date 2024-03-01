@@ -8,6 +8,7 @@ import { useCustomStyle } from "./Testimonial.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { Analytics, AuthoringHelper, SecondaryArgs, TestimonialImg } from "@platformx/utilities";
+import Image from "next/image";
 
 const Testimonial = ({ content, analytics, authoringHelper, secondaryArgs }: TestimonialProps) => {
   const { ref, inView } = useInView({
@@ -150,7 +151,7 @@ const Testimonial = ({ content, analytics, authoringHelper, secondaryArgs }: Tes
             <Card className='testimonialCardWrapper' key={key}>
               <CardContent>
                 <Box className='my20'>
-                  <img
+                  <Image
                     alt='testimonial'
                     src={TestimonialImg}
                     width='67'

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import { Box, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import axios from "axios";
 import { format } from "date-fns";
@@ -12,6 +13,7 @@ import {
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { getIcon } from "../../components/Utils/helperFns";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTilesCardProps) => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -91,6 +93,7 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
   };
 
   const formedUrl = getImage(content, secondaryArgs);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { color, imageUrl } = formedUrl;
   return (
     <>
@@ -118,10 +121,11 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
                 },
                 backgroundColor: color ? color : "",
               }}
-              image={imageUrl ? imageUrl : ""}>
+              // image={imageUrl ? imageUrl : ""} #TODO: Fix this
+              image={""}>
               <Box className='cardOverlay'></Box>
               <Box className='contentIcons'>
-                <img
+                <Image
                   alt='BlogTilesCardimg'
                   src={getIcon(content.ContentType)}
                   className='fullwidth'

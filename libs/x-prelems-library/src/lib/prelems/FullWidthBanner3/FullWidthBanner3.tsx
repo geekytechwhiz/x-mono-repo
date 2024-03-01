@@ -3,7 +3,7 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
   structureDataUrlPoint,
 } from "@platformx/utilities";
@@ -55,12 +55,12 @@ FullWidthBanner3Prop) => {
     let FullWidthBanner3StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       FullWidthBanner3StructureData = {

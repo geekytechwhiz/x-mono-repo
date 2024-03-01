@@ -4,6 +4,7 @@ import React from "react";
 import { getImage, nullToObject } from "@platformx/utilities";
 import "./ContentTypeCard.css";
 import { getIcon } from "../Utils/helperFns";
+import Image from "next/image";
 
 const ContentTypeCard = ({
   content,
@@ -90,7 +91,7 @@ ContentTypeCardProps) => {
             paddingBottom: "6px",
             width: "fit-content",
           }}>
-          <img alt='ContentTypeCardimg' src={getIcon(ContentType || "")} />
+          <Image alt='ContentTypeCardimg' src={getIcon(ContentType || "")} />
           <Typography
             gutterBottom
             variant='h7medium'

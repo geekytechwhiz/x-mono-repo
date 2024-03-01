@@ -3,6 +3,7 @@ import { Box, Dialog, Typography } from "@mui/material";
 import * as React from "react";
 import { CoinImage } from "@platformx/utilities";
 import { useCustomStyle } from "./Popup.style";
+import Image from "next/image";
 
 export default function PopupDialog({ open, handleClose }: any) {
   const classes = useCustomStyle();
@@ -32,7 +33,7 @@ export default function PopupDialog({ open, handleClose }: any) {
 
         <Box className='secondBox'>
           <Box className='BoxCoinImage'>
-            <img alt=' ' src={CoinImage} />
+            <Image alt=' ' src={CoinImage} />
           </Box>
           <Box className='DivTypography1'>
             <Typography className='TypographyShopEarn' variant='p1bold'>

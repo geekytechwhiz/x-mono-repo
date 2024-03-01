@@ -15,6 +15,7 @@ import {
 } from "../../components/ImpressionHooks/helper";
 import { IMPRESSIONS } from "../../components/ImpressionHooks/constants";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics";
+import Image from "next/image";
 
 const ProfileListingCard = ({
   content,
@@ -118,7 +119,7 @@ const ProfileListingCard = ({
         className='overlay-wrapper'>
         <Box className='cardContentBox' onClick={(e) => onClickCard(e, content?.EditorialItemPath)}>
           <Box className='bgImgPt'>
-            <img src={CardBgImg} alt='Bg image' />
+            <Image src={CardBgImg} alt='Bg image' />
           </Box>
           <Box className='imgBox'>
             <CardMedia

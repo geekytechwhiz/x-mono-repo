@@ -1,6 +1,5 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Link, Typography } from "@mui/material";
-import React from "react";
-import { formCroppedUrl } from "@platformx/utilities";
+import { formCroppedUrlString } from "@platformx/utilities";
 
 const AwardCards = ({
   handleMouseOver,
@@ -43,12 +42,12 @@ const AwardCards = ({
                       image={
                         item?.logo?.includes("dev.dam.hcl-x.com")
                           ? item?.logo
-                          : formCroppedUrl(
+                          : formCroppedUrlString(
                               gcpUrl,
                               bucketName,
                               item?.logo,
                               item?.ImageVideoData?.ext,
-                            )
+                            ).src
                       }
                       className='awardCardMedia'
                     />
@@ -72,7 +71,12 @@ const AwardCards = ({
                     image={
                       item?.logo?.includes("dev.dam.hcl-x.com")
                         ? item?.logo
-                        : formCroppedUrl(gcpUrl, bucketName, item?.logo, item?.ImageVideoData?.ext)
+                        : formCroppedUrlString(
+                            gcpUrl,
+                            bucketName,
+                            item?.logo,
+                            item?.ImageVideoData?.ext,
+                          ).src
                     }
                     className='cardImg'
                   />

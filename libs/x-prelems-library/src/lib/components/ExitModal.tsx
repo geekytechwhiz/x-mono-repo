@@ -12,6 +12,7 @@ import React from "react";
 import { DialogCloseIcon, DeleteIcon } from "@platformx/utilities";
 import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
+import Image from "next/image";
 
 export default function ExitModal({
   isDialogOpen,
@@ -72,10 +73,10 @@ export default function ExitModal({
             color='inherit'
             onClick={handleClose}
             aria-label='close'>
-            <img src={DialogCloseIcon} alt='' />
+            <Image src={DialogCloseIcon} alt='' />
           </IconButton>
           <Box className='BoxImage'>
-            <img src={DeleteIcon} alt='' />
+            <Image src={DeleteIcon} alt='' />
           </Box>
           {title ? (
             <DialogTitle className='BoxDialogTitle' id='alert-dialog-title' variant='h4bold'>

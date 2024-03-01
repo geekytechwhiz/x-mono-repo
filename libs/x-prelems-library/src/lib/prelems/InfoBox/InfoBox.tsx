@@ -1,9 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
 import {
-  Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
@@ -55,12 +54,12 @@ InfoBoxProp) => {
     let InfoBoxStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       InfoBoxStructureData = {
@@ -225,7 +224,7 @@ InfoBoxProp) => {
 
 interface InfoBoxProp {
   content: Content;
-  analytics: Analytics;
+  analytics: any; //Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
 }

@@ -7,7 +7,13 @@ import "../../Style.css";
 import { useCustomStyle } from "./Services2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import Image from "next/image";
 
 const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Services2Prop) => {
   // const [contentType, setContentType] = React.useState("image");
@@ -151,13 +157,15 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
                                   className='gridBoxServices2'>
                                   <Box className='Service2Box'>
                                     <Box className={`IconWrapper imghover`}>
-                                      <img
-                                        src={formCroppedUrl(
-                                          gcpUrl,
-                                          bucketName,
-                                          value?.IconImage?.Url,
-                                          value?.IconImage?.ext,
-                                        )}
+                                      <Image
+                                        src={
+                                          formCroppedUrlString(
+                                            gcpUrl,
+                                            bucketName,
+                                            value?.IconImage?.Url,
+                                            value?.IconImage?.ext,
+                                          ).src
+                                        }
                                         alt={value?.IconImage?.AltText}
                                       />
                                     </Box>

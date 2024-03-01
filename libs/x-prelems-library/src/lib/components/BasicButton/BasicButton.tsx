@@ -278,19 +278,19 @@ const BasicButton = (props: BasicButtonProps) => {
   );
 };
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
+// interface Analytics {
+//   pageId?: number;
+//   prelemId?: number;
+//   pageTitle?: string;
+//   prelemTitle?: string;
+//   pageDesc?: string;
+//   pageTags?: string;
+//   prelemTags?: string;
+//   prelemPosition?: number;
+//   isAnalyticsEnabled: boolean;
+//   isAuthoring: boolean;
+//   isSeoEnabled: boolean;
+// }
 interface BasicButtonProps {
   endIcon?: any;
   style?: React.CSSProperties;
@@ -336,7 +336,7 @@ interface BasicButtonProps {
   };
   variant: string;
   secondaryArgs: any;
-  analytics?: Analytics;
+  analytics?: any; //Analytics;
 }
 
 BasicButton.defaultProps = {

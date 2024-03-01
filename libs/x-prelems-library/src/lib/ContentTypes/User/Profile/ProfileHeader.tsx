@@ -22,7 +22,7 @@ const ProfileHeader = (_props: ProfileHeaderProps) => {
   const { t } = useTranslation();
   const { first_name = "", last_name = "" } = userDetails;
   const userName = first_name + " " + last_name;
-
+  const ProfileIcon: any = AVATAR;
   return (
     <Box className='profileHeader'>
       <Box className='profileImageWrapper'>
@@ -31,15 +31,13 @@ const ProfileHeader = (_props: ProfileHeaderProps) => {
               <FileUploadOutlinedIcon></FileUploadOutlinedIcon>
             </Box>
           )} */}
-        <Avatar className='avtarImg' alt='Remy Sharp' src={AVATAR} />
+        <Avatar className='avtarImg' alt='Remy Sharp' src={ProfileIcon.src} />
       </Box>
       <Box className='profileDetailWrapper'>
         <Box className='profileDetail'>
-          <>
-            <Typography variant='p3semibold' color='tertiaryParagraph' className='marginZero'>
-              {userName}
-            </Typography>
-          </>
+          <Typography variant='p3semibold' color='tertiaryParagraph' className='marginZero'>
+            {userName}
+          </Typography>
         </Box>
         <Box className='profileActionButton'>
           {isDisabled ? (
