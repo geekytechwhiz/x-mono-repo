@@ -1,3 +1,4 @@
+/* eslint-disable wrap-regex */
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import {
@@ -82,7 +83,7 @@ CoreHighlightsProp) => {
   useEffect(() => {
     if (navigator) {
       if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
-        // console.log("mobile");
+        // console.log("mobile");s
       } else {
         // console.log("not mobile");
       }
