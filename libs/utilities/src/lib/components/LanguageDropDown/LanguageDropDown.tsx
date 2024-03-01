@@ -1,14 +1,14 @@
 import { Check } from "@mui/icons-material";
 import { Box, Fade, ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
-import React from "react";
-import { useLanguageDropDownStyle } from "./LanguageDropDown.style";
-import { useNavigate } from "react-router-dom";
-import English from "../../assets/images/en_flag.png";
-import German from "../../assets/images/de_flag.png";
-import French from "../../assets/images/fr_flag.png";
-import { getCurrentLang, getCurrentPathName, getSelectedSite } from "../../utils/helperFns";
-import { LanguageList } from "../../utils/helperConstants";
 import Image from "next/image";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import German from "../../assets/images/de_flag.png";
+import English from "../../assets/images/en_flag.png";
+import French from "../../assets/images/fr_flag.png";
+import { LanguageList } from "../../utils/helperConstants";
+import { getCurrentLang, getSelectedSite } from "../../utils/helperFns";
+import { useLanguageDropDownStyle } from "./LanguageDropDown.style";
 
 const LanguageDropDown = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -50,6 +50,8 @@ const LanguageDropDown = () => {
             ? `${French}`
             : `${English}`
         }
+        width={24}
+        height={24}
         aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
         className={classes.languageDropdownmenuImg}
