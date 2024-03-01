@@ -54,6 +54,8 @@ const LanguageDropDown = () => {
         aria-expanded={open ? "true" : undefined}
         className={classes.languageDropdownmenuImg}
         onClick={handleClick}
+        width='24'
+        height='24'
       />
       <Menu
         anchorEl={anchorEl}
