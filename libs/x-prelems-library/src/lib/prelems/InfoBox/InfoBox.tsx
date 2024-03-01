@@ -1,8 +1,5 @@
+/* eslint-disable wrap-regex */
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
@@ -10,11 +7,15 @@ import {
   formCroppedUrlString,
   handleHtmlTags,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./InfoBox.style";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./InfoBox.style";
 
 // ts-ignore
 const InfoBox = ({
