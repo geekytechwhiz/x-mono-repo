@@ -4,8 +4,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 // import CommonImageRender from "../../pages/Gallery/CommonImageRender";
-import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 import { XTypography } from "../XTypography/XTypography";
+import Image from "next/image";
 
 export interface XFileProps {
   url?: any;
@@ -72,7 +73,7 @@ const XFileUpload = ({
               // />
               <Typography>TO DO</Typography>
             ) : (
-              <img
+              <Image
                 style={{
                   width: "100%",
                   height: "206px",
@@ -81,6 +82,7 @@ const XFileUpload = ({
                   borderRadius: "15px",
                 }}
                 src={url}
+                alt=''
               />
             )
           ) : chooseType === "video" ? (
@@ -153,9 +155,9 @@ const XFileUpload = ({
               }}
               m={1}>
               {diffIcon ? (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               ) : (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               )}
             </Box>
             <Box

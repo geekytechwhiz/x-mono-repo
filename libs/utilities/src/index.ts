@@ -1,3 +1,6 @@
+// import Gallery from './lib/components/Gallery/Gallery'
+
+// import { XDialog } from './lib/components/XDialog/XDialog'
 import AddImage from "./lib/components/AddImage/AddImage";
 import AutoCompleteMultiSelect from "./lib/components/AutoCompleteMultiSelect/AutoCompleteMultiSelect";
 import AutoTextArea from "./lib/components/AutoTextArea/AutoTextArea";
@@ -17,6 +20,7 @@ import General_community from "./lib/assets/svg/General_community.svg";
 import News_community from "./lib/assets/svg/News_community.svg";
 import ContentListDesktopLoader from "./lib/components/Loader/ContentListDesktopLoader";
 import ContentListMobileLoader from "./lib/components/Loader/ContentListLoaderMobile";
+//import ContentListLoader from "./lib/components/Loader/ContentListLoader";
 import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import NoSearchResult from "./lib/components/NoSearchResult/NoSearchResult";
 import {
@@ -45,22 +49,9 @@ import {
   NEW_LOGOUT_URL,
   REDIRECT_AUTH_URL,
 } from "./lib/constants/AuthConstant";
-import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
-import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
-import useAccess from "./lib/hooks/useAccess/useAccess";
-import usePlatformAnalytics from "./lib/hooks/usePlatformAnalytics/usePlatformAnalytics";
-import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemImpression";
-import useUserSession from "./lib/hooks/useUserSession/useUserSession";
-import { ArticleMapper } from "./lib/mappers/articleMapper";
-import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
-import LightTheme from "./lib/themes/authoring/theme";
-// import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme";
-// import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord";
-// import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa";
-// import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia";
-// import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
-import PrelemTheme from "./lib/themes/prelems/prelemTheme";
-// import { LanguageList } from "./lib/utils/helperConstants";
+
+import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
+import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 import NoResultsFound from "./lib/components/NoResultsFound";
 import {
   Answers,
@@ -80,17 +71,30 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
+import { ToolTip } from "./lib/components/Tooltip/ToolTip";
+//import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import XDialog from "./lib/components/XDialog/XDialog";
-import {
-  //getCurrentLang,
-  getUniqueTimeZone,
-} from "./lib/utils/helperFns";
+import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
+import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
+import useAccess from "./lib/hooks/useAccess/useAccess";
+import usePlatformAnalytics from "./lib/hooks/usePlatformAnalytics/usePlatformAnalytics";
+import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemImpression";
+import useUserSession from "./lib/hooks/useUserSession/useUserSession";
+import { ArticleMapper } from "./lib/mappers/articleMapper";
+import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
+import LightTheme from "./lib/themes/authoring/theme";
+import prelemTypes from "./lib/themes/prelems/globalStyle";
+import PrelemTheme from "./lib/themes/prelems/prelemTheme";
+import { getCurrentLang, getFormattedImageUrl, getUniqueTimeZone } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
+import DeleteGif from "./lib/assets/gif/delete.gif";
+import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
+import loadergif from "./lib/assets/gif/holi-loader.gif";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
 export * from "./lib/assets/footer";
-export * from "./lib/assets/gif";
 export * from "./lib/assets/header";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
@@ -111,18 +115,22 @@ export * from "./lib/utils/helper";
 export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
 export * from "./lib/utils/interface";
-
 export {
+  loadergif,
+  ProgressiveLoader,
   AUTH_INFO,
+  DeleteGif,
   AUTH_URL,
   AddImage,
   Answers,
+  ArticleListMobileLoader,
   ArticleMapper,
   AutoCompleteMultiSelect,
   AutoTextArea,
   BasicSwitch,
   ColorPallet,
   CommonBoxWithNumber,
+  CommonPlateformXDialog,
   // CommonImageRender,
   ContentGridLoader,
   ContentListDesktopLoader,
@@ -159,14 +167,17 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  StructureDataDialog,
   TaskNotFound,
   TextArea,
   TextBox,
   ThemeConstants,
   TitleSubTitle,
   ToastContainerHandle,
+  ToolTip,
   // TitleSubTitle,
   USERNAME_EMAIL_EXIST,
+  //WorkflowHistoryIcon,
   XButton,
   XCheckBox,
   XDatePicker,
@@ -177,8 +188,11 @@ export {
   XSwitch,
   XTable,
   XTextArea,
+  getCurrentLang,
+  getFormattedImageUrl,
   getUniqueTimeZone,
   i18next,
+  prelemTypes,
   useAccess,
   usePageImpression,
   usePlatformAnalytics,

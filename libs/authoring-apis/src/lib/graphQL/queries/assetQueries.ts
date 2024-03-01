@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_COMMUNITY_COLLECTION = gql `
+export const FETCH_COMMUNITY_COLLECTION = gql`
   query FETCH_ASSETS($uuid: String!, $start: Int!, $rows: Int!, $search: String!) {
     authoring_getAssets(
       assetType: COLLECTIONS
@@ -11,7 +11,7 @@ export const FETCH_COMMUNITY_COLLECTION = gql `
   }
 `;
 
-export const FETCH_ASSETS = gql `
+export const FETCH_ASSETS = gql`
   query FETCH_ASSETS(
     $uuid1: String!
     $uuid2: String!
@@ -35,7 +35,7 @@ export const FETCH_ASSETS = gql `
   }
 `;
 
-export const FETCH_COLLECTION_ITEM = gql `
+export const FETCH_COLLECTION_ITEM = gql`
   query FETCH_ASSETS($uuid: String!, $start: Int!, $rows: Int!, $search: String!) {
     authoring_getAssets(
       assetType: ASSETS
@@ -46,7 +46,7 @@ export const FETCH_COLLECTION_ITEM = gql `
   }
 `;
 
-export const FETCH_CONTENT = gql `
+export const FETCH_CONTENT = gql`
   query FETCH_ASSETS(
     $assetType: authoring_ASSET_TYPE!
     $uuid: String!
@@ -61,15 +61,12 @@ export const FETCH_CONTENT = gql `
       entityType: $entityType
       uuid: $uuid
       pagination: { start: $start, rows: $rows }
-      filter: {
-        search: $search
-        tags: $tags
-      }
+      filter: { search: $search, tags: $tags }
     )
   }
 `;
 
-export const CREATE_COLLECTION = gql `
+export const CREATE_COLLECTION = gql`
   mutation authoring_createAssets(
     $input: authoring_createAssetInfo!
     $entityType: authoring_EntityTye!
@@ -82,7 +79,7 @@ export const CREATE_COLLECTION = gql `
   }
 `;
 
-export const CREATE_COMMUNITY = gql `
+export const CREATE_COMMUNITY = gql`
   mutation createAssets($input: authoring_createAssetInfo!) {
     authoring_createAssets(assetType: COMMUNITIES, input: $input) {
       message
@@ -92,11 +89,8 @@ export const CREATE_COMMUNITY = gql `
   }
 `;
 
-export const GET_FACET = gql `
-query GET_FACET($scope_id: String!, $facet_name: String!) {
-  authoring_getFacets(
-    scope_id: $scope_id
-    facet_name:$facet_name
-  )
-}
+export const GET_FACET = gql`
+  query GET_FACET($scope_id: String!, $facet_name: String!) {
+    authoring_getFacets(scope_id: $scope_id, facet_name: $facet_name)
+  }
 `;

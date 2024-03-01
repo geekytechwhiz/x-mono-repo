@@ -1,18 +1,14 @@
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import {
-  RootState,
-  handleCancel,
-  handleConfirm,
-} from '@platformx/authoring-state';
-import { XDialog } from '@platformx/utilities';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import Header from './Header/Header';
-import LeftSideBar from './LeftSidebar/LeftSideBar';
-import RightLayout from './RightLayout/RightLayout';
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { RootState, handleCancel, handleConfirm } from "@platformx/authoring-state";
+import { XDialog } from "@platformx/utilities";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import Header from "./Header/Header";
+import LeftSideBar from "./LeftSidebar/LeftSideBar";
+import RightLayout from "./RightLayout/RightLayout";
 
 type LayoutWrapperProps = {
   children: React.ReactNode;
@@ -33,19 +29,17 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
   const location = useLocation();
   const theme = useTheme();
   const pageUrl = new URL(window.location.href);
-  const [menuItemSelected, setMenuItemSelected] = useState('menu');
-  const { isOpen, dialogProps } = useSelector(
-    (state: RootState) => state.dialog
-  );
+  const [menuItemSelected, setMenuItemSelected] = useState("menu");
+  const { isOpen, dialogProps } = useSelector((state: RootState) => state.dialog);
   const { t } = useTranslation();
   const handleDrawerOpen = () => {
     isSideBar && setOpen(!open);
   };
 
-  const ifTab = useMediaQuery(theme.breakpoints.up('md'));
+  const ifTab = useMediaQuery(theme.breakpoints.up("md"));
 
   const getBreakPoint = () => {
-    return pageUrl.pathname.split('/')[3] === 'navtree' ? ifTab : isHeader;
+    return pageUrl.pathname.split("/")[3] === "navtree" ? ifTab : isHeader;
   };
 
   const handleMenuAction = (menu) => {
@@ -54,9 +48,7 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
 
   const noLayoutRoute = [];
 
-  if (
-    !noLayoutRoute.some((routeName) => location.pathname.includes(routeName))
-  ) {
+  if (!noLayoutRoute.some((routeName) => location.pathname.includes(routeName))) {
     return (
       <>
         {getBreakPoint() && (
@@ -71,7 +63,7 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({
         )}
         {isSideBar && (
           <LeftSideBar
-            className={open ? '' : 'openSideBar'}
+            className={open ? "" : "openSideBar"}
             open={open}
             handleDrawerOpen={handleDrawerOpen}
             handleMenuAction={handleMenuAction}

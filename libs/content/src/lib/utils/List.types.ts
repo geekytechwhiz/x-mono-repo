@@ -18,7 +18,7 @@ export type ListItem = {
   currentPageUrl?: string;
   parentPageUrl?: string;
   name?: string;
-  page_state?: 'published' | 'draft' | 'unpublished';
+  page_state?: "published" | "draft" | "unpublished";
   is_published?: boolean;
   current_page_url?: string;
   thumbnail?: string;
@@ -47,6 +47,7 @@ export type CardClickProps = {
 
 export type ContentListingProps = {
   contentType?: string;
+  content?: any;
   contentList?: any;
   dataList?: any;
   loading: boolean;
@@ -71,12 +72,7 @@ export type CardProps = {
   contentType?: string;
   dataList: any;
   deleteContent?: (content: any) => void;
-  duplicate?: (
-    content: any,
-    isDuplicate: boolean,
-    title: string,
-    language: string
-  ) => void;
+  duplicate?: (content: any, isDuplicate: boolean, title: string, language: string) => void;
   preview?: (content: any) => void;
   unPublish?: (content: any) => void;
   view?: (content: any) => void;

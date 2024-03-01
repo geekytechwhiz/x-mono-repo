@@ -16,7 +16,7 @@ import assetsApi from "./lib/services/assetsApi/assets.api";
 import authAPI from "./lib/services/auth/auth.api";
 import commentsApi from "./lib/services/comments/comments.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
-import contentTypeAPIs from "./lib/services/contentTypes/contentTypes.api";
+import contentTypeAPIs, { eventAPIS } from "./lib/services/contentTypes/contentTypes.api";
 import dashboardApi from "./lib/services/dashboard/dashBoard.api";
 import { multiSiteApi } from "./lib/services/multisite/multisite.api";
 import { createPgModel } from "./lib/services/page/page.api";
@@ -37,11 +37,15 @@ export * from "./lib/graphQL/queries/prelemQueries";
 export * from "./lib/graphQL/queries/tagQueries";
 export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
+export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";
 export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/utils/constants";
+export * from "./lib/hooks";
+export * from "./lib/services/space/space.api";
+export * from "./lib/graphQL/mutations/spaceMutations";
 
 export {
   ArticleMutations,
@@ -60,6 +64,7 @@ export {
   contentTypeSchemaApi,
   createPgModel,
   dashboardApi,
+  eventAPIS,
   fetchSocialShareList,
   fetchSocialShareProfile,
   fetchVodByIdAPI,

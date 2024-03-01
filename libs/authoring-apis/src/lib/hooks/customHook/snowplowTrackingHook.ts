@@ -1,5 +1,5 @@
-import { usePlatformAnalytics } from '@platformx/utilities';
-import { SNOWPLOW } from '../../utils/constants';
+import { usePlatformAnalytics } from "@platformx/utilities";
+import { SNOWPLOW } from "../../utils/constants";
 
 // import usePlatformAnalytics from 'platform-x-utils/dist/analytics';
 
@@ -7,7 +7,7 @@ export const snowplowTrackingHook = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [handleTrack] = usePlatformAnalytics();
 
-  const noValueFormatData = (value = '') => {
+  const noValueFormatData = (value = "") => {
     return value ? value : SNOWPLOW.NA;
   };
 
@@ -16,7 +16,7 @@ export const snowplowTrackingHook = () => {
    * @param emailID string
    */
   const userRegisterImpression = (ele: any = {}) => {
-    const { email = '', gender = '' } = ele;
+    const { email = "", gender = "" } = ele;
     const snowplowRegisterObj = {
       schema: process.env?.REACT_APP_USER_REGISTER_SCHEMA,
       data: {

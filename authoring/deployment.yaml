@@ -266,4 +266,4 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: NX_USER_REGISTER_SCHEMA
-                  name: hep-authoring-ui-config
+                  name: hep-mono-authoring-ui-config

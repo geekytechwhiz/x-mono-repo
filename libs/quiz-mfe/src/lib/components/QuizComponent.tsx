@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
-
-const QuizPrelem: any = dynamic(() => import(`platform-x-prelems/prelems/Quiz`), { ssr: false });
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Quiz } from "@platformx/x-prelems-library";
 
 export const QuizComponent = (props) => {
   const { pageData = {}, secondaryArgs } = props || {};
@@ -19,11 +18,12 @@ export const QuizComponent = (props) => {
   };
 
   return (
-    <QuizPrelem
-      content={pageData}
-      analytics={prelemAnalyticsProp}
-      authoringHelper={prelemAuthoringHelper}
-      secondaryArgs={secondaryArgs}
-    />
+    // <Quiz
+    //   content={pageData}
+    //   analytics={prelemAnalyticsProp}
+    //   authoringHelper={prelemAuthoringHelper}
+    //   secondaryArgs={secondaryArgs}
+    // />
+    <>QuiZ Prelem has been commented due to type error</>
   );
 };

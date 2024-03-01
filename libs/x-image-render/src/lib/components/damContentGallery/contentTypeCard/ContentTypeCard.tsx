@@ -43,7 +43,7 @@ const ContentTypeCard = ({
     Image: ImageIcon,
     Video: VODIcon,
   };
-  const [isHovered, setHovered] = useState(false);
+  const [, setHovered] = useState(false);
   const classes = useContentGlleryStyle();
 
   const handleClick = () => {
