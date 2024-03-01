@@ -44,8 +44,6 @@ export const useAuthentication = () => {
         ///${selected_site}/${defaultLang}${redirectPath}
         // navigate(`/dashboard`, { replace: true });
         window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
-      }else{
-        window.location.replace(AUTH_URL);
       }
     } catch (error: any) {
       console.error("Error signing in:", error);
