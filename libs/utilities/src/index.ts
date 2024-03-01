@@ -95,7 +95,6 @@ import loadergif from "./lib/assets/gif/holi-loader.gif";
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
 export * from "./lib/assets/footer";
-export * from "./lib/assets/gif";
 export * from "./lib/assets/header";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
