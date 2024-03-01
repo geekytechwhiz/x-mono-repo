@@ -262,7 +262,7 @@ const ContentDisplayWithCategories = ({
                     <Box className='noDataFoundWrapper'>
                       <Image
                         src={noResults}
-                        // src={formCroppedUrl(
+                        // src={formCroppedUrlString(
                         //   secondaryArgs?.gcpUrl,
                         //   secondaryArgs?.bucketName,
                         //   secondaryArgs?.noResultImg?.Url,

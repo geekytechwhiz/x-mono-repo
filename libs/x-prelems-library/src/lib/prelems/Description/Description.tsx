@@ -48,7 +48,7 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
   //     (content?.ImageCompound &&
   //       content?.ImageCompound[ImageCompound_index]?.original_image) ||
   //     {};
-  //   const img = formCroppedUrl(
+  //   const img = formCroppedUrlString(
   //     secondaryArgs?.gcpUrl,
   //     secondaryArgs?.bucketName,
   //     original_image_relative_path,

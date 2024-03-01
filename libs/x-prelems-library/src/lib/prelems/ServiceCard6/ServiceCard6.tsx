@@ -8,7 +8,7 @@ import "../../Style.css";
 import {
   completeButtonUrl,
   completeButtonUrl2,
-  formCroppedUrl,
+  formCroppedUrlString,
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
@@ -81,7 +81,7 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
               position: index + 1,
               item: {
                 "@type": "ImageObject",
-                contentUrl: formCroppedUrl(
+                contentUrl: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   value?.IconImage?.Url,
@@ -223,12 +223,14 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                                 backgroundColor: `rgba(${ICON_BACKGROUND[i - 1]})`,
                               }}>
                               <Image
-                                src={formCroppedUrl(
-                                  secondaryArgs?.gcpUrl,
-                                  secondaryArgs?.bucketName,
-                                  value?.IconImage?.Url,
-                                  value?.IconImage?.ext,
-                                )}
+                                src={
+                                  formCroppedUrlString(
+                                    secondaryArgs?.gcpUrl,
+                                    secondaryArgs?.bucketName,
+                                    value?.IconImage?.Url,
+                                    value?.IconImage?.ext,
+                                  ).src
+                                }
                                 alt={value?.IconImage?.AltText}
                                 width={25}
                                 height={25}

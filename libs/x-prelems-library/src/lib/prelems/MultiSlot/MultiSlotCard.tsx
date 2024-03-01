@@ -1,29 +1,28 @@
 import PlayCircleOutlineRoundedIcon from "@mui/icons-material/PlayCircleOutlineRounded";
 import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import axios from "axios";
-import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
 import useTheme from "@mui/material/styles/useTheme";
 import {
-  formCroppedUrl,
+  EventIcon,
+  SecondaryArgs,
+  articleIcon,
   getImage,
   handleHtmlTags,
   onClickCardUrlNavigate,
-  SecondaryArgs,
-  EventIcon,
-  articleIcon,
   pollIcon,
   quizIcon,
 } from "@platformx/utilities";
+import axios from "axios";
+import { format } from "date-fns";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import prelemTypes from "../../globalStyle";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./MultiSlotCard.style";
-import prelemTypes from "../../globalStyle";
-import Image from "next/image";
 
 const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [sliderData, setSliderData] = useState([]);
-  const { bucketName, gcpUrl } = secondaryArgs;
+  // const { bucketName, gcpUrl } = secondaryArgs; //TODO: need to check with the team
 
   useEffect(() => {
     if (content.ContentType === "ImageGallery" || content.ContentType === "VideoGallery") {
@@ -302,7 +301,8 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
           <Box className='imageWrapper'>
             <picture>
               <source
-                srcSet={formCroppedUrl(gcpUrl, bucketName, content?.Thumbnail?.Url, "webp")}
+                //TODO : need to check with the team
+                // srcSet={formCroppedUrlString(gcpUrl, bucketName, content?.Thumbnail?.Url, "webp").src}
                 type='image/webp'
               />
               <source srcSet={imageUrl ? imageUrl : ""} type='image/jpeg' />

@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import "../../Style.css";
 import {
-  formCroppedUrl,
+  formCroppedUrlString,
   BigArrow,
   SecondaryArgs,
   AuthoringHelper,
@@ -33,12 +33,12 @@ const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
       const { original_image_relative_path, ext }: any =
         (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) ||
         {};
-      const img = formCroppedUrl(
+      const img = formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         original_image_relative_path,
         ext,
-      );
+      ).src;
       return img;
     };
 

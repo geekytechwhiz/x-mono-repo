@@ -1,4 +1,4 @@
-import { formCroppedUrl } from "@platformx/utilities";
+import { formCroppedUrlString } from "@platformx/utilities";
 import { defaultImages } from "./constants";
 
 interface SecondaryArgs {
@@ -12,60 +12,60 @@ export const getCommunityFallBackImageBasedOnContentType = (
 ) => {
   switch (contentType) {
     case "event":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.event,
         defaultImages?.ext,
-      );
+      ).src;
     case "challenges-announcement":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.challenges,
         defaultImages?.ext,
-      );
+      ).src;
     case "exokudos:activity":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.kudos,
         defaultImages?.ext,
-      );
+      ).src;
     case "poll":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.poll,
         defaultImages?.ext,
-      );
+      ).src;
     case "news":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.news,
         defaultImages?.ext,
-      );
+      ).src;
     case "quiz":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.quiz,
         defaultImages?.ext,
-      );
+      ).src;
     case "general":
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.event,
         defaultImages?.ext,
-      );
+      ).src;
     default:
-      return formCroppedUrl(
+      return formCroppedUrlString(
         secondaryArgs?.gcpUrl,
         secondaryArgs?.bucketName,
         defaultImages?.event,
         defaultImages?.ext,
-      );
+      ).src;
   }
 };

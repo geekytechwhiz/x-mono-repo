@@ -9,7 +9,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import "./ServiceShowcase2.css";
 import { useCustomStyle } from "./ServiceShowcase2.style";
@@ -69,7 +69,7 @@ const ServiceShowcase2 = ({
               position: key + 1,
               item: {
                 "@type": "Service",
-                image: formCroppedUrl(
+                image: formCroppedUrlString(
                   gcpUrl,
                   bucketName,
                   value?.IconImage?.Url,
@@ -246,12 +246,14 @@ const ServiceShowcase2 = ({
                             <Box className='boxWrapper'>
                               <Box className='imageWrapper'>
                                 <Image
-                                  src={formCroppedUrl(
-                                    gcpUrl,
-                                    bucketName,
-                                    value?.IconImage?.Url,
-                                    value?.IconImage?.ext,
-                                  )}
+                                  src={
+                                    formCroppedUrlString(
+                                      gcpUrl,
+                                      bucketName,
+                                      value?.IconImage?.Url,
+                                      value?.IconImage?.ext,
+                                    ).src
+                                  }
                                   height='46'
                                   width='46'
                                   alt='No image'

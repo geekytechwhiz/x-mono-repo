@@ -8,7 +8,12 @@ import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import { useCustomStyle } from "./ServiceCard3.style";
 import prelemTypes from "../../globalStyle";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
@@ -35,12 +40,12 @@ const ServiceCard3 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                 "@type": "Service",
                 Servicetype: value?.Title,
                 name: value?.Title,
-                Image: formCroppedUrl(
+                Image: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   value?.IconImage?.Url,
                   value?.IconImage?.ext,
-                ),
+                ).src,
                 key: key,
               },
             };
@@ -147,12 +152,14 @@ const ServiceCard3 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                     <Box className='imageContentWrapper'>
                       <CardMedia
                         component='img'
-                        image={formCroppedUrl(
-                          secondaryArgs?.gcpUrl,
-                          secondaryArgs?.bucketName,
-                          value?.IconImage?.Url,
-                          value?.IconImage?.ext,
-                        )}
+                        image={
+                          formCroppedUrlString(
+                            secondaryArgs?.gcpUrl,
+                            secondaryArgs?.bucketName,
+                            value?.IconImage?.Url,
+                            value?.IconImage?.ext,
+                          ).src
+                        }
                         alt={value?.IconImage?.AltText}
                       />
                     </Box>

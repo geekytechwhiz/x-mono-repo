@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  formCroppedUrl,
+  formCroppedUrlString,
   structureDataUrlPoint,
   RedDots,
   SecondaryArgs,
@@ -117,12 +117,12 @@ WebsiteIntroduction2Prop) => {
     let websiteIntroduction2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       websiteIntroduction2StructureData = {

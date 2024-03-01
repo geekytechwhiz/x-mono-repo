@@ -6,7 +6,7 @@ import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
   DottedBg,
   Analytics,
   AuthoringHelper,
@@ -54,12 +54,12 @@ const WebsiteSummaryWithSubHeading2 = ({
 
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const defaultStructureData = () => {
     let WebsiteSummaryWithSubHeading2StructureData;

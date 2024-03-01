@@ -2,7 +2,12 @@ import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import "./VideoBanner2.css";
 import { useCustomStyle } from "./VideoBanner2.style";
 import prelemTypes from "../../globalStyle";
@@ -20,12 +25,12 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
 
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const generateStructureData = () => {
     let videoBanner2StructureData;

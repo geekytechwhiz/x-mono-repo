@@ -1,17 +1,17 @@
-import { Box, Typography, Container } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
+import { Box, Container, Typography } from "@mui/material";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./Banner6.style";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import { useCustomStyle } from "./Banner6.style";
 
 const Banner6 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner6Prop) => {
   const classes = useCustomStyle();
@@ -38,12 +38,12 @@ const Banner6 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner6
   });
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const defaultStructureData = () => {
     let Banner6StructureData;

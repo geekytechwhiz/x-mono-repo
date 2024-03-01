@@ -907,14 +907,15 @@ export const getFormattedImageUrl = (path: string, ext: string, secondaryArgs: a
   return FallBackImage;
 };
 export const getFormattedImageUrlString = (path: string, ext: string, secondaryArgs: any) => {
+  // const imgPath:string=FallBackImage; #TODO Need to check
   if (path && ext) {
     const url = `${secondaryArgs?.gcpUrl}/${secondaryArgs?.bucketName}/${path}.${ext}`;
     if (url.match(/^https?:\/\/.+\/.+$/)) {
       return { src: url };
     }
-    return { src: FallBackImage }; // Assuming FallBackImage is a string URL
+    return { src: "" };
   }
-  return { src: FallBackImage }; // Assuming FallBackImage is a string URL
+  return { src: "" };
 };
 
 export const getRandomNumber = (answerArray: any, min: number, max: number) => {
@@ -963,7 +964,7 @@ export const getImage = (
     color: null,
   };
   if (color === "") {
-    const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
+    const urlOfImage: string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
     const httpRegex = /https?:\/\//g;
     let httpCount = 0;
     if (typeof urlOfImage === "string") {
@@ -978,7 +979,7 @@ export const getImage = (
     } else {
       return {
         ...imageColorObject,
-        imageUrl: getFallBackImage(content, secondaryArgs),
+        imageUrl: getFallBackImage(content, secondaryArgs).toString(),
       };
     }
   } else {

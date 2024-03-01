@@ -4,7 +4,7 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
   nullToObject,
   nullToString,
@@ -72,13 +72,12 @@ ContactUsProp) => {
     let contactUsStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
-
+    ).src;
     try {
       contactUsStructureData = {
         "@context": "http://schema.org/",

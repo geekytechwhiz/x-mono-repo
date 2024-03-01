@@ -1,11 +1,16 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
-import { useCustomStyle } from "./Banner1.style";
-import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./Banner1.style";
 
 const Banner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner1Prop) => {
   const firstRender = useRef(true);
@@ -18,12 +23,12 @@ const Banner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner1
     let Banner1StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       Banner1StructureData = {

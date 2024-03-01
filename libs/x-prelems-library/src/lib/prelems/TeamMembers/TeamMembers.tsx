@@ -7,7 +7,7 @@ import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   openPageInNewTab,
 } from "@platformx/utilities";
 import prelemTypes from "../../globalStyle";
@@ -51,22 +51,22 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
               "@type": item.Thumbnail ? "VideoObject" : "ImageObject",
               description: item?.Description,
               ...(!item.Thumbnail && {
-                image: formCroppedUrl(
+                image: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   item.Url,
                   item?.ext,
-                ),
+                ).src,
               }),
               ...(item.Thumbnail && {
                 thumbnailURL: item?.Thumbnail,
               }),
-              contenturl: formCroppedUrl(
+              contenturl: formCroppedUrlString(
                 secondaryArgs?.gcpUrl,
                 secondaryArgs?.bucketName,
                 item.Url,
                 item?.ext,
-              ),
+              ).src,
             },
           };
         }),
@@ -154,12 +154,14 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                           <Image
                             alt='team1'
                             className='teamMemberImg'
-                            src={formCroppedUrl(
-                              secondaryArgs?.gcpUrl,
-                              secondaryArgs?.bucketName,
-                              item.Url,
-                              item?.ext,
-                            )}
+                            src={
+                              formCroppedUrlString(
+                                secondaryArgs?.gcpUrl,
+                                secondaryArgs?.bucketName,
+                                item.Url,
+                                item?.ext,
+                              ).src
+                            }
                           />
                         </Box>
                         <Typography

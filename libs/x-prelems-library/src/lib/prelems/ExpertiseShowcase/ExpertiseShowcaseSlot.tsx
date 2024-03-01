@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Box, Button } from "@mui/material";
+import { SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import axios from "axios";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import ImageVideoGalleryModalSlider from "../../components/ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import { useCustomStyle } from "./ExpertiseShowcaseSlot.style";
-import { SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
-import Image from "next/image";
 
 const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlotProps) => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -60,12 +60,14 @@ const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlot
         <Box className='imgWrapper'>
           <Image
             alt='Expert4img'
-            src={formCroppedUrl(
-              secondaryArgs?.gcpUrl,
-              secondaryArgs?.bucketName,
-              content?.Thumbnail?.Url,
-              content?.Thumbnail?.ext,
-            )}
+            src={
+              formCroppedUrlString(
+                secondaryArgs?.gcpUrl,
+                secondaryArgs?.bucketName,
+                content?.Thumbnail?.Url,
+                content?.Thumbnail?.ext,
+              ).src
+            }
             style={{ objectFit: "cover" }}
           />
           <Box className='bottomButton'>

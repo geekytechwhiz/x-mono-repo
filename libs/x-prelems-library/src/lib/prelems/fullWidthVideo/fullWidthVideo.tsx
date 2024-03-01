@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./FullWidthVideo.style";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
+import { useCustomStyle } from "./FullWidthVideo.style";
 
 const FullWidthVideo = ({
   content,
@@ -40,12 +39,12 @@ const FullWidthVideo = ({
               name: content?.Videos?.Video_1?.Title,
               description: content?.Videos?.Video_1?.Description,
               embedUrl: content?.Videos?.Video_1?.Url,
-              thumbnailUrl: formCroppedUrl(
+              thumbnailUrl: formCroppedUrlString(
                 gcpUrl,
                 bucketName,
                 content?.Videos?.Video_1.Thumbnail,
                 content?.Videos?.Video_1.ext,
-              ),
+              ).src,
             },
           ],
         };
