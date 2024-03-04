@@ -299,8 +299,8 @@ export const fetchGlobalSettingData = async () => {
       page: "global-item",
     });
 
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    const imageUuid = authoring_getSitedetails?.image?.slice(-1)?.[0]?.ScopeId;
+    const videoUuid = authoring_getSitedetails?.video?.slice(-1)?.[0]?.ScopeId;
     imageUuid && localStorage.setItem("imageUuid", imageUuid);
     videoUuid && localStorage.setItem("videoUuid", videoUuid);
     return {};
@@ -323,8 +323,8 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
         },
       },
     );
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    const imageUuid = authoring_getSitedetails?.image?.slice(-1)?.[0]?.ScopeId;
+    const videoUuid = authoring_getSitedetails?.video?.slice(-1)?.[0]?.ScopeId;
     imageUuid && localStorage.setItem("imageUuid", imageUuid);
     videoUuid && localStorage.setItem("videoUuid", videoUuid);
     return {};

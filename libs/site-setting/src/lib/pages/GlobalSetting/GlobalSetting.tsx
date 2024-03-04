@@ -61,7 +61,9 @@ export const GlobalSetting = () => {
     site_assigned_content_types: [],
     site_assigned_tags: [],
   });
-  const tags = form.site_assigned_tags.map((obj) => obj.name);
+  const tags = Array.isArray(form?.site_assigned_tags)
+    ? form?.site_assigned_tags?.map((obj) => obj.name)
+    : [];
 
   const imagesRef = useRef<HTMLElement>(null);
   // const videosRef = useRef<HTMLElement>(null);
@@ -268,8 +270,8 @@ export const GlobalSetting = () => {
               <Typography variant='h5medium' className={classes.containertypo}>
                 Images
               </Typography>
-              {form.image?.map((image, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
+              {form.image && (
+                <Grid container>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
@@ -277,7 +279,7 @@ export const GlobalSetting = () => {
                           <img src={GlobalImageIcon} alt='Globalimageicon' />
                         </Box>
                         <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={image} />
+                          <GlobalHeaderbreadscum value={form.image} />
                         </Box>
                       </Box>
                       <Box>
@@ -288,10 +290,10 @@ export const GlobalSetting = () => {
                     </Box>
                   </Grid>
                 </Grid>
-              ))}
+              )}
               <Typography className={classes.containertypo}>Videos</Typography>
-              {form.video?.map((video, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
+              {form.video && (
+                <Grid container>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
@@ -299,7 +301,7 @@ export const GlobalSetting = () => {
                           <img src={GlobalVideoIcon} alt='Globalimageicon' />
                         </Box>
                         <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={video} />
+                          <GlobalHeaderbreadscum value={form.video} />
                         </Box>
                       </Box>
                       <Box>
@@ -310,10 +312,10 @@ export const GlobalSetting = () => {
                     </Box>
                   </Grid>
                 </Grid>
-              ))}
+              )}
               <Typography className={classes.containertypo}>Miscellaneous</Typography>
-              {form.misc?.map((misc, i) => (
-                <Grid container key={i} className={i !== 0 ? classes.marginTop5px : ""}>
+              {form.misc && (
+                <Grid container>
                   <Grid item xs={12}>
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
@@ -321,7 +323,7 @@ export const GlobalSetting = () => {
                           <img src={GlobalMiscIcon} alt='Globalimageicon' />
                         </Box>
                         <Box className={classes.globalbread}>
-                          <GlobalHeaderbreadscum value={misc} />
+                          <GlobalHeaderbreadscum value={form.misc} />
                         </Box>
                       </Box>
                       <Box>
@@ -332,7 +334,7 @@ export const GlobalSetting = () => {
                     </Box>
                   </Grid>
                 </Grid>
-              ))}
+              )}
             </CommonBoxWithNumber>
             <CommonBoxWithNumber
               number='02'
@@ -382,7 +384,10 @@ export const GlobalSetting = () => {
                       </Box>
                       <Box className={classes.globalbread}>
                         <Typography>
-                          You have selected {form.site_assigned_content_types.join()}
+                          You have selected{" "}
+                          {Array.isArray(form.site_assigned_content_types)
+                            ? form.site_assigned_content_types.join()
+                            : ""}
                         </Typography>
                       </Box>
                     </Box>
