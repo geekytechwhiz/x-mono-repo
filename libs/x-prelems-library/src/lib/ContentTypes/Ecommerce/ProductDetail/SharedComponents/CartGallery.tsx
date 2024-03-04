@@ -15,7 +15,7 @@ import "./CartGallery.css";
 import { useCustomStyle } from "./CartGallery.style";
 
 const CartGallery = (props: any = {}) => {
-  const FallBackImage:any=fallBackImage;
+  const FallBackImage: any = fallBackImage;
   const classes = useCustomStyle();
   const { loading = true, productFullDetails = {} } = nullToObject(props);
   const { attr_images: images = [] } = nullToObject(productFullDetails);

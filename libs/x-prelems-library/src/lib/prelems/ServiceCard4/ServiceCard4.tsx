@@ -176,7 +176,7 @@ const ServiceCard4 = ({
                       </Box>
                       <Slide direction='left' in={true} timeout={1500}>
                         <Box className='imageWrapper' id='Image'>
-                          <Image alt='card4' src={item?.Image_1?.Url||""} />
+                          <Image alt='card4' src={item?.Image_1?.Url || ""} />
                         </Box>
                       </Slide>
                     </Box>

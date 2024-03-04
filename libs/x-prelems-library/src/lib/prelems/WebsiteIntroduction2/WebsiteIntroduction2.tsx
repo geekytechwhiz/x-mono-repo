@@ -122,7 +122,7 @@ WebsiteIntroduction2Prop) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       websiteIntroduction2StructureData = {

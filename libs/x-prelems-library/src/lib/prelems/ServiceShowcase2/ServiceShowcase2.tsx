@@ -246,12 +246,14 @@ const ServiceShowcase2 = ({
                             <Box className='boxWrapper'>
                               <Box className='imageWrapper'>
                                 <Image
-                                  src={formCroppedUrlString(
-                                    gcpUrl,
-                                    bucketName,
-                                    value?.IconImage?.Url,
-                                    value?.IconImage?.ext,
-                                    ).src}
+                                  src={
+                                    formCroppedUrlString(
+                                      gcpUrl,
+                                      bucketName,
+                                      value?.IconImage?.Url,
+                                      value?.IconImage?.ext,
+                                    ).src
+                                  }
                                   height='46'
                                   width='46'
                                   alt='No image'

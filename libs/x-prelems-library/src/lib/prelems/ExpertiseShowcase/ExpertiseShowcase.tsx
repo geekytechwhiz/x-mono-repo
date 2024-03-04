@@ -19,7 +19,12 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
   const firstRender = useRef(true);
   usePrelemImpression(analytics, inView, secondaryArgs);
   const { Url, ext } = content?.Images?.Image_1 || {};
-  const imgUrl = formCroppedUrlString(secondaryArgs?.gcpUrl, secondaryArgs?.bucketName, Url, ext).src;
+  const imgUrl = formCroppedUrlString(
+    secondaryArgs?.gcpUrl,
+    secondaryArgs?.bucketName,
+    Url,
+    ext,
+  ).src;
 
   const defaultStructureData = () => {
     let expertiseShowcaseStructureData;

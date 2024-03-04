@@ -6,7 +6,7 @@ import {
   PlayIcon,
   ProgressiveLoader,
   SecondaryArgs,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -78,7 +78,8 @@ const ImageVideoCarousel1 = ({
               ...(item?.Thumbnail && {
                 name: item?.Name,
                 description: item?.Description,
-                thumbnailURL: formCroppedUrlString(gcpUrl, bucketName, item?.Thumbnail, item?.ext).src,
+                thumbnailURL: formCroppedUrlString(gcpUrl, bucketName, item?.Thumbnail, item?.ext)
+                  .src,
               }),
               contenturl: item?.Url,
             },
@@ -188,12 +189,14 @@ const ImageVideoCarousel1 = ({
                 <Box className='imgWrapper'>
                   <Image
                     alt='carousel1'
-                    src={formCroppedUrlString(
-                      gcpUrl,
-                      bucketName,
-                      cardArr[active]?.Thumbnail,
-                      cardArr[active]?.ext,
-                      ).src}
+                    src={
+                      formCroppedUrlString(
+                        gcpUrl,
+                        bucketName,
+                        cardArr[active]?.Thumbnail,
+                        cardArr[active]?.ext,
+                      ).src
+                    }
                     onLoad={() => handleImageLoad()}
                     className='imgProp'
                     style={{
@@ -218,12 +221,14 @@ const ImageVideoCarousel1 = ({
               <>
                 <CardMedia
                   component='img'
-                  image={formCroppedUrlString(
-                    gcpUrl,
-                    bucketName,
-                    cardArr[active]?.Url,
-                    cardArr[active]?.ext,
-                  ).src}
+                  image={
+                    formCroppedUrlString(
+                      gcpUrl,
+                      bucketName,
+                      cardArr[active]?.Url,
+                      cardArr[active]?.ext,
+                    ).src
+                  }
                   alt={cardArr[active]?.AltText}
                   onLoad={() => handleImageLoad()}
                   className='imgProp2'

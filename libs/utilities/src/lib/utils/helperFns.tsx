@@ -237,9 +237,9 @@ export const formCroppedUrlInCrop = (url = "", ext = "") => {
   }
   return FallBackImage;
 };
-type CroppedURL={
-src:string
-}
+type CroppedURL = {
+  src: string;
+};
 export const formCroppedUrlString = (
   gcpUrl = "",
   bucketName = "",
@@ -247,13 +247,15 @@ export const formCroppedUrlString = (
   ext = "",
   contentType = "",
   bannerType = "",
-) :CroppedURL => {
+): CroppedURL => {
   if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
     return { src: url };
   } else {
     if (url && ext) {
       if (bannerType !== "") {
-        return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`) };
+        return {
+          src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`),
+        };
       } else {
         return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}.${ext}`) };
       }
@@ -294,7 +296,7 @@ export const formCroppedUrl = (
 //   return FallBackImage as string; // Assuming FallBackImage is a string URL
 // };
 export const checkImageUrlPathString: (imgUrl: string) => string = (imgUrl) => {
-  const imagePath:string="";
+  const imagePath: string = "";
   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
     return imgUrl; // Return the URL as a string
   }
@@ -947,7 +949,10 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
     return FallBackImage;
   }
 };
-export const getImage = (content: Content, secondaryArgs: SecondaryArgs): { imageUrl: string; color: string | null } => {
+export const getImage = (
+  content: Content,
+  secondaryArgs: SecondaryArgs,
+): { imageUrl: string; color: string | null } => {
   const {
     Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
@@ -959,7 +964,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs): { imag
     color: null,
   };
   if (color === "") {
-    const urlOfImage:string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
+    const urlOfImage: string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
     const httpRegex = /https?:\/\//g;
     let httpCount = 0;
     if (typeof urlOfImage === "string") {

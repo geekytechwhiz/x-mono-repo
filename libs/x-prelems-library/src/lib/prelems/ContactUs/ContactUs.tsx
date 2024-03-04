@@ -7,7 +7,7 @@ import {
   handleHtmlTags,
   nullToObject,
   nullToString,
-  structureDataUrlPoint
+  structureDataUrlPoint,
 } from "@platformx/utilities";
 import DOMPurify from "isomorphic-dompurify";
 import { useEffect, useRef, useState } from "react";
@@ -76,7 +76,7 @@ ContactUsProp) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
     try {
       contactUsStructureData = {
         "@context": "http://schema.org/",
@@ -123,7 +123,7 @@ ContactUsProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
+      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

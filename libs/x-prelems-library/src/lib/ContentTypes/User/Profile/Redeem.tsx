@@ -45,7 +45,7 @@ type RedeemProps = {
 
 const Redeem = (props: RedeemProps) => {
   const { secondaryArgs = {} } = props;
-  const GreenTickIcon:any=GreenTick;
+  const GreenTickIcon: any = GreenTick;
 
   const { prelemBaseEndpoint: { loyaltyEndPoint = "", loyaltyPortalEndPoint = "" } = {} } =
     nullToObject(secondaryArgs);

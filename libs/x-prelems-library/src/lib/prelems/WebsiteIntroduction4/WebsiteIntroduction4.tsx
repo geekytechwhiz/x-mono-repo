@@ -41,7 +41,7 @@ WebsiteIntroduction4Prop) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       WebsiteIntroduction4StructureData = {
@@ -81,7 +81,7 @@ WebsiteIntroduction4Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
+      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

@@ -126,7 +126,8 @@ const Share = (props: Sharetype) => {
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
           <Image
             alt='share1'
-            width={15} height={15}
+            width={15}
+            height={15}
             src={IconFacebookSvg}
             style={{ ...imgCommon() }}
           />
@@ -161,7 +162,8 @@ const Share = (props: Sharetype) => {
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
           <Image
             alt='share4'
-            width={15} height={15}
+            width={15}
+            height={15}
             src={IconLinkedInSvg}
             style={{ ...imgCommon() }}
           />

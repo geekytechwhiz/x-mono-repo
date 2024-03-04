@@ -9,7 +9,12 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
@@ -139,12 +144,14 @@ const Awards1 = ({ content, analytics, authoringHelper, secondaryArgs }: Awards1
                             <Link component='image' onClick={() => onClickCard(item?.url, index)}>
                               <CardMedia
                                 component='img'
-                                image={formCroppedUrlString(
-                                  gcpUrl,
-                                  bucketName,
-                                  item?.logo,
-                                  item?.ImageVideoData?.ext,
-                                ).src}
+                                image={
+                                  formCroppedUrlString(
+                                    gcpUrl,
+                                    bucketName,
+                                    item?.logo,
+                                    item?.ImageVideoData?.ext,
+                                  ).src
+                                }
                                 className='cardMedia'
                               />
                             </Link>
@@ -167,12 +174,14 @@ const Awards1 = ({ content, analytics, authoringHelper, secondaryArgs }: Awards1
                           <Link component='image' onClick={() => onClickCard(item?.url, index)}>
                             <CardMedia
                               component='img'
-                              image={formCroppedUrlString(
-                                gcpUrl,
-                                bucketName,
-                                item?.logo,
-                                item?.ImageVideoData?.ext,
-                              ).src}
+                              image={
+                                formCroppedUrlString(
+                                  gcpUrl,
+                                  bucketName,
+                                  item?.logo,
+                                  item?.ImageVideoData?.ext,
+                                ).src
+                              }
                               className='cardImg'
                             />
                           </Link>

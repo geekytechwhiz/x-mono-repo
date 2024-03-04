@@ -60,12 +60,14 @@ const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlot
         <Box className='imgWrapper'>
           <Image
             alt='Expert4img'
-            src={formCroppedUrlString(
-              secondaryArgs?.gcpUrl,
-              secondaryArgs?.bucketName,
-              content?.Thumbnail?.Url,
-              content?.Thumbnail?.ext,
-              ).src}
+            src={
+              formCroppedUrlString(
+                secondaryArgs?.gcpUrl,
+                secondaryArgs?.bucketName,
+                content?.Thumbnail?.Url,
+                content?.Thumbnail?.ext,
+              ).src
+            }
             style={{ objectFit: "cover" }}
           />
           <Box className='bottomButton'>

@@ -226,12 +226,14 @@ const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) 
               <React.Fragment>
                 <Box className='noDataFoundWrapper'>
                   <Image
-                    src={formCroppedUrlString(
-                      gcpUrl,
-                      bucketName,
-                      secondaryArgs?.noResultImg,
-                      secondaryArgs?.ext,
-                      ).src}
+                    src={
+                      formCroppedUrlString(
+                        gcpUrl,
+                        bucketName,
+                        secondaryArgs?.noResultImg,
+                        secondaryArgs?.ext,
+                      ).src
+                    }
                     alt='NoDataFound'
                   />
                 </Box>

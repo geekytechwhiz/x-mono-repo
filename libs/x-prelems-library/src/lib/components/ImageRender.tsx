@@ -32,10 +32,8 @@ const ImageRender = (props: any = {}) => {
       {error ? (
         <Image
           src={fallBackImage}
-          style={{ objectFit: "contain", width: width,
-          height: height }}
+          style={{ objectFit: "contain", width: width, height: height }}
           alt='fallbackimage'
-
         />
       ) : (
         <>
@@ -109,7 +107,9 @@ const ImageRender = (props: any = {}) => {
                   srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext)}
                 /> */}
                 <Image
-                  src={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src}
+                  src={
+                    formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src
+                  }
                   onError={handleError}
                   // width='100%'
                   // height='100%'

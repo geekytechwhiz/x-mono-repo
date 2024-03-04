@@ -38,7 +38,7 @@ const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
         secondaryArgs?.bucketName,
         original_image_relative_path,
         ext,
-        ).src;
+      ).src;
       return img;
     };
 

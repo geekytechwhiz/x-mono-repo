@@ -2,7 +2,12 @@ import { Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import "./VideoBanner2.css";
 import { useCustomStyle } from "./VideoBanner2.style";
 import prelemTypes from "../../globalStyle";
@@ -25,7 +30,7 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-    ).src;
+  ).src;
 
   const generateStructureData = () => {
     let videoBanner2StructureData;
@@ -108,7 +113,12 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               />
             )}
             <Box className='maskImageWrapper'>
-              <Image alt='banner3' src={imgUrl} className='silhouette' style={{ width: "100%", height: "auto" }} />
+              <Image
+                alt='banner3'
+                src={imgUrl}
+                className='silhouette'
+                style={{ width: "100%", height: "auto" }}
+              />
             </Box>
           </Box>
         </Box>

@@ -24,7 +24,7 @@ const CustomModalSlider = ({
         secondaryArgs?.bucketName,
         item.Thumbnail ? item.Thumbnail : item.Url,
         item.ext,
-        ).src;
+      ).src;
     });
   const settings = {
     sliderName: ".slider-nav",
@@ -51,14 +51,17 @@ const CustomModalSlider = ({
                         className='img'
                         src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                       /> */}
-                      <Image alt='gallery1' src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}/>
+                      <Image
+                        alt='gallery1'
+                        src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
+                      />
                     </Box>
                   ) : (
                     <Box className='slider-container-wrapper'>
                       <Typography variant='h3regular' className='oneLineEllipsis' color='textColor'>
                         {slide?.Title}
                       </Typography>
-                      <Typography >VideoPlayer has been commented</Typography>
+                      <Typography>VideoPlayer has been commented</Typography>
                       {/* <VideoPlayer
                         playerProp={{
                           posterImg: getFormattedImageUrl(

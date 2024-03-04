@@ -1,5 +1,10 @@
 import { Box, Container, Typography } from "@mui/material";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
@@ -45,7 +50,7 @@ ProductSummaryProp) => {
                   bucketName,
                   content?.Videos?.Video_1.Thumbnail,
                   content?.Videos?.Video_1.ext,
-                  ).src,
+                ).src,
               },
             },
           ],

@@ -55,7 +55,7 @@ const ProductSummaryViaImage = ({
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       ProductSummaryViaImageStructureData = {

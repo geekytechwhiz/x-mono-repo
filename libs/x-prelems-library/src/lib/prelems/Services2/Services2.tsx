@@ -7,7 +7,12 @@ import "../../Style.css";
 import { useCustomStyle } from "./Services2.style";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import Image from "next/image";
 
 const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Services2Prop) => {
@@ -153,12 +158,14 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
                                   <Box className='Service2Box'>
                                     <Box className={`IconWrapper imghover`}>
                                       <Image
-                                        src={formCroppedUrlString(
-                                          gcpUrl,
-                                          bucketName,
-                                          value?.IconImage?.Url,
-                                          value?.IconImage?.ext,
-                                          ).src}
+                                        src={
+                                          formCroppedUrlString(
+                                            gcpUrl,
+                                            bucketName,
+                                            value?.IconImage?.Url,
+                                            value?.IconImage?.ext,
+                                          ).src
+                                        }
                                         alt={value?.IconImage?.AltText}
                                       />
                                     </Box>

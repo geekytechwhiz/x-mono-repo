@@ -6,7 +6,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";

@@ -47,7 +47,7 @@ const AwardCards = ({
                               bucketName,
                               item?.logo,
                               item?.ImageVideoData?.ext,
-                              ).src
+                            ).src
                       }
                       className='awardCardMedia'
                     />
@@ -71,7 +71,12 @@ const AwardCards = ({
                     image={
                       item?.logo?.includes("dev.dam.hcl-x.com")
                         ? item?.logo
-                        : formCroppedUrlString(gcpUrl, bucketName, item?.logo, item?.ImageVideoData?.ext).src
+                        : formCroppedUrlString(
+                            gcpUrl,
+                            bucketName,
+                            item?.logo,
+                            item?.ImageVideoData?.ext,
+                          ).src
                     }
                     className='cardImg'
                   />
