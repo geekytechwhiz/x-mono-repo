@@ -18,7 +18,7 @@ export interface PrelemBaseEndpoint {
   device?: string;
 }
 export interface Analytics {
-  pageId?: number;
+  pageId?: string;
   prelemId?: number;
   pageTitle?: string;
   prelemTitle?: string;
@@ -46,9 +46,9 @@ export interface AuthoringHelper {
   authoringHoverShow?: boolean;
   isModalShow?: boolean;
 }
-interface MultiSlot {
-  onToggleContentGallery?: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
+// interface MultiSlot {
+//   onToggleContentGallery?: (contentType: string, imageVideoContentGallery: boolean) => void;
+// }
 export interface Content {
   Description?: string;
   Title?: string;

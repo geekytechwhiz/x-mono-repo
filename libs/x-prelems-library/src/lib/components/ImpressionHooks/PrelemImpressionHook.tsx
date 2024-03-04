@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
 import { IMPRESSIONS } from "./constants";
 import { createPrelemImpression, snowplowPrelemImpression } from "./helper";
-import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
 
 export const usePrelemImpression = (
   analytics: Analytics,

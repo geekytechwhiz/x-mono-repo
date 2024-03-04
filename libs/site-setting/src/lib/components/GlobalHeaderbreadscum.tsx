@@ -14,7 +14,6 @@ const useBreadCumStyle = makeStyles(() => ({
 
 const GlobalHeaderbreadscum = ({ value }) => {
   const classes = useBreadCumStyle();
-  const breadcrumbValue = value?.breadcrumb?.split("|||");
 
   return (
     <Stack spacing={3}>
@@ -27,15 +26,17 @@ const GlobalHeaderbreadscum = ({ value }) => {
           color='inherit'>
           :
         </Link>
-        {breadcrumbValue?.map((val, key) => {
-          return (
-            val && (
-              <Link className={classes.breadcumColor} underline='hover' key={key} color='inherit'>
-                {capitalizeFirstLetter(val?.trimStart().trimEnd())}
-              </Link>
-            )
-          );
-        })}
+        {Array.isArray(value) &&
+          value?.map((val, key) => {
+            return (
+              val &&
+              val?.breadcrumb && (
+                <Link className={classes.breadcumColor} underline='hover' key={key} color='inherit'>
+                  {capitalizeFirstLetter(val.breadcrumb)}
+                </Link>
+              )
+            );
+          })}
       </Breadcrumbs>
     </Stack>
   );

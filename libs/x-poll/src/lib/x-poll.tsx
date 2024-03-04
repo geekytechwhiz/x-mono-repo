@@ -1,32 +1,33 @@
-import { Box, ThemeProvider } from "@mui/material";
+import { Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { fetchContentData } from "@platformx/authoring-apis";
 import { ErrorBoundary, PrelemTheme, getSecondaryArgs } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { QuizComponent } from "./components/QuizComponent";
-import { QuizMfeProps } from "./quiz-mfe.types";
+import { PollComponent } from "./components/PollComponent";
+import { XPollProps } from "./x-poll.types";
 
-export function QuizMfe({ contentId, langCode }: QuizMfeProps) {
+export function XPoll({ contentId, langCode }: XPollProps) {
   const [pageData, setPageData] = useState({} as any);
 
   useEffect(() => {
-    if (contentId) {
-      fetchContentData("quiz", contentId, langCode, process.env.NX_AUTHOR_URI).then((res) => {
-        setPageData(res?.data?.data?.fetchQuizContent);
+    if (contentId)
+      fetchContentData("poll", contentId, langCode, process.env.NX_AUTHOR_URI).then((res) => {
+        setPageData(res?.data?.data?.fetchPoll);
       });
-    }
   }, [contentId]);
   const { ref } = useInView({
     /* Optional options */
     threshold: 0,
   });
+
   return (
     <Box ref={ref}>
       <ErrorBoundary>
         <ThemeProvider theme={PrelemTheme}>
-          <QuizComponent
+          <PollComponent
             pageData={pageData}
-            secondaryArgs={getSecondaryArgs(langCode, "quiz", process.env.NX_AUTHOR_URI)}
+            secondaryArgs={getSecondaryArgs(langCode, "poll", process.env.NX_AUTHOR_URI)}
           />
         </ThemeProvider>
       </ErrorBoundary>
@@ -34,4 +35,4 @@ export function QuizMfe({ contentId, langCode }: QuizMfeProps) {
   );
 }
 
-export default QuizMfe;
+export default XPoll;

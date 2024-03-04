@@ -109,7 +109,8 @@ FullWidthBanner3Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      const regex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      if (regex.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");
@@ -293,8 +294,8 @@ FullWidthBanner3.defaultProps = {
   },
   authoringHelper: {
     innerRef: null,
-    sendStructureDataToAuthoringCB: () => {},
-    sendDefaultStructureDataForResetToAuthoringCB: () => {},
+    sendStructureDataToAuthoringCB: (structureData: string) => {},
+    sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => {},
     openButtonEditWindowInAuthoringCB: () => {},
     selectedButtonNameForEditing: "",
     isEditing: false,

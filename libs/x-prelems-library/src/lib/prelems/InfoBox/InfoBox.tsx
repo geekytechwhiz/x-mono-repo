@@ -1,7 +1,6 @@
 /* eslint-disable wrap-regex */
 import { Box, Container, Typography } from "@mui/material";
 import {
-  Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
@@ -98,6 +97,17 @@ InfoBoxProp) => {
     }
     return InfoBoxStructureData;
   };
+
+  useEffect(() => {
+    if (navigator) {
+      const regex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      if (regex.test(navigator?.userAgent)) {
+        // console.log("mobile");
+      } else {
+        // console.log("not mobile");
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (analytics?.isAuthoring && analytics?.isSeoEnabled) {
@@ -215,7 +225,7 @@ InfoBoxProp) => {
 
 interface InfoBoxProp {
   content: Content;
-  analytics: Analytics;
+  analytics: any; //Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
 }

@@ -4,9 +4,10 @@ import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
 import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
+import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
-import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { LanguageList, MESSAGE_API_ERROR, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
 import { fallBackImage } from "../assets/images";
@@ -1167,3 +1168,32 @@ export const getSecondaryArgs = (langCode, query, hostName) => {
     },
   };
 };
+export async function getData(url = "") {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    ShowToastError(MESSAGE_API_ERROR);
+    throw error;
+  }
+}
+export async function postData(url = "", data = {}, site_host = "") {
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(site_host && { site_host: site_host }),
+      },
+    });
+
+    return response;
+  } catch (error: any) {
+    ShowToastError(MESSAGE_API_ERROR);
+    return error?.response?.data;
+  }
+}

@@ -1,4 +1,4 @@
-export type QuizMfeProps = {
+export type XPollProps = {
   contentId: string;
   langCode: string;
 };
