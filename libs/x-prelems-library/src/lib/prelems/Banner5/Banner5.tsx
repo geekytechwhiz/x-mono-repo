@@ -1,18 +1,18 @@
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import React, { useEffect, useRef, useState } from "react";
-import "./Banner5.css";
-import { useInView } from "react-intersection-observer";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString
 } from "@platformx/utilities";
-import Banner5Slide from "./Banner5Slide";
-import { useCustomStyle } from "./Banner5.style";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import "./Banner5.css";
+import { useCustomStyle } from "./Banner5.style";
+import Banner5Slide from "./Banner5Slide";
 
 const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5Props) => {
   const classes = useCustomStyle();
@@ -95,12 +95,12 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
     const ImageCompound_index = `ImageCompound_${index}`;
     const { original_image_relative_path, ext }: any =
       (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
     return img;
   };
   const defaultStructureData = () => {

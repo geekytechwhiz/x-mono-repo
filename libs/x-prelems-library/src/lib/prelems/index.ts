@@ -18,7 +18,7 @@ import ImageAndVideoGallery from "./ImageAndVideoGallery/ImageAndVideoGallery";
 import ProductSummaryViaImage2 from "./productSummaryViaImage2/productSummaryViaImage2";
 import AboutUsThree from "./AboutUsThree/AboutUsThree";
 import DynamicPrelemWithCarousel2 from "./DynamicPrelemWithCarousel2/DynamicPrelemWithCarousel2";
-import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
+// import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
 import Banner6 from "./Banner6/Banner6";
 import FullWidthImage from "./fullWidthImage/fullWidthImage";
 import FullWidthVideo from "./fullWidthVideo/fullWidthVideo";
@@ -27,7 +27,7 @@ import Banner3 from "./Banner3/Banner3";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
 import ImageCarousel from "./ImageCarousel1/ImageCarousel1";
-import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
+// import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
 import BlogTiles from "./BlogTiles/BlogTiles";
 import CustomerTestimonial2 from "./CustomerTestimonial2/CustomerTestimonial2";
 import ContentDisplayWithCategories from "./ContentDisplayWithCategories/ContentDisplayWithCategories";
@@ -78,10 +78,20 @@ import VideoLandingPage from "../ContentTypes/VideoLandingPage/VideoLandingPage"
 import Article from "../ContentTypes/Article/Article";
 import EventLandingPage from "../ContentTypes/EventLandingPage/EventLandingPage";
 import Blogs from "../ContentTypes/Blogs/Blogs";
+import ExpertiseShowcase from "./ExpertiseShowcase/ExpertiseShowcase";
+import AnimationOnPageScroll from "./AnimationOnPageScroll/AnimationOnPageScroll";
+import MultiSlot2 from "./MultiSlot2/MultiSlot2";
 import { ChangePassword, Profile, SignUp } from "../ContentTypes/User/User";
 import { TestComponent } from "./TestComponnet";
+import Header from "./HeaderFooter/Header/Header";
+import Footer from "./HeaderFooter/Footer/Footer";
 
 export {
+  MultiSlot2,
+  Header,
+  Footer,
+  AnimationOnPageScroll,
+  ExpertiseShowcase,
   TestComponent,
   ContactUsForm,
   Ecommerce3Slot2,
@@ -110,9 +120,9 @@ export {
   ContentDisplayWithCategories,
   CustomerTestimonial2,
   BlogTiles,
-  DynamicPrelemOne,
+  // DynamicPrelemOne,
   Banner6,
-  DynamicPrelemWithCarousel1,
+  // DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,
   AboutUsThree,
   // AboutUs2,

@@ -9,7 +9,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import prelemTypes from "../../globalStyle";
 import BasicButton from "../../components/BasicButton/BasicButton";
@@ -66,13 +66,12 @@ const WebsiteIntroduction = ({
     let websiteIntroductionStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
-
+      ).src;
     try {
       websiteIntroductionStructureData = {
         "@context": "http://schema.org/",

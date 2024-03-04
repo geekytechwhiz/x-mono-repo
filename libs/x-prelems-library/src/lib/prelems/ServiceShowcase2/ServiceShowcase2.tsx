@@ -9,13 +9,14 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import "./ServiceShowcase2.css";
 import { useCustomStyle } from "./ServiceShowcase2.style";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 let i = 0;
 const ServiceShowcase2 = ({
@@ -68,7 +69,7 @@ const ServiceShowcase2 = ({
               position: key + 1,
               item: {
                 "@type": "Service",
-                image: formCroppedUrl(
+                image: formCroppedUrlString(
                   gcpUrl,
                   bucketName,
                   value?.IconImage?.Url,
@@ -244,13 +245,13 @@ const ServiceShowcase2 = ({
                           <CardContent className='cardContent'>
                             <Box className='boxWrapper'>
                               <Box className='imageWrapper'>
-                                <img
-                                  src={formCroppedUrl(
+                                <Image
+                                  src={formCroppedUrlString(
                                     gcpUrl,
                                     bucketName,
                                     value?.IconImage?.Url,
                                     value?.IconImage?.ext,
-                                  )}
+                                    ).src}
                                   height='46'
                                   width='46'
                                   alt='No image'

@@ -11,6 +11,7 @@ import {
 import { format } from "date-fns";
 import { getIcon } from "../../components/Utils/helperFns";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const DynamicPrelemCard2 = ({
   content,
@@ -163,7 +164,7 @@ const DynamicPrelemCard2 = ({
           </Box>
           <CardContent className='card2Content'>
             <Box className='card2ContentInnerWrapper'>
-              <img
+              <Image
                 alt='DynamicPrelemCard2'
                 src={getIcon(content.ContentType)}
                 style={{ width: "100%" }}

@@ -6,6 +6,7 @@ import { getIcon } from "../../Utils/helperFns";
 // import { t } from "i18next";
 // import "../../../service/i18n";
 import { dateTimeFormat, getImage, onClickCardUrlNavigate } from "@platformx/utilities";
+import Image from "next/image";
 
 const XCard4 = ({
   content,
@@ -31,7 +32,7 @@ XCard4Props) => {
       <Box className='XCard4innderBox'>
         <Box className='imgWrapper'>
           <Box className='IconTopRight'>
-            <img src={getIcon(content?.ContentType)} alt='' />
+            <Image src={getIcon(content?.ContentType)} alt='' />
           </Box>
           <CardMedia
             component={imageUrl ? "img" : "div"}

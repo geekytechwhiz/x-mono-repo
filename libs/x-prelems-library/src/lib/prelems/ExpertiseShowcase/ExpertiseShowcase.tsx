@@ -1,14 +1,15 @@
 import { Cached } from "@mui/icons-material";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { formCroppedUrl } from "@platformx/utilities";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import ExpertiseShowcaseSlot from "./ExpertiseShowcaseSlot";
-import { useCustomStyle } from "./ExpertiseShowcase.style";
-import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ExpertiseShowcase.style";
+import ExpertiseShowcaseSlot from "./ExpertiseShowcaseSlot";
+import { formCroppedUrlString } from "@platformx/utilities";
 
 const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const { ref, inView } = useInView({
@@ -18,7 +19,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
   const firstRender = useRef(true);
   usePrelemImpression(analytics, inView, secondaryArgs);
   const { Url, ext } = content?.Images?.Image_1 || {};
-  const imgUrl = formCroppedUrl(secondaryArgs?.gcpUrl, secondaryArgs?.bucketName, Url, ext);
+  const imgUrl = formCroppedUrlString(secondaryArgs?.gcpUrl, secondaryArgs?.bucketName, Url, ext).src;
 
   const defaultStructureData = () => {
     let expertiseShowcaseStructureData;
@@ -146,7 +147,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
                   }}
                   className='overlay-wrapper'>
                   <Box className='imgWrapper'>
-                    <img alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
+                    <Image alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
                     <Box className='bottomButton'>
                       <BasicButton
                         openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
@@ -185,7 +186,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
                 </Box>
               </Paper>
             </Grid>
-            {content?.Slots.slice(0, 2).map((item: any, index: any) => {
+            {content?.Slots?.slice(0, 2).map((item: any, index: any) => {
               return (
                 <Grid
                   key={`${index.toString()}_ES`}

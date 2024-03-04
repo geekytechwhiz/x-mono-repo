@@ -26,8 +26,12 @@ import AwardsWinnerCompanyIcon from "./AwardsWinnerCompany.svg";
 import PrelemsDeployedIcon from "./PrelemsDeployed.svg";
 import ProjectsCompletedIcon from "./ProjectsCompletedIcon.svg";
 import ServiceCard2Background from "./ServiceCard2Background.svg";
+import IconPrevSvg from "./prev.svg";
+import IconNextSvg from "./next.svg";
 
 export {
+  IconNextSvg,
+  IconPrevSvg,
   MaskImg,
   PhoneIcon,
   RedDots,

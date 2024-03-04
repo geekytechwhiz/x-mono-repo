@@ -3,6 +3,7 @@ import "./Confirmation.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { useCustomStyle } from "./Confirmation.style";
 import { Box, Dialog, Button, Typography, DialogContent, Grid } from "@mui/material";
+import Image from "next/image";
 
 type ConfirmationProps = {
   img?: string;
@@ -39,7 +40,7 @@ export default function Confirmation(props: ConfirmationProps) {
         <CloseIcon onClick={handleClose} className={`close-icon closeIcon`} />
       </Box>
       <Box className='closeWrapper'>
-        <img src={img} alt='Delete Icon' width='120px' />
+        <Image src={img} alt='Delete Icon' width={120} />
       </Box>
 
       {title && (

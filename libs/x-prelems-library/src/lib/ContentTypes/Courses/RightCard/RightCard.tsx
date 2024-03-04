@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import "../../../utils/service/i18n";
 import "../../../Style.css";
 import { useCustomStyle } from "./RightCard.style";
+import Image from "next/image";
 
 const RightCard = ({ content, setIsCourseFrame }: any) => {
   const classes = useCustomStyle();
@@ -13,7 +14,7 @@ const RightCard = ({ content, setIsCourseFrame }: any) => {
     <div className={`${classes.RightCardWrapper} RightCard`}>
       <Box className='BoxWp'>
         <Box className='videoWrapper'>
-          <img src={content?.teaser_image} alt='' />
+          <Image src={content?.teaser_image} alt='' />
         </Box>
         <Box className='BottomWrapper'>
           <Typography variant='h4bold'>

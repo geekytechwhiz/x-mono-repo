@@ -8,7 +8,7 @@ import "../../Style.css";
 import {
   completeButtonUrl,
   completeButtonUrl2,
-  formCroppedUrl,
+  formCroppedUrlString,
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
@@ -21,6 +21,7 @@ import { useTheme } from "@mui/material/styles";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 let i = 0;
 const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard6Prop) => {
@@ -74,13 +75,13 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
         ),
         itemListElement:
           content?.Slots &&
-          content?.Slots.map((value, index) => {
+          content?.Slots?.map((value, index) => {
             return {
               "@type": "ListItem",
               position: index + 1,
               item: {
                 "@type": "ImageObject",
-                contentUrl: formCroppedUrl(
+                contentUrl: formCroppedUrlString(
                   secondaryArgs?.gcpUrl,
                   secondaryArgs?.bucketName,
                   value?.IconImage?.Url,
@@ -221,16 +222,16 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                               sx={{
                                 backgroundColor: `rgba(${ICON_BACKGROUND[i - 1]})`,
                               }}>
-                              <img
-                                src={formCroppedUrl(
+                              <Image
+                                src={formCroppedUrlString(
                                   secondaryArgs?.gcpUrl,
                                   secondaryArgs?.bucketName,
                                   value?.IconImage?.Url,
                                   value?.IconImage?.ext,
-                                )}
+                                  ).src}
                                 alt={value?.IconImage?.AltText}
-                                width='25px'
-                                height='25px'
+                                width={25}
+                                 height={25}
                                 className='cardItemImg'
                               />
                             </Box>

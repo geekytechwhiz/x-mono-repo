@@ -19,7 +19,7 @@ import {
   inputNonEmptyFieldValidate,
   nullToObject,
   SuccessIcon,
-  DeleteGif as DeleteIcon,
+  DeleteIcon,
 } from "@platformx/utilities";
 import {
   ecomCartIdBasedGetItem,

@@ -1,9 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-const ProfilePrelem: any = dynamic(() => import(`platform-x-prelems/prelems/PlayerDetail`), {
-  ssr: false,
-});
+const ProfilePrelem = dynamic<any>(
+  () => import("@platformx/x-prelems-library").then((mod) => mod.PlayerDetail),
+  {
+    ssr: false,
+  },
+);
 
 export const ProfileComponent = (props) => {
   const { pageData = {}, secondaryArgs = {} } = props || {};

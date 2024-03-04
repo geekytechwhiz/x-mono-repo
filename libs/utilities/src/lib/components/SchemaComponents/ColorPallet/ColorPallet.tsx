@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import Icon from '../../../assets/svg/Icon.svg';
 import Refresh from '../../../assets/svg/Refresh.svg';
 import { useStyle } from './ColorPattet.styles';
+import Image from "next/image";
 
 const ColorPallet = ({
   colorCodes,
@@ -20,7 +21,7 @@ const ColorPallet = ({
         }}
         className={classes.innerContainer}
       >
-        <img src={Icon} alt='Icon' />
+        <Image src={Icon} alt='Icon' />
       </Box>
 
       {colorCodes.map((val, index) => {
@@ -42,7 +43,7 @@ const ColorPallet = ({
         );
       })}
       <Box onClick={handleRefresh} className={classes.innerContainer}>
-        <img src={Refresh} alt='Refresh' />
+        <Image src={Refresh} alt='Refresh' />
 
       </Box>
     </Box>

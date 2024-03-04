@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
-import { useCustomStyle } from "./FullWidthImage.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import { useCustomStyle } from "./FullWidthImage.style";
 
 const FullWidthImage = ({
   content,
@@ -21,12 +21,12 @@ const FullWidthImage = ({
     let fullWidthImageStructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+      ).src;
 
     try {
       fullWidthImageStructureData = {

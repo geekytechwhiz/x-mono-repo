@@ -1,8 +1,8 @@
 import getConfig from "next/config";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import React from "react";
 import { getDomainUrl, navigateTo } from "../../utils/helperFunctions";
-import { useRouter } from "next/router";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -26,9 +26,18 @@ const HeaderLayout = (props: any) => {
     Menus: MenuData || [],
   };
 
-  const DynamicHeader: any = dynamic(
-    () => import(`platform-x-prelems/prelems/HeaderFooter`).then((mod) => mod.Header),
-    { ssr: false },
+  // const DynamicHeader: ComponentType<HeaderProps> = dynamic(
+  //   () => import(`@platformx/x-prelems-library`).then((mod) => mod.Header),
+  //   { ssr: false }
+  // );
+
+  // #TODO - This is a temporary fix to hide the footer
+
+  const DynamicHeader = dynamic(
+    () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
+    {
+      ssr: false,
+    },
   );
 
   const router = useRouter();

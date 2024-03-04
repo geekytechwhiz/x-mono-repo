@@ -40,6 +40,7 @@ import ToastService from "../../../components/ToastContainer/ToastService";
 import { errorRequest } from "../../../components/ConstantData";
 import Coins from "./Coins";
 import Redeem from "./Redeem";
+import Image from "next/image";
 
 type ProfileProps = {
   secondaryArgs: any;
@@ -47,6 +48,7 @@ type ProfileProps = {
 };
 
 const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
+  const GreenTickIcon:any=GreenTick;
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const globalClasses = prelemTypes();
@@ -376,7 +378,7 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                     ...params.InputProps,
                                     startAdornment: (
                                       <InputAdornment position='start' className='flagWrapper'>
-                                        <img
+                                        <Image
                                           src={getFlag(stateManage.defaultLanguage)}
                                           alt='flag'
                                           className='flagImage'
@@ -407,14 +409,24 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                 renderOption={(props, option) => (
                                   <Box component='li' className='flagRow' {...props}>
                                     <Box className='flagIcon'>
-                                      <img
+                                      {/* <Image
                                         loading='lazy'
                                         alt='country flag'
                                         title='country flag'
                                         width='25'
                                         src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
                                         srcSet={`https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 2x`}
-                                      />
+                                      /> */}
+                                      <Image
+    loading='lazy'
+    alt='country flag'
+    title='country flag'
+    width='25'
+    src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
+    sizes="(max-width: 600px) 50vw, 100vw"
+    // srcSet={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png 20w, https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 40w`}
+/>
+
                                     </Box>
                                     {option.label}
                                   </Box>
@@ -553,7 +565,7 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
       {successPopUp && (
         <Confirmation
           open={true}
-          img={GreenTick}
+          img={GreenTickIcon.src}
           text={t("profile_update_msg")}
           title={t("profile_update")}
           handleClose={confirmationPopUpClose}

@@ -18,6 +18,7 @@ import QuizContext from "./QuizContext";
 import ScoreScreen from "./ScoreScreen";
 import ViewAnswers from "./ViewAnswers";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const Quiz = ({
   content,
@@ -411,7 +412,7 @@ const Quiz = ({
                     top: { xs: "20px", md: "53px" },
                   }}
                   onClick={onClickClose}>
-                  <img src={CloseIcon} alt='Close Icon' />
+                  <Image src={CloseIcon} alt='Close Icon' />
                 </Button>
               )}
               <Box

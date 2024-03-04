@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Typography, Box } from "@mui/material";
+import Image from "next/image";
 
 const SingleImageCard = ({ option, activeItem, setSelectedItem }: any) => {
   return (
@@ -31,7 +32,7 @@ const SingleImageCard = ({ option, activeItem, setSelectedItem }: any) => {
           maxHeight: { xs: "114px", md: "120px" },
           display: "flex",
         }}>
-        <img
+        <Image
           src={option.option_image.url}
           alt={option.option_image.title}
           style={{ width: "100%", objectFit: "cover" }}

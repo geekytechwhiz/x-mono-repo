@@ -40,10 +40,10 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
                 />
               </Box>
               <Typography variant='p3medium' color='textColor'>
-                {content.debut_opposition}
+                {content?.debut_opposition}
               </Typography>
               <Typography variant='h7regular' sx={{ textTransform: "uppercase" }}>
-                {format(new Date(content.debut_date), "MMM dd, yyyy")}
+                {content?.debut_date ? format(new Date(content?.debut_date), "MMM dd, yyyy") : ""}
               </Typography>
             </Box>
           </Box>
@@ -70,16 +70,18 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
                 />
               </Box>
               <Typography variant='p3medium' color='textColor'>
-                {content.international_debut_oppostion}
+                {content?.international_debut_oppostion}
               </Typography>
               <Typography variant='h7regular' sx={{ textTransform: "uppercase" }}>
-                {format(new Date(content.international_debut_date), "MMM dd, yyyy")}
+                {content?.international_debut_date
+                  ? format(new Date(content?.international_debut_date), "MMM dd, yyyy")
+                  : ""}
               </Typography>
             </Box>
           </Box>
         </Box>
         <Box className='leftContent'>
-          <Typography variant='h2bold'>{content.full_name}</Typography>
+          <Typography variant='h2bold'>{content?.full_name}</Typography>
           <Grid container>
             <Grid xs={12} md={12} em={4} lg={3}>
               <Box className='tabboxWp'>
@@ -92,7 +94,9 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
                       Date of Birth
                     </Typography>
                     <Typography variant='h4medium'>
-                      {format(new Date(content.birth_date), "MMM dd, yyyy")}
+                      {content?.birth_date
+                        ? format(new Date(content?.birth_date), "MMM dd, yyyy")
+                        : ""}
                     </Typography>
                   </Box>
                 </Box>
@@ -104,7 +108,7 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
                     <Typography variant='p4regular' color='textColor1Paragraph'>
                       Country
                     </Typography>
-                    <Typography variant='h4medium'>{content.country}</Typography>
+                    <Typography variant='h4medium'>{content?.country}</Typography>
                   </Box>
                 </Box>
                 <Box className='tableWp'>
@@ -116,7 +120,9 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
                       Contract until
                     </Typography>
                     <Typography variant='h4medium'>
-                      {format(new Date(content.left_date), "MMM dd, yyyy")}
+                      {content?.left_date
+                        ? format(new Date(content?.left_date), "MMM dd, yyyy")
+                        : ""}
                     </Typography>
                   </Box>
                 </Box>
@@ -124,7 +130,7 @@ const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
             </Grid>
             <Grid xs={12} md={12} em={8} lg={9}>
               <Box className='rightDecWp'>
-                <Typography variant='p3regular'>{content.bio}</Typography>
+                <Typography variant='p3regular'>{content?.bio}</Typography>
               </Box>
             </Grid>
           </Grid>
