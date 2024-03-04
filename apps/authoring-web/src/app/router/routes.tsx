@@ -80,8 +80,7 @@ export const routes: RouteConfig[] = [
   //   path: "/page-list",
   //   element: (
   //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-  //       <
-  ></UserListing>
+  //       <></UserListing>
   //     </ProtectedRoute>
   //   ),
   // },
