@@ -36,16 +36,12 @@ export const useAuthentication = () => {
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
         localStorage.setItem("selectedSite", response.data.selected_site);
-
-        // const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
-
-        // const redirectPath =
-        //   selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
-        ///${selected_site}/${defaultLang}${redirectPath}
-        // navigate(`/dashboard`, { replace: true });
-        window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
-      } else {
-        window.location.replace(AUTH_URL);
+        const lang = response.data.preferred_sites_languages?.[selected_site] || "en";
+        const redirectPath =
+          selected_site?.toLowerCase() === "system" ? `sites/site-listing` : `dashboard`;
+        window.location.replace(
+          `${process.env.NX_BASE_URL}/${selected_site}/${lang}/${redirectPath}`,
+        );
       }
     } catch (error: any) {
       console.error("Error signing in:", error);
