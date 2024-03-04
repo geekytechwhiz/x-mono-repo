@@ -17,7 +17,7 @@ const FooterLayout = (props: any) => {
   // );
   // #TODO - This is a temporary fix to hide the footer
   const DynamicFooter = dynamic(
-    () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
+    () => import("@platformx/x-prelems-library").then((mod) => mod.Footer),
     {
       ssr: false,
     },
