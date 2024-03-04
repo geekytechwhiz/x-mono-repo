@@ -373,4 +373,17 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute
+        name='quiz'
+        subCategory='quiz'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
 ];

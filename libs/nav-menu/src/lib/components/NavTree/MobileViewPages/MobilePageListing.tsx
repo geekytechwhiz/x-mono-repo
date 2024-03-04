@@ -34,63 +34,57 @@ export default function MobilePageListing({
     }
   };
   return (
-    <>
+    <Box
+      onClick={onButtonClicked}
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: "#fff",
+        borderRadius: "6px",
+        padding: "10px 0",
+        marginTop: "10px",
+        height: "74px",
+        border: currentButton === article?.CurrentPageUrl ? "solid 1px #707070" : "none",
+      }}>
       <Box
-        onClick={onButtonClicked}
         sx={{
+          width: "50px",
+          height: "50px",
+          margin: "0px 0px 0px 14px",
+          borderRadius: "3px",
+          padding: "13px",
+          backgroundColor: currentButton === article?.CurrentPageUrl ? "#000" : "#eef1ff",
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#fff",
-          borderRadius: "6px",
-          padding: "10px 0",
-          marginTop: "10px",
-          height: "74px",
-          border: currentButton === article?.CurrentPageUrl ? "solid 1px #707070" : "none",
         }}>
-        <Box
-          sx={{
-            width: "50px",
-            height: "50px",
-            margin: "0px 0px 0px 14px",
-            borderRadius: "3px",
-            padding: "13px",
-            backgroundColor: currentButton === article?.CurrentPageUrl ? "#000" : "#eef1ff",
-            display: "flex",
-            alignItems: "center",
-          }}>
-          {currentButton === article?.CurrentPageUrl ? (
-            <img
-              src={check_circle}
-              alt='icon'
-              style={{ marginLeft: "3px", objectFit: "contain" }}
-            />
-          ) : (
-            <img src={description_black} alt='icon' style={{ objectFit: "contain" }} />
-          )}
+        {currentButton === article?.CurrentPageUrl ? (
+          <img src={check_circle} alt='icon' style={{ marginLeft: "3px", objectFit: "contain" }} />
+        ) : (
+          <img src={description_black} alt='icon' style={{ objectFit: "contain" }} />
+        )}
+      </Box>
+      <Box sx={{ paddingLeft: "14px", width: "85%" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Typography
+            sx={{
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+              maxWidth: {
+                xs: "100%",
+              },
+            }}
+            variant='h6medium'>
+            {article?.Title}
+          </Typography>
         </Box>
-        <Box sx={{ paddingLeft: "14px", width: "85%" }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography
-              sx={{
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                maxWidth: {
-                  xs: "100%",
-                },
-              }}
-              variant='h6medium'>
-              {article?.Title}
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center", color: "#89909a" }}>
-            <Typography variant='h7regular'>{`By ${article?.Author}`}</Typography>
-            <span style={{ margin: "0 2px", fontSize: "12px" }}>|</span>
-            <Typography variant='h7regular'>{dateFormat(article?.LastModificationDate)}</Typography>
-          </Box>
+        <Box sx={{ display: "flex", alignItems: "center", color: "#89909a" }}>
+          <Typography variant='h7regular'>{`By ${article?.Author}`}</Typography>
+          <span style={{ margin: "0 2px", fontSize: "12px" }}>|</span>
+          <Typography variant='h7regular'>{dateFormat(article?.LastModificationDate)}</Typography>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
