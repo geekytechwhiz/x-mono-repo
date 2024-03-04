@@ -11,6 +11,11 @@ export const dynamicListHandle = (arr = []) => {
   arr.forEach((item: any) => {
     Object.keys(Mapping).forEach((key) => {
       if (key === item?.PrelemId) {
+        // console.log(Mapping[key], "Mapping[key]");
+
+        // dynamicLists[key] = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.ExpertiseShowcase), {
+        //   ssr: false,
+        // });
         dynamicLists[key] = dynamic(() => import(`platform-x-prelems/prelems/${Mapping[key]}`), {
           ssr: false,
         });

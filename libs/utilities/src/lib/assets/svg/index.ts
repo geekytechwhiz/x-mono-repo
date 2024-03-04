@@ -1,5 +1,7 @@
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
+import ArrowUpwardIcon from "./ArrowUp.svg";
+import AssetnoIcon from "./Assetnoicon.svg";
 import Challenge_community from "./Challenge_community.svg";
 import CommentPlaceHolder from "./CommentPlaceHolder.svg";
 import CopyIcon from "./CopyIcon.svg";
@@ -15,7 +17,6 @@ import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
 import { default as VODIcon } from "./VODIcon.svg";
 // import  DraftIcon from './draftIcon.svg';
-import ArrowUpwardIcon from "./ArrowUp.svg";
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
@@ -59,7 +60,13 @@ import SpaceListIcon from "./Space.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
+import DraftedIcon from "./WorkflowHistory/Draft.svg";
+import EditorIcon from "./WorkflowHistory/Editor.svg";
+import PublisherIcon from "./WorkflowHistory/Publish.svg";
+import ReviewerIcon from "./WorkflowHistory/Review.svg";
+import CompletedIcon from "./WorkflowHistory/completed.svg";
 import WorkflowTimerIcon from "./WorkflowHistory/timer.svg";
+import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
 import warning from "./activeUserIcon.svg";
 import AiSvg from "./ai.svg";
 import AiSvg2 from "./ai2.svg";
@@ -75,23 +82,56 @@ import ChatGPTSvg from "./chatgpt.svg";
 import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
 import CourseListIcon from "./course-icon.svg";
+import EmptySiteBox from "./emptysitebox.svg";
 // import CourseListIcon from "./course-icon.svg";
+import SitePlaceholder from "../site-placeholder.png";
+import PeopleIcon from "./2PeopleIcon.svg";
+import Aboutusupdateicon from "./Aboutusupdateicon.svg";
+import AssetyesIcon from "./Assetyesicon.svg";
+import CtaupdateIcon from "./CTAupdateicon.svg";
+import Contactusupdateicon from "./Contactusupdateicon.svg";
+import Envelop from "./Envelop.svg";
+import FaviconupdateIcon from "./Faviconupdateicon.svg";
+import Imageasset from "./Imagesasset.svg";
+import LanguageupdateIcon from "./Languageupdateicon.svg";
+import Location from "./Location.svg";
+import MorehorAsset from "./MorehorAsset.svg";
+import Newsletterupdateicon from "./Newsletterupdateicon.svg";
+import PencilIcon from "./PencilIcon.svg";
+import Phone from "./Phone.svg";
+import Searchheadericon from "./Searchheadericon.svg";
+import SearchnupdateIcon from "./Searchupdateicon.svg";
+import VectorIconSvg from "./VectorIcon.svg";
+import Addlinkupdateicon from "./addlinkupdateicon.svg";
+import AssetfoldernewIcon from "./assetfoldernew.svg";
+import backAssetIcon from "./backAssetIcon.svg";
+import CopyrightUpdateIcon from "./copyrightupdateicon.svg";
+import Ctaround from "./ctaround.svg";
+import Ctasearch from "./ctasearch.svg";
 import DraftStatusIcon from "./draftStatusIcon.svg";
 import EditIcon from "./editIcon.svg";
 import EventsListIcon from "./event-fill.svg";
 import IconFaceBookLogoIconSvg from "./facebookLogoIcon.svg";
+import Folder from "./folder.svg";
 import FooterMenuUpdated from "./footermenuupdated.svg";
 import GradeIcon from "./grade.svg";
 import GreenDot from "./green.svg";
 import HeaderMenuUpdated from "./headermenuupdated.svg";
+import Headerpublic from "./headerpublic.svg";
 import RedDotsIcon from "./icon/RedDots.svg";
+import AssetcatIcon from "./icon/assetcaricon.png";
+import Assetmedia from "./icon/assetmedia.png";
+import ImageIcon from "./image.svg";
 import InsertIcon from "./inserticon.svg";
 import IconLinkedinIconSvg from "./linkedinIcon.svg";
 import MediaIcon from "./mediaIcon.svg";
+import MediahandleUpdateIcon from "./mediahandleupdateicon.svg";
 import MenuIcon from "./menu.svg";
 import MobileMenuIconSvg from "./mobileMenuIconSvg.svg";
 import MoreHorizIcon from "./moreHoriz.svg";
+import MorevertassetIcon from "./morevertasseticon.svg";
 import MyDashboardIcon from "./myDashboardIcon.svg";
+import NewfolderIcon from "./newfoldericon.svg";
 import PagesIcon from "./pagesIcon.svg";
 import PagesListIcon from "./pagesListIcon.svg";
 import IconPlayCircleSvg from "./play_circle.svg";
@@ -112,15 +152,26 @@ import SearchGraySvg from "./searchGray.svg";
 import SearchIcon from "./searchiconnn.svg";
 import SettingIcon from "./settingIcon.svg";
 import IconListViewSvg from "./sideMenuListView.svg";
+import Sitelogoupdateicon from "./sitelogopupdateicon.svg";
 import IconTimerSvg from "./timerIcon.svg";
 import TotalrevIcon from "./totalrev.svg";
 import IconTwitterLogoIconSvg from "./twitterLogoIcon.svg";
 import UnpublishedStatusIcon from "./unpublishStatusIcon.svg";
 import UploadIcon from "./upload.svg";
+import video from "./video.svg";
 import VODListIcon from "./vodListIcon.svg";
 import WarningIcon from "./warningIcon.svg";
 import WorkflowDetails from "./workflow.svg";
 import WorkflowIcon from "./workflowIcon.svg";
+// import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
+import ArrowDown from "./ArrowDown.svg";
+import LongLeftArrow from "./LongLeftArrow.svg";
+import MenuTwoDash from "./MenuTwoDash.svg";
+import Pencil from "./Pencil.svg";
+import SaveIcon from "./Save.svg";
+import FileUploadicon from "./fileupload.svg";
+import Assetmodalicon from "./icon/assetmodalicon.png";
+
 // import ScheduledUnpublishIcon from "./scheduleUnpublishIcon.svg";
 import AnalyticsIcon from "./AnalyticsIcon.svg";
 import IconCopySvg from "./Copy.svg";
@@ -128,32 +179,45 @@ import CloseIcon from "./Cross.svg";
 import DialogCloseIcon from "./DialogCloseIcon.svg";
 import IconFacebookSvg from "./Facebook.svg";
 import GreenSubFolderIcon from "./Subfolder-green.svg";
-import AccountBalanceWalletIcon from "./account_balance_wallet.svg";
 import FeatureStarIcon from "./featurestar.svg";
 import FolderIcon from "./footercoloricon.svg";
 import GlobalImageIcon from "./globalimageicon.svg";
 import GlobalMiscIcon from "./globalmiscicon.svg";
 import GlobalVideoIcon from "./globalvideoicon.svg";
-import ImageIcon from "./image.svg";
-import LeftArrowIcon from "./leftArrow.svg";
+import LeftArrowIcon from "./leftarrow.svg";
 import PictureIcon from "./pictureIcon.svg";
 import PlayIcon from "./playIcon.svg";
-import RightArrowIcon from "./rightArrow.svg";
+import RightArrowIcon from "./rightarrow.svg";
 import SocialShareIcon from "./social_share.svg";
+import Tagartical from "./tagartical.svg";
+import Tagarticalnew from "./tagarticalnew.svg";
+import Tagevent from "./tagevent.svg";
+import Tagpoll from "./tagpoll.svg";
+import Tagquiz from "./tagquiz.svg";
+import Tagvod from "./tagvod.svg";
 import TaskNotFoundIcon from "./taskNotFoundIcon.svg";
 
 export {
+  Aboutusupdateicon,
   AccountBalanceWalletIcon,
+  Addlinkupdateicon,
   AiSvg,
   AiSvg2,
   AiSvgDisabled,
   AllIcon,
   AnalyticsIcon,
   ApprovalStatus,
+  ArrowDown,
   ArrowUpwardIcon,
   ArticleIcon,
   ArticleListIcon,
   AssetManagerIcon,
+  AssetcatIcon,
+  AssetfoldernewIcon,
+  Assetmedia,
+  Assetmodalicon,
+  AssetnoIcon,
+  AssetyesIcon,
   BackButton,
   BlueDot,
   BookIcon,
@@ -173,25 +237,47 @@ export {
   CloseSearchSvg,
   CommentPlaceHolder,
   CommunityIcon,
+  CompletedIcon,
+  Contactusupdateicon,
   CookieIcon,
-  CopyIcon, CourseListIcon as CourseIcon, CourseListIcon,
+  CopyIcon,
+  CopyrightUpdateIcon,
+  CourseListIcon as CourseIcon,
+  CourseListIcon,
+  Ctaround,
+  Ctasearch,
+  CtaupdateIcon,
   DefaultStateCommentIcon,
   DeleteIcon,
   DialogCloseIcon,
   DraftIcon,
   DraftStatusIcon,
+  DraftedIcon,
   EcommerceIcon,
   EditIcon,
+  EditorIcon,
+  EmptySiteBox,
+  Envelop,
   EventsIcon,
   EventsListIcon,
   EyeIcon,
+  FaviconupdateIcon,
   FeatureStarIcon,
-  FilterIcon, FolderIcon, FooterMenuUpdated, GlobalImageIcon,
+  FileUploadicon,
+  FilterIcon,
+  Folder,
+  FolderIcon,
+  FooterMenuUpdated,
+  GlobalImageIcon,
   GlobalMiscIcon,
-  GlobalVideoIcon, GradeIcon,
+  GlobalVideoIcon,
+  GradeIcon,
   GreenDot,
-  GreenFolderIcon, GreenSubFolderIcon, HamburgerMenuIcon,
+  GreenFolderIcon,
+  GreenSubFolderIcon,
+  HamburgerMenuIcon,
   HeaderMenuUpdated,
+  Headerpublic,
   Icon,
   IconCancelSvg,
   IconCopySvg,
@@ -203,8 +289,17 @@ export {
   IconPreview,
   IconRescheduleSvg,
   IconTimerSvg,
-  IconTwitterLogoIconSvg, ImageIcon, InsertIcon, LeftArrowIcon, LoyalityIcon,
+  IconTwitterLogoIconSvg,
+  ImageIcon,
+  Imageasset,
+  InsertIcon,
+  LanguageupdateIcon,
+  LeftArrowIcon,
+  Location,
+  LongLeftArrow,
+  LoyalityIcon,
   MediaIcon,
+  MediahandleUpdateIcon,
   MenuIcon,
   MenuIcon1,
   MenuIcon2,
@@ -214,14 +309,27 @@ export {
   MenuIcon6,
   MenuIcon7,
   MenuIcon8,
+  MenuTwoDash,
   MobileMenuIconSvg,
   MoreHorizIcon,
+  MorehorAsset,
+  MorevertassetIcon,
   MyDashboardIcon,
+  NewfolderIcon,
+  Newsletterupdateicon,
   NoContentFoundSvg,
   PagesIcon,
   PagesListIcon,
-  PersonalisationIcon, PictureIcon, PlatXLogo,
-  PlatXLogoWhite, PlayIcon, PollIcon,
+  Pencil,
+  PencilIcon,
+  PeopleIcon,
+  PersonalisationIcon,
+  Phone,
+  PictureIcon,
+  PlatXLogo,
+  PlatXLogoWhite,
+  PlayIcon,
+  PollIcon,
   PollListIcon,
   PostIconMenu,
   PostsIcon,
@@ -229,14 +337,20 @@ export {
   ProgressIcon,
   PublishedIcon,
   PublishedStatusIcon,
+  PublisherIcon,
   QuizIcon,
   QuizListIcon,
   RedBlinkingDot,
   RedDot,
+  RedDotsIcon as RedDots,
   RedDotsIcon,
   Refresh,
   ReplyIcon,
-  ReportsIcon, RightArrowIcon, SaveNewIcon,
+  ReportsIcon,
+  ReviewerIcon,
+  RightArrowIcon,
+  SaveIcon,
+  SaveNewIcon,
   SchedulePublishIcon,
   SchedulePublishStatusIcon,
   ScheduleUnpublishStatusIcon,
@@ -244,21 +358,38 @@ export {
   SearchBlackSvg,
   SearchGraySvg,
   SearchIcon,
+  Searchheadericon,
+  SearchnupdateIcon,
   SendIcon,
   SettingIcon,
   SettingNewIcon,
-  SitesIcon, SocialShareIcon, SpaceListIcon,
+  SitePlaceholder,
+  Sitelogoupdateicon,
+  SitesIcon,
+  SocialShareIcon,
+  SpaceListIcon,
   SpacePrivateIcon,
-  SpacePublicIcon, GreenSubFolderIcon as SubFolderIcon,
-  TaskNotFoundIcon, TotalrevIcon,
+  SpacePublicIcon,
+  GreenSubFolderIcon as SubFolderIcon,
+  Tagartical,
+  Tagarticalnew,
+  Tagevent,
+  Tagpoll,
+  Tagquiz,
+  Tagvod,
+  TaskNotFoundIcon,
+  TotalrevIcon,
   UnpublishedStatusIcon,
   UploadIcon,
   UsersIcon,
   VODIcon,
   VODListIcon,
+  VectorIconSvg,
   WarningIcon,
   WorkflowDetails,
   WorkflowIcon,
   WorkflowTimerIcon,
-  warning
+  backAssetIcon,
+  video,
+  warning,
 };

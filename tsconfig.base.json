@@ -39,7 +39,7 @@
       "@platformx/site-setting": ["libs/site-setting/src/index.ts"],
       "@platformx/theme-library": ["libs/theme-library/src/index.ts"],
       "@platformx/user-management": ["libs/user-management/src/index.ts"],
-      "@platformx/x-prelem-library": ["libs/x-prelem-library/src/index.ts"]
+      "@platformx/x-prelems-library": ["libs/x-prelems-library/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

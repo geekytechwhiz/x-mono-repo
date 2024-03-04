@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { RootState, setSelectedComment } from "@platformx/authoring-state";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +20,8 @@ export function useComment() {
     if (parentElement) {
       const elements = document.querySelectorAll(".selected-comment");
 
-      elements.forEach((ele) => {
-        ele.classList.remove("selected-comment");
+      elements.forEach((element) => {
+        element.classList.remove("selected-comment");
       });
 
       parentElement.classList.add("selected-comment");
