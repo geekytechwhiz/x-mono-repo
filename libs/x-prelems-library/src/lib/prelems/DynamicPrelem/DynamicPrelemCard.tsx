@@ -12,6 +12,7 @@ import {
 } from "@platformx/utilities";
 import { getIcon } from "../../components/Utils/helperFns";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import Image from "next/image";
 
 const DynamicPrelemCard = ({
   content,
@@ -103,7 +104,7 @@ const DynamicPrelemCard = ({
               image={imageUrl ? imageUrl : ""}>
               <Box className='imgboxOverlay'></Box>
               <Box className='IconBox'>
-                <img alt='DynamicPrelemCardImg' src={getIcon(content.ContentType)} />
+                <Image alt='DynamicPrelemCardImg' src={getIcon(content.ContentType)} />
               </Box>
             </CardMedia>
           </Box>

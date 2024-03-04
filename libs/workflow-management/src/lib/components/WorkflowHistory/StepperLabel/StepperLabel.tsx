@@ -1,7 +1,7 @@
-import { Box, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { StepperProps } from '../WorkflowStages/WorkflowStages.types';
-import { useStyles } from './StepperLabel.styles';
+import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { StepperProps } from "../WorkflowStages/WorkflowStages.types";
+import { useStyles } from "./StepperLabel.styles";
 
 function StepperLabel({ index, role, status, user_name }: StepperProps) {
   const classes = useStyles();
@@ -10,12 +10,8 @@ function StepperLabel({ index, role, status, user_name }: StepperProps) {
     <Box className={classes.container}>
       <Box className={classes.innerContainer}>
         <Box>
-          <Typography
-            variant='h7regular'
-            component='h5'
-            className={classes.labelOne}
-          >
-            {`${t('step')} ${index}`}
+          <Typography variant='h7regular' component='h5' className={classes.labelOne}>
+            {`${t("step")} ${index}`}
           </Typography>
         </Box>
         <Box>
@@ -29,11 +25,7 @@ function StepperLabel({ index, role, status, user_name }: StepperProps) {
           </Typography>
         </Box>
         <Box>
-          <Typography
-            variant='h7regular'
-            component='h5'
-            sx={{ color: '#A0A3BD' }}
-          >
+          <Typography variant='h7regular' component='h5' sx={{ color: "#A0A3BD" }}>
             {user_name}
           </Typography>
         </Box>

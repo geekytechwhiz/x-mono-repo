@@ -1,6 +1,7 @@
 import { CardMedia, Paper } from "@mui/material";
+import { fallBackImage, formCroppedUrlString } from "@platformx/utilities";
+import Image from "next/image";
 import React, { useState } from "react";
-import { formCroppedUrl, fallBackImage } from "@platformx/utilities";
 import { breakpoints, ratios } from "./ConstantData";
 
 const ImageRender = (props: any = {}) => {
@@ -29,12 +30,10 @@ const ImageRender = (props: any = {}) => {
   return (
     <>
       {error ? (
-        <img
+        <Image
           src={fallBackImage}
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: "contain", width: width, height: height }}
           alt='fallbackimage'
-          width={width}
-          height={height}
         />
       ) : (
         <>
@@ -55,24 +54,25 @@ const ImageRender = (props: any = {}) => {
                 width: width,
               }}>
               {breakpoints.map(({ breakpoint, ratio }, key) => {
-                const img = publishedImages.find(
-                  ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
-                );
-                const { folder_path: imgPath = "" } = img || {};
+                // const img = publishedImages.find(
+                //   ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
+                // );
+                // const { folder_path: imgPath = "" } = img || {};
                 return (
                   <React.Fragment key={key}>
-                    <source
+                    {/* <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, "webp")}
+                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, "webp")}
                     />
                     <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, ext)}
-                    />
+                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, ext)}
+                    /> */}
+                    source has been commented
                   </React.Fragment>
                 );
               })}
-              <img
+              <Image
                 alt='cropped-img'
                 src='https://storage.googleapis.com/cropped_image_public/machine_assets/1689934844153xyz/public/png/WebsiteIntroduction.png'
                 onError={handleError}
@@ -98,18 +98,21 @@ const ImageRender = (props: any = {}) => {
                 },
               }}>
               <picture>
-                <source
-                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, "webp")}
+                Soure has been commented
+                {/* <source
+                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, "webp")}
                   type='image/webp'
                 />
                 <source
-                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
-                />
-                <img
-                  src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
+                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext)}
+                /> */}
+                <Image
+                  src={
+                    formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src
+                  }
                   onError={handleError}
-                  width='100%'
-                  height='100%'
+                  // width='100%'
+                  // height='100%'
                   style={{ objectFit: "cover", display: "flex" }}
                   alt='prelem default image'
                 />

@@ -1,13 +1,18 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
 import "../../Style.css";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
-import { useCustomStyle } from "./ArticleDetail.style";
-import prelemTypes from "../../globalStyle";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ArticleDetail.style";
 
 const ArticleDetail = ({
   content,
@@ -22,12 +27,12 @@ const ArticleDetail = ({
   const firstRender = useRef(true);
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const defaultStructureData = () => {
     let articleDetailStructureData;
@@ -108,7 +113,7 @@ const ArticleDetail = ({
   const secondColumnContent = () => {
     return (
       // <Box className="wrapperImg">
-      //   <img alt="ArticleDetail" src={imgUrl} width="630" height="500" />
+      //   <Image alt="ArticleDetail" src={imgUrl} width="630" height="500" />
       // </Box>
       <ImageRender
         originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}

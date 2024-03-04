@@ -1,11 +1,11 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { Box, Button, Modal, Typography } from "@mui/material";
+import { SecondaryArgs, getFormattedImageUrl } from "@platformx/utilities";
+import Image from "next/image";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
 import "../../Style.css";
-import { SecondaryArgs, getFormattedImageUrl } from "@platformx/utilities";
-import VideoPlayer from "../VideoPlayers/VideoPlayer";
 
 const SlickStyle = `
   .image-video-gallery .slick-slider {
@@ -152,7 +152,8 @@ const ImageVideoGalleryModalSlider = ({
   const [nav2, setNav2] = useState<any>(null);
   const [slider1, setSlider1] = useState<any>(null);
   const [slider2, setSlider2] = useState<any>(null);
-  const [currentSlide, setCurrentSlide] = useState<any>(0);
+  const [, setCurrentSlide] = useState<any>(0);
+  // const [currentSlide, setCurrentSlide] = useState<any>(0);
   const [showThumb, setShowThumb] = useState<any>(false);
   const style = {
     position: "absolute" as const,
@@ -392,7 +393,7 @@ const ImageVideoGalleryModalSlider = ({
                       }}>
                       {slide?.Title}
                     </Typography>
-                    <img
+                    <Image
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -407,7 +408,7 @@ const ImageVideoGalleryModalSlider = ({
                       }}>
                       {slide?.Title}
                     </Typography>
-                    <VideoPlayer
+                    {/* <VideoPlayer
                       playerProp={{
                         posterImg: getFormattedImageUrl(
                           slide?.Thumbnail,
@@ -418,7 +419,8 @@ const ImageVideoGalleryModalSlider = ({
                         classname: "react-player-wrap",
                         playing: currentSlide === index ? true : false,
                       }}
-                    />
+                    /> */}
+                    <>VideoPlayer</>
                   </Box>
                 )}
               </React.Fragment>
@@ -432,7 +434,7 @@ const ImageVideoGalleryModalSlider = ({
               {sliderData?.map((slide: any, index: any) => (
                 <div key={index}>
                   {!slide?.Thumbnail ? (
-                    <img
+                    <Image
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -446,7 +448,7 @@ const ImageVideoGalleryModalSlider = ({
                           objectFit: "cover",
                         },
                       }}>
-                      <img
+                      <Image
                         alt='gallery1'
                         src={getFormattedImageUrl(slide?.Thumbnail, slide?.ext, secondaryArgs)}
                         style={{

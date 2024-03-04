@@ -70,6 +70,7 @@ import {
   XTable,
   XTextArea,
   workflowKeys,
+  MultiSelect,
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
@@ -88,18 +89,14 @@ import prelemTypes from "./lib/themes/prelems/globalStyle";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import { getCurrentLang, getFormattedImageUrl, getUniqueTimeZone } from "./lib/utils/helperFns";
 import i18next from "./lib/utils/i18next";
+import DeleteGif from "./lib/assets/gif/delete.gif";
+import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
+import loadergif from "./lib/assets/gif/holi-loader.gif";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
 export * from "./lib/assets/footer";
-export * from "./lib/assets/gif";
 export * from "./lib/assets/header";
-
-// export * from "./lib/assets";
-export * from "./lib/assets/footer";
-export * from "./lib/assets/gif";
-export * from "./lib/assets/header";
-export * from "./lib/assets/icons";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
@@ -120,7 +117,10 @@ export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
 export * from "./lib/utils/interface";
 export {
+  loadergif,
+  ProgressiveLoader,
   AUTH_INFO,
+  DeleteGif,
   AUTH_URL,
   AddImage,
   Answers,
@@ -200,4 +200,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  MultiSelect,
 };

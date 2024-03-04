@@ -1,19 +1,19 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./Banner3.style";
-import prelemTypes from "../../globalStyle";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./Banner3.style";
 
 const Banner3 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner3Prop) => {
   const theme = useTheme();
@@ -112,12 +112,12 @@ const Banner3 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner3
     let Banner3StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       Banner3StructureData = {

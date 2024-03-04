@@ -15,6 +15,7 @@ import XSwitch from "./Switch/XSwitch";
 import XTable from "./Table/XTable";
 import TitleSubTitle from "./TitleSubtitle/TitleSubTitle";
 import VerticalScrollTab from "./VerticalScrollTab/VerticalScrollTab";
+import MultiSelect from "./MultiSelect/MultiSelect";
 import { XButton } from "./XButton/XButton";
 import { XHoverTextButton } from "./XButton/XHoverTextButton";
 import XCheckBox from "./XCheckbox/XCheckBox";
@@ -55,4 +56,5 @@ export {
   XTextArea,
   XTextField,
   XTypography,
+  MultiSelect,
 };

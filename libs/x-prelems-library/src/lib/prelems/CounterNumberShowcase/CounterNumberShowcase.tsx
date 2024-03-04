@@ -15,6 +15,7 @@ import {
 } from "@platformx/utilities";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const CounterNumberShowcase = ({
   content,
@@ -174,11 +175,11 @@ const CounterNumberShowcase = ({
       <Box className='secondColumnContent'>
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <img
+            <Image
               src={PrelemsDeployedIcon}
               alt='icon'
-              width='42'
-              height='42'
+              width={42}
+              height={42}
               className='iconWidth'
             />
           </Box>
@@ -212,11 +213,11 @@ const CounterNumberShowcase = ({
         </Box>
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <img
+            <Image
               src={ProjectsCompletedIcon}
               alt='icon'
-              width='42'
-              height='42'
+              width={42}
+              height={42}
               className='iconWidth'
             />
           </Box>
@@ -251,11 +252,11 @@ const CounterNumberShowcase = ({
 
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <img
+            <Image
               src={AwardsWinnerCompanyIcon}
               alt='icon'
-              width='42'
-              height='42'
+              width={42}
+              height={42}
               className='iconWidth'
             />
           </Box>

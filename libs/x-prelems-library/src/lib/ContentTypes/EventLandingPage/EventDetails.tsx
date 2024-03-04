@@ -18,6 +18,7 @@ import {
 import Share from "../../components/Share/Share";
 import CompletionList from "./CompletionList";
 import "./Events.css";
+import Image from "next/image";
 
 const commaSeparated = (value = "") => {
   if (value) {
@@ -208,7 +209,7 @@ line-clamp: 1;
                         alignItems: "center",
                         justifyContent: "space-evenly",
                       }}>
-                      <img
+                      <Image
                         src={liveIcon}
                         alt='Live'
                         style={{

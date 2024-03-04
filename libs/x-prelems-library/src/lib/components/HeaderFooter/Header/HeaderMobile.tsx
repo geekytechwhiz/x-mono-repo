@@ -20,6 +20,7 @@ import React, { Fragment } from "react";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 // import { formRelativeURL } from "../../utils/helperFunction";
 import {
   getFlag,
@@ -77,13 +78,13 @@ const HeaderMobile = ({
   const drawer = (
     <Box onClick={handleDrawerToggle} className={`${classes.xMobileheader} xMobileHeaderWrapper`}>
       <Box className='xMobileTopSection'>
-        <img
+        <Image
           src={formRelativeURL(gcpUrl, bucketName, data?.header_logo)}
           onClick={handleIconRedirect}
           style={{ cursor: "pointer" }}
           alt='Logo'
-          width='auto'
-          height='30'
+          // width='auto'
+          height={30}
         />
         <Box sx={{ flexGrow: 1 }} />
         <Typography variant='h4medium' className='menuCloseIcon'>
@@ -96,7 +97,7 @@ const HeaderMobile = ({
           <ListItem>
             <ListItemButton sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: "fit-content", mr: "10px" }}>
-                <img
+                <Image
                   src={data?.userInfo?.img}
                   alt="Logo"
                   width="20"
@@ -220,13 +221,12 @@ const HeaderMobile = ({
         position='static'
         className={`x-header-appbar mobile-header headerBackground ${classes.xMobileheaderTopSection} mobileHeaderTop`}>
         <Toolbar className='headerTopToolbar'>
-          <img
+          <Image
             src={formRelativeURL(gcpUrl, bucketName, data?.header_logo)}
             onClick={handleIconRedirect}
             className='pointer'
             alt='Logo'
-            width='auto'
-            height='30'
+            width={30}
           />
           <Box className='toolbarInnerWrapper' />
           {/* <IconButton
@@ -246,7 +246,7 @@ const HeaderMobile = ({
           </Box>
 
           <Box onClick={() => setIsOpen(true)} className='headerFlagIcon'>
-            <img src={getFlag()} alt='flagimage' width='24px' height='24px' />
+            <Image src={getFlag()} alt='flagimage' width={24} height={24} />
           </Box>
           {/* <IconButton
             size="large"

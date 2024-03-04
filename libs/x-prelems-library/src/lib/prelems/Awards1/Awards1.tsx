@@ -9,17 +9,22 @@ import {
   Link,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import InfiniteLooper from "../../components/InfiniteLooper/InfiniteLooper";
+import prelemTypes from "../../globalStyle";
 import "./Award1.css";
 import AwardCards from "./AwardCards";
 import { useCustomStyle } from "./Awards1.style";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 
 const Awards1 = ({ content, analytics, authoringHelper, secondaryArgs }: Awards1Props) => {
   const classes = useCustomStyle();
@@ -139,12 +144,14 @@ const Awards1 = ({ content, analytics, authoringHelper, secondaryArgs }: Awards1
                             <Link component='image' onClick={() => onClickCard(item?.url, index)}>
                               <CardMedia
                                 component='img'
-                                image={formCroppedUrl(
-                                  gcpUrl,
-                                  bucketName,
-                                  item?.logo,
-                                  item?.ImageVideoData?.ext,
-                                )}
+                                image={
+                                  formCroppedUrlString(
+                                    gcpUrl,
+                                    bucketName,
+                                    item?.logo,
+                                    item?.ImageVideoData?.ext,
+                                  ).src
+                                }
                                 className='cardMedia'
                               />
                             </Link>
@@ -167,12 +174,14 @@ const Awards1 = ({ content, analytics, authoringHelper, secondaryArgs }: Awards1
                           <Link component='image' onClick={() => onClickCard(item?.url, index)}>
                             <CardMedia
                               component='img'
-                              image={formCroppedUrl(
-                                gcpUrl,
-                                bucketName,
-                                item?.logo,
-                                item?.ImageVideoData?.ext,
-                              )}
+                              image={
+                                formCroppedUrlString(
+                                  gcpUrl,
+                                  bucketName,
+                                  item?.logo,
+                                  item?.ImageVideoData?.ext,
+                                ).src
+                              }
                               className='cardImg'
                             />
                           </Link>

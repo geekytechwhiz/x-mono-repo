@@ -1,5 +1,12 @@
 import { Box, Container, Typography } from "@mui/material";
-import { Frame1, Frame2, Frame3, completeButtonUrl, formCroppedUrl } from "@platformx/utilities";
+import {
+  Frame1,
+  Frame2,
+  Frame3,
+  completeButtonUrl,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Typewriter from "typewriter-effect";
@@ -41,12 +48,12 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
     let aboutUs2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       aboutUs2StructureData = {
@@ -203,13 +210,13 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
           </Typography>
         </Box>
         <Box className='imageWrapper1'>
-          <img alt='About us' src={Frame1} className='frame1' width='200' height='87' />
+          <Image alt='About us' src={Frame1} className='frame1' width='200' height='87' />
         </Box>
         <Box className='imageWrapper2'>
-          <img alt='About us' src={Frame2} className='frame2' width='170' height='72' />
+          <Image alt='About us' src={Frame2} className='frame2' width='170' height='72' />
         </Box>
         <Box className='imageWrapper3'>
-          <img alt='About us' src={Frame3} className='frame3' width='232' height='40' />
+          <Image alt='About us' src={Frame3} className='frame3' width='232' height='40' />
         </Box>
       </Box>
     );

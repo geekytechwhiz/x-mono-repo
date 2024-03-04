@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { DeleteGif as DeleteIcon } from "@platformx/utilities";
+import { DeleteGif } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
 
 export default function DeleteDialog({
@@ -41,7 +41,7 @@ export default function DeleteDialog({
           textAlign: "center",
         }}>
         <Box sx={{ textAlign: "center", color: "#fd0c0d", margin: "71px 0 4px" }}>
-          <img src={DeleteIcon} alt='delete' />
+          <img src={DeleteGif} alt='delete' />
         </Box>
         {title ? (
           <DialogTitle

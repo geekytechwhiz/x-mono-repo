@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import ImageRender from "../../components/ImageRender";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrl } from "@platformx/utilities";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./Banner2.style";
-import "../../Style.css";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
 const Banner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner2Prop) => {
   const firstRender = useRef(true);
@@ -20,12 +25,12 @@ const Banner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner2
     let Banner2StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       Banner2StructureData = {

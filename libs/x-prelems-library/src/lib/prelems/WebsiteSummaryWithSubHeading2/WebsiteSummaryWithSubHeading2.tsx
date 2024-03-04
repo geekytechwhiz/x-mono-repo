@@ -6,7 +6,7 @@ import ImageRender from "../../components/ImageRender";
 import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   completeButtonUrl,
-  formCroppedUrl,
+  formCroppedUrlString,
   DottedBg,
   Analytics,
   AuthoringHelper,
@@ -16,6 +16,7 @@ import { useCustomStyle } from "./WebsiteSummaryWithSubHeading2.style";
 import BasicButton from "../../components/BasicButton/BasicButton";
 import prelemTypes from "../../globalStyle";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import Image from "next/image";
 
 const WebsiteSummaryWithSubHeading2 = ({
   content,
@@ -53,12 +54,12 @@ const WebsiteSummaryWithSubHeading2 = ({
 
   const { original_image_relative_path, ext }: any =
     content?.ImageCompound?.ImageCompound_1?.original_image || {};
-  const imgUrl = formCroppedUrl(
+  const imgUrl = formCroppedUrlString(
     secondaryArgs?.gcpUrl,
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-  );
+  ).src;
 
   const defaultStructureData = () => {
     let WebsiteSummaryWithSubHeading2StructureData;
@@ -155,7 +156,7 @@ const WebsiteSummaryWithSubHeading2 = ({
     return (
       <Box className='rightGridItem widthheight100'>
         <Box className='dottedBg'>
-          <img alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
+          <Image alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
         </Box>
         <Box className='rightImageWrapper'>
           <ImageRender

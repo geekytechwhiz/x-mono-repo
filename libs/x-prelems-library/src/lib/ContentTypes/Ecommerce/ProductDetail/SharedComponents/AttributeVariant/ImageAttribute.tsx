@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Image from "next/image";
 
 type ImageAttributeProps = {
   ele: any;
@@ -43,7 +44,7 @@ const ImageAttribute = (_props: ImageAttributeProps) => {
             outlineOffset: selectedEle ? "3px" : "",
             color: isActive ? theme.palette.darkText : theme.palette.lightDarkText,
           }}>
-          <img
+          <Image
             alt='img'
             src={ele}
             style={{

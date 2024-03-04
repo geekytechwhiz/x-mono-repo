@@ -188,7 +188,7 @@ const Article = ({
                 320: "card2",
               }}
             />
-            {/* <img
+            {/* <Image
               src={fetchCroppedUrl(content.Banner, content.published_images, { 1440: 'landscape', 1280: 'landscape', 1024: 'portrait', 768: 'portrait', 600: 'square', 320: 'square' })}
               alt={"Banner_Image"}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -244,7 +244,7 @@ const Article = ({
                 margin: "24px 0",
               }}>
               <Box sx={{ display: "flex" }}>
-                {/* <img
+                {/* <Image
                   alt="Article"
                   width="16px"
                   height="20px"
@@ -532,7 +532,7 @@ Article.defaultProps = {
         thumbnail:
           "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/2cce57f1-b219-4ee6-8f79-44021086b9aa/content",
         description:
-          'dfsad df df dfasdfdsf<div>dfdfdsf dsfdsf dsffdsf</div><div>dsfsdf dsfsadf dsfsdf</div><div><br></div><img src="https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/440bc073-2ecf-47c9-b3aa-7bcea8f0c3f8/content" class="descAsset" style="display:block;object-fit:cover"><div><br></div><div>dsfsdf</div><div>dsfsadf</div><div>dsfsa</div><div>dfsdfasdf</div><div>sdfsd<br><br></div>',
+          'dfsad df df dfasdfdsf<div>dfdfdsf dsfdsf dsffdsf</div><div>dsfsdf dsfsadf dsfsdf</div><div><br></div><Image src="https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/440bc073-2ecf-47c9-b3aa-7bcea8f0c3f8/content" class="descAsset" style="display:block;object-fit:cover"><div><br></div><div>dsfsdf</div><div>dsfsadf</div><div>dsfsa</div><div>dfsdfasdf</div><div>sdfsd<br><br></div>',
         publishedDate: "2022-11-11T07:52:02Z",
         page_lastmodifiedby: "2022-11-11T07:52:02Z",
         content_type: "Article",

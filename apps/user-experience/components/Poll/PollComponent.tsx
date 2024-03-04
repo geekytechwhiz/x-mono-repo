@@ -1,11 +1,11 @@
-import { useEffect } from "react";
 import getConfig from "next/config";
 import dynamic from "next/dynamic";
-import { usePollApi } from "./hooks/usePollApi";
+import { useEffect } from "react";
 import { nullToObject } from "../../utils/helperFunctions";
-import { PollComponentProps, PollPrelemProps } from "./Poll.types";
+import { PollComponentProps } from "./Poll.types";
+import { usePollApi } from "./hooks/usePollApi";
 
-const PollPrelem = dynamic<PollPrelemProps>(
+const PollPrelem = dynamic<any>(
   () => import("@platformx/x-prelems-library").then((mod) => mod.Poll),
   {
     ssr: false,

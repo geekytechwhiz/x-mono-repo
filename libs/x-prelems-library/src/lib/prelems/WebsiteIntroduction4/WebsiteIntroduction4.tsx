@@ -1,18 +1,18 @@
 import { Box, Container, Typography } from "@mui/material";
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
-  formCroppedUrl,
+  formCroppedUrlString,
   handleHtmlTags,
 } from "@platformx/utilities";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./WebsiteIntroduction4.style";
 
 // ts-ignore
@@ -36,12 +36,12 @@ WebsiteIntroduction4Prop) => {
     let WebsiteIntroduction4StructureData;
     const { original_image_relative_path, ext }: any =
       content?.ImageCompound?.ImageCompound_1?.original_image || {};
-    const img = formCroppedUrl(
+    const img = formCroppedUrlString(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    );
+    ).src;
 
     try {
       WebsiteIntroduction4StructureData = {
@@ -81,7 +81,8 @@ WebsiteIntroduction4Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
+      const regex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      if (regex.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

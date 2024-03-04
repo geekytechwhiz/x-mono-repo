@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
 import PageHead from "../../components/pageHead";
 import { useInView } from "react-intersection-observer";
@@ -74,7 +75,7 @@ const Quiz = (props: any) => {
           favIcon={footerSettingData?.fav_icon}
         />
 
-        <QuizComponent
+        {/* <QuizComponent
           pageData={pageData}
           secondaryArgs={{
             prelemBaseEndpoint,
@@ -82,7 +83,8 @@ const Quiz = (props: any) => {
             gcpUrl: publicRuntimeConfig.NEXT_GCP_URL,
             bucketName: publicRuntimeConfig.NEXT_BUCKET_NAME,
           }}
-        />
+        /> */}
+        <>QuizComponent has been commented due to error</>
       </ErrorBoundary>
     </Box>
   );

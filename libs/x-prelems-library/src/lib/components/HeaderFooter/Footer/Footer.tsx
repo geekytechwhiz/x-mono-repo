@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { formRelativeURL } from "../helperFunction";
 import { PLATFORMXLOGO as Logo, mapLogo, phoneLogo, emailLogo } from "@platformx/utilities";
-
+import Image from "next/image";
 import { useCustomStyle } from "./Footer.style";
 
 interface IFooter {
@@ -84,7 +84,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
           <Grid container>
             <Grid item xs={12} em={4} sm={6} className='gapRight'>
               <Box className='footerLogo'>
-                <img
+                <Image
                   src={formRelativeURL(gcpUrl, bucketName, data?.site_logo)}
                   loading='lazy'
                   alt='Logo'
@@ -96,14 +96,14 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
               </Typography>
               <br />
               <Box className='anchorWrapper'>
-                {data.footermediahandle.map((media, index) => (
+                {data?.footermediahandle?.map((media, index) => (
                   <a
                     href={media.media_url}
                     target='_blank'
                     rel='noopener noreferrer'
                     key={`media-${index}`}
                     className='anchorGap'>
-                    <img
+                    <Image
                       src={formRelativeURL(gcpUrl, bucketName, media.icon_image)}
                       loading='lazy'
                       alt='social-icon'
@@ -116,10 +116,10 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
             </Grid>
             <Grid item xs={12} em={4} sm={6} className='footerSecondColumn'>
               <Typography variant='h5medium' color='footerParagraphColor' className='margin_zero'>
-                {data.title_text}
+                {data?.title_text}
               </Typography>
               <Box className='footerSection1'>
-                <img src={mapLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <Image src={mapLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'
@@ -128,7 +128,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                 </Typography>
               </Box>
               <Box className='footerSection2'>
-                <img src={emailLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <Image src={emailLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'
@@ -137,7 +137,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                 </Typography>
               </Box>
               <Box className='footerSection3'>
-                <img src={phoneLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <Image src={phoneLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'
@@ -148,7 +148,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
             </Grid>
             <Grid item xs={12} em={4} sm={12} className='footerLastColumn'>
               <Typography variant='h5medium' color='footerTextColor' className='margin_zero'>
-                {data.news_letter_title}
+                {data?.news_letter_title}
               </Typography>
               <Box className='footerSection1'>
                 <Typography variant='p4regular' color='footerParagraphColor'>
@@ -218,16 +218,16 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
         </Grid>
         <Grid item xs={12} em={7} lg={7}>
           <Box className='copyRightSecondcolumn'>
-            {data.link.map((link, index) => (
+            {data?.link?.map((link, index) => (
               <Link
                 underline='hover'
                 className={`footer-link footerLinkColor`}
                 target='_self'
                 fontSize={12}
-                href={link.link_url ? link.link_url : "/error"}
+                href={link?.link_url ? link?.link_url : "/error"}
                 key={`index_${index + 1}`}>
                 <Typography variant='p4regular' component='span' color='footerParagraphColor'>
-                  {link.link_name}
+                  {link?.link_name}
                 </Typography>
               </Link>
             ))}

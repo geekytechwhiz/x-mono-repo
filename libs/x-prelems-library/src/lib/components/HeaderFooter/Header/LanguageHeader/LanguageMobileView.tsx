@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Box, ListItemIcon, Typography } from "@mui/material";
 import { getCurrentLang, getFlag } from "../../helperFunction";
 import { useCustomStyle } from "./LanguageView.style";
+import Image from "next/image";
 
 const Transition = React.forwardRef(function Transition(
   props: {
@@ -67,7 +68,7 @@ const LanguageMobileView = (_props: LanguageMobileViewProps) => {
             sx={{ display: "flex", p: "15px" }}
             key={key}>
             <Box className='headerFlagIcon'>
-              <img src={getFlag(value.code)} width='24px' height='24px' alt='flag' />
+              <Image src={getFlag(value.code)} width={24} height={24} alt='flag' />
             </Box>
             <Typography className='languageText'>{value?.text}</Typography>
 
