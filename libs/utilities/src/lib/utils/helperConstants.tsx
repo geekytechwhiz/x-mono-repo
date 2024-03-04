@@ -327,6 +327,7 @@ export const defaultImages = {
   kudos: "machine_assets/1699618312963/public/png/Kudos",
   ext: "png",
 };
+export const MESSAGE_API_ERROR = "Error in fetching data";
 export const SliderSetting = {
   slidesToShow: 3,
   slidesToScroll: 1,

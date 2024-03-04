@@ -82,8 +82,9 @@ const useContentSearch = ({
       const combinedData: any = [...contents, ...fetchMoreData];
       dispatch(updateContentList(combinedData));
       setContents(combinedData);
-    } catch (err) {
-      console.error(err);
+      // eslint-disable-next-line no-shadow
+    } catch (error) {
+      console.error(error);
     }
   };
   const refresh = async () => {

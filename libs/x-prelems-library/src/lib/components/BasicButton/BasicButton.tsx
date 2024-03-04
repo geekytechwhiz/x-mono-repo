@@ -1,24 +1,24 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useState } from "react";
-import axios from "axios";
 import { Button } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { errorRequest } from "../ConstantData";
-import ToastService from "../ToastContainer/ToastService";
 import {
-  nullToObject,
-  convertToLowerCase,
-  encodeGetParams,
   completeExternalUrl,
-  uriToJSON,
   conCatUrlPath,
+  convertToLowerCase,
   eComTypeUriToJSON,
+  encodeGetParams,
+  nullToObject,
+  uriToJSON,
 } from "@platformx/utilities";
+import axios from "axios";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
+import { errorRequest } from "../ConstantData";
+import CustomModalSlider from "../CustomModalSlider/CustomModalSlider";
 import { IMPRESSIONS } from "../ImpressionHooks/constants";
 import { createClickImpression, snowplowPrelemClickImpression } from "../ImpressionHooks/helper";
-import CustomModalSlider from "../CustomModalSlider/CustomModalSlider";
+import ToastService from "../ToastContainer/ToastService";
 
 const BasicButton = (props: BasicButtonProps) => {
   const {
@@ -278,19 +278,19 @@ const BasicButton = (props: BasicButtonProps) => {
   );
 };
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
+// interface Analytics {
+//   pageId?: number;
+//   prelemId?: number;
+//   pageTitle?: string;
+//   prelemTitle?: string;
+//   pageDesc?: string;
+//   pageTags?: string;
+//   prelemTags?: string;
+//   prelemPosition?: number;
+//   isAnalyticsEnabled: boolean;
+//   isAuthoring: boolean;
+//   isSeoEnabled: boolean;
+// }
 interface BasicButtonProps {
   endIcon?: any;
   style?: React.CSSProperties;
@@ -336,7 +336,7 @@ interface BasicButtonProps {
   };
   variant: string;
   secondaryArgs: any;
-  analytics?: Analytics;
+  analytics?: any; //Analytics;
 }
 
 BasicButton.defaultProps = {

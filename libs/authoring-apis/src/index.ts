@@ -37,6 +37,7 @@ export * from "./lib/graphQL/queries/prelemQueries";
 export * from "./lib/graphQL/queries/tagQueries";
 export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
+export * from "./lib/hooks/usePoll/usePollApi";
 export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";

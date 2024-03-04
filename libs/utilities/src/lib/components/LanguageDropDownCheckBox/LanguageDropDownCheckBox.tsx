@@ -8,7 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 import { useEffect } from "react";
 import { LanguageList } from "../../utils/helperConstants";
 import { getCurrentLang } from "../../utils/helperFns";
-import Image from "next/image";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
