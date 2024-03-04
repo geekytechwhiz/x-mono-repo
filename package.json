@@ -10,7 +10,7 @@
     "build": "nx build authoring-web",
     "start": "serve dist/apps/authoring-web -p 3000",
     "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
-    "deploy:user-experience": "serve -s dist/apps/user-experience -p 3000"
+    "deploy:user-experience": "nx start user-experience"
   },
   "private": true,
   "dependencies": {
