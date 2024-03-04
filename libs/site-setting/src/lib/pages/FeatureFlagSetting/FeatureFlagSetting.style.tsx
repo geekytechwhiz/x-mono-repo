@@ -37,4 +37,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingTop: "5px",
     textTransform: "capitalize",
   },
+  featurebox: {
+    display: "flex",
+  },
 }));
