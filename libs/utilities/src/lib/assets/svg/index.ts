@@ -202,6 +202,7 @@ import IconDelete1svg from "./Delete1.svg";
 import SuccessIcon from "./successIcon.svg";
 import IconFbSvg from "./facebookIcon.svg";
 import IconGoogleSvg from "./googlesearchnicon.svg";
+import Morevarwhite from "../icons/moreverwhite.png";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -405,4 +406,5 @@ export {
   backAssetIcon,
   video,
   warning,
+  Morevarwhite,
 };

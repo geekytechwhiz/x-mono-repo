@@ -3,8 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import DeleteIcon from "../../assets/svg/errorPopupIcon.svg";
-import DialogCloseIcon from "../../assets/svg/icon/DialogCloseIcon.svg";
+import { DeleteIcon, DialogCloseIcon, PlateformXDialog } from "@platformx/utilities";
 import Image from "next/image";
 
 export default function DeletePopup({
