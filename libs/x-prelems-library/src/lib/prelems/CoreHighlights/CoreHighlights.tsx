@@ -1,3 +1,4 @@
+/* eslint-disable wrap-regex */
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import {

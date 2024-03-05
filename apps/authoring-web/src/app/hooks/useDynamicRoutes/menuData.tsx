@@ -158,6 +158,15 @@ export const MenuData = [
         roles: ["admin", "Super Admin"],
         component: <>Space has been commented</>,
       },
+      {
+        MenuName: "User groups",
+        Icon: SitesIcon,
+        url: "/community/user-groups",
+        id: "User Groups",
+        category: "Community",
+        subCategory: "spaces",
+        roles: ["admin", "Super Admin"],
+      },
     ],
   },
   {

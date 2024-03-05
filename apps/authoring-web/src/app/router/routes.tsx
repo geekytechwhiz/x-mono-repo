@@ -12,6 +12,7 @@ import {
   MediaHandle,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 //import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -362,6 +363,30 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='Workflow' subCategory='' name='workflow-list'>
         <WorkflowManagement />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/create/user-groups",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
+        <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/update/user-groups",
+    element: (
+      <ProtectedRoute name='user-groups' subCategory='' category='community'>
+        <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/community/user-groups",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
+        <UserGroupListing />
       </ProtectedRoute>
     ),
   },

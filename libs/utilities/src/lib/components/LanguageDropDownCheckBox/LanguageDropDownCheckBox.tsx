@@ -34,6 +34,7 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
     );
   };
   useEffect(() => {
+    // eslint-disable-next-line array-callback-return
     LanguageList().map((lang: any) => {
       if (getCurrentLang() === lang.id) {
         setLanguage(typeof lang.value === "string" ? lang.value.split(",") : lang.value);
