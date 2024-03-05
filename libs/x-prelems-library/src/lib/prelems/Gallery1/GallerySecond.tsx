@@ -1,9 +1,7 @@
-import React from "react";
 import { Box } from "@mui/material";
-import "./Gallery1.css";
 import { formCroppedUrlString } from "@platformx/utilities";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import Image from "next/image";
+import "./Gallery1.css";
 
 function GallerySecond({ GalleryTwo, handleOpen, secondaryArgs }: any) {
   return (
@@ -15,7 +13,7 @@ function GallerySecond({ GalleryTwo, handleOpen, secondaryArgs }: any) {
             key={`${item?.Title}_${index.toString()}`}
             onClick={() => handleOpen(GalleryTwo, index)}>
             {!("Thumbnail" in item) ? (
-              <Image
+              <img
                 alt='gallery 1'
                 src={
                   formCroppedUrlString(

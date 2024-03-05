@@ -7,7 +7,6 @@ import DialogCloseIcon from "../assets/svgIcon/DialogCloseIcon.svg";
 import DeleteIcon from "../assets/svgIcon/errorPopupIcon.svg";
 import prelemTypes from "../themes/prelems/globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
-import Image from "next/image";
 
 export default function ExitModal({
   isDialogOpen,
@@ -68,10 +67,10 @@ export default function ExitModal({
             color='inherit'
             onClick={handleClose}
             aria-label='close'>
-            <Image src={DialogCloseIcon} alt='' />
+            <img src={DialogCloseIcon} alt='' />
           </IconButton>
           <Box className='BoxImage'>
-            <Image src={DeleteIcon} alt='' />
+            <img src={DeleteIcon} alt='' />
           </Box>
           {title ? (
             <DialogTitle className='BoxDialogTitle' id='alert-dialog-title' variant='h4bold'>

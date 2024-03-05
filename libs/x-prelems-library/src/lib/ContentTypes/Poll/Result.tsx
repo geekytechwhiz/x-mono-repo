@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { Typography, Box, Button } from "@mui/material";
-import React, { useContext } from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import SingleQuestionResultCard from "./SingleQuestionResultCard";
-import ImageQuestion from "./ImageQuestion";
+import { Box, Button, Typography } from "@mui/material";
 import { CloseIcon } from "@platformx/utilities";
-import PollContext from "./PollContext";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
+import ImageQuestion from "./ImageQuestion";
+import PollContext from "./PollContext";
+import SingleQuestionResultCard from "./SingleQuestionResultCard";
 
 interface ResultProps {
   data: {
@@ -117,7 +116,7 @@ const Result = ({ data, callBack, onClickClose, fetchCroppedUrl }: ResultProps) 
             top: { xs: "20px", md: "53px" },
           }}
           onClick={onClickClose}>
-          <Image src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
+          <img src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
         </Button>
         <Box
           className='animatedWarp'

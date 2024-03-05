@@ -1,27 +1,26 @@
-import { useTranslation } from "react-i18next";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
-import { Box, Button, Container, Grid, Card, CardContent, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import Slider from "react-slick";
-import "../../Style.css";
+import { Box, Button, Card, CardContent, Container, Grid, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import {
-  completeButtonUrl,
-  completeButtonUrl2,
-  formCroppedUrlString,
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
+  completeButtonUrl,
+  completeButtonUrl2,
+  formCroppedUrlString,
 } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { useInView } from "react-intersection-observer";
+import Slider from "react-slick";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./ServiceCard6.style";
-import "./ServiceCard6.css";
-import "../../utils/service/i18n";
-import { useTheme } from "@mui/material/styles";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import "../../utils/service/i18n";
+import "./ServiceCard6.css";
+import { useCustomStyle } from "./ServiceCard6.style";
 
 let i = 0;
 const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard6Prop) => {
@@ -222,7 +221,7 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                               sx={{
                                 backgroundColor: `rgba(${ICON_BACKGROUND[i - 1]})`,
                               }}>
-                              <Image
+                              <img
                                 src={
                                   formCroppedUrlString(
                                     secondaryArgs?.gcpUrl,

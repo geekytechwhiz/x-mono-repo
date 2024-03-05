@@ -1,46 +1,45 @@
-import React, { useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import "../../../utils/service/i18n";
-import dayjs from "dayjs";
-import ProfileHeader from "./ProfileHeader";
 import {
-  nullToObject,
+  Autocomplete,
+  Box,
+  Container,
+  Grid,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import {
+  GreenTick,
   LanguageList,
   countries,
   genderData,
   getFlag,
-  GreenTick,
+  nullToObject,
 } from "@platformx/utilities";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import prelemTypes from "../../../globalStyle";
-import DropDown from "../../../components/DropDown/Dropdown";
-import { useCustomStyle } from "./Profile.style";
-import FormValidate from "../../../components/CustomHook/FormValidate";
-import ToastContainerHandle from "../../../components/ToastContainer/ToastContainerHandle";
 import Confirmation from "../../../components/Confirmation/Confirmation";
+import { errorRequest } from "../../../components/ConstantData";
+import FormValidate from "../../../components/CustomHook/FormValidate";
+import DropDown from "../../../components/DropDown/Dropdown";
 import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
+import ToastContainerHandle from "../../../components/ToastContainer/ToastContainerHandle";
+import ToastService from "../../../components/ToastContainer/ToastService";
+import prelemTypes from "../../../globalStyle";
+import "../../../utils/service/i18n";
+import Coins from "./Coins";
+import { useCustomStyle } from "./Profile.style";
+import ProfileHeader from "./ProfileHeader";
+import Redeem from "./Redeem";
 import {
   getUniqueTimeZone,
   getUserDetailsService,
   updateUserDetailsService,
 } from "./helperProfile";
-import {
-  Box,
-  Grid,
-  TextField,
-  Container,
-  Typography,
-  Autocomplete,
-  InputAdornment,
-} from "@mui/material";
-import ToastService from "../../../components/ToastContainer/ToastService";
-import { errorRequest } from "../../../components/ConstantData";
-import Coins from "./Coins";
-import Redeem from "./Redeem";
-import Image from "next/image";
 
 type ProfileProps = {
   secondaryArgs: any;
@@ -378,7 +377,7 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                     ...params.InputProps,
                                     startAdornment: (
                                       <InputAdornment position='start' className='flagWrapper'>
-                                        <Image
+                                        <img
                                           src={getFlag(stateManage.defaultLanguage)}
                                           alt='flag'
                                           className='flagImage'
@@ -409,7 +408,7 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                 renderOption={(props, option) => (
                                   <Box component='li' className='flagRow' {...props}>
                                     <Box className='flagIcon'>
-                                      {/* <Image
+                                      {/* <img
                                         loading='lazy'
                                         alt='country flag'
                                         title='country flag'
@@ -417,7 +416,7 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                         src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
                                         srcSet={`https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 2x`}
                                       /> */}
-                                      <Image
+                                      <img
                                         loading='lazy'
                                         alt='country flag'
                                         title='country flag'

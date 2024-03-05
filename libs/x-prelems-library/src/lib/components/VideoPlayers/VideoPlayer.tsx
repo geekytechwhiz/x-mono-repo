@@ -1,6 +1,5 @@
-import ReactPlayer from "react-player";
 import { PlayIcon } from "@platformx/utilities";
-import Image from "next/image";
+import ReactPlayer from "react-player";
 
 const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
   const {
@@ -31,9 +30,7 @@ const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
       controls={controls}
       loop={playerProp.loop}
       playsinline={true}
-      playIcon={
-        <Image alt='play' width={44} height={44} className='smallPlayIcon' src={PlayIcon} />
-      }
+      playIcon={<img alt='play' width={44} height={44} className='smallPlayIcon' src={PlayIcon} />}
       // css={{
       //   objectFit: "cover",
       //   position: "absolute",

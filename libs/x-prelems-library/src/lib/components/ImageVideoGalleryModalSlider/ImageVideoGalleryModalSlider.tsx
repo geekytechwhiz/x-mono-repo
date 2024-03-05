@@ -2,7 +2,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { SecondaryArgs, getFormattedImageUrl } from "@platformx/utilities";
-import Image from "next/image";
+
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
 import "../../Style.css";
@@ -393,7 +393,7 @@ const ImageVideoGalleryModalSlider = ({
                       }}>
                       {slide?.Title}
                     </Typography>
-                    <Image
+                    <img
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -434,7 +434,7 @@ const ImageVideoGalleryModalSlider = ({
               {sliderData?.map((slide: any, index: any) => (
                 <div key={index}>
                   {!slide?.Thumbnail ? (
-                    <Image
+                    <img
                       alt='gallery1'
                       src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                     />
@@ -448,7 +448,7 @@ const ImageVideoGalleryModalSlider = ({
                           objectFit: "cover",
                         },
                       }}>
-                      <Image
+                      <img
                         alt='gallery1'
                         src={getFormattedImageUrl(slide?.Thumbnail, slide?.ext, secondaryArgs)}
                         style={{

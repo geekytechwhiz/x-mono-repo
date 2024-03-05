@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import ArrowUpwardIcon from "../../assets/svg/UploadThumbnail.svg";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 // import CommonImageRender from '../Gallery/CommonImageRender';
-import Image from "next/image";
 
 interface ImageProps {
   url?: any;
@@ -71,7 +70,7 @@ const AddImage = ({
             // />
             <div>CommonImageRender</div>
           ) : (
-            <Image
+            <img
               alt='image'
               style={{
                 width: "100%",
@@ -154,9 +153,9 @@ const AddImage = ({
               }}
               m={1}>
               {diffIcon ? (
-                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               ) : (
-                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               )}
             </Box>
             <Box

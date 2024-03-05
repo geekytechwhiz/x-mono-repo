@@ -9,7 +9,7 @@ import {
   nullToArray,
   nullToObject,
 } from "@platformx/utilities";
-import Image from "next/image";
+
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
@@ -197,7 +197,7 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
               className='sliderWrapper'
               sx={{ opacity: currentIndex === key ? 1 : 0.5 }}
               onClick={(e) => handleClickProduts(e, items, key)}>
-              <Image
+              <img
                 src={
                   formCroppedUrlString(gcpUrl, bucketName, items?.image?.Url, items?.image?.ext).src
                 }
@@ -226,7 +226,7 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
             </Typography>
           </Box>
           <Typography variant='h2semibold' color='secondaryTitle' className='centerText'>
-            {/* <Image
+            {/* <img
                   alt="quotes"
                   src={IconDoubleQutoesSvg}
                   width="70"
@@ -257,7 +257,7 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
 
             <Box className='iconUparrowWrapper'>
               <Box className='iconUparrow'>
-                <Image alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
+                <img alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
               </Box>
               <React.Fragment>
                 <Box className='sliderWidth'>
