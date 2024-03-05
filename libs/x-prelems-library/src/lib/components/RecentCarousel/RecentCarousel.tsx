@@ -9,19 +9,19 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import {
+  ArticleIcon,
+  createSliderArray,
+  debounce,
+  fallBackImage,
+  formRelativeURL,
+} from "@platformx/utilities";
 import { format } from "date-fns";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Slider from "../Slider/Slider";
 import { useCustomStyle } from "./RecentCarousel.style";
-import {
-  formRelativeURL,
-  createSliderArray,
-  debounce,
-  fallBackImage,
-  ArticleIcon,
-} from "@platformx/utilities";
-import Image from "next/image";
 
 const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
   const platform = secondaryArgs?.platform;
@@ -72,7 +72,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [data]);
 
   const getRelativeUrl = (item: any) => {
     const { content_type, thumbnail, banner, original_image = {} } = item;

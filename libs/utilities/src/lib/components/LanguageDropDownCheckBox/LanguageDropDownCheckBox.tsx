@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 
