@@ -10,6 +10,7 @@
     }
   },
   "extends": [
+    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
@@ -25,7 +26,7 @@
     "sourceType": "module",
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": ["react", "jsx-a11y", "import", "@typescript-eslint"],
+  "plugins": ["react", "jsx-a11y", "import", "prettier", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-function": 0,
@@ -127,7 +128,7 @@
     "no-import-assign": 2,
     "no-global-assign": "error",
     "no-eval": 2,
-    "array-callback-return": "error",
+    "array-callback-return": "warn",
     "no-implicit-globals": "error",
     "no-useless-catch": 2,
     "no-with": 2,
@@ -154,6 +155,7 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "warn",
     "react/jsx-indent": [0],
+    "@typescript-eslint/indent": [0],
     "prefer-const": 2,
     "react/prefer-es6-class": 0,
     "class-methods-use-this": [0],
@@ -166,7 +168,7 @@
     "camelcase": [0],
     "no-underscore-dangle": [0, "always"],
     "no-var": [2],
-    "no-unused-vars": [2],
+    "no-unused-vars": 0,
     "react/jsx-key": 2,
     "no-useless-escape": 1,
     "no-duplicate-imports": 2,
@@ -223,9 +225,9 @@
       }
     ],
     "yield-star-spacing": ["error", "both"],
-    "wrap-regex": 2,
+    "wrap-regex": 0,
     "unicode-bom": 2,
-    "template-tag-spacing": ["error", "always"],
+    "template-tag-spacing": ["error", "never"],
     "switch-colon-spacing": "error",
     "space-unary-ops": "error",
     "space-in-parens": "error",

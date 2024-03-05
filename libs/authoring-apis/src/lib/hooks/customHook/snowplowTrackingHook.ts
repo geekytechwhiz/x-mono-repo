@@ -18,7 +18,7 @@ export const snowplowTrackingHook = () => {
   const userRegisterImpression = (ele: any = {}) => {
     const { email = "", gender = "" } = ele;
     const snowplowRegisterObj = {
-      schema: process.env?.NX_APP_USER_REGISTER_SCHEMA,
+      schema: process.env?.REACT_APP_USER_REGISTER_SCHEMA,
       data: {
         eventType: SNOWPLOW.IMPRESSIONTYPE,
         age: SNOWPLOW.NA,

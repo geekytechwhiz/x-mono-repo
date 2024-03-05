@@ -108,7 +108,7 @@ const StringOnChangeTextBox = (props: StringOnChangeTextBoxProps) => {
         className={`${
           errorMessage ? "error" : "primary"
         } custom-textbox string-textbox ${cssClass}`}
-        // onInput={ TODO: need to check
+        // onInput={
         //   customInPutAllowField
         //     ? (e: any) => allowInputParams(e, customInPutAllowField)
         //     : null

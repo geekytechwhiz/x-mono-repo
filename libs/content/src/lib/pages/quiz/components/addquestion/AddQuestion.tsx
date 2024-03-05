@@ -15,12 +15,12 @@ import {
   TitleSubTitle,
   XLoader,
 } from "@platformx/utilities";
+import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateHeader } from "../../../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../../../enums/ContentType";
 import useQuestion from "../../../../hooks/useQuestion/useQuestion";
-import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useCustomStyle } from "../../quiz.style";
 import AnswerContent from "./AnswerContent";
 

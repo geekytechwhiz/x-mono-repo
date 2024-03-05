@@ -8,7 +8,7 @@
       "executor": "@nx/webpack:webpack",
       "cache": true,
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/authoring-web",
@@ -54,7 +54,7 @@
     },
     "serve": {
       "executor": "@nx/webpack:dev-server",
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "authoring-web:build",
         "hmr": true,

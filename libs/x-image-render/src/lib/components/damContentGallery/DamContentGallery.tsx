@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, Dialog, DialogContent, Drawer, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -213,12 +214,8 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
   };
   const handleSearch = (searchTerm) => {
     const nextIndex = 0;
-    const filter = {
-      author: author,
-    };
     setStartIndex(() => nextIndex);
     setSearchTerm(searchTerm);
-    // getDAMcontent(nextIndex, filter, searchTerm);
   };
 
   const setInputValueHandle = (searchData = "") => {

@@ -1,7 +1,7 @@
 import Tooltip from "@mui/material/Tooltip";
-import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
+import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 
 interface PropType {
   component: JSX.Element;
@@ -33,6 +33,7 @@ export const ErrorTooltip: FC<PropType> = ({
             textAlign: "center",
             padding: "5px 20px",
             border: "0.1px solid rgba(0, 0, 0, 0.1)",
+            marginRight: "5px",
           },
         },
       }}

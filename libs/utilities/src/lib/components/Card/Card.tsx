@@ -1,9 +1,10 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { RedBlinkingDot } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { RedBlinkingDot } from "@platformx/utilities";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
+import Image from "next/image";
 // import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
 // import CardMenu from '../../../pages/PageList/Components/CardMenu/CardMenu';
 // import { CourseMenu } from '../../../pages/QuizPollEvents/Components/QuizPollEventsMenu/CourseMenu';
@@ -22,10 +23,10 @@ import PlateformXDialog from "../Popups/PlateformXDialog";
 // import CardMenu from '../CardMenu/CardMenu';
 // import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
 import useAccess from "../../hooks/useAccess/useAccess";
-import { CardProps } from "./List.types";
-import { iconsList, statusIcons } from "./constants";
 import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
+import { CardProps } from "./List.types";
+import { iconsList, statusIcons } from "./constants";
 
 export const Card = ({
   CustomMenuList,
@@ -49,7 +50,7 @@ export const Card = ({
   const date = new Date().toJSON();
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
-      handlePageDelete();
+      handlePageDelete(dataList);
     } else if (
       tagName === "quiz" ||
       tagName === "poll" ||
@@ -130,6 +131,8 @@ export const Card = ({
       case "vod":
         ContentAction[dataList.status](dataList);
         break;
+      default:
+        return "";
     }
   };
 
@@ -191,7 +194,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} alt='img' />
+                <Image src={iconsList[dataList.tagName]} alt='img' />
               </Box>
 
               <Box className='rightspace'>
@@ -221,24 +224,25 @@ export const Card = ({
                       dataList.page_state === "published" &&
                       date > dataList.eventStartDate &&
                       date < dataList.eventEndDate && (
-                        <img
+                        <Image
                           style={{ height: "43px", width: "43px" }}
-                          src={RedBlinkingDot}
+                          // src={RedBlinkingDot}
+                          src='imggepath'
                           alt=''
                         />
                       )}
                     <Box component='div' className='mobstatusIcon'>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        <img src={statusIcons[dataList.status]} alt='' />
+                        <Image src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
-                          <img src={statusIcons["schedulePublish"]} alt='' />
+                          <Image src={statusIcons["schedulePublish"]} alt='' />
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
-                          <img src={statusIcons["scheduleUnpublish"]} alt='' />
+                          <Image src={statusIcons["scheduleUnpublish"]} alt='' />
                         )}
                       </Typography>
                     </Box>

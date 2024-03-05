@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import { ApolloProvider } from "@apollo/client";
 import { init as initApm } from "@elastic/apm-rum";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,16 +13,15 @@ import {
   LightTheme,
   getCurrentLang,
   getSelectedRoute,
-  useUserSession,
 } from "@platformx/utilities";
-import { Suspense, memo, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import AppRouter from "./router/AppRouter";
+import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
 
@@ -37,7 +34,9 @@ initApm({
   active: process.env?.NX_APM_TRACING === "true" || false,
   // Set required service name
   serviceName: "platormx-authoring-ui-service",
+  // Set custom APM Server URL
   serverUrl: process.env.NX_APM_SERVER_URL,
+  //The environment where the service being monitored is deployed (e.g. "production", "development")
   environment: process.env.NX_APM_ENVIRONMENT,
   distributedTracing: true,
   distributedTracingOrigins: (process.env?.NX_APM_TRACING_ORIGINS || "").split(","),
@@ -62,25 +61,16 @@ function App() {
   const classes = useStyles();
   const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
-  const [getSession] = useUserSession();
-  const { userInfo } = getSession();
   const { pathname } = window.location;
 
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        if (
-          pathname === "/en" ||
-          pathname === "/" ||
-          pathname === `/${routing}/en` ||
-          (Object.entries(userInfo)?.length === 0 && window.location.search?.length === 0)
-        ) {
+        if (pathname === "/en" || pathname === "/" || pathname === `/${routing}/en`) {
           window.location.replace(AUTH_URL);
         }
-
         const analytics = await analyticsInstance(Analytics);
         setInstances(analytics);
-
         const lang = getCurrentLang();
         if (lang) {
           setLanguage(lang);
@@ -104,7 +94,7 @@ function App() {
               <CssBaseline />
               <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
                 <Provider store={store}>
-                  <AppRouter />
+                  <RootRouter />
                 </Provider>
               </BrowserRouter>
             </ThemeProvider>
@@ -127,4 +117,4 @@ function App() {
   );
 }
 
-export default memo(App);
+export default App;

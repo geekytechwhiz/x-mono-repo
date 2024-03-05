@@ -1,5 +1,3 @@
-/* eslint-disable no-debugger */
-
 import { authAPI, getGlobalDataWithHeader, multiSiteApi } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
@@ -37,18 +35,13 @@ export const useAuthentication = () => {
         updateSession(createSession(response.data, true, userRole));
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
-
-        // await getGlobalDataWithHeader(selected_site);
-
         localStorage.setItem("selectedSite", response.data.selected_site);
-
-        // const defaultLang = response.data.preferred_sites_languages?.[selected_site] || "en";
-
-        // const redirectPath =
-        //   selected_site?.toLowerCase() === "system" ? `/sites/site-listing` : `/dashboard`;
-        ///${selected_site}/${defaultLang}${redirectPath}
-        // navigate(`/dashboard`, { replace: true });
-        window.location.replace(`${process.env.NX_BASE_URL}/kiwi/en/dashboard`);
+        const lang = response.data.preferred_sites_languages?.[selected_site] || "en";
+        const redirectPath =
+          selected_site?.toLowerCase() === "system" ? `sites/site-listing` : `dashboard`;
+        window.location.replace(
+          `${process.env.NX_BASE_URL}/${selected_site}/${lang}/${redirectPath}`,
+        );
       }
     } catch (error: any) {
       console.error("Error signing in:", error);
@@ -92,7 +85,7 @@ export const useAuthentication = () => {
           }
         }
       } else {
-        localStorage.removeItem("selectedSite");
+        // localStorage.removeItem("selectedSite");
         updateSession(null);
         window.location.replace(AUTH_URL);
       }

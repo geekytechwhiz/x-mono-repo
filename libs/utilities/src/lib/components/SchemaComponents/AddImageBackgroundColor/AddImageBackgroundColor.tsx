@@ -8,6 +8,7 @@ import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 import { useStyles } from "./AddImageBackgroundColor.style";
 import { ErrorTooltip } from "../../ErrorTooltip/ErrorTooltip";
+import Image from "next/image";
 
 export interface ImageProps {
   state: string;
@@ -84,7 +85,7 @@ export const AddImageBackgroundColor = ({
                 // />
                 <Typography>TODO</Typography>
               ) : (
-                <img className={classes.imgStyle} src={state} alt='' />
+                <Image className={classes.imgStyle} src={state} alt='' />
               )}
               <Box
                 className={classes.uploadImgContainer}
@@ -135,7 +136,7 @@ export const AddImageBackgroundColor = ({
               <Box></Box>
               <Box className={classes.chooseImgBoxStyle} onClick={() => onUploadClick("choose")}>
                 <Box className={classes.arrowUpIconStyle} m={1}>
-                  <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                  <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
                 </Box>
                 <Box className={classes.labelStyle}>
                   <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
@@ -153,7 +154,7 @@ export const AddImageBackgroundColor = ({
             className={classes.colorPalleteStyle}>
             <Box onClick={() => onUploadClick("choose")} className={classes.iconBoxStyle}>
               {/* <Icon /> */}
-              <img src={Icon} alt='Icon' />
+              <Image src={Icon} alt='Icon' />
             </Box>
 
             {colorCode.map((val, index) => {
@@ -171,7 +172,7 @@ export const AddImageBackgroundColor = ({
               );
             })}
             <Box onClick={handleRefresh} className={classes.refreshIconStyle}>
-              <img src={RefreshIcon} alt='RefreshIcon' />
+              <Image src={RefreshIcon} alt='RefreshIcon' />
 
               {/* <RefreshIcon /> */}
             </Box>
