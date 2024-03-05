@@ -12,7 +12,6 @@ import {
   SettingNewIcon,
   Timer,
   ToolTip,
-  WorkflowHistoryIcon,
   enableReferBack,
   useAccess,
   workflowKeys,
@@ -23,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 // import { ToolTip } from "../../../components/Common/ToolTip";
 // import WorkflowAssignee from "../../../components/WorkflowAssignee/Index";
 import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
+import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { useDispatch, useSelector } from "react-redux";
 import "../../CreateArticle.css";
 import { useStyles } from "../../CreateArticle.styles";
