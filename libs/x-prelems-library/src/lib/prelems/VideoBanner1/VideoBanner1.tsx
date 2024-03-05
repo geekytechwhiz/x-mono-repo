@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Analytics } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { useCustomStyle } from "./VideoBanner1.style";
-import "./VideoBanner1.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import { Analytics, AuthoringHelper } from "@platformx/utilities";
-import Image from "next/image";
+import "./VideoBanner1.css";
+import { useCustomStyle } from "./VideoBanner1.style";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
   const [val, setVal] = useState(1);
@@ -188,7 +187,7 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
       <Box className='animatorContainer'>
         <Box className='banner' ref={ref}>
           {secondaryArgs?.editState ? (
-            <Image alt='banner2' src={content.Videos.Video_1.Thumbnail} />
+            <img alt='banner2' src={content.Videos.Video_1.Thumbnail} />
           ) : (
             <VideoPlayer
               playerProp={{
@@ -228,11 +227,7 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
       <Box id='next_video' ref={boxRef} className='bottomWrapper'>
         <Box ref={secondBoxRef}>
           {secondaryArgs?.editState ? (
-            <Image
-              alt='banner3'
-              className='bottomWraperImg'
-              src={content.Videos.Video_1.Thumbnail}
-            />
+            <img alt='banner3' className='bottomWraperImg' src={content.Videos.Video_1.Thumbnail} />
           ) : (
             <VideoPlayer
               playerProp={{

@@ -1,20 +1,19 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  formCroppedUrlString,
-  structureDataUrlPoint,
   RedDots,
   SecondaryArgs,
+  formCroppedUrlString,
+  structureDataUrlPoint,
 } from "@platformx/utilities";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import { useCustomStyle } from "./WebsiteIntroduction2.style";
-import prelemTypes from "../../globalStyle";
+import React, { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./WebsiteIntroduction2.style";
 
 const WebsiteIntroduction2 = ({
   content,
@@ -371,10 +370,10 @@ WebsiteIntroduction2Prop) => {
             />
           </Box>
           <Box className='dottedImgFirst'>
-            <Image alt='intor3' src={RedDots} width='140' height='63' />
+            <img alt='intor3' src={RedDots} width='140' height='63' />
           </Box>
           <Box className='dottedImgSecond'>
-            <Image alt='intro4' src={RedDots} width='140' height='63' />
+            <img alt='intro4' src={RedDots} width='140' height='63' />
           </Box>
         </Box>
       </Box>

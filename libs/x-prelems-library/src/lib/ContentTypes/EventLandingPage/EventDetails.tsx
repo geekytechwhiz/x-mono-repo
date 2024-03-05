@@ -1,24 +1,23 @@
-import { useState } from "react";
-import { Grid, Typography, CardHeader, Chip, Box, Button } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import LinkIcon from "@mui/icons-material/Link";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LinkIcon from "@mui/icons-material/Link";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import Countdown, { zeroPad } from "react-countdown";
-import { useTranslation } from "react-i18next";
+import { Box, Button, CardHeader, Chip, Grid, Typography } from "@mui/material";
 import {
   capitalizeFirstLetter,
   dateFormat,
+  liveIcon,
   nullToObject,
   nullToString,
   timeFormat,
-  liveIcon,
 } from "@platformx/utilities";
+import { useState } from "react";
+import Countdown, { zeroPad } from "react-countdown";
+import { useTranslation } from "react-i18next";
 import Share from "../../components/Share/Share";
 import CompletionList from "./CompletionList";
 import "./Events.css";
-import Image from "next/image";
 
 const commaSeparated = (value = "") => {
   if (value) {
@@ -209,7 +208,7 @@ line-clamp: 1;
                         alignItems: "center",
                         justifyContent: "space-evenly",
                       }}>
-                      <Image
+                      <img
                         src={liveIcon}
                         alt='Live'
                         style={{

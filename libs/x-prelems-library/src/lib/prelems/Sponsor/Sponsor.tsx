@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Container, Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./Sponsor.style";
-import prelemTypes from "../../globalStyle";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./Sponsor.style";
 
 const Sponsor = ({
   content,
@@ -88,7 +87,7 @@ SponsorProp) => {
           {content?.ImageCompound &&
             Object.entries(content?.ImageCompound).map(([key], index) => (
               <Grid item xs={12} sm={6} md={3} lg={3} key={key} className='wrapperImg'>
-                <Image alt={key} src={getImg(index + 1)} />
+                <img alt={key} src={getImg(index + 1)} />
                 {/* <ImageRender
                   originalImage={getOriginalImg(index + 1)}
                   publishedImages={getPublishedImg(index + 1)}

@@ -1,9 +1,5 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
-import { Box, Container, Grid, Card, CardContent, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import Slider from "react-slick";
-import "../../Style.css";
+import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import {
   Analytics,
   AuthoringHelper,
@@ -11,12 +7,15 @@ import {
   completeButtonUrl,
   formCroppedUrlString,
 } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import Slider from "react-slick";
+import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
 import "./ServiceShowcase2.css";
 import { useCustomStyle } from "./ServiceShowcase2.style";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
 
 let i = 0;
 const ServiceShowcase2 = ({
@@ -245,7 +244,7 @@ const ServiceShowcase2 = ({
                           <CardContent className='cardContent'>
                             <Box className='boxWrapper'>
                               <Box className='imageWrapper'>
-                                <Image
+                                <img
                                   src={
                                     formCroppedUrlString(
                                       gcpUrl,

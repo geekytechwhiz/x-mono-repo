@@ -1,9 +1,9 @@
-import LaunchIcon from "@mui/icons-material/Launch";
-import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
+import LaunchIcon from "@mui/icons-material/Launch";
+import SearchIcon from "@mui/icons-material/Search";
 import { AVATAR, PLATFORMXLOGO, XEROXAVATAR } from "@platformx/utilities";
-import Image from "next/image";
+
 import {
   AppBar,
   Avatar,
@@ -28,22 +28,22 @@ import {
 import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { AdvanceSearchPopup } from "../../../components/AdvanceSearch/AdvanceSearch";
 import {
+  formRelativeURL,
   getCurrentLang,
   getCurrentPathName,
   getFlag,
   getHrefforAnchors,
-  formRelativeURL,
   nullToObject,
   parseStringDetails,
 } from "../helperFunction";
+import EcomHeader from "./EcomHeader";
 import "./Header.css";
 import { useCustomStyle } from "./Header.style";
-import HeaderMobile from "./HeaderMobile";
-import EcomHeader from "./EcomHeader";
-import LanguageDesktopView from "./LanguageHeader/LanguageDesktopView";
-import { AdvanceSearchPopup } from "../../../components/AdvanceSearch/AdvanceSearch";
 import { HeaderProps, Menus } from "./Header.types";
+import HeaderMobile from "./HeaderMobile";
+import LanguageDesktopView from "./LanguageHeader/LanguageDesktopView";
 
 const Header = ({
   homePageUrl,
@@ -196,7 +196,7 @@ const Header = ({
         <AppBar position='static' className='x-header-appbar headerBackground'>
           <Box component='nav'>
             <Box className='logo'>
-              <Image
+              <img
                 src={formRelativeURL(gcpUrl, bucketName, data?.header_logo)}
                 onClick={handleIconRedirect}
                 alt='Logo'
@@ -299,7 +299,7 @@ const Header = ({
                                   target={submenu.IsCurrentTab ? "_self" : "_blank"}>
                                   <ListItemAvatar className='iconGapRight'>
                                     <Avatar className='avatarbox'>
-                                      <Image
+                                      <img
                                         src={submenu.menuicon}
                                         alt='menuicon'
                                         width={24}
@@ -420,13 +420,13 @@ const Header = ({
                   aria-haspopup='true'
                   aria-expanded={open ? "true" : undefined}>
                   <Box className='headerFlagIcon'>
-                    <Image alt='flagicon' src={getFlag()} width={24} height={24} />
+                    <img alt='flagicon' src={getFlag()} width={24} height={24} />
                   </Box>
                 </IconButton>
 
                 {Object.keys(nullToObject(userLoginData)).length > 0 ? (
                   <Box className='authWrapper'>
-                    <Image
+                    <img
                       alt='loginavatar'
                       src={AVATAR}
                       width='30'
@@ -647,7 +647,7 @@ Header.defaultProps = {
           Author: "nancy",
           ContentType: "Article",
           CreatedDate: "2022-12-27",
-          Description: `The Tata Tiago EV hatchback is India's<blockquote>The Tata Tiago EV comes with two battery pack options i.e., 19.2 kWh and 24 kWh. The smaller of the two battery packs is available with the XE and XT&nbsp;</blockquote><div><br></div><Image style="display:block;object-fit:cover" alt="descItem" class="descAsset" src="https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/a56b5f69-17ad-433d-a350-5f184e77cdb3/content"><br>t is available in five&nbsp;<a target="_blank" href="https://www.google.com">colour</a>&nbsp;options <br>`,
+          Description: `The Tata Tiago EV hatchback is India's<blockquote>The Tata Tiago EV comes with two battery pack options i.e., 19.2 kWh and 24 kWh. The smaller of the two battery packs is available with the XE and XT&nbsp;</blockquote><div><br></div><img style="display:block;object-fit:cover" alt="descItem" class="descAsset" src="https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/a56b5f69-17ad-433d-a350-5f184e77cdb3/content"><br>t is available in five&nbsp;<a target="_blank" href="https://www.google.com">colour</a>&nbsp;options <br>`,
           Image:
             "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/4757a006-bc2e-46c3-8c76-ed3e75d84cd3/content",
           Title: "Tata Tiago EV electric car",

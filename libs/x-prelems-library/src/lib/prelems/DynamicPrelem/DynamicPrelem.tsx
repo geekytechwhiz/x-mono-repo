@@ -3,12 +3,11 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import DynamicPrelemCard from "./DynamicPrelemCard";
-import DynamicPrelemCard2 from "./DynamicPrelemCard2";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./DynamicPrelem.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import DynamicPrelemCard from "./DynamicPrelemCard";
+import DynamicPrelemCard2 from "./DynamicPrelemCard2";
 
 const DynamicPrelem = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const getCardArr = (data: any) => {
@@ -155,7 +154,7 @@ const DynamicPrelem = ({ content, analytics, authoringHelper, secondaryArgs }: a
             ) : (
               <React.Fragment>
                 <Box className='noDataFoundWrapper'>
-                  <Image
+                  <img
                     src='https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/3b8398a0-299a-4b4e-ad6f-2a5bbb306e9a/content'
                     alt='NoDataFound'
                   />

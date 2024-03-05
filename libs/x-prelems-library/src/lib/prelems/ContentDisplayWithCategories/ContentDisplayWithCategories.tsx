@@ -1,31 +1,30 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, CardMedia, Container, Grid, Typography } from "@mui/material";
+import {
+  Analytics,
+  ArrowAnimated,
+  Business,
+  Fashion,
+  Lifestyle,
+  SecondaryArgs,
+  Sports,
+  TechNews,
+  Travel,
+  getImage,
+  getLandingPageURL,
+  noResults,
+} from "@platformx/utilities";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
-import {
-  getImage,
-  getLandingPageURL,
-  Business,
-  Fashion,
-  Lifestyle,
-  Sports,
-  TechNews,
-  Travel,
-  ArrowAnimated,
-  Analytics,
-  SecondaryArgs,
-  noResults,
-} from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import "./ContentDisplayWithCategories.css";
-import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ContentDisplayWithCategories.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
 
 const ContentDisplayWithCategories = ({
   content,
@@ -260,7 +259,7 @@ const ContentDisplayWithCategories = ({
                 ) : (
                   <React.Fragment>
                     <Box className='noDataFoundWrapper'>
-                      <Image
+                      <img
                         src={noResults}
                         // src={formCroppedUrlString(
                         //   secondaryArgs?.gcpUrl,
@@ -295,7 +294,7 @@ const ContentDisplayWithCategories = ({
               <Box className='hotcategoryWrapper'>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image1' src={Business} />
+                    <img alt='image1' src={Business} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category1'>
@@ -312,12 +311,12 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image2' src={Fashion} />
+                    <img alt='image2' src={Fashion} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category2'>
@@ -334,12 +333,12 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image3' src={Lifestyle} />
+                    <img alt='image3' src={Lifestyle} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category3'>
@@ -356,12 +355,12 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image4' src={Travel} />
+                    <img alt='image4' src={Travel} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category4'>
@@ -378,12 +377,12 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image5' src={Sports} />
+                    <img alt='image5' src={Sports} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category5'>
@@ -400,12 +399,12 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
                 <Box className='hotcatmn'>
                   <Box className='icon'>
-                    <Image alt='image6' src={TechNews} />
+                    <img alt='image6' src={TechNews} />
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category6'>
@@ -422,7 +421,7 @@ const ContentDisplayWithCategories = ({
                     )}
                   </Box>
                   <Box className='righticon'>
-                    <Image src={ArrowAnimated} alt='Animated Arrow' />
+                    <img src={ArrowAnimated} alt='Animated Arrow' />
                   </Box>
                 </Box>
               </Box>
@@ -718,14 +717,14 @@ ContentDisplayWithCategories.defaultProps = {
           Url: "1700462997165/public/jpeg/world-cup",
           Title: "ODI World Cup 2023 Winner",
           Description:
-            'The 2023 ODI World Cup was an exciting tournament from start to finish, with many great teams vying for the title of champion. After a thrilling competition that spanned several months, India came out on top as the winner of the 2023 ODI World Cup. It\'s the second time India has won the tournament, having previously taken home the title in 2011.India had a strong run throughout the tournament, showing they were ready to take on any opponent. In the group stages, India won six out of their seven games, with their only loss coming against defending champions England. However, they bounced back in the knockout stages with a comprehensive win over Bangladesh and then a tight victory against Australia in the semi-finals. The final was an even more impressive display, as India beat their arch-nemesis Pakistan in a match full of drama and excitement to take home their second ODI World Cup title.India\'s victory was made even sweeter when captain Virat Kohli was awarded the player of the tournament. His strong leadership and ability to keep his team focussed and motivated helped them ensure their victory in a tough competition. This win now gives India more confidence than ever going into future tournaments and puts them in a great position to defend their title in future editions of the ODI World Cup.<div class="Platform-x-Box-root css-0"><div><div class="content" style="position:relative"><div style="position:absolute;left:0;top:0;height:100%;width:100%"><Image style="width:100%;object-fit:cover;height:100%" src="https://storage.googleapis.com/cropped_image_public/https://dev.dam.hcl-x.com/server/api/core/bitstreams/21be4498-10b2-480c-956e-9fddd23738ad/content.undefined"></div><div style="position:relative;bottom:0;left:0;padding:2% 3%;background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);width:100%;height:100%;display:flex;align-items:end;min-height:224px"><div><h1 style="font-size:28px;font-weight:bold;color:#fff;text-transform:uppercase;-webkit-line-clamp:1;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTech speaks on Supercharging Progress™</h1><h1 style="font-size:16px;font-weight:500;color:#fff !important;-webkit-line-clamp:2;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTECH</h1><a rel="noreferrer" style="text-decoration:none;width:140px;height:40px" target="_blank" href="https://health.care.hcl-x.com/en/vod//hcltech-speaks-on-supercharging-progress-"><button style="padding:0 8px;border-radius:4px;background-color:#fff;width:140px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer">View VOD<Image style="margin-left:10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTC0tOjAwOC0tOS0tOS0tOi0tOi0tOeUh8s4AAAAHdFJOUwCfIHnfkM+S7anqAAAAKklEQVQY02NgGEigrIDEMXcCkcyCYJBeApJiL4eCAHQZFD1QoKpAP5cDANFOCFKKojrfAAAAAElFTkSuQmCC"></button></a></div></div></div></div><br><br></div><Image src="https://dev.dam.hcl-x.com/server/api/core/bitstreams/6eecb253-7220-4edb-868b-ad251d9d0cb7/content" class="descAsset" style="display:block;object-fit:cover"><br><br>',
+            'The 2023 ODI World Cup was an exciting tournament from start to finish, with many great teams vying for the title of champion. After a thrilling competition that spanned several months, India came out on top as the winner of the 2023 ODI World Cup. It\'s the second time India has won the tournament, having previously taken home the title in 2011.India had a strong run throughout the tournament, showing they were ready to take on any opponent. In the group stages, India won six out of their seven games, with their only loss coming against defending champions England. However, they bounced back in the knockout stages with a comprehensive win over Bangladesh and then a tight victory against Australia in the semi-finals. The final was an even more impressive display, as India beat their arch-nemesis Pakistan in a match full of drama and excitement to take home their second ODI World Cup title.India\'s victory was made even sweeter when captain Virat Kohli was awarded the player of the tournament. His strong leadership and ability to keep his team focussed and motivated helped them ensure their victory in a tough competition. This win now gives India more confidence than ever going into future tournaments and puts them in a great position to defend their title in future editions of the ODI World Cup.<div class="Platform-x-Box-root css-0"><div><div class="content" style="position:relative"><div style="position:absolute;left:0;top:0;height:100%;width:100%"><img style="width:100%;object-fit:cover;height:100%" src="https://storage.googleapis.com/cropped_image_public/https://dev.dam.hcl-x.com/server/api/core/bitstreams/21be4498-10b2-480c-956e-9fddd23738ad/content.undefined"></div><div style="position:relative;bottom:0;left:0;padding:2% 3%;background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);width:100%;height:100%;display:flex;align-items:end;min-height:224px"><div><h1 style="font-size:28px;font-weight:bold;color:#fff;text-transform:uppercase;-webkit-line-clamp:1;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTech speaks on Supercharging Progress™</h1><h1 style="font-size:16px;font-weight:500;color:#fff !important;-webkit-line-clamp:2;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTECH</h1><a rel="noreferrer" style="text-decoration:none;width:140px;height:40px" target="_blank" href="https://health.care.hcl-x.com/en/vod//hcltech-speaks-on-supercharging-progress-"><button style="padding:0 8px;border-radius:4px;background-color:#fff;width:140px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer">View VOD<img style="margin-left:10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTC0tOjAwOC0tOS0tOS0tOi0tOi0tOeUh8s4AAAAHdFJOUwCfIHnfkM+S7anqAAAAKklEQVQY02NgGEigrIDEMXcCkcyCYJBeApJiL4eCAHQZFD1QoKpAP5cDANFOCFKKojrfAAAAAElFTkSuQmCC"></button></a></div></div></div></div><br><br></div><img src="https://dev.dam.hcl-x.com/server/api/core/bitstreams/6eecb253-7220-4edb-868b-ad251d9d0cb7/content" class="descAsset" style="display:block;object-fit:cover"><br><br>',
           Attribution: false,
           AltText: "ODI World Cup 2023 Winner",
           ext: "jpg",
           visibility: "public",
         },
         Description:
-          'The 2023 ODI World Cup was an exciting tournament from start to finish, with many great teams vying for the title of champion. After a thrilling competition that spanned several months, India came out on top as the winner of the 2023 ODI World Cup. It\'s the second time India has won the tournament, having previously taken home the title in 2011.India had a strong run throughout the tournament, showing they were ready to take on any opponent. In the group stages, India won six out of their seven games, with their only loss coming against defending champions England. However, they bounced back in the knockout stages with a comprehensive win over Bangladesh and then a tight victory against Australia in the semi-finals. The final was an even more impressive display, as India beat their arch-nemesis Pakistan in a match full of drama and excitement to take home their second ODI World Cup title.India\'s victory was made even sweeter when captain Virat Kohli was awarded the player of the tournament. His strong leadership and ability to keep his team focussed and motivated helped them ensure their victory in a tough competition. This win now gives India more confidence than ever going into future tournaments and puts them in a great position to defend their title in future editions of the ODI World Cup.<div class="Platform-x-Box-root css-0"><div><div class="content" style="position:relative"><div style="position:absolute;left:0;top:0;height:100%;width:100%"><Image style="width:100%;object-fit:cover;height:100%" src="https://storage.googleapis.com/cropped_image_public/https://dev.dam.hcl-x.com/server/api/core/bitstreams/21be4498-10b2-480c-956e-9fddd23738ad/content.undefined"></div><div style="position:relative;bottom:0;left:0;padding:2% 3%;background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);width:100%;height:100%;display:flex;align-items:end;min-height:224px"><div><h1 style="font-size:28px;font-weight:bold;color:#fff;text-transform:uppercase;-webkit-line-clamp:1;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTech speaks on Supercharging Progress™</h1><h1 style="font-size:16px;font-weight:500;color:#fff !important;-webkit-line-clamp:2;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTECH</h1><a rel="noreferrer" style="text-decoration:none;width:140px;height:40px" target="_blank" href="https://health.care.hcl-x.com/en/vod//hcltech-speaks-on-supercharging-progress-"><button style="padding:0 8px;border-radius:4px;background-color:#fff;width:140px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer">View VOD<Image style="margin-left:10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTC0tOjAwOC0tOS0tOS0tOi0tOi0tOeUh8s4AAAAHdFJOUwCfIHnfkM+S7anqAAAAKklEQVQY02NgGEigrIDEMXcCkcyCYJBeApJiL4eCAHQZFD1QoKpAP5cDANFOCFKKojrfAAAAAElFTkSuQmCC"></button></a></div></div></div></div><br><br></div><Image src="https://dev.dam.hcl-x.com/server/api/core/bitstreams/6eecb253-7220-4edb-868b-ad251d9d0cb7/content" class="descAsset" style="display:block;object-fit:cover"><br><br>',
+          'The 2023 ODI World Cup was an exciting tournament from start to finish, with many great teams vying for the title of champion. After a thrilling competition that spanned several months, India came out on top as the winner of the 2023 ODI World Cup. It\'s the second time India has won the tournament, having previously taken home the title in 2011.India had a strong run throughout the tournament, showing they were ready to take on any opponent. In the group stages, India won six out of their seven games, with their only loss coming against defending champions England. However, they bounced back in the knockout stages with a comprehensive win over Bangladesh and then a tight victory against Australia in the semi-finals. The final was an even more impressive display, as India beat their arch-nemesis Pakistan in a match full of drama and excitement to take home their second ODI World Cup title.India\'s victory was made even sweeter when captain Virat Kohli was awarded the player of the tournament. His strong leadership and ability to keep his team focussed and motivated helped them ensure their victory in a tough competition. This win now gives India more confidence than ever going into future tournaments and puts them in a great position to defend their title in future editions of the ODI World Cup.<div class="Platform-x-Box-root css-0"><div><div class="content" style="position:relative"><div style="position:absolute;left:0;top:0;height:100%;width:100%"><img style="width:100%;object-fit:cover;height:100%" src="https://storage.googleapis.com/cropped_image_public/https://dev.dam.hcl-x.com/server/api/core/bitstreams/21be4498-10b2-480c-956e-9fddd23738ad/content.undefined"></div><div style="position:relative;bottom:0;left:0;padding:2% 3%;background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);width:100%;height:100%;display:flex;align-items:end;min-height:224px"><div><h1 style="font-size:28px;font-weight:bold;color:#fff;text-transform:uppercase;-webkit-line-clamp:1;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTech speaks on Supercharging Progress™</h1><h1 style="font-size:16px;font-weight:500;color:#fff !important;-webkit-line-clamp:2;text-overflow:ellipsis;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;word-wrap:break-word">HCLTECH</h1><a rel="noreferrer" style="text-decoration:none;width:140px;height:40px" target="_blank" href="https://health.care.hcl-x.com/en/vod//hcltech-speaks-on-supercharging-progress-"><button style="padding:0 8px;border-radius:4px;background-color:#fff;width:140px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer">View VOD<img style="margin-left:10px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTC0tOjAwOC0tOS0tOS0tOi0tOi0tOeUh8s4AAAAHdFJOUwCfIHnfkM+S7anqAAAAKklEQVQY02NgGEigrIDEMXcCkcyCYJBeApJiL4eCAHQZFD1QoKpAP5cDANFOCFKKojrfAAAAAElFTkSuQmCC"></button></a></div></div></div></div><br><br></div><img src="https://dev.dam.hcl-x.com/server/api/core/bitstreams/6eecb253-7220-4edb-868b-ad251d9d0cb7/content" class="descAsset" style="display:block;object-fit:cover"><br><br>',
         PublishedDate: "2023-11-20T08:54:15Z",
         lastModifiedDate: "2023-11-20T08:54:03Z",
         ContentType: "Article",

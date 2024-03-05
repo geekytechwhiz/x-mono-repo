@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import EastIcon from "@mui/icons-material/East";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
-import { Box, Typography, Grid, Button, Container } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { nullToArray, nullToObject, fallBackImage } from "@platformx/utilities";
-import { ecomCartIdBasedGetItem, getProductDetails, addToCartGetCartId } from "../helperEcommerce";
+import { fallBackImage, nullToArray, nullToObject } from "@platformx/utilities";
+import ActualPrice from "../ProductDetail/SharedComponents/ActualPrice";
+import { addToCartGetCartId, ecomCartIdBasedGetItem, getProductDetails } from "../helperEcommerce";
 import "./ProductListing.css";
 import { useCustomStyle } from "./ProductListing.style";
-import ActualPrice from "../ProductDetail/SharedComponents/ActualPrice";
 import ProductLoader from "./ProductLoader";
-import Image from "next/image";
 
 type ProductListingProps = {
   secondaryArgs: any;
@@ -158,7 +157,7 @@ const ProductListing = ({
                     onClick={() => onViewDetails(card.id)}>
                     <Box className='image-container'>
                       <Box className='imgWrapper'>
-                        <Image
+                        <img
                           className='image'
                           onError={(e: any) => {
                             if (e.target.src !== fallBackImage) {
