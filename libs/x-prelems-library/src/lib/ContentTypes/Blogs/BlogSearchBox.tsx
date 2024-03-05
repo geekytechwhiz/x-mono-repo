@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
-import { TextField, Autocomplete, Box, InputAdornment } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useTranslation } from "react-i18next";
+import { Autocomplete, Box, InputAdornment, TextField } from "@mui/material";
+import { SearchIcon, debounce } from "@platformx/utilities";
 import axios from "axios";
-import { debounce, SearchIcon } from "@platformx/utilities";
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 // import SearchIcon from "assets/svgIcon/SearchIcon.svg";
 import "./BlogSearchBox.css";
-import Image from "next/image";
 
 interface Content {
   title: string;
@@ -116,7 +115,7 @@ function BlogSearchBox({
           display: { xs: showSearch ? "none" : "block", md: "none" },
           marginRight: "13px",
         }}>
-        <Image
+        <img
           alt='searchicon'
           src={SearchIcon}
           style={{ verticalAlign: "middle", cursor: "pointer" }}
@@ -168,7 +167,7 @@ function BlogSearchBox({
             }}
             InputProps={{
               ...params.InputProps,
-              startAdornment: <Image alt='searchicon' src={SearchIcon} />,
+              startAdornment: <img alt='searchicon' src={SearchIcon} />,
               endAdornment: (
                 <InputAdornment position='end'>
                   {inputValue && (

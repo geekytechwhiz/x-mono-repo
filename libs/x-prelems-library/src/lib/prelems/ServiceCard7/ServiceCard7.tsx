@@ -1,9 +1,5 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
-import { Box, Container, Grid, Typography, CardContent, Card } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import Slider from "react-slick";
-import "../../Style.css";
+import { Box, Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import {
   Analytics,
   AuthoringHelper,
@@ -11,12 +7,15 @@ import {
   completeButtonUrl,
   formCroppedUrlString,
 } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import Slider from "react-slick";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
 import "./ServiceCard7.css";
 import { useCustomStyle } from "./ServiceCard7.style";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
 
 let i = 0;
 const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard7Prop) => {
@@ -289,7 +288,7 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                           <Card className='card'>
                             <CardContent className='cardcontent'>
                               <Box className='imgWrapper'>
-                                <Image
+                                <img
                                   alt='card7'
                                   src={
                                     formCroppedUrlString(

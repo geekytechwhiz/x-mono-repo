@@ -1,13 +1,12 @@
-import React from "react";
-import Slide from "@mui/material/Slide";
-import Dialog from "@mui/material/Dialog";
-import { useTranslation } from "react-i18next";
 import DoneIcon from "@mui/icons-material/Done";
-import DialogTitle from "@mui/material/DialogTitle";
 import { Box, ListItemIcon, Typography } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { getCurrentLang, getFlag } from "../../helperFunction";
 import { useCustomStyle } from "./LanguageView.style";
-import Image from "next/image";
 
 const Transition = React.forwardRef(function Transition(
   props: {
@@ -68,7 +67,7 @@ const LanguageMobileView = (_props: LanguageMobileViewProps) => {
             sx={{ display: "flex", p: "15px" }}
             key={key}>
             <Box className='headerFlagIcon'>
-              <Image src={getFlag(value.code)} width={24} height={24} alt='flag' />
+              <img src={getFlag(value.code)} width={24} height={24} alt='flag' />
             </Box>
             <Typography className='languageText'>{value?.text}</Typography>
 

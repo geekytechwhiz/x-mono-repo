@@ -1,10 +1,4 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { useCustomStyle } from "./CounterNumberShowcase.style";
 import {
   Analytics,
   AuthoringHelper,
@@ -13,9 +7,14 @@ import {
   ProjectsCompletedIcon,
   SecondaryArgs,
 } from "@platformx/utilities";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./CounterNumberShowcase.style";
 
 const CounterNumberShowcase = ({
   content,
@@ -175,7 +174,7 @@ const CounterNumberShowcase = ({
       <Box className='secondColumnContent'>
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <Image
+            <img
               src={PrelemsDeployedIcon}
               alt='icon'
               width={42}
@@ -213,7 +212,7 @@ const CounterNumberShowcase = ({
         </Box>
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <Image
+            <img
               src={ProjectsCompletedIcon}
               alt='icon'
               width={42}
@@ -252,7 +251,7 @@ const CounterNumberShowcase = ({
 
         <Box className='itemBox'>
           <Box className='iconBox'>
-            <Image
+            <img
               src={AwardsWinnerCompanyIcon}
               alt='icon'
               width={42}

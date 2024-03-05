@@ -2,7 +2,7 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { formCroppedUrlString } from "@platformx/utilities";
-import Image from "next/image";
+
 import React, { Fragment, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
@@ -225,7 +225,7 @@ const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) 
             ) : (
               <React.Fragment>
                 <Box className='noDataFoundWrapper'>
-                  <Image
+                  <img
                     src={
                       formCroppedUrlString(
                         gcpUrl,

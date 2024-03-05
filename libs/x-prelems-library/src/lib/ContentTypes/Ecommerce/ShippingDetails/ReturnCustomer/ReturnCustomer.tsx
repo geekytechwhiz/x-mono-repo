@@ -1,18 +1,16 @@
-import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
 import useTheme from "@mui/material/styles/useTheme";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
 
 import { Box, Button, Checkbox, FormControlLabel, Grid, Link, Stack } from "@mui/material";
 import { IconFbSvg, IconGoogleSvg } from "@platformx/utilities";
-import StringTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnChangeTextBox";
 import PasswordTextBox from "../../../../components/TextBox/PasswordTextBox";
+import StringTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnChangeTextBox";
 import "./ReturnCustomer.css";
 import { useCustomStyle } from "./ReturnCustomer.style";
 
@@ -81,14 +79,14 @@ const ReturnCustomer = () => {
               variant='primaryButton2'
               size='large'
               className={`facebook-button-icon borderLine`}
-              startIcon={<Image src={IconFbSvg} alt='facebook' />}>
+              startIcon={<img src={IconFbSvg} alt='facebook' />}>
               Facebook
             </Button>
             <Button
               variant='primaryButton2'
               size='large'
               className={`google-button-icon borderLine`}
-              startIcon={<Image src={IconGoogleSvg} alt='Google' />}>
+              startIcon={<img src={IconGoogleSvg} alt='Google' />}>
               Google
             </Button>
           </Stack>

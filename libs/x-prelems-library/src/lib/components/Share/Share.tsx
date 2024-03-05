@@ -1,19 +1,18 @@
-import React, { useState } from "react";
 import { Box, useTheme } from "@mui/material";
+import {
+  IconCopySvg,
+  IconEmbed,
+  IconFacebookSvg,
+  IconLinkedInSvg,
+  nullToObject,
+} from "@platformx/utilities";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
-import {
-  nullToObject,
-  IconLinkedInSvg,
-  IconFacebookSvg,
-  IconEmbed,
-  IconCopySvg,
-} from "@platformx/utilities";
-import ToastService from "../ToastContainer/ToastService";
 import { errorRequest, linkCopy } from "../ConstantData";
-import ToastContainerHandle from "../ToastContainer/ToastContainerHandle";
 import EmbedDialog from "../EmbededModal/EmbededModal";
-import Image from "next/image";
+import ToastContainerHandle from "../ToastContainer/ToastContainerHandle";
+import ToastService from "../ToastContainer/ToastService";
 
 type Sharetype = {
   shareUrl?: string;
@@ -124,7 +123,7 @@ const Share = (props: Sharetype) => {
             cursor: !enablePreview ? "pointer" : "default",
           }}
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
-          <Image
+          <img
             alt='share1'
             width={15}
             height={15}
@@ -138,13 +137,13 @@ const Share = (props: Sharetype) => {
 
       {/* <TwitterShareButton url={shareUrl} style={buttonStyle}>
         <Box sx={{ ...styleCommon('#229af1') }}>
-          <Image alt="share2" src={Twitter} />
+          <img alt="share2" src={Twitter} />
         </Box>
       </TwitterShareButton>
 
       <WhatsappShareButton url={shareUrl} style={buttonStyle}>
         <Box sx={{ ...styleCommon('#61db77') }}>
-          <Image alt="share3" src={Whatsapp} />
+          <img alt="share3" src={Whatsapp} />
         </Box>
       </WhatsappShareButton> */}
 
@@ -160,7 +159,7 @@ const Share = (props: Sharetype) => {
             cursor: !enablePreview ? "pointer" : "default",
           }}
           onClick={() => !enablePreview && emptyToastHandle(shareUrl)}>
-          <Image
+          <img
             alt='share4'
             width={15}
             height={15}
@@ -176,7 +175,7 @@ const Share = (props: Sharetype) => {
           cursor: !enablePreview ? "pointer" : "default",
         }}
         onClick={() => !enablePreview && copyClipBoardData()}>
-        <Image alt='share5' width={15} height={15} src={IconCopySvg} style={{ ...imgCommon() }} />
+        <img alt='share5' width={15} height={15} src={IconCopySvg} style={{ ...imgCommon() }} />
       </Box>
 
       <Box
@@ -188,7 +187,7 @@ const Share = (props: Sharetype) => {
         onClick={() => {
           !enablePreview && handleEmbed();
         }}>
-        <Image alt='share6' width={15} height={15} src={IconEmbed} style={{ ...imgCommon() }} />
+        <img alt='share6' width={15} height={15} src={IconEmbed} style={{ ...imgCommon() }} />
       </Box>
       {openEmbedModal ? (
         <EmbedDialog

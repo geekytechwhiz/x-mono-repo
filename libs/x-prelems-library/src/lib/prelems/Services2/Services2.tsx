@@ -1,19 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Grid, Slide, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import { useCustomStyle } from "./Services2.style";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./Services2.style";
 
 const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Services2Prop) => {
   // const [contentType, setContentType] = React.useState("image");
@@ -157,7 +156,7 @@ const Services2 = ({ content, analytics, authoringHelper, secondaryArgs }: Servi
                                   className='gridBoxServices2'>
                                   <Box className='Service2Box'>
                                     <Box className={`IconWrapper imghover`}>
-                                      <Image
+                                      <img
                                         src={
                                           formCroppedUrlString(
                                             gcpUrl,

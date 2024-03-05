@@ -6,9 +6,8 @@ import RefreshIcon from "../../../assets/svg/Refresh.svg";
 import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 // import CommonImageRender from '../../pages/Gallery/CommonImageRender';
 import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
-import { useStyles } from "./AddImageBackgroundColor.style";
 import { ErrorTooltip } from "../../ErrorTooltip/ErrorTooltip";
-import Image from "next/image";
+import { useStyles } from "./AddImageBackgroundColor.style";
 
 export interface ImageProps {
   state: string;
@@ -85,7 +84,7 @@ export const AddImageBackgroundColor = ({
                 // />
                 <Typography>TODO</Typography>
               ) : (
-                <Image className={classes.imgStyle} src={state} alt='' />
+                <img className={classes.imgStyle} src={state} alt='' />
               )}
               <Box
                 className={classes.uploadImgContainer}
@@ -136,7 +135,7 @@ export const AddImageBackgroundColor = ({
               <Box></Box>
               <Box className={classes.chooseImgBoxStyle} onClick={() => onUploadClick("choose")}>
                 <Box className={classes.arrowUpIconStyle} m={1}>
-                  <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                  <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
                 </Box>
                 <Box className={classes.labelStyle}>
                   <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
@@ -154,7 +153,7 @@ export const AddImageBackgroundColor = ({
             className={classes.colorPalleteStyle}>
             <Box onClick={() => onUploadClick("choose")} className={classes.iconBoxStyle}>
               {/* <Icon /> */}
-              <Image src={Icon} alt='Icon' />
+              <img src={Icon} alt='Icon' />
             </Box>
 
             {colorCode.map((val, index) => {
@@ -172,7 +171,7 @@ export const AddImageBackgroundColor = ({
               );
             })}
             <Box onClick={handleRefresh} className={classes.refreshIconStyle}>
-              <Image src={RefreshIcon} alt='RefreshIcon' />
+              <img src={RefreshIcon} alt='RefreshIcon' />
 
               {/* <RefreshIcon /> */}
             </Box>

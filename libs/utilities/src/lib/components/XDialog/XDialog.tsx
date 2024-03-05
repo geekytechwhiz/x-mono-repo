@@ -1,7 +1,7 @@
 import { IconButton, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import Image from "next/image";
+
 import { memo } from "react";
 import { useDispatch } from "react-redux";
 import DialogCloseIcon from "../../assets/svg/DialogCloseIcon.svg";
@@ -76,10 +76,10 @@ const XDialog = ({
             if (handleClose) dispatch(handleClose());
           }}
           aria-label='close'>
-          <Image src={DialogCloseIcon} alt='icon' />
+          <img src={DialogCloseIcon} alt='icon' />
         </IconButton>
         <XDialogImageContainer>
-          <Image src={imageIcon} alt='icon' />
+          <img src={imageIcon} alt='icon' />
         </XDialogImageContainer>
         {title && (
           <DialogTitle

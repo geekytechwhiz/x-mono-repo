@@ -1,37 +1,36 @@
-import React, { useEffect, useRef, useState } from "react";
-import useTheme from "@mui/material/styles/useTheme";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useTranslation } from "react-i18next";
-import prelemTypes from "../../globalStyle";
-import { useCustomStyle } from "./ContactUsForm.style";
-import FormValidate from "../../components/CustomHook/FormValidate";
-import ToastContainerHandle from "../../components/ToastContainer/ToastContainerHandle";
-import Confirmation from "../../components/Confirmation/Confirmation";
-import StringOnBlurTextBox from "../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
 import {
-  Box,
-  Grid,
-  TextField,
-  Container,
-  Typography,
   Autocomplete,
+  Box,
   Button,
   Checkbox,
+  Container,
   FormControlLabel,
+  Grid,
   InputAdornment,
+  TextField,
+  Typography,
 } from "@mui/material";
+import useTheme from "@mui/material/styles/useTheme";
 import {
-  updateUserFormDetailsService,
-  countries,
-  getCountryFlag,
   Analytics,
   AuthoringHelper,
-  SecondaryArgs,
   GreenTick,
+  SecondaryArgs,
+  countries,
+  getCountryFlag,
+  updateUserFormDetailsService,
 } from "@platformx/utilities";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
+import Confirmation from "../../components/Confirmation/Confirmation";
+import FormValidate from "../../components/CustomHook/FormValidate";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import StringOnBlurTextBox from "../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
+import ToastContainerHandle from "../../components/ToastContainer/ToastContainerHandle";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ContactUsForm.style";
 
 const ContactUsForm = ({
   content,
@@ -290,7 +289,7 @@ const ContactUsForm = ({
                             renderOption={(props, option) => (
                               <Box component='li' className='flagRow' {...props}>
                                 <Box className='flagIcon'>
-                                  <Image
+                                  <img
                                     loading='lazy'
                                     alt='country flag'
                                     title='country flag'
@@ -312,7 +311,7 @@ const ContactUsForm = ({
                                   ...params.InputProps,
                                   startAdornment: (
                                     <InputAdornment position='start' className='flagWrapper'>
-                                      <Image
+                                      <img
                                         src={getCountryFlag(stateManage.country)}
                                         // srcSet={getCountryFlag(stateManage.country) + ` 2x`}
                                         alt='flag'
