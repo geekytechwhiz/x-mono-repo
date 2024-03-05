@@ -72,6 +72,6 @@ export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
 };
 
 export const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-  const target:any = event.target as HTMLImageElement;
+  const target: any = event.target as HTMLImageElement;
   target.src = FallBackImage;
 };

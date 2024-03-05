@@ -4,7 +4,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -139,7 +139,7 @@ const FeatureTiles = ({ content, analytics, authoringHelper, secondaryArgs }: Fe
         secondaryArgs?.bucketName,
         original_image_relative_path,
         ext,
-        ).src;
+      ).src;
       return img;
     };
 

@@ -1,24 +1,17 @@
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Analytics, CloseIcon, getRelativeImageURL, nullToObject } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
-import "../../utils/service/i18n";
-import {
-  nullToObject,
-  getRelativeImageURL,
-  CloseIcon,
-  AuthoringHelper,
-  Analytics,
-} from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
+import "../../utils/service/i18n";
 import QuestionIndex from "./QuestionIndex";
 import QuizContext from "./QuizContext";
 import ScoreScreen from "./ScoreScreen";
 import ViewAnswers from "./ViewAnswers";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
 
 const Quiz = ({
   content,
@@ -412,7 +405,7 @@ const Quiz = ({
                     top: { xs: "20px", md: "53px" },
                   }}
                   onClick={onClickClose}>
-                  <Image src={CloseIcon} alt='Close Icon' />
+                  <img src={CloseIcon} alt='Close Icon' />
                 </Button>
               )}
               <Box
@@ -494,7 +487,7 @@ const Quiz = ({
 interface QuizProps {
   content: any;
   analytics: Analytics;
-  authoringHelper: AuthoringHelper;
+  authoringHelper: any; //AuthoringHelper;
   secondaryArgs: any;
   enablePreview?: boolean;
 }

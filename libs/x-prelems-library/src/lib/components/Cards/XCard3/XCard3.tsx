@@ -22,7 +22,6 @@ const XCard3 = ({ content, Icon, onCardClick }: XCard3Props) => {
               }}
               alt=''
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
-
             />
             <Box className='mainContentBox'>
               <Box className='contentBox'>

@@ -71,7 +71,7 @@ const WebsiteIntroduction = ({
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
     try {
       websiteIntroductionStructureData = {
         "@context": "http://schema.org/",

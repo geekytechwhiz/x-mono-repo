@@ -39,7 +39,7 @@ const ContactUsForm = ({
   authoringHelper,
   analytics,
 }: ContactUsFormProps) => {
-  const GreenTickIcon:any=GreenTick;
+  const GreenTickIcon: any = GreenTick;
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const theme = useTheme();

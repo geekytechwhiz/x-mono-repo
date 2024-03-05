@@ -25,7 +25,7 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
       onClick={(e) => onClickCard(e, content?.EditorialItemPath)}>
       <Box className='XCard5innderBox'>
         <Box className='imgWrapper'>
-     <Typography>  VideoPlayer has been commented</Typography>
+          <Typography> VideoPlayer has been commented</Typography>
           {/* <CardMedia
             component={imageUrl ? "img" : "div"}
             image={imageUrl ? imageUrl : ""}

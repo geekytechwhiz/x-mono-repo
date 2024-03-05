@@ -4,7 +4,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -43,7 +43,7 @@ const Banner6 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner6
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-    ).src;
+  ).src;
 
   const defaultStructureData = () => {
     let Banner6StructureData;

@@ -291,12 +291,14 @@ const ServiceCard7 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                               <Box className='imgWrapper'>
                                 <Image
                                   alt='card7'
-                                  src={formCroppedUrlString(
-                                    gcpUrl,
-                                    bucketName,
-                                    value?.IconImage?.Url,
-                                    value?.IconImage?.ext,
-                                    ).src}
+                                  src={
+                                    formCroppedUrlString(
+                                      gcpUrl,
+                                      bucketName,
+                                      value?.IconImage?.Url,
+                                      value?.IconImage?.ext,
+                                    ).src
+                                  }
                                   width={42}
                                   height={42}
                                 />

@@ -9,7 +9,7 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
   pollIcon,
-  quizIcon
+  quizIcon,
 } from "@platformx/utilities";
 import axios from "axios";
 import { format } from "date-fns";
@@ -301,7 +301,7 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
           <Box className='imageWrapper'>
             <picture>
               <source
-              //TODO : need to check with the team
+                //TODO : need to check with the team
                 // srcSet={formCroppedUrlString(gcpUrl, bucketName, content?.Thumbnail?.Url, "webp").src}
                 type='image/webp'
               />

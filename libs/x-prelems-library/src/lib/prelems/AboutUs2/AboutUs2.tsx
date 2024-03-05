@@ -1,5 +1,11 @@
 import { Box, Container, Typography } from "@mui/material";
-import { Frame1, Frame2, Frame3, completeButtonUrl, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Frame1,
+  Frame2,
+  Frame3,
+  completeButtonUrl,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -47,7 +53,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       aboutUs2StructureData = {

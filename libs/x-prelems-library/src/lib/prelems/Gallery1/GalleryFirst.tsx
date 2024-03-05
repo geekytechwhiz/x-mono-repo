@@ -17,12 +17,14 @@ function GalleryFirst({ GalleryOne, handleOpen, secondaryArgs }: any) {
             {!("Thumbnail" in item) ? (
               <Image
                 alt='Gallery1'
-                src={formCroppedUrlString(
-                  secondaryArgs?.gcpUrl,
-                  secondaryArgs?.bucketName,
-                  item?.Url,
-                  item?.ext,
-                  ).src}
+                src={
+                  formCroppedUrlString(
+                    secondaryArgs?.gcpUrl,
+                    secondaryArgs?.bucketName,
+                    item?.Url,
+                    item?.ext,
+                  ).src
+                }
               />
             ) : (
               <VideoPlayer

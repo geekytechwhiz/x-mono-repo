@@ -48,7 +48,7 @@ type ProfileProps = {
 };
 
 const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
-  const GreenTickIcon:any=GreenTick;
+  const GreenTickIcon: any = GreenTick;
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const globalClasses = prelemTypes();
@@ -418,15 +418,14 @@ const Profile = ({ secondaryArgs = {} }: ProfileProps) => {
                                         srcSet={`https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 2x`}
                                       /> */}
                                       <Image
-    loading='lazy'
-    alt='country flag'
-    title='country flag'
-    width='25'
-    src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
-    sizes="(max-width: 600px) 50vw, 100vw"
-    // srcSet={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png 20w, https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 40w`}
-/>
-
+                                        loading='lazy'
+                                        alt='country flag'
+                                        title='country flag'
+                                        width='25'
+                                        src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
+                                        sizes='(max-width: 600px) 50vw, 100vw'
+                                        // srcSet={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png 20w, https://flagcdn.com/w40/${option?.code?.toLowerCase()}.png 40w`}
+                                      />
                                     </Box>
                                     {option.label}
                                   </Box>

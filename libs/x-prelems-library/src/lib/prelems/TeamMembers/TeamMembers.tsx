@@ -56,7 +56,7 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                   secondaryArgs?.bucketName,
                   item.Url,
                   item?.ext,
-                  ).src,
+                ).src,
               }),
               ...(item.Thumbnail && {
                 thumbnailURL: item?.Thumbnail,
@@ -66,7 +66,7 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                 secondaryArgs?.bucketName,
                 item.Url,
                 item?.ext,
-                ).src,
+              ).src,
             },
           };
         }),
@@ -154,12 +154,14 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                           <Image
                             alt='team1'
                             className='teamMemberImg'
-                            src={formCroppedUrlString(
-                              secondaryArgs?.gcpUrl,
-                              secondaryArgs?.bucketName,
-                              item.Url,
-                              item?.ext,
-                              ).src}
+                            src={
+                              formCroppedUrlString(
+                                secondaryArgs?.gcpUrl,
+                                secondaryArgs?.bucketName,
+                                item.Url,
+                                item?.ext,
+                              ).src
+                            }
                           />
                         </Box>
                         <Typography

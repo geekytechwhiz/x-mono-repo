@@ -1,10 +1,11 @@
+/* eslint-disable wrap-regex */
 import { Box, Container, Grid, Typography } from "@mui/material";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
-  handleHtmlTags
+  handleHtmlTags,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -74,7 +75,7 @@ Banner7Prop) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       Banner7StructureData = {
@@ -123,7 +124,7 @@ Banner7Prop) => {
 
   useEffect(() => {
     if (navigator) {
-      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
+      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

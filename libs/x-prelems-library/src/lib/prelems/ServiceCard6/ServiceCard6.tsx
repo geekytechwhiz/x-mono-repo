@@ -223,15 +223,17 @@ const ServiceCard6 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
                                 backgroundColor: `rgba(${ICON_BACKGROUND[i - 1]})`,
                               }}>
                               <Image
-                                src={formCroppedUrlString(
-                                  secondaryArgs?.gcpUrl,
-                                  secondaryArgs?.bucketName,
-                                  value?.IconImage?.Url,
-                                  value?.IconImage?.ext,
-                                  ).src}
+                                src={
+                                  formCroppedUrlString(
+                                    secondaryArgs?.gcpUrl,
+                                    secondaryArgs?.bucketName,
+                                    value?.IconImage?.Url,
+                                    value?.IconImage?.ext,
+                                  ).src
+                                }
                                 alt={value?.IconImage?.AltText}
                                 width={25}
-                                 height={25}
+                                height={25}
                                 className='cardItemImg'
                               />
                             </Box>

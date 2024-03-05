@@ -1,18 +1,16 @@
 import {
   Box,
   Button,
-  IconButton,
-  Typography,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  IconButton,
+  Typography,
 } from "@mui/material";
-import React from "react";
-import { DialogCloseIcon, DeleteIcon } from "@platformx/utilities";
+import { DeleteIcon, DialogCloseIcon, XImage } from "@platformx/utilities";
 import prelemTypes from "../globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
-import Image from "next/image";
 
 export default function ExitModal({
   isDialogOpen,
@@ -73,10 +71,10 @@ export default function ExitModal({
             color='inherit'
             onClick={handleClose}
             aria-label='close'>
-            <Image src={DialogCloseIcon} alt='' />
+            <XImage src={DialogCloseIcon} alt='' />
           </IconButton>
           <Box className='BoxImage'>
-            <Image src={DeleteIcon} alt='' />
+            <XImage src={DeleteIcon} alt='' />
           </Box>
           {title ? (
             <DialogTitle className='BoxDialogTitle' id='alert-dialog-title' variant='h4bold'>

@@ -228,7 +228,11 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
       <Box id='next_video' ref={boxRef} className='bottomWrapper'>
         <Box ref={secondBoxRef}>
           {secondaryArgs?.editState ? (
-            <Image alt='banner3' className='bottomWraperImg' src={content.Videos.Video_1.Thumbnail} />
+            <Image
+              alt='banner3'
+              className='bottomWraperImg'
+              src={content.Videos.Video_1.Thumbnail}
+            />
           ) : (
             <VideoPlayer
               playerProp={{

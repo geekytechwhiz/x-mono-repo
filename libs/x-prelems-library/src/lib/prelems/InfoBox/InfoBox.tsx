@@ -1,20 +1,20 @@
+/* eslint-disable wrap-regex */
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
   handleHtmlTags,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./InfoBox.style";
-import BasicButton from "../../components/BasicButton/BasicButton";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 import "../../Style.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./InfoBox.style";
 
 // ts-ignore
 const InfoBox = ({
@@ -60,7 +60,7 @@ InfoBoxProp) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       InfoBoxStructureData = {
@@ -100,7 +100,8 @@ InfoBoxProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
+      const regex = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      if (regex.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");
@@ -224,7 +225,7 @@ InfoBoxProp) => {
 
 interface InfoBoxProp {
   content: Content;
-  analytics: Analytics;
+  analytics: any; //Analytics;
   authoringHelper?: AuthoringHelper;
   secondaryArgs: SecondaryArgs;
 }

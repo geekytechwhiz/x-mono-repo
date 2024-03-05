@@ -1,3 +1,4 @@
+/* eslint-disable wrap-regex */
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import {
@@ -5,7 +6,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
-  handleHtmlTags
+  handleHtmlTags,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -42,7 +43,7 @@ CoreHighlightsProp) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
     try {
       CoreHighlightsStructureData = {
         "@context": "http://schema.org/",
@@ -81,7 +82,7 @@ CoreHighlightsProp) => {
 
   useEffect(() => {
     if (navigator) {
-      if ((/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator?.userAgent)) {
+      if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent)) {
         // console.log("mobile");
       } else {
         // console.log("not mobile");

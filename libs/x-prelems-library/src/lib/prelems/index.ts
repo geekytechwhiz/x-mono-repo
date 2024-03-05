@@ -83,13 +83,9 @@ import AnimationOnPageScroll from "./AnimationOnPageScroll/AnimationOnPageScroll
 import MultiSlot2 from "./MultiSlot2/MultiSlot2";
 import { ChangePassword, Profile, SignUp } from "../ContentTypes/User/User";
 import { TestComponent } from "./TestComponnet";
-import Header from "./HeaderFooter/Header/Header";
-import Footer from "./HeaderFooter/Footer/Footer";
 
 export {
   MultiSlot2,
-  Header,
-  Footer,
   AnimationOnPageScroll,
   ExpertiseShowcase,
   TestComponent,

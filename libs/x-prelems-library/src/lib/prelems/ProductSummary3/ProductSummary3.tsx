@@ -51,7 +51,7 @@ const ProductSummary3 = ({
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-    ).src;
+  ).src;
 
   const defaultStructureData = () => {
     let ProductSummary3StructureData;

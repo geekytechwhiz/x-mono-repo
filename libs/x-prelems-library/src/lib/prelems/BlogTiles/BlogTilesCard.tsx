@@ -122,9 +122,7 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
                 backgroundColor: color ? color : "",
               }}
               // image={imageUrl ? imageUrl : ""} #TODO: Fix this
-              image={ ""}
-
-              >
+              image={""}>
               <Box className='cardOverlay'></Box>
               <Box className='contentIcons'>
                 <Image

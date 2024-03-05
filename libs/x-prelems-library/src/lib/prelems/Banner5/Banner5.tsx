@@ -5,7 +5,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -100,7 +100,7 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
     return img;
   };
   const defaultStructureData = () => {

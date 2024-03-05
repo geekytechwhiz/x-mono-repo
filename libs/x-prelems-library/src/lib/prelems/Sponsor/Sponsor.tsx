@@ -2,7 +2,12 @@
 import { Container, Grid } from "@mui/material";
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import { useCustomStyle } from "./Sponsor.style";
 import prelemTypes from "../../globalStyle";
 import "../../Style.css";
@@ -34,7 +39,7 @@ SponsorProp) => {
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
     return img;
   };
 

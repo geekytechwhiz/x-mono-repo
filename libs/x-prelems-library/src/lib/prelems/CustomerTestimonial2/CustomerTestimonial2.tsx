@@ -7,7 +7,7 @@ import {
   SecondaryArgs,
   formCroppedUrlString,
   nullToArray,
-  nullToObject
+  nullToObject,
 } from "@platformx/utilities";
 import Image from "next/image";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -198,7 +198,9 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
               sx={{ opacity: currentIndex === key ? 1 : 0.5 }}
               onClick={(e) => handleClickProduts(e, items, key)}>
               <Image
-                src={formCroppedUrlString(gcpUrl, bucketName, items?.image?.Url, items?.image?.ext).src}
+                src={
+                  formCroppedUrlString(gcpUrl, bucketName, items?.image?.Url, items?.image?.ext).src
+                }
                 alt='Testimonial'
                 width={83}
                 height={83}

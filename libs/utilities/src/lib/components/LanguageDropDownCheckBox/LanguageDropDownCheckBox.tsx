@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -8,7 +9,6 @@ import Checkbox from "@mui/material/Checkbox";
 import { useEffect } from "react";
 import { LanguageList } from "../../utils/helperConstants";
 import { getCurrentLang } from "../../utils/helperFns";
-import Image from "next/image";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -35,6 +35,7 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
     );
   };
   useEffect(() => {
+    // eslint-disable-next-line array-callback-return
     LanguageList().map((lang: any) => {
       if (getCurrentLang() === lang.id) {
         setLanguage(typeof lang.value === "string" ? lang.value.split(",") : lang.value);

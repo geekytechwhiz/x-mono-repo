@@ -107,8 +107,7 @@ const BlogTilesCard2 = ({ content, secondaryArgs, analytics, cardIndex }: BlogTi
                 },
               }}
               // image={imageUrl ? imageUrl : ""}> #TODO: Fix this
-              image={ ""}>
-
+              image={""}>
               <Box className='cardOverlay1'>
                 <Box className='contentIcons1'>
                   <Image

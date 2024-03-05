@@ -12,6 +12,7 @@ import {
   MediaHandle,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 //import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -374,6 +375,30 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/create/user-groups",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
+        <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/update/user-groups",
+    element: (
+      <ProtectedRoute name='user-groups' subCategory='' category='community'>
+        <CreateUserGroup />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/community/user-groups",
+    element: (
+      <ProtectedRoute name='quiz' subCategory='' category='community'>
+        <UserGroupListing />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/user-management/user-list",
   //   element: (
@@ -382,4 +407,17 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
+  {
+    path: "/content/create/article",
+    element: (
+      <ProtectedRoute
+        name='quiz'
+        subCategory='quiz'
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
 ];

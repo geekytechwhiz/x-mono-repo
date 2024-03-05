@@ -303,7 +303,7 @@ const Header = ({
                                         src={submenu.menuicon}
                                         alt='menuicon'
                                         width={24}
-                                        height= {24}
+                                        height={24}
                                       />
                                     </Avatar>
                                   </ListItemAvatar>

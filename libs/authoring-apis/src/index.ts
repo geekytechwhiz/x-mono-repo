@@ -27,26 +27,27 @@ import {
   rescheduleSocialShare,
   scheduleSocialShare,
 } from "./lib/services/socialShare/socialShare.api";
+import userGroupsApi from "./lib/services/userGroups/userGroups.api";
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
 import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
 
 export * from "./lib/context/actionContext/ActionContext.types";
+export * from "./lib/graphQL/mutations/spaceMutations";
 export * from "./lib/graphQL/queries/pageQueries";
 export * from "./lib/graphQL/queries/prelemQueries";
 export * from "./lib/graphQL/queries/tagQueries";
 export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
+export * from "./lib/hooks/usePoll/usePollApi";
+export * from "./lib/services/SiteCreation/SiteCreation.api";
 export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";
 export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
-export * from "./lib/utils/constants";
-export * from "./lib/hooks";
 export * from "./lib/services/space/space.api";
-export * from "./lib/graphQL/mutations/spaceMutations";
-export * from "./lib/services/SiteCreation/SiteCreation.api";
+export * from "./lib/utils/constants";
 
 export {
   ArticleMutations,
@@ -79,6 +80,7 @@ export {
   useDashboardData,
   useDialog,
   usePage,
+  userGroupsApi,
   userManagementAPI,
   workflowApi,
 };

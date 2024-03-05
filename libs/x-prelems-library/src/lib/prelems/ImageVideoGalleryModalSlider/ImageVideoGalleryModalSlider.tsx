@@ -4,7 +4,11 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Slider from "react-slick";
 import "../../Style.css";
-import { SecondaryArgs, getFormattedImageUrl, getFormattedImageUrlString } from "@platformx/utilities";
+import {
+  SecondaryArgs,
+  getFormattedImageUrl,
+  getFormattedImageUrlString,
+} from "@platformx/utilities";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 import Image from "next/image";
 

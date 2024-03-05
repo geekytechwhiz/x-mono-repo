@@ -4,9 +4,10 @@ import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
 import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
+import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
-import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { LanguageList, MESSAGE_API_ERROR, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
 import { fallBackImage } from "../assets/images";
@@ -237,9 +238,9 @@ export const formCroppedUrlInCrop = (url = "", ext = "") => {
   }
   return FallBackImage;
 };
-type CroppedURL={
-src:string
-}
+type CroppedURL = {
+  src: string;
+};
 export const formCroppedUrlString = (
   gcpUrl = "",
   bucketName = "",
@@ -247,13 +248,15 @@ export const formCroppedUrlString = (
   ext = "",
   contentType = "",
   bannerType = "",
-) :CroppedURL => {
+): CroppedURL => {
   if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
     return { src: url };
   } else {
     if (url && ext) {
       if (bannerType !== "") {
-        return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`) };
+        return {
+          src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`),
+        };
       } else {
         return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}.${ext}`) };
       }
@@ -294,7 +297,7 @@ export const formCroppedUrl = (
 //   return FallBackImage as string; // Assuming FallBackImage is a string URL
 // };
 export const checkImageUrlPathString: (imgUrl: string) => string = (imgUrl) => {
-  const imagePath:string="";
+  const imagePath: string = "";
   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
     return imgUrl; // Return the URL as a string
   }
@@ -947,7 +950,10 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
     return FallBackImage;
   }
 };
-export const getImage = (content: Content, secondaryArgs: SecondaryArgs): { imageUrl: string; color: string | null } => {
+export const getImage = (
+  content: Content,
+  secondaryArgs: SecondaryArgs,
+): { imageUrl: string; color: string | null } => {
   const {
     Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
@@ -959,7 +965,7 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs): { imag
     color: null,
   };
   if (color === "") {
-    const urlOfImage:string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
+    const urlOfImage: string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
     const httpRegex = /https?:\/\//g;
     let httpCount = 0;
     if (typeof urlOfImage === "string") {
@@ -1162,3 +1168,32 @@ export const getSecondaryArgs = (langCode, query, hostName) => {
     },
   };
 };
+export async function getData(url = "") {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    ShowToastError(MESSAGE_API_ERROR);
+    throw error;
+  }
+}
+export async function postData(url = "", data = {}, site_host = "") {
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(site_host && { site_host: site_host }),
+      },
+    });
+
+    return response;
+  } catch (error: any) {
+    ShowToastError(MESSAGE_API_ERROR);
+    return error?.response?.data;
+  }
+}

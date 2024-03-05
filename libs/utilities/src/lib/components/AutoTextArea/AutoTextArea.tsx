@@ -1,8 +1,8 @@
-import { TextareaAutosize, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { convertToLowerCase } from '../../utils/helperFns';
+import { TextareaAutosize, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { convertToLowerCase } from "../../utils/helperFns";
 
 interface AutoTextAreaProps {
   name?: any;
@@ -14,6 +14,8 @@ interface AutoTextAreaProps {
   isDisabled?: any;
   minRows?: number;
   maxRows?: number;
+  error?: boolean;
+  helperText?: string;
 }
 const AutoTextArea = ({
   name,
@@ -24,6 +26,8 @@ const AutoTextArea = ({
   handleOnBlur,
   isDisabled,
   minRows = 6,
+  error,
+  helperText,
 }: AutoTextAreaProps) => {
   const { t } = useTranslation();
   const inlineCss = `
@@ -50,7 +54,7 @@ const AutoTextArea = ({
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
 
-  const handleLength = (valueData = '') => {
+  const handleLength = (valueData = "") => {
     if (maxCharLength) {
       const lengthOfChar = convertToLowerCase(valueData).length;
       const rest = valueData ? maxCharLength - lengthOfChar : 0;
@@ -68,7 +72,7 @@ const AutoTextArea = ({
     if (handleChange) {
       handleChange(event);
     }
-    const { target: { value = '' } = {} } = event;
+    const { target: { value = "" } = {} } = event;
     handleLength(value);
   };
 
@@ -93,7 +97,7 @@ const AutoTextArea = ({
       <style>{inlineCss}</style>
       <TextareaAutosize
         disabled={isDisabled}
-        aria-label="minimum height"
+        aria-label='minimum height'
         minRows={minRows}
         placeholder={placeHolder}
         name={name}
@@ -103,28 +107,32 @@ const AutoTextArea = ({
         onBlur={(e) => handleOnBlur && handleOnBlur(e)}
         maxLength={maxCharLength}
         style={{
-          width: '100%',
-          resize: 'none',
-          padding: '12px',
-          border: 'solid 1px #ced3d9',
-          borderRadius: '5px',
-          backgroundColor: '#fff',
-          fontFamily: 'Inter',
+          width: "100%",
+          resize: "none",
+          padding: "12px",
+          border: error ? "1px solid red" : "solid 1px #ced3d9",
+          borderRadius: "5px",
+          backgroundColor: "#fff",
+          fontFamily: "Inter",
         }}
       />
-      {maxCharLength ? (
+      {error && (
         <Typography
-          variant="h7regular"
-          sx={{ color: '#5c6574', marginTop: '10px' }}
-        >
+          variant='h7regular'
+          sx={{
+            color: "#B71C1C",
+          }}>
+          {helperText}
+        </Typography>
+      )}
+      {maxCharLength ? (
+        <Typography variant='h7regular' sx={{ color: "#5c6574", marginTop: "10px" }}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
+          ) : restOfLength ? (
+            `${restOfLength} ${t("characters")} ${t("left")} `
           ) : (
-            <>
-              {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
-            </>
+            `${maxCharLength} ${t("characters")} ${t("max")}`
           )}
         </Typography>
       ) : null}

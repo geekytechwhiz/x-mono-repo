@@ -1,5 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { Analytics, AuthoringHelper, SecondaryArgs, formCroppedUrlString } from "@platformx/utilities";
+import {
+  Analytics,
+  AuthoringHelper,
+  SecondaryArgs,
+  formCroppedUrlString,
+} from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import ImageRender from "../../components/ImageRender";
@@ -23,7 +28,7 @@ const Banner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner1
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-      ).src;
+    ).src;
 
     try {
       Banner1StructureData = {

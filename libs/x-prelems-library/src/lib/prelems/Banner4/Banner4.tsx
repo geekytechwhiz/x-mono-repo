@@ -5,7 +5,7 @@ import {
   DottedRound,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString
+  formCroppedUrlString,
 } from "@platformx/utilities";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
@@ -49,7 +49,7 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
     secondaryArgs?.bucketName,
     original_image_relative_path,
     ext,
-    ).src;
+  ).src;
 
   const defaultStructureData = () => {
     let Banner4StructureData;
@@ -107,10 +107,22 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
       className={`${classes.banner4Wrapper} ${globalClasses.prelemType3} prelem prelemType3 banner4 banner4Bgwrapper`}>
       <Box className={`prelem-pb prelemBox`} ref={ref}>
         <Box className='dottedRound1'>
-          <Image alt='BAnner4img1' src={DottedRound} height={159} width={234} className='fullWidth' />
+          <Image
+            alt='BAnner4img1'
+            src={DottedRound}
+            height={159}
+            width={234}
+            className='fullWidth'
+          />
         </Box>
         <Box className='dottedRound2'>
-          <Image alt='BAnner4img2' src={DottedRound} height={159} width={234} className='fullWidth' />
+          <Image
+            alt='BAnner4img2'
+            src={DottedRound}
+            height={159}
+            width={234}
+            className='fullWidth'
+          />
         </Box>
         <Container className={authoringHelper?.isEditPage ? "grid_full_width" : "grid_container"}>
           <Grid container ref={ref} className='container'>
