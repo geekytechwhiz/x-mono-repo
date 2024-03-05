@@ -705,6 +705,25 @@ export const getCurrentLang = () => {
   return lang;
 };
 
+export const onBackButtonEvent = (e, unsavedChanges, setDialogOpen) => {
+  e.preventDefault();
+  // eslint-disable-next-line no-restricted-globals
+  window.history.pushState(null, "", window.location.pathname + location?.search);
+  if (unsavedChanges) {
+    setDialogOpen(true);
+  } else {
+    return;
+  }
+};
+
+export const unloadCallback = (event, unsavedChanges) => {
+  event.preventDefault();
+  if (unsavedChanges) {
+    event.returnValue = "";
+    return "";
+  }
+};
+
 export const getSelectedSite = () => {
   const splitPath = window?.location.pathname.split("/");
   const [, x] = splitPath;

@@ -107,7 +107,7 @@ const ImageCrop = (props: any = {}) => {
         },
       ],
     };
-    await postRequest("api/v1/assets/image/manual-crop", payload, handleCallback);
+    await postRequest("api/v1/assets/image/manual-crop", payload, handleCallback, "");
   };
 
   // const ImageBox = styled("div")({
