@@ -14,6 +14,7 @@ import { XTags } from "./SchemaComponents";
 import SubmitButton from "./SchemaComponents/SubmitButton/SubmitButton";
 import SkeltonLoader from "./SkeltonLoader/SkeltonLoader";
 import Timer from "./Timer/Timer";
+import XImage from "./XImage/XImage";
 import { XToolTip } from "./XToolTip/XToolTip";
 
 export * from "./Card/constants";
@@ -38,6 +39,7 @@ export {
   Timer,
   ToolTipMessage,
   XCheckbox,
+  XImage,
   XTags,
   XToolTip,
 };
