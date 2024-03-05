@@ -66,6 +66,8 @@ import {
   onBackButtonEvent,
   trimString,
   unloadCallback,
+  getCurrentLang,
+  getFormattedImageUrl,
 } from "./lib/utils/helperFns";
 // import { LanguageList } from "./lib/utils/helperConstants";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
@@ -102,7 +104,6 @@ import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemIm
 import useUserSession from "./lib/hooks/useUserSession/useUserSession";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
-import { getCurrentLang, getFormattedImageUrl } from "./lib/utils/helperFns";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
