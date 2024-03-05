@@ -3,7 +3,7 @@
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { Imageasset, video, Morevarwhite, PlateformXDialog } from "@platformx/utilities";
+import { Imageasset, video, Morevarwhite, PlateformXDialog, XImage } from "@platformx/utilities";
 // import { dateFormat } from "../../utils/helperFunctions";
 import AssetCardMenu from "../components/CardMenu";
 import { useImagesStyle } from "./Images.style";
