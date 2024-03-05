@@ -101,17 +101,18 @@ export const AssetListing = () => {
     }
   };
 
-  const deleteAssets = async () => {
-    // try {
-    //   const data = await deleteAsset({
-    //     uuid: assetId,
-    //   });
-    //   showToastSuccess(data.asset?.message);
-    // } catch (error) {
-    //   showToastError(t("api_error_toast"));
-    // } finally {
-    //   setRefresh(true);
-    // }
+  const deleteImages = async (communityId) => {
+    try {
+      const data = await assetsApi.deleteImages({
+        uuid: communityId,
+      });
+
+      ShowToastSuccess(data.community?.message);
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    } finally {
+      setRefresh(true);
+    }
   };
 
   useEffect(() => {
@@ -183,7 +184,7 @@ export const AssetListing = () => {
           {assetLoading && <FolderSkelaton size={[1, 2, 3, 4]} />}
           {collectionItem.collectionItem?.length > 0 &&
             collectionItem.collectionItem?.map((data) => (
-              <ImageCard data={data} key={data.uuid} deleteAsset={deleteAssets} />
+              <ImageCard data={data} key={data.uuid} deleteAsset={deleteImages} />
             ))}
         </InfiniteScroll>
       </Grid>

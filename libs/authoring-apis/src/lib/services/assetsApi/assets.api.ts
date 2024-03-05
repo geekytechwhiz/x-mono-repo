@@ -9,6 +9,7 @@ import {
   GET_FACET,
   FETCH_COLLECTION_ITEM,
   DELETE_COMMUNITY,
+  DELETE_ASSET,
 } from "../../graphQL/queries/assetQueries";
 import { ApolloError } from "@apollo/client";
 
@@ -44,6 +45,18 @@ const assetsApi = {
     try {
       const { data } = await graphqlInstance.mutate({
         mutation: DELETE_COMMUNITY,
+        variables: input,
+      });
+      return data;
+    } catch (err: any) {
+      console.log(err);
+      throw err;
+    }
+  },
+  deleteImages: async <T>(input: T): Promise<any> => {
+    try {
+      const { data } = await graphqlInstance.mutate({
+        mutation: DELETE_ASSET,
         variables: input,
       });
       return data;
