@@ -16,6 +16,7 @@ import { AddSite, SiteListing } from "@platformx/sites";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import { TagListing } from "../../../../../libs/site-setting/src";
 
 export const routes: RouteConfig[] = [
   {
@@ -298,6 +299,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
         <FeatureFlagSetting />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/tags",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <TagListing />
       </ProtectedRoute>
     ),
   },

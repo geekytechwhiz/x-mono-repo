@@ -10,6 +10,7 @@ import {
   FETCH_HEADER_SETTING,
   FETCH_MEDIA_HANDLE,
   FETCH_MULTISITE_LISTING,
+  FETCH_TAG_LISTING,
   FETCH_USER_SITE,
 } from "../../graphQL/queries/siteSettingQueries";
 import {
@@ -330,5 +331,18 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
     return {};
   } catch (error) {
     return {};
+  }
+};
+
+export const fetchTagList = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_TAG_LISTING,
+      variables: input,
+    });
+    return data;
+  } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
   }
 };

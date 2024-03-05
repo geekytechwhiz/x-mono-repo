@@ -280,6 +280,15 @@ export const MenuData = [
         category: "SiteSetting",
         subCategory: "GlobalSetting",
       },
+      {
+        MenuName: "Tags Categories",
+        // Icon: TagsmenuIcoon,
+        Icon: HeaderMenuUpdated,
+        url: "/site-setting/tags",
+        id: "tags_categories",
+        category: "SiteSetting",
+        subCategory: "GlobalSetting",
+      },
     ],
   },
   {

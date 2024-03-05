@@ -7,3 +7,4 @@ export { HeaderSetting } from "./lib/pages/HeaderSetting/HeaderSetting";
 export { FooterSetting } from "./lib/pages/FooterSetting/FooterSetting";
 export { CookieSetting } from "./lib/pages/CookieSetting/CookieSetting";
 export { CookieTextArea };
+export { TagListing } from "./lib/pages/TagListing/TagListing";
