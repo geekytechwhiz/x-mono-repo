@@ -11,6 +11,7 @@ import ToolTipMessage from "./MarkFeatured/ToolTipMessage";
 import { NoContentFound } from "./NoContentFound/NoContentFound";
 import ReportGraph from "./ReportGraph/ReportGraph";
 import { XTags } from "./SchemaComponents";
+import ContentSeoStructureData from "./ContentSeoStructureData";
 import SubmitButton from "./SchemaComponents/SubmitButton/SubmitButton";
 import SkeltonLoader from "./SkeltonLoader/SkeltonLoader";
 import Timer from "./Timer/Timer";
@@ -36,6 +37,7 @@ export {
   ReportGraph,
   SkeltonLoader,
   SubmitButton,
+  ContentSeoStructureData,
   Timer,
   ToolTipMessage,
   XCheckbox,

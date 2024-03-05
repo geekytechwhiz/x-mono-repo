@@ -13,18 +13,18 @@ import Image from "next/image";
 export interface ImageProps {
   state: string;
   isImg: boolean;
-  onUploadClick?: any;
+  onUploadClick: any;
   backgroundColor: string;
-  handleColorPallete?: any;
-  handleRefresh?: any;
+  handleColorPallete: any;
+  handleRefresh: any;
   label: string;
-  operationType?: string;
-  content?: any;
-  updateField?: any;
-  originalImage?: any;
-  publishedImages?: any;
-  isShowCrop?: boolean;
-  isAssetAccess?: boolean;
+  operationType: string;
+  content: any;
+  updateField: any;
+  originalImage: any;
+  publishedImages: any;
+  isShowCrop: boolean;
+  isAssetAccess: boolean;
 }
 
 export const AddImageBackgroundColor = ({
@@ -35,11 +35,11 @@ export const AddImageBackgroundColor = ({
   handleColorPallete,
   handleRefresh,
   label,
-  operationType,
-  content,
-  updateField,
-  originalImage,
-  publishedImages,
+  // operationType,
+  // content,
+  // updateField,
+  // originalImage,
+  // publishedImages,
   isShowCrop = false,
   isAssetAccess = true,
 }: ImageProps) => {
@@ -160,6 +160,7 @@ export const AddImageBackgroundColor = ({
             {colorCode.map((val, index) => {
               return (
                 <Box
+                  // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   onClick={() => handleColorPallete(val)}
                   className={classes.colorBox}
