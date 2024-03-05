@@ -1283,7 +1283,7 @@ export const CreatePoll = (): JSX.Element => {
     }
     const timeOutId = setTimeout(() => {
       const container = document.getElementById("scrollableDiv");
-      const active = icons.find((i) => isInViewport(i.id, false));
+      const active = icons.find((i) => isInViewport(i.id));
       if (active && active.tooltip !== parentToolTip) {
         setParentToolTip(active.tooltip);
       }
@@ -1370,13 +1370,13 @@ export const CreatePoll = (): JSX.Element => {
       window.history.pushState(null, "", window.location.pathname + location?.search);
       window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
       window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning),
       );
     }
     return () => {
       window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
       window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning),
       );
     };
   }, [unsavedChanges.current]);
