@@ -22,7 +22,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { CATEGORY_CONTENT, ContentType, DRAFT, PUBLISHED } from "../../utils/Constants";
+import { CATEGORY_CONTENT, DRAFT, PUBLISHED } from "../../utils/Constants";
 import { onBackButtonEvent, unloadCallback } from "../../utils/Helper";
 import { useStyles } from "./CreateArticle.styles";
 import {
@@ -478,7 +478,7 @@ export const CreateArticle = () => {
               description,
               path: detailsRes.authoring_createContent?.path,
               workflow_status: workflowKeys.draft,
-              tag_name: capitalizeFirstLetter(ContentType.Article),
+              tag_name: "Article",
               last_modifiedBy: createdBy,
             };
             if (isWorkflow) {
@@ -660,7 +660,7 @@ export const CreateArticle = () => {
         bitstreamId: image.bitStreamId,
         visibility: "public",
       };
-      await postRequest("api/v1/assets/image/no-crop", payload, handleCallback);
+      await postRequest("api/v1/assets/image/no-crop", payload, handleCallback, selectedImage);
     } else {
       setSelectedImage(image);
       setContent({
@@ -731,7 +731,7 @@ export const CreateArticle = () => {
         previewButton={previewButton}
         toolTipText={t("preview_tooltip")}
         category={CATEGORY_CONTENT}
-        subCategory={ContentType.Article}
+        subCategory={"article"}
         createComment={createComment}
         workflow={workflow}
         timerState={timerState}
@@ -787,7 +787,7 @@ export const CreateArticle = () => {
         count={count}
         imageCropHandle={imageCropHandle}
         category={CATEGORY_CONTENT}
-        subCategory={ContentType.Article}
+        subCategory={"article"}
         workflow={workflow}
         handleClickOpen={handleClickOpen}
         onSave={onSave}

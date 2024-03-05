@@ -90,7 +90,7 @@ const ArticleImageRender = (props: any = {}) => {
       bitstreamId: bitStreamId,
       visibility: "public",
     };
-    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack);
+    await postRequest("api/v1/assets/image/auto-crop", payload, autoCropCallBack, "");
   };
 
   const handleEdit = () => {
