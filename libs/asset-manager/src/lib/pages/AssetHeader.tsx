@@ -65,7 +65,7 @@ export function AssetHeader({ handleShow }) {
           </Box>
           <Box className={classes.deletenewicon}>
             <Box>
-              <img src={DeleteIcon} alt='Filter Icon' width='23' height='23' />
+              <img src={DeleteIcon} alt='Filter Icon' width='24' height='24' />
             </Box>
           </Box>
           <Button onClick={handlebtnClick} variant='primaryButton'>
