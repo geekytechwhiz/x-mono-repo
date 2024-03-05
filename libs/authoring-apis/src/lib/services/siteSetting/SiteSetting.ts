@@ -339,6 +339,7 @@ export const fetchTagList = async <T>(input: T): Promise<ApiResponse<T>> => {
     const { data } = await graphqlInstance.query({
       query: FETCH_TAG_LISTING,
       variables: input,
+      fetchPolicy: "cache-first",
     });
     return data;
   } catch (err: any) {

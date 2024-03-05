@@ -209,7 +209,7 @@ export const TagListing = () => {
         title='Tags Categories'
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
-        handleAddNew={() => navigate("/site-setting/manage-tags")}
+        handleAddNew={() => navigate("/site-setting/create-tags")}
         animationState={refreshState}
         handleRefresh={() => {}}
       />
