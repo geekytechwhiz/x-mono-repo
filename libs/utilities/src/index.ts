@@ -67,7 +67,6 @@ import {
   trimString,
   unloadCallback,
 } from "./lib/utils/helperFns";
-import i18next from "./lib/utils/i18next";
 // import { LanguageList } from "./lib/utils/helperConstants";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
 import { default as CommonPlateformXDialog } from "./lib/components/Modal";
@@ -107,6 +106,7 @@ import { getCurrentLang, getFormattedImageUrl } from "./lib/utils/helperFns";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
+import i18next from "./lib/utils/i18next";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
