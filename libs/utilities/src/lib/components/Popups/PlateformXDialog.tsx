@@ -5,7 +5,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DeleteIcon from "../../assets/svg/errorPopupIcon.svg";
 import DialogCloseIcon from "../../assets/svg/icon/DialogCloseIcon.svg";
-import Image from "next/image";
 
 export default function DeletePopup({
   isDialogOpen,
@@ -63,7 +62,7 @@ export default function DeletePopup({
           color='inherit'
           onClick={closeButtonHandle}
           aria-label='close'>
-          <Image src={DialogCloseIcon} alt='img' />
+          <img src={DialogCloseIcon} alt='img' />
         </IconButton>
         <Box
           sx={{
@@ -72,7 +71,7 @@ export default function DeletePopup({
             margin: { xs: 0, md: "71px 0 4px" },
             height: "120px",
           }}>
-          <Image src={DeleteIcon} alt='img' />
+          <img src={DeleteIcon} alt='img' />
         </Box>
         {title ? (
           <DialogTitle

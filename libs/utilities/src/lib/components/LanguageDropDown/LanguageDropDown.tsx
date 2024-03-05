@@ -1,6 +1,6 @@
 import { Check } from "@mui/icons-material";
 import { Box, Fade, ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
-import Image from "next/image";
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import German from "../../assets/images/de_flag.png";
@@ -39,7 +39,7 @@ const LanguageDropDown = () => {
 
   return (
     <Box className={classes.languageDropdownmenuWrapper}>
-      <Image
+      <img
         alt='language'
         src={
           language === "en"
@@ -74,7 +74,7 @@ const LanguageDropDown = () => {
               onClick={() => handleLanguageChange(l.id)}>
               <Box className={classes.dropdownmenuItemImgWrap}>
                 <Box className={classes.dropdownmenuItemImgWrap1}>
-                  <Image
+                  <img
                     alt='language'
                     className={classes.dropdownmenuItemImg}
                     src={

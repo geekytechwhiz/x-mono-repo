@@ -7,12 +7,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
+import DialogCloseIcon from "../../assets/svg/DialogCloseIcon.svg";
 import Success from "../../assets/svg/successIcon.svg";
 import WarningIcon from "../../assets/svg/warningIcon.svg";
-import DialogCloseIcon from "../../assets/svg/DialogCloseIcon.svg";
 import FormatSubtitle from "./FormatSubtitle";
 import { DialogList } from "./uitls/dialogTypes";
-import Image from "next/image";
 
 export default function PlateformXDialog({
   disableConfirmButton = false,
@@ -104,7 +103,7 @@ export default function PlateformXDialog({
           color='inherit'
           onClick={modalType === "unsavedChanges" ? crossButtonHandle : closeButtonHandle}
           aria-label='close'>
-          <Image src={DialogCloseIcon} alt='Dialog Close Icon' />
+          <img src={DialogCloseIcon} alt='Dialog Close Icon' />
         </IconButton>
         <Box
           sx={{
@@ -113,7 +112,7 @@ export default function PlateformXDialog({
             margin: { xs: 0, md: "71px 0 4px" },
             height: "120px",
           }}>
-          <Image
+          <img
             src={modalType === "publish" || modalType === "draft" ? Success : WarningIcon}
             alt={modalType === "publish" || modalType === "draft" ? "Success Icon" : "Warning Icon"}
           />

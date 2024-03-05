@@ -1,5 +1,4 @@
 /* eslint-disable */
-import AddIcon from "@mui/icons-material/Add";
 import ListIcon from "@mui/icons-material/List";
 import { Box, Button, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
@@ -7,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "../../assets/icons/righttick.svg";
-import Image from "next/image";
+
 export default function PlateformXDialogSuccess({
   isDialogOpen,
   title,
@@ -74,7 +73,7 @@ export default function PlateformXDialogSuccess({
                 height: { xs: "90px", md: "100px" },
                 margin: "auto !important",
               }}>
-              <Image alt='' src={DeleteIcon} style={{ width: "100%" }} />
+              <img alt='' src={DeleteIcon} style={{ width: "100%" }} />
             </Box>
           </Box>
           {title ? (
