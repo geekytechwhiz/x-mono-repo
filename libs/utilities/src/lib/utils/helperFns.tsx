@@ -1,12 +1,18 @@
 import axios from "axios";
 import { format } from "date-fns";
+import getConfig from "next/config";
 import FallBackImage from "../assets/images/fallBackImage.png";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
+import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
-import { LanguageList, countries, defaultImages } from "./helperConstants";
+import { LanguageList, MESSAGE_API_ERROR, countries, defaultImages } from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
+import { fallBackImage } from "../assets/images";
+
+const { publicRuntimeConfig = {} } = getConfig() || {};
 
 const siteLevelSchema = {
   siteName: "X",
@@ -232,6 +238,32 @@ export const formCroppedUrlInCrop = (url = "", ext = "") => {
   }
   return FallBackImage;
 };
+type CroppedURL = {
+  src: string;
+};
+export const formCroppedUrlString = (
+  gcpUrl = "",
+  bucketName = "",
+  url = "",
+  ext = "",
+  contentType = "",
+  bannerType = "",
+): CroppedURL => {
+  if (CONTENT_TYPE_WITH_ABSOLUTEURL.includes(contentType)) {
+    return { src: url };
+  } else {
+    if (url && ext) {
+      if (bannerType !== "") {
+        return {
+          src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`),
+        };
+      } else {
+        return { src: checkImageUrlPathString(`${gcpUrl}/${bucketName}/${url}.${ext}`) };
+      }
+    }
+  }
+  return { src: "" }; // Return an empty string URL if conditions are not met
+};
 
 export const formCroppedUrl = (
   gcpUrl = "",
@@ -257,6 +289,19 @@ export const formCroppedUrl = (
   // else if (bannerType !== "")
   //   return `${gcpUrl}/${bucketName}/${url}-${bannerType}.${ext}`;
   // else return `${gcpUrl}/${bucketName}/${url}.${ext}`;
+};
+// export const checkImageUrlPathString: string = (imgUrl) => {
+//   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
+//     return imgUrl; // Return the URL as a string
+//   }
+//   return FallBackImage as string; // Assuming FallBackImage is a string URL
+// };
+export const checkImageUrlPathString: (imgUrl: string) => string = (imgUrl) => {
+  const imagePath: string = "";
+  if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
+    return imgUrl; // Return the URL as a string
+  }
+  return imagePath; // Assuming FallBackImage is a string URL
 };
 
 // export const relativeImageURL = (
@@ -674,13 +719,14 @@ export const getSelectedSite = () => {
 
 export const getSelectedRoute = () => {
   let site = "";
+  const selectedSite = localStorage.getItem("selectedSite");
   const split = window?.location.pathname.split("/");
   const [, x] = split;
   site = x;
   if (site === "en" || site === "fr" || site === "de") {
     return "";
   } else {
-    return site;
+    return selectedSite ?? site;
   }
 };
 
@@ -861,6 +907,18 @@ export const getFormattedImageUrl = (path: string, ext: string, secondaryArgs: a
   }
   return FallBackImage;
 };
+export const getFormattedImageUrlString = (path: string, ext: string, secondaryArgs: any) => {
+  // const imgPath:string=FallBackImage; #TODO Need to check
+  if (path && ext) {
+    const url = `${secondaryArgs?.gcpUrl}/${secondaryArgs?.bucketName}/${path}.${ext}`;
+    if (url.match(/^https?:\/\/.+\/.+$/)) {
+      return { src: url };
+    }
+    return { src: "" };
+  }
+  return { src: "" };
+};
+
 export const getRandomNumber = (answerArray: any, min: number, max: number) => {
   if (answerArray?.length < max) {
     const existingNumbers = answerArray.map((arr: any) => arr.id);
@@ -892,21 +950,28 @@ export const getFallBackImage = (content: Content, secondaryArgs: SecondaryArgs)
     return FallBackImage;
   }
 };
-export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
+export const getImage = (
+  content: Content,
+  secondaryArgs: SecondaryArgs,
+): { imageUrl: string; color: string | null } => {
   const {
     Thumbnail: { Url: url = "", ext = "" } = {},
     ContentType: contentType = "",
     background_content: { Color: color = "" } = {},
   } = nullToObject(content);
   const { gcpUrl = "", bucketName = "" } = nullToObject(secondaryArgs);
-  const imageColorObject: { color: string | null; imageUrl: string | null } = {
+  const imageColorObject: { imageUrl: string; color: string | null } = {
+    imageUrl: "",
     color: null,
-    imageUrl: null,
   };
   if (color === "") {
-    const urlOfImage = formCroppedUrl(gcpUrl, bucketName, url, ext, contentType) || "";
+    const urlOfImage: string = formCroppedUrlString(gcpUrl, bucketName, url, ext, contentType).src;
     const httpRegex = /https?:\/\//g;
-    const httpCount = (urlOfImage.match(httpRegex) || []).length;
+    let httpCount = 0;
+    if (typeof urlOfImage === "string") {
+      const matches = urlOfImage.match(httpRegex);
+      httpCount = matches ? matches.length : 0;
+    }
     if (httpCount === 1) {
       return {
         ...imageColorObject,
@@ -915,13 +980,14 @@ export const getImage = (content: Content, secondaryArgs: SecondaryArgs) => {
     } else {
       return {
         ...imageColorObject,
-        imageUrl: getFallBackImage(content, secondaryArgs),
+        imageUrl: getFallBackImage(content, secondaryArgs).toString(),
       };
     }
   } else {
     return { ...imageColorObject, color };
   }
 };
+
 export const getCommunityFallBackImageBasedOnContentType = (
   contentType: string,
   secondaryArgs: SecondaryArgs,
@@ -989,3 +1055,145 @@ export const getCommunityFallBackImageBasedOnContentType = (
 export const createIconUrl = (secondaryArgs: any, imgUrl: string) => {
   return `${secondaryArgs?.gcpUrl}${imgUrl}`;
 };
+
+export const formRelativeURL = (gcpUrl: any, bucketName: any, img: any) => {
+  return gcpUrl + "/" + bucketName + "/" + img;
+};
+
+export const createSliderArray = (originalArray: any, itemsPerRow: any) => {
+  const windowWidth = window.innerWidth;
+  let itemsPerSlide;
+  if (windowWidth >= 1280) {
+    itemsPerSlide = itemsPerRow.lg;
+  } else if (windowWidth >= 768) {
+    itemsPerSlide = itemsPerRow.md;
+  } else if (windowWidth >= 500) {
+    itemsPerSlide = itemsPerRow.sm;
+  } else {
+    itemsPerSlide = itemsPerRow.xs;
+  }
+
+  const sliderArray: object[][] = [];
+  if (originalArray && originalArray.length) {
+    for (let i = 0; i < originalArray.length; i += itemsPerSlide) {
+      sliderArray.push(originalArray.slice(i, i + itemsPerSlide));
+    }
+    return sliderArray;
+  }
+};
+export const getRelativeImageURL = (
+  gcpUrl: string,
+  bucketName: string,
+  url: string,
+  ext: string,
+) => {
+  return url && ext ? `${gcpUrl}/${bucketName}/${url}.${ext}` : FallBackImage;
+};
+export const getFlag = (code = "") => {
+  switch (code || getCurrentLang()) {
+    case "en":
+      return EN_FLAG;
+    case "fr":
+      return FR_FLAG;
+    case "de":
+      return DE_FLAG;
+    default:
+      return EN_FLAG;
+  }
+};
+export const locationApiCallService = async () => {
+  const res = await axios.get(
+    `${publicRuntimeConfig.NEXT_GEOLOCATION_API_URL}?apiKey=${publicRuntimeConfig.NEXT_GEOLOCATION_API_KEY}`,
+  );
+  const { data: locationData = {} }: any = res;
+  return locationData || {};
+};
+export const getDomainUrl = (host) => {
+  return `http://${host}/`;
+};
+
+export const sendBaseUrl = () => {
+  return process.env.NX_PUBLISH_API_URL_GENERIC;
+};
+
+export const sendBlogUrl = () => {
+  return process.env.NX_BLOGS_API;
+};
+
+export const sendBtnBaseUrl = () => {
+  return process.env.NX_PUBLISH_APP_URL;
+};
+
+export const trimmedBaseUrl = () => {
+  const { NX_PUBLISH_API_URL = "" } = process.env;
+  return NX_PUBLISH_API_URL.replace("api/v1/web/en/delivery", "");
+};
+
+export const getNextApiUrl = () => {
+  return process.env.NX_API_URL;
+};
+
+export const baseEndpointObj = (host) => {
+  return {
+    APIEndPoint: sendBaseUrl(),
+    PublishEndPoint: getDomainUrl(host),
+    buttonBaseUrl: getDomainUrl(host),
+    deliveryEndPoint: trimmedBaseUrl(),
+    usersEndPoint: getNextApiUrl(),
+    blogEndPoint: sendBlogUrl(),
+    loyaltyEndPoint: process.env.NX_LOYALTY_END_POINT,
+    loyaltyPortalEndPoint: process.env.NX_LOYALTY_PORTAL_END_POINT,
+  };
+};
+
+export const snowplowSchemaUrl = () => {
+  return {
+    pageImpressionSchema: process.env.NX_PAGE_IMPRESSIONS_SCHEMA,
+    prelemImpressionSchema: process.env.NX_SNOWPLOW_PRELEM_IMPRESSIONS,
+    clickImpressionSchema: process.env.NX_SNOWPLOW_CLICK_IMPRESSIONS,
+    userRegisterImpressionSchema: process.env.NX_SNOWPLOW_REGISTER_USER_IMPRESSIONS,
+    environment: process.env.NX_ELASTIC_APM_ENVIRONMENT,
+    gcpUrl: process.env.NX_GCP_URL,
+    bucketName: process.env.NX_BUCKET_NAME,
+  };
+};
+
+export const getSecondaryArgs = (langCode, query, hostName) => {
+  return {
+    ...snowplowSchemaUrl(),
+    baseEndpoint: {
+      language: langCode,
+      query: query,
+      ...baseEndpointObj(hostName),
+    },
+  };
+};
+export async function getData(url = "") {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    ShowToastError(MESSAGE_API_ERROR);
+    throw error;
+  }
+}
+export async function postData(url = "", data = {}, site_host = "") {
+  try {
+    const response = await axios.post(url, data, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(site_host && { site_host: site_host }),
+      },
+    });
+
+    return response;
+  } catch (error: any) {
+    ShowToastError(MESSAGE_API_ERROR);
+    return error?.response?.data;
+  }
+}

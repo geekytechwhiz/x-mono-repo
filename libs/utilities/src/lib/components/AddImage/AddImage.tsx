@@ -6,6 +6,7 @@ import ArrowUpwardIcon from "../../assets/svg/UploadThumbnail.svg";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { XImageRender } from "@platformx/x-image-render";
 // import CommonImageRender from '../Gallery/CommonImageRender';
+import Image from "next/image";
 
 interface ImageProps {
   url?: any;
@@ -78,8 +79,8 @@ const AddImage = ({
               isCrop={true}
             />
           ) : (
-            // <div>CommonImageRender</div>
-            <img
+            <Image
+              alt='image'
               style={{
                 width: "100%",
                 height: "206px",
@@ -88,7 +89,6 @@ const AddImage = ({
                 borderRadius: "15px",
               }}
               src={url}
-              alt=''
             />
           )}
           <Box
@@ -162,9 +162,9 @@ const AddImage = ({
               }}
               m={1}>
               {diffIcon ? (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               ) : (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
               )}
             </Box>
             <Box

@@ -1,10 +1,13 @@
-import { BoostContent } from './HorizontalCard.types';
-import { CommunityIcon,
+import { BoostContent } from "./HorizontalCard.types";
+import {
+  CommunityIcon,
   ReportsIcon,
   PersonalisationIcon,
   LoyalityIcon,
   EcommerceIcon,
-  AssetManagerIcon } from '@platformx/utilities';
+  AssetManagerIcon,
+} from "@platformx/utilities";
+
 const DashBoardBoostContentIcons = [
   CommunityIcon,
   ReportsIcon,

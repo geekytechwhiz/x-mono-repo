@@ -18,7 +18,7 @@ export interface PrelemBaseEndpoint {
   device?: string;
 }
 export interface Analytics {
-  pageId?: number;
+  pageId?: string;
   prelemId?: number;
   pageTitle?: string;
   prelemTitle?: string;
@@ -32,12 +32,13 @@ export interface Analytics {
 }
 
 export interface AuthoringHelper {
-  innerRef: React.Ref<HTMLDivElement>;
+  innerRef: React.RefObject<HTMLDivElement>;
   sendStructureDataToAuthoringCB: (structureData: string) => void;
   sendDefaultStructureDataForResetToAuthoringCB: (structureData: string) => void;
   openButtonEditWindowInAuthoringCB: (buttonObj?: object, e?: object) => void;
   selectedButtonNameForEditing: string;
   isEditing: boolean;
+  isAuthoring: boolean;
   buttonRef?: React.Ref<HTMLButtonElement>;
   buttonContentEditable?: boolean;
   lastSavedStructuredData?: string;
@@ -45,9 +46,9 @@ export interface AuthoringHelper {
   authoringHoverShow?: boolean;
   isModalShow?: boolean;
 }
-interface MultiSlot {
-  onToggleContentGallery?: (contentType: string, imageVideoContentGallery: boolean) => void;
-}
+// interface MultiSlot {
+//   onToggleContentGallery?: (contentType: string, imageVideoContentGallery: boolean) => void;
+// }
 export interface Content {
   Description?: string;
   Title?: string;

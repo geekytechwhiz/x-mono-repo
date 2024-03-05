@@ -54,8 +54,8 @@ export default function DamDropdown({ setAuthor, label }) {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event, label) => {
-    setAuthor(label);
+  const handleClose = (event, lbl) => {
+    setAuthor(lbl);
     setAnchorEl(null);
   };
 

@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
 import { CreateVod } from "../pages/vod/createVOD/CreateVod";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
+import { CreateArticle } from "./article/CreateArticle";
 import CreateEvent from "./event/CreateEvent";
 
 export const CreateContent = () => {
@@ -23,6 +24,10 @@ export const CreateContent = () => {
 
     case "course":
       return <CreateCourse></CreateCourse>;
+
+    case "article":
+      return <CreateArticle />;
+
     default:
       return <>DynamicContent</>;
   }

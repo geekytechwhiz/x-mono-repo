@@ -91,42 +91,54 @@ const Charts = () => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2.5} mt={0}>
       <Grid container className='chartContainer'>
         {graphLoading ? (
           <>
             <Grid item xs={12} em={6} lg={4}>
-              <Box sx={{ marginLeft: "16px" }}>
-                <SkeltonLoader maxWidth={600} maxHeight={400} />
+              <Box sx={{ marginLeft: "20px" }}>
+                <SkeltonLoader
+                  maxWidth={600}
+                  maxHeight={400}
+                  style={{ marginTop: 0, marginBottom: "30px" }}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} em={6} lg={4}>
-              <Box sx={{ marginLeft: "16px" }}>
-                <SkeltonLoader maxWidth={600} maxHeight={400} />
+              <Box sx={{ marginLeft: "20px" }}>
+                <SkeltonLoader
+                  maxWidth={600}
+                  maxHeight={400}
+                  style={{ marginTop: 0, marginBottom: "30px" }}
+                />
               </Box>
             </Grid>
             <Grid item xs={12} em={6} lg={4}>
-              <Box sx={{ marginLeft: "16px" }}>
-                <SkeltonLoader maxWidth={600} maxHeight={400} />
+              <Box sx={{ marginLeft: "20px" }}>
+                <SkeltonLoader
+                  maxWidth={600}
+                  maxHeight={400}
+                  style={{ marginTop: 0, marginBottom: "30px" }}
+                />
               </Box>
             </Grid>
           </>
         ) : (
           <>
             {chartsData?.authoring_getDashboardDetailById?.map((item: any) => {
-                return (
-                  <Grid
-                    item
-                    xs={12}
-                    md={12}
-                    em={6}
-                    xl={4}
-                    sx={{ marginBottom: "30px" }}
-                    key={item?.id}>
-                    {renderCharts(item)}
-                  </Grid>
-                );
-              })}
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  md={12}
+                  em={6}
+                  xl={4}
+                  sx={{ marginBottom: "30px" }}
+                  key={item?.id}>
+                  {renderCharts(item)}
+                </Grid>
+              );
+            })}
           </>
         )}
       </Grid>

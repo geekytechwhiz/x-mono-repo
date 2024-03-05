@@ -3,6 +3,7 @@ import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { Box, Button, Grid, Tooltip, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { RootState } from "@platformx/authoring-state";
 import {
   DefaultStateCommentIcon,
   ErrorTooltip,
@@ -14,10 +15,10 @@ import {
   enableReferBack,
   useAccess,
 } from "@platformx/utilities";
+import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { useEffect } from "react";
-import { RootState } from "@platformx/authoring-state";
-import { useStyles } from "./CreateHeader.style";
 import { useSelector } from "react-redux";
+import { useStyles } from "./CreateHeader.style";
 import { HeaderProps } from "./Header.types";
 
 export const CreateHeader = ({
@@ -39,12 +40,12 @@ export const CreateHeader = ({
   category,
   subCategory,
   workflow,
-  // setEnableWorkflowHistory,
   hasTimerState,
   lastModifiedDate,
   createComment,
   setIsFeatured,
   isFeatured,
+  setEnableWorkflowHistory,
 }: HeaderProps) => {
   const { canAccessAction } = useAccess();
   const theme = useTheme();
@@ -196,12 +197,12 @@ export const CreateHeader = ({
           )
         }
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
-        {/* {showPreview && (
-          <WorkflowHistoryIcon TODO enable workflow history
+        {showPreview && (
+          <WorkflowHistoryIcon
             enableWorkflowHistory={setEnableWorkflowHistory}
             workflow_status={workflow?.workflow_status}
           />
-        )} */}
+        )}
         <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
       </Grid>
       <Grid
@@ -258,11 +259,10 @@ export const CreateHeader = ({
         </Tooltip>
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
         {showPreview && (
-          // <WorkflowHistoryIcon TODO enable workflow history
-          //   enableWorkflowHistory={setEnableWorkflowHistory}
-          //   workflow_status={workflow?.workflow_status}
-          // />
-          <>WorkflowHistoryIcon</>
+          <WorkflowHistoryIcon
+            enableWorkflowHistory={setEnableWorkflowHistory}
+            workflow_status={workflow?.workflow_status}
+          />
         )}
         <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
       </Grid>
