@@ -98,7 +98,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
         <Grid container>
           <Grid item xs={12} sm={6} p={1}>
             <Box className='imageContentWrapper'>
-              {/* <Image alt='ImageCard' src={getImg(1)} width='654' height='460' /> */}
+              {/* <img alt='ImageCard' src={getImg(1)} width='654' height='460' /> */}
               <Box className='imageWrapper'>
                 <ImageRender
                   originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}

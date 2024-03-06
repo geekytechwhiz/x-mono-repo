@@ -2,7 +2,6 @@ import DoneIcon from "@mui/icons-material/Done";
 import { Box, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import { getCurrentLang, getFlag } from "../../helperFunction";
 import { useCustomStyle } from "./LanguageView.style";
-import Image from "next/image";
 
 interface LanguageDesktopViewProps {
   open: boolean;
@@ -41,7 +40,7 @@ const LanguageDesktopView = (props: LanguageDesktopViewProps) => {
           <MenuItem onClick={() => handleLanguageRedirect(value?.code)} key={index}>
             <ListItemIcon>
               <Box className='headerFlagIcon'>
-                <Image alt='flagnew' src={getFlag(value?.code)} width={24} height={24} />
+                <img alt='flagnew' src={getFlag(value?.code)} width={24} height={24} />
               </Box>
             </ListItemIcon>
             {value?.text}

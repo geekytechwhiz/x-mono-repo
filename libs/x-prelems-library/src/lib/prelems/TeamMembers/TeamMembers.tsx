@@ -1,8 +1,5 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
 import {
   Analytics,
   AuthoringHelper,
@@ -10,10 +7,12 @@ import {
   formCroppedUrlString,
   openPageInNewTab,
 } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./TeamMembers.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
 
 const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: TeamMembersProps) => {
   //const [contentType, setContentType] = useState("image");
@@ -151,7 +150,7 @@ const TeamMembers = ({ content, analytics, authoringHelper, secondaryArgs }: Tea
                               ? null
                               : openPageInNewTab(item?.AttributtonLink)
                           }>
-                          <Image
+                          <img
                             alt='team1'
                             className='teamMemberImg'
                             src={

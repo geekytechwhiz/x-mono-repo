@@ -1,22 +1,21 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
-import ImageRender from "../../components/ImageRender";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
-  completeButtonUrl,
-  formCroppedUrlString,
-  DottedBg,
   Analytics,
   AuthoringHelper,
+  DottedBg,
   SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./WebsiteSummaryWithSubHeading2.style";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import prelemTypes from "../../globalStyle";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./WebsiteSummaryWithSubHeading2.style";
 
 const WebsiteSummaryWithSubHeading2 = ({
   content,
@@ -156,7 +155,7 @@ const WebsiteSummaryWithSubHeading2 = ({
     return (
       <Box className='rightGridItem widthheight100'>
         <Box className='dottedBg'>
-          <Image alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
+          <img alt='picture' src={DottedBg} width='437' height='225' className='rightImage1' />
         </Box>
         <Box className='rightImageWrapper'>
           <ImageRender

@@ -13,7 +13,7 @@ import {
 } from "@platformx/utilities";
 import axios from "axios";
 import { format } from "date-fns";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import prelemTypes from "../../globalStyle";
 import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
@@ -115,12 +115,12 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
 
             {content.ContentType.toLowerCase() === "Event".toLowerCase() && (
               <Box className='IconBox'>
-                <Image alt='EventIcon' src={EventIcon} />
+                <img alt='EventIcon' src={EventIcon} />
               </Box>
             )}
             {content.ContentType.toLowerCase() === "Article".toLowerCase() && (
               <Box className='IconBox'>
-                <Image alt='ArticleIcon' src={articleIcon} />
+                <img alt='ArticleIcon' src={articleIcon} />
               </Box>
             )}
             <CardContent>
@@ -227,7 +227,7 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
               <Box className='imgboxOverlay'></Box>
             </Box>
             <Box className='IconBox'>
-              <Image alt='card11' src={pollIcon} />
+              <img alt='card11' src={pollIcon} />
             </Box>
             <CardContent>
               <Typography gutterBottom variant='h4semibold' className='cardTitle'>
@@ -267,7 +267,7 @@ const MultiSlotCard = ({ content, secondaryArgs }: MultislotCardProps) => {
               <Box className='imgboxOverlay'></Box>
             </Box>
             <Box className='IconBox'>
-              <Image alt='card12' src={quizIcon} />
+              <img alt='card12' src={quizIcon} />
             </Box>
             <CardContent>
               <Typography variant='h4semibold' className='cardTitle'>

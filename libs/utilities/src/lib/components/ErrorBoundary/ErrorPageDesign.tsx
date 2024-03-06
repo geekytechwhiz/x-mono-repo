@@ -1,8 +1,8 @@
 import React from "react";
-import Image from "next/image";
-import getConfig from "next/config";
+
 import { Box, Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import getConfig from "next/config";
 
 const ErrorPageDesign = () => {
   const { publicRuntimeConfig = {} } = getConfig() || {};
@@ -21,7 +21,7 @@ const ErrorPageDesign = () => {
             textAlign: "center",
             marginTop: { xs: "25px", md: "45px" },
           }}>
-          <Image
+          <img
             width={0}
             height={0}
             sizes='100vw'

@@ -9,19 +9,19 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import {
+  ArticleIcon,
+  createSliderArray,
+  debounce,
+  fallBackImage,
+  formRelativeURL,
+} from "@platformx/utilities";
 import { format } from "date-fns";
+
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Slider from "../Slider/Slider";
 import { useCustomStyle } from "./RecentCarousel.style";
-import {
-  formRelativeURL,
-  createSliderArray,
-  debounce,
-  fallBackImage,
-  ArticleIcon,
-} from "@platformx/utilities";
-import Image from "next/image";
 
 const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
   const platform = secondaryArgs?.platform;
@@ -72,7 +72,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [data]);
 
   const getRelativeUrl = (item: any) => {
     const { content_type, thumbnail, banner, original_image = {} } = item;
@@ -146,7 +146,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                         <PlayCircleOutlineRoundedIcon sx={{ color: "white", fontSize: "40px" }} />
                       </Box>
                     ) : (
-                      <Image
+                      <img
                         alt=''
                         src={ArticleIcon}
                         style={{
@@ -155,7 +155,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                           marginLeft: "8px",
                           width: "30px",
                           height: "30px",
-                        }}></Image>
+                        }}></img>
                     )}
                     <CardContent style={{ padding: "10px 10px 0px 10px", flexGrow: 1 }}>
                       <Typography

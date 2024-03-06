@@ -578,6 +578,7 @@
   "please_try_again": "Please try again",
   "api_error_toast": "We have not been able to complete the requested action. Please try again.",
   "api_error_ntoast": "Fields cannot be left empty!!!",
+  "api_error_asset": "Asset delte successfully",
   "deleted_toast": "has been deleted successfully",
   "prelem_deleted_toast": "Prelem has been deleted successfully",
   "published_toast": "has been published successfully",

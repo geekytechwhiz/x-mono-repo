@@ -1,10 +1,8 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { format } from "date-fns";
-import React from "react";
 import { getImage, nullToObject } from "@platformx/utilities";
-import "./ContentTypeCard.css";
+import { format } from "date-fns";
 import { getIcon } from "../Utils/helperFns";
-import Image from "next/image";
+import "./ContentTypeCard.css";
 
 const ContentTypeCard = ({
   content,
@@ -91,7 +89,7 @@ ContentTypeCardProps) => {
             paddingBottom: "6px",
             width: "fit-content",
           }}>
-          <Image alt='ContentTypeCardimg' src={getIcon(ContentType || "")} />
+          <img alt='ContentTypeCardimg' src={getIcon(ContentType || "")} />
           <Typography
             gutterBottom
             variant='h7medium'

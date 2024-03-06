@@ -6,7 +6,6 @@ import fbGray from "../../assets/images/fb-gray.png";
 import fbGreen from "../../assets/images/fb-green.png";
 import inGray from "../../assets/images/in-gray.png";
 import inGreen from "../../assets/images/in-green.png";
-import Image from "next/image";
 
 const SocialShareStep1 = ({ selectedSocial, setSelectedSocial }: any) => {
   const { t } = useTranslation();
@@ -48,7 +47,7 @@ const SocialShareStep1 = ({ selectedSocial, setSelectedSocial }: any) => {
                   paddingRight: "20px",
                 }}
                 onClick={() => handelNetworkSelect("fb")}>
-                <Image src={selectedSocial?.fb ? fbGreen : fbGray} alt='Facbook' />
+                <img src={selectedSocial?.fb ? fbGreen : fbGray} alt='Facbook' />
               </Box>
               <Box
                 sx={{
@@ -56,7 +55,7 @@ const SocialShareStep1 = ({ selectedSocial, setSelectedSocial }: any) => {
                   display: "none",
                 }}
                 onClick={() => handelNetworkSelect("in")}>
-                <Image src={selectedSocial?.in ? inGreen : inGray} alt='Linedin' />
+                <img src={selectedSocial?.in ? inGreen : inGray} alt='Linedin' />
               </Box>
             </Box>
           </Box>

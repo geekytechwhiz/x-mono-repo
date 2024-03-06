@@ -1,24 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import DOMPurify from "isomorphic-dompurify";
-import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
-import ImageRender from "../../components/ImageRender";
-import "../../Style.css";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
 import {
   Analytics,
   AuthoringHelper,
-  nullToObject,
-  nullToString,
   RedDots,
   SecondaryArgs,
+  nullToObject,
+  nullToString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./Description.style";
-import prelemTypes from "../../globalStyle";
+import DOMPurify from "isomorphic-dompurify";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import CommonDraftDescription from "../../components/CommonDraftDescription/CommonDraftDescription";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./Description.style";
 
 const Description = ({ content, analytics, authoringHelper, secondaryArgs }: DescriptionProp) => {
   const { editState = false } = nullToObject(secondaryArgs);
@@ -84,7 +83,7 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
       <Box className='rightWrapper'>
         <Box className='imgBoxColorWrapper'>
           <Box className='imgBoxWrapper widthheight100'>
-            {/* <Image alt="descriptionImage" src={getImg(1)} /> */}
+            {/* <img alt="descriptionImage" src={getImg(1)} /> */}
             <ImageRender
               originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}
               publishedImages={content?.ImageCompound?.ImageCompound_1?.published_images}
@@ -100,10 +99,10 @@ const Description = ({ content, analytics, authoringHelper, secondaryArgs }: Des
             />
           </Box>
           <Box className='dottedImgFirst'>
-            <Image alt='descriptionImage1' src={RedDots} width={140} height={63} />
+            <img alt='descriptionImage1' src={RedDots} width={140} height={63} />
           </Box>
           <Box className='rightBottomImg'>
-            {/* <Image
+            {/* <img
               alt="descriptionImage3"
               src={getImg(2)}
               width="130"

@@ -1,17 +1,16 @@
 import DoneIcon from "@mui/icons-material/Done";
 import { Box, Button, Typography } from "@mui/material";
+import { CloseIcon } from "@platformx/utilities";
 import React, { Fragment, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ExitModal from "../../components/ExitModal";
-import { CloseIcon } from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import ImageQuestion from "./ImageQuestion";
 import ManyOptionQuestion from "./ManyOptionQuestion";
 import MultiQuestion from "./MultiQuestion";
 import ProgressBar from "./ProgressBar";
 import QuizContext from "./QuizContext";
 import SingleQuestion from "./SingleQuestion";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
 
 const QuestionIndex = ({
   data,
@@ -182,7 +181,7 @@ const QuestionIndex = ({
                           padding: { xs: 0 },
                           marginRight: "7px",
                         }}>
-                        <Image src={CloseIcon} alt='Close Icon' />
+                        <img src={CloseIcon} alt='Close Icon' />
                       </Button>
                     )}
                   </Box>

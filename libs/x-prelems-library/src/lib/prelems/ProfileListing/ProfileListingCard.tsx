@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Box, CardMedia, Typography } from "@mui/material";
-import ImageVideoGalleryModalSlider from "../../components/ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import {
-  onClickCardUrlNavigate,
-  getImage,
-  SecondaryArgs,
   Analytics,
   CardBgImg,
+  SecondaryArgs,
+  getImage,
+  onClickCardUrlNavigate,
 } from "@platformx/utilities";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ImageVideoGalleryModalSlider from "../../components/ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
+import { IMPRESSIONS } from "../../components/ImpressionHooks/constants";
 import {
   createClickImpression,
   snowplowPrelemClickImpression,
 } from "../../components/ImpressionHooks/helper";
-import { IMPRESSIONS } from "../../components/ImpressionHooks/constants";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics";
-import Image from "next/image";
 
 const ProfileListingCard = ({
   content,
@@ -119,7 +118,7 @@ const ProfileListingCard = ({
         className='overlay-wrapper'>
         <Box className='cardContentBox' onClick={(e) => onClickCard(e, content?.EditorialItemPath)}>
           <Box className='bgImgPt'>
-            <Image src={CardBgImg} alt='Bg image' />
+            <img src={CardBgImg} alt='Bg image' />
           </Box>
           <Box className='imgBox'>
             <CardMedia

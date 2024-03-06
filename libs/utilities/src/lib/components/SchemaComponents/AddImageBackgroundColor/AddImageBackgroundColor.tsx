@@ -6,25 +6,24 @@ import RefreshIcon from "../../../assets/svg/Refresh.svg";
 import ArrowUpwardIcon from "../../../assets/svg/UploadThumbnail.svg";
 // import CommonImageRender from '../../pages/Gallery/CommonImageRender';
 import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
-import { useStyles } from "./AddImageBackgroundColor.style";
 import { ErrorTooltip } from "../../ErrorTooltip/ErrorTooltip";
-import Image from "next/image";
+import { useStyles } from "./AddImageBackgroundColor.style";
 
 export interface ImageProps {
   state: string;
   isImg: boolean;
-  onUploadClick?: any;
+  onUploadClick: any;
   backgroundColor: string;
-  handleColorPallete?: any;
-  handleRefresh?: any;
+  handleColorPallete: any;
+  handleRefresh: any;
   label: string;
-  operationType?: string;
-  content?: any;
-  updateField?: any;
-  originalImage?: any;
-  publishedImages?: any;
-  isShowCrop?: boolean;
-  isAssetAccess?: boolean;
+  operationType: string;
+  content: any;
+  updateField: any;
+  originalImage: any;
+  publishedImages: any;
+  isShowCrop: boolean;
+  isAssetAccess: boolean;
 }
 
 export const AddImageBackgroundColor = ({
@@ -35,11 +34,11 @@ export const AddImageBackgroundColor = ({
   handleColorPallete,
   handleRefresh,
   label,
-  operationType,
-  content,
-  updateField,
-  originalImage,
-  publishedImages,
+  // operationType,
+  // content,
+  // updateField,
+  // originalImage,
+  // publishedImages,
   isShowCrop = false,
   isAssetAccess = true,
 }: ImageProps) => {
@@ -85,7 +84,7 @@ export const AddImageBackgroundColor = ({
                 // />
                 <Typography>TODO</Typography>
               ) : (
-                <Image className={classes.imgStyle} src={state} alt='' />
+                <img className={classes.imgStyle} src={state} alt='' />
               )}
               <Box
                 className={classes.uploadImgContainer}
@@ -136,7 +135,7 @@ export const AddImageBackgroundColor = ({
               <Box></Box>
               <Box className={classes.chooseImgBoxStyle} onClick={() => onUploadClick("choose")}>
                 <Box className={classes.arrowUpIconStyle} m={1}>
-                  <Image src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                  <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
                 </Box>
                 <Box className={classes.labelStyle}>
                   <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
@@ -154,12 +153,13 @@ export const AddImageBackgroundColor = ({
             className={classes.colorPalleteStyle}>
             <Box onClick={() => onUploadClick("choose")} className={classes.iconBoxStyle}>
               {/* <Icon /> */}
-              <Image src={Icon} alt='Icon' />
+              <img src={Icon} alt='Icon' />
             </Box>
 
             {colorCode.map((val, index) => {
               return (
                 <Box
+                  // eslint-disable-next-line react/no-array-index-key
                   key={index}
                   onClick={() => handleColorPallete(val)}
                   className={classes.colorBox}
@@ -171,7 +171,7 @@ export const AddImageBackgroundColor = ({
               );
             })}
             <Box onClick={handleRefresh} className={classes.refreshIconStyle}>
-              <Image src={RefreshIcon} alt='RefreshIcon' />
+              <img src={RefreshIcon} alt='RefreshIcon' />
 
               {/* <RefreshIcon /> */}
             </Box>

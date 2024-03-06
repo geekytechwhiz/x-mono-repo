@@ -8,7 +8,7 @@ import {
   SecondaryArgs,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
@@ -187,7 +187,7 @@ const ImageVideoCarousel1 = ({
                 </Box>
               ) : (
                 <Box className='imgWrapper'>
-                  <Image
+                  <img
                     alt='carousel1'
                     src={
                       formCroppedUrlString(
@@ -206,13 +206,13 @@ const ImageVideoCarousel1 = ({
                   {loaded && (
                     <Box onClick={playVodEnable} className='videoEnable'>
                       <Box className='iconWrapper'>
-                        <Image alt='play' src={PlayIcon} onClick={playVodEnable} />
+                        <img alt='play' src={PlayIcon} onClick={playVodEnable} />
                       </Box>
                     </Box>
                   )}
                   {!loaded ? (
                     <Box className='imageWrapper1'>
-                      <Image src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
+                      <img src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
                     </Box>
                   ) : null}
                 </Box>
@@ -238,7 +238,7 @@ const ImageVideoCarousel1 = ({
                 />
                 {!loaded && (
                   <Box className='imgWrapper2'>
-                    <Image src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
+                    <img src={ProgressiveLoader} alt='Loading...' height='200' width='400' />
                   </Box>
                 )}
               </>

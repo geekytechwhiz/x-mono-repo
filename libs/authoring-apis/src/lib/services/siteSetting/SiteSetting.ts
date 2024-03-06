@@ -10,6 +10,7 @@ import {
   FETCH_HEADER_SETTING,
   FETCH_MEDIA_HANDLE,
   FETCH_MULTISITE_LISTING,
+  FETCH_TAG_LISTING,
   FETCH_USER_SITE,
 } from "../../graphQL/queries/siteSettingQueries";
 import {
@@ -299,8 +300,8 @@ export const fetchGlobalSettingData = async () => {
       page: "global-item",
     });
 
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    const imageUuid = authoring_getSitedetails?.image?.slice(-1)?.[0]?.ScopeId;
+    const videoUuid = authoring_getSitedetails?.video?.slice(-1)?.[0]?.ScopeId;
     imageUuid && localStorage.setItem("imageUuid", imageUuid);
     videoUuid && localStorage.setItem("videoUuid", videoUuid);
     return {};
@@ -323,12 +324,26 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
         },
       },
     );
-    const imageUuid = authoring_getSitedetails?.image?.[0].ScopeId?.split("|")?.pop();
-    const videoUuid = authoring_getSitedetails?.video?.[0].ScopeId?.split("|")?.pop();
+    const imageUuid = authoring_getSitedetails?.image?.slice(-1)?.[0]?.ScopeId;
+    const videoUuid = authoring_getSitedetails?.video?.slice(-1)?.[0]?.ScopeId;
     imageUuid && localStorage.setItem("imageUuid", imageUuid);
     videoUuid && localStorage.setItem("videoUuid", videoUuid);
     return {};
   } catch (error) {
     return {};
+  }
+};
+
+export const fetchTagList = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_TAG_LISTING,
+      variables: input,
+      fetchPolicy: "cache-first",
+    });
+    return data;
+  } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
   }
 };

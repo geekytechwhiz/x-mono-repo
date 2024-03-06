@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import {
   Analytics,
@@ -8,10 +6,11 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
 } from "@platformx/utilities";
+import axios from "axios";
 import { format } from "date-fns";
-import { getIcon } from "../../components/Utils/helperFns";
+import { useEffect, useState } from "react";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import { getIcon } from "../../components/Utils/helperFns";
 
 const DynamicPrelemCard2 = ({
   content,
@@ -164,7 +163,7 @@ const DynamicPrelemCard2 = ({
           </Box>
           <CardContent className='card2Content'>
             <Box className='card2ContentInnerWrapper'>
-              <Image
+              <img
                 alt='DynamicPrelemCard2'
                 src={getIcon(content.ContentType)}
                 style={{ width: "100%" }}

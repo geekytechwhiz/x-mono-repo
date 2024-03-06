@@ -2,7 +2,7 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { formCroppedUrlString, getFormattedImageUrl } from "@platformx/utilities";
-import Image from "next/image";
+
 import React from "react";
 import "../../Style.css";
 import Slider from "../Slider/Slider";
@@ -46,12 +46,12 @@ const CustomModalSlider = ({
                       <Typography variant='h3regular' className='oneLineEllipsis' color='textColor'>
                         {slide?.Title}
                       </Typography>
-                      {/* <Image
+                      {/* <img
                         alt='gallery1'
                         className='img'
                         src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                       /> */}
-                      <Image
+                      <img
                         alt='gallery1'
                         src={getFormattedImageUrl(slide?.Url, slide?.ext, secondaryArgs)}
                       />

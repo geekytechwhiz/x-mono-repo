@@ -1,9 +1,9 @@
 import { Box, Card, Divider, Grid, Link, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { PLATFORMXLOGO as Logo, emailLogo, mapLogo, phoneLogo } from "@platformx/utilities";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { formRelativeURL } from "../helperFunction";
-import { PLATFORMXLOGO as Logo, mapLogo, phoneLogo, emailLogo } from "@platformx/utilities";
-import Image from "next/image";
+
 import { useCustomStyle } from "./Footer.style";
 
 interface IFooter {
@@ -84,7 +84,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
           <Grid container>
             <Grid item xs={12} em={4} sm={6} className='gapRight'>
               <Box className='footerLogo'>
-                <Image
+                <img
                   src={formRelativeURL(gcpUrl, bucketName, data?.site_logo)}
                   loading='lazy'
                   alt='Logo'
@@ -103,7 +103,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                     rel='noopener noreferrer'
                     key={`media-${index}`}
                     className='anchorGap'>
-                    <Image
+                    <img
                       src={formRelativeURL(gcpUrl, bucketName, media.icon_image)}
                       loading='lazy'
                       alt='social-icon'
@@ -119,7 +119,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                 {data?.title_text}
               </Typography>
               <Box className='footerSection1'>
-                <Image src={mapLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <img src={mapLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'
@@ -128,7 +128,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                 </Typography>
               </Box>
               <Box className='footerSection2'>
-                <Image src={emailLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <img src={emailLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'
@@ -137,7 +137,7 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
                 </Typography>
               </Box>
               <Box className='footerSection3'>
-                <Image src={phoneLogo} loading='lazy' alt='social-icon' width='24' height='24' />
+                <img src={phoneLogo} loading='lazy' alt='social-icon' width='24' height='24' />
                 <Typography
                   variant='p4regular'
                   color='footerParagraphColor'

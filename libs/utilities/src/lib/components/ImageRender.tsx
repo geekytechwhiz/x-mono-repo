@@ -1,9 +1,8 @@
 import { CardMedia, Paper } from "@mui/material";
 import React, { useState } from "react";
+import fallBackImage from "../assets/fallBackImage.png";
 import { formCroppedUrl } from "../utils/helperFns";
 import { breakpoints, ratios } from "./ConstantData";
-import fallBackImage from "../assets/fallBackImage.png";
-import Image from "next/image";
 
 const ImageRender = (props: any = {}) => {
   const [error, setError] = useState(false);
@@ -31,7 +30,7 @@ const ImageRender = (props: any = {}) => {
   return (
     <>
       {error ? (
-        <Image
+        <img
           src={fallBackImage}
           style={{ objectFit: "contain" }}
           alt='fallbackimage'
@@ -74,7 +73,7 @@ const ImageRender = (props: any = {}) => {
                   </React.Fragment>
                 );
               })}
-              <Image
+              <img
                 alt='cropped-img'
                 src='https://storage.googleapis.com/cropped_image_public/machine_assets/1689934844153xyz/public/png/WebsiteIntroduction.png'
                 onError={handleError}
@@ -108,7 +107,7 @@ const ImageRender = (props: any = {}) => {
                   srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                 />
                 <div style={{ width: "100%", height: "100%" }}>
-                  <Image
+                  <img
                     src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                     onError={handleError}
                     style={{ objectFit: "cover", display: "flex" }}

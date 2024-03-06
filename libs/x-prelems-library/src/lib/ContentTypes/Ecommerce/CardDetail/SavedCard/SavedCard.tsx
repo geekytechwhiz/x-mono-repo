@@ -1,12 +1,10 @@
-import React from "react";
-import { Box, Button, Typography } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { IconVisaCardSvg, IconDelete1svg, IconMasterCardSvg } from "@platformx/utilities";
+import { IconDelete1svg, IconMasterCardSvg, IconVisaCardSvg } from "@platformx/utilities";
 import "./SavedCard.css";
 import { useCustomStyle } from "./SavedCard.style";
-import Image from "next/image";
 
 const SavedCard = () => {
   const { t } = useTranslation();
@@ -45,7 +43,7 @@ const SavedCard = () => {
             key={"saved-card-" + index.toString()}
             className={`saved-cards borderLine`}>
             <Box className='card-type'>
-              <Image src={item.image} alt='visa' />
+              <img src={item.image} alt='visa' />
             </Box>
             <Box className='card-information'>
               <Typography variant='p4regular'>{item.bank}</Typography>
@@ -59,7 +57,7 @@ const SavedCard = () => {
               <Button
                 variant='graybuttonsmall'
                 className='edit ecom-delete-button-small'
-                startIcon={<Image src={IconDelete1svg} alt='delete' />}></Button>
+                startIcon={<img src={IconDelete1svg} alt='delete' />}></Button>
             </Box>
           </Box>
         );

@@ -3,7 +3,6 @@ import { onClickCardUrlNavigate } from "@platformx/utilities";
 import React from "react";
 import { getIcon } from "../../Utils/helperFns";
 import { useCustomStyle } from "./XCard5.style";
-import Image from "next/image";
 
 const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
   const classes = useCustomStyle();
@@ -35,7 +34,7 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
           <Box className='mainContentBox'>
             <Box className='contentWrapperCard5Box'>
               <Box className='iconWrapper'>
-                <Image src={getIcon(content?.ContentType)} alt='' />
+                <img src={getIcon(content?.ContentType)} alt='' />
               </Box>
               <Box className='titleWrapper'>
                 <Typography variant='p1regular' color='textColor'>

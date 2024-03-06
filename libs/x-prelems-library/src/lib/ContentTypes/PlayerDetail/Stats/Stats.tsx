@@ -1,10 +1,8 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import { AZIcon, OGCIcon, RoyalIcon } from "@platformx/utilities";
+import "../../../Style.css";
 import prelemTypes from "../../../globalStyle";
 import { useCustomStyle } from "./Stats.style";
-import { RoyalIcon, OGCIcon, AZIcon } from "@platformx/utilities";
-import "../../../Style.css";
-import Image from "next/image";
 
 const Stats = ({ authoringHelper }: any) => {
   const classes = useCustomStyle();
@@ -84,7 +82,7 @@ const Stats = ({ authoringHelper }: any) => {
                 <Grid xs={12} md={4}>
                   <Box className='contentBox'>
                     <Box className='ImgBox'>
-                      <Image src={AZIcon} alt='' />
+                      <img src={AZIcon} alt='' />
                     </Box>
                     <Typography variant='h3bold'>AZ</Typography>
                     <Typography variant='h6bold'>2015-2021</Typography>
@@ -93,7 +91,7 @@ const Stats = ({ authoringHelper }: any) => {
                 <Grid xs={12} md={4}>
                   <Box className='contentBox'>
                     <Box className='ImgBox'>
-                      <Image src={OGCIcon} alt='' />
+                      <img src={OGCIcon} alt='' />
                     </Box>
                     <Typography variant='h3bold'>OGC Nice</Typography>
                     <Typography variant='h6bold'>2021-2023</Typography>
@@ -102,7 +100,7 @@ const Stats = ({ authoringHelper }: any) => {
                 <Grid xs={12} md={4}>
                   <Box className='contentBox'>
                     <Box className='ImgBox'>
-                      <Image src={RoyalIcon} alt='' />
+                      <img src={RoyalIcon} alt='' />
                     </Box>
                     <Typography variant='h3bold'>Royal Antwerp FC</Typography>
                     <Typography variant='h6bold'>2022-2023</Typography>
@@ -144,7 +142,7 @@ const Stats = ({ authoringHelper }: any) => {
                   <Grid xs={4} md={4}>
                     <Box className='firstColBox'>
                       <Box className='imgBoxWp'>
-                        <Image src={RoyalIcon} alt='' />
+                        <img src={RoyalIcon} alt='' />
                       </Box>
                       <Typography variant='p3bold'>Royal Antwerp FC</Typography>
                     </Box>
@@ -170,7 +168,7 @@ const Stats = ({ authoringHelper }: any) => {
                   <Grid xs={4} md={4}>
                     <Box className='firstColBox'>
                       <Box className='imgBoxWp'>
-                        <Image src={OGCIcon} alt='' />
+                        <img src={OGCIcon} alt='' />
                       </Box>
                       <Typography variant='p3bold'>Royal Antwerp FC</Typography>
                     </Box>
@@ -196,7 +194,7 @@ const Stats = ({ authoringHelper }: any) => {
                   <Grid xs={4} md={4}>
                     <Box className='firstColBox'>
                       <Box className='imgBoxWp'>
-                        <Image src={OGCIcon} alt='' />
+                        <img src={OGCIcon} alt='' />
                       </Box>
                       <Typography variant='p3bold'>Royal Antwerp FC</Typography>
                     </Box>
@@ -222,7 +220,7 @@ const Stats = ({ authoringHelper }: any) => {
                   <Grid xs={4} md={4}>
                     <Box className='firstColBox'>
                       <Box className='imgBoxWp'>
-                        <Image src={AZIcon} alt='' />
+                        <img src={AZIcon} alt='' />
                       </Box>
                       <Typography variant='p3bold'>Royal Antwerp FC</Typography>
                     </Box>

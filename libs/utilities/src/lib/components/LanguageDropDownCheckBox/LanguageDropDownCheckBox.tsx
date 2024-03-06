@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 
@@ -34,6 +35,7 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
     );
   };
   useEffect(() => {
+    // eslint-disable-next-line array-callback-return
     LanguageList().map((lang: any) => {
       if (getCurrentLang() === lang.id) {
         setLanguage(typeof lang.value === "string" ? lang.value.split(",") : lang.value);
@@ -86,7 +88,7 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
                   borderRadius: "50%",
                   marginRight: "10px",
                 }}>
-                {/* <Image  // To DO Need to check
+                {/* <img  // To DO Need to check
                   alt=""
                   src={require(`../../../assets/${l.id}_flag.png`)}
                   style={{

@@ -1,12 +1,11 @@
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Box, Button, CardMedia, Typography } from "@mui/material";
 import React from "react";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { useCustomStyle } from "./XCard4.style";
 import { getIcon } from "../../Utils/helperFns";
+import { useCustomStyle } from "./XCard4.style";
 // import { t } from "i18next";
 // import "../../../service/i18n";
 import { dateTimeFormat, getImage, onClickCardUrlNavigate } from "@platformx/utilities";
-import Image from "next/image";
 
 const XCard4 = ({
   content,
@@ -32,7 +31,7 @@ XCard4Props) => {
       <Box className='XCard4innderBox'>
         <Box className='imgWrapper'>
           <Box className='IconTopRight'>
-            <Image src={getIcon(content?.ContentType)} alt='' />
+            <img src={getIcon(content?.ContentType)} alt='' />
           </Box>
           <CardMedia
             component={imageUrl ? "img" : "div"}

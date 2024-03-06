@@ -1,6 +1,7 @@
 import { IconButton, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
+
 import { memo } from "react";
 import { useDispatch } from "react-redux";
 import DialogCloseIcon from "../../assets/svg/DialogCloseIcon.svg";
@@ -11,7 +12,6 @@ import {
   XDialogContent,
   XDialogImageContainer,
 } from "./XDialog.styles";
-import Image from "next/image";
 // import { XDialogProps } from './XDialog.types'
 
 const XDialog = ({
@@ -31,7 +31,7 @@ const XDialog = ({
       <Dialog
         fullWidth={true}
         open={open}
-        onClose={handleClose}
+        onClose={dispatch(handleClose)}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         sx={{
@@ -76,10 +76,10 @@ const XDialog = ({
             if (handleClose) dispatch(handleClose());
           }}
           aria-label='close'>
-          <Image src={DialogCloseIcon} alt='icon' />
+          <img src={DialogCloseIcon} alt='icon' />
         </IconButton>
         <XDialogImageContainer>
-          <Image src={imageIcon} alt='icon' />
+          <img src={imageIcon} alt='icon' />
         </XDialogImageContainer>
         {title && (
           <DialogTitle
@@ -110,28 +110,32 @@ const XDialog = ({
         )}
 
         <XDialogActions>
-          <XDialogButton
-            variant='outlined'
-            sx={{
-              marginRight: "12px",
-            }}
-            onClick={() => {
-              if (handleClose) dispatch(handleClose());
-            }}>
-            {leftButtonText}
-          </XDialogButton>
+          {leftButtonText && (
+            <XDialogButton
+              variant='outlined'
+              sx={{
+                marginRight: "12px",
+              }}
+              onClick={() => {
+                if (handleClose) dispatch(handleClose());
+              }}>
+              {leftButtonText}
+            </XDialogButton>
+          )}
 
-          <XDialogButton
-            variant='contained'
-            onClick={() => {
-              if (handleConfirm && handleClose) {
-                dispatch(handleConfirm());
-                dispatch(handleClose());
-              }
-            }}
-            autoFocus>
-            {rightButtonText}
-          </XDialogButton>
+          {rightButtonText && (
+            <XDialogButton
+              variant='contained'
+              onClick={() => {
+                if (handleConfirm && handleClose) {
+                  dispatch(handleConfirm());
+                  dispatch(handleClose());
+                }
+              }}
+              autoFocus>
+              {rightButtonText}
+            </XDialogButton>
+          )}
         </XDialogActions>
       </Dialog>
     </div>

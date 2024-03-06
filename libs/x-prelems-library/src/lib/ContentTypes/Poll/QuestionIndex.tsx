@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
 import DoneIcon from "@mui/icons-material/Done";
 import { Box, Button, Typography } from "@mui/material";
+import { Analytics, CloseIcon, loadergif } from "@platformx/utilities";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ExitModal from "../../components/ExitModal";
-import { loadergif, CloseIcon, Analytics } from "@platformx/utilities";
+import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import ImageQuestion from "./ImageQuestion";
 import PollContext from "./PollContext";
 import SingleQuestion from "./SingleQuestion";
-import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
 
 interface QuestionIndexProps {
   data: {
@@ -192,7 +191,7 @@ const QuestionIndex = ({
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-              <Image alt='qus1' src={loadergif} style={{ width: "80px", borderRadius: "5px" }} />
+              <img alt='qus1' src={loadergif} style={{ width: "80px", borderRadius: "5px" }} />
             </Box>
           ) : (
             <>
@@ -223,7 +222,7 @@ const QuestionIndex = ({
                         top: { xs: "20px", md: "53px" },
                       }}
                       onClick={handleClickOpen}>
-                      <Image src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
+                      <img src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
                     </Button>
                   )}
                 </Box>
