@@ -18,7 +18,7 @@ export interface PrelemBaseEndpoint {
   device?: string;
 }
 export interface Analytics {
-  pageId?: string;
+  pageId?: string | number;
   prelemId?: number;
   pageTitle?: string;
   prelemTitle?: string;
