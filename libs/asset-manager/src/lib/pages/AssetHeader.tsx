@@ -7,7 +7,7 @@ import { DeleteIcon, FilterIcon, backAssetIcon } from "@platformx/utilities";
 import AssetBreadsum from "../pages/AssetBreadscum";
 import { useImagesStyle } from "./Images.style";
 import PlateformXAssetDialog from "./ChooseAssetModal";
-import { FormControlCustom } from "libs/content/src/lib/components/ContentListingHeader/ContentListingHeader.styles";
+import { FormControlCustom } from "@platformx/content";
 
 export function AssetHeader({ handleShow }) {
   const classes = useImagesStyle();

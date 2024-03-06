@@ -3,7 +3,7 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { CardOptionDeleteIcon } from "@platformx/utilities";
 import { useStyles } from "./CardMenu.styles";
-import { MenuActions } from "libs/content/src/lib/components/CourseMenu/CardMenu.types";
+//import { MenuActions } from "libs/content/src/lib/components/CourseMenu/CardMenu.types";
 
 const AssetCardMenu = (props) => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ const AssetCardMenu = (props) => {
   const onHandleMenuActions = (action) => {
     // eslint-disable-next-line default-case
     switch (action) {
-      case MenuActions.DELETE:
+      case "delete":
         handleDelete();
         break;
     }
