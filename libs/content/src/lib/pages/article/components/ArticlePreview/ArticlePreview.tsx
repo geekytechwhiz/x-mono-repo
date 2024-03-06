@@ -9,7 +9,10 @@ import React, { useState } from "react";
 // import Frame from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { ThemeConstants, AUTH_INFO } from "@platformx/utilities";
+import {
+  ThemeConstants,
+  // AUTH_INFO
+} from "@platformx/utilities";
 // import { ThemeConstantForPrelemThemeBasedOnSite } from "../../../../utils/helperFunctions";
 
 // const theme = {
