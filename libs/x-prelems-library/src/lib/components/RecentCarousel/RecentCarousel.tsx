@@ -17,7 +17,7 @@ import {
   formRelativeURL,
 } from "@platformx/utilities";
 import { format } from "date-fns";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Slider from "../Slider/Slider";
@@ -146,7 +146,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                         <PlayCircleOutlineRoundedIcon sx={{ color: "white", fontSize: "40px" }} />
                       </Box>
                     ) : (
-                      <Image
+                      <img
                         alt=''
                         src={ArticleIcon}
                         style={{
@@ -155,7 +155,7 @@ const RecentCarousel = ({ isVideoLandingPage, data, secondaryArgs }: any) => {
                           marginLeft: "8px",
                           width: "30px",
                           height: "30px",
-                        }}></Image>
+                        }}></img>
                     )}
                     <CardContent style={{ padding: "10px 10px 0px 10px", flexGrow: 1 }}>
                       <Typography

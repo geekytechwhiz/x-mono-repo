@@ -1,10 +1,9 @@
 // import "./Slider.css";
-import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
-import { useCustomStyle } from "./Slider.style";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import Image from "next/image";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useCustomStyle } from "./Slider.style";
 
 type SliderProps = {
   speed?: number;
@@ -153,7 +152,7 @@ const Slider = (props: SliderProps) => {
                   className={slide === i ? "active thumb" : "thumb"}
                   key={i}
                   onClick={() => dotNext(i)}>
-                  <Image src={slider} alt={`thumb-${i}`} className='thumbImage' />
+                  <img src={slider} alt={`thumb-${i}`} className='thumbImage' />
                 </div>
               );
             })}

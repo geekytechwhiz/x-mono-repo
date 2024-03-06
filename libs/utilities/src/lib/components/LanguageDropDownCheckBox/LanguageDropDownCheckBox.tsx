@@ -88,7 +88,7 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
                   borderRadius: "50%",
                   marginRight: "10px",
                 }}>
-                {/* <Image  // To DO Need to check
+                {/* <img  // To DO Need to check
                   alt=""
                   src={require(`../../../assets/${l.id}_flag.png`)}
                   style={{

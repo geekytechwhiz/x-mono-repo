@@ -1,22 +1,21 @@
 import { Box, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import "../../Style.css";
 import {
   Analytics,
   AuthoringHelper,
-  completeButtonUrl,
-  formCroppedUrlString,
   RedDots,
   SecondaryArgs,
+  completeButtonUrl,
+  formCroppedUrlString,
 } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
-import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
-import { useCustomStyle } from "./ProductSummaryViaImage2.style";
-import prelemTypes from "../../globalStyle";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import TwoColumnLayout from "../../components/layouts/TwoColumns/TwoColumnLayout";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ProductSummaryViaImage2.style";
 
 const ProductSummaryViaImage2 = ({
   content,
@@ -149,7 +148,7 @@ const ProductSummaryViaImage2 = ({
           }}
         />
         <Box className='dottedImageWrapper'>
-          <Image alt='summary5' src={RedDots} width='140' height='63' />
+          <img alt='summary5' src={RedDots} width='140' height='63' />
         </Box>
       </Box>
     );

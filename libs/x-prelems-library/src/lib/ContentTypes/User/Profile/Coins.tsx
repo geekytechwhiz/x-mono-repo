@@ -1,10 +1,9 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Coin, nullToObject } from "@platformx/utilities";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import "../../../utils/service/i18n";
-import { nullToObject, Coin } from "@platformx/utilities";
-import Image from "next/image";
 
 type CoinsProps = {
   secondaryArgs: any;
@@ -58,7 +57,7 @@ const Coins = (props: CoinsProps) => {
               Available Points{" "}
             </Typography>
             <Box className='coinBox'>
-              <Image src={Coin} alt='coin' className='coinImg' />
+              <img src={Coin} alt='coin' className='coinImg' />
               <Typography variant='h2bold' sx={{ textAlign: "left" }}>
                 <CountUp enableScrollSpy={true} start={0} end={userPoints} delay={0}>
                   {({ countUpRef }) => <span ref={countUpRef} />}
@@ -76,7 +75,7 @@ const Coins = (props: CoinsProps) => {
               Voucher Value
             </Typography>
             <Box className='coinBox'>
-              <Image src={Coin} alt='coin' className='coinImg' />
+              <img src={Coin} alt='coin' className='coinImg' />
               <Typography variant='h2bold' sx={{ textAlign: "left" }}>
                 ${" "}
                 <CountUp enableScrollSpy={true} start={0} end={voucherPoints} delay={0}>

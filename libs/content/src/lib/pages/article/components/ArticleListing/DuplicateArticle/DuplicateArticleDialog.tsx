@@ -6,8 +6,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import LanguageDropDownCheckBox from "../../../../../Common/LanguageDropDownCheckBox";
 import "./DuplicateArticleDialog.css";
+import { LanguageDropDownCheckBox } from "@platformx/utilities";
 import { ArticleDialog } from "./DuplicateArticleDialog.types";
 
 export default function DuplicateArticleDialog({

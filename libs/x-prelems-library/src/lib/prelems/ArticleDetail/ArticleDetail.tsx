@@ -113,7 +113,7 @@ const ArticleDetail = ({
   const secondColumnContent = () => {
     return (
       // <Box className="wrapperImg">
-      //   <Image alt="ArticleDetail" src={imgUrl} width="630" height="500" />
+      //   <img alt="ArticleDetail" src={imgUrl} width="630" height="500" />
       // </Box>
       <ImageRender
         originalImage={content?.ImageCompound?.ImageCompound_1?.original_image}

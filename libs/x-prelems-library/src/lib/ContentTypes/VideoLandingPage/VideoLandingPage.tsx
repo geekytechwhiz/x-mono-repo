@@ -1,17 +1,16 @@
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import { Box, Card, CardHeader, Chip, Divider, Grid, Typography } from "@mui/material";
+import { nullToObject } from "@platformx/utilities";
 import { format } from "date-fns";
 import { default as React, Suspense, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
-import { nullToObject } from "@platformx/utilities";
+import "../../Style.css";
 import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
 import Share from "../../components/Share/Share";
-import { useCustomStyle } from "./videoLandingPage.style";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import "../../Style.css";
 import "../../utils/service/i18n";
-import Image from "next/image";
+import { useCustomStyle } from "./videoLandingPage.style";
 
 const BrightcovePlayer: any = React.lazy(
   () => import("../../components/BrightcovePlayer/BrightcovePlayer"),
@@ -304,7 +303,7 @@ const VideoLandingPage = (props: any) => {
                       lg: "500px",
                     },
                   }}>
-                  <Image
+                  <img
                     src={content.Thumbnail}
                     alt={"Thumbnail_Image"}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}

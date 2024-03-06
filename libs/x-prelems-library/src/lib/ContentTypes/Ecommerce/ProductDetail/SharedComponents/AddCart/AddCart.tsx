@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { LoyalityPointIcon as frame1, nullToObject } from "@platformx/utilities";
 import { Typography } from "@mui/material";
-import ProductQuantityButton from "./QuantityButton";
+import { LoyalityPointIcon as frame1, nullToObject } from "@platformx/utilities";
 import ToastContainerHandle from "../../../../../components/ToastContainer/ToastContainerHandle";
 import ToastService from "../../../../../components/ToastContainer/ToastService";
 import { useCustomStyle } from "./AddCart.style";
 import PopupDialog from "./PopupDialog";
-import Image from "next/image";
+import ProductQuantityButton from "./QuantityButton";
 
 type ecommerceAddcartProps = {
   rewardPoints?: string | number;
@@ -142,7 +141,7 @@ const AddCart = (props: ecommerceAddcartProps) => {
         <Box className={`${classes.mainEarningPointLoyality} mainEarningPoint`}>
           <Box className='BoxLoyalityPoint1'>
             <Box className='BoxImageLoyalityPoint'>
-              <Image alt=' ' src={frame1} />
+              <img alt=' ' src={frame1} />
             </Box>
 
             <Box className='MainBoxText'>

@@ -4,7 +4,6 @@ import EditIcon from "../../assets/svg//editIcon.svg";
 // import MoreHorizIcon from '../../assets/svg/moreHoriz.svg';
 import { useState } from "react";
 import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
-import Image from "next/image";
 
 const CardOption = (props: any) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -44,8 +43,8 @@ const CardOption = (props: any) => {
                   tagName === "courses"
                 }>
                 <IconButton className='hoverIcon'>
-                  {/* <Image src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
-                  <Image src={EditIcon} alt='' width={24} height={24} />
+                  {/* <img src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
+                  <img src={EditIcon} alt='' />
                 </IconButton>
               </MenuItem>
             }
@@ -69,8 +68,8 @@ const CardOption = (props: any) => {
                 tagName === "courses"
               }>
               <IconButton className='hoverIcon'>
-                {/* <Image src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
-                <Image src={DeleteIcon} alt='' width={24} height={24} />
+                {/* <img src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
+                <img src={DeleteIcon} alt='' />
               </IconButton>
             </MenuItem>
           }
@@ -88,7 +87,7 @@ const CardOption = (props: any) => {
             onClick={handleClick}
             className='viewallctamob'
           >
-            <Image  src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
+            <img  src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
           </IconButton> */}
       </Box>
     </Box>

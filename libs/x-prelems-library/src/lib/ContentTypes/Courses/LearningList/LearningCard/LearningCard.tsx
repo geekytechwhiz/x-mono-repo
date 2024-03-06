@@ -1,9 +1,7 @@
-import React from "react";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { useCustomStyle } from "./LearningCard.style";
 import { CalendarTodayOutlined } from "@mui/icons-material";
-import { handleHtmlTags, fallBackImage } from "@platformx/utilities";
-import Image from "next/image";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { fallBackImage, handleHtmlTags } from "@platformx/utilities";
+import { useCustomStyle } from "./LearningCard.style";
 
 const LearningCard = ({ viewCourse, item }: any) => {
   const classes = useCustomStyle();
@@ -13,7 +11,7 @@ const LearningCard = ({ viewCourse, item }: any) => {
         <Grid container>
           <Grid xs={12} md={4} lg={3}>
             <Box className='leftImgWrapper'>
-              <Image src={item?.teaser_image || fallBackImage} alt='' />
+              <img src={item?.teaser_image || fallBackImage} alt='' />
             </Box>
           </Grid>
           <Grid xs={12} md={8} lg={9}>

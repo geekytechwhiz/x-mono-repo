@@ -1,6 +1,3 @@
-import React from "react";
-import Image from "next/image";
-
 const ImageWithWebp = ({ imgWebp, imgOther, height, width, alt }: any) => {
   return (
     <picture>
@@ -9,7 +6,7 @@ const ImageWithWebp = ({ imgWebp, imgOther, height, width, alt }: any) => {
       {/* Fallback for browsers that do not support webp */}
       <source srcSet={imgOther} />
       {/* Fallback for browsers that do not support the picture element */}
-      <Image src={imgOther} alt={alt} height={height} width={width} />
+      <img src={imgOther} alt={alt} height={height} width={width} />
     </picture>
   );
 };

@@ -1,9 +1,8 @@
 import { Box, Typography } from "@mui/material";
+import { dateFormat, fallBackImage, handleHtmlTags } from "@platformx/utilities";
 import React from "react";
-import { dateFormat, handleHtmlTags, fallBackImage } from "@platformx/utilities";
 import CardSkeleton from "../CardSkeleton";
 import { useCustomStyle } from "./XCard3.style";
-import Image from "next/image";
 
 const XCard3 = ({ content, Icon, onCardClick }: XCard3Props) => {
   const classes = useCustomStyle();
@@ -12,7 +11,7 @@ const XCard3 = ({ content, Icon, onCardClick }: XCard3Props) => {
       {Object.keys(content)?.length > 0 ? (
         <Box className='XCard3innderBox'>
           <Box className='imgWrapper'>
-            <Image
+            <img
               src={content?.teaser_image || fallBackImage}
               onError={(e: any) => {
                 if (e.target.src !== fallBackImage) {
@@ -26,7 +25,7 @@ const XCard3 = ({ content, Icon, onCardClick }: XCard3Props) => {
             <Box className='mainContentBox'>
               <Box className='contentBox'>
                 <Box className='iconWrapper'>
-                  <Image src={Icon} alt='' />
+                  <img src={Icon} alt='' />
                 </Box>
                 <Box className='topWrapper'>
                   <Box className='nameWrapper'>

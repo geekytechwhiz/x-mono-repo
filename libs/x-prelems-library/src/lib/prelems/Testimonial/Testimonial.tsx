@@ -1,14 +1,13 @@
 import { Box, Card, CardContent, Container, Typography } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import { Analytics, AuthoringHelper, SecondaryArgs, TestimonialImg } from "@platformx/utilities";
+import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
 import "./Testimonial.css";
 import { useCustomStyle } from "./Testimonial.style";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs, TestimonialImg } from "@platformx/utilities";
-import Image from "next/image";
 
 const Testimonial = ({ content, analytics, authoringHelper, secondaryArgs }: TestimonialProps) => {
   const { ref, inView } = useInView({
@@ -151,7 +150,7 @@ const Testimonial = ({ content, analytics, authoringHelper, secondaryArgs }: Tes
             <Card className='testimonialCardWrapper' key={key}>
               <CardContent>
                 <Box className='my20'>
-                  <Image
+                  <img
                     alt='testimonial'
                     src={TestimonialImg}
                     width='67'

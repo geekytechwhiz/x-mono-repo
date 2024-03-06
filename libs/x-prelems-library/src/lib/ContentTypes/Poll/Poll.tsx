@@ -17,7 +17,6 @@ import "../../utils/service/i18n";
 import PollContext from "./PollContext";
 import QuestionIndex from "./QuestionIndex";
 import Result from "./Result";
-import Image from "next/image";
 
 const Poll = ({
   content,
@@ -398,7 +397,7 @@ const Poll = ({
                     top: { xs: "20px", md: "53px" },
                   }}
                   onClick={onClickClose}>
-                  <Image src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
+                  <img src={CloseIcon} style={{ width: "100%" }} alt='Close Icon' />
                 </Button>
               )}
               <Box
@@ -461,7 +460,7 @@ const Poll = ({
                       alignItems: "center",
                       justifyContent: "center",
                     }}>
-                    <Image
+                    <img
                       alt='Poll1'
                       src={loadergif}
                       style={{ width: "80px", borderRadius: "5px" }}

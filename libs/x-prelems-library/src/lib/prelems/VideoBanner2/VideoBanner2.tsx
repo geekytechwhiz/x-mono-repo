@@ -1,19 +1,18 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import "../../Style.css";
 import {
   Analytics,
   AuthoringHelper,
   SecondaryArgs,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import "./VideoBanner2.css";
-import { useCustomStyle } from "./VideoBanner2.style";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import Image from "next/image";
+import prelemTypes from "../../globalStyle";
+import "./VideoBanner2.css";
+import { useCustomStyle } from "./VideoBanner2.style";
 
 const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner2Prop) => {
   const classes = useCustomStyle();
@@ -92,7 +91,7 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               WebkitMaskSize: "contain",
             }}>
             {secondaryArgs?.editState ? (
-              <Image
+              <img
                 alt='banner2'
                 src={content.Videos.Video_1.Thumbnail}
                 className='backgroundImage'
@@ -113,7 +112,7 @@ const VideoBanner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               />
             )}
             <Box className='maskImageWrapper'>
-              <Image
+              <img
                 alt='banner3'
                 src={imgUrl}
                 className='silhouette'

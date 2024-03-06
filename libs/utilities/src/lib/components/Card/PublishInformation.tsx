@@ -1,9 +1,8 @@
 import { Box, Tooltip, Typography } from "@mui/material";
+import { ShowToastError, convertToLowerCase } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { stateIcons } from "./constants";
-import { ShowToastError, convertToLowerCase } from "@platformx/utilities";
-import Image from "next/image";
 
 type PublishInformationProps = {
   dataList: any;
@@ -38,9 +37,9 @@ export const PublishInformation = (props: PublishInformationProps) => {
         <Tooltip placement='top-start' title={t(`${dataList.status}`)}>
           <Typography sx={{ marginLeft: "10px" }}>
             {convertToLowerCase(contentType) === "community" ? (
-              <Image src={stateIcons.published} alt='' width={24} height={24} />
+              <img src={stateIcons.published} alt='' />
             ) : (
-              <Image alt='' src={stateIcons[dataList.status]} width={24} height={24} />
+              <img alt='' src={stateIcons[dataList.status]} />
             )}
           </Typography>
         </Tooltip>
@@ -56,9 +55,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
           }>
           <Typography sx={{ marginLeft: "10px" }}>
             {(dataList.scheduledPublishTriggerDateTime !== undefined || null) &&
-              tagName === "sitepage" && (
-                <Image alt='' src={stateIcons["schedulePublish"]} width={24} height={24} />
-              )}
+              tagName === "sitepage" && <img alt='' src={stateIcons["schedulePublish"]} />}
           </Typography>
         </Tooltip>
 
@@ -75,9 +72,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
           <Typography sx={{ marginLeft: "10px" }}>
             {(dataList.scheduledUnPublishTriggerDateTime !== undefined ||
               dataList.scheduledUnPublishTriggerDateTime !== null) &&
-              tagName === "sitepage" && (
-                <Image alt='' src={stateIcons["scheduleUnpublish"]} width={24} height={24} />
-              )}
+              tagName === "sitepage" && <img alt='' src={stateIcons["scheduleUnpublish"]} />}
           </Typography>
         </Tooltip>
       </Box>

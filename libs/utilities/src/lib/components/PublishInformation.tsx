@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { convertToLowerCase } from "../utils/helperFns";
 import { stateIcons } from "./Card/constants";
-import Image from "next/image";
 
 type PublishInformationProps = {
   dataList: any;
@@ -40,9 +39,9 @@ export const PublishInformation = (props: PublishInformationProps) => {
         <Tooltip placement='top-start' title={t(`${dataList.status}`)}>
           <Typography sx={{ marginLeft: "10px" }}>
             {convertToLowerCase(contentType) === "community" ? (
-              <Image src={stateIcons.published} alt={stateIcons.published} width={24} height={24} />
+              <img src={stateIcons.published} alt={stateIcons.published} />
             ) : (
-              <Image alt='status' src={stateIcons[dataList.status]} width={24} height={24} />
+              <img alt='status' src={stateIcons[dataList.status]} />
             )}
           </Typography>
         </Tooltip>
@@ -58,9 +57,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
           }>
           <Typography sx={{ marginLeft: "10px" }}>
             {(dataList.scheduledPublishTriggerDateTime !== undefined || null) &&
-              tagName === "sitepage" && (
-                <Image src={stateIcons["schedulePublish"]} alt='' width={24} height={24} />
-              )}
+              tagName === "sitepage" && <img src={stateIcons["schedulePublish"]} alt='' />}
           </Typography>
         </Tooltip>
 
@@ -78,12 +75,7 @@ export const PublishInformation = (props: PublishInformationProps) => {
             {(dataList.scheduledUnPublishTriggerDateTime !== undefined ||
               dataList.scheduledUnPublishTriggerDateTime !== null) &&
               tagName === "sitepage" && (
-                <Image
-                  src={stateIcons["scheduleUnpublish"]}
-                  alt='un publish'
-                  width={24}
-                  height={24}
-                />
+                <img src={stateIcons["scheduleUnpublish"]} alt='un publish' />
               )}
           </Typography>
         </Tooltip>

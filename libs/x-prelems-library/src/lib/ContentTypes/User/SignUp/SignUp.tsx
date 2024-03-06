@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import "../../../utils/service/i18n";
-import { useTranslation } from "react-i18next";
-import { useCustomStyle } from "./SignUp.style";
-import prelemTypes from "../../../globalStyle";
-import { PlatXLogo, SignUpSvg } from "@platformx/utilities";
-import FormValidate from "../../../components/CustomHook/FormValidate";
 import { Box, Button, Grid, Link, Typography } from "@mui/material";
+import { PlatXLogo, SignUpSvg } from "@platformx/utilities";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import FormValidate from "../../../components/CustomHook/FormValidate";
 import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
-import Image from "next/image";
+import prelemTypes from "../../../globalStyle";
+import "../../../utils/service/i18n";
+import { useCustomStyle } from "./SignUp.style";
 
 type signUpProps = {
   userDetailsPass?: (e?: any) => void;
@@ -88,10 +87,10 @@ const SignUp = ({ userDetailsPass = () => {}, redirectToLoginPage = () => {} }: 
       <Box className='signUpScreen'>
         <Box className='leftPanel'>
           <Box onClick={redirectToLoginPage} className='logoWrapper'>
-            <Image src={PlatXLogo} alt='logo' title='logo' className='logo' />
+            <img src={PlatXLogo} alt='logo' title='logo' className='logo' />
           </Box>
           <Box className='imageWrapper'>
-            <Image src={SignUpSvg} alt='signup' title='signup' className='signUpImg' />
+            <img src={SignUpSvg} alt='signup' title='signup' className='signUpImg' />
           </Box>
           <Box className='quoteMessage'>
             <Typography variant='h2bold' className='title'>

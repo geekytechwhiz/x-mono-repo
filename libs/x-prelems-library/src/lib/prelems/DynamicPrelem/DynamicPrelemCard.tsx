@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
-import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
-import { format } from "date-fns";
 import {
   Analytics,
   SecondaryArgs,
@@ -10,9 +6,12 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
 } from "@platformx/utilities";
-import { getIcon } from "../../components/Utils/helperFns";
+import axios from "axios";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import { getIcon } from "../../components/Utils/helperFns";
+import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 
 const DynamicPrelemCard = ({
   content,
@@ -104,7 +103,7 @@ const DynamicPrelemCard = ({
               image={imageUrl ? imageUrl : ""}>
               <Box className='imgboxOverlay'></Box>
               <Box className='IconBox'>
-                <Image alt='DynamicPrelemCardImg' src={getIcon(content.ContentType)} />
+                <img alt='DynamicPrelemCardImg' src={getIcon(content.ContentType)} />
               </Box>
             </CardMedia>
           </Box>

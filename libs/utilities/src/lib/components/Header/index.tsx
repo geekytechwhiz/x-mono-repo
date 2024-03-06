@@ -3,18 +3,17 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Profile from "../../assets/images/avatar.png";
 import Logo from "../../assets/images/platform-x-logo.png";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
-import LanguageDropDown from "../LanguageDropDown/LanguageDropDown";
-import useUserSession from "../../hooks/useUserSession/useUserSession";
-import { getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
+import useUserSession from "../../hooks/useUserSession/useUserSession";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
+import { getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
+import LanguageDropDown from "../LanguageDropDown/LanguageDropDown";
 import PlateformXDialog from "../Popups/PlateformXDialog";
-import Image from "next/image";
 
 const saveWarningMessage = {
   saveWarnTitle: "Unsaved Changes",
@@ -145,7 +144,7 @@ export const Header = (props) => {
         }}>
         {isActive ? (
           <Box onClick={handleLogoClick} sx={{ cursor: "pointer" }}>
-            <Image src={Logo} height='30' alt='logo-img' />
+            <img src={Logo} height='30' alt='logo-img' />
           </Box>
         ) : (
           <Typography
