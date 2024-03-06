@@ -1496,7 +1496,7 @@ export const CreatePoll = (): JSX.Element => {
                 <TitleDescription
                   state={pollState}
                   setState={setPollState}
-                  setSaveButton={setSaveButton}
+                  // setSaveButton={setSaveButton}
                   unsavedChanges={unsavedChanges}
                   pollRef={pollRef}
                   isDraft={isDraft}
@@ -1507,10 +1507,10 @@ export const CreatePoll = (): JSX.Element => {
                   setState={setPollState}
                   pollRef={pollRef}
                   unsavedChanges={unsavedChanges}
-                  showGallery={showGallery}
+                  // showGallery={showGallery}
                 />
                 <AddQuestion
-                  saveQuestionCallBack={saveQuestionCallBack}
+                  // saveQuestionCallBack={saveQuestionCallBack}
                   qusUnsavedChanges={unsavedChanges}
                   showGallery={showGallery}
                   state={pollState}
@@ -1520,9 +1520,9 @@ export const CreatePoll = (): JSX.Element => {
                   addImage={addImage}
                   setAddImage={setAddImage}
                   setFieldChanges={setFieldChanges}
-                  selectedImage={selectedImage}
+                  // selectedImage={selectedImage}
                 />
-                <Result state={pollState} setState={setPollState} unsavedChanges={unsavedChanges} />
+                <Result state={pollState} setState={setPollState} />
                 <ChooseTags
                   tagData={tagData}
                   selectedTag={tagArr}
@@ -1530,12 +1530,10 @@ export const CreatePoll = (): JSX.Element => {
                   isEdit={currentPollData.current ? true : false}
                 />
                 <SocialShare
-                  showGallery={showGallery}
                   state={pollState}
                   setState={setPollState}
                   pollRef={pollRef}
                   unsavedChanges={unsavedChanges}
-                  selectedImage={selectedImage}
                 />
                 <Analytics
                   number='08'
