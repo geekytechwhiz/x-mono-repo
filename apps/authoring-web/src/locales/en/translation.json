@@ -1175,5 +1175,8 @@
   "personalisation": "Personalisation",
   "google_analytics_tracking": "Google Analytics Tracking",
   "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master"
+  "master_control": "Master",
+  "administrator": "Administrator",
+  "your_site": "Your Site",
+  "tags_categories": "Tags"
 }

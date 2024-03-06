@@ -27,6 +27,7 @@ import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
+import { useNavigate } from "react-router";
 
 export const Card = ({
   CustomMenuList,
@@ -43,6 +44,7 @@ export const Card = ({
   contentType,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
+  const navigate = useNavigate();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
   const [subTitle, setSubTitle] = useState("");
   const { t } = useTranslation();
@@ -153,6 +155,9 @@ export const Card = ({
           edit(dataList);
         }
         break;
+      case "tagscategories":
+        navigate(`/site-setting/tags/${dataList.title}`);
+        break;
       default:
     }
   };
@@ -194,7 +199,7 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <Image src={iconsList[dataList.tagName]} alt='img' />
+                <Image src={iconsList[dataList.tagName]} width={24} height={24} alt='img' />
               </Box>
 
               <Box className='rightspace'>
@@ -229,20 +234,32 @@ export const Card = ({
                           // src={RedBlinkingDot}
                           src='imggepath'
                           alt=''
+                          width={24}
+                          height={24}
                         />
                       )}
                     <Box component='div' className='mobstatusIcon'>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        <Image src={statusIcons[dataList.status]} alt='' />
+                        <Image src={statusIcons[dataList.status]} width={24} height={24} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
-                          <Image src={statusIcons["schedulePublish"]} alt='' />
+                          <Image
+                            src={statusIcons["schedulePublish"]}
+                            width={24}
+                            height={24}
+                            alt=''
+                          />
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
                         {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
-                          <Image src={statusIcons["scheduleUnpublish"]} alt='' />
+                          <Image
+                            src={statusIcons["scheduleUnpublish"]}
+                            width={24}
+                            height={24}
+                            alt=''
+                          />
                         )}
                       </Typography>
                     </Box>

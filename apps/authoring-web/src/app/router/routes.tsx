@@ -10,6 +10,9 @@ import {
   GlobalSetting,
   HeaderSetting,
   MediaHandle,
+  TagListing,
+  CategoryDetail,
+  CreateTags,
 } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
@@ -17,7 +20,6 @@ import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { TagListing, CategoryDetail, CreateTags } from "../../../../../libs/site-setting/src";
 
 export const routes: RouteConfig[] = [
   {

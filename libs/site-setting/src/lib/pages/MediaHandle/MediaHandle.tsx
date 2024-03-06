@@ -17,9 +17,8 @@ import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
 import { userMediaHanleStyle } from "./MediaHandle.style";
-import { DamContentGallery } from "@platformx/x-image-render";
+import { DamContentGallery, usePostImageCrop } from "@platformx/x-image-render";
 import CustomTextBox from "../../components/CustomTextBox";
-import { usePostImageCrop } from "libs/x-image-render/src/lib/hooks/usePostImageCrop";
 
 export const MediaHandle: React.FC = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);

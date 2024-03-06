@@ -1,8 +1,8 @@
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { FormControl, IconButton, TextField } from "@mui/material";
-// import { SearchIcon } from '@platformx/utilities';
-import { useState } from "react";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { SearchIcon } from "@platformx/utilities";
 import usePopupStyle from "./SitesPopup.style";
+import { useState } from "react";
 
 export default function SitesSearchBox({ handleSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +24,7 @@ export default function SitesSearchBox({ handleSearch }) {
         value={searchQuery}
         onChange={handleOnChange}
         InputProps={{
-          // startAdornment: <img alt='settings' src={SearchIcon} />,
+          startAdornment: <img alt='icon' src={SearchIcon} />,
           endAdornment: searchQuery && (
             <IconButton onClick={resetSearch}>
               <CloseRoundedIcon />

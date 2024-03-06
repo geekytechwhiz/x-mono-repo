@@ -40,9 +40,9 @@ export const PublishInformation = (props: PublishInformationProps) => {
         <Tooltip placement='top-start' title={t(`${dataList.status}`)}>
           <Typography sx={{ marginLeft: "10px" }}>
             {convertToLowerCase(contentType) === "community" ? (
-              <Image src={stateIcons.published} alt={stateIcons.published} />
+              <Image src={stateIcons.published} alt={stateIcons.published} width={24} height={24} />
             ) : (
-              <Image alt='status' src={stateIcons[dataList.status]} />
+              <Image alt='status' src={stateIcons[dataList.status]} width={24} height={24} />
             )}
           </Typography>
         </Tooltip>
@@ -58,7 +58,9 @@ export const PublishInformation = (props: PublishInformationProps) => {
           }>
           <Typography sx={{ marginLeft: "10px" }}>
             {(dataList.scheduledPublishTriggerDateTime !== undefined || null) &&
-              tagName === "sitepage" && <Image src={stateIcons["schedulePublish"]} alt='' />}
+              tagName === "sitepage" && (
+                <Image src={stateIcons["schedulePublish"]} alt='' width={24} height={24} />
+              )}
           </Typography>
         </Tooltip>
 
@@ -76,7 +78,12 @@ export const PublishInformation = (props: PublishInformationProps) => {
             {(dataList.scheduledUnPublishTriggerDateTime !== undefined ||
               dataList.scheduledUnPublishTriggerDateTime !== null) &&
               tagName === "sitepage" && (
-                <Image src={stateIcons["scheduleUnpublish"]} alt='un publish' />
+                <Image
+                  src={stateIcons["scheduleUnpublish"]}
+                  alt='un publish'
+                  width={24}
+                  height={24}
+                />
               )}
           </Typography>
         </Tooltip>

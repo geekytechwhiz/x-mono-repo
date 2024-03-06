@@ -39,18 +39,20 @@ const CardOption = (props: any) => {
                 disableRipple
                 onClick={handleEdit}
                 disabled={
-                  !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+                  (false &&
+                    !canAccessAction(getContentCategory(), getContentSubCategory(), "Update")) ||
                   tagName === "courses"
                 }>
                 <IconButton className='hoverIcon'>
                   {/* <Image src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
-                  <Image src={EditIcon} alt='' />
+                  <Image src={EditIcon} alt='' width={24} height={24} />
                 </IconButton>
               </MenuItem>
             }
             doAccess={
               !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
-              tagName === "courses"
+              tagName === "courses" ||
+              tagName === "tagscategories"
             }
           />
         ) : null}
@@ -68,7 +70,7 @@ const CardOption = (props: any) => {
               }>
               <IconButton className='hoverIcon'>
                 {/* <Image src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
-                <Image src={DeleteIcon} alt='' />
+                <Image src={DeleteIcon} alt='' width={24} height={24} />
               </IconButton>
             </MenuItem>
           }
