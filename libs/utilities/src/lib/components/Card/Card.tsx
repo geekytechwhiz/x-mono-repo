@@ -26,6 +26,7 @@ import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
+import { useNavigate } from "react-router";
 
 export const Card = ({
   CustomMenuList,
@@ -42,6 +43,7 @@ export const Card = ({
   contentType,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
+  const navigate = useNavigate();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
   const [subTitle, setSubTitle] = useState("");
   const { t } = useTranslation();
@@ -152,6 +154,9 @@ export const Card = ({
           edit(dataList);
         }
         break;
+      case "tagscategories":
+        navigate(`/site-setting/tags/${dataList.title}`);
+        break;
       default:
     }
   };
@@ -228,6 +233,8 @@ export const Card = ({
                           // src={RedBlinkingDot}
                           src='imggepath'
                           alt=''
+                          width={24}
+                          height={24}
                         />
                       )}
                     <Box component='div' className='mobstatusIcon'>

@@ -38,7 +38,8 @@ const CardOption = (props: any) => {
                 disableRipple
                 onClick={handleEdit}
                 disabled={
-                  !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+                  (false &&
+                    !canAccessAction(getContentCategory(), getContentSubCategory(), "Update")) ||
                   tagName === "courses"
                 }>
                 <IconButton className='hoverIcon'>
@@ -49,7 +50,8 @@ const CardOption = (props: any) => {
             }
             doAccess={
               !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
-              tagName === "courses"
+              tagName === "courses" ||
+              tagName === "tagscategories"
             }
           />
         ) : null}

@@ -3,14 +3,8 @@
 import { Box } from "@mui/system";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  CATEGORY_CONTENT,
-  CONTENT_TYPES,
-  useContentListing,
-  fetchTagList,
-} from "@platformx/authoring-apis";
-import ContentListingHeader from "libs/content/src/lib/components/ContentListingHeader/ContentListingHeader";
-import ContentListing from "libs/content/src/lib/components/ContentListing/ContentListing";
+import { CATEGORY_CONTENT, CONTENT_TYPES, fetchTagList } from "@platformx/authoring-apis";
+import { ContentListingHeader } from "@platformx/content";
 import {
   Card,
   capitalizeFirstLetter,
@@ -18,142 +12,12 @@ import {
   convertToLowerCase,
   formatContentTitle,
 } from "@platformx/utilities";
-import ContentTypeMenuList from "libs/content/src/lib/components/MenuList/ContentTypeMenuList";
+//import ContentTypeMenuList from "libs/content/src/lib/components/MenuList/ContentTypeMenuList";
 
 export const TagListing = () => {
   const [refreshState] = useState(false);
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
-
-  const contentArray = [
-    {
-      title: "Content",
-      description: "Article, vod, Quiz, Poll, Event",
-      last_modified_by: "Sooraj Shukla",
-      status: "draft",
-      tag_name: "tagscategories",
-      modification_date: "2024-02-20T06:34:52.542Z",
-      last_modification_date: "2024-02-20T06:34:52.542Z",
-    },
-    {
-      title: "Country",
-      description: "India, Australia, America, Newzwland",
-      last_modified_by: "Sooraj Shukla",
-      status: "published",
-      tag_name: "tagscategories",
-      modification_date: "2024-02-20T06:34:52.542Z",
-      last_modification_date: "2024-02-20T06:34:52.542Z",
-    },
-    {
-      analytics_enable: false,
-      seo_enable: false,
-      short_description: "Person",
-      workflow_status: "draft",
-      title: "Lanugage",
-      description: "Hindi, English, German, French..",
-      page: "new-quiz-1708410864141",
-      current_page_url: "/new-quiz-1708410864141",
-      parent_page_url: "/",
-      last_modified_by: "Sooraj Shukla",
-      author: "Sooraj Shukla",
-      user_action_info: {
-        publishByDetails: {
-          name: "Sooraj",
-          email: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "2024-02-20T06:34:54.873Z",
-        },
-        unpublishByDetails: {
-          email: "",
-          name: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "",
-        },
-      },
-      status: "published",
-      is_published: true,
-      tag_name: "tagscategories",
-      modification_date: "2024-02-20T06:34:52.542Z",
-      last_modification_date: "2024-02-20T06:34:52.542Z",
-      page_state: "published",
-      last_published_date: "",
-      published_date: "2024-02-20T06:34:54.873Z",
-    },
-    {
-      analytics_enable: false,
-      seo_enable: false,
-      tags: ["Quiz", "MS Dhoni"],
-      short_description: "Trending",
-      options_compound_fields: [],
-      name: "new-quiz-1708410864141",
-      title: "Person",
-      description: "Sachin, virat, Ronaldo, Amitabh",
-      last_modified_by: "Sooraj Shukla",
-      author: "Sooraj Shukla",
-      user_action_info: {
-        publishByDetails: {
-          name: "Sooraj",
-          email: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "2024-02-20T06:34:54.873Z",
-        },
-        unpublishByDetails: {
-          email: "",
-          name: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "",
-        },
-      },
-      status: "published",
-      is_published: true,
-      tag_name: "tagscategories",
-      modification_date: "2024-02-20T06:34:52.542Z",
-      last_modification_date: "2024-02-20T06:34:52.542Z",
-      page_state: "published",
-      last_published_date: "",
-      published_date: "2024-02-20T06:34:54.873Z",
-    },
-    {
-      analytics_enable: false,
-      seo_enable: false,
-      tags: ["Quiz", "MS Dhoni"],
-      short_description: "New quiz",
-      workflow_status: "draft",
-      options_compound_fields: [],
-      schduled_publish_trigger_datetime: null,
-      schduled_unPublish_trigger_datetime: null,
-      name: "new-quiz-1708410864141",
-      title: "Trending",
-      description: "Style, Instagram, Modal, Bollywood",
-      page: "new-quiz-1708410864141",
-      current_page_url: "/new-quiz-1708410864141",
-      parent_page_url: "/",
-      last_modified_by: "Sooraj Shukla",
-      author: "Sooraj Shukla",
-      user_action_info: {
-        publishByDetails: {
-          name: "Sooraj",
-          email: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "2024-02-20T06:34:54.873Z",
-        },
-        unpublishByDetails: {
-          email: "",
-          name: "",
-          timeZone: "Asia/Kolkata",
-          pubUnpubDateTime: "",
-        },
-      },
-      status: "published",
-      is_published: true,
-      tag_name: "tagscategories",
-      modification_date: "2024-02-20T06:34:52.542Z",
-      last_modification_date: "2024-02-20T06:34:52.542Z",
-      page_state: "published",
-      last_published_date: "",
-      published_date: "2024-02-20T06:34:54.873Z",
-    },
-  ];
 
   const fetchTag = async () => {
     try {
@@ -230,16 +94,17 @@ export const TagListing = () => {
                       siteList={[]}
                       contentType={""}
                       CustomMenuList={
-                        <ContentTypeMenuList
-                          item={makeContentData2(item)}
-                          deleteContent={() => {}}
-                          duplicate={() => {}}
-                          preview={() => {}}
-                          unPublish={() => {}}
-                          view={() => {}}
-                          edit={() => {}}
-                          fetchContentDetails={() => {}}
-                        />
+                        <div></div>
+                        // <ContentTypeMenuList
+                        //   item={makeContentData2(item)}
+                        //   deleteContent={() => {}}
+                        //   duplicate={() => {}}
+                        //   preview={() => {}}
+                        //   unPublish={() => {}}
+                        //   view={() => {}}
+                        //   edit={() => {}}
+                        //   fetchContentDetails={() => {}}
+                        // />
                       }
                     />
                   </Box>

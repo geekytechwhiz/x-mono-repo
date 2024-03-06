@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { getFirstTwoletters } from "@platformx/utilities";

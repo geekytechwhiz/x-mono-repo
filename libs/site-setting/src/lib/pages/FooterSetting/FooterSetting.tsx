@@ -20,7 +20,7 @@ import {
   PlateformXDialogSuccess,
 } from "@platformx/utilities";
 
-import { CreateHeader } from "@platformx/content";
+import { CreateHeader, ContentPageScroll } from "@platformx/content";
 import {
   fetchFooterSetting,
   publishFooterSetting,
@@ -40,7 +40,6 @@ import { useFooterSettingStyle } from "./FooterSetting.style";
 import { Divider } from "@mui/material";
 import iconImages from "./FooterConstansts";
 import { XImageRender } from "@platformx/x-image-render";
-import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import CustomTextBox from "../../components/CustomTextBox";
 import "./footersetting.css";
 
