@@ -6,6 +6,7 @@ import { CreateHeader } from "./lib/components/CreateHeader/CreateHeader";
 import { FormControlCustom } from "./lib/components/ContentListingHeader/ContentListingHeader.styles";
 import ContentListingHeader from "./lib/components/ContentListingHeader/ContentListingHeader";
 import ContentPageScroll from "./lib/components/ContentPageScroll";
+import ChooseTags from "./lib/pages/quiz/components/choosetags/ChooseTags";
 
 export * from "./lib/content";
 export * from "./lib/enums/ContentType";
@@ -20,4 +21,5 @@ export {
   FormControlCustom,
   ContentListingHeader,
   ContentPageScroll,
+  ChooseTags,
 };

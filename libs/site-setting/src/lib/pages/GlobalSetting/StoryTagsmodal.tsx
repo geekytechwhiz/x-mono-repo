@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import { useStoryStyle } from "./Storytags.style";
-import ChooseTags from "libs/content/src/lib/pages/quiz/components/choosetags/ChooseTags";
+import { ChooseTags } from "@platformx/content";
 import { useEffect, useState } from "react";
 import { articleApi } from "@platformx/authoring-apis";
 
