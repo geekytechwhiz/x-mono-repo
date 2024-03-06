@@ -1,3 +1,4 @@
+import { Analytics } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
 import { IMPRESSIONS } from "./constants";
@@ -45,16 +46,16 @@ interface secondaryArgsObj {
   environment?: string;
 }
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
+// interface Analytics {
+//   pageId?: number;
+//   prelemId?: number;
+//   pageTitle?: string;
+//   prelemTitle?: string;
+//   pageDesc?: string;
+//   pageTags?: string;
+//   prelemTags?: string;
+//   prelemPosition?: number;
+//   isAnalyticsEnabled: boolean;
+//   isAuthoring: boolean;
+//   isSeoEnabled: boolean;
+// }
