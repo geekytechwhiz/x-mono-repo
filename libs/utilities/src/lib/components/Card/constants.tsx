@@ -1,5 +1,3 @@
-
-
 import CourseListIcon from "../../assets/svg/course-icon.svg";
 import DraftIcon from "../../assets/svg/draftIcon.svg";
 import EventsListIcon from "../../assets/svg/event-fill.svg";
@@ -24,34 +22,36 @@ import SchedulePublishStatusIcon from "../../assets/svg/schedulePublishStatusIco
 import ScheduleUnpublishStatusIcon from "../../assets/svg/scheduleUnpublishStatusIcon.svg";
 import UnpublishedStatusIcon from "../../assets/svg/unpublishStatusIcon.svg";
 import VODListIcon from "../../assets/svg/vodListIcon.svg";
+import TagsCatIcon from "../../assets/svg/tagscat.svg";
 
 export const statusIcons: any = {
-    draft: PublishedIcon, //TODO
-    published: PublishedIcon,
-    unpublished: UnpublishedIcon,
-    schedulePublish: SchedulePublishIcon,
-    scheduleUnpublish: ScheduledUnpublishIcon,
-    public: SpacePublicIcon,
-    private: SpacePrivateIcon,
+  draft: PublishedIcon, //TODO
+  published: PublishedIcon,
+  unpublished: UnpublishedIcon,
+  schedulePublish: SchedulePublishIcon,
+  scheduleUnpublish: ScheduledUnpublishIcon,
+  public: SpacePublicIcon,
+  private: SpacePrivateIcon,
 };
 export const stateIcons: any = {
-    draft: DraftStatusIcon,
-    published: PublishedStatusIcon,
-    unpublished: UnpublishedStatusIcon,
-    schedulePublish: SchedulePublishStatusIcon,
-    scheduleUnpublish: ScheduleUnpublishStatusIcon,
+  draft: DraftStatusIcon,
+  published: PublishedStatusIcon,
+  unpublished: UnpublishedStatusIcon,
+  schedulePublish: SchedulePublishStatusIcon,
+  scheduleUnpublish: ScheduleUnpublishStatusIcon,
 };
 export const iconsList: any = {
-    sitepage: PagesListIcon,
-    article: ArticleListIcon,
-    quiz: QuizListIcon,
-    vod: VODListIcon,
-    poll: PollListIcon,
-    event: EventsListIcon,
-    courses: CourseListIcon,
-    news: News_community,
-    general: General_community,
-    'challenges-announcement': Challenge_community,
-    Space: SpaceListIcon,
-    profile: ArticleListIcon,
+  sitepage: PagesListIcon,
+  article: ArticleListIcon,
+  quiz: QuizListIcon,
+  vod: VODListIcon,
+  poll: PollListIcon,
+  event: EventsListIcon,
+  courses: CourseListIcon,
+  news: News_community,
+  general: General_community,
+  "challenges-announcement": Challenge_community,
+  Space: SpaceListIcon,
+  profile: ArticleListIcon,
+  tagscategories: TagsCatIcon,
 };
