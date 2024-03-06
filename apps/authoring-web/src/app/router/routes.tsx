@@ -16,6 +16,7 @@ import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 //import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { CreateAssest, AssetListing } from "@platformx/asset-manager";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
@@ -387,6 +388,30 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='' category='community'>
         <UserGroupListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/images",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/videos",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/create_asset",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <CreateAssest />
       </ProtectedRoute>
     ),
   },
