@@ -4,15 +4,13 @@ import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+// import { ThemeProvider } from "@mui/material/styles";
 import React, { useState } from "react";
-import Frame from "react-frame-component";
+// import Frame from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import PrelemTheme from "../../../../theme/prelemTheme";
-import ThemeConstants from "../../../../theme/variable";
-import { authInfo } from "../../../../utils/authConstants";
-import { ThemeConstantForPrelemThemeBasedOnSite } from "../../../../utils/helperFunctions";
+import { ThemeConstants, AUTH_INFO } from "@platformx/utilities";
+// import { ThemeConstantForPrelemThemeBasedOnSite } from "../../../../utils/helperFunctions";
 
 // const theme = {
 //   LightTheme,
@@ -23,8 +21,8 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 const secondaryArgs = {
-  gcpUrl: authInfo.gcpUri,
-  bucketName: authInfo.gcpBucketName,
+  gcpUrl: AUTH_INFO.gcpUri,
+  bucketName: AUTH_INFO.gcpBucketName,
 };
 const ArticlePreview = () => {
   const navigate = useNavigate();
@@ -104,7 +102,7 @@ const ArticlePreview = () => {
   //     window.history.back();
   //   }
   // }, [article]);
-  const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
+  // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   return (
     <>
       <Box
@@ -189,7 +187,7 @@ const ArticlePreview = () => {
               borderRadius: "30px",
               overflow: "hidden",
             }}>
-            <Frame
+            {/* <Frame
               width={deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
               height={height}
               initialContent={initialContent}
@@ -209,7 +207,7 @@ const ArticlePreview = () => {
                   <ContentType showRecentArticles={false} secondaryArgs={secondaryArgs} />
                 )}
               </ThemeProvider>
-            </Frame>
+            </Frame> */}
           </Box>
         </Box>
       </Box>
