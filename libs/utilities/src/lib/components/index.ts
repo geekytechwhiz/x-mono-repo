@@ -3,6 +3,7 @@ import BasicSwitchText from "./BasicSwitchText";
 import { Card } from "./Card/Card";
 import ContentListLoader from "./ContentListLoader/ContentListLoader";
 import XCheckbox from "./CustomCheckBox";
+import LanguageDropDownCheckBox from "./LanguageDropDownCheckBox/LanguageDropDownCheckBox";
 import DatePicker from "./DatePicker/DatePicker";
 import IconAndLabel from "./IconAndLabel";
 import ContentListMobileLoader from "./Loader/ContentListLoaderMobile";
@@ -44,4 +45,5 @@ export {
   XImage,
   XTags,
   XToolTip,
+  LanguageDropDownCheckBox,
 };

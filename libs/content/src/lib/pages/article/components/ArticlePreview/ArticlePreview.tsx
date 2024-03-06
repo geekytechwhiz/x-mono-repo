@@ -4,15 +4,16 @@ import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+// import { ThemeProvider } from "@mui/material/styles";
 import React, { useState } from "react";
-import Frame from "react-frame-component";
+// import Frame from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import PrelemTheme from "../../../../theme/prelemTheme";
-import ThemeConstants from "../../../../theme/variable";
-import { authInfo } from "../../../../utils/authConstants";
-import { ThemeConstantForPrelemThemeBasedOnSite } from "../../../../utils/helperFunctions";
+import {
+  ThemeConstants,
+  // AUTH_INFO
+} from "@platformx/utilities";
+// import { ThemeConstantForPrelemThemeBasedOnSite } from "../../../../utils/helperFunctions";
 
 // const theme = {
 //   LightTheme,
@@ -22,76 +23,76 @@ const tabs = [
   { type: "tablet", icon: TabletAndroidRoundedIcon },
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
-const secondaryArgs = {
-  gcpUrl: authInfo.gcpUri,
-  bucketName: authInfo.gcpBucketName,
-};
+// const secondaryArgs = {
+//   gcpUrl: AUTH_INFO.gcpUri,
+//   bucketName: AUTH_INFO.gcpBucketName,
+// };
 const ArticlePreview = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
-  const iframeRef = React.useRef<any>();
-  const [height, setHeight] = useState(300);
+  // const iframeRef = React.useRef<any>();
+  // const [height, setHeight] = useState(300);
   // const location = useLocation();
-  const handleResize = (iframe: any) => {
-    if (iframe?.current?.contentDocument?.body?.scrollHeight > 100) {
-      setHeight(window.parent.innerHeight - 105);
-    }
-  };
+  // const handleResize = (iframe: any) => {
+  //   if (iframe?.current?.contentDocument?.body?.scrollHeight > 100) {
+  //     setHeight(window.parent.innerHeight - 105);
+  //   }
+  // };
   // const { state } = useContext(Store);
   // const { article } = state;
   // const themeConstant =
   //   process.env?.REACT_APP_COMPONENT_THEME == 'LightTheme'
   //     ? ThemeConstants
   //     : ThemeConstants;
-  const [previewObject] = useState({
-    Page: "",
-    SiteName: "",
-    SubTitle: null,
-    title: "",
-    banner: "",
-    description: "",
-    ContentType: "",
-    Category: "",
-    ParentPageURL: "",
-    current_page_url: "",
-    Page_CreatedBy: "",
-    Page_PublishedBy: "",
-    IsEdit: false,
-    SeoEnable: true,
-    AnalyticsEnable: true,
-    RobotTxt: false,
-    SiteMap: false,
-    Others: null,
-    Analytics: null,
-    StructureData: "",
-    developed_by: "",
-    developed_date: "",
-    Page_State: "",
-    UserActionInfo: "",
-    Links: [],
-    LinkTags: [],
-    creationDate: "",
-    LastModificationDate: "",
-    articleContent: { Images: {}, Videos: {} },
-    article_settings: {},
-    tags: [],
-  });
-  const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}
-  <style>
-    #react-player video {
-      object-fit: fill !important;
-    }
-    .tweetWrapper iframe {
-      visibility: visible !important;
-      position: relative !important;
-    }
-    body {
-      overflow-x: hidden;
-    }
-  </style></head><body><div></div></body></html>`;
+  // const [previewObject] = useState({
+  //   Page: "",
+  //   SiteName: "",
+  //   SubTitle: null,
+  //   title: "",
+  //   banner: "",
+  //   description: "",
+  //   ContentType: "",
+  //   Category: "",
+  //   ParentPageURL: "",
+  //   current_page_url: "",
+  //   Page_CreatedBy: "",
+  //   Page_PublishedBy: "",
+  //   IsEdit: false,
+  //   SeoEnable: true,
+  //   AnalyticsEnable: true,
+  //   RobotTxt: false,
+  //   SiteMap: false,
+  //   Others: null,
+  //   Analytics: null,
+  //   StructureData: "",
+  //   developed_by: "",
+  //   developed_date: "",
+  //   Page_State: "",
+  //   UserActionInfo: "",
+  //   Links: [],
+  //   LinkTags: [],
+  //   creationDate: "",
+  //   LastModificationDate: "",
+  //   articleContent: { Images: {}, Videos: {} },
+  //   article_settings: {},
+  //   tags: [],
+  // });
+  // const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}
+  // <style>
+  //   #react-player video {
+  //     object-fit: fill !important;
+  //   }
+  //   .tweetWrapper iframe {
+  //     visibility: visible !important;
+  //     position: relative !important;
+  //   }
+  //   body {
+  //     overflow-x: hidden;
+  //   }
+  // </style></head><body><div></div></body></html>`;
 
-  const ContentType = React.lazy(() => import(`platform-x-prelems/prelems/${"Article"}`));
+  // const ContentType = React.lazy(() => import(`platform-x-prelems/prelems/${"Article"}`));
 
   const handleReturn = () => {
     window.history.back();
@@ -104,7 +105,7 @@ const ArticlePreview = () => {
   //     window.history.back();
   //   }
   // }, [article]);
-  const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
+  // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   return (
     <>
       <Box
@@ -189,7 +190,7 @@ const ArticlePreview = () => {
               borderRadius: "30px",
               overflow: "hidden",
             }}>
-            <Frame
+            {/* <Frame
               width={deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
               height={height}
               initialContent={initialContent}
@@ -209,7 +210,7 @@ const ArticlePreview = () => {
                   <ContentType showRecentArticles={false} secondaryArgs={secondaryArgs} />
                 )}
               </ThemeProvider>
-            </Frame>
+            </Frame> */}
           </Box>
         </Box>
       </Box>
