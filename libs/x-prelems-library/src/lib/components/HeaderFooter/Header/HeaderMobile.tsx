@@ -20,19 +20,19 @@ import React, { Fragment } from "react";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
+
 // import { formRelativeURL } from "../../utils/helperFunction";
 import {
+  formRelativeURL,
   getFlag,
   getHrefforAnchors,
   nullToObject,
   parseStringDetails,
-  formRelativeURL,
 } from "../helperFunction";
-import "./Header.css";
 import EcomHeader from "./EcomHeader";
-import LanguageMobileView from "./LanguageHeader/LanguageMobileView";
+import "./Header.css";
 import { useCustomStyle } from "./HeaderMobile.style";
+import LanguageMobileView from "./LanguageHeader/LanguageMobileView";
 
 const HeaderMobile = ({
   isLogin,
@@ -78,7 +78,7 @@ const HeaderMobile = ({
   const drawer = (
     <Box onClick={handleDrawerToggle} className={`${classes.xMobileheader} xMobileHeaderWrapper`}>
       <Box className='xMobileTopSection'>
-        <Image
+        <img
           src={formRelativeURL(gcpUrl, bucketName, data?.header_logo)}
           onClick={handleIconRedirect}
           style={{ cursor: "pointer" }}
@@ -97,7 +97,7 @@ const HeaderMobile = ({
           <ListItem>
             <ListItemButton sx={{ p: 0 }}>
               <ListItemIcon sx={{ minWidth: "fit-content", mr: "10px" }}>
-                <Image
+                <img
                   src={data?.userInfo?.img}
                   alt="Logo"
                   width="20"
@@ -221,7 +221,7 @@ const HeaderMobile = ({
         position='static'
         className={`x-header-appbar mobile-header headerBackground ${classes.xMobileheaderTopSection} mobileHeaderTop`}>
         <Toolbar className='headerTopToolbar'>
-          <Image
+          <img
             src={formRelativeURL(gcpUrl, bucketName, data?.header_logo)}
             onClick={handleIconRedirect}
             className='pointer'
@@ -246,7 +246,7 @@ const HeaderMobile = ({
           </Box>
 
           <Box onClick={() => setIsOpen(true)} className='headerFlagIcon'>
-            <Image src={getFlag()} alt='flagimage' width={24} height={24} />
+            <img src={getFlag()} alt='flagimage' width={24} height={24} />
           </Box>
           {/* <IconButton
             size="large"

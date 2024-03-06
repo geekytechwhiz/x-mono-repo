@@ -4,15 +4,15 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import EastIcon from "@mui/icons-material/East";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { Box, Container, Slide, Typography } from "@mui/material";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
-import { useCustomStyle } from "./ServiceCard4.style";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
 import "./ServiceCard4.css";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
-import Image from "next/image";
+import { useCustomStyle } from "./ServiceCard4.style";
+
 // ts-ignore
 const ServiceCard4 = ({
   content,
@@ -176,7 +176,7 @@ const ServiceCard4 = ({
                       </Box>
                       <Slide direction='left' in={true} timeout={1500}>
                         <Box className='imageWrapper' id='Image'>
-                          <Image alt='card4' src={item?.Image_1?.Url || ""} />
+                          <img alt='card4' src={item?.Image_1?.Url || ""} />
                         </Box>
                       </Slide>
                     </Box>

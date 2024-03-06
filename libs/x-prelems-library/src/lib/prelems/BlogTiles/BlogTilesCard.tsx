@@ -1,8 +1,5 @@
 /* eslint-disable prefer-destructuring */
 import { Box, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-import axios from "axios";
-import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
 import {
   Analytics,
   SecondaryArgs,
@@ -10,10 +7,12 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
 } from "@platformx/utilities";
-import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
-import { getIcon } from "../../components/Utils/helperFns";
+import axios from "axios";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import { getIcon } from "../../components/Utils/helperFns";
+import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 
 const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTilesCardProps) => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -125,7 +124,7 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
               image={""}>
               <Box className='cardOverlay'></Box>
               <Box className='contentIcons'>
-                <Image
+                <img
                   alt='BlogTilesCardimg'
                   src={getIcon(content.ContentType)}
                   className='fullwidth'

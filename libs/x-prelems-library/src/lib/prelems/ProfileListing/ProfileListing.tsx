@@ -1,13 +1,12 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import ProfileListingCard from "./ProfileListingCard";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ProfileListing.style";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import ProfileListingCard from "./ProfileListingCard";
 
 const ProfileListing = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const getCardArr = (data: any) => {
@@ -86,7 +85,7 @@ const ProfileListing = ({ content, analytics, authoringHelper, secondaryArgs }: 
             ) : (
               <>
                 <Box className='noDataFoundWrapper'>
-                  <Image
+                  <img
                     src='https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/3b8398a0-299a-4b4e-ad6f-2a5bbb306e9a/content'
                     alt='NoDataFound'
                   />

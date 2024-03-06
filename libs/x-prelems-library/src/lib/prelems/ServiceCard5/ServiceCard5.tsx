@@ -1,21 +1,20 @@
 import { Box, Container, Grid } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import Typography from "@mui/material/Typography";
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
-import ImageRender from "../../components/ImageRender";
-import "../../Style.css";
 import {
-  formCroppedUrlString,
+  Analytics,
+  AuthoringHelper,
   BigArrow,
   SecondaryArgs,
-  AuthoringHelper,
-  Analytics,
+  formCroppedUrlString,
 } from "@platformx/utilities";
-import { useCustomStyle } from "./ServiceCard5.style";
-import prelemTypes from "../../globalStyle";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import "../../Style.css";
+import ImageRender from "../../components/ImageRender";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import Image from "next/image";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ServiceCard5.style";
 
 const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: ServiceCard5Prop) => {
   const firstRender = useRef(true);
@@ -154,7 +153,7 @@ const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
             <Slide direction='right' in={secondaryArgs?.editState ? true : inView1} timeout={1500}>
               <Grid item sm={3.6} className='gridBoxWrapper' mt={0}>
                 <Box id='img' className='ArrowIconWrapper'>
-                  <Image alt='card5' src={BigArrow} />
+                  <img alt='card5' src={BigArrow} />
                 </Box>
 
                 <ImageRender
@@ -178,7 +177,7 @@ const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
             <Slide direction='up' in={secondaryArgs?.editState ? true : inView1} timeout={1500}>
               <Grid item sm={3.6} className='gridBoxWrapper' mt='5%'>
                 <Box id='img' className='ArrowIconWrapper'>
-                  <Image alt='card7' src={BigArrow} />
+                  <img alt='card7' src={BigArrow} />
                 </Box>
                 <ImageRender
                   originalImage={content?.ImageCompound?.ImageCompound_2?.original_image}
@@ -201,7 +200,7 @@ const ServiceCard5 = ({ content, analytics, authoringHelper, secondaryArgs }: Se
             <Slide direction='left' in={secondaryArgs?.editState ? true : inView1} timeout={1500}>
               <Grid item sm={3.6} className='gridBoxWrapper' mt='10%'>
                 <Box id='img' className='ArrowIconWrapper'>
-                  <Image alt='card9' src={BigArrow} />
+                  <img alt='card9' src={BigArrow} />
                 </Box>
                 <ImageRender
                   originalImage={content?.ImageCompound?.ImageCompound_3?.original_image}

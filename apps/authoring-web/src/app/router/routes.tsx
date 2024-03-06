@@ -16,7 +16,9 @@ import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 //import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { CreateAssest, AssetListing } from "@platformx/asset-manager";
 import { RouteConfig } from "./routes.type";
+import { TagListing, CategoryDetail, CreateTags } from "../../../../../libs/site-setting/src";
 
 export const routes: RouteConfig[] = [
   {
@@ -303,6 +305,30 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
+    path: "/site-setting/tags",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <TagListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/tags/:category",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CategoryDetail />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/site-setting/create-tags",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CreateTags />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/sites/site-creation",
     element: (
       <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
@@ -387,6 +413,30 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='quiz' subCategory='' category='community'>
         <UserGroupListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/images",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/videos",
+    element: (
+      <ProtectedRoute name='footer' category='assets' subCategory=''>
+        <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/create_asset",
+    element: (
+      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+        <CreateAssest />
       </ProtectedRoute>
     ),
   },

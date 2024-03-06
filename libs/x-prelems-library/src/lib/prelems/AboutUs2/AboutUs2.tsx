@@ -6,7 +6,7 @@ import {
   completeButtonUrl,
   formCroppedUrlString,
 } from "@platformx/utilities";
-import Image from "next/image";
+
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import Typewriter from "typewriter-effect";
@@ -210,13 +210,13 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
           </Typography>
         </Box>
         <Box className='imageWrapper1'>
-          <Image alt='About us' src={Frame1} className='frame1' width='200' height='87' />
+          <img alt='About us' src={Frame1} className='frame1' width='200' height='87' />
         </Box>
         <Box className='imageWrapper2'>
-          <Image alt='About us' src={Frame2} className='frame2' width='170' height='72' />
+          <img alt='About us' src={Frame2} className='frame2' width='170' height='72' />
         </Box>
         <Box className='imageWrapper3'>
-          <Image alt='About us' src={Frame3} className='frame3' width='232' height='40' />
+          <img alt='About us' src={Frame3} className='frame3' width='232' height='40' />
         </Box>
       </Box>
     );

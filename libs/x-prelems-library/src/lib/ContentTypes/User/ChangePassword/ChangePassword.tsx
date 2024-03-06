@@ -1,15 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import "../../../utils/service/i18n";
-import { useTranslation } from "react-i18next";
-import { PlatXLogo, ChangePasswordImg } from "@platformx/utilities";
-import prelemTypes from "../../../globalStyle";
-import { useCustomStyle } from "./ChangePassword.style";
-import FormValidate from "../../../components/CustomHook/FormValidate";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { ChangePasswordImg, PlatXLogo } from "@platformx/utilities";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import FormValidate from "../../../components/CustomHook/FormValidate";
 import ToastService from "../../../components/ToastContainer/ToastService";
+import prelemTypes from "../../../globalStyle";
+import "../../../utils/service/i18n";
+import { useCustomStyle } from "./ChangePassword.style";
 import { changePasswordServiceCall } from "./helperChangePassword";
-import Image from "next/image";
 
 import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
 
@@ -117,10 +116,10 @@ const ChangePassword = ({
       <Box className='changePwdScreen'>
         <Box className='leftPanel'>
           <Box className='logoWrapper' onClick={moveToHomePage}>
-            <Image src={PlatXLogo} alt='logo' title='logo' className='logo' />
+            <img src={PlatXLogo} alt='logo' title='logo' className='logo' />
           </Box>
           <Box className='imageWrapper'>
-            <Image
+            <img
               src={ChangePasswordImg}
               alt='change password'
               title='change password'

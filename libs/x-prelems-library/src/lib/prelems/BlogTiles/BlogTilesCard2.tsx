@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
-import axios from "axios";
-import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
 import {
   Analytics,
   SecondaryArgs,
@@ -10,9 +7,11 @@ import {
   handleHtmlTags,
   onClickCardUrlNavigate,
 } from "@platformx/utilities";
-import { getIcon } from "../../components/Utils/helperFns";
+import axios from "axios";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import { getIcon } from "../../components/Utils/helperFns";
 
 const BlogTilesCard2 = ({ content, secondaryArgs, analytics, cardIndex }: BlogTilesCard2Props) => {
   const { triggerClickAnalytics } = useClickImpression();
@@ -110,7 +109,7 @@ const BlogTilesCard2 = ({ content, secondaryArgs, analytics, cardIndex }: BlogTi
               image={""}>
               <Box className='cardOverlay1'>
                 <Box className='contentIcons1'>
-                  <Image
+                  <img
                     alt='BlogTilesCard2Img'
                     src={getIcon(content.ContentType)}
                     className='fullwidth'

@@ -1,22 +1,21 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Box, Card, CardMedia, Typography } from "@mui/material";
-import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 import EastIcon from "@mui/icons-material/East";
+import { Box, Card, CardMedia, Typography } from "@mui/material";
 import {
+  ArticleSoltIcon,
+  EventIcon,
   getImage,
   getLandingPageURLwithoutSlash,
-  ArticleSoltIcon,
   imgIcon,
-  vodIcon,
   pollIcon,
   quizIcon,
-  EventIcon,
+  vodIcon,
 } from "@platformx/utilities";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
-import Image from "next/image";
+import ImageVideoGalleryModalSlider from "../ImageVideoGalleryModalSlider/ImageVideoGalleryModalSlider";
 
 const typeInfo = {
   Article: {
@@ -140,7 +139,7 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
                 <Box>
                   <Box className='textUnderline'>
                     <Box display='flex' alignItems='center'>
-                      <Image
+                      <img
                         src={typeInfo[content.ContentType]?.icon}
                         alt={content.ContentType}
                         width={16}
@@ -189,7 +188,7 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
               <Box>
                 <Box className='textUnderline'>
                   <Box display='flex' alignItems='center'>
-                    <Image
+                    <img
                       src={typeInfo[content.ContentType]?.icon}
                       alt={content.ContentType}
                       width={16}

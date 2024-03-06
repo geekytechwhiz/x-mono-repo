@@ -1,6 +1,6 @@
 import { CardMedia, Paper } from "@mui/material";
 import { fallBackImage, formCroppedUrlString } from "@platformx/utilities";
-import Image from "next/image";
+
 import React, { useState } from "react";
 import { breakpoints, ratios } from "./ConstantData";
 
@@ -30,7 +30,7 @@ const ImageRender = (props: any = {}) => {
   return (
     <>
       {error ? (
-        <Image
+        <img
           src={fallBackImage}
           style={{ objectFit: "contain", width: width, height: height }}
           alt='fallbackimage'
@@ -72,7 +72,7 @@ const ImageRender = (props: any = {}) => {
                   </React.Fragment>
                 );
               })}
-              <Image
+              <img
                 alt='cropped-img'
                 src='https://storage.googleapis.com/cropped_image_public/machine_assets/1689934844153xyz/public/png/WebsiteIntroduction.png'
                 onError={handleError}
@@ -98,15 +98,16 @@ const ImageRender = (props: any = {}) => {
                 },
               }}>
               <picture>
-                Soure has been commented
+                source has been commented
                 {/* <source
                   srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, "webp")}
                   type='image/webp'
                 />
+                <ImageRanger
                 <source
                   srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext)}
                 /> */}
-                <Image
+                <img
                   src={
                     formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src
                   }

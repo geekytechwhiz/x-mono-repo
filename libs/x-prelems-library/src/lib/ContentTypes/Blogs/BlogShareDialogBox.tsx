@@ -1,13 +1,12 @@
-import * as React from "react";
-import MenuItem from "@mui/material/MenuItem";
-import { useTranslation } from "react-i18next";
 import ShareIcon from "@mui/icons-material/Share";
-import { Menu, IconButton, Box } from "@mui/material";
-import { errorRequest, linkCopy } from "../../utils/constants/constant";
-import ToastService from "../../components/ToastContainer/ToastService";
+import { Box, IconButton, Menu } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import { IconCopySvg, IconFacebookSvg, IconLinkedInSvg } from "@platformx/utilities";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
 import { FacebookShareButton, LinkedinShareButton } from "react-share";
-import { IconLinkedInSvg, IconFacebookSvg, IconCopySvg } from "@platformx/utilities";
-import Image from "next/image";
+import ToastService from "../../components/ToastContainer/ToastService";
+import { errorRequest, linkCopy } from "../../utils/constants/constant";
 
 type blogShareDialogBoxType = {
   shareUrl: string;
@@ -89,7 +88,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
             {/* faceBook */}
             <FacebookShareButton url={shareUrl}>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
-                <Image alt='share1' src={IconFacebookSvg} />
+                <img alt='share1' src={IconFacebookSvg} />
 
                 {/* text */}
                 <Box component='span' sx={{ display: "block" }}>
@@ -107,7 +106,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
             <Box>
               <LinkedinShareButton url={shareUrl}>
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
-                  <Image alt='share1' src={IconLinkedInSvg} />
+                  <img alt='share1' src={IconLinkedInSvg} />
 
                   {/* text */}
                   <Box component='span' sx={{ display: "block" }}>
@@ -123,7 +122,7 @@ const BlogShareDialogBox = (props: blogShareDialogBoxType) => {
 
             {/* copyIcon */}
             <Box sx={{ display: "flex", flexDirection: "row" }}>
-              <Image alt='share1' src={IconCopySvg} />
+              <img alt='share1' src={IconCopySvg} />
 
               {/* text */}
               <Box component='span' sx={{ display: "block" }}>

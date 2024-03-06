@@ -1,13 +1,13 @@
-import React, { useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import "./AddCard.css";
 import { IconMasterCardSvg } from "@platformx/utilities";
-import StringTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnChangeTextBox";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import DropDown from "../../../../components/DropDown/Dropdown";
 import DateTextBox from "../../../../components/TextBox/DateTextBox";
 import StringOnBlurTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
-import Image from "next/image";
+import StringTextBox from "../../../../components/TextBox/StringTextBoxComponent/StringOnChangeTextBox";
+import "./AddCard.css";
+
 import { useCustomStyle } from "./AddCard.style";
 
 const AddCard = ({ confirmOrder }: any) => {
@@ -162,7 +162,7 @@ const AddCard = ({ confirmOrder }: any) => {
                 formValues.cardHolderName.error && formValues.cardHolderName.errorMessage
               }></StringTextBox>
             <Box className='card-type-image'>
-              <Image src={IconMasterCardSvg} alt='visa' />
+              <img src={IconMasterCardSvg} alt='visa' />
             </Box>
           </Grid>
           <Grid item xs={12} className='form-field-container'>

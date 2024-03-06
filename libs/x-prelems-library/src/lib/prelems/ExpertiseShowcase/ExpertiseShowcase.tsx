@@ -1,6 +1,7 @@
 import { Cached } from "@mui/icons-material";
 import { Box, Container, Grid, Paper, Typography } from "@mui/material";
-import Image from "next/image";
+
+import { formCroppedUrlString } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
@@ -9,7 +10,6 @@ import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpr
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./ExpertiseShowcase.style";
 import ExpertiseShowcaseSlot from "./ExpertiseShowcaseSlot";
-import { formCroppedUrlString } from "@platformx/utilities";
 
 const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs }: any) => {
   const { ref, inView } = useInView({
@@ -152,7 +152,7 @@ const ExpertiseShowcase = ({ content, analytics, authoringHelper, secondaryArgs 
                   }}
                   className='overlay-wrapper'>
                   <Box className='imgWrapper'>
-                    <Image alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
+                    <img alt='Expertimg' style={{ objectFit: "cover" }} src={imgUrl} />
                     <Box className='bottomButton'>
                       <BasicButton
                         openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
