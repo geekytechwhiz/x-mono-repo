@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import ArrowUpwardIcon from "../../assets/svg/UploadThumbnail.svg";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
+import { XImageRender } from "@platformx/x-image-render";
 // import CommonImageRender from '../Gallery/CommonImageRender';
 
 interface ImageProps {
@@ -68,7 +69,14 @@ const AddImage = ({
             //   publishedImages={publishedImages}
             //   operationType={operationType}
             // />
-            <div>CommonImageRender</div>
+            <XImageRender
+              callBack={updateField}
+              editData={{
+                original_image: originalImage,
+                published_images: publishedImages,
+              }}
+              isCrop={true}
+            />
           ) : (
             <img
               alt='image'
