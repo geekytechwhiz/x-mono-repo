@@ -30,7 +30,7 @@ jobs:
   affected-build:
     name: Build affected libs/apps
     runs-on: ubuntu-latest
-    needs: [linters]  
+    needs: [linters]
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: npm install
+        run: npm install #Install dependencies
 
       - name: Build affected libs/apps
         run: nx affected:build --base="${GITHUB_BASE_REF}" --head="${GITHUB_HEAD_REF}"
