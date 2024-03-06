@@ -22,21 +22,17 @@ export const publish_vod = PUBLISH_VOD;
 export const delete_vod = DELETE_VOD;
 export const unpublish_vod = UNPUBLISH_VOD;
 
-const fetchVodByIdAPI = {
-  fetchContent: async <T>(input: any): Promise<ApiResponse<T>> => {
-    try {
-      const { data } = await graphqlInstance.query({
-        query: FETCH_VOD_BY_ID,
-        variables: input,
-        fetchPolicy: "no-cache",
-      });
-      return data;
-    } catch (err: any) {
-      // eslint-disable-next-line no-console
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
-      throw err;
-    }
-  },
+export const fetchVodByIdAPI = async <T>(input: any): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_VOD_BY_ID,
+      variables: input,
+      fetchPolicy: "no-cache",
+    });
+    return data;
+  } catch (err: any) {
+    // eslint-disable-next-line no-console
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
 };
-
-export default fetchVodByIdAPI;
