@@ -38,13 +38,14 @@ export const AssetListing = () => {
   const {
     assetData,
     collectionItem,
-    setRefresh,
     isLazyLoad,
     fetchMoreData,
     startIndex,
     setStartIndex,
     assetLoading,
     folderLoading,
+    fetchCommunityCollect,
+    fetchCollectionAsset,
   } = useAsset();
 
   const entityType = {
@@ -81,7 +82,8 @@ export const AssetListing = () => {
     } catch (error) {
       ShowToastError(t("api_error_toast"));
     } finally {
-      setRefresh(true);
+      fetchCommunityCollect(true);
+      setStartIndex(0);
       setShow(false);
       setFolderName("");
     }
@@ -94,24 +96,25 @@ export const AssetListing = () => {
       });
 
       ShowToastSuccess(data.community?.message);
+      fetchCommunityCollect(true);
+      setStartIndex(0);
     } catch (error) {
       ShowToastError(t("api_error_toast"));
-    } finally {
-      setRefresh(true);
     }
   };
 
-  const deleteImages = async (communityId) => {
+  const deleteAsset = async (communityId) => {
     try {
-      const data = await assetsApi.deleteImages({
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const data = await assetsApi.deleteAsset({
         uuid: communityId,
       });
 
-      ShowToastSuccess(data.community?.message);
+      ShowToastSuccess(`${t("assetType")} ${t("deleted_toast")}`);
+      fetchCollectionAsset();
+      setStartIndex(0);
     } catch (error) {
       ShowToastError(t("api_error_toast"));
-    } finally {
-      setRefresh(true);
     }
   };
 
@@ -184,7 +187,7 @@ export const AssetListing = () => {
           {assetLoading && <FolderSkelaton size={[1, 2, 3, 4]} />}
           {collectionItem.collectionItem?.length > 0 &&
             collectionItem.collectionItem?.map((data) => (
-              <ImageCard data={data} key={data.uuid} deleteAsset={deleteImages} />
+              <ImageCard data={data} key={data.uuid} deleteAsset={deleteAsset} />
             ))}
         </InfiniteScroll>
       </Grid>
