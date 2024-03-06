@@ -17,6 +17,7 @@ import SkeltonLoader from "./SkeltonLoader/SkeltonLoader";
 import Timer from "./Timer/Timer";
 import XImage from "./XImage/XImage";
 import { XToolTip } from "./XToolTip/XToolTip";
+import LanguageDropDownCheckBox from "./LanguageDropDownCheckBox/LanguageDropDownCheckBox";
 
 export * from "./Card/constants";
 export * from "./DragAndDrop/index";
@@ -25,6 +26,7 @@ export * from "./PlateformXSocialDialog";
 export * from "./SchemaComponents/SubmitButton/helper";
 
 export {
+  LanguageDropDownCheckBox,
   AutoCompleteText,
   BasicSwitchText,
   Card,
