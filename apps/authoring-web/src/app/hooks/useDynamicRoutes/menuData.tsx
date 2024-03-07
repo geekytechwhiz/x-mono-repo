@@ -3,6 +3,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
+  CourseIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -19,7 +20,6 @@ import {
   UsersIcon,
   VODIcon,
   Webmaster,
-  CourseIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 

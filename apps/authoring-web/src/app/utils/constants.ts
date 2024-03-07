@@ -16,7 +16,6 @@ import {
   MediaIcon,
   MyDashboardIcon,
   PagesIcon,
-  //FeatureStar, AssetVODIcon, AssetdocIcon
 } from "@platformx/utilities";
 
 export const SNOWPLOW = {
