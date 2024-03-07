@@ -26,7 +26,7 @@ export interface ImageProps {
   isAssetAccess: boolean;
 }
 
-export const AddImageBackgroundColor = ({
+export const AddImageBackGroundColor = ({
   state,
   isImg,
   onUploadClick,

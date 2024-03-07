@@ -1,6 +1,6 @@
 import TextArea from "../TextArea/TextArea";
 import XDialog from "../XDialog/XDialog";
-import { AddImageBackGroundColor } from "./AddImageBackgroundColor/AddImageBackgroundColor.stories";
+import { AddImageBackGroundColor } from "./AddImageBackgroundColor/AddImageBackgroundColor";
 import Answers from "./Answers/Answers";
 import ColorPallet from "./ColorPallet/ColorPallet";
 import XDateTimePicker from "./DataTimePicker/XDateTimePicker";
@@ -10,12 +10,12 @@ import ErrorHandleTextBox from "./ErrorHandleTextBox/ErrorHandleTextBox";
 import { FormTextField } from "./FormTextField/FormTextField";
 import FormikField from "./FormikField/FormikField";
 import FormikTextField from "./FormikTextField/FormikTextField";
+import MultiSelect from "./MultiSelect/MultiSelect";
 import SectionWrapper from "./SectionWrapper/SectionWrapper";
 import XSwitch from "./Switch/XSwitch";
 import XTable from "./Table/XTable";
 import TitleSubTitle from "./TitleSubtitle/TitleSubTitle";
 import VerticalScrollTab from "./VerticalScrollTab/VerticalScrollTab";
-import MultiSelect from "./MultiSelect/MultiSelect";
 import { XButton } from "./XButton/XButton";
 import { XHoverTextButton } from "./XButton/XHoverTextButton";
 import XCheckBox from "./XCheckbox/XCheckBox";
@@ -38,6 +38,7 @@ export {
   FormTextField,
   FormikField,
   FormikTextField,
+  MultiSelect,
   SectionWrapper,
   TextArea,
   TitleSubTitle,
@@ -56,5 +57,4 @@ export {
   XTextArea,
   XTextField,
   XTypography,
-  MultiSelect,
 };
