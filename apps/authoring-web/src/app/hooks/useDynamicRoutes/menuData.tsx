@@ -3,7 +3,6 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
-  courseIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -20,6 +19,7 @@ import {
   UsersIcon,
   VODIcon,
   Webmaster,
+  CourseIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
@@ -84,7 +84,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "Courses",
-      Icon: courseIcon,
+      Icon: CourseIcon,
       url: "/content/course",
       category: "content",
       subCategory: "",

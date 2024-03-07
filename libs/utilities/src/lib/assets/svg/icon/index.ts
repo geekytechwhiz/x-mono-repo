@@ -7,7 +7,7 @@ import imgIcon from "./imggallery.svg";
 import pollIcon from "./poll.svg";
 import quizIcon from "./quiz.svg";
 import vodIcon from "./vod.svg";
-import courseIcon from "./course.svg";
+import CourseIcon from "./course.svg";
 //import General_community from "./General_community.svg";
 //import News_community from "./News_community.svg";
 import playerIcon from "./profil_icon.svg";
@@ -41,7 +41,7 @@ export {
   pollIcon,
   quizIcon,
   vodIcon,
-  courseIcon,
+  CourseIcon,
   // General_community,
   // News_community,
   playerIcon,

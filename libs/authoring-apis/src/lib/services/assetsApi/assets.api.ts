@@ -53,7 +53,7 @@ const assetsApi = {
       throw err;
     }
   },
-  deleteImages: async <T>(input: T): Promise<any> => {
+  deleteAsset: async <T>(input: T): Promise<any> => {
     try {
       const { data } = await graphqlInstance.mutate({
         mutation: DELETE_ASSET,

@@ -1,6 +1,7 @@
 import { CreateCourse } from "@platformx/course";
 import { useLocation } from "react-router";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
+import { CreateVod } from "../pages/vod/createVOD/CreateVod";
 import { CreatePoll } from "./Polls/CreatePoll";
 import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 import { CreateArticle } from "./article/CreateArticle";
@@ -16,6 +17,8 @@ export const CreateContent = () => {
 
     case "quiz":
       return <CreateQuiz></CreateQuiz>;
+    case "vod":
+      return <CreateVod></CreateVod>;
     case "poll":
       return <CreatePoll></CreatePoll>;
 

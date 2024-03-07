@@ -26,7 +26,7 @@ import {
   useSiteListingStyle,
 } from "./SiteListing.style";
 import { SiteListingLoader } from "./SiteListingLoader";
-import ContentListingHeader from "libs/content/src/lib/components/ContentListingHeader/ContentListingHeader";
+import { ContentListingHeader } from "@platformx/content";
 
 export const SiteListing = () => {
   const navigate = useNavigate();

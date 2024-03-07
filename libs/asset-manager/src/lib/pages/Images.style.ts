@@ -38,7 +38,7 @@ export const useImagesStyle = makeStyles((theme) => ({
 
     display: "flex",
     float: "right",
-    marginRight: "10px",
+    marginRight: "27px",
   },
   topheadermodal: {
     [theme.breakpoints.down("md")]: {

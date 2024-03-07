@@ -30,9 +30,8 @@ import {
   HeaderLogoSkeleton,
   HeaderSearchSkeleton,
 } from "../../components/CookieSettingConstant";
-import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import { XImageRender } from "@platformx/x-image-render";
-import { CreateHeader } from "@platformx/content";
+import { CreateHeader, ContentPageScroll } from "@platformx/content";
 
 const iconImages = [
   {

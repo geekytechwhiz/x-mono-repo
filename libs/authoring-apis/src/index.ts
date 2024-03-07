@@ -4,6 +4,13 @@ import { ArticleQueries } from "./lib/graphQL/queries/articleQueries";
 import { PageQueries } from "./lib/graphQL/queries/pageQueries";
 import { UserManagementQueries } from "./lib/graphQL/queries/userManagementQueries";
 import { FETCH_VOD_BY_ID, FETCH_VOD_LIST_ALL } from "./lib/graphQL/queries/vodQueries";
+import {
+  create_vod,
+  fetchVodById,
+  publish_vod,
+  update_vod,
+  fetchVodByIdAPI,
+} from "./lib/services/vod/vod.api";
 import { WorkflowQueries } from "./lib/graphQL/queries/workflowQueries";
 import { snowplowTrackingHook } from "./lib/hooks/customHook/snowplowTrackingHook";
 import useContentListing from "./lib/hooks/useContentListing/useContentListing";
@@ -29,7 +36,7 @@ import {
 } from "./lib/services/socialShare/socialShare.api";
 import userGroupsApi from "./lib/services/userGroups/userGroups.api";
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
-import fetchVodByIdAPI from "./lib/services/vod/vod.api";
+// import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
 
 export * from "./lib/context/actionContext/ActionContext.types";
@@ -83,4 +90,8 @@ export {
   userGroupsApi,
   userManagementAPI,
   workflowApi,
+  create_vod,
+  fetchVodById,
+  publish_vod,
+  update_vod,
 };

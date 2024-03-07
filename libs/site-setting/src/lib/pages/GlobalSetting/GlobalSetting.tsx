@@ -9,7 +9,7 @@ import {
   publishGlobalSetting,
   updateGlobalSetting,
 } from "@platformx/authoring-apis";
-import { CreateHeader } from "@platformx/content";
+import { CreateHeader, ContentPageScroll } from "@platformx/content";
 import GlobalHeaderbreadscum from "../../components/GlobalHeaderbreadscum";
 import { useGlobalSettingStyle } from "./GlobalSetting.style";
 import {
@@ -22,7 +22,6 @@ import {
   PlateformXDialogSuccess,
 } from "@platformx/utilities";
 import { Loader } from "../../../../../utilities/src";
-import ContentPageScroll from "libs/content/src/lib/components/ContentPageScroll";
 import PlateformXStoryDialog from "./StoryTagsmodal";
 import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 

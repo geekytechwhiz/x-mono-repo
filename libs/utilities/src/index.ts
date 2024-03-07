@@ -9,6 +9,7 @@ import ContentGridLoader from "./lib/components/ContentGridLoader";
 import DatePicker from "./lib/components/DatePicker/DatePicker";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 import Error from "./lib/components/Error/Error";
+import Icons from "./lib/components/Icons";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
 import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
 // import Gallery from './lib/components/Gallery/Gallery'
@@ -217,6 +218,7 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  Icons,
   XDatePicker,
   capitalizeFirstLetter,
   getSubDomain,

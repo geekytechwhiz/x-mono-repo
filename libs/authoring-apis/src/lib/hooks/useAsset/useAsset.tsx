@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ShowToastError, AUTH_INFO } from "@platformx/utilities";
 import AssetApi from "../../services/assetsApi/assets.api";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const COMMUNITY = {
   collections: [],
@@ -17,8 +18,7 @@ const useAsset = () => {
   const [collectionItem, setCollectionItem] = useState<any>(COLLECTION_ITEM);
   const [folderLoading, setFolderLoading] = useState(false);
   const [assetLoading, setAssetLoading] = useState(false);
-
-  const [refresh, setRefresh] = useState(false);
+  const { t } = useTranslation();
   const [startIndex, setStartIndex] = useState<number>(0);
   const [isLazyLoad, setIsLazyLoad] = useState<boolean>(true);
 
@@ -59,11 +59,9 @@ const useAsset = () => {
         });
       }
     } catch (err) {
-      // setError(err);
-      ShowToastError("err");
+      ShowToastError(t("api_error_toast"));
     } finally {
       setFolderLoading(false);
-      reload && setRefresh(false);
     }
   };
 
@@ -82,7 +80,7 @@ const useAsset = () => {
       );
       if (authoring_getAssets) {
         const { collectionItem: item = [], page = {} } = authoring_getAssets;
-        if (collectionItem.length < ROWS) {
+        if (item.length < ROWS) {
           setIsLazyLoad(false);
         } else {
           setIsLazyLoad(true);
@@ -93,12 +91,10 @@ const useAsset = () => {
         });
       }
     } catch (err) {
-      //setError(err);
-      ShowToastError("err");
+      ShowToastError(t("api_error_toast"));
       setIsLazyLoad(false);
     } finally {
       setAssetLoading(false);
-      reload && setRefresh(false);
     }
   };
 
@@ -116,7 +112,7 @@ const useAsset = () => {
       );
       if (authoring_getAssets) {
         const { collectionItem: item = [], page = {} } = authoring_getAssets;
-        if (collectionItem.length < ROWS) {
+        if (item.length < ROWS) {
           setIsLazyLoad(false);
         } else {
           setIsLazyLoad(true);
@@ -128,11 +124,8 @@ const useAsset = () => {
         }));
       }
     } catch (err) {
-      // setError(err);
       setIsLazyLoad(false);
-      ShowToastError("err");
-    } finally {
-      reload && setRefresh(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -155,30 +148,17 @@ const useAsset = () => {
     //  }
   }, [uuid1]);
 
-  useEffect(() => {
-    if (refresh) {
-      // if (uuid1 && uuid2) {
-      //   fetchAsset(true);
-      // } else {
-      fetchCommunityCollect(true);
-      setStartIndex(0);
-      //  }
-    }
-  }, [refresh]);
-
   return {
     assetData,
     collectionItem,
     folderLoading,
-    //  fetchCommunityCollect,
-    //  refresh,
-    setRefresh,
-    //  fetchCollectionAsset,
     isLazyLoad,
     fetchMoreData,
     startIndex,
     setStartIndex,
     assetLoading,
+    fetchCommunityCollect,
+    fetchCollectionAsset,
   };
 };
 
