@@ -1,22 +1,21 @@
 import {
   ApprovalStatus,
-  EventsIcon,
-  HamburgerMenuIcon,
-  PollIcon,
-  PostIconMenu,
-  QuizIcon,
-  courseIcon,
-  SitesIcon,
-  UsersIcon,
-  VODIcon,
   ArticleIcon,
   CookieIcon,
+  CourseIcon,
+  EventsIcon,
   FooterMenuUpdated,
+  HamburgerMenuIcon,
   HeaderMenuUpdated,
   MediaIcon,
   MyDashboardIcon,
   PagesIcon,
-  //FeatureStar, AssetVODIcon, AssetdocIcon
+  PollIcon,
+  PostIconMenu,
+  QuizIcon,
+  SitesIcon,
+  UsersIcon,
+  VODIcon,
 } from "@platformx/utilities";
 
 export const SNOWPLOW = {
@@ -129,7 +128,7 @@ export const MenuData = [
       },
       {
         MenuName: "Courses",
-        Icon: courseIcon,
+        Icon: CourseIcon,
         url: "/content/course",
         category: "content",
         subCategory: "",
