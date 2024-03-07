@@ -17,7 +17,7 @@ import {
   SitesIcon,
   UsersIcon,
   VODIcon,
-} from "@platformx/utilities";
+  CourseIcon} from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
@@ -81,7 +81,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "Courses",
-      Icon: CourseDegIcon,
+      Icon: CourseIcon,
       url: "/content/course",
       category: "content",
       subCategory: "",
