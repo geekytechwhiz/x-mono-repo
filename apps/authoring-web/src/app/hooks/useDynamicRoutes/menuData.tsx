@@ -3,7 +3,6 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
-  CourseDegIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
