@@ -1,21 +1,21 @@
 import {
   ApprovalStatus,
+  EventsIcon,
+  HamburgerMenuIcon,
+  PollIcon,
+  PostIconMenu,
+  QuizIcon,
+  CourseIcon,
+  SitesIcon,
+  UsersIcon,
+  VODIcon,
   ArticleIcon,
   CookieIcon,
-  CourseIcon,
-  EventsIcon,
   FooterMenuUpdated,
-  HamburgerMenuIcon,
   HeaderMenuUpdated,
   MediaIcon,
   MyDashboardIcon,
   PagesIcon,
-  PollIcon,
-  PostIconMenu,
-  QuizIcon,
-  SitesIcon,
-  UsersIcon,
-  VODIcon,
 } from "@platformx/utilities";
 
 export const SNOWPLOW = {
@@ -347,7 +347,7 @@ export const MenuData = [
     ],
   },
 ];
-export const headerMenus = ["dashboard", "pages", "user_management", "post", "menu", "sites"];
+export const headerMenus = ["pages", "user_management", "post", "menu", "sites"];
 export const tagData = [
   { title: "Fifa" },
   { title: "Cricket" },

@@ -6,12 +6,12 @@ import { Typography } from "@mui/material";
 
 const RADIAN = Math.PI / 180;
 const data1 = [
-  { name: "Poor", value: 20 },
-  { name: "Below average", value: 20 },
-  { name: "Average", value: 10 },
-  { name: "Good", value: 20 },
-  { name: "Very good", value: 10 },
-  { name: "Excellent", value: 20 },
+  { id: 1, name: "Poor", value: 20 },
+  { id: 2, name: "Below average", value: 20 },
+  { id: 3, name: "Average", value: 10 },
+  { id: 4, name: "Good", value: 20 },
+  { id: 5, name: "Very good", value: 10 },
+  { id: 6, name: "Excellent", value: 20 },
 ];
 
 const PieChartWithTicks = ({ itemData }: any) => {
@@ -21,18 +21,28 @@ const PieChartWithTicks = ({ itemData }: any) => {
   const tickLength = 8; //length of tick
   const gapDistance = 15; // Adjust the gap distance as needed
   const tickCount = 11; // Number of ticks (0, 10, 20, ..., 100)
-  const tickInterval = 10; // Interval between ticks
 
-  const chartContainerRef: any = useRef(null);
+  const chartContainerRef = useRef(null);
   const [chartDimensions, setChartDimensions] = useState({
     width: 500, // initial width
     height: 400, // initial height
   });
+  const roundToNearest100 = (number) => {
+    if (number % 100 === 0) {
+      return number;
+    }
+    const higherMultiple = Math.floor(number / 100) * 100 + 100;
+    return higherMultiple;
+  };
+  const needleValue = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0;
+  const t = roundToNearest100(needleValue);
+  const tickInterval = t / 10; // Interval between ticks
   const handleResize = () => {
     if (chartContainerRef.current) {
+      const container = chartContainerRef.current as HTMLElement;
       setChartDimensions({
-        width: chartContainerRef.current?.offsetWidth,
-        height: chartContainerRef.current?.offsetHeight,
+        width: container?.offsetWidth,
+        height: container?.offsetHeight,
       });
     }
   };
@@ -40,9 +50,10 @@ const PieChartWithTicks = ({ itemData }: any) => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     if (chartContainerRef.current) {
+      const container = chartContainerRef.current as HTMLElement;
       setChartDimensions({
-        width: chartContainerRef.current.offsetWidth,
-        height: chartContainerRef.current.offsetHeight,
+        width: container?.offsetWidth,
+        height: container?.offsetHeight,
       });
     }
     return () => {
@@ -54,7 +65,9 @@ const PieChartWithTicks = ({ itemData }: any) => {
   const cy = 280;
   const iR = 100;
   const oR = 120;
-  const value = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0; //actual value for needle
+  const moveNeedle = tickInterval / 10;
+  const value = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] / moveNeedle : 0; //actual value for needle
+  const actualTickValue = data[0]?.[colnames[0]] ? data[0]?.[colnames[0]] : 0;
 
   const getColorsValueByIndex = () => {
     let cumulativeSum = 0;
@@ -95,7 +108,7 @@ const PieChartWithTicks = ({ itemData }: any) => {
         key='path'
       />,
       <text key='text' x={x0 - 13} y={y0 + 30} fontSize='20' fill={color}>
-        {value.toFixed(2)}
+        {actualTickValue.toFixed(2)}
       </text>,
     ];
   };
@@ -159,7 +172,7 @@ const PieChartWithTicks = ({ itemData }: any) => {
             stroke='none'>
             {data1.map((entry, index) => (
               <Cell
-                key={`cell-${index}`}
+                key={`cell-${entry?.id}`}
                 fill={config.graphColor[index % config.graphColor.length]}
               />
             ))}

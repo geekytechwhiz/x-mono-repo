@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import Title from "./components/common/Title";
 import { useStyles } from "./dashboards.styles";
@@ -35,16 +34,6 @@ export const Dashboard = () => {
     changeStatus,
   } = useDashboardData();
   const { boostContent } = dashBoard || {};
-  const Charts = React.lazy(() =>
-    import("./components/charts/Charts").then((module) => ({
-      default: module.default,
-    })),
-  );
-  const ChartsForDemo = React.lazy(() =>
-    import("./components/charts/ChartsForDemo").then((module) => ({
-      default: module.default,
-    })),
-  );
   const taskLength = dashBoard?.taskPages?.length || 0;
   const overDueTaskLength = () => {
     let duetaskCount = 0;
@@ -165,12 +154,6 @@ export const Dashboard = () => {
                 <HorizontalCardList boostContent={boostContent} />
               )}
             </Box>
-            <Suspense fallback={<Typography variant='h3bold'>{t("loading")}</Typography>}>
-              <Charts />
-            </Suspense>
-            <Suspense fallback={<Typography variant='h3bold'>{t("loading")}</Typography>}>
-              {role === "viewer" && <ChartsForDemo />}
-            </Suspense>
             {/* Your Scheduled Items */}
             {(dashBoard?.scheduled?.length || 0) > 0 && (
               <Box className={classes.sectionMargin}>

@@ -40,11 +40,6 @@ export const Dashboard = () => {
       default: module.default,
     })),
   );
-  const ChartsForDemo = React.lazy(() =>
-    import("./components/charts/ChartsForDemo").then((module) => ({
-      default: module.default,
-    })),
-  );
   const taskLength = dashBoard?.taskPages?.length || 0;
   const overDueTaskLength = () => {
     let duetaskCount = 0;
@@ -165,12 +160,6 @@ export const Dashboard = () => {
                 <HorizontalCardList boostContent={boostContent} />
               )}
             </Box>
-            <Suspense fallback={<Typography variant='h3bold'>{t("loading")}</Typography>}>
-              <Charts />
-            </Suspense>
-            <Suspense fallback={<Typography variant='h3bold'>{t("loading")}</Typography>}>
-              {role === "viewer" && <ChartsForDemo />}
-            </Suspense>
             {/* Your Scheduled Items */}
             {(dashBoard?.scheduled?.length || 0) > 0 && (
               <Box className={classes.sectionMargin}>
@@ -180,6 +169,15 @@ export const Dashboard = () => {
                 <ScheduleCardList scheduledPages={dashBoard?.scheduled} />
               </Box>
             )}
+            <Suspense fallback={<Typography variant='h3bold'>Loading...</Typography>}>
+              <Box className='snapshortsChart'>
+                <Charts
+                  dashboardName='reportSnapshot'
+                  titleVarient='h4bold'
+                  heading='Reports Snapshot'
+                />
+              </Box>
+            </Suspense>
           </Box>
         );
     }

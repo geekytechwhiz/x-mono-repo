@@ -22,22 +22,26 @@ const CustomTooltip = ({ active, payload, colnames }: any) => {
 const PieGraph = ({ itemData }: any) => {
   const { chartData: data, column_names: colnames, title } = itemData;
   const config = graph.pie;
-  const totalSum = data.reduce((accumulator: any, currentValue: any) => accumulator + currentValue[colnames[1]], 0);
+  const totalSum = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue[colnames[1]],
+    0,
+  );
+
   const CustomLabel = (item: any) => {
     let percentageVal = 0;
-    if(item[colnames[1]] && totalSum) {
+    if (item[colnames[1]] && totalSum) {
       percentageVal = (item[colnames[1]] / totalSum) * 100;
       return `${percentageVal.toFixed(2)}%`;
     }
     return `${0}%`;
   };
-  const CustomLegend = ({ payload }: any) => {
+  const CustomLegend = ({ payload }) => {
     return (
       <Box className='recharts-legend-wrapper pie'>
         <ul className='recharts-default-legend'>
-          {payload.map((item: any, index: number) => (
+          {payload.map((item, index) => (
             <li
-              key={`item-${index}`}
+              key={`item-${item?.page_id}`}
               style={{
                 color: config.graphColor[index % config.graphColor.length],
               }}>
@@ -61,7 +65,7 @@ const PieGraph = ({ itemData }: any) => {
         {title}
       </Typography>
       <ResponsiveContainer width={config.width} height={config.height}>
-        <PieChart>
+        <PieChart margin={{ left: 25 }}>
           {config.showGrid && <CartesianGrid strokeDasharray='3 3' />}
           <Pie
             data={data}
@@ -74,7 +78,7 @@ const PieGraph = ({ itemData }: any) => {
             label={config.showLabel ? CustomLabel : false}>
             {data.map((entry: any, index: number) => (
               <Cell
-                key={`cell-${index}`}
+                key={`cell-${entry?.page_id}`}
                 fill={config.graphColor[index % config.graphColor.length]}
               />
             ))}

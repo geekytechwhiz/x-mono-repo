@@ -1,3 +1,3 @@
-import { CreateVod } from './CreateVod';
+import { CreateVod } from "./CreateVod";
 
 export default CreateVod;

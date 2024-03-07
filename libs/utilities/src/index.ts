@@ -32,6 +32,7 @@ import PlateformXDialogSuccess from "./lib/components/Popups/SuccessPopup";
 import RadioControlLabel from "./lib/components/RadioControlLabel";
 import { RadioLabelWithSubheading } from "./lib/components/RadioLabelWithSubheading";
 import SkeltonLoader from "./lib/components/Skeleton-loader/skeleton";
+import ChartSkeltonLoader from "./lib/components/Skeleton-loader/chartSkelton";
 import BasicSwitch from "./lib/components/Switch/Switch";
 import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
 import TextBox from "./lib/components/TextBox/TextBox";
@@ -187,6 +188,7 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
+  ChartSkeltonLoader,
   StructureDataDialog,
   TaskNotFound,
   TextArea,

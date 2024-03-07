@@ -21,6 +21,10 @@ import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+// import { TagListing, CategoryDetail, CreateTags } from "../../../../../libs/site-setting/src";
+import { Suspense } from "react";
+import { Typography } from "@mui/material";
+import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 
 export const routes: RouteConfig[] = [
   {
@@ -37,6 +41,34 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
         <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/dashboard/overview",
+    element: (
+      <ProtectedRoute category='dashboard' subCategory='dashboard'>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/user-engagement",
+    element: (
+      <ProtectedRoute category='reports' subCategory=''>
+        <Suspense fallback={<Typography variant='h3bold'>Loading...</Typography>}>
+          <Charts dashboardName='userEngagement' heading='User Engagement' />
+        </Suspense>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/reports/web-master",
+    element: (
+      <ProtectedRoute category='reports' subCategory=''>
+        <Suspense fallback={<Typography variant='h3bold'>Loading...</Typography>}>
+          <Charts dashboardName='webMaster' heading='Web Master' />
+        </Suspense>
       </ProtectedRoute>
     ),
   },
