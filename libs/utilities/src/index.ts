@@ -9,8 +9,8 @@ import ContentGridLoader from "./lib/components/ContentGridLoader";
 import DatePicker from "./lib/components/DatePicker/DatePicker";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 import Error from "./lib/components/Error/Error";
-import Icons from "./lib/components/Icons";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
+import Icons from "./lib/components/Icons";
 import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
 // import Gallery from './lib/components/Gallery/Gallery'
 import { MiniHeader } from "./lib/components/Header/MiniHeader";
@@ -60,15 +60,15 @@ import LightTheme from "./lib/themes/authoring/theme";
 // import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import {
-  getUniqueTimeZone,
   capitalizeFirstLetter,
+  getCurrentLang,
+  getFormattedImageUrl,
   getSubDomain,
+  getUniqueTimeZone,
   handleHtmlTags,
   onBackButtonEvent,
   trimString,
   unloadCallback,
-  getCurrentLang,
-  getFormattedImageUrl,
 } from "./lib/utils/helperFns";
 // import { LanguageList } from "./lib/utils/helperConstants";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
@@ -80,6 +80,7 @@ import {
   ErrorHandleAutoTextArea,
   ErrorHandleTextBox,
   FormikField,
+  MultiSelect,
   SectionWrapper,
   TextArea,
   TitleSubTitle,
@@ -91,11 +92,13 @@ import {
   XTable,
   XTextArea,
   workflowKeys,
-  MultiSelect,
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 //import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
+import DeleteGif from "./lib/assets/gif/delete.gif";
+import loadergif from "./lib/assets/gif/holi-loader.gif";
+import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
 import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
@@ -105,15 +108,13 @@ import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemIm
 import useUserSession from "./lib/hooks/useUserSession/useUserSession";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
-import DeleteGif from "./lib/assets/gif/delete.gif";
-import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
-import loadergif from "./lib/assets/gif/holi-loader.gif";
 import i18next from "./lib/utils/i18next";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
 export * from "./lib/assets/footer";
 export * from "./lib/assets/header";
+export * from "./lib/assets/icons/index";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
@@ -134,10 +135,7 @@ export * from "./lib/utils/helperConstants";
 export * from "./lib/utils/helperFns";
 export * from "./lib/utils/interface";
 export {
-  loadergif,
-  ProgressiveLoader,
   AUTH_INFO,
-  DeleteGif,
   AUTH_URL,
   AddImage,
   Answers,
@@ -154,6 +152,7 @@ export {
   ContentListDesktopLoader,
   ContentListMobileLoader,
   DatePicker,
+  DeleteGif,
   DeletePopup,
   DuplicateContentPopup,
   Error,
@@ -163,6 +162,7 @@ export {
   ErrorTooltip,
   FormikField,
   General_community,
+  Icons,
   // Gallery,
   InterRegular,
   LOGOUT_URL,
@@ -170,6 +170,7 @@ export {
   LightTheme,
   Loader,
   MiniHeader,
+  MultiSelect,
   NEW_LOGOUT_URL,
   News_community,
   NoContentFound,
@@ -178,6 +179,7 @@ export {
   PlateformXDialog,
   PlateformXDialogSuccess,
   PrelemTheme,
+  ProgressiveLoader,
   REDIRECT_AUTH_URL,
   RadioControlLabel,
   RadioLabelWithSubheading,
@@ -198,6 +200,7 @@ export {
   //WorkflowHistoryIcon,
   XButton,
   XCheckBox,
+  XDatePicker,
   // ArticleListDesktopLoader,
   XDialog,
   XFileUpload,
@@ -205,24 +208,22 @@ export {
   XSwitch,
   XTable,
   XTextArea,
+  capitalizeFirstLetter,
   getCurrentLang,
   getFormattedImageUrl,
+  getSubDomain,
   getUniqueTimeZone,
+  handleHtmlTags,
   i18next,
+  loadergif,
+  onBackButtonEvent,
   prelemTypes,
+  trimString,
+  unloadCallback,
   useAccess,
   usePageImpression,
   usePlatformAnalytics,
   usePrelemImpression,
   useUserSession,
   workflowKeys,
-  Icons,
-  XDatePicker,
-  capitalizeFirstLetter,
-  getSubDomain,
-  handleHtmlTags,
-  onBackButtonEvent,
-  trimString,
-  unloadCallback,
-  MultiSelect,
 };

@@ -3,6 +3,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
+  CourseIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -16,8 +17,8 @@ import {
   QuizIcon,
   SitesIcon,
   UsersIcon,
-  VODIcon,
-  CourseIcon} from "@platformx/utilities";
+  VODIcon
+} from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
