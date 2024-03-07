@@ -63,7 +63,7 @@ const AreaGraph = ({ itemData }: any) => {
             if (key !== firstKey) {
               return (
                 <Area
-                  key={index}
+                  key={key}
                   type={config.type as any}
                   dataKey={key}
                   stackId={index}

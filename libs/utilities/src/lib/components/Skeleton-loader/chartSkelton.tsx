@@ -3,12 +3,25 @@ import Skeleton from "@mui/material/Skeleton";
 import Card from "@mui/material/Card";
 import { CardContent } from "@mui/material";
 import { Box } from "@mui/system";
+import PropTypes from "prop-types";
 
 interface SkeltonLoaderList {
   maxWidth?: number;
   maxHeight?: number;
   chartName?: string;
 }
+
+ChartSkeltonLoader.propTypes = {
+  maxWidth: PropTypes.number,
+  maxHeight: PropTypes.number,
+  chartName: PropTypes.string,
+};
+
+ChartSkeltonLoader.defaultProps = {
+  maxWidth: 550,
+  maxHeight: 446,
+  chartName: "",
+};
 export default function ChartSkeltonLoader({
   maxWidth = 550,
   maxHeight,

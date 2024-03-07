@@ -87,7 +87,7 @@ const BarChartVertical = ({ itemData }: any) => {
                 if (key !== firstKey) {
                   return (
                     <Bar
-                      key={index}
+                      key={key}
                       dataKey={colnames[index]}
                       fill={config.graphColor[index - (1 % config.graphColor.length)]}
                       barSize={config.barSize}
@@ -113,7 +113,7 @@ const BarChartVertical = ({ itemData }: any) => {
                 if (key !== firstKey) {
                   return (
                     <Bar
-                      key={index}
+                      key={key}
                       dataKey={colnames[index]}
                       fill={config.graphColor[index - (1 % config.graphColor.length)]}
                       barSize={config.barSize}

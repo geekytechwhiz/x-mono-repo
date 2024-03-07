@@ -6,12 +6,12 @@ import { Typography } from "@mui/material";
 
 const RADIAN = Math.PI / 180;
 const data1 = [
-  { name: "Poor", value: 20 },
-  { name: "Below average", value: 20 },
-  { name: "Average", value: 10 },
-  { name: "Good", value: 20 },
-  { name: "Very good", value: 10 },
-  { name: "Excellent", value: 20 },
+  { id: 1, name: "Poor", value: 20 },
+  { id: 2, name: "Below average", value: 20 },
+  { id: 3, name: "Average", value: 10 },
+  { id: 4, name: "Good", value: 20 },
+  { id: 5, name: "Very good", value: 10 },
+  { id: 6, name: "Excellent", value: 20 },
 ];
 
 const PieChartWithTicks = ({ itemData }: any) => {
@@ -172,7 +172,7 @@ const PieChartWithTicks = ({ itemData }: any) => {
             stroke='none'>
             {data1.map((entry, index) => (
               <Cell
-                key={`cell-${index}`}
+                key={`cell-${entry?.id}`}
                 fill={config.graphColor[index % config.graphColor.length]}
               />
             ))}

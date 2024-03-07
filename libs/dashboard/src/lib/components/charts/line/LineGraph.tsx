@@ -65,7 +65,7 @@ const LineGraph = ({ itemData }: any) => {
             if (key !== firstKey) {
               return (
                 <Line
-                  key={index}
+                  key={key}
                   type={config.type as any}
                   dataKey={key}
                   name={key}

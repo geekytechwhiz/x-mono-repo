@@ -26,6 +26,7 @@ const PieGraph = ({ itemData }: any) => {
     (accumulator, currentValue) => accumulator + currentValue[colnames[1]],
     0,
   );
+
   const CustomLabel = (item: any) => {
     let percentageVal = 0;
     if (item[colnames[1]] && totalSum) {
@@ -40,7 +41,7 @@ const PieGraph = ({ itemData }: any) => {
         <ul className='recharts-default-legend'>
           {payload.map((item, index) => (
             <li
-              key={`item-${index}`}
+              key={`item-${item?.page_id}`}
               style={{
                 color: config.graphColor[index % config.graphColor.length],
               }}>
@@ -77,7 +78,7 @@ const PieGraph = ({ itemData }: any) => {
             label={config.showLabel ? CustomLabel : false}>
             {data.map((entry: any, index: number) => (
               <Cell
-                key={`cell-${index}`}
+                key={`cell-${entry?.page_id}`}
                 fill={config.graphColor[index % config.graphColor.length]}
               />
             ))}

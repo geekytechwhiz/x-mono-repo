@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import Title from "./components/common/Title";
 import { useStyles } from "./dashboards.styles";
