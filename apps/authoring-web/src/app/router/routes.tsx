@@ -3,23 +3,23 @@ import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
-import {
-  CookieSetting,
-  FeatureFlagSetting,
-  FooterSetting,
-  GlobalSetting,
-  HeaderSetting,
-  MediaHandle,
-  TagListing,
-  CategoryDetail,
-  CreateTags,
-} from "@platformx/site-setting";
+// import {
+//   CookieSetting,
+//   FeatureFlagSetting,
+//   FooterSetting,
+//   GlobalSetting,
+//   HeaderSetting,
+//   MediaHandle,
+//   TagListing,
+//   CategoryDetail,
+//   CreateTags,
+// } from "@platformx/site-setting";
 import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
-//import { CreateUser, UserListing } from "@platformx/user-management";
+//import { CreateUser, UserListing } from "@platformx/u/ser-management";
+// import { AssetListing, CreateAssest } from "@platformx/asset-manager";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { CreateAssest, AssetListing } from "@platformx/asset-manager";
 import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
@@ -258,78 +258,78 @@ export const routes: RouteConfig[] = [
   //     </ProtectedRoute>
   //   ),
   // },
-  {
-    path: "/site-setting/media-handle",
-    element: (
-      <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
-        <MediaHandle />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/global-setting",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-        <GlobalSetting />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/footer-setting",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='FooterSetting'>
-        <FooterSetting />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/header-setting",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='HeaderSetting'>
-        <HeaderSetting />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/cookie-setting",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='CookieSetting'>
-        <CookieSetting />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/feature-flag",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-        <FeatureFlagSetting />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/tags",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-        <TagListing />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/tags/:category",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-        <CategoryDetail />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/site-setting/create-tags",
-    element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-        <CreateTags />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/site-setting/media-handle",
+  //   element: (
+  //     <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+  //       <MediaHandle />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/global-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <GlobalSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/footer-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='FooterSetting'>
+  //       <FooterSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/header-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='HeaderSetting'>
+  //       <HeaderSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/cookie-setting",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='CookieSetting'>
+  //       <CookieSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/feature-flag",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <FeatureFlagSetting />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/tags",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <TagListing />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/tags/:category",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <CategoryDetail />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/site-setting/create-tags",
+  //   element: (
+  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+  //       <CreateTags />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   {
     path: "/sites/site-creation",
     element: (
@@ -418,30 +418,30 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  {
-    path: "/asset/images",
-    element: (
-      <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetListing />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/asset/videos",
-    element: (
-      <ProtectedRoute name='footer' category='assets' subCategory=''>
-        <AssetListing />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/create_asset",
-    element: (
-      <ProtectedRoute name='footer' category='Assets' subCategory=''>
-        <CreateAssest />
-      </ProtectedRoute>
-    ),
-  },
+  // {
+  //   path: "/asset/images",
+  //   element: (
+  //     <ProtectedRoute name='footer' category='assets' subCategory=''>
+  //       <AssetListing />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/asset/videos",
+  //   element: (
+  //     <ProtectedRoute name='footer' category='assets' subCategory=''>
+  //       <AssetListing />
+  //     </ProtectedRoute>
+  //   ),
+  // },
+  // {
+  //   path: "/create_asset",
+  //   element: (
+  //     <ProtectedRoute name='footer' category='Assets' subCategory=''>
+  //       <CreateAssest />
+  //     </ProtectedRoute>
+  //   ),
+  // },
   // {
   //   path: "/user-management/user-list",
   //   element: (
