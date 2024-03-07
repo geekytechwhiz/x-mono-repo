@@ -348,7 +348,7 @@ export const MenuData = [
     ],
   },
 ];
-export const headerMenus = ["dashboard", "pages", "user_management", "post", "menu", "sites"];
+export const headerMenus = ["pages", "user_management", "post", "menu", "sites"];
 export const tagData = [
   { title: "Fifa" },
   { title: "Cricket" },
