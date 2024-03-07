@@ -2,16 +2,16 @@ import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
 import { graph } from "./Constants";
-import BarChartVertical from "./Bar/BarChartVertical";
-import PieGraph from "./Pie/PieGraph";
+import BarChartVertical from "./bar/BarChartVertical";
+import PieGraph from "./pie/PieGraph";
 import "./Charts.css";
-import AreaGraph from "./Area/AreaGraph";
-import PieChartWithNeedle from "./Pie/PieChartWithneedle";
-import BigNumber from "./Area/BigNumber";
-import BarChartHorizontal from "./Bar/BarChartHorizontal";
+import AreaGraph from "./area/AreaGraph";
+import PieChartWithNeedle from "./pie/PieChartWithneedle";
+import BigNumber from "./area/BigNumber";
+import BarChartHorizontal from "./bar/BarChartHorizontal";
 import { ShowToastError, ChartSkeltonLoader, NoSearchResultSvg } from "@platformx/utilities";
 import { useQuery } from "@apollo/client";
-import { FETCH_DASHBOARD_CHARTS } from "libs/authoring-apis/src/lib/graphQL/queries/dashboardQueries";
+import { FETCH_DASHBOARD_CHARTS } from "@platformx/authoring-apis";
 
 const Charts = ({ dashboardName, heading, titleVarient }: any) => {
   const { t } = useTranslation();

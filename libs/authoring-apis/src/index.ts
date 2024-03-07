@@ -38,6 +38,11 @@ import userGroupsApi from "./lib/services/userGroups/userGroups.api";
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
 // import fetchVodByIdAPI from "./lib/services/vod/vod.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
+import {
+  FETCH_DASHBOARD_CONTENT_ALL,
+  FETCH_DASHBOARD_CHARTS,
+  UPDATE_TASK_STATUS,
+} from "./lib/graphQL/queries/dashboardQueries";
 
 export * from "./lib/context/actionContext/ActionContext.types";
 export * from "./lib/graphQL/mutations/spaceMutations";
@@ -55,6 +60,7 @@ export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/services/space/space.api";
 export * from "./lib/utils/constants";
+// export * from "./lib/graphQl/queries/pageQueries";
 
 export {
   ArticleMutations,
@@ -94,4 +100,7 @@ export {
   fetchVodById,
   publish_vod,
   update_vod,
+  FETCH_DASHBOARD_CONTENT_ALL,
+  FETCH_DASHBOARD_CHARTS,
+  UPDATE_TASK_STATUS,
 };
