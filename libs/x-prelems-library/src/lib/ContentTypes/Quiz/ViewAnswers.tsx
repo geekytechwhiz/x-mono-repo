@@ -75,62 +75,104 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
             height: "calc(100vh - 134px)",
             margin: { xs: "40px auto 0", md: "60px auto 0" },
           }}>
-          {quizData.map((question: any, key: number) => {
-            return (
-              <Box sx={{ marginBottom: "39px" }} key={key}>
-                <Typography
-                  variant='h3medium'
-                  color='textColor'
-                  sx={{
-                    width: "100%",
-                    display: "inline-block",
-                  }}>{`${question.question_key}. ${question.question}`}</Typography>
-                {question.options
-                  .filter((x: any) =>
-                    question.question_type === "Single"
-                      ? x.option_id === question.answers
-                      : question.answers.includes(x.option_id),
-                  )
-                  .map((option: any, optionIndex: number) => {
-                    return (
-                      <Fragment key={optionIndex}>
-                        {question.question_type === "Single" && question.is_image_option ? (
-                          <Box
-                            key={optionIndex}
-                            sx={{
-                              padding: { xs: "10px", md: "13px 14px" },
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              marginTop: "17px",
-                              marginRight: "17px",
-                              borderRadius: "3px",
-                              border: "solid 1px #fff",
-                              minWidth: { xs: "164px", md: "180px" },
-                              maxWidth: "180px",
-                              cursor: "pointer",
-                              backgroundColor: "rgba(0, 0, 0, 0.3)",
-                            }}>
+          <Box className='outerWrapper'>
+            {quizData.map((question: any, key: number) => {
+              return (
+                <Box sx={{ marginBottom: "39px" }} key={key}>
+                  <Typography
+                    variant='h3medium'
+                    color='textColor'
+                    sx={{
+                      width: "100%",
+                      display: "inline-block",
+                    }}>{`${question.question_key}. ${question.question}`}</Typography>
+                  {question.options
+                    .filter((x: any) =>
+                      question.question_type === "Single"
+                        ? x.option_id === question.answers
+                        : question.answers.includes(x.option_id),
+                    )
+                    .map((option: any, optionIndex: number) => {
+                      return (
+                        <Fragment key={optionIndex}>
+                          {question.question_type === "Single" && question.is_image_option ? (
                             <Box
+                              key={optionIndex}
                               sx={{
-                                overflow: "hidden",
-                                maxWidth: { xs: "144px", md: "152px" },
-                                maxHeight: { xs: "114px", md: "120px" },
+                                padding: { xs: "10px", md: "13px 14px" },
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                marginTop: "17px",
+                                marginRight: "17px",
+                                borderRadius: "3px",
+                                border: "solid 1px #fff",
+                                minWidth: { xs: "164px", md: "180px" },
+                                maxWidth: "180px",
+                                cursor: "pointer",
+                                backgroundColor: "rgba(0, 0, 0, 0.3)",
                               }}>
-                              <img src={option.option_image} alt='ans1' style={{ width: "100%" }} />
+                              <Box
+                                sx={{
+                                  overflow: "hidden",
+                                  maxWidth: { xs: "144px", md: "152px" },
+                                  maxHeight: { xs: "114px", md: "120px" },
+                                }}>
+                                <img
+                                  src={option.option_image}
+                                  alt='ans1'
+                                  style={{ width: "100%" }}
+                                />
+                              </Box>
+                              <Box
+                                sx={{
+                                  mt: "8.4px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                  minWidth: "100%",
+                                }}>
+                                <Typography variant='h5medium' color='textColor'>
+                                  {option.option_text}
+                                </Typography>
+                                <Box>
+                                  {option.is_correct ? (
+                                    <DoneIcon sx={{ color: "#5cb75b" }} />
+                                  ) : (
+                                    <CloseIcon sx={{ color: "#ee6723" }} />
+                                  )}
+                                </Box>
+                              </Box>
                             </Box>
+                          ) : (
                             <Box
+                              key={key}
                               sx={{
-                                mt: "8.4px",
+                                padding: "13px 14px",
+                                height: "50px",
+                                width: "100%",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "space-between",
-                                minWidth: "100%",
+                                marginTop: "17px",
+                                borderRadius: "3px",
+                                marginLeft: "0px",
+                                border: "solid 1px #fff",
+                                color: { xs: "#2d2d39", md: "#ffffff" },
+                                backgroundColor: {
+                                  xs: "#fff",
+                                  md: "rgba(0, 0, 0, 0.3)",
+                                },
                               }}>
-                              <Typography variant='h5medium' color='textColor'>
-                                {option.option_text}
-                              </Typography>
+                              <Box sx={{ display: "flex", alignItems: "center" }}>
+                                {question.question_type === "Multiple" && (
+                                  <CheckBoxIcon sx={{ mr: "13px" }} />
+                                )}
+                                <Typography variant='h5medium' color='textColor'>
+                                  {option.option_text}
+                                </Typography>
+                              </Box>
                               <Box>
                                 {option.is_correct ? (
                                   <DoneIcon sx={{ color: "#5cb75b" }} />
@@ -139,119 +181,83 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
                                 )}
                               </Box>
                             </Box>
-                          </Box>
-                        ) : (
-                          <Box
-                            key={key}
-                            sx={{
-                              padding: "13px 14px",
-                              height: "50px",
-                              width: "100%",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                              marginTop: "17px",
-                              borderRadius: "3px",
-                              marginLeft: "0px",
-                              border: "solid 1px #fff",
-                              color: { xs: "#2d2d39", md: "#ffffff" },
-                              backgroundColor: {
-                                xs: "#fff",
-                                md: "rgba(0, 0, 0, 0.3)",
-                              },
-                            }}>
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                              {question.question_type === "Multiple" && (
-                                <CheckBoxIcon sx={{ mr: "13px" }} />
-                              )}
-                              <Typography variant='h5medium' color='textColor'>
-                                {option.option_text}
-                              </Typography>
-                            </Box>
-                            <Box>
-                              {option.is_correct ? (
-                                <DoneIcon sx={{ color: "#5cb75b" }} />
-                              ) : (
-                                <CloseIcon sx={{ color: "#ee6723" }} />
-                              )}
-                            </Box>
-                          </Box>
-                        )}
-                      </Fragment>
-                    );
-                  })}
-                <Typography
-                  variant='h5medium'
-                  color='textColor'
-                  sx={{
-                    marginTop: { xs: "5px", md: "15px" },
-                    width: "100%",
-                    display: "inline-block",
-                  }}>
-                  {t("correct_answer")}
-                  {question.options
-                    .filter((x: any) => x.is_correct && !question.is_image_option)
-                    .map((option: any, optionIndex: number) =>
-                      question.question_type === "Single"
-                        ? option.option_text
-                        : optionIndex > 0
-                        ? `, ${option.option_text}`
-                        : option.option_text,
-                    )}
-                </Typography>
-                {question.question_type === "Single" && question.is_image_option && (
-                  <Box
+                          )}
+                        </Fragment>
+                      );
+                    })}
+                  <Typography
+                    variant='h5medium'
+                    color='textColor'
                     sx={{
-                      padding: { xs: "10px", md: "13px 14px" },
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginTop: "17px",
-                      marginRight: "17px",
-                      borderRadius: "3px",
-                      border: "solid 1px #fff",
-                      minWidth: { xs: "164px", md: "180px" },
-                      maxWidth: "180px",
-                      cursor: "pointer",
-                      backgroundColor: "rgba(0, 0, 0, 0.3)",
+                      marginTop: { xs: "5px", md: "15px" },
+                      width: "100%",
+                      display: "inline-block",
                     }}>
+                    {t("correct_answer")}
+                    {question.options
+                      .filter((x: any) => x.is_correct && !question.is_image_option)
+                      .map((option: any, optionIndex: number) =>
+                        question.question_type === "Single"
+                          ? option.option_text
+                          : optionIndex > 0
+                          ? `, ${option.option_text}`
+                          : option.option_text,
+                      )}
+                  </Typography>
+                  {question.question_type === "Single" && question.is_image_option && (
                     <Box
                       sx={{
-                        overflow: "hidden",
-                        maxWidth: { xs: "144px", md: "152px" },
-                        maxHeight: { xs: "114px", md: "120px" },
-                      }}>
-                      <img
-                        src={question.options.find((x: any) => x.is_correct).option_image}
-                        alt='ans2'
-                        style={{ width: "100%" }}
-                      />
-                    </Box>
-                    <Box
-                      sx={{
-                        mt: "8.4px",
+                        padding: { xs: "10px", md: "13px 14px" },
                         display: "flex",
+                        flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: "space-between",
-                        minWidth: "100%",
+                        justifyContent: "center",
+                        marginTop: "17px",
+                        marginRight: "17px",
+                        borderRadius: "3px",
+                        border: "solid 1px #fff",
+                        minWidth: { xs: "164px", md: "180px" },
+                        maxWidth: "180px",
+                        cursor: "pointer",
+                        backgroundColor: "rgba(0, 0, 0, 0.3)",
                       }}>
-                      <Typography variant='h5medium' color='textColor'>
-                        {question.options.find((x: any) => x.is_correct).option_text}
-                      </Typography>
+                      <Box
+                        sx={{
+                          overflow: "hidden",
+                          maxWidth: { xs: "144px", md: "152px" },
+                          maxHeight: { xs: "114px", md: "120px" },
+                        }}>
+                        <img
+                          src={question.options.find((x: any) => x.is_correct).option_image}
+                          alt='ans2'
+                          style={{ width: "100%" }}
+                        />
+                      </Box>
+                      <Box
+                        sx={{
+                          mt: "8.4px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          minWidth: "100%",
+                        }}>
+                        <Typography variant='h5medium' color='textColor'>
+                          {question.options.find((x: any) => x.is_correct).option_text}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                )}
-                <hr
-                  style={{
-                    marginBottom: "34px",
-                    marginTop: "39px",
-                    border: "1px solid #ced3d9",
-                  }}
-                />
-              </Box>
-            );
-          })}
+                  )}
+                  <hr
+                    style={{
+                      marginBottom: "34px",
+                      marginTop: "39px",
+                      border: "1px solid #ced3d9",
+                    }}
+                  />
+                </Box>
+              );
+            })}
+          </Box>
         </Box>
       </Box>
     </Box>
