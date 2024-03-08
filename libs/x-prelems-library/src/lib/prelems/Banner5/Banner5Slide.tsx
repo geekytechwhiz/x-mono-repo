@@ -94,19 +94,6 @@ interface PublishedImages {
   visibility: string;
   ext: string;
 }
-// interface Analytics {
-//   pageId?: number;
-//   prelemId?: number;
-//   pageTitle?: string;
-//   prelemTitle?: string;
-//   pageDesc?: string;
-//   pageTags?: string;
-//   prelemTags?: string;
-//   prelemPosition?: number;
-//   isAnalyticsEnabled: boolean;
-//   isAuthoring: boolean;
-//   isSeoEnabled: boolean;
-// }
 
 interface AuthoringHelper {
   innerRef: React.Ref<HTMLDivElement>;
