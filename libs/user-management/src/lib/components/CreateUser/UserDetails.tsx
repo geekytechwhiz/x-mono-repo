@@ -413,7 +413,8 @@ const UserDetails = ({
                       <InputAdornment position='start'>
                         <img
                           // src={require(`../../../assets/${flag}_flag.png`)}
-                          src={require(`../../../../../utilities/src/lib/assets/${flag}_flag.png`)}
+                          // src={require(`../../../../../utilities/src/lib/assets/${flag}_flag.png`)}
+                          src={require(`../../../../../utilities/src/lib/assets/pngIcons/${flag}_flag.png`)}
                           alt='icon'
                           style={{
                             objectFit: "cover",

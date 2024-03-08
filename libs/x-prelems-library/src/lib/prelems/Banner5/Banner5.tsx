@@ -5,7 +5,7 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
-  formCroppedUrlString,
+  formCroppedUrl,
 } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -95,12 +95,12 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
     const ImageCompound_index = `ImageCompound_${index}`;
     const { original_image_relative_path, ext }: any =
       (content?.ImageCompound && content?.ImageCompound[ImageCompound_index]?.original_image) || {};
-    const img = formCroppedUrlString(
+    const img = formCroppedUrl(
       secondaryArgs?.gcpUrl,
       secondaryArgs?.bucketName,
       original_image_relative_path,
       ext,
-    ).src;
+    );
     return img;
   };
   const defaultStructureData = () => {
