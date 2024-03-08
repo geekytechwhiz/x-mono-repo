@@ -204,6 +204,9 @@ import IconFbSvg from "./facebookIcon.svg";
 import IconGoogleSvg from "./googlesearchnicon.svg";
 import Morevarwhite from "../icons/moreverwhite.png";
 import Errorpopicon from "../svg/errorPopupIcon.svg";
+import Sitedashboardicon from "./sitedasboard.svg";
+import SiteNewIcon from "./Sitenewicon.svg";
+import HandsIcon from "./handsicon.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -409,4 +412,7 @@ export {
   warning,
   Morevarwhite,
   Errorpopicon,
+  Sitedashboardicon,
+  SiteNewIcon,
+  HandsIcon,
 };
