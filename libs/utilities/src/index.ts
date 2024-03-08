@@ -115,7 +115,6 @@ const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
 export * from "./lib/assets/footer";
 export * from "./lib/assets/header";
-export * from "./lib/assets/icons/index";
 export * from "./lib/assets/images";
 export * from "./lib/assets/pngIcons";
 export * from "./lib/assets/svg";
