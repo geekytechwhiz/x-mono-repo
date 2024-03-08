@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import BrightcoveClass from "./Brightcove";
 import usePlatformAnalytics from "../../hooks/usePlatformxAnalytics/index";
+import { Analytics } from "@platformx/utilities";
 
 const BrightcovePlayer = ({
   VideoData,
@@ -123,19 +124,6 @@ interface BrightcovePlayerProp {
   analytics?: Analytics;
   prelemTitle?: string;
   analyticsEnable?: boolean;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring?: boolean;
-  isSeoEnabled?: boolean;
 }
 BrightcovePlayer.defaultProps = {
   analyticsEnable: true,

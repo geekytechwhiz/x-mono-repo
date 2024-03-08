@@ -5,22 +5,23 @@ import {
   eComTypeUriToJSON,
   nullToObject,
   uriToJSON,
+  Analytics,
 } from "@platformx/utilities";
 import { IMPRESSIONS } from "./constants";
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
+// interface Analytics {
+//   pageId?: number;
+//   prelemId?: number;
+//   pageTitle?: string;
+//   prelemTitle?: string;
+//   pageDesc?: string;
+//   pageTags?: string;
+//   prelemTags?: string;
+//   prelemPosition?: number;
+//   isAnalyticsEnabled: boolean;
+//   isAuthoring: boolean;
+//   isSeoEnabled: boolean;
+// }
 interface ButtonObjInfo {
   Button_Action?: string;
   Button_Content?: string;
