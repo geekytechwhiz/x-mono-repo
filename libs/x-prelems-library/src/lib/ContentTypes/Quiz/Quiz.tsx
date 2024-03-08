@@ -1,4 +1,3 @@
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Analytics, CloseIcon, getRelativeImageURL, nullToObject } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +11,7 @@ import QuestionIndex from "./QuestionIndex";
 import QuizContext from "./QuizContext";
 import ScoreScreen from "./ScoreScreen";
 import ViewAnswers from "./ViewAnswers";
+import { useCustomStyle } from "./Quiz.style";
 
 const Quiz = ({
   content,
@@ -21,6 +21,7 @@ const Quiz = ({
   enablePreview = false,
 }: QuizProps) => {
   const theme = useTheme();
+  const classes = useCustomStyle();
   const less_than_320 = useMediaQuery(theme.breakpoints.only("xs"));
   const less_than_600 = useMediaQuery(theme.breakpoints.only("sm"));
   const less_than_768 = useMediaQuery(theme.breakpoints.only("md"));
@@ -337,7 +338,7 @@ const Quiz = ({
 
   return (
     <div ref={authoringHelper?.innerRef}>
-      <div ref={ref}>
+      <div ref={ref} className={`${classes.quizWrapper} quizWrapperBg`}>
         <QuizContext.Provider value={quizData}>
           {showQuestions ? (
             <QuestionIndex
@@ -452,8 +453,7 @@ const Quiz = ({
                         <Button
                           variant='defaultButton1'
                           sx={{ maxWidth: "fit-content", marginTop: "12px" }}
-                          onClick={retakeQuiz}
-                          className='sm'>
+                          onClick={retakeQuiz}>
                           {t("retake_quiz")}
                         </Button>
 
@@ -464,9 +464,7 @@ const Quiz = ({
                         <Button
                           variant='defaultButton1'
                           sx={{ maxWidth: "fit-content", marginTop: "12px" }}
-                          endIcon={<ArrowRightAltIcon />}
-                          onClick={OnClickStart}
-                          className='sm'>
+                          onClick={OnClickStart}>
                           {t("start_quiz_test")}
                         </Button>
 

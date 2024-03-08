@@ -1,7 +1,5 @@
 import { Grid, Typography, Box, Button } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import HomeIcon from "@mui/icons-material/Home";
 import CircularProgress from "@mui/material/CircularProgress";
 import QuizContext from "./QuizContext";
 import { useTranslation } from "react-i18next";
@@ -120,18 +118,10 @@ const ScoreScreen = ({ data, backToHome, showAnswers, fetchCroppedUrl }: any) =>
             </Typography>
           </Box>
           <Box>
-            <Button
-              variant='defaultButton1'
-              className='sm'
-              startIcon={<VisibilityIcon />}
-              onClick={showAnswers}>
+            <Button variant='defaultButton1' onClick={showAnswers}>
               {t("view_answer")}
             </Button>
-            <Button
-              variant='defaultButton2'
-              className='sm'
-              startIcon={<HomeIcon />}
-              onClick={backToHome}>
+            <Button variant='defaultButton2' onClick={backToHome}>
               {t("back_to_home")}
             </Button>
           </Box>
