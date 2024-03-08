@@ -2,7 +2,6 @@
 .noxyAxsis .recharts-cartesian-axis-tick-line {
   display: none;
 }
-
 .pageGraph .recharts-default-tooltip {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -14,48 +13,37 @@
   overflow: auto; */
 }
 
-.pageGraph .recharts-wrapper {
-  /* border: 1px solid #ced3d9;
-  border-radius: 4px; */
-}
-
 .pageGraph {
-  margin-left: 20px;
+  margin-left: 16px;
   border: 1px solid #ced3d9;
   border-radius: 4px;
   padding: 10px 10px 10px 0;
 }
-
 .pageGraph .heading {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0px 10px 0px 10px;
 }
-
 .recharts-legend-wrapper.pie .recharts-default-legend {
   padding: 0;
   margin: 0;
 }
-
 .recharts-legend-wrapper.pie {
   margin-top: -20px;
   text-align: center;
 }
-
 .recharts-legend-wrapper.pie ul li {
   list-style-type: none;
   display: inline-flex;
   margin-right: 10px;
 }
-
 .recharts-legend-wrapper.pie ul li .boxshape {
   width: 15px;
   height: 15px;
   margin-right: 5px;
   float: left;
 }
-
 .recharts-legend-wrapper.pie ul li .text,
 .recharts-text recharts-label {
   font-size: 12px;
@@ -63,4 +51,42 @@
 
 .pieChartneedle.pageGraph {
   padding-right: 0;
+}
+.graphContainerSpacing {
+  padding: 15px;
+  margin-top: 15px;
+}
+.snapshortsChart .graphContainerSpacing {
+  padding: 0;
+}
+.snapshortsChart .graphContainerSpacing .chartHeading {
+  text-transform: none;
+}
+.graphContainerSpacing .noDataFound {
+  width: 100%;
+  text-align: center;
+}
+.graphContainerSpacing .chartHeading {
+  width: 100%;
+  float: left;
+  padding: 15px;
+  /* margin-top: 14px; */
+  text-transform: uppercase;
+}
+
+.chartSkeltonWrapper {
+  margin-left: 16px;
+  border: solid 1px #ced3d9;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.chartSkeltonWrapper .Platform-x-Paper-root {
+  margin: 10px auto;
+}
+.snapshortsChart .chartContainer .chartBox {
+  display: none;
+}
+.snapshortsChart .chartContainer .chartBox:nth-child(1),
+.snapshortsChart .chartContainer .chartBox:nth-child(2) {
+  display: block;
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BarChart,
   Bar,
@@ -13,24 +12,42 @@ import {
 import { graph } from "../Constants";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
-import { addEllipsis } from "../utils/helper";
+import { addEllipsis, isInteger } from "../utils/helper";
 
 const BarChartHorizontal = ({ itemData }: any) => {
   const { chartData: data, column_names: colnames, title } = itemData;
   const config = graph.bar;
-  const CustomXAxisTick = ({ x, y, payload }: any) => (
-    <g transform={`translate(${x},${y})`}>
-      <text
-        x={-80}
-        y={0}
-        dy={0}
-        textAnchor='start'
-        fontSize={config.fontSize}
-        fill={config.textColor}>
-        {addEllipsis(payload.value, config.textMaxLength)}
-      </text>
-    </g>
-  );
+  let leftAreaWidth = 20;
+  const maxTextLength = (dataArr: any[], key: string) => {
+    let maxLength = 0;
+    dataArr.forEach((item) => {
+      if (item[key] && typeof item[key] === "string") {
+        maxLength = Math.max(maxLength, item[key].length);
+      }
+    });
+    maxLength = maxLength > config.textMaxLength ? config.textMaxLength : maxLength;
+    leftAreaWidth += maxLength * 6;
+  };
+  maxTextLength(data, colnames[0]);
+  const CustomXAxisTick = ({ x, y, payload }) => {
+    let tickValue = payload.value;
+    if (tickValue.length > config.textMaxLength) {
+      tickValue = addEllipsis(payload.value, config.textMaxLength);
+    }
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text
+          x={0}
+          y={-config.fontSize}
+          dy={16}
+          fontSize={config.fontSize}
+          fill={config.textColor}
+          textAnchor='end'>
+          {tickValue}
+        </text>
+      </g>
+    );
+  };
   return (
     <Box className='barChartHorizontal pageGraph'>
       <Typography variant='p3semibold' className='heading'>
@@ -40,7 +57,7 @@ const BarChartHorizontal = ({ itemData }: any) => {
         <BarChart
           data={data}
           layout='vertical'
-          margin={{ top: 20, right: 40, left: 60, bottom: 10 }}>
+          margin={{ top: 10, right: 15, left: 15, bottom: 10 }}>
           {config.showGrid && <CartesianGrid strokeDasharray='3 3' />}
           <XAxis
             type='number'
@@ -50,13 +67,15 @@ const BarChartHorizontal = ({ itemData }: any) => {
           />
           <YAxis
             type='category'
-            interval={0}
             dataKey={colnames[0]}
+            width={leftAreaWidth}
             tick={<CustomXAxisTick payload={data} x={0} y={0} />}
-            // tick={{ fontSize: config.fontSize, fill: config.textColor }}
-            tickMargin={20}
+            tickMargin={10}
           />
-          <Tooltip cursor={{ fill: "transparent" }} />
+          <Tooltip
+            cursor={{ fill: "transparent" }}
+            formatter={(value: any) => (isInteger(value) ? value : value?.toFixed(2))}
+          />
           {config.showLegend && (
             <Legend
               verticalAlign={config.legendPosition as any}
@@ -66,6 +85,7 @@ const BarChartHorizontal = ({ itemData }: any) => {
           )}
           <Bar
             dataKey={colnames[1]}
+            background={{ fill: config.defaultBackground, radius: config.radius }}
             fill={config.graphColor[0]}
             barSize={config.barSize}
             radius={config.radius}>

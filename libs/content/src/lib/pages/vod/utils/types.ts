@@ -6,7 +6,7 @@ export type VodlistProps = {
   CurrentPageURL: string;
   DspaceVideoUrl?: string;
   Title?: string;
-  Tags?: [''];
+  Tags?: [""];
   Description?: string;
   LastModificationDate: string;
   LastModifiedBy?: string;

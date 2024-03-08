@@ -5,7 +5,7 @@ import {
   PollIcon,
   PostIconMenu,
   QuizIcon,
-  courseIcon,
+  CourseIcon,
   SitesIcon,
   UsersIcon,
   VODIcon,
@@ -16,7 +16,6 @@ import {
   MediaIcon,
   MyDashboardIcon,
   PagesIcon,
-  //FeatureStar, AssetVODIcon, AssetdocIcon
 } from "@platformx/utilities";
 
 export const SNOWPLOW = {
@@ -129,7 +128,7 @@ export const MenuData = [
       },
       {
         MenuName: "Courses",
-        Icon: courseIcon,
+        Icon: CourseIcon,
         url: "/content/course",
         category: "content",
         subCategory: "",
@@ -348,7 +347,7 @@ export const MenuData = [
     ],
   },
 ];
-export const headerMenus = ["dashboard", "pages", "user_management", "post", "menu", "sites"];
+export const headerMenus = ["pages", "user_management", "post", "menu", "sites"];
 export const tagData = [
   { title: "Fifa" },
   { title: "Cricket" },

@@ -207,6 +207,9 @@ import Errorpopicon from "../svg/errorPopupIcon.svg";
 import Sitedashboardicon from "./sitedasboard.svg";
 import SiteNewIcon from "./Sitenewicon.svg";
 import HandsIcon from "./handsicon.svg";
+import UserEngagmentIcon from "../svg/UserEngagmentIcon.svg";
+import Webmaster from "../svg/Webmaster.svg";
+import NoSearchResultSvg from "../svg/NoSearchResult.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -415,4 +418,7 @@ export {
   Sitedashboardicon,
   SiteNewIcon,
   HandsIcon,
+  UserEngagmentIcon,
+  Webmaster,
+  NoSearchResultSvg,
 };

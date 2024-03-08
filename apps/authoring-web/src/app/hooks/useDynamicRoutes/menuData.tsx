@@ -3,6 +3,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
+  CourseIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -15,9 +16,11 @@ import {
   PostIconMenu,
   QuizIcon,
   SitesIcon,
+  UserEngagmentIcon,
   UsersIcon,
   VODIcon,
-  CourseIcon} from "@platformx/utilities";
+  Webmaster,
+} from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
 const ContentRoutes = {
@@ -108,13 +111,14 @@ export const MenuData = [
     subCategory: "",
     Menu: [
       {
-        MenuName: "My Dashboard",
+        MenuName: "Overview",
         Icon: MyDashboardIcon,
-        url: "/dashboard",
-        id: "dashboard",
+        url: "/dashboard/overview",
+        id: "Overview",
         category: "dashboard",
         subCategory: "",
       },
+
       // {
       //   MenuName: "Prelem",
       //   Icon: MyDashboardIcon,
@@ -138,6 +142,28 @@ export const MenuData = [
         category: "page",
         subCategory: "",
         component: <Content></Content>,
+      },
+    ],
+  },
+  {
+    Title: "reports",
+    id: "reports",
+    Menu: [
+      {
+        MenuName: "User Engagement",
+        Icon: UserEngagmentIcon,
+        url: "/reports/user-engagement",
+        id: "User Engagement",
+        category: "reports",
+        subCategory: "",
+      },
+      {
+        MenuName: "Web Master",
+        Icon: Webmaster,
+        url: "/reports/web-master",
+        id: "Web master",
+        category: "reports",
+        subCategory: "",
       },
     ],
   },

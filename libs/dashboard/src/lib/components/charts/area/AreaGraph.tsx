@@ -1,17 +1,18 @@
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import React from "react";
 import {
-  Area,
   AreaChart,
-  CartesianGrid,
-  LabelList,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
+  Area,
   XAxis,
   YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LabelList,
 } from "recharts";
 import { graph } from "../Constants";
+import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
 const AreaGraph = ({ itemData }: any) => {
   const { chartData: data, title } = itemData;
@@ -33,7 +34,7 @@ const AreaGraph = ({ itemData }: any) => {
               textAnchor='end'
               angle={config.textXAngle}
               // scale="time"
-              tickFormatter={(unixTime: any) => new Date(unixTime).toLocaleDateString()}
+              tickFormatter={(unixTime) => new Date(unixTime).toLocaleDateString()}
               tick={{ fontSize: config.fontSize, fill: config.textColor }}
             />
           ) : (
@@ -47,7 +48,7 @@ const AreaGraph = ({ itemData }: any) => {
           )}
           <YAxis tick={{ fontSize: config.fontSize, fill: config.textColor }} />
           {isTimestamp ? (
-            <Tooltip labelFormatter={(unixTime: any) => new Date(unixTime).toLocaleDateString()} />
+            <Tooltip labelFormatter={(unixTime) => new Date(unixTime).toLocaleDateString()} />
           ) : (
             <Tooltip />
           )}
@@ -62,7 +63,7 @@ const AreaGraph = ({ itemData }: any) => {
             if (key !== firstKey) {
               return (
                 <Area
-                  key={index}
+                  key={key}
                   type={config.type as any}
                   dataKey={key}
                   stackId={index}

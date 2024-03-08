@@ -3,7 +3,7 @@ import Awards from "./Awards.png";
 import BigArrow from "./BigArrow.png";
 import CloudIcon from "./CloudIcon.png";
 import CoinImage from "./CoinImage.png";
-import CourseDegIcon from "./CourseIcon.png";
+import CourseDegIcon from "./CourseDegIcon.png";
 import TestimonialImg from "./CustomerTestimonial_Icon.png";
 import IconEmbed from "./Embed.png";
 import EventIcon from "./EventWhiteIcon.png";

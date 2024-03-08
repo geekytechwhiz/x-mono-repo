@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   BarChart,
@@ -11,6 +12,7 @@ import {
   LabelList,
 } from "recharts";
 import { graph } from "../Constants";
+import { isInteger } from "../utils/helper";
 
 const BarGraphGrouped = ({ itemData }: any) => {
   const { chartData: data, column_names: colnames } = itemData;
@@ -26,7 +28,10 @@ const BarGraphGrouped = ({ itemData }: any) => {
           tickMargin={20}
         />
         <YAxis type='number' tick={{ fontSize: config.fontSize, fill: config.textColor }} />
-        <Tooltip cursor={{ fill: "transparent" }} />
+        <Tooltip
+          cursor={{ fill: "transparent" }}
+          formatter={(value: any) => (isInteger(value) ? value : value?.toFixed(2))}
+        />
         {config.showLegend && (
           <Legend
             verticalAlign={config.legendPosition as any}
