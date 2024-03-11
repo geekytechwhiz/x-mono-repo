@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import DoneIcon from "@mui/icons-material/Done";
 import { Box, Button, Typography } from "@mui/material";
 import { Analytics, CloseIcon, loadergif } from "@platformx/utilities";
 import React, { useContext, useState } from "react";
@@ -287,9 +286,7 @@ const QuestionIndex = ({
                     <Button
                       variant='defaultButton1'
                       disabled={isNextDisabled}
-                      startIcon={<DoneIcon />}
-                      onClick={onClickSubmit}
-                      className='sm'>
+                      onClick={onClickSubmit}>
                       {t("submit_text")}
                     </Button>
                   </Box>

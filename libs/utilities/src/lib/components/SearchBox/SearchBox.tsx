@@ -1,7 +1,7 @@
 import { Box, FormControl, IconButton, InputAdornment, InputBase } from "@mui/material";
 
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { SearchIcon } from "@platformx/utilities";
+import { SearchIcon } from "../../assets/svg/index";
 import { useEffect, useState } from "react";
 import "./Search.css";
 

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import HomeIcon from "@mui/icons-material/Home";
 import { Box, Button, Typography } from "@mui/material";
 import { CloseIcon } from "@platformx/utilities";
 import { useContext } from "react";
@@ -203,7 +202,6 @@ const Result = ({ data, callBack, onClickClose, fetchCroppedUrl }: ResultProps) 
                   fontSize: "14px",
                   margin: { xs: "0px 0px 10px 0px", md: "0 20px 0 0px" },
                 }}
-                startIcon={<HomeIcon />}
                 onClick={callBack}>
                 {t("back_to_home")}
               </Button>
