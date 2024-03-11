@@ -29,6 +29,7 @@ const Cart = ({ secondaryArgs = {}, cartCountUpdate = () => {} }: any) => {
       cartId: cartId,
       secondaryArgs: secondaryArgs,
     });
+    setRefetchLoading(false);
     const { data: { data: { getCartItems: { statusCode = 0, data = {} } = {} } = {} } = {} } =
       nullToObject(response);
 
@@ -39,7 +40,6 @@ const Cart = ({ secondaryArgs = {}, cartCountUpdate = () => {} }: any) => {
       setAddedCartDetails({});
     }
 
-    setRefetchLoading(false);
     if (!refetch) {
       setLoading(false);
     }

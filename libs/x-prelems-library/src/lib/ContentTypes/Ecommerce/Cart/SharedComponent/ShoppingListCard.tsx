@@ -105,7 +105,7 @@ function ShoppingListCard({
                 <CardActionArea className='product-list-image-container'>
                   <CardMedia
                     component='img'
-                    image={product?.attr_images[0] || ""}
+                    image={product?.attr_images?.[0] || ""}
                     alt={`Thumbnail ${index}`}
                     className='list-image'
                   />
