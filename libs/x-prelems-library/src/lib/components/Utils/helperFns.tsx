@@ -5,7 +5,7 @@ import {
   pollIcon,
   quizIcon,
   vodIcon,
-  courseIcon,
+  CourseListIcon,
   General_community,
   News_community,
   playerIcon,
@@ -45,7 +45,7 @@ export const getIcon = (ct: string) => {
     case "product":
       return Shopping_bag;
     case "course":
-      return courseIcon;
+      return CourseListIcon;
     case "news":
       return News_community;
     case "general":

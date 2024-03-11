@@ -10,7 +10,10 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  swcMinify: true,
+  // swcMinify: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   compiler: {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,

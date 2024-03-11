@@ -4,47 +4,6 @@
   "sourceRoot": "apps/user-experience",
   "projectType": "application",
   "targets": {
-    "build": {
-      "executor": "@nx/next:build",
-      "cache": true,
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/user-experience"
-      },
-      "configurations": {
-        "development": {
-          "outputPath": "apps/user-experience"
-        },
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nx/next:server",
-      "defaultConfiguration": "production",
-      "options": {
-        "buildTarget": "user-experience:build",
-        "dev": true
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "user-experience:build:development",
-          "dev": true,
-          "port": 3000
-        },
-        "production": {
-          "buildTarget": "user-experience:build:production",
-          "dev": false,
-          "port": 3000
-        }
-      }
-    },
-    "export": {
-      "executor": "@nx/next:export",
-      "options": {
-        "buildTarget": "user-experience:build:production"
-      }
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
