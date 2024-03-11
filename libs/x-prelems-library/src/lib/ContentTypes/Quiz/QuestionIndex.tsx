@@ -1,4 +1,3 @@
-import DoneIcon from "@mui/icons-material/Done";
 import { Box, Button, Typography } from "@mui/material";
 import { CloseIcon } from "@platformx/utilities";
 import React, { Fragment, useContext, useState } from "react";
@@ -282,13 +281,11 @@ const QuestionIndex = ({
                     <Box sx={{ textAlign: "center", marginTop: "23px" }}>
                       <Button
                         variant='defaultButton1'
-                        className='sm'
                         disabled={
                           data.length === currentIndex && enablePreview
                             ? enablePreview
                             : isNextDisabled
                         }
-                        startIcon={<DoneIcon />}
                         onClick={OnClickNext}>
                         {" "}
                         {data.length === currentIndex ? t("submit_text") : t("next")}
