@@ -35,7 +35,8 @@ COPY . /server
 RUN npm install -g @nrwl/nx
 
 # Set higher memory limit for Node.js
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NODE_OPTIONS="--max_old_space_size=8192"
 
 # install dependencies again
 RUN npm install --legacy-peer-deps
