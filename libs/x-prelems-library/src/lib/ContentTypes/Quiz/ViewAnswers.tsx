@@ -30,7 +30,6 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         height: "100vh",
-        backgroundPosition: { xs: "center", md: "center 0px" },
         display: "flex",
         flexDirection: "column",
         color: "#fff",
