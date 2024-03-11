@@ -18,8 +18,8 @@ const nextConfig = {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,
   },
-  typescript: {
-    ignoreBuildErrors: true,
+  images: {
+    domains: ["storage.googleapis.com"],
   },
   async headers() {
     return [

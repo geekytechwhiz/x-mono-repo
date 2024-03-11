@@ -75,12 +75,13 @@ import ContactUs from "./ContactUs/ContactUs";
 import ProductSummaryViaVideo from "./ProductSummaryViaVideo/ProductSummaryViaVideo";
 import ServiceCard4 from "./ServiceCard4/ServiceCard4";
 import ExpertiseShowcase from "./ExpertiseShowcase/ExpertiseShowcase";
+import Banner5 from "./Banner5/Banner5";
 import AnimationOnPageScroll from "./AnimationOnPageScroll/AnimationOnPageScroll";
 import MultiSlot2 from "./MultiSlot2/MultiSlot2";
-import DynamicEcommercePrelem from "./DynamicEcommercePrelem/DynamicEcommercePrelem";
 import { TestComponent } from "./TestComponnet";
 
 export {
+  Banner5,
   MultiSlot2,
   AnimationOnPageScroll,
   ExpertiseShowcase,
@@ -160,5 +161,11 @@ export {
   ContactUs,
   ProductSummaryViaVideo,
   ServiceCard4,
-  DynamicEcommercePrelem,
+  // VideoLandingPage,
+  // Article,
+  // EventLandingPage,
+  // Blogs,
+  // ChangePassword,
+  // Profile,
+  // SignUp,
 };
