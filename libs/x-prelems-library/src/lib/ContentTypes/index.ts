@@ -14,8 +14,12 @@ import Article from "./Article/Article";
 import { ChangePassword, Profile, SignUp } from "./User/User";
 import EventLandingPage from "./EventLandingPage/EventLandingPage";
 import Blogs from "./Blogs/Blogs";
+import LearningList from "./Courses/LearningList/LearningList";
+import CourseDetails from "./Courses/CourseDetails/CourseDetails";
 
 export {
+  CourseDetails,
+  LearningList,
   PlayerDetail,
   Quiz,
   Event,

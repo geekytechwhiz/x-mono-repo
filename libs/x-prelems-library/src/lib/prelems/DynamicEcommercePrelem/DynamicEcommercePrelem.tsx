@@ -15,12 +15,8 @@ import { addToCartGetCartId } from "../../ContentTypes/Ecommerce/helperEcommerce
 import { useCustomStyle } from "./DynamicEcommercePrelem.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 
-const DynamicEcommercePrelem = ({
-  content,
-  analytics,
-  authoringHelper,
-  secondaryArgs,
-}: DynamicEcommercePrelemProps) => {
+const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
+  const { content, analytics, authoringHelper, secondaryArgs } = props;
   const classes = useCustomStyle();
 
   const [sliderRef, setSliderRef] = useState<any>(null);
@@ -46,6 +42,7 @@ const DynamicEcommercePrelem = ({
   const getProducts = async () => {
     setLoading(true);
     const response = await getProductDetails(queryParamfordata, secondaryArgs);
+    setLoading(false);
     const { data: { data: { fetchEcomProducts = [] } = {} } = {} } = response;
     if (fetchEcomProducts.length > 0) {
       setSlots(fetchEcomProducts);
@@ -59,7 +56,6 @@ const DynamicEcommercePrelem = ({
       });
       fromBack.current = true;
     }
-    setLoading(false);
   };
 
   const handlePrevClick = () => {
@@ -180,7 +176,7 @@ const DynamicEcommercePrelem = ({
 
   useEffect(() => {
     getProducts();
-  }, [queryParamfordata]);
+  }, []);
 
   useEffect(() => {
     setQueryParamfordata(content?.QueryParam);
@@ -489,5 +485,4 @@ DynamicEcommercePrelem.defaultProps = {
     multiSlot: {},
   },
 };
-
 export default DynamicEcommercePrelem;
