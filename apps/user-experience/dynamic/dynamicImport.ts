@@ -96,7 +96,7 @@ const Mapping = {
   Prelem_084: "WebsiteIntroduction4",
   Prelem_085: "InfoBox",
   Prelem_090: "Banner7",
-  Prelem_091: "MultiSlot3",
+  Prelem_091: "CoreHighlights",
   Prelem_0100: "MyStory",
   Prelem_0113: "SchemaAuthoringServiceCard",
 };

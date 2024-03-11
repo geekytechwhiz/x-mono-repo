@@ -79,6 +79,7 @@ import Banner5 from "./Banner5/Banner5";
 import AnimationOnPageScroll from "./AnimationOnPageScroll/AnimationOnPageScroll";
 import MultiSlot2 from "./MultiSlot2/MultiSlot2";
 import { TestComponent } from "./TestComponnet";
+import DynamicEcommercePrelem from "./DynamicEcommercePrelem/DynamicEcommercePrelem";
 
 export {
   Banner5,
@@ -161,11 +162,5 @@ export {
   ContactUs,
   ProductSummaryViaVideo,
   ServiceCard4,
-  // VideoLandingPage,
-  // Article,
-  // EventLandingPage,
-  // Blogs,
-  // ChangePassword,
-  // Profile,
-  // SignUp,
+  DynamicEcommercePrelem,
 };
