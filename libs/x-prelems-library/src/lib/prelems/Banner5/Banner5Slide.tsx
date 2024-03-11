@@ -4,6 +4,7 @@ import BasicButton from "../../components/BasicButton/BasicButton";
 import EastIcon from "@mui/icons-material/East";
 import "./Banner5.css";
 import ImageRender from "../../components/ImageRender";
+import { Analytics } from "@platformx/utilities";
 
 const Banner5Slide = ({
   idfortitle,
@@ -92,19 +93,6 @@ interface PublishedImages {
   folder_path: string;
   visibility: string;
   ext: string;
-}
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
 }
 
 interface AuthoringHelper {

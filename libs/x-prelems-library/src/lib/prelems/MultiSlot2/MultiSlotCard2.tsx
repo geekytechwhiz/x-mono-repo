@@ -3,6 +3,7 @@
 import EastIcon from "@mui/icons-material/East";
 import { Box, Card, CardMedia, Typography } from "@mui/material";
 import {
+  Analytics,
   ArticleSoltIcon,
   EventIcon,
   getImage,
@@ -227,19 +228,6 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
   );
 };
 
-interface Analytics {
-  pageId?: number;
-  prelemId?: number;
-  pageTitle?: string;
-  prelemTitle?: string;
-  pageDesc?: string;
-  pageTags?: string;
-  prelemTags?: string;
-  prelemPosition?: number;
-  isAnalyticsEnabled: boolean;
-  isAuthoring: boolean;
-  isSeoEnabled: boolean;
-}
 interface MultislotCard2Props {
   content: Content;
   secondaryArgs: any;

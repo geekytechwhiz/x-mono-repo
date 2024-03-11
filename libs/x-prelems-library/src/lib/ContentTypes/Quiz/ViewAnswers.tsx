@@ -11,96 +11,71 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
   const { objectType = "Color", Url = "", Color = "black" } = background || {};
   const { t } = useTranslation();
   const quizData = useContext<any>(QuizContext);
-  const cssStyle = `
-  .animation {
-    transition: margin-top 0.3s;   
-  }
-  .activeAnimation {
-    margin-top: 100vh;
-    transition: margin-top 0.3s;
-  }
-  .scrollright {
-    overflow-y: auto;
-    padding-right: 5px;
-  }
-  .scrollright::-webkit-scrollbar {
-    width: 4px;
-  }
-  .scrollright::-webkit-scrollbar-track {
-    background: rgb(177, 177, 177); 
-    border-radius: 5px;
-  }
-  .scrollright::-webkit-scrollbar-thumb {
-    background: #fff;    
-    border-radius: 5px; 
-  }
-  `;
   return (
-    <>
-      <style>{cssStyle}</style>
+    <Box
+      sx={{
+        backgroundImage:
+          objectType === "image"
+            ? //`url(${Url})`
+              fetchCroppedUrl(Url, publishedImages, {
+                1440: "hero",
+                1280: "landscape",
+                1024: "card2",
+                768: "square",
+                600: "card1",
+                320: "portrait",
+              })
+            : "",
+        backgroundColor: objectType === "image" ? "black" : Color,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "100vh",
+        backgroundPosition: { xs: "center", md: "center 0px" },
+        display: "flex",
+        flexDirection: "column",
+        color: "#fff",
+      }}>
       <Box
         sx={{
-          backgroundImage:
-            objectType === "image"
-              ? //`url(${Url})`
-                fetchCroppedUrl(Url, publishedImages, {
-                  1440: "hero",
-                  1280: "landscape",
-                  1024: "card2",
-                  768: "square",
-                  600: "card1",
-                  320: "portrait",
-                })
-              : "",
-          backgroundColor: objectType === "image" ? "black" : Color,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          width: "100%",
+          padding: { xs: "20px 8px", md: "40px 63px 39px" },
           height: "100vh",
-          backgroundPosition: { xs: "center", md: "center 0px" },
-          display: "flex",
-          flexDirection: "column",
-          color: "#fff",
         }}>
         <Box
           sx={{
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
             width: "100%",
-            padding: { xs: "20px 8px", md: "40px 63px 39px" },
-            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}>
-          <Box
+          <Button
             sx={{
-              width: "100%",
+              border: "1px solid #fff",
+              borderRadius: "3px",
+              minWidth: { xs: "34px" },
+              padding: 0,
+              width: "34px",
+              height: "34px",
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-between",
-            }}>
-            <Button
-              sx={{
-                border: "1px solid #fff",
-                borderRadius: "3px",
-                minWidth: { xs: "34px" },
-                padding: 0,
-                width: "34px",
-                height: "34px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginRight: 0,
-                marginLeft: 0,
-              }}
-              endIcon={<ArrowBackIcon sx={{ marginRight: "12px", marginLeft: "0px" }} />}
-              onClick={backToHome}
-            />
-          </Box>
-          <Box
-            className='scrollright'
-            sx={{
-              maxWidth: "618px",
-              width: "100%",
-              height: "calc(100vh - 134px)",
-              margin: { xs: "40px auto 0", md: "60px auto 0" },
-            }}>
+              justifyContent: "center",
+              marginRight: 0,
+              marginLeft: 0,
+            }}
+            endIcon={<ArrowBackIcon sx={{ marginRight: "12px", marginLeft: "0px" }} />}
+            onClick={backToHome}
+          />
+        </Box>
+        <Box
+          className='scrollright'
+          sx={{
+            maxWidth: "618px",
+            width: "100%",
+            height: "calc(100vh - 134px)",
+            margin: { xs: "40px auto 0", md: "60px auto 0" },
+          }}>
+          <Box className='outerWrapper'>
             {quizData.map((question: any, key: number) => {
               return (
                 <Box sx={{ marginBottom: "39px" }} key={key}>
@@ -285,7 +260,7 @@ const ViewAnswers = ({ backToHome, background, publishedImages, fetchCroppedUrl 
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

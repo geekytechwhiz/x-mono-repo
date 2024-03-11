@@ -38,10 +38,10 @@ RUN npm install -g @nrwl/nx
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # install dependencies again
-RUN npm install --force --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # start app
-# RUN npx nx build user-experience --verbose
+RUN npx nx build user-experience --verbose
 
 EXPOSE 3000
-CMD npm run deploy:user-experience
+CMD npx nx start user-experience
