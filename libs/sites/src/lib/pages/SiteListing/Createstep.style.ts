@@ -76,89 +76,7 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     cursor: "pointer",
     justifyContent: "center",
   },
-  filtericon: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "8px",
-    },
-    border: "1px solid #14142B",
-    width: "42px",
-    marginTop: "2px",
-    height: "46px",
-    alignItems: "center",
-    borderRadius: "5px",
-    marginRight: "10px",
-    cursor: "pointer",
-  },
-  filtericonadd: {
-    padding: "10px",
-  },
-  deleteicon: {
-    border: "1px solid #14142B",
-    width: "42px",
-    marginTop: "2px",
-    height: "46px",
-    alignItems: "center",
-    borderRadius: "5px",
-    marginRight: "10px",
-    cursor: "pointer",
-  },
-  deletenewicon: {
-    [theme.breakpoints.up("xs")]: {
-      padding: "8px",
-      height: "42px",
-    },
-    [theme.breakpoints.up("md")]: {
-      padding: "10px",
-      height: "46px",
-    },
-    backgroundColor: "white",
-    borderRadius: "4px",
-    border: "1px solid #14142B",
-    display: "flex",
-    width: "42px",
-    marginRight: "10px",
-    alignItem: "center",
-    cursor: "pointer",
-    justifyContent: "center",
-    delteiconinner: {
-      padding: "10px",
-    },
-  },
-  imagecontainer: {
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "0px",
-    },
-    marginTop: "8px",
-    overflow: "auto",
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "98%",
-    // height: '500px',
-    paddingRight: "5px",
-    paddingLeft: "5px",
-    spacing: 2,
-    rowSpacing: 4,
-    height: "calc(100vh - 162px)",
-    overflowY: "auto",
-    "& .infinite-scroll-component__outerdiv": {
-      width: "inherit",
-    },
-  },
-  imagecontainers: {
-    [theme.breakpoints.down("md")]: {
-      paddingRight: "0px",
-      marginLeft: "0px",
-      marginRight: "0px",
-    },
-    marginTop: "8px",
-    overflow: "auto",
-    marginLeft: "8px",
-    marginRight: "8px",
-    width: "98%",
-    paddingRight: "15px",
-    spacing: 2,
-    rowSpacing: 4,
-  },
+
   boxalign: {
     [theme.breakpoints.down("md")]: {
       display: "inline-flex",
@@ -171,13 +89,6 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     marginTop: "8px",
     marginLeft: "8px",
   },
-
-  boxover: {
-    height: "461px",
-    overflow: "scroll",
-    overflowX: "hidden",
-  },
-
   boxcloseinnercontain: {
     display: "inline-flex",
     alignItems: "center",
@@ -190,238 +101,14 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     paddingRight: "24px",
     marginLeft: "20px",
   },
-  editdatacontainer: {
-    [theme.breakpoints.down("md")]: {
-      padding: "0px 14px",
-    },
-    marginTop: "10px",
-    gap: "20px",
-    padding: "10px 20px",
-  },
-  editmaincontin: {
-    borderBottom: "1px solid #ced3d9",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  editcontain2: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btncanceledit: {
-    marginRight: "12px !important",
-  },
-  textlignment: {
-    [theme.breakpoints.down("md")]: {
-      padding: "8px !important",
-      textAlign: "right !important",
-    },
-    [theme.breakpoints.down("xs")]: {
-      padding: "10px 0px !important",
-      textAlign: "left !important",
-    },
-  },
-  assetsearch: {
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    marginRight: "7px",
-  },
-  iconbtn: {
-    [theme.breakpoints.up("md")]: {
-      width: "70%",
-    },
-    position: "relative",
-    left: "110px",
-  },
-  folderadd: {
-    [theme.breakpoints.up("md")]: {
-      flexDirection: "column",
-      height: "250px",
-      alignItems: "center",
-      padding: "30px",
-      borderRadius: "5px",
-      background: "#F7F7FC",
-      margin: "8px 8px 8px 8px",
-      overflow: "hidden",
-      position: "relative",
-      objectFit: "cover",
-    },
-    display: "flex",
-    justifyContent: "flex-start",
-    // flexDirection: 'column',
-    alignItems: "center",
-    // height: '200px',
-    borderRadius: "5px",
-    background: "#F7F7FC",
-    margin: "8px 8px 8px 8px",
-    overflow: "hidden",
-    position: "relative",
-    objectFit: "cover",
-    width: "inherit",
-  },
-  folderaddstep: {
-    [theme.breakpoints.up("md")]: {
-      flexDirection: "column",
-      height: "250px",
-    },
-    display: "flex",
-    justifyContent: "flex-start",
-    // flexDirection: 'column',
-    alignItems: "center",
-    // height: '200px',
-    borderRadius: "5px",
-    background: "#F7F7FC",
-    margin: "8px 8px 8px 8px",
-    overflow: "hidden",
-    position: "relative",
-    width: "inherit",
-  },
-  floatleft: {
-    float: "left",
-  },
-  folderlisting: {
-    [theme.breakpoints.down("sm")]: {
-      flexDirection: "row",
-      padding: "0px 16px",
-      height: "79px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      flexDirection: "column",
-      height: "200px",
-      padding: "42px 5px 42px 5px",
-    },
-    display: "flex",
-    justifyContent: "flex-start",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "200px",
-    borderRadius: "5px",
-    background: "#F7F7FC",
-    margin: "0px",
-    overflow: "hidden",
-    width: "100%",
-    padding: "42px",
-    cursor: "pointer",
-  },
-  skelaton1: {
-    borderRadius: "5px",
-    margin: "8px 8px 8px 8px",
-    width: "inherit",
-  },
-  folderskelaton: {
-    [theme.breakpoints.down("sm")]: {
-      height: "79px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      height: "200px",
-    },
-    [theme.breakpoints.up("md")]: {
-      height: "250px",
-    },
-    borderRadius: "5px",
-    width: "100%",
-  },
-  folderlistingstd: {
-    [theme.breakpoints.up("md")]: {
-      flexDirection: "column",
-      height: "250px",
-    },
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "row",
-      width: "336px",
-      height: "119px",
-      padding: "0 16px",
-    },
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    borderRadius: "5px",
-    background: "#F7F7FC",
-    margin: "0px",
-    overflow: "hidden",
-    width: "300px",
-    padding: "42px",
-    cursor: "pointer",
-  },
-  folderlistingstep: {
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      height: "45px",
-      width: "45px",
-    },
-    display: "flex",
-    justifyContent: "flex-start",
-    // flexDirection: 'column',
-    alignItems: "center",
-    // height: '200px',
-    borderRadius: "5px",
-    background: "#F7F7FC",
-    margin: "0px",
-    overflow: "hidden",
-    height: "250px",
-    width: "100%",
-  },
-
   sitedropdownicon: {
     width: "10%",
-  },
-  modaltypoin: {
-    marginTop: "10px !important",
-  },
-  typeoexisttest: {
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: "20px",
-      textAlign: "left",
-      marginTop: "0px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: "0px",
-      textAlign: "center",
-      marginTop: "0px",
-    },
-    // [theme.breakpoints.up('sm')]: {
-    //   marginLeft: '0px',
-    // },
-    textAlign: "center",
-    marginTop: "9px",
-  },
-  sitescontent: {
-    display: "flex",
-    width: "90%",
-    justifyContent: "space-between",
-    marginLeft: "30px",
-    marginTop: "5px",
-  },
-  breadcum: {
-    display: "flex",
-    alignItems: "center",
-  },
-  breadcumtypo: {
-    marginLeft: "10px",
-    textTransform: "capitalize",
   },
   boxicon: {
     justifyContent: "space-between",
     alignContent: "center",
     marginTop: "40px",
     flexDirection: "column",
-  },
-  modalassetbox: {
-    display: "flex",
-    alignItems: "flex-start",
-    borderRadius: "5px",
-    border: "1px solid #D9DBE9",
-    background: "#FFF",
-    marginTop: "10px",
-    marginLeft: "8px",
-    padding: "12px",
-    marginRight: "8px",
-  },
-  circularpro: {
-    width: "24px !important",
-    height: "24px !important",
   },
   closeiconmodal: {
     right: "44px",
@@ -446,37 +133,8 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   modalbtn: {
     minWidth: "100%",
   },
-  beofrecircul: {
-    display: "flex",
-    alignItems: "center",
-  },
-  modalbread: {
-    padding: "30px",
-    backgroundColor: "#FCFCFC",
-    borderRadius: "16px",
-  },
-  assetyesicon: {
-    [theme.breakpoints.down("md")]: {
-      left: "262px",
-    },
-    position: "absolute",
-    float: "left",
-    left: "20px",
-    bottom: "20px",
-    cursor: "pointer",
-  },
-  assetnoicon: {
-    position: "absolute",
-    right: "20px",
-    cursor: "pointer",
-    bottom: "20px",
-  },
   sitecontenttypo: {
     marginLeft: "30px",
-    marginTop: "5px",
-  },
-  keyrighticon: {
-    paddingRight: "6px",
     marginTop: "5px",
   },
   settingicon: {
@@ -487,52 +145,15 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     marginTop: "5px",
     height: "56px",
   },
-  sitesearchform: {
-    marginTop: "5px",
-  },
-
   boxsize: {
     height: "420px",
     padding: " 0px 30px",
     borderRadius: "5px",
   },
-  viewtypography: {
-    display: "flex",
-    textDecoration: "underline",
-    marginTop: "15px",
-    marginLeft: "25px",
-    borderBottom: "1px solid #D9DBE9",
-  },
-  typographyadmin: {
-    display: "flex",
-    marginTop: "83px",
-    textDecoration: "underline",
-    marginLeft: "20px",
-    cursor: "pointer",
-  },
   toptypography: {
     display: "flex",
     marginTop: "15px",
     justifyContent: "space-between",
-  },
-  inputbox: {
-    width: "350px",
-    height: "68px",
-    borderRadius: "5px",
-    marginTop: "10px",
-    marginLeft: "25px",
-    border: "1px solid #D9DBE9",
-    cursor: "pointer",
-  },
-  avatarbox: {
-    width: "38px !important",
-    height: "38px !important",
-    textTransform: "uppercase",
-    backgroundColor: "#4B9EF9 !important",
-  },
-  imageType: {
-    textTransform: "capitalize",
-    marginLeft: "15px",
   },
   Boxinner: {
     border: "1px solid #14142B",
@@ -580,14 +201,13 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     marginTop: "15px",
     right: "34px",
   },
-  modalboxone: {
+  modalcontain: {
     display: "flex",
     width: "100%",
-    height: "590px",
     flexDirection: "column",
     alignItems: "flex-start",
     backgroundColor: "#FFF",
-    padding: "20px",
+    paddingLeft: "10%",
   },
   textupload: {
     color: "#6E7191",
@@ -635,6 +255,7 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
       marginLeft: "0px",
       paddingLeft: "0px",
       backgroundColor: "#F7F7FC",
+      height: "0px",
     },
     marginLeft: "5px",
     paddingLeft: "10px",
@@ -819,5 +440,48 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   marginTop: {
     marginTop: "5px",
     textTransform: "capitalize",
+  },
+  xlogo: {
+    marginTop: "8px",
+  },
+  progrebar: {
+    marginTop: "25px",
+  },
+  textmargin: {
+    marginTop: "30px",
+  },
+  handsicon: {
+    marginTop: "10px",
+  },
+  inputselect: {
+    maxWidth: "510px",
+  },
+  cancelbtn: {
+    display: "flex",
+    justifyContent: "center",
+    paddingLeft: "76px",
+    marginTop: "20px",
+  },
+  innercancel: {
+    marginRight: "10px !important",
+  },
+  createcontain: {
+    height: "107px",
+    textalign: "center",
+    display: "flex",
+    justifyContent: "flex-start",
+    marginTop: "40px",
+    alignItems: "center",
+    marginLeft: "99px",
+  },
+  typowidth: {
+    maxWidth: "324px",
+  },
+  siteicon: {
+    textAlign: "center",
+  },
+  siteiconinner: {
+    marginBottom: "30px",
+    marginRight: "10px",
   },
 }));

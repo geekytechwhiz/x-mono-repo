@@ -26,7 +26,7 @@ export const useEmptyResultStyle = makeStyles((theme) => ({
   },
   emptysite: {
     textAlign: "center",
-    marginTop: "5%",
+    marginTop: "15%",
   },
   nofilter: {
     marginTop: "8px",

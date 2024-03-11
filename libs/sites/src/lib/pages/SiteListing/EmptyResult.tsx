@@ -1,18 +1,22 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { EmptySiteBox } from "@platformx/utilities";
+import { Sitedashboardicon } from "@platformx/utilities";
 // import ThemeConstants from '../../../theme/variable';
 import { useEmptyResultStyle } from "./EmptyResult.style";
 import { AddNewButton } from "./SiteListing.style";
-import { useNavigate } from "react-router";
+import PlateformXCreatestep1Dialog from "./CreatesiteStep1";
+import { useState } from "react";
 
 const EmptyResult = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const classes = useEmptyResultStyle();
+  const [folderValue, setFolderValue] = useState(false);
+  const handleFilterClose = () => {
+    // setAnchor(null);
+  };
   return (
     <Box className={classes.emptysite}>
-      <EmptySiteBox />
+      <img src={Sitedashboardicon} alt='icon' />
       <Box className={classes.nofilter}>
         <Typography variant='h5' className={classes.noresult}>
           {t("there_are_no_files_here")}
@@ -25,9 +29,17 @@ const EmptyResult = () => {
         </Typography>
       </Box>
       <Box sx={{ marginTop: "8px" }} className={classes.creathide}>
-        <AddNewButton onClick={() => navigate("/sites/site-creation")}>
+        <AddNewButton
+          onClick={() => {
+            setFolderValue(true);
+            handleFilterClose();
+          }}>
           <Box component='span'>{t("create_new")}</Box>
         </AddNewButton>
+        <PlateformXCreatestep1Dialog
+          isDialogOpen={folderValue}
+          closeButtonHandle={() => setFolderValue(false)}
+        />
       </Box>
     </Box>
   );
