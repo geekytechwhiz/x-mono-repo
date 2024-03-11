@@ -22,6 +22,7 @@ import {
   Webmaster,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
+import { Space } from "@platformx/community";
 
 const ContentRoutes = {
   url: "",
@@ -181,7 +182,7 @@ export const MenuData = [
         category: "Community",
         subCategory: "spaces",
         roles: ["admin", "Super Admin"],
-        component: <>Space has been commented</>,
+        component: <Space />,
       },
       {
         MenuName: "User groups",
