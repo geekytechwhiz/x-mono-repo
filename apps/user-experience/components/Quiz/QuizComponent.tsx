@@ -22,12 +22,12 @@ export const QuizComponent = (props) => {
   };
 
   return (
-    // <QuizPrelem
-    //   content={pageData}
-    //   analytics={prelemAnalyticsProp}
-    //   authoringHelper={prelemAuthoringHelper}
-    //   secondaryArgs={secondaryArgs}
-    // />
-    <>QuizPrelem has been commented due to error</>
+    <QuizPrelem
+      content={pageData}
+      analytics={prelemAnalyticsProp}
+      authoringHelper={prelemAuthoringHelper}
+      secondaryArgs={secondaryArgs}
+    />
+    // <>QuizPrelem has been commented due to error</>
   );
 };

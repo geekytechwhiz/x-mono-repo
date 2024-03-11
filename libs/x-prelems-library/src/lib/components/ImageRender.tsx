@@ -1,5 +1,5 @@
 import { CardMedia, Paper } from "@mui/material";
-import { fallBackImage, formCroppedUrlString } from "@platformx/utilities";
+import { fallBackImage, formCroppedUrl } from "@platformx/utilities";
 
 import React, { useState } from "react";
 import { breakpoints, ratios } from "./ConstantData";
@@ -68,7 +68,6 @@ const ImageRender = (props: any = {}) => {
                       media={`(min-width:${breakpoint}px)`}
                       srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, ext)}
                     /> */}
-                    source has been commented
                   </React.Fragment>
                 );
               })}
@@ -98,22 +97,18 @@ const ImageRender = (props: any = {}) => {
                 },
               }}>
               <picture>
-                source has been commented
-                {/* <source
-                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, "webp")}
+                <source
+                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, "webp")}
                   type='image/webp'
                 />
-                <ImageRanger
                 <source
-                  srcSet={formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext)}
-                /> */}
+                  srcSet={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
+                />
                 <img
-                  src={
-                    formCroppedUrlString(gcpUrl, bucketName, original_image_relative_path, ext).src
-                  }
+                  src={formCroppedUrl(gcpUrl, bucketName, original_image_relative_path, ext)}
                   onError={handleError}
-                  // width='100%'
-                  // height='100%'
+                  width='100%'
+                  height='100%'
                   style={{ objectFit: "cover", display: "flex" }}
                   alt='prelem default image'
                 />
