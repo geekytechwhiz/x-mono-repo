@@ -32,7 +32,7 @@ WORKDIR /server
 COPY . /server
 
 # install dependencies
-RUN npm install -g @nrwl/nx
+RUN npm i -g nx
 
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max-old-space-size=4096"
@@ -41,10 +41,10 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm install --legacy-peer-deps
 
 # Reset nx
-RUN npx nx reset
+# RUN npx nx reset
 
 # start app
-RUN npx nx build user-experience --verbose
+# RUN nx build user-experience --verbose
 
 EXPOSE 3000
-CMD npx nx start user-experience
+CMD nx start user-experience
