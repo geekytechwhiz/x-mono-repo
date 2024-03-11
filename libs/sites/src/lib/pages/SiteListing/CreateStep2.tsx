@@ -1,19 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import CloseIcon from "@mui/icons-material/Close";
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
-import { AutoTextArea, PlatXLogo, TextBox, SiteNewIcon } from "@platformx/utilities";
+import { PlatXLogo, Sitethemeicon } from "@platformx/utilities";
 import { useCreatesiteStepStyle } from "./Createstep.style";
-import { useState } from "react";
 import { Progressbar } from "../SiteListing/Progressbar";
 
 export type DialogList = {
@@ -26,10 +16,6 @@ export default function PlateformXCreatestep2Dialog({
   closeButtonHandle,
 }: DialogList) {
   const classes = useCreatesiteStepStyle();
-  const [, setAge] = useState("");
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
 
   return (
     <Box className='socialsharemodal'>
@@ -64,31 +50,6 @@ export default function PlateformXCreatestep2Dialog({
                     finsh it later.
                   </Typography>
                 </Box>
-                <Box className={classes.inputselect}>
-                  <Box marginTop={2}>
-                    <FormControl fullWidth>
-                      <Select
-                        labelId='demo-simple-select-label'
-                        id='demo-simple-select'
-                        placeholder='Select the domain'
-                        onChange={handleChange}>
-                        <MenuItem value={10}>Sports</MenuItem>
-                        <MenuItem value={20}>Bollywood</MenuItem>
-                        <MenuItem value={30}>Fashion</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Box>
-                  <Box marginTop={2} marginRight={-2}>
-                    <TextBox maxCharLength={50} placeHolder={"Enter the Site Name"} />
-                  </Box>
-                  <Box marginTop={2}>
-                    <AutoTextArea
-                      name='short_description'
-                      placeHolder={"Enter the Site description"}
-                      maxCharLength={400}
-                    />
-                  </Box>
-                </Box>
                 <Box className={classes.cancelbtn}>
                   <Button className={classes.innercancel} variant='outlined'>
                     cancel
@@ -97,14 +58,25 @@ export default function PlateformXCreatestep2Dialog({
                 </Box>
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
-                <Box className={classes.createcontain}>
-                  <Typography className={classes.typowidth} variant='h2bold'>
-                    Make your website with only a few clicks
-                  </Typography>
-                </Box>
-                <Box className={classes.siteicon}>
-                  <img className={classes.siteiconinner} src={SiteNewIcon} alt='icon' />
-                  <img src={SiteNewIcon} alt='icon' />
+                <Box
+                  sx={{
+                    width: "516px",
+                    height: "530px",
+                    borderRadius: "5px",
+                    backgroundColor: "#FFF",
+                    border: "1px solid #D9DBE9",
+                  }}>
+                  <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+                    <img src={PlatXLogo} alt='icon' />
+                    <Typography>About</Typography>
+                    <Typography>Features</Typography>
+                    <Typography>Services</Typography>
+                    <Typography>Blog</Typography>
+                    <Typography>Contact</Typography>
+                  </Box>
+                  <Box>
+                    <img src={Sitethemeicon} alt='icon ' />
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
