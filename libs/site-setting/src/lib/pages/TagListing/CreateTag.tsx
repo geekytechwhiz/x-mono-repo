@@ -36,7 +36,7 @@ export const CreateTags = () => {
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
   const { t } = useTranslation();
   const [category, setCategory] = useState("");
-  const [radio, setRadio] = useState(t("choose_category"));
+  const [radio, setRadio] = useState("choose_category");
   const [isLoading, setIsLoading] = useState(false);
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -93,8 +93,8 @@ export const CreateTags = () => {
       //const res =
       await publishTag({
         input: {
-          page: "arabic3-1710235532351",
-          category: "arabic",
+          page: publishUrl,
+          category: category,
           status: "publish",
         },
       });
@@ -144,7 +144,7 @@ export const CreateTags = () => {
   }, []);
 
   useEffect(() => {
-    if (radio === t("choose_category") && category.trim()) {
+    if (radio === "choose_category" && category.trim()) {
       getTag();
     } else {
       setTags([]);
@@ -181,7 +181,7 @@ export const CreateTags = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-                {radio === t("choose_category") ? (
+                {radio === "choose_category" ? (
                   <FormControl fullWidth>
                     <Select
                       labelId='demo-simple-select-label'
@@ -210,8 +210,8 @@ export const CreateTags = () => {
                   value={radio}
                   onChange={handleRadioChange}
                   row>
-                  <RadioControlLabel value={t("choose_category")} />
-                  <RadioControlLabel value={t("create_category")} />
+                  <RadioControlLabel value='choose_category' label={t("choose_category")} />
+                  <RadioControlLabel value='create_category' label={t("create_category")} />
                 </RadioGroup>
               </Grid>
             </Grid>
@@ -233,7 +233,7 @@ export const CreateTags = () => {
               </Grid>
               <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
                 <TextField
-                  placeholder='please type your text here'
+                  placeholder='Please type your text here'
                   value={value}
                   onChange={onChange}
                 />
