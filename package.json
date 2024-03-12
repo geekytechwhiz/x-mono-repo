@@ -7,7 +7,8 @@
     "storybook:build:all": "nx run-many --target=build-storybook --all",
     "storybook:build:utilities": "nx run utilities:build-storybook",
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
-    "build": "nx build authoring-web",
+    "build:authoring-web": "nx build authoring-web",
+    "build": "nx build",
     "start": "serve dist/apps/authoring-web -p 3000",
     "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
     "deploy:user-experience": "nx start user-experience"
@@ -48,6 +49,7 @@
     "@nivo/line": "^0.83.0",
     "@nivo/pie": "^0.83.0",
     "@nivo/radial-bar": "^0.83.0",
+    "@nrwl/nx-cloud": "^18.0.0",
     "@popperjs/core": "^2.11.7",
     "@reduxjs/toolkit": "^2.0.1",
     "@storybook/addon-actions": "^7.3.2",
