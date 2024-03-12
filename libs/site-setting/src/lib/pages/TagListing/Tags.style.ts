@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core";
-// import ThemeConstants from '../../../theme/variable';
 import { ThemeConstants } from "@platformx/utilities";
 
 export const useTagStyle = makeStyles((theme) => ({
@@ -150,7 +149,7 @@ export const useTagStyle = makeStyles((theme) => ({
     display: "flex",
     padding: "30px 20px",
     alignItems: "flex-start",
-    gap: "15px",
+    gap: "10px",
     borderRadius: "0px 0px 5px 5px",
     border: "1px solid #D9DBE9",
     backgroundColor: "#FFF",
@@ -180,5 +179,14 @@ export const useTagStyle = makeStyles((theme) => ({
   },
   tagsbtn: {
     marginTop: "10px !important",
+  },
+  textTransform: {
+    textTransform: "none !important" as "none",
+  },
+  tagParent: {
+    display: "flex",
+    gap: "10px",
+    marginTop: "15px",
+    flexWrap: "wrap",
   },
 }));
