@@ -9,7 +9,6 @@
     "storybook:deploy": "npm run storybook:build:utilities && gh-pages -d dist/storybook",
     "build:authoring-web": "nx build authoring-web",
     "build": "nx build",
-    "start": "serve dist/apps/authoring-web -p 3000",
     "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
     "deploy:user-experience": "nx start user-experience"
   },

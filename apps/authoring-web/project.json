@@ -8,7 +8,7 @@
       "executor": "@nx/webpack:webpack",
       "cache": true,
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/authoring-web",
