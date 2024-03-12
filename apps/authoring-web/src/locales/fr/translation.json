@@ -1172,5 +1172,8 @@
   "tags_categories": "Tags",
   "remove_members": "Supprimer des membres",
   "invite_toast_subtitle": "Les gens commenceront bientôt à recevoir des invitations et vous commencerez à recevoir des e-mails de confirmation",
-  "choose_members": "Choisir les membres"
+  "choose_members": "Choisir les membres",
+  "logo_will_look_like_this_on_footer_site": "Site Logo will look like this on Footer",
+  "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
+  "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser."
 }

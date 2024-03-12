@@ -1181,5 +1181,8 @@
   "tags_categories": "Tags",
   "remove_members": "Remove Members",
   "invite_toast_subtitle": "People will start receiving invitations soon and you will start receive confirmation emails",
-  "choose_members": "Choose Members"
+  "choose_members": "Choose Members",
+  "logo_will_look_like_this_on_footer_site": "Site Logo will look like this on Footer",
+  "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
+  "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser."
 }

@@ -1,6 +1,8 @@
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-export const useGlobalSettingStyle = makeStyles((theme) => ({
+export const useGlobalSettingStyle = makeStyles((theme: Theme) => ({
   pageContainer: {
     [theme.breakpoints.up("xs")]: {
       padding: "15px",
