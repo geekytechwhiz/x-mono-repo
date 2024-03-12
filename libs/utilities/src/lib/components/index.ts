@@ -18,6 +18,7 @@ import SkeltonLoader from "./SkeltonLoader/SkeltonLoader";
 import Timer from "./Timer/Timer";
 import XImage from "./XImage/XImage";
 import { XToolTip } from "./XToolTip/XToolTip";
+import SearchBox from "./SearchBox/SearchBox";
 
 export * from "./Card/constants";
 export * from "./DragAndDrop/index";
@@ -46,4 +47,5 @@ export {
   XTags,
   XToolTip,
   LanguageDropDownCheckBox,
+  SearchBox,
 };

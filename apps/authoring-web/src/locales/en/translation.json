@@ -1181,5 +1181,8 @@
   "master_control": "Master",
   "administrator": "Administrator",
   "your_site": "Your Site",
-  "tags_categories": "Tags"
+  "tags_categories": "Tags",
+  "remove_members": "Remove Members",
+  "invite_toast_subtitle": "People will start receiving invitations soon and you will start receive confirmation emails",
+  "choose_members": "Choose Members"
 }

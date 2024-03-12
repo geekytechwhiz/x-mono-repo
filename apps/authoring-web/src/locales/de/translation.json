@@ -1173,5 +1173,8 @@
   "master_control": "Master Control",
   "administrator": "Administratorin",
   "your_site": "Deine Seite",
-  "tags_categories": "Tags"
+  "tags_categories": "Tags",
+  "remove_members": "Mitglieder entfernen",
+  "invite_toast_subtitle": "Die Leute werden bald Einladungen erhalten und Sie erhalten Bestätigungs-E-Mails",
+  "choose_members": "Wählen Sie Mitglieder"
 }

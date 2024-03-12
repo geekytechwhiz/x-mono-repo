@@ -1172,5 +1172,8 @@
   "master_control": "Master Control",
   "administrator": "Administratrice",
   "your_site": "Votre site",
-  "tags_categories": "Tags"
+  "tags_categories": "Tags",
+  "remove_members": "Supprimer des membres",
+  "invite_toast_subtitle": "Les gens commenceront bientôt à recevoir des invitations et vous commencerez à recevoir des e-mails de confirmation",
+  "choose_members": "Choisir les membres"
 }

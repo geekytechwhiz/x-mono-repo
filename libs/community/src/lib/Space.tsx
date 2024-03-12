@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import SpaceListingHeader from "./components/SpaceListingHeader";
 import SpaceListingCard from "./components/SpaceListingCard";
 import { useStyles } from "./Space.styles";
-import { getSpacesList } from "./SpacesHelper";
+import { getSpacesList } from "./utils/SpacesHelper";
 import {
   ShowToastError,
   ShowToastSuccess,

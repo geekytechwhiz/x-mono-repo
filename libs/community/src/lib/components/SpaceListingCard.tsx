@@ -30,7 +30,7 @@ import {
   formatRemoveMembers,
   getAllExoMembersList,
   getSpaceMembersList,
-} from "../SpacesHelper";
+} from "../utils/SpacesHelper";
 import InviteMemberPopup from "./Invitememberspopup/InviteMemberPopup";
 
 const SpaceListingCard = ({
