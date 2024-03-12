@@ -19,6 +19,7 @@ const CourseDetails = ({ secondaryArgs = {}, courseId }: any) => {
   const [isCourseFrame, setIsCourseFrame] = useState(false);
 
   const [activeLink, setActiveLink] = useState("Description");
+
   const getCourseDetails = async () => {
     setLoading(true);
     const res = await getCourseDetailsApiCall(courseId, secondaryArgs);
@@ -28,7 +29,9 @@ const CourseDetails = ({ secondaryArgs = {}, courseId }: any) => {
   };
 
   useEffect(() => {
-    getCourseDetails();
+    if (courseId) {
+      getCourseDetails();
+    }
   }, [courseId]);
   return (
     <>

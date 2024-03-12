@@ -84,7 +84,6 @@ const Quiz = (props: any) => {
             bucketName: publicRuntimeConfig.NEXT_BUCKET_NAME,
           }}
         />
-        {/* <>QuizComponent has been commented due to error</> */}
       </ErrorBoundary>
     </Box>
   );

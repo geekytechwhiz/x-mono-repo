@@ -153,7 +153,6 @@ const Ecommerce3Slot2 = ({
                   />
                   <Box className='imageOverlay'></Box>
                 </Box>
-
                 <Typography className='textArea' id={`Title${index + 1}`} variant='h2regular'>
                   {content[`Title${index + 1}`]}
                 </Typography>
