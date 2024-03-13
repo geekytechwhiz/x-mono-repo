@@ -42,7 +42,8 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npm install --legacy-peer-deps
 
 # start app
-RUN nx build authoring-web --parallel=10
+# RUN nx build authoring-web --parallel=10
+RUN nx run-many --target=build --projects=authoring-web --parallel=3 
 
 EXPOSE 3000
 CMD npm run deploy:authoring
