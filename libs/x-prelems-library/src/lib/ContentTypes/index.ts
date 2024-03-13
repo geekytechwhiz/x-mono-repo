@@ -16,6 +16,7 @@ import EventLandingPage from "./EventLandingPage/EventLandingPage";
 import Blogs from "./Blogs/Blogs";
 import LearningList from "./Courses/LearningList/LearningList";
 import CourseDetails from "./Courses/CourseDetails/CourseDetails";
+import XO from "./XO/XO";
 
 export {
   CourseDetails,
@@ -36,4 +37,5 @@ export {
   ChangePassword,
   Profile,
   SignUp,
+  XO,
 };
