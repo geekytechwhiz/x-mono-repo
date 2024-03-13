@@ -1,7 +1,8 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useEmptyResultStyle = makeStyles((theme) => ({
+export const useEmptyResultStyle = makeStyles((theme: Theme) => ({
   noresult: {
     fontSize: "24px",
     fontFamily: "inter",

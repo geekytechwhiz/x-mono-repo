@@ -1,5 +1,5 @@
-import { makeStyles } from "@material-ui/core";
-import { Button, Dialog, Menu, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Button, Dialog, Menu, Typography, Theme } from "@mui/material";
 import { Box, styled } from "@mui/system";
 
 export const VodSideBar = styled(Box)((props) => ({
@@ -121,7 +121,7 @@ export const FilterMenu = styled(Menu)((props) => ({
   },
 }));
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   filterContainer: {
     display: "flex",
     justifyContent: "space-between",

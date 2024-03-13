@@ -1,9 +1,10 @@
-import { Grid, Link, makeStyles } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { Grid, Link, Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useSiteListingStyle = makeStyles((theme) => ({
+export const useSiteListingStyle = makeStyles((theme: Theme) => ({
   container: {
     maxWidth: "1031px",
     padding: "0 20px",
