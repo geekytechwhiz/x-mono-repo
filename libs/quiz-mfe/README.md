@@ -14,19 +14,20 @@ npm i @platformx/quiz-mfe
 
   import QuizMfe from "@platformx/quiz-mfe";
 
-- Usage: Place the QuizMfe component in your application, passing the required props (contentId, langCode, user_id and contentType).
-
-- For fetching personalized data, just have to pass required props-(ie. user_id : "f8b07408-427d-4c6f-ae4b-8969ef03677d" and contentType : "quiz ) to api.
+- Usage: Place the QuizMfe component in your application, passing the required props (contentId, langCode, cugId, uhId, widgetId) and for filter tha data there is one optional props (filters).
 
 ````
-  <QuizMfe contentId={YOUR_CONTENT_ID} langCode={YOUR_LANG_CODE} contentType={YOUR_CONTENT_TYPE} user_id={YOUR_USER_ID}  />
+  <QuizMfe contentId={YOUR_CONTENT_ID} langCode={YOUR_LANG_CODE} cugId={YOUR_CORPORATE_ID} uhId={YOUR_USER_ID} widgetId={YOUR_WIDGET_ID} filters={YOUR_FILTER_OPTION} />
 ``
 ## Props
 
 * contentId: The unique identifier for the quiz content.
 * langCode: The language code for the quiz content.
-* user_id: The unique identifier for loggedIn user.
+* cugId: The unique identifier for the corporate id.
+* uhId: The unique identifier for loggedIn user.
 * contentType: The contentType is for the type of content (eg. "quiz").
+* widgetId: Your widget id.
+* filters: The filter props is optional and it will be an array (eg. ["A","F"]).
 
 ## Usage Example
 
@@ -36,7 +37,7 @@ import QuizMfe from "@platformx/quiz-mfe";
 function App() {
   return (
     <div className="App">
-      <QuizMfe contentId="YOUR_CONTENT_ID" langCode="YOUR_LANG_CODE"  contentType="YOUR_CONTENT_TYPE" user_id="YOUR_USER_ID" />
+      <QuizMfe contentId="YOUR_CONTENT_ID" langCode="YOUR_LANG_CODE"  cugId="YOUR_CORPORATE_ID" uhId="YOUR_USER_ID" widgetId="YOUR_WIDGET_ID" filters="YOUR_FILTER_ARRAY" />
     </div>
   );
 }
