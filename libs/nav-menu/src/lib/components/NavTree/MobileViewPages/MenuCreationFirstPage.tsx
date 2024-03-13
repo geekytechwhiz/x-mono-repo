@@ -1,8 +1,8 @@
-import Step from "@material-ui/core/Step";
-import StepConnector from "@material-ui/core/StepConnector";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
-import { withStyles } from "@material-ui/core/styles";
+import Step from "@mui/material/Step";
+import StepConnector from "@mui/material/StepConnector";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -26,7 +26,7 @@ import LinkSecondPg from "./LinkSecondPg";
 import MainMenuDialog from "./MainMenuDialog";
 import MenuSecondPage from "./MenuSecondPage";
 
-const styles = (theme) => ({
+const styles = () => ({
   stepIcon: {
     color: "#2d2d39 !important",
   },

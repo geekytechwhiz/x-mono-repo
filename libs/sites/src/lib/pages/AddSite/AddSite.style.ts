@@ -1,8 +1,7 @@
-import { makeStyles } from "@material-ui/core";
-import { Typography } from "@mui/material";
-import { styled } from "@mui/styles";
+import { Typography, Theme } from "@mui/material";
+import { styled, makeStyles } from "@mui/styles";
 
-export const useAddSiteStyle = makeStyles((theme) => ({
+export const useAddSiteStyle = makeStyles((theme: Theme) => ({
   addSitePage: {
     maxWidth: "850px",
     margin: "auto",

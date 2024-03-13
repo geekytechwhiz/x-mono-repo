@@ -738,14 +738,15 @@ export const getSelectedSite = () => {
 
 export const getSelectedRoute = () => {
   let site = "";
-  const selectedSite = localStorage.getItem("selectedSite");
+  // const selectedSite = localStorage.getItem("selectedSite");
   const split = window?.location.pathname.split("/");
   const [, x] = split;
   site = x;
   if (site === "en" || site === "fr" || site === "de") {
     return "";
   } else {
-    return selectedSite ?? site;
+    //return selectedSite ?? site;
+    return site;
   }
 };
 

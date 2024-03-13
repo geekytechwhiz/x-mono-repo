@@ -1,7 +1,8 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: "flex",
     justifyContent: "center",
