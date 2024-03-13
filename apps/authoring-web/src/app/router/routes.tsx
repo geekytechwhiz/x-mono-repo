@@ -1,4 +1,3 @@
-//import { AssetListing, CreateAsset } from "@platformx/assets-manager";
 import { Content, ContentPreview, CreateContent } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
@@ -6,11 +5,9 @@ import { SitePage } from "@platformx/site-page";
 import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 import { CreateUser, UserListing } from "@platformx/user-management";
-// import { AssetListing, CreateAssest } from "@platformx/asset-manager";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-// import { TagListing, CategoryDetail, CreateTags } from "../../../../../libs/site-setting/src";
 import { Typography } from "@mui/material";
 import { AssetListing } from "@platformx/asset-manager";
 import {
@@ -22,6 +19,7 @@ import {
   HeaderSetting,
   MediaHandle,
   TagListing,
+  CategoryDetail,
 } from "@platformx/site-setting";
 import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
@@ -347,14 +345,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/site-setting/tags/:category",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <CategoryDetail />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/site-setting/tags/:category",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CategoryDetail />
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/site-setting/create-tags",
     element: (

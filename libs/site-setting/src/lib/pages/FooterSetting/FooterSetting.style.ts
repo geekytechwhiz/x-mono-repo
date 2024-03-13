@@ -1,7 +1,9 @@
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
+import { Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useFooterSettingStyle = makeStyles((theme) => ({
+export const useFooterSettingStyle = makeStyles((theme: Theme) => ({
   pageContainer: {
     [theme.breakpoints.up("xs")]: {
       padding: "15px",
