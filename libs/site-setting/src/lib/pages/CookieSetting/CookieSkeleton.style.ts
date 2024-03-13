@@ -1,4 +1,7 @@
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
+//import { Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+//import { ThemeConstants } from "@platformx/utilities";
 
 export const useCookieSkeletonStyle = makeStyles(() => ({
   InformativeCookieSkeleton: {

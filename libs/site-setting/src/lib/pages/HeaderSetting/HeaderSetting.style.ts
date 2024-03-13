@@ -1,7 +1,9 @@
-import { makeStyles } from "@material-ui/core";
+//import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useHeaderSettingStyle = makeStyles((theme) => ({
+export const useHeaderSettingStyle = makeStyles((theme: Theme) => ({
   pageContainer: {
     [theme.breakpoints.up("xs")]: {
       padding: "15px",
