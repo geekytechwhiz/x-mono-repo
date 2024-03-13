@@ -1,6 +1,6 @@
 import getConfig from "next/config";
-// import Cookies from "cookies";
-import { createSession, getDomainUrl } from "./helperFunctions";
+import Cookies from "cookies";
+import { verifyLogin, createSession, getDomainUrl } from "./helperFunctions";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -11,18 +11,18 @@ const setKeyclockHeaders = async (headers, res) => {
   }
 };
 
-const verifyLoggedInStatus = (req, res) => {
-  // const cookies = new Cookies(req, res);
-  // const loginCookie = cookies?.get(LOGIN_COOKIE);
-  // if (loginCookie) {
-  //   const { status = "", data } = (await verifyLogin(req.headers.cookie)) || {};
-  //   if (status === 200) {
-  //     return { isLoggedIn: true, userData: data?.data?.userDetails || {} };
-  //   } else {
-  //     return { isLoggedIn: false, userData: {} };
-  //   }
-  // }
-  return { isLoggedIn: true, userData: {} };
+const verifyLoggedInStatus = async (req, res) => {
+  const cookies = new Cookies(req, res);
+  const loginCookie = cookies?.get("platform-x-session");
+  if (loginCookie) {
+    const { status = "", data } = (await verifyLogin(req.headers.cookie)) || {};
+    if (status === 200) {
+      return { isLoggedIn: true, userData: data?.data?.userDetails || {} };
+    } else {
+      return { isLoggedIn: false, userData: {} };
+    }
+  }
+  return { isLoggedIn: false, userData: {} };
 };
 
 const createNewSession = async (req, res, query, locale, pageName) => {
