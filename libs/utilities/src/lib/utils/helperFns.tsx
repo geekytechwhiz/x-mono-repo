@@ -724,16 +724,28 @@ export const unloadCallback = (event, unsavedChanges) => {
   }
 };
 
+// export const getSelectedSite = () => {
+//   const splitPath = window?.location.pathname.split("/");
+//   const [, x] = splitPath;
+//   const site = x;
+
+//   if (["en", "fr", "de"].includes(site)) {
+//     return localStorage.getItem("selectedSite") || "";
+//   }
+
+//   return site || "";
+// };
+
 export const getSelectedSite = () => {
-  const splitPath = window?.location.pathname.split("/");
-  const [, x] = splitPath;
-  const site = x;
-
-  if (["en", "fr", "de"].includes(site)) {
+  let site = "";
+  const split = window?.location.pathname.split("/");
+  // eslint-disable-next-line prefer-destructuring
+  site = split[1];
+  if (site === "en" || site === "fr" || site === "de") {
     return localStorage.getItem("selectedSite") || "";
+  } else {
+    return site || "";
   }
-
-  return site || "";
 };
 
 export const getSelectedRoute = () => {
