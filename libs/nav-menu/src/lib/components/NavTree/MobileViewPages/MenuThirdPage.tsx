@@ -13,7 +13,7 @@ import { addMenu } from "@platformx/authoring-state";
 import {
   Loader,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   dateFormat,
   useUserSession,
@@ -173,9 +173,9 @@ function MenuThirdPage({
           setIsDone(false);
           setClickConfirm(!clickConfirm);
           if (resp.data.authoring_createOrUpdateNavigation.message === "Success") {
-            ShowToastSuccess(t("menu_toast_added"));
+            ShowToastSuccessMessage(t("menu_toast_added"));
           } else {
-            ShowToastSuccess(t("api_error_toast"));
+            ShowToastSuccessMessage(t("api_error_toast"));
           }
         })
         .catch((error) => {
@@ -248,7 +248,7 @@ function MenuThirdPage({
           setActiveStep(0);
           setIsLoading(false);
 
-          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+          ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           setIsLoading(false);

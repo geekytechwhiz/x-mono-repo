@@ -16,7 +16,7 @@ import {
   ErrorTooltip,
   SettingIcon,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   useAccess,
   useUserSession,
@@ -185,7 +185,7 @@ export default function MobileLeftSideMenu({
     })
       .then(() => {
         setRow(row - 1);
-        ShowToastSuccess(`${t("menu")} ${t("deleted_toast")}`);
+        ShowToastSuccessMessage(`${t("menu")} ${t("deleted_toast")}`);
       })
       .catch(() => {
         ShowToastError(t("api_error_toast"));
@@ -328,7 +328,7 @@ export default function MobileLeftSideMenu({
           }
         });
         if (publishedResponse?.data && !publishedResponse.errors) {
-          ShowToastSuccess(`${t("menu")} ${t("published_toast")}`);
+          ShowToastSuccessMessage(`${t("menu")} ${t("published_toast")}`);
         }
       }
       setIsLoaded(false);
@@ -369,7 +369,7 @@ export default function MobileLeftSideMenu({
       })
         .then((resp) => {
           setName("");
-          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+          ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           if (error.graphQLErrors[0]) {
@@ -403,7 +403,7 @@ export default function MobileLeftSideMenu({
     })
       .then((resp) => {
         setMenuParentId(!menuParentId);
-        ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+        ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {

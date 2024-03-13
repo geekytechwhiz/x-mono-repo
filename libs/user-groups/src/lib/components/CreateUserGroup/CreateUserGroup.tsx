@@ -4,7 +4,7 @@ import { handleDialog } from "@platformx/authoring-state";
 import {
   AutoTextArea,
   CommonBoxWithNumber,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   SuccessIcon,
   TextBox,
   TitleSubTitle,
@@ -65,7 +65,7 @@ const CreateUserGroup = () => {
         "groupDetails",
         JSON.stringify(userGroupUpdateMapper(userGroup, locationObj)),
       );
-      ShowToastSuccess(t("Group updated successfully"));
+      ShowToastSuccessMessage(t("Group updated successfully"));
     }
   };
 

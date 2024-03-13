@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ShowToastError, ShowToastSuccess, useUserSession } from "@platformx/utilities";
+import { ShowToastError, ShowToastSuccessMessage, useUserSession } from "@platformx/utilities";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
@@ -51,7 +51,7 @@ const useVod = () => {
         },
       });
       if (deleteResponse) {
-        ShowToastSuccess(`${t("vod")} ${t("deleted_toast")}`);
+        ShowToastSuccessMessage(`${t("vod")} ${t("deleted_toast")}`);
       } else {
         ShowToastError(t("api_error_toast"));
         return deleteResponse;
@@ -75,7 +75,7 @@ const useVod = () => {
           if (calledFromDelete) {
             deleteVod(selectedVod);
           } else {
-            ShowToastSuccess(`${t("vod")} ${t("unpublished_toast")}`);
+            ShowToastSuccessMessage(`${t("vod")} ${t("unpublished_toast")}`);
           }
         }
       } catch (error: any) {
@@ -89,7 +89,7 @@ const useVod = () => {
       navigator.clipboard.writeText(
         `${process.env.NX_APP_PUBLISH_URI + i18n.language}/video${pageUrl}`,
       );
-      ShowToastSuccess(t("url_copy_toast"));
+      ShowToastSuccessMessage(t("url_copy_toast"));
     } else {
       ShowToastError(t("api_error_toast"));
     }
@@ -175,7 +175,7 @@ const useVod = () => {
                   // setOpenPageExistModal(true)
                   // setArr((prev) => [...prev, { id: l.id, value: lang }])
                 } else {
-                  ShowToastSuccess(`${t("vod")} ${t("duplicated_toast")} ${t("for")} ${l.value}`);
+                  ShowToastSuccessMessage(`${t("vod")} ${t("duplicated_toast")} ${t("for")} ${l.value}`);
                 }
               })
               .catch((error) => {
@@ -209,7 +209,7 @@ const useVod = () => {
               // setOpenPageExistModal(true)
             } else {
               // setOpenPageExistModal(false)
-              ShowToastSuccess(`${t("vod")} ${t("duplicated_toast")} ${t("for")} ${val.value}`);
+              ShowToastSuccessMessage(`${t("vod")} ${t("duplicated_toast")} ${t("for")} ${val.value}`);
               // fetchContent(0, 'ALL', true);
             }
           })

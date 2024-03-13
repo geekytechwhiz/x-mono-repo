@@ -13,7 +13,7 @@ import { handleDialog } from "@platformx/authoring-state";
 import {
   BasicSwitch,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   WarningIcon,
   WorkflowIcon,
@@ -56,8 +56,8 @@ const ListView = ({
       });
       setIsLoading(false);
       checked
-        ? ShowToastSuccess(t("disable_workflow_message"))
-        : ShowToastSuccess(t("enable_workflow_message"));
+        ? ShowToastSuccessMessage(t("disable_workflow_message"))
+        : ShowToastSuccessMessage(t("enable_workflow_message"));
     } catch (err: any) {
       ShowToastError(
         err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),

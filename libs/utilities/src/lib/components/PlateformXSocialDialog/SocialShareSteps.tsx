@@ -31,7 +31,7 @@ import { FETCH_VOD_BY_ID } from "../../graphQL/queries/vodQueries";
 import useUserSession from "../../hooks/useUserSession/useUserSession";
 import { capitalizeFirstLetter, convertToLowerCase, getSubDomain } from "../../utils/helperFns";
 import SkeltonLoader from "../SkeltonLoader/SkeltonLoader";
-import { ShowToastError, ShowToastSuccess } from "../ToastNotification/ToastNotification";
+import { ShowToastError, ShowToastSuccessMessage } from "../ToastNotification/ToastNotification";
 // eslint-disable-next-line no-shadow
 enum ShareNetworkValues {
   fb = "Facebook",
@@ -148,7 +148,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
       },
     })
       .then((res) => {
-        ShowToastSuccess(
+        ShowToastSuccessMessage(
           `${t(contentType === "video" ? "VOD" : contentType)} ${t(
             checked ? "scheduled" : "shared",
           )} ${t("successfully")}`,
@@ -272,7 +272,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
       },
     })
       .then((res) => {
-        ShowToastSuccess("Social Share rescheduled successfully.");
+        ShowToastSuccessMessage("Social Share rescheduled successfully.");
         onClickingDone();
         setLoading(false);
       })

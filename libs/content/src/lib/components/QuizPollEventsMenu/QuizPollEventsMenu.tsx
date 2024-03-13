@@ -20,7 +20,7 @@ import {
   PlateformXDialog,
   PlateformXSocialDialog,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   convertToLowerCase,
   getSubDomain,
   useAccess,
@@ -94,7 +94,7 @@ export const QuizPollEventMenu = ({
     }${listItemDetails.current_page_url}`;
     if (listItemDetails.current_page_url) {
       navigator.clipboard.writeText(text);
-      ShowToastSuccess(t("url_copy_toast"));
+      ShowToastSuccessMessage(t("url_copy_toast"));
     } else {
       ShowToastError(t("api_error_toast"));
     }

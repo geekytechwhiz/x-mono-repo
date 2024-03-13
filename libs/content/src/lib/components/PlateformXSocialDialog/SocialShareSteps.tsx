@@ -16,7 +16,7 @@ import SocialShareStep2 from './socialShareSteps2';
 import SocialShareStep3 from './socialShareSteps3';
 
 import { useTranslation } from 'react-i18next';
-import { ShowToastError, ShowToastSuccess } from '@platformx/utilities';
+import { ShowToastError, ShowToastSuccessMessage } from '@platformx/utilities';
 import { useUserSession } from '@platformx/utilities';
 import {
   ArticleMutations,
@@ -161,7 +161,7 @@ const SocialShareSteps = ({
       },
     })
       .then((res) => {
-        ShowToastSuccess(
+        ShowToastSuccessMessage(
           `${t(contentType == 'video' ? 'VOD' : contentType)} ${t(
             checked ? 'scheduled' : 'shared'
           )} ${t('successfully')}`
@@ -302,7 +302,7 @@ const SocialShareSteps = ({
       },
     })
       .then((res) => {
-        ShowToastSuccess('Social Share rescheduled successfully.');
+        ShowToastSuccessMessage('Social Share rescheduled successfully.');
         onClickingDone();
         setLoading(false);
       })
