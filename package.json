@@ -82,6 +82,7 @@
     "json-loader": "^0.5.7",
     "mx-utils": "^3.0.16",
     "next": "13.4.4",
+    "nx-cloud": "^18.0.0",
     "platform-x-prelems": "5.10.80",
     "platform-x-utils": "3.4.42",
     "prettier": "^2.8.8",
