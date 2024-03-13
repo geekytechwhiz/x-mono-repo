@@ -1,4 +1,4 @@
-name: platformx-workflow-new
+name: platformx-workflow-with-nx
 on:
   push:
     branches:
