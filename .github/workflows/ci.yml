@@ -34,7 +34,7 @@ jobs:
         run: |
           branch_name="develop-$(date +%Y-%m-%d-%H-%M-%S)"
           git branch --track $branch_name origin/develop
-      # - run: npx nx-cloud record -- --base=develop -- nx format:check
+      - run: npx nx-cloud record -- --base=develop -- nx format:check
       - run: npx nx affected -t build authoring-web --base=main --head=HEAD --parallel=10
 
       
