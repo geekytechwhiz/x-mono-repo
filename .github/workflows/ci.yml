@@ -36,7 +36,7 @@ jobs:
           git branch --track $branch_name origin/develop
       # - run: npx nx-cloud record -- --base=develop -- nx format:check
       # - run: npx nx affected -t build authoring-web --base=main --head=HEAD --parallel=10 
-      - run: nx build authoring-web --parallel=10
+      - run: npx nx build authoring-web --parallel=10
       
 
 
