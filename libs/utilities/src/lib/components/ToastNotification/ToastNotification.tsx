@@ -5,7 +5,7 @@ import InfoToast from '../CustomToast/InfoToast';
 import SuccessToast from '../CustomToast/SuccessToast';
 import WarningToast from '../CustomToast/WarningToast';
 
-export const ShowToastSuccess = (message: string | undefined) => {
+export const ShowToastSuccessMessage = (message: string | undefined) => {
   toast.success(<SuccessToast title={'Success'} description={message} />);
 };
 

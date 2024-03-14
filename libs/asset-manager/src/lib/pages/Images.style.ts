@@ -1,6 +1,7 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-export const useImagesStyle = makeStyles((theme) => ({
+export const useImagesStyle = makeStyles((theme: Theme) => ({
   container: {
     display: "flex",
     justifyContent: "space-between",

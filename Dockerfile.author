@@ -24,25 +24,31 @@ RUN apk update && \
     libpng-dev \
     libwebp-dev
 
-# create & set working directory
+# Create & set working directory
 RUN mkdir -p /server
 WORKDIR /server
 
-# copy source files
+# Copy source files
 COPY . /server
 
-# install dependencies
-RUN npm i -g nx
+# Install dependencies
+RUN npm install -g nx
 
 # Set higher memory limit for Node.js
-# ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 
-# install dependencies again
-RUN npm install --legacy-peer-deps
 
-# start app
-RUN nx build authoring-web --parallel=10
+# Copy the CI script into the container
+COPY ci-script.sh /server/ci-script.sh
 
+# Make the script executable
+RUN chmod +x /server/ci-script.sh
+
+# Build the application and execute CI script
+RUN /server/ci-script.sh
+
+# Expose port
 EXPOSE 3000
-CMD npm run deploy:authoring
+
+# Command to run the application
+CMD ["npm", "run", "deploy:authoring"]

@@ -1,6 +1,7 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-export const useLoaderStyle = makeStyles((theme) => ({
+export const useLoaderStyle = makeStyles((theme: Theme) => ({
   box: {
     display: "flex",
     marginTop: "10px",

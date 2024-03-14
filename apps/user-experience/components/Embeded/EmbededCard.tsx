@@ -2,15 +2,15 @@ import dynamic from "next/dynamic";
 import getConfig from "next/config";
 import { convertLowerCase } from "../../utils/helperFunctions";
 
-const EmbedCard: any = dynamic(() => import("platform-x-prelems/prelems/Embed"));
-
-// const ProductDetail = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.ProductListing), {
-//   ssr: false,
-// });
+const EmbedCard = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Embed), {
+  ssr: false,
+});
 
 const EmbededCard = (props) => {
   const { publicRuntimeConfig = {} } = getConfig() || {};
   const defaultUrl = publicRuntimeConfig?.NEXT_PUBLISH_APP_URL;
+  const gcpUrl = publicRuntimeConfig?.NEXT_GCP_URL;
+  const bucketName = publicRuntimeConfig?.NEXT_BUCKET_NAME;
   const defaultSocialImage =
     "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/3e74f70e-7064-4bc9-a9a1-40ba01ecbef9/content";
   const { pageData = {}, secondaryArgs = {} } = props;
@@ -24,26 +24,16 @@ const EmbededCard = (props) => {
     isSeoEnabled: pageData?.SeoEnable,
     isAnalyticsEnabled: pageData?.AnalyticsEnable,
   };
+  const imgPreFixUrl = gcpUrl + "/" + bucketName + "/";
+  const imgSufFixUrl =
+    pageData?.original_image?.original_image_relative_path + "." + pageData?.original_image?.ext;
+
+  const img = imgPreFixUrl + imgSufFixUrl ? imgPreFixUrl + imgSufFixUrl : defaultSocialImage;
+
   const embedData = {
     Title: pageData?.Title ? pageData?.Title : pageData?.title,
     Description: pageData?.Description ? pageData?.Description : pageData?.description,
-    Thumbnail:
-      convertLowerCase(pageData?.content_type) === "article"
-        ? pageData?.banner
-        : convertLowerCase(pageData?.TagName) === "vod"
-        ? pageData?.Thumbnail
-        : convertLowerCase(pageData?.content_type) === "quiz"
-        ? pageData?.background_content?.Url
-          ? pageData?.background_content?.Url
-          : defaultSocialImage
-        : convertLowerCase(pageData?.content_type) === "poll"
-        ? pageData?.background_content?.Url
-          ? pageData?.background_content?.Url
-          : defaultSocialImage
-        : convertLowerCase(pageData?.content_type) === "event"
-        ? pageData?.thumbnail_image
-        : defaultSocialImage,
-
+    Thumbnail: img,
     Author:
       convertLowerCase(pageData?.content_type) === "article"
         ? pageData?.developed_by
@@ -84,6 +74,7 @@ const EmbededCard = (props) => {
   const prelemAuthoringHelper = {
     isAuthoring: false,
   };
+
   return (
     <EmbedCard
       content={embedData}

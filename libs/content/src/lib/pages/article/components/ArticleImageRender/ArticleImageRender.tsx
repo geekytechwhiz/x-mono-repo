@@ -2,7 +2,7 @@
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import { CircularProgress, Paper } from "@mui/material";
 import { styled } from "@mui/system";
-import { Loader, ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
+import { Loader, ShowToastError, ShowToastSuccessMessage, nullToObject } from "@platformx/utilities";
 import { usePostImageCrop } from "@platformx/x-image-render";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -61,9 +61,9 @@ const ArticleImageRender = (props: any = {}) => {
         setManualCropDone(false);
         if (isUploadArticle) {
           count.current++;
-          count.current === 1 && ShowToastSuccess(`${t("auto_cropped_successfully")}`);
+          count.current === 1 && ShowToastSuccessMessage(`${t("auto_cropped_successfully")}`);
         } else {
-          ShowToastSuccess(`${t("auto_cropped_successfully")}`);
+          ShowToastSuccessMessage(`${t("auto_cropped_successfully")}`);
         }
         updateField({
           Banner: Thumbnail,

@@ -38,7 +38,7 @@ import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
 import TextBox from "./lib/components/TextBox/TextBox";
 import {
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
 } from "./lib/components/ToastNotification/ToastNotification";
 // import { XDialog } from './lib/components/XDialog/XDialog'
 import XLoader from "./lib/components/XLoader/XLoader";
@@ -186,7 +186,7 @@ export {
   RadioLabelWithSubheading,
   SectionWrapper,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   SkeltonLoader,
   ChartSkeltonLoader,
   StructureDataDialog,

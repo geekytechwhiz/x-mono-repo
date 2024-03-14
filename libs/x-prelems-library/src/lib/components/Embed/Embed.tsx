@@ -86,6 +86,7 @@ interface Analytics {
 }
 
 interface AuthoringHelper {
+  isAuthoring?: boolean;
   innerRef: React.Ref<HTMLDivElement>;
   // eslint-disable-next-line no-unused-vars
   sendStructureDataToAuthoringCB: (structureData: string) => void;

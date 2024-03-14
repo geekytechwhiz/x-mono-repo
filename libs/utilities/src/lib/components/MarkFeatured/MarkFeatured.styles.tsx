@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
-    BoxImage: {
+  BoxImage: {
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
@@ -10,5 +10,5 @@ export const useStyles = makeStyles(() => ({
     width: "38px",
     // border: "1px solid #14142B",
     borderRadius: "5px",
-    },
+  },
 }));

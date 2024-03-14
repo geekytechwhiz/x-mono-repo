@@ -1,6 +1,6 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { contentTypeAPIs } from '@platformx/authoring-apis';
-import { ShowToastError, ShowToastSuccess, useUserSession } from '@platformx/utilities';
+import { ShowToastError, ShowToastSuccessMessage, useUserSession } from '@platformx/utilities';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -67,11 +67,11 @@ const useQuestion = (
             .then((resp) => {
                 setIsLoading(false);
                 if (IsDuplicate) {
-                    ShowToastSuccess(`${t("question")} ${t("duplicated_toast")}`);
+                    ShowToastSuccessMessage(`${t("question")} ${t("duplicated_toast")}`);
                 } else if (IsUpdate) {
-                    ShowToastSuccess(`${t("question")} ${t("updated_toast")}`);
+                    ShowToastSuccessMessage(`${t("question")} ${t("updated_toast")}`);
                 } else {
-                    ShowToastSuccess(`${t("question")} ${t("created_and_added_toast")}`);
+                    ShowToastSuccessMessage(`${t("question")} ${t("created_and_added_toast")}`);
                 }
                 saveQuestionCallBack({ ...qusObj, current_page_url: path });
             })

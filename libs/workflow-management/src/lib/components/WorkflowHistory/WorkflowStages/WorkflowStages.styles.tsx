@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core";
-import StepConnector from "@material-ui/core/StepConnector";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
+import StepConnector from "@mui/material/StepConnector";
 import { styled } from "@mui/material/styles";
 import { ThemeConstants } from "@platformx/utilities";
 
@@ -61,7 +61,7 @@ export const StyledStepIcon = styled("div")<{
   }),
 }));
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   labelContainer: {
     [theme.breakpoints.down(ThemeConstants.SM)]: {
       alignItems: "flex-start",

@@ -1,7 +1,7 @@
-import { makeStyles } from "@material-ui/core";
-// import ThemeConstants from '../../../theme/variable';
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   container: {
     paddingBottom: "100px",
     [theme.breakpoints.up("sm")]: {
