@@ -2984,6 +2984,7 @@ const PrelemTheme = (ThemeConstants) =>
                 "& .Platform-x-Autocomplete-listbox": {
                   background: ThemeConstants.PRIMARY_PRELEM.SELECT.PLACEHOLDER,
                   color: ThemeConstants.PRIMARY_PRELEM.SELECT.TEXT,
+                  overflowX: "hidden",
                   "& li": {
                     color: ThemeConstants.PRIMARY_PRELEM.SELECT.TEXT,
                     padding: "8px",
