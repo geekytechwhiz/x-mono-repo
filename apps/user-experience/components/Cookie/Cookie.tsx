@@ -104,6 +104,12 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
       if (newObj.isCookieConsentChosen || newObj.isNonEssentialCookieChecked) {
         analyticApiCall();
       }
+
+      //cookies is set removed popUP from UI
+      const cookiesCheck = document.cookie.includes("userConsentCookiePolicy=true");
+      if (cookiesCheck) {
+        setShowPanel("");
+      }
     } else {
       setShowPanel("");
     }
