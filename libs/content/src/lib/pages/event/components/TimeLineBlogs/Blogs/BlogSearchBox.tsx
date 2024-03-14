@@ -2,9 +2,13 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import "./BlogSearchBox.css";
 import { makeStyles } from "@material-ui/core/styles";
-import { debounce, ShowToastError as showToastError, SearchIconSvg } from "@platformx/utilities";
+import {
+  debounce,
+  ShowToastError as showToastError,
+  SearchIconSvg,
+  apiCallForBlogs,
+} from "@platformx/utilities";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { commonPostApiCall } from "@platformx/authoring-apis";
 import { Autocomplete, Box, InputAdornment, TextField } from "@mui/material";
 
 interface Content {
@@ -50,7 +54,7 @@ export default function BlogSearchBox({ onSearch, style, selectedItem = [] }) {
             isSuggestive: false,
             pageSearch: inputValue,
           };
-          const response = await commonPostApiCall(apiUrl, data);
+          const response = await apiCallForBlogs(apiUrl, data, "post");
           if (response?.data?.data?.length > 0 && response?.data?.data !== "No data found!") {
             setOptions([...(response?.data?.data || [])]);
           } else {

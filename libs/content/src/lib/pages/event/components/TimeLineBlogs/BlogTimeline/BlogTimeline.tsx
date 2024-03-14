@@ -27,8 +27,8 @@ import {
   ShowToastError as showToastError,
   ShowToastSuccessMessage as showToastSuccess,
   DeletePopup,
+  apiCallForBlogs,
 } from "@platformx/utilities";
-import { commonPostApiCall, commonPutApiCall } from "@platformx/authoring-apis";
 
 const BlogTimeline = (_props: any) => {
   const {
@@ -75,7 +75,7 @@ const BlogTimeline = (_props: any) => {
       isSuggestive: false,
       pageSearch: searchTerm,
     };
-    const response = await commonPostApiCall(apiUrl, data);
+    const response = await apiCallForBlogs(apiUrl, data, "post");
 
     if (response?.data?.data && response?.data?.data !== "No data found!") {
       //setSelectedItem(response?.data?.data);
@@ -112,7 +112,7 @@ const BlogTimeline = (_props: any) => {
         isSuggestive: false,
         pageSearch: search,
       };
-      const response = await commonPostApiCall(apiUrl, data);
+      const response = await apiCallForBlogs(apiUrl, data, "post");
 
       if (response?.data?.data && response?.data?.data !== "No data found!") {
         setSelectedItem(response?.data?.data);
@@ -138,7 +138,7 @@ const BlogTimeline = (_props: any) => {
         event_path: eventPath,
         is_soft_delete: true,
       };
-      const response = await commonPutApiCall(`${updateApiUrl}/${presentId}`, data);
+      const response = await apiCallForBlogs(`${updateApiUrl}/${presentId}`, data, "put");
       const { data: { success = false } = {} } = response;
       if (success) {
         showToastSuccess("Blog deleted successfully.");

@@ -13,7 +13,6 @@ import { updateBlogApiCall, defaultFallBackImage } from "./Utils/helperBlogs";
 import Typography from "@mui/material/Typography";
 import { timeLineBlogsConstDesign } from "./blogCss";
 import BlogTimeline from "./BlogTimeline/BlogTimeline";
-import { commonPostApiCall } from "@platformx/authoring-apis";
 import {
   EventHeader,
   useUserSession,
@@ -24,6 +23,7 @@ import {
   ShowToastError as showToastError,
   ShowToastSuccessMessage as showToastSuccess,
   AUTH_INFO as authInfo,
+  apiCallForBlogs,
 } from "@platformx/utilities";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import BlogHeaderTabMobileView from "./BlogHeaderFooderTab/BlogHeaderTabMobileView";
@@ -310,7 +310,7 @@ const TimeLineBlogs = () => {
       _id: Id,
     };
     setIsBlogLoad(true);
-    const response = await commonPostApiCall(apiUrl, data);
+    const response = await apiCallForBlogs(apiUrl, data, "post");
     setImageOrVideoToDefault(); //remove exist image from image state
 
     setIsBlogLoad(false);
@@ -341,7 +341,7 @@ const TimeLineBlogs = () => {
     };
 
     setIsBlogLoad(true);
-    const response = await commonPostApiCall(apiUrl, data);
+    const response = await apiCallForBlogs(apiUrl, data, "post");
     setIsBlogLoad(false);
 
     if (response?.data?.data && response?.data?.data !== "No data found!") {
@@ -469,7 +469,7 @@ const TimeLineBlogs = () => {
       modified_by: username,
     };
 
-    const response = await commonPostApiCall(createApiUrl, data);
+    const response = await apiCallForBlogs(createApiUrl, data, "post");
     setIsBlogLoad(false);
     setIsBlogCreate(false);
     setPublishButton(false);
@@ -538,7 +538,7 @@ const TimeLineBlogs = () => {
 
     try {
       setIsBlogLoad(true);
-      const response = await commonPostApiCall(createApiUrl, data);
+      const response = await apiCallForBlogs(createApiUrl, data, "post");
       setIsBlogLoad(false);
 
       const { data: { success = false } = {} } = response;

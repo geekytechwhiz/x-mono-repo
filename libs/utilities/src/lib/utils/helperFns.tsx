@@ -1253,3 +1253,17 @@ export const getIcon = (contentType) => {
       return `${gcpUrl}${CONTENT_ICON.ARTICLE}`;
   }
 };
+
+export const apiCallForBlogs = async (url, payload = {}, type = "put") => {
+  try {
+    return await axios[type](url, payload, {
+      headers: {
+        ...headerData,
+        sitename: getSelectedSite(),
+        site_host: getSubDomain(),
+      },
+    });
+  } catch (err: any) {
+    return err.response;
+  }
+};

@@ -1,6 +1,5 @@
 import { format } from "date-fns";
-import { commonPutApiCall } from "@platformx/authoring-apis";
-import { nullToString } from "@platformx/utilities";
+import { nullToString, apiCallForBlogs } from "@platformx/utilities";
 
 const updateApiUrl = `${process.env.NX_BLOG_API_URI}blogging/update`;
 
@@ -71,7 +70,7 @@ export const updateBlogApiCall = async (blogData: any = {}) => {
     modified_by: blogData.username,
   };
 
-  return await commonPutApiCall(`${updateApiUrl}/${blogData.savedBlogId}`, data);
+  return await apiCallForBlogs(`${updateApiUrl}/${blogData.savedBlogId}`, data, "put");
 };
 
 /**
