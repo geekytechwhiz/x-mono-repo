@@ -41,6 +41,9 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 # Copy the CI script into the container
 COPY deploy.script.sh /server/deploy.script.sh
 
+# Check if the file is copied successfully
+RUN ls -l /server/deploy.script.sh 
+
 # Make the script executable
 RUN chmod +x /server/deploy.script.sh
 
