@@ -1,6 +1,7 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-export const useCreatesiteStepStyle = makeStyles((theme) => ({
+export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   container: {
     display: "flex",
     justifyContent: "space-between",
@@ -18,82 +19,11 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   containerbox: {
     display: "flex",
   },
-  backicon: {
-    display: "flex",
-    padding: "3px",
-  },
-  topheader: {
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-      float: "left",
-      marginLeft: "27px",
-      marginTop: "10px",
-    },
-    [theme.breakpoints.down("xs")]: {
-      display: "flex",
-      float: "left",
-      marginLeft: "10px",
-      marginTop: "10px",
-    },
 
-    display: "flex",
-    float: "right",
-    marginRight: "27px",
-  },
-  topheadermodal: {
-    [theme.breakpoints.down("md")]: {
-      position: "absolute",
-      bottom: "16px",
-      width: "94%",
-    },
-    [theme.breakpoints.down("xs")]: {
-      position: "absolute",
-      bottom: "16px",
-      width: "88%",
-    },
-    display: "flex",
-    float: "right",
-    marginRight: "27px",
-  },
-  textcen: {
-    textAlign: "center",
-  },
-  foldericon: {
-    [theme.breakpoints.down("sm")]: {
-      width: "45px",
-      height: "45px",
-    },
-  },
-  innercontainerbox: {
-    margin: "0px 12px",
-    padding: "10px",
-    borderRadius: "4px",
-    border: "1px solid #14142B",
-    display: "flex",
-    height: "46px",
-    width: "42px",
-    alignItem: "center",
-    cursor: "pointer",
-    justifyContent: "center",
-  },
-
-  boxalign: {
-    [theme.breakpoints.down("md")]: {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-    },
-  },
   innercontainer: {
     display: "flex",
     marginTop: "8px",
     marginLeft: "8px",
-  },
-  boxcloseinnercontain: {
-    display: "inline-flex",
-    alignItems: "center",
-    position: "relative",
-    width: "100%",
   },
 
   modalboxtypo: {
@@ -103,12 +33,6 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   },
   sitedropdownicon: {
     width: "10%",
-  },
-  boxicon: {
-    justifyContent: "space-between",
-    alignContent: "center",
-    marginTop: "40px",
-    flexDirection: "column",
   },
   closeiconmodal: {
     right: "44px",
@@ -124,73 +48,7 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   modaltyponew: {
     marginLeft: "10px !important",
   },
-  closeiconreop: {
-    position: "absolute",
-    marginTop: "13px",
-    right: "0",
-    top: "0",
-  },
-  modalbtn: {
-    minWidth: "100%",
-  },
-  sitecontenttypo: {
-    marginLeft: "30px",
-    marginTop: "5px",
-  },
-  settingicon: {
-    marginRight: "15px",
-  },
-  borderbottomtype: {
-    borderBottom: "1px solid #D9DBE9",
-    marginTop: "5px",
-    height: "56px",
-  },
-  boxsize: {
-    height: "420px",
-    padding: " 0px 30px",
-    borderRadius: "5px",
-  },
-  toptypography: {
-    display: "flex",
-    marginTop: "15px",
-    justifyContent: "space-between",
-  },
-  Boxinner: {
-    border: "1px solid #14142B",
-    width: "38px",
-    marginTop: "4px",
-    height: "38px",
-    alignItems: "center",
-    borderRadius: "5px",
-    marginRight: "10px",
-  },
-  boximg: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: "10px",
-    marginTop: "5px",
-  },
-  folderlistings: {
-    height: "500px",
-    marginTop: "8px",
-    overflow: "auto",
-    marginLeft: "8px",
-    marginRight: "8px",
-    width: "98%",
-    spacing: 2,
-    rowSpacing: 4,
-    padding: "15px",
-  },
-  mockimg: {
-    height: "100%",
-    width: "100%",
-    objectFit: "cover",
-  },
-  innerimagetext: {
-    borderBottom: "1px solid #FFF",
-    display: "inline-flex",
-    color: "white",
-  },
+
   modalbox: {
     textAlign: "right",
     cursor: "pointer",
@@ -207,44 +65,8 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "flex-start",
     backgroundColor: "#FFF",
-    paddingLeft: "10%",
   },
-  textupload: {
-    color: "#6E7191",
-    marginTop: "5px",
-  },
-  modalboxnew: {
-    marginTop: "5px",
-    width: "100%",
-    borderBottom: "1px solid #D9DBE9",
-  },
-  modaltypo: {
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "5px",
-  },
-  btnmodal: {
-    marginTop: "15px !important",
-    textAlign: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#4B9EF9 !important",
-    borderRadius: "5px",
-    color: "#FFF !important",
-  },
-  folderouticon: {
-    margin: "0 14px 0 14px",
-  },
-  breadsize: {
-    fontSize: "31px !impportant",
-  },
-  breadcrumbsFont: {
-    fontSize: "31px",
-  },
-  createfol: {
-    marginTop: "10px !important",
-  },
+
   modalgrid: {
     [theme.breakpoints.down("sm")]: {
       marginLeft: "5px",
@@ -266,17 +88,6 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
 
   modalcontainer: {
     marginTop: "14px",
-  },
-  assetmodalbox: {
-    [theme.breakpoints.down("md")]: {
-      marginTop: "10px",
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginTop: "10px",
-    },
-    borderRadius: "5px",
-    height: "600px",
-    border: "1px solid #D9DBE9",
   },
   dialograpper: {
     backgorund: "white",
@@ -301,134 +112,6 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       overflowx: "scroll",
     },
-  },
-  assetboxone: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: "100px",
-  },
-  assetmodalback: {
-    [theme.breakpoints.down("md")]: {
-      height: "600px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      height: "280px",
-    },
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "5px",
-    height: "600px",
-    backgroundColor: "#EFF0F6",
-  },
-
-  fileuploadicon: {
-    marginTop: "25px",
-    marginLeft: "42px",
-  },
-  boxasset: {
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
-
-    width: "83%",
-    position: "absolute",
-    top: "16px",
-    left: "16px",
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-    display: "flex",
-  },
-  wrapperimage: {
-    [theme.breakpoints.down("md")]: {
-      position: "relative",
-    },
-    position: "absolute",
-    bottom: "16px",
-    left: "16px",
-    width: "100%",
-  },
-  boxassetstep: {
-    [theme.breakpoints.down("md")]: {
-      top: "22px",
-    },
-    top: "10px",
-    right: "20px",
-    width: "20px",
-    position: "absolute",
-  },
-  boxassetstep1: {
-    top: "1px",
-    right: "6px",
-    width: "8px",
-    position: "absolute",
-  },
-
-  filternewicon: {
-    [theme.breakpoints.up("xs")]: {
-      padding: "8px",
-      height: "42px",
-    },
-    [theme.breakpoints.up("md")]: {
-      padding: "10px",
-      height: "46px",
-    },
-    backgroundColor: "white",
-    borderRadius: "4px",
-    border: "1px solid #14142B",
-    display: "flex",
-    width: "42px",
-    marginRight: "10px",
-    alignItem: "center",
-    cursor: "pointer",
-    justifyContent: "center",
-  },
-  boxassetsteps: {
-    width: "83%",
-    display: "flex",
-    justifyContent: "flex-end",
-    position: "relative",
-  },
-  cardName: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    width: "240px",
-  },
-  adjusttext: {
-    [theme.breakpoints.down("md")]: {
-      color: "black",
-    },
-    color: "white",
-    bottom: "16px",
-    left: "16px",
-    textTransform: "capitalize",
-  },
-  draftbtn: {
-    borderRadius: "5px",
-    backgroundColor: "#FFCD41 !important",
-  },
-  typodoticon: {
-    [theme.breakpoints.down("md")]: {
-      color: "black",
-    },
-    cursor: "pointer",
-    color: "white",
-  },
-  typodotsicon: {
-    cursor: "pointer",
-    color: "#FFF !important",
-  },
-
-  deskcontain: {
-    border: "1px solid #14142B !important",
-    width: "38px",
-    height: "38px",
-    marginTop: "4px",
-    alignItems: "center",
-    borderRadius: "5px",
-    marginRight: "10px",
   },
   marginLeft15: {
     marginLeft: "15px !important",
@@ -458,8 +141,7 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
   },
   cancelbtn: {
     display: "flex",
-    justifyContent: "center",
-    paddingLeft: "76px",
+    justifyContent: "end",
     marginTop: "20px",
   },
   innercancel: {
@@ -474,14 +156,181 @@ export const useCreatesiteStepStyle = makeStyles((theme) => ({
     alignItems: "center",
     marginLeft: "99px",
   },
+  createcontainnew: {
+    height: "107px",
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "40px",
+    alignItems: "center",
+    marginLeft: "35px",
+  },
   typowidth: {
     maxWidth: "324px",
+  },
+  typowidthstep4: {
+    maxWidth: "494px",
   },
   siteicon: {
     textAlign: "center",
   },
+  siteiconnew: {
+    textAlign: "center",
+    marginTop: "25px",
+  },
   siteiconinner: {
     marginBottom: "30px",
     marginRight: "10px",
+  },
+  boxscroll: {
+    overflowY: "scroll",
+    height: "320px",
+    marginTop: "25px",
+  },
+  themebox: {
+    display: "flex",
+    flexDirection: "row",
+    height: "130px",
+    marginTop: "10px",
+  },
+  step2container: {
+    width: "614px",
+    height: "478px",
+    borderRadius: "5px",
+    backgroundColor: "#FFF",
+    border: "1px solid #D9DBE9",
+    marginTop: "75px",
+  },
+  step2typo: {
+    color: "#4E4B66",
+    maxWidth: "492px",
+  },
+  typoheader: {
+    marginLeft: "34px",
+  },
+  step2img: {
+    width: "100%",
+  },
+  skeletonstep2box: {
+    marginTop: "24px",
+    paddingLeft: "20px",
+    paddingTop: "12px",
+    marginBottom: "24px",
+  },
+  step2skeleton: {
+    marginTop: "6px",
+  },
+  step2container2: {
+    width: "610px",
+    height: "135px",
+    border: "1px solid #D9DBE9",
+    borderRadius: "5px",
+    backgroundColor: "#FFF",
+    marginTop: "10px",
+    marginLeft: "72px",
+  },
+  step2innercontainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    padding: "14px 1px",
+  },
+  imgbox: {
+    width: "100%",
+  },
+  skeletonboxstep2: {
+    marginTop: "24px",
+    paddingLeft: "20px",
+    paddingTop: "12px",
+    marginBottom: "24px",
+  },
+  skeletonloader: {
+    marginTop: "6px",
+  },
+  skeletonloadernew: {
+    marginTop: "6px",
+    marginLeft: "47px",
+  },
+  step2containerbox2: {
+    width: "610px",
+    height: "135px",
+    border: "1px solid #D9DBE9",
+    borderRadius: "5px",
+    backgroundColor: "#FFF",
+    marginTop: "10px",
+    marginLeft: "72px",
+  },
+  colorsboxstep2: {
+    display: "flex",
+    gap: "5px",
+  },
+  secondarytexstep2: {
+    display: "flex",
+    marginRight: "86px",
+  },
+  box1: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  typotext: {
+    display: "flex",
+    gap: "30px",
+    color: "#6E7191",
+  },
+  textleft: {
+    marginLeft: "6px",
+  },
+  platxlogo: {
+    padding: "5px 90px 5px 154px",
+  },
+  applyflex: {
+    display: "flex",
+    marginTop: "2px",
+    marginLeft: "75px",
+  },
+  headertypo: {
+    marginLeft: "34px !important",
+  },
+  backbtn: {
+    marginRight: "19px",
+    marginTop: "34px",
+  },
+  btnbox: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "30px",
+  },
+  selected: {
+    borderRadius: "5px",
+  },
+  skipbtn: {
+    display: "flex",
+    marginTop: "42px",
+  },
+  fonttypo: {
+    display: "flex",
+    gap: "30px",
+    color: "#6E7191",
+  },
+  innertypo: {
+    display: "flex",
+    gap: "30px",
+  },
+  textpadding: {
+    padding: "30px",
+    paddingLeft: "0px",
+  },
+  textpaddingnew: {
+    padding: "30px",
+    paddingLeft: "35px",
+  },
+  maincontain: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  boxmargin: {
+    marginRight: "80px",
+  },
+  boxadd: {
+    display: "inline-flex",
+    gap: "31px",
   },
 }));
