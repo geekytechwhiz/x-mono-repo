@@ -1,0 +1,29 @@
+.createtaghead {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  border-bottom: solid 1px #ced3d9;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  min-height: 62px;
+}
+.createtaghead .backarrow {
+  color: #2d2d39;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+  .createtaghead {
+    padding: 8px 10px;
+  }
+  .createtaghead .backarrow {
+    display: flex;
+  }
+}

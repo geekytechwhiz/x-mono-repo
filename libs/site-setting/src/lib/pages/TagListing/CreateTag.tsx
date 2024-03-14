@@ -5,76 +5,166 @@ import {
   FormControl,
   MenuItem,
   Select,
-  SelectChangeEvent,
   TextField,
   Button,
+  RadioGroup,
 } from "@mui/material";
+import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { TitleSubTitle, CommonBoxWithNumber, Loader } from "@platformx/utilities";
-import { CreateHeader } from "@platformx/content";
-import { useState } from "react";
+import {
+  TitleSubTitle,
+  CommonBoxWithNumber,
+  Loader,
+  useUserSession,
+  RadioControlLabel,
+  ShowToastSuccess,
+  PlateformXDialogSuccess,
+} from "@platformx/utilities";
+import { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
+import TopBar from "./TopBar";
+import { createTag, fetchCategory, fetchTag, publishTag } from "@platformx/authoring-apis";
 
 export const CreateTags = () => {
   const classes = useTagStyle();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [textFieldValue, setTextFieldValue] = useState("");
-  const [showButton, setShowButton] = useState(false);
+  const [value, setValue] = useState("");
+  const [option, setOption] = useState<any>([]);
+  const [tags, setTags] = useState([]);
+  const [publishUrl, setPublishUrl] = useState("");
+  const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
   const { t } = useTranslation();
-  const [, setAge] = useState("");
+  const [category, setCategory] = useState("");
+  const [radio, setRadio] = useState("choose_category");
+  const [isLoading, setIsLoading] = useState(false);
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
+  const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
-  const handleBlur = () => {
-    if (textFieldValue.trim() !== "") {
-      setShowButton(true);
+  const handleChange = (e) => {
+    const str = e.target.value.trimStart().replace("  ", " ");
+    if (str.length < 20) {
+      setCategory(str);
+    }
+  };
+  const onChange = (e) => {
+    const str = e.target.value ? e.target.value.trimStart().replace("  ", " ") : "";
+    if (str.length < 24) {
+      setValue(str);
+    }
+  };
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory("");
+    setRadio(event.target.value);
+  };
+
+  const onSave = async () => {
+    setIsLoading(true);
+    try {
+      const payload = {
+        input: {
+          CommonFields: {
+            page: value,
+            createdby: username,
+            lastmodifiedby: username,
+            lastmodifieddate: "",
+          },
+          ObjectFields: {
+            tag_name: value,
+            tag_value: "",
+            category: category,
+          },
+        },
+      };
+      const { authoring_createOrUpdateSiteSettings = "" }: any = await createTag(payload);
+      //setPublishUrl(authoring_createOrUpdateSiteSettings.name);
+      setPublishUrl(authoring_createOrUpdateSiteSettings.message.split(" ")[0]);
+      ShowToastSuccess(`${t("tag")} ${t("created_toast")}`);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
     }
   };
 
-  const handleClick = () => {
-    // Reset the text field value and hide the button
-    setTextFieldValue("");
-    setShowButton(false);
-  };
-
-  // eslint-disable-next-line require-await
-  const onSaveClick = async () => {
+  const onPublish = async () => {
     setIsLoading(true);
+    try {
+      //const res =
+      await publishTag({
+        input: {
+          page: publishUrl,
+          category: category,
+          status: "publish",
+        },
+      });
+      setIsSuccessPopup(true);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+    }
   };
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+  const getTag = async () => {
+    try {
+      const { authoring_getTagItems = [] }: any = await fetchTag({
+        searchCategory: category,
+        searchString: "",
+      });
+      if (
+        authoring_getTagItems?.length > 0 &&
+        authoring_getTagItems[0] &&
+        authoring_getTagItems[0].tags
+      ) {
+        setTags(authoring_getTagItems[0].tags);
+      }
+    } catch (error) {
+      setTags([]);
+    }
   };
+
+  const getCategory = async () => {
+    try {
+      const { authoring_getTagItems = [] }: any = await fetchCategory({
+        searchCategory: "",
+        searchString: "",
+      });
+      setOption(authoring_getTagItems);
+    } catch (error) {
+      setOption([]);
+    }
+  };
+
+  const crossButtonHandle = () => {
+    setIsSuccessPopup(false);
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  useEffect(() => {
+    if (radio === "choose_category" && category.trim()) {
+      getTag();
+    } else {
+      setTags([]);
+    }
+  }, [category]);
 
   return (
     <>
-      <CreateHeader
-        createText={t("Create New")}
-        handleReturn={() => {
-          navigate("/dashboard");
-        }}
-        isQuiz
-        hasPublishButton={true}
-        hasPreviewButton={false}
-        hasSaveButton={false}
-        saveText={t("update")}
-        handelPreview={() => {
-          /* your function code */
-        }}
-        handlePublish={onSaveClick}
-        handleSaveOrPublish={onSaveClick}
-        previewText='Preview'
-        showPreview={false}
-        toolTipText='Unable to preview please add required details'
-        saveVariant='contained'
-        category={"content"}
-        subCategory={"quiz"}
-        isFeatured={false}
+      <TopBar
+        returnBack={() => navigate("/site-setting/tags")}
+        handlePublish={onPublish}
+        onSave={onSave}
+        category={category}
+        value={value}
+        publishUrl={publishUrl}
       />
       <Divider />
+      {isLoading && <Loader />}
       <Box className={classes.pageContainer} id='scrollableDiv'>
         <Box className={classes.contentContainer}>
-          {isLoading && <Loader />}
           <CommonBoxWithNumber
             number='01'
             title={t("Category Title")}
@@ -91,23 +181,44 @@ export const CreateTags = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-                <FormControl fullWidth>
-                  <Select
-                    labelId='demo-simple-select-label'
-                    id='demo-simple-select'
-                    placeholder='Select or Create Category'
-                    onChange={handleChange}>
-                    <MenuItem value={10}>Sports</MenuItem>
-                    <MenuItem value={20}>Bollywood</MenuItem>
-                    <MenuItem value={30}>Fashion</MenuItem>
-                  </Select>
-                </FormControl>
+                {radio === "choose_category" ? (
+                  <FormControl fullWidth>
+                    <Select
+                      labelId='demo-simple-select-label'
+                      id='demo-simple-select'
+                      placeholder={t("choose_category")}
+                      value={category}
+                      onChange={handleChange}>
+                      {option?.length > 0 &&
+                        option.map((obj) => (
+                          <MenuItem key={obj.category} value={obj.category}>
+                            {obj.category}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                ) : (
+                  <TextField
+                    placeholder={t("create_category")}
+                    value={category}
+                    onChange={handleChange}
+                  />
+                )}
+
+                <RadioGroup
+                  name='page-radio-buttons-group'
+                  value={radio}
+                  onChange={handleRadioChange}
+                  row>
+                  <RadioControlLabel value='choose_category' label={t("choose_category")} />
+                  <RadioControlLabel value='create_category' label={t("create_category")} />
+                </RadioGroup>
               </Grid>
             </Grid>
           </CommonBoxWithNumber>
           <CommonBoxWithNumber
             number='02'
-            title={t("Create Tags")}
+            title={`${t("create")} ${t("tag")}`}
             titleVarient='p3semibold'
             subTitleVarient='p4regular'
             subTitle={t("subhead")}>
@@ -122,25 +233,56 @@ export const CreateTags = () => {
               </Grid>
               <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
                 <TextField
-                  placeholder='please type your text here'
-                  value={textFieldValue}
-                  onChange={(e) => setTextFieldValue(e.target.value)}
-                  onBlur={handleBlur}
+                  placeholder='Please type your text here'
+                  value={value}
+                  onChange={onChange}
                 />
-                {showButton && (
-                  <Button
-                    className={classes.tagsbtn}
-                    variant='contained'
-                    color='primary'
-                    onClick={handleClick}>
-                    {textFieldValue}
-                  </Button>
-                )}
+
+                <Box className={classes.tagParent}>
+                  {value && (
+                    <Box className={`${classes.createbtn} ${classes.txtcolor}`}>
+                      <Button
+                        disableRipple
+                        disableFocusRipple
+                        disableTouchRipple
+                        color='primary'
+                        className={classes.textTransform}>
+                        {value}
+                      </Button>
+                    </Box>
+                  )}
+                  {tags?.length > 0 &&
+                    tags.map((val) => (
+                      <Box className={`${classes.createbtn} ${classes.txtcolor}`} key={val}>
+                        <Button
+                          disableRipple
+                          disableFocusRipple
+                          disableTouchRipple
+                          color='primary'
+                          className={classes.textTransform}>
+                          {val}
+                        </Button>
+                      </Box>
+                    ))}
+                </Box>
               </Grid>
             </Grid>
           </CommonBoxWithNumber>
         </Box>
       </Box>
+      {isSuccessPopup && (
+        <PlateformXDialogSuccess
+          isDialogOpen={isSuccessPopup}
+          title={t("congratulations")}
+          subTitle={`${t("tag")} ${t("published_toast")}`}
+          confirmButtonText={t("go_to_listing")}
+          confirmButtonHandle={() => navigate("/site-setting/tags")}
+          modalType='publish'
+          crossButtonHandle={crossButtonHandle}
+          closeButtonHandle={crossButtonHandle}
+          closeIcon={<CreateRoundedIcon />}
+        />
+      )}
     </>
   );
 };

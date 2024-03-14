@@ -1,18 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Box } from "@mui/system";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { CATEGORY_CONTENT, CONTENT_TYPES, fetchTagList } from "@platformx/authoring-apis";
 import { ContentListingHeader } from "@platformx/content";
-import {
-  Card,
-  capitalizeFirstLetter,
-  capitalizeWords,
-  convertToLowerCase,
-  formatContentTitle,
-} from "@platformx/utilities";
-//import ContentTypeMenuList from "libs/content/src/lib/components/MenuList/ContentTypeMenuList";
+import { Card } from "@platformx/utilities";
 
 export const TagListing = () => {
   const [refreshState] = useState(false);
@@ -34,23 +25,6 @@ export const TagListing = () => {
   useEffect(() => {
     fetchTag();
   }, []);
-
-  const makeContentData = (item: any) => {
-    // title, status, tagName, description, lastModifiedBy, lastModifiedDate
-
-    const listItemDetails = {
-      tagName: convertToLowerCase(item.tag_name),
-      title: capitalizeFirstLetter(item.title),
-      description: item.description,
-      lastModifiedDate:
-        item.last_modification_date || item?.modificationDate || item?.last_modified_date,
-      status: item.status,
-      lastModifiedBy: capitalizeWords(
-        formatContentTitle(item?.last_modified_by?.replace("undefined", "")),
-      ),
-    };
-    return listItemDetails;
-  };
 
   const makeContentData2 = (item: any) => {
     const listItemDetails = {
