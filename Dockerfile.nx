@@ -41,11 +41,10 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 # Install dependencies again (if necessary)
 RUN npm install --legacy-peer-deps
 
-# Run npm install --force
-RUN npm install --force
+# Set NX_CI_EXECUTION_ID environment variable using current timestamp
+RUN export NX_CI_EXECUTION_ID="ci_execution_$(date +%Y%m%d%H%M%S)"
 
-# This line enables distribution
-# The "--stop-agents-after" is optional, but allows idle agents to shut down once the "e2e-ci" targets have been requested
+# Run npx nx-cloud start-ci-run command with distribute-on and stop-agents-after options
 RUN npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="e2e-ci"
 
 # Use nrwl/nx-set-shas action
