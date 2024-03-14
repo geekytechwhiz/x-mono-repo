@@ -2,11 +2,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import "./BlogSearchBox.css";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  debounce,
-  ShowToastError as showToastError,
-  SearchIconComponent as SearchIcon,
-} from "@platformx/utilities";
+import { debounce, ShowToastError as showToastError, SearchIconSvg } from "@platformx/utilities";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { commonPostApiCall } from "@platformx/authoring-apis";
 import { Autocomplete, Box, InputAdornment, TextField } from "@mui/material";
@@ -121,9 +117,11 @@ export default function BlogSearchBox({ onSearch, style, selectedItem = [] }) {
           display: { xs: showSearch ? "none" : "block", md: "none" },
           marginRight: "13px",
         }}>
-        <SearchIcon
+        <img
+          src={SearchIconSvg}
           style={{ verticalAlign: "middle", cursor: "pointer" }}
           onClick={() => setShowSearch(true)}
+          alt='search icon'
         />
       </Box>
       <Autocomplete
@@ -188,7 +186,9 @@ export default function BlogSearchBox({ onSearch, style, selectedItem = [] }) {
             }}
             InputProps={{
               ...params.InputProps,
-              startAdornment: <SearchIcon style={{ marginRight: "10px" }} />,
+              startAdornment: (
+                <img src={SearchIconSvg} alt='search icon' style={{ marginRight: "10px" }} />
+              ),
               endAdornment: (
                 // <React.Fragment>
                 //     {loading ? <CircularProgress color="inherit" size={15} /> : null}

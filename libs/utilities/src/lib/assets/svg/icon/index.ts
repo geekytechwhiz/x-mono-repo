@@ -27,7 +27,7 @@ import IconNextSvg from "./next.svg";
 import IconPrevSvg from "./prev.svg";
 import playerIcon from "./profil_icon.svg";
 import IconUpArrowSvg from "./upArrow.svg";
-import { ReactComponent as SearchIconComponent } from "./SearchIcon.svg";
+import SearchIconSvg from "./SearchIcon.svg";
 
 export {
   ArrowAnimated,
@@ -59,5 +59,5 @@ export {
   pollIcon,
   quizIcon,
   vodIcon,
-  SearchIconComponent,
+  SearchIconSvg,
 };
