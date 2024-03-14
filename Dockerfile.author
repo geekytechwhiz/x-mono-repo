@@ -39,13 +39,13 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 
 
 # Copy the CI script into the container
-COPY ci-script.sh /server/ci-script.sh
+COPY deploy.script.sh /server/deploy.script.sh
 
 # Make the script executable
-RUN chmod +x /server/ci-script.sh
+RUN chmod +x /server/deploy.script.sh
 
 # Build the application and execute CI script
-RUN /server/ci-script.sh
+RUN /server/deploy.script.sh
 
 # Expose port
 EXPOSE 3000
