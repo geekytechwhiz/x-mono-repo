@@ -29,7 +29,16 @@ jobs:
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
-
+      - name: Generate Unique ID
+        id: generate_id
+        run: echo "::set-output name=ID::$(date +%Y%m%d%H%M%S)-${GITHUB_RUN_ID}"
+    
+      - name: Set Environment Variable
+        run: echo "NX_CI_EXECUTION_ID=${{ steps.generate_id.outputs.ID }}" >> $GITHUB_ENV
+          
+        # Now you can use $NX_CI_EXECUTION_ID in your subsequent steps
+      - name: Display Unique ID
+         run: echo "NX_CI_EXECUTION_ID: $NX_CI_EXECUTION_ID"
       - name: Checkout
         uses: actions/checkout@v4
 
