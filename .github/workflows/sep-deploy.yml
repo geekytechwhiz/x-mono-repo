@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Generate Unique ID
         id: generate_id 
-         run: echo "::set-env name=NX_CI_EXECUTION_ID::$(date +%Y%m%d%H%M%S)-${GITHUB_RUN_ID}"
+        run: echo "::set-env name=NX_CI_EXECUTION_ID::$(date +%Y%m%d%H%M%S)-${GITHUB_RUN_ID}"
 
       - name: Set env vars (develop)
         if: endsWith(github.ref, '/develop')
