@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";

@@ -531,6 +531,7 @@ export const locationApiCallService = async () => {
 
 export const fetchContentProfileDetails = (contentType, pageName, host) => {
   const hostName = getHostName(host);
+  // const hostName = "du.hcl-x.com";
   const data = JSON.stringify({
     query: `query{fetchSchemaContent(contentType:${JSON.stringify(
       contentType,

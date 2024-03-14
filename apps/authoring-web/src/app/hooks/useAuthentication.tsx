@@ -35,6 +35,7 @@ export const useAuthentication = () => {
         updateSession(createSession(response.data, true, userRole));
         // Send login user info to Analytics End
         handleImpression(userDetails.eventType, userDetails);
+        await getGlobalDataWithHeader(selected_site);
         localStorage.setItem("selectedSite", response.data.selected_site);
         const lang = response.data.preferred_sites_languages?.[selected_site] || "en";
         const redirectPath =

@@ -1,6 +1,7 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 
-const useContentGlleryStyle = makeStyles((theme) => ({
+const useContentGlleryStyle = makeStyles((theme: Theme) => ({
   container: {
     height: "100%",
     position: "absolute",
@@ -133,7 +134,7 @@ const useContentGlleryStyle = makeStyles((theme) => ({
     position: "fixed",
     bottom: 0,
     right: 0,
-    zIndex: 10
+    zIndex: 10,
   },
   containbox: {
     position: "relative",
@@ -157,7 +158,7 @@ const useContentGlleryStyle = makeStyles((theme) => ({
     marginBottom: "1px",
   },
   communityMenu: {
-    transform: "none !important"
+    transform: "none !important",
   },
   infinitescroll: {
     backgroundColor: "#ffffff",
@@ -165,6 +166,6 @@ const useContentGlleryStyle = makeStyles((theme) => ({
     "& .infinite-scroll-component__outerdiv": {
       width: "inherit",
     },
-  }
+  },
 }));
 export default useContentGlleryStyle;
