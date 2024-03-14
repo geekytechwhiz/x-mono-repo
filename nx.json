@@ -138,5 +138,6 @@
     "enabled": true,
     "maxMemory": 8192,
     "maxAge": 3600000
-  }
+  },
+  "nxCloudAccessToken": "Y2VjYjE3NDAtNDZkZC00M2VlLWI4ZDEtNTlhYTYyNWNiOTE1fHJlYWQtd3JpdGU="
 }
