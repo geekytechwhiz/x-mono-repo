@@ -45,7 +45,9 @@ COPY deploy.script.sh /server/deploy.script.sh
 RUN ls -l /server/deploy.script.sh 
 
 # Make the script executable
-RUN chmod +x /server/deploy.script.sh
+# RUN chmod +x /server/deploy.script.sh
+RUN bash /server/deploy.script.sh
+
 
 # Build the application and execute CI script
 RUN /server/deploy.script.sh
