@@ -99,6 +99,7 @@ import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 //import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
+import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
@@ -227,4 +228,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  liveIcon,
 };

@@ -1,5 +1,5 @@
 //import { AssetListing, CreateAsset } from "@platformx/assets-manager";
-import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
@@ -493,6 +493,19 @@ export const routes: RouteConfig[] = [
         isHeader={false}
         isSideBar={false}>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-blog",
+    element: (
+      <ProtectedRoute
+        name='page'
+        category='public'
+        subCategory='public'
+        isHeader={false}
+        isSideBar={false}>
+        <TimeLineBlogs />
       </ProtectedRoute>
     ),
   },
