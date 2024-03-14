@@ -25,7 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {
   nullToArray,
   ShowToastError as showToastError,
-  ShowToastSuccess as showToastSuccess,
+  ShowToastSuccessMessage as showToastSuccess,
   DeletePopup,
 } from "@platformx/utilities";
 import { commonPostApiCall, commonPutApiCall } from "@platformx/authoring-apis";

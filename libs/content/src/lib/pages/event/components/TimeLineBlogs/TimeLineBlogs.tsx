@@ -22,7 +22,7 @@ import {
   nullToObject,
   nullToString,
   ShowToastError as showToastError,
-  ShowToastSuccess as showToastSuccess,
+  ShowToastSuccessMessage as showToastSuccess,
   AUTH_INFO as authInfo,
 } from "@platformx/utilities";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
