@@ -32,3 +32,16 @@ jobs:
     uses: nrwl/ci/.github/workflows/nx-cloud-agents.yml@v0.13.1
     with:
       number-of-agents: 3
+
+  # Add a new job to handle dependency resolution
+  resolve-dependencies:
+    name: Resolve Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      # Add more steps here if necessary
