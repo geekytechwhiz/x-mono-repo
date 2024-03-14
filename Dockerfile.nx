@@ -1,6 +1,7 @@
+# Use the Node.js Alpine image as the base image
 FROM node:alpine
 
-# Install Python and other necessary packages
+# Install necessary system dependencies for Python
 RUN apk update && \
     apk add --no-cache python3 && \
     ln -sf python3 /usr/bin/python && \
@@ -24,37 +25,47 @@ RUN apk update && \
     libpng-dev \
     libwebp-dev
 
-# Create & set working directory
+# Create and set the working directory
 RUN mkdir -p /server
 WORKDIR /server
 
-# Copy source files
+# Copy source files into the working directory
 COPY . /server
 
-# Install dependencies
-RUN npm install -g nx
+# Install global Nx CLI
+RUN npm i -g nx
 
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 
+# Install dependencies again (if necessary)
+RUN npm install --legacy-peer-deps
 
-RUN apk add --no-cache bash
-# Copy the CI script into the container
-COPY deploy.script.sh /server/deploy.script.sh
+# Run npm install --force
+RUN npm install --force
 
-# Check if the file is copied successfully
-RUN ls -l /server/deploy.script.sh 
+# This line enables distribution
+# The "--stop-agents-after" is optional, but allows idle agents to shut down once the "e2e-ci" targets have been requested
+RUN npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="e2e-ci"
 
-# Make the script executable
-# RUN chmod +x /server/deploy.script.sh
-RUN bash /server/deploy.script.sh
+# Use nrwl/nx-set-shas action
+RUN npx nx-set-shas@v4.0.4
 
+# Create dynamic branch
+RUN branch_name="develop-$(date +%Y-%m-%d-%H-%M-%S)" && git branch --track $branch_name origin/develop
 
-# Build the application and execute CI script
-RUN /server/deploy.script.sh
+# Run nx affected command
+RUN npx nx affected -t build authoring-web --base=main --head=HEAD --parallel=10
 
-# Expose port
+# Set higher memory limit for Node.js
+# ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NODE_OPTIONS="--max_old_space_size=8192"
+
+# Build the authoring-web project in parallel
+RUN nx build authoring-web --parallel=10
+
+# Expose port 3000
 EXPOSE 3000
 
-# Command to run the application
-CMD ["npm", "run", "deploy:authoring"]
+# Command to start the app
+CMD npm run deploy:authoring
