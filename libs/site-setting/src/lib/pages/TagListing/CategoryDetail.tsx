@@ -92,6 +92,7 @@ export const CategoryDetail = () => {
                     onClick={() => toggleSelection(tag)}
                     key={tag}>
                     <Button
+                      className={classes.textTransform}
                       endIcon={selectedItems.includes(tag) ? <DeleteIcon /> : ""}
                       color={selectedItems.includes(tag) ? "error" : "primary"}>
                       {tag}
