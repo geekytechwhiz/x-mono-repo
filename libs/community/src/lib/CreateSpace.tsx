@@ -14,7 +14,7 @@ import {
 import SpaceAccess from "./components/SpaceAccess/SpaceAccess";
 import SpaceDetails from "./components/SpaceDetails/SpaceDetails";
 import InviteMembers from "./components/InviteMembers/InviteMembers";
-import { getSpacesDetailsBasedId } from "./SpacesHelper";
+import { getSpacesDetailsBasedId } from "./utils/SpacesHelper";
 import { CREATE_SPACE, UPDATE_SPACE } from "@platformx/authoring-apis";
 import {
   checkStateChanges,

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import {
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   useAccess,
 } from '@platformx/utilities';
 import { userManagementAPI } from '@platformx/authoring-apis';
@@ -121,7 +121,7 @@ export const CourseMenu = ({
         detailsRes.authoring_inviteUsers.message === 'Successfully invited!!!'
       ) {
         onClose();
-        ShowToastSuccess(detailsRes.authoring_inviteUsers.message);
+        ShowToastSuccessMessage(detailsRes.authoring_inviteUsers.message);
       } else {
         ShowToastError(detailsRes.authoring_inviteUsers.message);
       }

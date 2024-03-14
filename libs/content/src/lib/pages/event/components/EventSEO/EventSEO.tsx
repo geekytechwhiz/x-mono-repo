@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import {
   BasicSwitchText,
   CommonBoxWithNumber,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   StructureDataDialog,
   TitleSubTitle,
 } from "@platformx/utilities";
@@ -63,7 +63,7 @@ const EventSEO = ({
   const closeStructureData = (doneClick: boolean) => {
     if (doneClick && isEdit) {
       setEditedSD(seoInfo.structureData);
-      ShowToastSuccess(`${t("page_structure_data")} ${t("saved_toast")}`);
+      ShowToastSuccessMessage(`${t("page_structure_data")} ${t("saved_toast")}`);
     }
     setIsOpen(false);
     setICopyStatus(false);
@@ -93,7 +93,7 @@ const EventSEO = ({
     navigator.clipboard.writeText(JSON.stringify(structureData, undefined, 2));
     setICopyStatus(true);
 
-    ShowToastSuccess(`${t("page_structure_data")} ${t("copied")} ${t("successfully")}`);
+    ShowToastSuccessMessage(`${t("page_structure_data")} ${t("copied")} ${t("successfully")}`);
   };
 
   const handleChange = (event, keyName) => {

@@ -42,6 +42,7 @@ const ProductDetail = ({
   const getProductDetails = async () => {
     setLoading(true);
     const res = await getProductDetailsApiCall(productId, secondaryArgs, variantsDetails);
+    setLoading(false);
     const { data: { data: { fetchEcomProductDetails = {} } = {} } = {}, status = 0 } =
       nullToObject(res);
     if (status === 200) {
@@ -51,7 +52,6 @@ const ProductDetail = ({
       ToastService.failToast(t("errorRequest"));
       setProductFullDetails({});
     }
-    setLoading(false);
   };
 
   /**

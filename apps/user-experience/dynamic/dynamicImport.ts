@@ -97,6 +97,8 @@ const Mapping = {
   Prelem_085: "InfoBox",
   Prelem_090: "Banner7",
   Prelem_091: "CoreHighlights",
+  Prelem_0100: "MyStory",
+  Prelem_0113: "SchemaAuthoringServiceCard",
 };
 
 const dynamicLists: IdynamicList = {};

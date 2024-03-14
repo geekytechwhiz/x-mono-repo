@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -28,7 +28,7 @@ import {
   BasicSwitch,
   Loader,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   dateFormat,
   useUserSession,
@@ -193,7 +193,7 @@ function CreateMenuPage({
 
   const copyText = () => {
     navigator.clipboard.writeText(linkMenuItemName);
-    ShowToastSuccess(t("url_copy_toast"));
+    ShowToastSuccessMessage(t("url_copy_toast"));
   };
   const handleChangeMenu = (event) => {
     setMenu(event.target.value);
@@ -347,7 +347,7 @@ function CreateMenuPage({
           setIsCreate(true);
           setEditData({});
           setisedit(false);
-          ShowToastSuccess(t("menu_success_toast"));
+          ShowToastSuccessMessage(t("menu_success_toast"));
         })
         .catch((error) => {
           setIsLoading(false);
@@ -414,9 +414,9 @@ function CreateMenuPage({
           setIsCreate(true);
           setIsLoading(false);
           if (resp.data.authoring_createOrUpdateNavigation.message === "Success") {
-            ShowToastSuccess(t("menu_toast_added"));
+            ShowToastSuccessMessage(t("menu_toast_added"));
           } else {
-            ShowToastSuccess(t("api_error_toast"));
+            ShowToastSuccessMessage(t("api_error_toast"));
           }
         })
         .catch((error) => {

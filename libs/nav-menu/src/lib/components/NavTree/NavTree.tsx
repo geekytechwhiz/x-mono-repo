@@ -15,7 +15,7 @@ import { RootState } from "@platformx/authoring-state";
 import {
   SettingIcon,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   useUserSession,
 } from "@platformx/utilities";
@@ -186,7 +186,7 @@ export default function NavTree({
       updateMenu(menuToUpdate)
         .then(() => {
           setRename("");
-          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+          ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           if (error.graphQLErrors[0]) {
@@ -223,7 +223,7 @@ export default function NavTree({
       .then(() => {
         // setIsrenamed(!isrenamed);
         setSubMenu("");
-        ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+        ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {
@@ -292,7 +292,7 @@ export default function NavTree({
           .then(() => {
             setIsLoaded(false);
 
-            ShowToastSuccess(`${t("menu")} ${t("published_toast")}`);
+            ShowToastSuccessMessage(`${t("menu")} ${t("published_toast")}`);
           })
           .catch((error) => {
             if (error.graphQLErrors[0]) {
@@ -421,7 +421,7 @@ export default function NavTree({
     deleteMenu(menuToUpdate)
       .then(() => {
         setRow(row - 1);
-        ShowToastSuccess(`${t("menu")} ${t("deleted_toast")}`);
+        ShowToastSuccessMessage(`${t("menu")} ${t("deleted_toast")}`);
       })
       .catch(() => {
         ShowToastError(t("api_error_toast"));

@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
-import Step from "@material-ui/core/Step";
-import StepConnector from "@material-ui/core/StepConnector";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
-import { withStyles } from "@material-ui/core/styles";
+import Step from "@mui/material/Step";
+import StepConnector from "@mui/material/StepConnector";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
@@ -13,7 +13,7 @@ import { addMenu } from "@platformx/authoring-state";
 import {
   Loader,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   dateFormat,
   useUserSession,
@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 const steps = ["Create", "Add", "Confirm"];
-const styles = (theme) => ({
+const styles = () => ({
   stepIcon: {
     color: "#2d2d39 !important",
   },
@@ -173,9 +173,9 @@ function MenuThirdPage({
           setIsDone(false);
           setClickConfirm(!clickConfirm);
           if (resp.data.authoring_createOrUpdateNavigation.message === "Success") {
-            ShowToastSuccess(t("menu_toast_added"));
+            ShowToastSuccessMessage(t("menu_toast_added"));
           } else {
-            ShowToastSuccess(t("api_error_toast"));
+            ShowToastSuccessMessage(t("api_error_toast"));
           }
         })
         .catch((error) => {
@@ -248,7 +248,7 @@ function MenuThirdPage({
           setActiveStep(0);
           setIsLoading(false);
 
-          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
+          ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           setIsLoading(false);

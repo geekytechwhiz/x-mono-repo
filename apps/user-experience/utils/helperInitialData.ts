@@ -17,8 +17,10 @@ const getContentData = async (type, id, locale, host) => {
 };
 
 const getInitialData = async (type, id, locale, host) => {
-  const [menuData, footerSettingData] = await getHeaderFooterData(locale, host);
-  const contentData = await getContentData(type, id, locale || "en", host);
+  const [[menuData, footerSettingData], contentData] = await Promise.all([
+    getHeaderFooterData(locale, host),
+    getContentData(type, id, locale || "en", host),
+  ]);
   return [menuData, footerSettingData, contentData];
 };
 

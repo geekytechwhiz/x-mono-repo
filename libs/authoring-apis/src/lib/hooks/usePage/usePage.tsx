@@ -2,7 +2,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { ContentState, PageData, updateContentList } from "@platformx/authoring-state";
 import {
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   capitalizeFirstLetter,
   getCurrentLang,
   getSelectedSite,
@@ -253,9 +253,9 @@ const usePage = (filter = "ALL") => {
       .then(async (resp: { data: { authoring_createPage: { path: string } } }) => {
         localStorage.removeItem("lang");
         if (code) {
-          ShowToastSuccess(`${t("page")} ${t("created_toast")} ${t("for")} ${code}`);
+          ShowToastSuccessMessage(`${t("page")} ${t("created_toast")} ${t("for")} ${code}`);
         } else {
-          ShowToastSuccess(`${t("page")} ${t("created_toast")}`);
+          ShowToastSuccessMessage(`${t("page")} ${t("created_toast")}`);
         }
         localStorage.setItem("path", resp?.data?.authoring_createPage?.path);
         const pageDataObj = {
@@ -388,7 +388,7 @@ const usePage = (filter = "ALL") => {
     })
       .then(async () => {
         // handleDeleteData;
-        ShowToastSuccess(`${t("page")} ${t("deleted_toast")}`);
+        ShowToastSuccessMessage(`${t("page")} ${t("deleted_toast")}`);
         // dispatch(
         //   await fetchContent(
         //     state.content.contentType,
@@ -436,7 +436,7 @@ const usePage = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccess(t("unpublish_toast"));
+          ShowToastSuccessMessage(t("unpublish_toast"));
         }
         if (directDelete) {
           handleRemove(selectedPageData);
@@ -553,7 +553,7 @@ const usePage = (filter = "ALL") => {
               true,
             );
             dispatch(updateContentList(searchResponse));
-            ShowToastSuccess(`${t("page")} ${t("publish")} ${t("rescheduled_success_toast")}`);
+            ShowToastSuccessMessage(`${t("page")} ${t("publish")} ${t("rescheduled_success_toast")}`);
           })
           .catch(() => {
             ShowToastError(t("api_error_toast"));
@@ -594,7 +594,7 @@ const usePage = (filter = "ALL") => {
         //     true
         //   )
         // );
-        // ShowToastSuccess(`${t('page')} ${t('pubished_success_toast')}`);
+        // ShowToastSuccessMessage(`${t('page')} ${t('pubished_success_toast')}`);
         const pageDataObj = {
           eventType: "Page Published",
           pagePublished: true,
@@ -646,7 +646,7 @@ const usePage = (filter = "ALL") => {
               true,
             );
             dispatch(updateContentList(searchResponse));
-            ShowToastSuccess(`${t("page")} ${t("unpublish")} ${t("rescheduled_success_toast")}`);
+            ShowToastSuccessMessage(`${t("page")} ${t("unpublish")} ${t("rescheduled_success_toast")}`);
           })
           .catch(() => {
             ShowToastError(t("api_error_toast"));
@@ -718,7 +718,7 @@ const usePage = (filter = "ALL") => {
           //     true
           //   )
           // );
-          ShowToastSuccess(`${t("page")} ${t("publish")} ${t("schedule_cancel_toast")}`);
+          ShowToastSuccessMessage(`${t("page")} ${t("publish")} ${t("schedule_cancel_toast")}`);
           if (
             (directDelete &&
               listItemDetails &&
@@ -752,7 +752,7 @@ const usePage = (filter = "ALL") => {
           //     true
           //   )
           // );
-          ShowToastSuccess(`${t("page")} ${t("unpublish")} ${t("schedule_cancel_toast")}`);
+          ShowToastSuccessMessage(`${t("page")} ${t("unpublish")} ${t("schedule_cancel_toast")}`);
           if (directDelete) {
             if (listItemDetails?.status !== "published") {
               //  handleRemove(listItemDetails);

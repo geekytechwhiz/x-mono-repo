@@ -1,4 +1,3 @@
-import { ArrowRightAlt } from "@mui/icons-material";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   Analytics,
@@ -429,9 +428,7 @@ const Poll = ({
                     <Button
                       variant='defaultButton1'
                       sx={{ maxWidth: "fit-content", marginTop: "12px" }}
-                      endIcon={<ArrowRightAlt />}
-                      onClick={onClickStart}
-                      className='sm'>
+                      onClick={onClickStart}>
                       {t("start_poll_text")}
                     </Button>
 

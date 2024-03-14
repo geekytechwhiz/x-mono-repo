@@ -13,7 +13,7 @@ import {
   capitalizeFirstLetter,
   getCurrentLang,
   NoSearchResult,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
 } from "@platformx/utilities";
 import { fetchMultisiteListing } from "@platformx/authoring-apis";
 import EmptyResult from "./EmptyResult";
@@ -46,7 +46,7 @@ export const SiteListing = () => {
 
   const copyDomainName = (domainName) => {
     navigator.clipboard.writeText(domainName);
-    ShowToastSuccess(`${t("linkCopy")}`);
+    ShowToastSuccessMessage(`${t("linkCopy")}`);
   };
   const generateDomain = (site) => {
     const domainName = site.domain_name.replace(".com.", ".com");

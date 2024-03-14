@@ -1,4 +1,4 @@
-name: platformx-workflow-new
+name: platformx-workflow-with-nx
 on:
   push:
     branches:
@@ -12,8 +12,8 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-16core-64GB
+    timeout-minutes: 60
     steps:
       - name: Set env vars (develop)
         if: endsWith(github.ref, '/develop')
@@ -84,15 +84,15 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=120s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s
 
   user-experience-ui:
     name: user-experience-ui
     permissions:
       contents: "read"
       id-token: "write"
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-16core-64GB
+    timeout-minutes: 60
     steps:
       - name: Set env vars (develop)
         if: endsWith(github.ref, '/develop')
@@ -163,4 +163,4 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=120s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s

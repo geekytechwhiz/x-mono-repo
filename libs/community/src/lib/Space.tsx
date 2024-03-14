@@ -5,10 +5,10 @@ import { useTranslation } from "react-i18next";
 import SpaceListingHeader from "./components/SpaceListingHeader";
 import SpaceListingCard from "./components/SpaceListingCard";
 import { useStyles } from "./Space.styles";
-import { getSpacesList } from "./SpacesHelper";
+import { getSpacesList } from "./utils/SpacesHelper";
 import {
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ContentListLoader,
   NoSearchResult,
 } from "@platformx/utilities";
@@ -73,7 +73,7 @@ export default function Space() {
             start: 0,
           };
         });
-        ShowToastSuccess(`${title} ${t("deleted_toast")}`);
+        ShowToastSuccessMessage(`${title} ${t("deleted_toast")}`);
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
@@ -95,7 +95,7 @@ export default function Space() {
             start: 0,
           };
         });
-        ShowToastSuccess(t("left_toast"));
+        ShowToastSuccessMessage(t("left_toast"));
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
@@ -117,7 +117,7 @@ export default function Space() {
             start: 0,
           };
         });
-        ShowToastSuccess(t("join_toast"));
+        ShowToastSuccessMessage(t("join_toast"));
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));

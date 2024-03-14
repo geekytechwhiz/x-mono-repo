@@ -8,7 +8,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
+import { ShowToastError, ShowToastSuccessMessage, nullToObject } from "@platformx/utilities";
 import { usePostImageCrop } from "@platformx/x-image-render";
 import React, { useState } from "react";
 import { breakpoints } from "../Utils/Constants";
@@ -65,7 +65,7 @@ const ImageCrop = (props: any = {}) => {
       visibility = "",
     } = nullToObject(data);
     if (images?.length > 0) {
-      ShowToastSuccess("Image Cropped Successfully");
+      ShowToastSuccessMessage("Image Cropped Successfully");
       setDoneLoader(false);
       doneCropCompleted(images, ext, original_image_relative_path, visibility);
     } else {

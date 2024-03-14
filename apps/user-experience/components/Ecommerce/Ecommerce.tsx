@@ -23,7 +23,7 @@ const ProductListing = dynamic(
 //   },
 // );
 const ProductDetail = dynamic(
-  () => import("@platformx/x-prelems-library").then((mod) => mod.ProductListing),
+  () => import("@platformx/x-prelems-library").then((mod) => mod.ProductDetail),
   {
     ssr: false,
   },
@@ -75,6 +75,7 @@ export const Ecommerce = ({
 }: any) => {
   const router = useRouter();
   const ecommPage = router?.query?.id || [];
+
   const loadEcommPageOnRoute = () => {
     switch (ecommPage) {
       case PRODUCT_LIST:
@@ -94,11 +95,7 @@ export const Ecommerce = ({
           <ProductDetail
             secondaryArgs={secondaryArgs}
             cartCountUpdate={cartCountUpdate}
-            fromPage={undefined}
-            attributes={{
-              key: "",
-              value: [],
-            }} // productId={router?.query?.productId}
+            productId={router?.query?.productId}
           />
         );
       case PRODUCT_CART:

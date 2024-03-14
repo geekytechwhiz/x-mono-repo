@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ShowToastSuccess } from '@platformx/utilities';
+import { ShowToastSuccessMessage } from '@platformx/utilities';
 // Define the initial state for the relevant slice
 interface ArticleState {
   newArticle: any;
@@ -125,7 +125,7 @@ export const articleSlice = createSlice({
         },
       }).then((resp: any) => {
         if (pageState !== 'publish') {
-          ShowToastSuccess('Article saved successfully!');
+          ShowToastSuccessMessage('Article saved successfully!');
         } else {
           state.updatedField.articleUrl = currentPageURL;
           state.updatedField.updatedObj = { Page_State: 'publish' };

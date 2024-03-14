@@ -1,8 +1,8 @@
-import { makeStyles } from "@material-ui/core";
-// import ThemeConstants from '../../../theme/variable';
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useTagStyle = makeStyles((theme) => ({
+export const useTagStyle = makeStyles((theme: Theme) => ({
   pageContainer: {
     [theme.breakpoints.up("xs")]: {
       padding: "15px",

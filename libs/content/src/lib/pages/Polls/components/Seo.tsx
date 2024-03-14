@@ -5,7 +5,7 @@ import {
   BasicSwitchText,
   CommonBoxWithNumber,
   TitleSubTitle,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ContentSeoStructureData,
 } from "@platformx/utilities";
 // import BasicSwitchText from "../Common/BasicSwitchText";
@@ -60,7 +60,7 @@ const Seo = ({
   const closeStructureData = (doneClick) => {
     if (doneClick && isEdit) {
       setEditedSD(seoInfo.structureData);
-      ShowToastSuccess(`${t("page_structure_data")} ${t("saved")}`);
+      ShowToastSuccessMessage(`${t("page_structure_data")} ${t("saved")}`);
     }
     setIsOpen(false);
   };
@@ -79,7 +79,7 @@ const Seo = ({
       setSeoInfo({ ...seoInfo, structureData });
     }
     navigator.clipboard.writeText(JSON.stringify(structureData, undefined, 2));
-    ShowToastSuccess(`${t("page_structure_data")} ${t("copied")}`);
+    ShowToastSuccessMessage(`${t("page_structure_data")} ${t("copied")}`);
   };
   const handleChange = (event, keyName) => {
     setState({ ...state, [keyName]: event.target.checked });

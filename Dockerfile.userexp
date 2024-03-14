@@ -35,7 +35,7 @@ COPY . /server
 RUN npm i -g nx
 
 # Set higher memory limit for Node.js
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NODE_OPTIONS="--max-old-space-size=8192"
 
 # install dependencies again
 RUN npm install --legacy-peer-deps

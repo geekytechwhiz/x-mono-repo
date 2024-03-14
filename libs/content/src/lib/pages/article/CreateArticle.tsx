@@ -6,7 +6,7 @@ import {
   AUTH_INFO,
   Loader,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   ThemeConstants,
   WarningIcon,
   capitalizeFirstLetter,
@@ -437,7 +437,7 @@ export const CreateArticle = () => {
           const detailsRes: any = await updateArticle(DRAFT, pageURL);
           if (detailsRes.authoring_updateContent.message === "Successfully updated!!!") {
             if (!isWorkflow) {
-              ShowToastSuccess(`${t("article")} ${t("updated_toast")}`);
+              ShowToastSuccessMessage(`${t("article")} ${t("updated_toast")}`);
               getArticleData();
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
@@ -455,13 +455,13 @@ export const CreateArticle = () => {
 
             unsavedChanges.current = false;
           } else {
-            ShowToastSuccess(detailsRes.authoring_updateContent.message);
+            ShowToastSuccessMessage(detailsRes.authoring_updateContent.message);
           }
         } else {
           const detailsRes: any = await createArticle(DRAFT, pageURL);
           if (detailsRes.authoring_createContent.message === "Successfully created!!!") {
             if (!isWorkflow) {
-              ShowToastSuccess(`${t("article")} ${t("saved_toast")}`);
+              ShowToastSuccessMessage(`${t("article")} ${t("saved_toast")}`);
             }
             // setOnSavedModal(true);
             setIsDraft(false);
@@ -491,7 +491,7 @@ export const CreateArticle = () => {
             setIsLoading(false);
             unsavedChanges.current = false;
           } else {
-            ShowToastSuccess(detailsRes.authoring_createContent.message);
+            ShowToastSuccessMessage(detailsRes.authoring_createContent.message);
           }
         }
       } catch (err: any) {
@@ -540,7 +540,7 @@ export const CreateArticle = () => {
               setTimerState(true);
               setLastmodifiedDate(new Date().toISOString());
             } else {
-              ShowToastSuccess(response.authoring_publishContent.message);
+              ShowToastSuccessMessage(response.authoring_publishContent.message);
             }
           } catch (err: any) {
             setTimerState(false);
@@ -551,7 +551,7 @@ export const CreateArticle = () => {
             );
           }
         } else {
-          ShowToastSuccess(
+          ShowToastSuccessMessage(
             currentArticleData.current
               ? detailsRes.authoring_updateContent.message
               : detailsRes.authoring_createContent.message,

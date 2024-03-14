@@ -18,7 +18,7 @@ import {
   CATEGORY_CONTENT,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
@@ -641,7 +641,7 @@ export const CreatePoll = (): JSX.Element => {
             setWorkflowStatus(isWorkflow);
           } else {
             if (!isWorkflow) {
-              ShowToastSuccess(`${t("poll")} ${t("saved_toast")}`);
+              ShowToastSuccessMessage(`${t("poll")} ${t("saved_toast")}`);
             }
             //setOnSavedModal(true);
             setIsDraft(false);
@@ -803,7 +803,7 @@ export const CreatePoll = (): JSX.Element => {
         if (status && status?.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            ShowToastSuccess(`${t("poll")} ${t("updated_toast")}`);
+            ShowToastSuccessMessage(`${t("poll")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }

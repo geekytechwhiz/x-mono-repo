@@ -25,6 +25,7 @@ import {
 } from "@platformx/site-setting";
 import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
+import { CreateSpace } from "@platformx/community";
 
 export const routes: RouteConfig[] = [
   {
@@ -219,19 +220,19 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/community/create-space",
-  //   element: (
-  //     <ProtectedRoute
-  //       name='space'
-  //       category='public'
-  //       subCategory='public'
-  //       isHeader={false}
-  //       isSideBar={false}>
-  //       <CreateSpace />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/community/create-space",
+    element: (
+      <ProtectedRoute
+        name='space'
+        category='public'
+        subCategory='public'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateSpace />
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/navtree",
     element: (

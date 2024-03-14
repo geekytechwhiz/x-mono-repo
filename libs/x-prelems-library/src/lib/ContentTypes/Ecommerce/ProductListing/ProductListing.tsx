@@ -49,9 +49,10 @@ const ProductListing = ({
       true,
     );
     const { data: { data: { fetchEcomProducts = [] } = {} } = {}, status = 0 } = res;
+
     setLoading(false);
     if (status === 200) {
-      const newArray = [...productList, ...fetchEcomProducts]; //product concat
+      const newArray = [...productList, ...nullToArray(fetchEcomProducts)]; //product concat
       setLoadMoreIsEnable(productList.length !== newArray.length ? true : false); //load more button show
       setProductList(newArray);
     } else {

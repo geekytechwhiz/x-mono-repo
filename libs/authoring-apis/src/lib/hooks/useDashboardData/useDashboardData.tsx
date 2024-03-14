@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import {
   ShowToastError,
-  ShowToastSuccess,
+  ShowToastSuccessMessage,
 } from '@platformx/utilities';
 import { DashboardTypes, Dashboard_Keys } from '../../services/utils/dashboard/Dashboard.types';
 import { previewContent, previewArticle } from '@platformx/authoring-state';
@@ -159,7 +159,7 @@ const useDashboardData = (contentType = 'ALL') => {
         });
         if (unPublishResponse) {
           fetchDashBoardData();
-          ShowToastSuccess(`${ContentType} ${t('deleted_toast')}`);
+          ShowToastSuccessMessage(`${ContentType} ${t('deleted_toast')}`);
         }
       } catch (error: any) {
         ShowToastError(
@@ -184,7 +184,7 @@ const useDashboardData = (contentType = 'ALL') => {
         });
         if (unPublishResponse) {
           fetchDashBoardData();
-          ShowToastSuccess(
+          ShowToastSuccessMessage(
             `${listItemDetails?.ContentType} ${t('unpublished_toast')}`
           );
         }
@@ -321,7 +321,7 @@ const useDashboardData = (contentType = 'ALL') => {
           fetchDashBoardData();
 
           for (const res of response) {
-            ShowToastSuccess(
+            ShowToastSuccessMessage(
               `${t(contentType)} ${t('duplicated_toast')} ${t('for')} ${
                 res.language
               }`
@@ -354,7 +354,7 @@ const useDashboardData = (contentType = 'ALL') => {
         },
       });
       setLoading(false);
-      ShowToastSuccess(responseAccept.data.authoring_updateTask.message);
+      ShowToastSuccessMessage(responseAccept.data.authoring_updateTask.message);
     } catch (err: any) {
       ShowToastError(
         err.graphQLErrors.length > 0
