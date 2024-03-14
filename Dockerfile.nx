@@ -41,11 +41,11 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 # Install dependencies again (if necessary)
 RUN npm install --legacy-peer-deps
 
-# Run npx nx-cloud start-ci-run command with distribute-on and stop-agents-after options
-RUN NX_CI_EXECUTION_ID="ci_execution_$(date +%Y%m%d%H%M%S)" npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="e2e-ci" --verbose
+# Set NX_CI_EXECUTION_ID environment variable using current timestamp
+RUN export NX_CI_EXECUTION_ID="ci_execution_$(date +%Y%m%d%H%M%S)"
 
-# Use nrwl/nx-set-shas action
-RUN npx nx-set-shas@v4.0.4
+# Run npx nx-cloud start-ci-run command with distribute-on and stop-agents-after options
+RUN npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="e2e-ci" --verbose
 
 # Create dynamic branch
 RUN branch_name="develop-$(date +%Y-%m-%d-%H-%M-%S)" && git branch --track $branch_name origin/develop
