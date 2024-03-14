@@ -33,7 +33,7 @@ WORKDIR /server
 COPY . /server
 
 # Install global Nx CLI
-# RUN npm i -g nx
+RUN npm i -g nx
 
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max_old_space_size=8192"
