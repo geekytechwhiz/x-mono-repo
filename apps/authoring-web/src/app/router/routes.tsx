@@ -1,16 +1,12 @@
+import { Typography } from "@mui/material";
+import { AssetListing } from "@platformx/asset-manager";
+import { CreateSpace } from "@platformx/community";
 import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
-import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
-import { CreateUser, UserListing } from "@platformx/user-management";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { RouteConfig } from "./routes.type";
-import { Typography } from "@mui/material";
-import { AssetListing } from "@platformx/asset-manager";
 import {
+  CategoryDetail,
   CookieSetting,
   CreateTags,
   FeatureFlagSetting,
@@ -19,11 +15,15 @@ import {
   HeaderSetting,
   MediaHandle,
   TagListing,
-  CategoryDetail,
 } from "@platformx/site-setting";
+import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
+import { CreateUser, UserListing } from "@platformx/user-management";
+import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
-import { CreateSpace } from "@platformx/community";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
   {
@@ -388,7 +388,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/content/create/article",
     element: (
-      <ProtectedRoute name='article' category='content' subCategory='article'>
+      <ProtectedRoute
+        name='article'
+        category='content'
+        subCategory='article'
+        isHeader={false}
+        isSideBar={false}>
         <CreateContent />
       </ProtectedRoute>
     ),
