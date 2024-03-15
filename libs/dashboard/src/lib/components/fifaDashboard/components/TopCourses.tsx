@@ -3,6 +3,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
+
 interface Course {
   name: string;
   number: number;

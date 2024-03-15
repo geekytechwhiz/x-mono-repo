@@ -3,6 +3,5 @@ export type TaskCardProps = {
     titleVariant: string;
     linkText?: string;
     children: any;
-    
+
   };
-  

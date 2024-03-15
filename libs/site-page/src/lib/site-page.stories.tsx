@@ -1,3 +1,4 @@
+/* eslint-disable require-await */
 import type { Meta, StoryObj } from '@storybook/react';
 import { SitePage } from './site-page';
 
