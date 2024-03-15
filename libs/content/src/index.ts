@@ -7,6 +7,7 @@ import { FormControlCustom } from "./lib/components/ContentListingHeader/Content
 import ContentListingHeader from "./lib/components/ContentListingHeader/ContentListingHeader";
 import ContentPageScroll from "./lib/components/ContentPageScroll";
 import ChooseTags from "./lib/pages/quiz/components/choosetags/ChooseTags";
+import { TimeLineBlogs } from "./lib/pages/event";
 
 export * from "./lib/content";
 export * from "./lib/enums/ContentType";
@@ -22,4 +23,5 @@ export {
   ContentListingHeader,
   ContentPageScroll,
   ChooseTags,
+  TimeLineBlogs,
 };

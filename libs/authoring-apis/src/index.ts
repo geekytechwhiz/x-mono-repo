@@ -59,6 +59,8 @@ export * from "./lib/services/prelems/prelems.api";
 export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/services/space/space.api";
+export * from "./lib/services/contentTypes/contentTypes.api";
+
 export * from "./lib/utils/constants";
 // export * from "./lib/graphQl/queries/pageQueries";
 
