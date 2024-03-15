@@ -24,7 +24,7 @@ jobs:
           node-version: 14
           cache: "npm"
       - run: npm install --force
-      - run: npm run affected:build -- --base=main --head=HEAD --parallel
+      - run:  npx nx  affected:build -- --base=main --head=HEAD --parallel
   agent1:
     runs-on: ubuntu-latest
     steps:
