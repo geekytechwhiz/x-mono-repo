@@ -33,8 +33,11 @@ const Profile = (props: any) => {
     query: route?.query,
   };
 
-  const UserProfile: any = dynamic(() =>
-    import(`platform-x-prelems/prelems/User`).then((mod) => mod.Profile),
+  const UserProfile = dynamic(
+    () => import("@platformx/x-prelems-library").then((mod) => mod.Profile),
+    {
+      ssr: false,
+    },
   );
 
   return (
