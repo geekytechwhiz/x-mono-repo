@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
-  ".css-1t1j96h-MuiPaper-root-MuiDialog-paper": {
+  "& .Platform-x-Paper-root": {
     height: "-webkit-fill-available",
     maxWidth: "none",
     width: "-webkit-fill-available",
