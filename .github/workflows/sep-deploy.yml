@@ -15,9 +15,16 @@ jobs:
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
+      - name: Generate Unique ID
+        id: generate_id
+        run: echo "NX_CI_EXECUTION_ID=$(date +%Y%m%d%H%M%S)-${GITHUB_RUN_ID}" >> $GITHUB_ENV
+
       - name: Set env vars (develop)
         if: endsWith(github.ref, '/develop')
         run: |
+          echo "NX_BRANCH=echo ${{ github.event.number }}"
+          echo "NX_RUN_GROUP=echo ${{ github.run_id }}"
+          echo "NX_CI_EXECUTION_ID=${{ steps.generate_id.outputs.NX_CI_EXECUTION_ID }}"
           echo "CLUSTER_NAME=GKE_CLUSTER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "IMAGE_NAME=IMAGE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "PROJECT_ID=PROJECT_ID_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
@@ -55,7 +62,7 @@ jobs:
       # Build the Docker image
       - name: Build
         run: |-
-          docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+          docker build -f Dockerfile.nx --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
       # Push the Docker image to Google Container Registry
       - name: Publish

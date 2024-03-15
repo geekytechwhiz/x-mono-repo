@@ -49,7 +49,7 @@ const ChangePassword = (props: any) => {
   };
 
   const ChangePsw: any = dynamic(
-    () => import(`platform-x-prelems/prelems/User`).then((mod) => mod.ChangePassword),
+    () => import(`@platformx/x-prelems-library`).then((mod) => mod.ChangePassword),
     {
       ssr: false,
     },

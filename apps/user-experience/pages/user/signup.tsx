@@ -70,8 +70,11 @@ const Signup = (props: any) => {
     }
   };
 
-  const SignUp: any = dynamic(() =>
-    import(`platform-x-prelems/prelems/User`).then((mod) => mod.SignUp),
+  const SignUp: any = dynamic(
+    () => import(`@platformx/x-prelems-library`).then((mod) => mod.SignUp),
+    {
+      ssr: false,
+    },
   );
 
   return (

@@ -1,19 +1,12 @@
-//import { AssetListing, CreateAsset } from "@platformx/assets-manager";
-import { Content, ContentPreview, CreateContent } from "@platformx/content";
+import { Typography } from "@mui/material";
+import { AssetListing } from "@platformx/asset-manager";
+import { CreateSpace } from "@platformx/community";
+import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import { SitePage } from "@platformx/site-page";
-import { AddSite, SiteListing } from "@platformx/sites";
-import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
-import { CreateUser, UserListing } from "@platformx/user-management";
-// import { AssetListing, CreateAssest } from "@platformx/asset-manager";
-import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { RouteConfig } from "./routes.type";
-// import { TagListing, CategoryDetail, CreateTags } from "../../../../../libs/site-setting/src";
-import { Typography } from "@mui/material";
-import { AssetListing } from "@platformx/asset-manager";
 import {
+  CategoryDetail,
   CookieSetting,
   CreateTags,
   FeatureFlagSetting,
@@ -23,9 +16,14 @@ import {
   MediaHandle,
   TagListing,
 } from "@platformx/site-setting";
+import { AddSite, SiteListing } from "@platformx/sites";
+import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
+import { CreateUser, UserListing } from "@platformx/user-management";
+import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
 import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
-import { CreateSpace } from "@platformx/community";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { RouteConfig } from "./routes.type";
 
 export const routes: RouteConfig[] = [
   {
@@ -347,14 +345,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/site-setting/tags/:category",
-  //   element: (
-  //     <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
-  //       <CategoryDetail />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/site-setting/tags/:category",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CategoryDetail />
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/site-setting/create-tags",
     element: (
@@ -390,7 +388,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/content/create/article",
     element: (
-      <ProtectedRoute name='article' category='content' subCategory='article'>
+      <ProtectedRoute
+        name='article'
+        category='content'
+        subCategory='article'
+        isHeader={false}
+        isSideBar={false}>
         <CreateContent />
       </ProtectedRoute>
     ),
@@ -493,6 +496,19 @@ export const routes: RouteConfig[] = [
         isHeader={false}
         isSideBar={false}>
         <CreateContent />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/create-blog",
+    element: (
+      <ProtectedRoute
+        name='page'
+        category='public'
+        subCategory='public'
+        isHeader={false}
+        isSideBar={false}>
+        <TimeLineBlogs />
       </ProtectedRoute>
     ),
   },
