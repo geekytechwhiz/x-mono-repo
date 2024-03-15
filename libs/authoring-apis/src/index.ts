@@ -4,13 +4,6 @@ import { ArticleQueries } from "./lib/graphQL/queries/articleQueries";
 import { PageQueries } from "./lib/graphQL/queries/pageQueries";
 import { UserManagementQueries } from "./lib/graphQL/queries/userManagementQueries";
 import { FETCH_VOD_BY_ID, FETCH_VOD_LIST_ALL } from "./lib/graphQL/queries/vodQueries";
-import {
-  create_vod,
-  fetchVodById,
-  publish_vod,
-  update_vod,
-  fetchVodByIdAPI,
-} from "./lib/services/vod/vod.api";
 import { WorkflowQueries } from "./lib/graphQL/queries/workflowQueries";
 import { snowplowTrackingHook } from "./lib/hooks/customHook/snowplowTrackingHook";
 import useContentListing from "./lib/hooks/useContentListing/useContentListing";
@@ -36,13 +29,21 @@ import {
 } from "./lib/services/socialShare/socialShare.api";
 import userGroupsApi from "./lib/services/userGroups/userGroups.api";
 import userManagementAPI from "./lib/services/userManagement/UserManagement.api";
-// import fetchVodByIdAPI from "./lib/services/vod/vod.api";
-import workflowApi from "./lib/services/workflow/workflow.api";
 import {
-  FETCH_DASHBOARD_CONTENT_ALL,
+  create_vod,
+  fetchVodById,
+  fetchVodByIdAPI,
+  publish_vod,
+  update_vod,
+} from "./lib/services/vod/vod.api";
+// import fetchVodByIdAPI from "./lib/services/vod/vod.api";
+import {
   FETCH_DASHBOARD_CHARTS,
+  FETCH_DASHBOARD_CONTENT_ALL,
   UPDATE_TASK_STATUS,
 } from "./lib/graphQL/queries/dashboardQueries";
+import { createChatGptRequest } from "./lib/services/chatGpt/chatGpt.api";
+import workflowApi from "./lib/services/workflow/workflow.api";
 
 export * from "./lib/context/actionContext/ActionContext.types";
 export * from "./lib/graphQL/mutations/spaceMutations";
@@ -53,13 +54,13 @@ export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
 export * from "./lib/hooks/usePoll/usePollApi";
 export * from "./lib/services/SiteCreation/SiteCreation.api";
+export * from "./lib/services/contentTypes/contentTypes.api";
 export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";
 export * from "./lib/services/rendering/rendering.api";
 export * from "./lib/services/siteSetting/SiteSetting";
 export * from "./lib/services/space/space.api";
-export * from "./lib/services/contentTypes/contentTypes.api";
 
 export * from "./lib/utils/constants";
 // export * from "./lib/graphQl/queries/pageQueries";
@@ -67,9 +68,12 @@ export * from "./lib/utils/constants";
 export {
   ArticleMutations,
   ArticleQueries,
+  FETCH_DASHBOARD_CHARTS,
+  FETCH_DASHBOARD_CONTENT_ALL,
   FETCH_VOD_BY_ID,
   FETCH_VOD_LIST_ALL,
   PageQueries,
+  UPDATE_TASK_STATUS,
   UserManagementQueries,
   WorkflowQueries,
   articleApi,
@@ -79,17 +83,22 @@ export {
   commentsApi,
   contentTypeAPIs,
   contentTypeSchemaApi,
+  createChatGptRequest,
   createPgModel,
+  create_vod,
   dashboardApi,
   eventAPIS,
   fetchSocialShareList,
   fetchSocialShareProfile,
+  fetchVodById,
   fetchVodByIdAPI,
   graphqlInstance,
   multiSiteApi,
+  publish_vod,
   rescheduleSocialShare,
   scheduleSocialShare,
   snowplowTrackingHook,
+  update_vod,
   useContentListing,
   useContentSearch,
   useDashboardData,
@@ -98,11 +107,4 @@ export {
   userGroupsApi,
   userManagementAPI,
   workflowApi,
-  create_vod,
-  fetchVodById,
-  publish_vod,
-  update_vod,
-  FETCH_DASHBOARD_CONTENT_ALL,
-  FETCH_DASHBOARD_CHARTS,
-  UPDATE_TASK_STATUS,
 };

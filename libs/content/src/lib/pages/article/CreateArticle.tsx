@@ -17,6 +17,7 @@ import {
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
+import { WorkflowHistory } from "@platformx/workflow-management";
 import { DamContentGallery, usePostImageCrop } from "@platformx/x-image-render";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -741,8 +742,7 @@ export const CreateArticle = () => {
         isFeatured={isFeatured}
       />
       {enableWorkflowHistory ? (
-        // <WorkflowHistory workflow={workflow} setEnableWorkflowHistory={setEnableWorkflowHistory} />
-        <>WorkflowHistory</>
+        <WorkflowHistory workflow={workflow} setEnableWorkflowHistory={setEnableWorkflowHistory} />
       ) : (
         <ArticleDetails
           returnBack={returnBack}

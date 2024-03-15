@@ -15,6 +15,7 @@ import i18next from "i18next";
 // import { createChatGptRequest } from "@platformx/authoring-apis";
 import { DamContentGallery } from "@platformx/x-image-render";
 // import DescriptionContentCard from "../DescriptionContentCard";
+import { createChatGptRequest } from "@platformx/authoring-apis";
 import MediaTray from "../MediaTray/MediaTray";
 import AddUrlDialog from "../url-dialog-box/AddUrlDialog";
 import ChatGptLoader from "./ChatGptLoader";
@@ -411,46 +412,45 @@ function Description({
     de: "German",
   };
 
-  const chatGptResponse = async (prompt) => {
-    // const requestParam = {
-    //   input: {
-    //     prompt: prompt,
-    //   },
-    // };
-    // createChatGptRequest(requestParam)
-    //   .then((result: any) => {
-    //     const chatGptDataResponse = result?.authoring_getContentOpenai?.text;
-    //     if (chatGptDataResponse) {
-    //       setIsLoading(false);
-    //       const el = document.getElementById("desc");
-    //       const dataAdded = chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "");
-    //       if (el !== null) {
-    //         el.innerHTML = el.innerHTML + dataAdded;
-    //       }
-    //       desc.current = desc.current + dataAdded;
-    //       // updateField({ Description: resp?.data?.data?.[0]?.text });
-    //       setState({
-    //         ...state,
-    //         CommonFields: {
-    //           ...state.CommonFields,
-    //           description: document?.getElementById("desc")?.innerHTML,
-    //           settings: {
-    //             ...state.CommonFields.settings,
-    //             socialog_description: trimString(
-    //               handleHtmlTags(chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "")),
-    //               200,
-    //             ),
-    //           },
-    //         },
-    //       });
-    //       setDescription(document?.getElementById("desc")?.innerHTML);
-    //       setCheckDesc(document?.getElementById("desc")?.innerHTML);
-    //     }
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     throw err;
-    //   });
+  const chatGptResponse = (prompt) => {
+    const requestParam = {
+      input: {
+        prompt: prompt,
+      },
+    };
+    createChatGptRequest(requestParam)
+      .then((result: any) => {
+        const chatGptDataResponse = result?.authoring_getContentOpenai?.text;
+        if (chatGptDataResponse) {
+          setIsLoading(false);
+          const el = document.getElementById("desc");
+          const dataAdded = chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "");
+          if (el !== null) {
+            el.innerHTML = el.innerHTML + dataAdded;
+          }
+          desc.current = desc.current + dataAdded;
+          setState({
+            ...state,
+            CommonFields: {
+              ...state.CommonFields,
+              description: document?.getElementById("desc")?.innerHTML,
+              settings: {
+                ...state.CommonFields.settings,
+                socialog_description: trimString(
+                  handleHtmlTags(chatGptDataResponse.replace(/(\r\n|\n|\r)/gm, "")),
+                  200,
+                ),
+              },
+            },
+          });
+          setDescription(document?.getElementById("desc")?.innerHTML);
+          setCheckDesc(document?.getElementById("desc")?.innerHTML);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
 
   const chatGPT = () => {
