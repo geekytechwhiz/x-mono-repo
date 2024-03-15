@@ -29,13 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: bahmutov/npm-install@v1.4.5
+      - run: npm install --force
       - run: npx nx cloud start-agent --token ${{ secrets.NX_CLOUD_AGENT_TOKEN }}
   agent2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: bahmutov/npm-install@v1.4.5
+      - run: npm install --force
       - run: npx nx cloud start-agent --token ${{ secrets.NX_CLOUD_AGENT_TOKEN }}
       - run: npx nx cloud stop-all-agents
        
