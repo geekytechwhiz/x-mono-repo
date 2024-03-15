@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Close from "@mui/icons-material/Close";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import { ThemeConstants } from "@platformx/utilities";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
