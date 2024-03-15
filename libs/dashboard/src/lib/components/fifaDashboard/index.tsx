@@ -1,24 +1,24 @@
-import { Box } from '@mui/material'
-import { useDashboardData } from '@platformx/authoring-apis'
-import { useUserSession } from '@platformx/utilities'
-import { useTranslation } from 'react-i18next'
-import { useStyles } from '../../dashboards.styles'
-import Title from '../common/Title'
-import TaskCard from '../tasks/taskContent/TaskCard'
-import TaskPages from '../tasks/taskPages/TasksPages'
-import Dashboard from './Dashboard'
+import { Box } from '@mui/material';
+import { useDashboardData } from '@platformx/authoring-apis';
+import { useUserSession } from '@platformx/utilities';
+import { useTranslation } from 'react-i18next';
+import { useStyles } from '../../dashboards.styles';
+import Title from '../common/Title';
+import TaskCard from '../tasks/taskContent/TaskCard';
+import TaskPages from '../tasks/taskPages/TasksPages';
+import Dashboard from './Dashboard';
 
 const Index = () => {
-  const classes = useStyles()
-  const { t } = useTranslation()
-  const [getSession] = useUserSession()
-  const { userInfo } = getSession()
+  const classes = useStyles();
+  const { t } = useTranslation();
+  const [getSession] = useUserSession();
+  const { userInfo } = getSession();
   const { dashBoard, edit, fetchDashBoardData, changeStatus } =
-    useDashboardData()
+    useDashboardData();
 
   return (
     <Box className={classes.container}>
-      <Box sx={{ display: {xs: 'block', em: 'flex' }}}>
+      <Box sx={{ display: { xs: 'block', em: 'flex' } }}>
         <Title
           titleVarient="h2bold"
           titleColor="#4B9EF9"
@@ -45,7 +45,7 @@ const Index = () => {
       </Box>
       <Dashboard />
     </Box>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
