@@ -9,7 +9,6 @@ import DOMPurify from "isomorphic-dompurify";
 import { useTranslation } from "react-i18next";
 
 import { useCustomStyle } from "./TabDocument.style";
-import "./TabDocument.css";
 
 const TabDocument = (_props: any = {}) => {
   const classes = useCustomStyle();

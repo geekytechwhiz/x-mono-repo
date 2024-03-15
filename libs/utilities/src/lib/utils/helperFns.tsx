@@ -7,7 +7,13 @@ import ToastService from "../components/ToastContainer/ToastService";
 import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { AUTH_INFO } from "../constants/AuthConstant";
 import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
-import { LanguageList, MESSAGE_API_ERROR, countries, defaultImages } from "./helperConstants";
+import {
+  CONTENT_ICON,
+  LanguageList,
+  MESSAGE_API_ERROR,
+  countries,
+  defaultImages,
+} from "./helperConstants";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
 import { fallBackImage } from "../assets/images";
@@ -1229,3 +1235,35 @@ export async function postData(url = "", data = {}, site_host = "") {
     return error?.response?.data;
   }
 }
+
+export const getIcon = (contentType) => {
+  const gcpUrl = `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/`;
+  switch (convertToLowerCase(contentType)) {
+    case "article":
+      return `${gcpUrl}${CONTENT_ICON.ARTICLE}`;
+    case "poll":
+      return `${gcpUrl}${CONTENT_ICON.POLL}`;
+    case "quiz":
+      return `${gcpUrl}${CONTENT_ICON.QUIZ}`;
+    case "event":
+      return `${gcpUrl}${CONTENT_ICON.EVENT}`;
+    case "vod":
+      return `${gcpUrl}${CONTENT_ICON.VOD}`;
+    default:
+      return `${gcpUrl}${CONTENT_ICON.ARTICLE}`;
+  }
+};
+
+export const apiCallForBlogs = async (url, payload = {}, type = "put") => {
+  try {
+    return await axios[type](url, payload, {
+      headers: {
+        ...headerData,
+        sitename: getSelectedSite(),
+        site_host: getSubDomain(),
+      },
+    });
+  } catch (err: any) {
+    return err.response;
+  }
+};
