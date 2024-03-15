@@ -42,7 +42,7 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 RUN npm install --legacy-peer-deps
 
 # Set NX_CI_EXECUTION_ID environment variable using current timestamp
-RUN export NX_CI_EXECUTION_ID="ci_execution_$(date +%Y%m%d%H%M%S)"
+# RUN export NX_CI_EXECUTION_ID="ci_execution_$(date +%Y%m%d%H%M%S)"
 
 # Run npx nx-cloud start-ci-run command with distribute-on and stop-agents-after options
 RUN npx nx-cloud start-ci-run --distribute-on="8 linux-medium-js" --stop-agents-after="e2e-ci" --verbose
