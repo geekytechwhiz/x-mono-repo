@@ -111,19 +111,94 @@ export const getBrowser = () => {
     return "unknown";
   }
 };
+export const updateUserSelectedTags = (selectedTags) => {
+  // Define the Redpoint API endpoint and the headers
+  const apiUrl = "https://rpi-server-1.hcl-x.com/InteractionRealtimeAPI/api/Cache/Visit";
+  const headers = {
+    accept: "application/json",
+    RPIAuthKey: publicRuntimeConfig?.NEXT_RPI_AUTH_KEY,
+    "Content-Type": "application/json",
+  };
 
-export const createVisitorPayload = (geolocationData, pageData) => {
-  const { state, city, country, countryCode, zipCode } = geolocationData;
-  const { userAgent } = navigator;
-  //userId in userInfo
-  const userInfo = localStorage.getItem("userLoginDetails");
   //userId in localStorage
   const storedUserId = localStorage.getItem("userId");
   //VisitorID in localStorage
   const storedVisitorId = localStorage.getItem("VisitorID");
+
+  // Construct visitorAttributes array based on selectedTags
+  const visitorAttributes = [
+    {
+      Name: "tags",
+      Value: selectedTags.join(","), // Join tags with commas
+      UpdateOperator: 0, // Assuming 0 means update or add the tag
+    },
+  ];
+  // Construct the payload object
   const payload = {
     isNewVisitor: false,
-    visitorId: storedUserId || storedVisitorId || "AnonymousVisitorID",
+    visitorId: storedUserId || storedVisitorId,
+    deviceId: "AnonymousDeviceID",
+    pagePublishedId: 0,
+    visitorAttributes,
+    clientId: publicRuntimeConfig?.NEXT_RPI_CLIENT_ID,
+    viewName: publicRuntimeConfig?.NEXT_RPI_VIEW_NAME,
+    trackingMode: 0,
+  };
+
+  // Send the POST request and return the Axios promise
+  return axios
+    .post(apiUrl, payload, { headers })
+    .then((response) => {
+      localStorage.setItem("VisitorID", response?.data?.VisitorID);
+      fetchOfferName(response?.data?.VisitorID);
+      return response.data; // Return the API response
+    })
+    .catch((error) => {
+      console.error("Error sending Visitor Profile:", error);
+      throw error; // Rethrow the error to be handled where the function is called
+    });
+};
+
+// Function to generate a random visitor ID
+const generateRandomVisitorID = () => {
+  // Generate a random string using a combination of timestamp and random number
+  return `Visitor_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+};
+
+// Function to retrieve or generate a visitor ID
+const getVisitorID = () => {
+  // Check if the visitor ID is stored in local storage
+  let visitorID = localStorage.getItem("VisitorID");
+  if (!visitorID) {
+    // If visitor ID is not available, generate a random one
+    visitorID = generateRandomVisitorID();
+    // Store the generated visitor ID in local storage for future use
+    localStorage.setItem("VisitorID", visitorID);
+  }
+  return visitorID;
+};
+
+export const createVisitorPayload = (geolocationData, pageData) => {
+  const { state, city, country, countryCode, zipCode } = geolocationData;
+  const { userAgent } = navigator;
+  const userInfoString = localStorage.getItem("userLoginDetails");
+  const storedUserId = localStorage.getItem("userId");
+  const storedVisitorId = getVisitorID(); // Get or generate the visitor ID
+
+  // Define default values for geolocation properties
+  const defaultGeoValues = {
+    country: "NA",
+    countryCode: "NA",
+    state: "NA",
+    city: "NA",
+    zipCode: "NA",
+  };
+
+  const userInfo = userInfoString ? JSON.parse(userInfoString).data : null;
+
+  const payload = {
+    isNewVisitor: false,
+    visitorId: storedUserId || storedVisitorId,
     deviceId: "AnonymousDeviceID",
     pagePublishedId: 0,
     visitorAttributes: [
@@ -139,17 +214,17 @@ export const createVisitorPayload = (geolocationData, pageData) => {
       },
       {
         name: "userName",
-        value: userInfo ? JSON.parse(userInfo)?.data?.name : "NA",
+        value: userInfo ? userInfo.name : "NA",
         updateOperator: 0,
       },
       {
         name: "emailId",
-        value: userInfo ? JSON.parse(userInfo)?.data?.email_id : "NA",
+        value: userInfo ? userInfo.email_id : "NA",
         updateOperator: 0,
       },
       {
         name: "userId",
-        value: userInfo ? JSON.parse(userInfo)?.data?.user_id : "NA",
+        value: storedUserId,
         updateOperator: 0,
       },
       {
@@ -159,32 +234,32 @@ export const createVisitorPayload = (geolocationData, pageData) => {
       },
       {
         name: "gender",
-        value: userInfo ? JSON.parse(userInfo)?.data?.gender : "NA",
+        value: userInfo ? userInfo.gender : "NA",
         updateOperator: 0,
       },
       {
         name: "geoCountry",
-        value: country,
+        value: country || defaultGeoValues.country,
         updateOperator: 0,
       },
       {
         name: "geoCountryCode",
-        value: countryCode,
+        value: countryCode || defaultGeoValues.countryCode,
         updateOperator: 0,
       },
       {
         name: "geoRegion",
-        value: state,
+        value: state || defaultGeoValues.state,
         updateOperator: 0,
       },
       {
         name: "geoCity",
-        value: city,
+        value: city || defaultGeoValues.city,
         updateOperator: 0,
       },
       {
         name: "geoZipcode",
-        value: zipCode,
+        value: zipCode || defaultGeoValues.zipCode,
         updateOperator: 0,
       },
       {
@@ -207,6 +282,7 @@ export const createVisitorPayload = (geolocationData, pageData) => {
         value: getDeviceType(),
         updateOperator: 0,
       },
+      // Add more visitor attributes if needed
     ],
     pageReferrer: pageData?.PageSettings?.PageURL,
     requestURL: pageData?.PageSettings?.PageURL,
@@ -261,7 +337,8 @@ export const fetchOfferName = (VisitorID) => {
 };
 export const createNewVisitor = (eventData) => {
   // Define the Redpoint API endpoint and the headers
-  const apiUrl = "https://rpi-server-1.hcl-x.com/InteractionRealtimeAPI/api/Cache/Visit";
+
+  const apiUrl = `${publicRuntimeConfig?.NEXT_RPI_API_URL}/InteractionRealtimeAPI/api/Cache/Visit`;
   const headers = {
     accept: "application/json",
     RPIAuthKey: publicRuntimeConfig?.NEXT_RPI_AUTH_KEY,
@@ -282,15 +359,167 @@ export const createNewVisitor = (eventData) => {
     });
 };
 
-export const sendVisitorData = async (pageData) => {
-  const geolocationData = await getGeolocationData();
-  if (geolocationData !== null) {
+// Define the function to fetch tag list
+export const fetchTagList = async () => {
+  // const isLocalhost = window.location.hostname.includes("localhost");
+  // const hostName = isLocalhost ? publicRuntimeConfig.NEXT_SITE_HOST : window.location.hostname;
+  try {
+    // Define the base URL and headers
+    const baseURL = publicRuntimeConfig?.NEXT_PUBLISH_API_GATEWAY_URL;
+    const headers = {
+      "Content-Type": "application/json",
+      //'site_host': 'du.hcl-x.com'
+    };
+    // Define the request data
+    const requestData = {
+      query: `
+        query {
+          getTagsList(
+            pagination: { start: 0, rows: 20 }
+            sort: DESC
+          )
+        }
+      `,
+    };
+
+    // Make the API call
+    const response = await axios.post(baseURL, requestData, { headers });
+
+    // Return the tag list from the response
+    return response.data;
+  } catch (error) {
+    // Handle errors
+    throw new Error(`Failed to fetch tag list: ${error}`);
+  }
+};
+
+export const getSelectedRPITags = async () => {
+  try {
+    // Retrieve the visitor ID from local storage
+    const visitorID = localStorage.getItem("VisitorID");
+    const url = `${publicRuntimeConfig?.NEXT_RPI_API_URL}/InteractionRealtimeAPI/api/Cache/Visitors/${publicRuntimeConfig?.NEXT_RPI_CLIENT_ID}/Views/ViewA`;
+    const headers = {
+      accept: "application/json",
+      RPIAuthKey: publicRuntimeConfig?.NEXT_RPI_AUTH_KEY,
+      "Content-Type": "application/json",
+    };
+    const data = {
+      Identity: {
+        VisitorID: visitorID,
+      },
+    };
+    const response = await axios.post(url, data, { headers });
+    return response.data; // Return the response data
+  } catch (error) {
+    console.error("Error:", error);
+    return null; // Return null in case of error
+  }
+};
+
+export const getTagsValue = (data) => {
+  for (const obj of data) {
+    if (obj.Name === "tags") {
+      return obj.Value.split(",").map((tag) => tag.trim());
+    }
+  }
+  return null; // Return null if the "tags" property is not found
+};
+
+export const sendVisitorData = (pageData) => {
+  // Get geolocation data from local storage
+  const geolocationDataString = localStorage.getItem("locationData");
+
+  // Check if geolocation data is available
+  if (geolocationDataString !== null) {
+    const geolocationData = JSON.parse(geolocationDataString);
+
     const payload = createVisitorPayload(geolocationData, pageData);
     // Check if the payload is valid before calling createNewVisitor
     if (isValidPayload(payload)) {
       createNewVisitor(payload);
     }
   }
+};
+
+export const postPageImpressionEvent = (pageData, contentType) => {
+  const url = `${publicRuntimeConfig?.NEXT_RPI_API_URL}/InteractionRealtimeAPI/api/Events`;
+  const headers = {
+    RPIAuthKey: publicRuntimeConfig?.NEXT_RPI_AUTH_KEY,
+    "Content-Type": "application/json",
+  };
+  //userId in localStorage
+  const storedUserId = localStorage.getItem("userId");
+  //VisitorID in localStorage
+  const storedVisitorId = localStorage.getItem("VisitorID");
+
+  const data = {
+    VisitorID: storedUserId || storedVisitorId || "AnonymousVisitorID",
+    DeviceID: "AnonymousDevice",
+    EventName: "Page Impression",
+    EventDetail: "Page Impression",
+    MetricValue: 0,
+    ClientID: publicRuntimeConfig?.NEXT_RPI_CLIENT_ID,
+    ChannelExecutionID: 123,
+    RPContactID: "contact123",
+    PagePublishedID: 456,
+    ContentID: pageData?.Page,
+    PageReferral: pageData?.Title,
+    RequestURL: pageData?.PageSettings?.PageURL,
+    EventTime: new Date().toISOString(), // Current time,
+    Metadata: [
+      {
+        Name: "pageTitle",
+        Value: pageData?.Title,
+      },
+      {
+        Name: "pageId",
+        Value: pageData?.Page,
+      },
+      {
+        Name: "eventType",
+        Value: pageData?.eventType,
+      },
+      {
+        Name: "pageDesc",
+        Value: pageData?.PageSettings?.PageDescription,
+      },
+      {
+        Name: "pageTags",
+        Value: pageData?.PageSettings?.PageTags?.join(", "),
+      },
+      {
+        Name: "AuthorName",
+        Value: pageData?.Page_createdby,
+      },
+      {
+        Name: "PageUrl",
+        Value: pageData?.PageSettings?.PageURL,
+      },
+      {
+        Name: "contentType",
+        Value: contentType,
+      },
+    ],
+  };
+
+  return fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      } else {
+        // eslint-disable-next-line no-console
+        console.log("Event addeed in the RPI");
+      }
+      //return response?.json();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
 };
 
 export const convertLowerCase = (key: any = null) => {
@@ -438,6 +667,11 @@ export const prelemBaseEndpointObj = (host) => {
     blogEndPoint: sendBlogUrl(),
     loyaltyEndPoint: publicRuntimeConfig?.NEXT_LOYALTY_END_POINT,
     loyaltyPortalEndPoint: publicRuntimeConfig?.NEXT_LOYALTY_PORTAL_END_POINT,
+    rpiUrl: publicRuntimeConfig?.NEXT_RPI_API_URL,
+    rpiClientID: publicRuntimeConfig?.NEXT_RPI_CLIENT_ID,
+    rpiAuthKey: publicRuntimeConfig?.NEXT_RPI_AUTH_KEY,
+    rpiPublishID: publicRuntimeConfig?.NEXT_RPI_PUBLISH_ID,
+    rpiViewName: publicRuntimeConfig?.NEXT_RPI_VIEW_NAME,
   };
 };
 
@@ -501,9 +735,14 @@ export const redirectUrl = () => {
   }
 };
 
-export const putRestApiCall = (url: string, payload: any, locale?: string, site_host?: string) => {
+export const putRestApiCall = async (
+  url: string,
+  payload: any,
+  locale?: string,
+  site_host?: string,
+) => {
   try {
-    return axios.put(url, payload, {
+    return await axios.put(url, payload, {
       headers: {
         "Content-Type": "application/json",
         "Cache-Control": "no-cache",
@@ -529,9 +768,8 @@ export const locationApiCallService = async () => {
   return locationData || {};
 };
 
-export const fetchContentProfileDetails = (contentType, pageName, host) => {
+export const fetchContentProfileDetails = async (contentType, pageName, host) => {
   const hostName = getHostName(host);
-  // const hostName = "du.hcl-x.com";
   const data = JSON.stringify({
     query: `query{fetchSchemaContent(contentType:${JSON.stringify(
       contentType,
@@ -540,7 +778,7 @@ export const fetchContentProfileDetails = (contentType, pageName, host) => {
   });
 
   try {
-    return axios.post(publicRuntimeConfig?.NEXT_DELIVERY_ENGINE, data, {
+    return await axios.post(publicRuntimeConfig?.NEXT_DELIVERY_ENGINE, data, {
       headers: {
         site_host: hostName,
         "Content-Type": "application/json",

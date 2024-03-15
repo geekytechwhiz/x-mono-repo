@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { nullToObject } from "../../../utils/helperFunctions";
-import { snowplowTrackingHook } from "./snowplowTrackingHook";
+import { useSnowplowTracking } from "./snowplowTrackingHook";
 
 export const usePageImpression = (
   pageData: any,
@@ -11,12 +11,13 @@ export const usePageImpression = (
   site_host: any,
 ) => {
   const [enableImpressionTracking, setEnableImpressionTracking] = useState(true);
-  const { pageImpressionsObject } = snowplowTrackingHook();
+  const { pageImpressionsObject } = useSnowplowTracking();
+
   useEffect(() => {
     let isMounted = true;
     const performImpressions = () => {
       if (
-        pageData?.analytics_enable &&
+        (pageData?.analytics_enable || pageData?.AnalyticsEnable) &&
         enableImpressionTracking &&
         inView &&
         Object.keys(nullToObject(instances)).length > 0

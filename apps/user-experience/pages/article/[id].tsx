@@ -71,7 +71,7 @@ const Article = (props: any) => {
   usePageImpression(pageData, inView, instances, SNOWPLOW.CONTENT_TYPE.ARTICLE, route, site_host);
 
   return (
-    <Box>
+    <Box ref={ref}>
       <ErrorBoundary>
         <PageHead
           pageData={{
