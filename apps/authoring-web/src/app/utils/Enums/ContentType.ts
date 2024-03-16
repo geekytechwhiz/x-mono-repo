@@ -1,10 +1,11 @@
+/* eslint-disable no-shadow */
 export enum ContentType {
-  Page = 'page',
-  Quiz = 'quiz',
-  Poll = 'poll',
-  Event = 'event',
-  Vod = 'vod',
-  Article = 'article',
+  Page = "page",
+  Quiz = "quiz",
+  Poll = "poll",
+  Event = "event",
+  Vod = "vod",
+  Article = "article",
 }
 
 export enum ContentAction {
@@ -18,10 +19,9 @@ export enum ContentAction {
 }
 
 export enum Category {
-  Page = 'Page',
-  Content = 'Content',
-  Menu = 'Menu'
-
+  Page = "Page",
+  Content = "Content",
+  Menu = "Menu",
 }
 
-export const ContentTypeList = ['article', 'page', 'quiz', 'poll', 'event'];
+export const ContentTypeList = ["article", "page", "quiz", "poll", "event"];
