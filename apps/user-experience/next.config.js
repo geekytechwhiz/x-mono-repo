@@ -10,10 +10,12 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  // swcMinify: true,
+  // reactStrictMode: false,
+  swcMinify: true,
   typescript: {
     ignoreBuildErrors: true,
   },
+  transpilePackages: ["@platformx/x-prelems-library", "@mui/material"],
   compiler: {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,
