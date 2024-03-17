@@ -4,7 +4,6 @@ import { CreateSpace } from "@platformx/community";
 import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
-import { SitePage } from "@platformx/site-page";
 import {
   CategoryDetail,
   CookieSetting,
@@ -103,15 +102,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
-  {
-    path: "/site-page",
-    element: (
-      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
-        <SitePage />
-      </ProtectedRoute>
-    ),
-  },
   // {
   //   path: "/page-list",
   //   element: (
@@ -160,15 +150,6 @@ export const routes: RouteConfig[] = [
   //       isSideBar={false}
   //       isHeader={false}>
   //       <PrelemComponent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/Sitepage",
-  //   element: (
-  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-  //       {" "}
-  //       {/* <SitePage />{" "} */}
   //     </ProtectedRoute>
   //   ),
   // },

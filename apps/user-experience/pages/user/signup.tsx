@@ -6,7 +6,7 @@ import { registerUserApiCall } from "../../components/User/helperUser";
 import { getDomainUrl, nullToObject, prelemBaseEndpointObj } from "../../utils/helperFunctions";
 import {
   showToastError,
-  showToastSuccess,
+  ShowToastSuccess,
 } from "../../components/toastNotification/ToastNotification";
 import getConfig from "next/config";
 import { MESSAGE_API_ERROR } from "../../constants/CommonConstants";
@@ -60,7 +60,7 @@ const Signup = (props: any) => {
         userRegisterImpression(emailID, site_host);
         const { PublishEndPoint = "", language = "" } = prelemBaseEndpoint;
         const url = PublishEndPoint + language;
-        showToastSuccess(message);
+        ShowToastSuccess(message);
         setTimeout(() => {
           router.push(url);
         }, 1000);

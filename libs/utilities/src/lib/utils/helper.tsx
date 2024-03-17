@@ -108,3 +108,19 @@ export const openPageInNewTab = (url: string) => {
     }
   }
 };
+
+export const formatAddPrelem = (item) => {
+  return {
+    PrelemId: item.PrelemId, // Unique Name
+    PrelemName: item.PrelemName,
+    SeoEnabled: item.SeoEnabled,
+    AnalyticsEnabled: item.AnalyticsEnabled,
+    InstanceId: "pr_cont1",
+    DocumentPath: item.DocumentPath,
+    DocumentCreationPath: item.DocumentCreationPath,
+    DocumentType: item.DocumentType,
+    IsHidden: false,
+    IsModified: false,
+    StructuredData: "",
+  };
+};

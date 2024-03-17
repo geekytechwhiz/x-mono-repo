@@ -25,7 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {
   nullToArray,
   ShowToastError as showToastError,
-  ShowToastSuccessMessage as showToastSuccess,
+  ShowToastSuccess as ShowToastSuccess,
   DeletePopup,
   apiCallForBlogs,
 } from "@platformx/utilities";
@@ -141,7 +141,7 @@ const BlogTimeline = (_props: any) => {
       const response = await apiCallForBlogs(`${updateApiUrl}/${presentId}`, data, "put");
       const { data: { success = false } = {} } = response;
       if (success) {
-        showToastSuccess("Blog deleted successfully.");
+        ShowToastSuccess("Blog deleted successfully.");
         fetchBlogData(searchTerm);
       } else {
         showToastError(t("api_error_toast"));

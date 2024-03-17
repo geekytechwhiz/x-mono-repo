@@ -14,7 +14,7 @@ import {
 } from "@platformx/authoring-state";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   convertToLowerCase,
   getCurrentLang,
@@ -110,7 +110,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
           );
         }
@@ -145,7 +145,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(response));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("unpublished_toast")}`,
           );
         }
@@ -302,7 +302,7 @@ const useContentListing = (filter = "ALL") => {
           );
           dispatch(updateContentList(response));
           for (const res of response) {
-            ShowToastSuccessMessage(
+            ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
               )} ${res.language}`,

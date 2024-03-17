@@ -15,7 +15,7 @@ import {
   PlateformXDialog,
   PlateformXDialogSuccess,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
@@ -246,7 +246,7 @@ export const CreateQuiz = () => {
           setWorkflowStatus(isWorkflow);
         } else {
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("quiz")} ${t("saved_toast")}`);
+            ShowToastSuccess(`${t("quiz")} ${t("saved_toast")}`);
           }
           setIsDraft(false);
           const { createdBy } = quizInstance.CommonFields;
@@ -400,7 +400,7 @@ export const CreateQuiz = () => {
         if (status && status.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("quiz")} ${t("updated_toast")}`);
+            ShowToastSuccess(`${t("quiz")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }

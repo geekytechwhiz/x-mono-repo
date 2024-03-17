@@ -21,7 +21,7 @@ import {
   nullToObject,
   nullToString,
   ShowToastError as showToastError,
-  ShowToastSuccessMessage as showToastSuccess,
+  ShowToastSuccess as ShowToastSuccess,
   AUTH_INFO as authInfo,
   apiCallForBlogs,
 } from "@platformx/utilities";
@@ -169,12 +169,12 @@ const TimeLineBlogs = () => {
   };
 
   const onRemoveImage = () => {
-    showToastSuccess("Image removed.");
+    ShowToastSuccess("Image removed.");
     setSelectedImage({});
   };
 
   const onRemoveVideo = () => {
-    showToastSuccess("Video removed.");
+    ShowToastSuccess("Video removed.");
     setSelectedVideo({});
   };
 
@@ -191,20 +191,20 @@ const TimeLineBlogs = () => {
    * content type
    */
   const onRemoveContentType = () => {
-    showToastSuccess("Content removed.");
+    ShowToastSuccess("Content removed.");
     setContentTypeData({});
   };
 
   const handleSelectedVideo = (video, showToast) => {
     if (!showToast) {
-      showToastSuccess("Video added.");
+      ShowToastSuccess("Video added.");
     }
     setSelectedVideo({ ...video, media: "video" });
   };
 
   const handleSelectedImage = (image, showToast) => {
     if (!showToast) {
-      showToastSuccess("Image added.");
+      ShowToastSuccess("Image added.");
     }
     setSelectedImage({ ...image, media: "image" });
   };
@@ -377,7 +377,7 @@ const TimeLineBlogs = () => {
     const { data: { success = false } = {} } = response;
     if (success) {
       setImageOrVideoToDefault(); //default image set
-      showToastSuccess("Blog published successfully.");
+      ShowToastSuccess("Blog published successfully.");
       setApiCountCall(apiCountCall + 1); //fetch blog reload
       const emptyCustomerData = {
         BlogTitle: "",
@@ -478,7 +478,7 @@ const TimeLineBlogs = () => {
     if (success) {
       setImageOrVideoToDefault(); //default image set
 
-      showToastSuccess("Blog published successfully.");
+      ShowToastSuccess("Blog published successfully.");
       //fetchBlogData('');
       setApiCountCall(apiCountCall + 1); //fetch blog reload
       const emptyCustomerData = {
@@ -544,7 +544,7 @@ const TimeLineBlogs = () => {
       const { data: { success = false } = {} } = response;
 
       if (success) {
-        showToastSuccess("Blog saved successfully.");
+        ShowToastSuccess("Blog saved successfully.");
       } else {
         showToastError(t("api_error_toast"));
       }

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 // import PlateformXDialog from '../../components/Modal';
 // import {
 //   ShowToastError,
-//   ShowToastSuccessMessage,
+//   ShowToastSuccess,
 // } from '../../components/toastNotification/toastNotificationReactTostify';
 // import useDynamicForm from '../../hooks/useDynamicForm/useDynamicForm';
 // import useUserSession from '../../hooks/useUserSession/useUserSession';
@@ -37,7 +37,7 @@ import {
   PlateformXDialog,
   SectionWrapper,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   XLoader,
   handleHtmlTags,
   trimString,
@@ -183,7 +183,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
 
         setShowPublishConfirm(true);
 
-        ShowToastSuccessMessage(`${t("quiz")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("quiz")} ${t("published_toast")}`);
       })
       .catch((error) => {
         if (error.graphQLErrors[0]) {
@@ -270,7 +270,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
             // setOnSavedModal(true);
             setIsDraft(false);
             if (resp?.data?.authoring_createContent?.message === "Successfully created!!!") {
-              ShowToastSuccessMessage(`${t("quiz")} ${t("saved_toast")}`);
+              ShowToastSuccess(`${t("quiz")} ${t("saved_toast")}`);
             }
           }
         } else {

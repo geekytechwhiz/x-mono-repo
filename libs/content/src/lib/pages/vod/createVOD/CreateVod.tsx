@@ -12,7 +12,7 @@ import {
   TextBox,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   AutoTextArea,
   useUserSession,
   workflowKeys,
@@ -218,7 +218,7 @@ export const CreateVod = () => {
           // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setOpenPageExistModal(false);
           setIsDraft(false);
-          ShowToastSuccessMessage(`${t("vod")} ${t("created_toast")}`);
+          ShowToastSuccess(`${t("vod")} ${t("created_toast")}`);
           setOpenSaveModal(true);
           // setOpenPageExistModal(false);
           const pageUrl = resp?.data?.authoring_createVod?.path.substring(
@@ -285,7 +285,7 @@ export const CreateVod = () => {
         if (isWorkflow) {
           workflowSubmitRequest(workflowObj, workflowKeys.approve);
         }
-        ShowToastSuccessMessage(`${t("vod")} ${t("updated_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("updated_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowExitWarning(false);
@@ -364,7 +364,7 @@ export const CreateVod = () => {
       },
     })
       .then(() => {
-        ShowToastSuccessMessage(`${t("vod")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);

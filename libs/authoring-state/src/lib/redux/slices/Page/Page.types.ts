@@ -1,5 +1,5 @@
 export type PageInfo = {
-    content: any
+    content: any;
     prelemMetaArray: any[];
     pageSettings?: any;
     pageModel?: any;
@@ -26,8 +26,34 @@ export type PageInfo = {
     SocialOgTwitterImage?: string;
     SocialOgTwitterURL?: string;
     SocialTwitterCardSize?: string;
-};
-
-export type PageData = {
+  };
+  
+  export type PageState = {
     pageInfo: PageInfo;
-};
+    prelemsValidationObject: any;
+    prelemMetaArray: any[];
+    pageModel: any;
+    insertPrelemAt: number;
+    scrollIndex: number;
+    pageSettings: any;
+    publishedPages: any[];
+    showSaveWarning: boolean;
+    callSave: boolean;
+  };
+  
+  export type PrelemInstance = {
+    PrelemId: string;
+    PrelemName: string;
+    SeoEnabled: boolean;
+    AnalyticsEnabled: boolean;
+    InstanceId: string;
+    DocumentPath: string;
+    DocumentCreationPath: string;
+    DocumentType: string;
+    IsHidden?: boolean;
+    IsModified?: boolean;
+    StructuredData: string;
+    content?: any;
+    DefaultStructureDataForReset: string;
+  };
+  

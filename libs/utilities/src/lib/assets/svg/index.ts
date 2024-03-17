@@ -207,6 +207,18 @@ import Errorpopicon from "../svg/errorPopupIcon.svg";
 import UserEngagmentIcon from "../svg/UserEngagmentIcon.svg";
 import Webmaster from "../svg/Webmaster.svg";
 import NoSearchResultSvg from "../svg/NoSearchResult.svg";
+import ThreeCardIcon from "./threeCard.svg";
+import SEOIcon from "./seo.svg";
+import seoBasicIcon from "./seoBasicIcon.svg";
+import ScheduleIcon from "./ScheduleIcon.svg";
+import PrelemVideosIcon from "./PrelemVideos.svg";
+import PrelemImagesIcon from "./PrelemImages.svg";
+import PrelemAnalyticsIcon from "./PrelemAnalyticsIcon.svg";
+import pageInfoIcon from "./pageInfoIcon.svg";
+import GalleryIcon from "./galleryIcon.svg";
+import AdvanceIcon from "./AdvanceIcon.svg";
+import LaptopImg from "./laptop.jpg";
+import SaveAnimationGif from "./saveAnimation.gif";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -415,4 +427,16 @@ export {
   UserEngagmentIcon,
   Webmaster,
   NoSearchResultSvg,
+  ThreeCardIcon,
+  SEOIcon,
+  seoBasicIcon,
+  ScheduleIcon,
+  PrelemVideosIcon,
+  PrelemImagesIcon,
+  PrelemAnalyticsIcon,
+  pageInfoIcon,
+  GalleryIcon,
+  AdvanceIcon,
+  LaptopImg,
+  SaveAnimationGif,
 };

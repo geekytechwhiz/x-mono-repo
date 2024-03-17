@@ -17,6 +17,10 @@ import {
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
 import { fallBackImage } from "../assets/images";
+import feyenoord from "../themes/prelems/Feyenoord/index";
+import fifa from "../themes/prelems/Fifa/index";
+//import hockeyAustralia from "../themes/prelems/HockeyAustralia/index";
+import light from "../themes/prelems/LightTheme/index";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -1266,4 +1270,21 @@ export const apiCallForBlogs = async (url, payload = {}, type = "put") => {
   } catch (err: any) {
     return err.response;
   }
+};
+
+export const ThemeConstantForPrelemThemeBasedOnSite = () => {
+  let ThemeConstant = light;
+  const siteName = process.env.NX_SITE_BASED_THEME || "";
+  const site_array = siteName.split(",");
+  const currentSiteName = getSelectedSite();
+  if (site_array[0] === currentSiteName) {
+    ThemeConstant = fifa;
+  } else if (site_array[1] === currentSiteName) {
+    ThemeConstant = feyenoord;
+    // } else if (site_array[2] === currentSiteName) {
+    //   ThemeConstant = hockeyAustralia;
+  } else {
+    ThemeConstant = light;
+  }
+  return ThemeConstant;
 };

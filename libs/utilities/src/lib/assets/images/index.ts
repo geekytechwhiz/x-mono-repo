@@ -13,6 +13,8 @@ import inGreen from "./in-green.png";
 import Logo from "./logo.png";
 import noResults from "./no-results.png";
 import successGif from "./success.gif";
+import upload from "./upload.png";
+import replace from "./replace.png";
 
 export { default as Guideline_Img1 } from "./Guideline_Img1.png";
 export { default as Guideline_Img2 } from "./Guideline_Img2.png";
@@ -36,4 +38,6 @@ export {
   inGreen,
   noResults,
   successGif,
+  upload,
+  replace,
 };

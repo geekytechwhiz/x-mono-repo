@@ -6,7 +6,7 @@ import {
   ThemeConstants,
   ShowToastError,
   nullToObject,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   relativeImageURL,
 } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
@@ -62,7 +62,7 @@ const XImageRender = ({ callBack, editData, isCrop = true }): any => {
         setReturnData(retdata);
         setProcessing(false);
         setGalleryDialogOpen(false);
-        ShowToastSuccessMessage(`${t("auto_cropped_successfully")}`);
+        ShowToastSuccess(`${t("auto_cropped_successfully")}`);
         callBack(retdata);
       } else {
         setProcessing(false);

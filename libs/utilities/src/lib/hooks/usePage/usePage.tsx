@@ -7,7 +7,7 @@
 // import { fetchContent } from '../../Common/Listing/Utils/Helper';
 // import {
 //   showToastError,
-//   showToastSuccess,
+//   ShowToastSuccess,
 // } from '../../components/toastNotification/toastNotificationReactTostify';
 // import { FETCH_PAGE_MODEL_DRAFT } from '../../graphql/fetchQueries';
 // import {
@@ -273,11 +273,11 @@
 //   //     .then(async (resp) => {
 //   //       localStorage.removeItem('lang');
 //   //       if (code) {
-//   //         showToastSuccess(
+//   //         ShowToastSuccess(
 //   //           `${t('page')} ${t('created_toast')} ${t('for')} ${code}`
 //   //         );
 //   //       } else {
-//   //         showToastSuccess(`${t('page')} ${t('created_toast')}`);
+//   //         ShowToastSuccess(`${t('page')} ${t('created_toast')}`);
 //   //       }
 //   //       localStorage.setItem('path', resp?.data?.authoring_createPage?.path);
 //   //       const pageDataObj = {
@@ -394,7 +394,7 @@
 //   //   })
 //   //     .then(async () => {
 //   //       // handleDeleteData;
-//   //       showToastSuccess(`${t('page')} ${t('deleted_toast')}`);
+//   //       ShowToastSuccess(`${t('page')} ${t('deleted_toast')}`);
 //   //       dispatch(
 //   //         await fetchContent(
 //   //           state.content.contentType,
@@ -433,7 +433,7 @@
 //   //             true
 //   //           )
 //   //         );
-//   //         showToastSuccess(t('unpublish_toast'));
+//   //         ShowToastSuccess(t('unpublish_toast'));
 //   //       }
 //   //       if (directDelete) {
 //   //         handleRemove(selectedPageData);
@@ -529,7 +529,7 @@
 //   //               true
 //   //             )
 //   //           );
-//   //           showToastSuccess(
+//   //           ShowToastSuccess(
 //   //             `${t('page')} ${t('publish')} ${t('rescheduled_success_toast')}`
 //   //           );
 //   //         })
@@ -572,7 +572,7 @@
 //   //           true
 //   //         )
 //   //       );
-//   //       // showToastSuccess(`${t('page')} ${t('pubished_success_toast')}`);
+//   //       // ShowToastSuccess(`${t('page')} ${t('pubished_success_toast')}`);
 //   //       const pageDataObj = {
 //   //         eventType: 'Page Published',
 //   //         pagePublished: true,
@@ -617,7 +617,7 @@
 //   //               true
 //   //             )
 //   //           );
-//   //           showToastSuccess(
+//   //           ShowToastSuccess(
 //   //             `${t('page')} ${t('unpublish')} ${t('rescheduled_success_toast')}`
 //   //           );
 //   //         })
@@ -682,7 +682,7 @@
 //   //             true
 //   //           )
 //   //         );
-//   //         showToastSuccess(
+//   //         ShowToastSuccess(
 //   //           `${t('page')} ${t('publish')} ${t('schedule_cancel_toast')}`
 //   //         );
 //   //         if (
@@ -718,7 +718,7 @@
 //   //             true
 //   //           )
 //   //         );
-//   //         showToastSuccess(
+//   //         ShowToastSuccess(
 //   //           `${t('page')} ${t('unpublish')} ${t('schedule_cancel_toast')}`
 //   //         );
 //   //         if (directDelete) {

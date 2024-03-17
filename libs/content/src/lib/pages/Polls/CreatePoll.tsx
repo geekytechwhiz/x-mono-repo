@@ -18,7 +18,7 @@ import {
   CATEGORY_CONTENT,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
@@ -526,7 +526,7 @@ export const CreatePoll = (): JSX.Element => {
         } else {
           setShowPublishConfirm(true);
         }
-        // showToastSuccess(`${t('poll')} ${t('published_toast')}`);
+        // ShowToastSuccess(`${t('poll')} ${t('published_toast')}`);
         setPublishUrl(resp?.data?.authoring_publishContent?.current_page_url);
       })
       .catch((error) => {
@@ -641,7 +641,7 @@ export const CreatePoll = (): JSX.Element => {
             setWorkflowStatus(isWorkflow);
           } else {
             if (!isWorkflow) {
-              ShowToastSuccessMessage(`${t("poll")} ${t("saved_toast")}`);
+              ShowToastSuccess(`${t("poll")} ${t("saved_toast")}`);
             }
             //setOnSavedModal(true);
             setIsDraft(false);
@@ -803,7 +803,7 @@ export const CreatePoll = (): JSX.Element => {
         if (status && status?.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("poll")} ${t("updated_toast")}`);
+            ShowToastSuccess(`${t("poll")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }

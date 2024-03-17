@@ -10,7 +10,7 @@ import { useCustomStyle } from "./DynamicForm.style";
 // import PlateformXDialog from "../../components/Modal";
 // import {
 //   ShowToastError,
-//   ShowToastSuccessMessage,
+//   ShowToastSuccess,
 // } from "../../components/toastNotification/toastNotificationReactTostify";
 // import useDynamicForm from "../../hooks/useDynamicForm/useDynamicForm";
 // import useUserSession from "../../hooks/useUserSession/useUserSession";
@@ -23,7 +23,19 @@ import { useCustomStyle } from "./DynamicForm.style";
 // import Gallery from "../Gallery/Gallery";
 import DynamicSectionComponent from "./DynamicSectionComponent";
 import { contentTypeSchemaApi } from "@platformx/authoring-apis";
-import { useUserSession, trimString, handleHtmlTags, capitalizeFirstLetter, XLoader, CATEGORY_CONTENT, PlateformXDialog, ShowToastSuccessMessage, ShowToastError, AUTH_INFO, SectionWrapper } from "@platformx/utilities";
+import {
+  useUserSession,
+  trimString,
+  handleHtmlTags,
+  capitalizeFirstLetter,
+  XLoader,
+  CATEGORY_CONTENT,
+  PlateformXDialog,
+  ShowToastSuccess,
+  ShowToastError,
+  AUTH_INFO,
+  SectionWrapper,
+} from "@platformx/utilities";
 import { ContentType } from "../../enums/ContentType";
 import useDynamicForm from "../../hooks/useDynamicForm/useDynamicForm";
 import { SectionProps } from "./DynamicComponent.types";
@@ -187,7 +199,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
         console.log("path", temp[temp.length - 1]);
         path.current = temp[temp.length - 1];
         if (pageState == "DRAFT") {
-          ShowToastSuccessMessage(`${contentType} ${t("created_toast")}`);
+          ShowToastSuccess(`${contentType} ${t("created_toast")}`);
         } else {
           try {
             setIsLoading(true);
@@ -207,7 +219,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
           }
         }
       } else {
-        ShowToastSuccessMessage(detailsRes.authoring_createContent.message);
+        ShowToastSuccess(detailsRes.authoring_createContent.message);
       }
     } catch (err: any) {
       console.log("err", err);
@@ -265,31 +277,31 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
     if (birth_date === "0") {
       setContentInstance({
         ...contentInstance,
-        "birth_date": "",
+        birth_date: "",
       });
       ShowToastError("Birth Date is required");
     } else if (debut_date === "0") {
       setContentInstance({
         ...contentInstance,
-        "debut_date": "",
+        debut_date: "",
       });
       ShowToastError("Debut Date is required");
     } else if (joined_date === "0") {
       setContentInstance({
         ...contentInstance,
-        "joined_date": "",
+        joined_date: "",
       });
       ShowToastError("Joined Date is required");
     } else if (left_date === "0") {
       setContentInstance({
         ...contentInstance,
-        "left_date": "",
+        left_date: "",
       });
       ShowToastError("Left Date is required");
     } else if (international_debut_date === "0") {
       setContentInstance({
         ...contentInstance,
-        "international_debut_date": "",
+        international_debut_date: "",
       });
       ShowToastError("International Debut Date is required");
     } else if (Object.keys(profile_image).length === 0) {
