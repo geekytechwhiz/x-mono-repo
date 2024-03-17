@@ -6,49 +6,8 @@ import { formRelativeURL } from "../helperFunction";
 
 import { useCustomStyle } from "./Footer.style";
 
-interface IFooter {
-  FooterLogo: string;
-  Description: string;
-  FacebookUrl: string;
-  LinkedinUrl: string;
-  InstagramUrl: string;
-  TwitterUrl: string;
-  YoutubeUrl: string;
-  Address: string;
-  Email: string;
-  PhoneNumber: string;
-  NewsLetterDescription: string;
-  CopyrightYearDescription: string;
-  TermsAndConditions: string;
-  PrivacyUrl: string;
-  CookiesDescription: string;
-  HelpSupport: string;
-  about_us_text: string;
-  address: string;
-  contact_number: string;
-  copyright_text: string;
-  email_address: string;
-  news_letter_description: string;
-  news_letter_title: string;
-  site_logo: string;
-  title_text: string;
-  link: LinkItem[];
-  footermediahandle: MediaItem[];
-}
-
-interface LinkItem {
-  link_name: string;
-  link_url: string;
-}
-
-interface MediaItem {
-  enable: boolean;
-  icon_image: string;
-  media_name: string;
-  media_url: string;
-}
 interface Props {
-  data: IFooter;
+  data: any;
   langCode: string;
   gcpUrl?: string;
   bucketName?: string;

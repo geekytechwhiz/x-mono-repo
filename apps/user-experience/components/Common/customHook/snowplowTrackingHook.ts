@@ -1,12 +1,11 @@
 import getConfig from "next/config";
 import { SNOWPLOW } from "../../../constants/CommonConstants";
-import { locationApiCallService } from "../../../utils/helperFunctions";
+import { locationApiCallService, postPageImpressionEvent } from "../../../utils/helperFunctions";
 import usePlatformAnalytics from "platform-x-prelems/prelems/analytics";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
-export const snowplowTrackingHook = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+export const useSnowplowTracking = () => {
   const [handleTrack, , handlePage] = usePlatformAnalytics();
 
   const noValueFormatData = (value = "") => {
@@ -84,6 +83,7 @@ export const snowplowTrackingHook = () => {
     };
     handleTrack(SNOWPLOW.TRACKID, snowplowObj);
     handlePage(gtmObj?.eventType, gtmObj);
+    postPageImpressionEvent(pageData, "Page");
   };
 
   /**

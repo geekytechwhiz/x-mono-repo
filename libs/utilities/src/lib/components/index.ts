@@ -19,6 +19,9 @@ import Timer from "./Timer/Timer";
 import XImage from "./XImage/XImage";
 import { XToolTip } from "./XToolTip/XToolTip";
 import SearchBox from "./SearchBox/SearchBox";
+import { EventHeader } from "./Header/EventHeader";
+import TextBoxWithoutBorder from "./TextBoxWithoutBorder";
+import TextBoxWithBorder from "./TextBoxWithBorder";
 
 export * from "./Card/constants";
 export * from "./DragAndDrop/index";
@@ -48,4 +51,7 @@ export {
   XToolTip,
   LanguageDropDownCheckBox,
   SearchBox,
+  EventHeader,
+  TextBoxWithoutBorder,
+  TextBoxWithBorder,
 };

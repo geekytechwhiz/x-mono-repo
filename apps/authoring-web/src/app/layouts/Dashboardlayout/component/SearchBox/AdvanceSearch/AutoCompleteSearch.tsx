@@ -1,27 +1,27 @@
-import SearchIcon from '@mui/icons-material/Search';
-import { Box, Grid, Typography } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/system';
-import { contentTypeAPIs } from '@platformx/authoring-apis';
-import { SORT_ORDER, debounce } from '@platformx/utilities';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { iconMap } from '../../../../../utils/constant';
+import SearchIcon from "@mui/icons-material/Search";
+import { Box, Grid, Typography } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
+import { styled } from "@mui/system";
+import { contentTypeAPIs } from "@platformx/authoring-apis";
+import { SORT_ORDER, debounce } from "@platformx/utilities";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { iconMap } from "../../../../../utils/constant";
 
-const TextFieldBox = styled('div')({
-  position: 'relative',
-  width: '100%',
-  '& input': {
-    paddingLeft: '40px',
+const TextFieldBox = styled("div")({
+  position: "relative",
+  width: "100%",
+  "& input": {
+    paddingLeft: "40px",
   },
 });
 
-const ListContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  margin: '5px 10px',
+const ListContainer = styled("div")({
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "center",
+  margin: "5px 10px",
 });
 export default function AutoCompleteSearch({
   selectedCategory,
@@ -31,13 +31,13 @@ export default function AutoCompleteSearch({
 }) {
   const { t } = useTranslation();
   const [autoCompleteData, setAutoCompleteData] = useState<any>([]);
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const renderGroup = (params: any) => {
     const { key, children, group } = params;
     return (
-      <Grid container alignItems="center" paddingLeft={2}>
+      <Grid container alignItems='center' paddingLeft={2}>
         <Grid item>
-          <Typography variant="subtitle1">{group}</Typography>
+          <Typography variant='subtitle1'>{group}</Typography>
         </Grid>
         <Grid item xs={12}>
           {children}
@@ -46,12 +46,12 @@ export default function AutoCompleteSearch({
     );
   };
 
-  const getSuggestions = async (keyword) => {
+  const getSuggestions = async (searchTerm) => {
     const response: any = await contentTypeAPIs.fetchContentAll({
       contentType: selectedCategory.category,
-      pageFilter: 'ALL',
+      pageFilter: "ALL",
       sort: SORT_ORDER,
-      searchTerm: keyword,
+      searchTerm: searchTerm,
       isSuggestive: true,
       pagination: { start: 0, rows: 100 },
       tags: filters.tags,
@@ -72,10 +72,10 @@ export default function AutoCompleteSearch({
     setKeyword(e.target.value);
     handleSearch({
       tags: [],
-      title: '',
-      author: '',
-      fromDate: '',
-      toDate: '',
+      title: "",
+      author: "",
+      fromDate: "",
+      toDate: "",
     });
   };
 
@@ -84,44 +84,44 @@ export default function AutoCompleteSearch({
       fullWidth
       freeSolo
       sx={{
-        '& .Platform-x-OutlinedInput-notchedOutline': {
-          border: 'none',
+        "& .Platform-x-OutlinedInput-notchedOutline": {
+          border: "none",
         },
       }}
       options={autoCompleteData || []}
-      groupBy={(option: any) => option.ContentType || ''}
-      getOptionLabel={(option) => option?.Title || ''}
-      isOptionEqualToValue={(option, value) => option?.Title == value?.Title}
-      onInputChange={async (event, newInputValue) => {
+      groupBy={(option: any) => option.ContentType || ""}
+      getOptionLabel={(option) => option?.Title || ""}
+      isOptionEqualToValue={(option, value) => option?.Title === value?.Title}
+      onInputChange={(event, newInputValue) => {
         handleSearchKeyword(newInputValue);
       }}
       renderInput={(params) => (
         <TextFieldBox>
-          <Box className="searchIconPos">
+          <Box className='searchIconPos'>
             <SearchIcon />
           </Box>
           <TextField
             {...params}
             placeholder={
-              t('search_for') +
-              '“' +
-              t('pages') +
-              '” / “' +
-              t('articles') +
-              '” / “' +
-              t('quiz') +
-              '“ / “' +
-              t('polls') +
-              '“ / “' +
-              t('events') +
-              '“'
+              t("search_for") +
+              "“" +
+              t("pages") +
+              "” / “" +
+              t("articles") +
+              "” / “" +
+              t("quiz") +
+              "“ / “" +
+              t("polls") +
+              "“ / “" +
+              t("events") +
+              "“"
             }
             onChange={(e) => {
               handleSearchKeyword(e.target.value);
               handleSuggestions(e);
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 e.preventDefault();
                 handleKeyDown(e);
               }
@@ -136,7 +136,7 @@ export default function AutoCompleteSearch({
             <li {...props}>
               <ListContainer>
                 {iconMap[option.ContentType]}
-                <Typography variant="h5regular" sx={{ marginLeft: '8px' }}>
+                <Typography variant='h5regular' sx={{ marginLeft: "8px" }}>
                   {option.Title}
                 </Typography>
               </ListContainer>

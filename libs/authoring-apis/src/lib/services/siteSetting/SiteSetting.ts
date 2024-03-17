@@ -3,6 +3,7 @@ import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import {
   FETCH_ADMIN_DOMAIN,
+  FETCH_CATEGORY,
   FETCH_COOKIE_POLICY,
   FETCH_COUNTRY,
   FETCH_FOOTER_SETTING,
@@ -10,15 +11,18 @@ import {
   FETCH_HEADER_SETTING,
   FETCH_MEDIA_HANDLE,
   FETCH_MULTISITE_LISTING,
+  FETCH_TAG,
   FETCH_TAG_LISTING,
   FETCH_USER_SITE,
 } from "../../graphQL/queries/siteSettingQueries";
 import {
+  CREATE_TAG,
   PUBLISH_COOKIE_SETTING,
   PUBLISH_FOOTER_SETTING,
   PUBLISH_GLOBAL_SETTING,
   PUBLISH_HEADER_SETTING,
   PUBLISH_MEDIA_HANDLE,
+  PUBLISH_TAG,
   UPDATE_COOKIE_POLICY,
   UPDATE_FOOTER_SETTING,
   UPDATE_GLOBAL_SETTING,
@@ -343,6 +347,60 @@ export const fetchTagList = async <T>(input: T): Promise<ApiResponse<T>> => {
     });
     return data;
   } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
+};
+
+export const fetchCategory = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_CATEGORY,
+      variables: input,
+      fetchPolicy: "cache-first",
+    });
+    return data;
+  } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
+};
+
+export const fetchTag = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.query({
+      query: FETCH_TAG,
+      variables: input,
+      fetchPolicy: "cache-first",
+    });
+    return data;
+  } catch (err: any) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
+};
+
+export const createTag = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.mutate({
+      mutation: CREATE_TAG,
+      variables: input,
+    });
+    return data;
+  } catch (err) {
+    if (err instanceof ApolloError) console.log(err.graphQLErrors);
+    throw err;
+  }
+};
+
+export const publishTag = async <T>(input: T): Promise<ApiResponse<T>> => {
+  try {
+    const { data } = await graphqlInstance.mutate({
+      mutation: PUBLISH_TAG,
+      variables: input,
+    });
+    return data;
+  } catch (err) {
     if (err instanceof ApolloError) console.log(err.graphQLErrors);
     throw err;
   }
