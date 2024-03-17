@@ -225,6 +225,11 @@ import Step3img from "../pngIcons/step3img.png";
 import Step3newimg from "../pngIcons/step3newimg.png";
 import Step4img from "../pngIcons/step4image.png";
 import Step4imgupdate from "../pngIcons/step4imgupdate.png";
+import Step4imgn from "./step4imgn.svg";
+import Step4imgn1 from "./stepimgn1.svg";
+import Step4imgn2 from "./step4imgn2.svg";
+import Step4imgnblur from "./step4imgblur.svg";
+import Step5img from "./step5img.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -451,4 +456,9 @@ export {
   Step3newimg,
   Step4img,
   Step4imgupdate,
+  Step4imgn,
+  Step4imgn1,
+  Step4imgn2,
+  Step4imgnblur,
+  Step5img,
 };

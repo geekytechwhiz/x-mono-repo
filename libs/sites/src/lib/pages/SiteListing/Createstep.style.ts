@@ -176,10 +176,14 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   siteiconnew: {
     textAlign: "center",
     marginTop: "25px",
+    display: "flex",
+    padding: "15px",
+    justifyContent: "center",
   },
   siteiconinner: {
     marginBottom: "30px",
     marginRight: "10px",
+    marginLeft: "30px",
   },
   boxscroll: {
     overflowY: "scroll",
@@ -332,5 +336,63 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   boxadd: {
     display: "inline-flex",
     gap: "31px",
+  },
+  xlogobox: {
+    padding: "5px 90px 5px 154px",
+  },
+  skipbtncolor: {
+    color: "#4B9EF9",
+  },
+  skeletons: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  typospace: {
+    display: "inline-flex",
+    sgap: "33px",
+  },
+  maininnercontain: {
+    width: "540px",
+    height: "64px",
+    borderRadius: "5px",
+    backgroundColor: "#FFF",
+    boxShadow: "0px 49px 57px 0px rgba(0, 0, 0, 0.30)",
+    marginTop: "73px",
+  },
+  step3boxn: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  step3imgn: {
+    width: "462px",
+    height: "424px",
+    backgroundColor: "#FFF",
+  },
+  imgwidthstep3: {
+    width: "100%",
+  },
+  step3justify: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  step4boxn: {
+    width: "100%",
+    marginTop: "20px",
+  },
+  accordianbox: {
+    boxShadow: "none !impotant",
+  },
+  accordiansum: {
+    padding: "0px 15px 0px 0px",
+  },
+  accordiandeatail: {
+    display: "flex",
+    gap: "8px",
+    flexWrap: "wrap",
+    padding: "8px 0px 0px 0px",
+  },
+  step5boxbtn: {
+    backgroundColor: "#4B9EF9 !impotant",
+    color: "#FFF !important",
   },
 }));

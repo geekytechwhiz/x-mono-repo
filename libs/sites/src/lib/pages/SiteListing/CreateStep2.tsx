@@ -20,24 +20,22 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Skeleton from "@mui/material/Skeleton";
 import { Progressbar } from "../SiteListing/Progressbar";
 import { useState } from "react";
-import PlateformXCreatestep3Dialog from "./CreateStep3";
 
 export type DialogList = {
   isDialogOpen: boolean;
   closeButtonHandle: any;
-  progress: any;
-  setProgress: any;
+  handlenextbutton: any;
+  handlebackbutton: any;
 };
 
 export default function PlateformXCreatestep2Dialog({
   isDialogOpen,
   closeButtonHandle,
-  progress,
-  setProgress,
+  handlenextbutton,
+  handlebackbutton,
 }: DialogList) {
   const classes = useCreatesiteStepStyle();
   const [selectedImage, setSelectedImage] = useState(Sitethemenewicon);
-  const [backstep3, setBackStep3] = useState(false);
   const handleFilterClose = () => {
     // setAnchor(null);
   };
@@ -115,18 +113,13 @@ export default function PlateformXCreatestep2Dialog({
                   </Box>
                   <Box className={classes.btnbox}>
                     <Box className={classes.skipbtn}>
-                      <Typography sx={{ color: "#4B9EF9" }}>Skip</Typography>
+                      <Typography className={classes.skipbtncolor}>Skip</Typography>
                       <ArrowForwardIosIcon
                         onClick={() => {
-                          setBackStep3(true);
+                          handlenextbutton({ step3: true });
+                          handleFilterClose();
                         }}
-                        sx={{ color: "#4B9EF9" }}
-                      />
-                      <PlateformXCreatestep3Dialog
-                        isDialogOpen={backstep3}
-                        closeButtonHandle={() => setBackStep3(false)}
-                        progress={undefined}
-                        setProgress={undefined}
+                        className={classes.skipbtncolor}
                       />
                     </Box>
                     <Box className={classes.backbtn}>
@@ -134,7 +127,7 @@ export default function PlateformXCreatestep2Dialog({
                         className={classes.innercancel}
                         variant='outlined'
                         onClick={() => {
-                          setBackStep3(false);
+                          handlebackbutton({ step2: false });
                           handleFilterClose();
                         }}>
                         back
@@ -142,16 +135,11 @@ export default function PlateformXCreatestep2Dialog({
                       <Button
                         variant='primaryButton'
                         onClick={() => {
-                          setBackStep3(true);
+                          handlenextbutton({ step3: true });
+                          handleFilterClose();
                         }}>
                         Next
                       </Button>
-                      <PlateformXCreatestep3Dialog
-                        isDialogOpen={backstep3}
-                        closeButtonHandle={() => setBackStep3(false)}
-                        progress={undefined}
-                        setProgress={undefined}
-                      />
                     </Box>
                   </Box>
                 </Box>
@@ -182,7 +170,7 @@ export default function PlateformXCreatestep2Dialog({
                     <Box>
                       <img className={classes.imgbox} src={selectedImage} alt='icon ' />
                     </Box>
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Box className={classes.skeletons}>
                       <Box className={classes.skeletonboxstep2}>
                         <Skeleton
                           className={classes.skeletonloader}
@@ -222,7 +210,7 @@ export default function PlateformXCreatestep2Dialog({
                     </Box>
                     <Box className={classes.textpaddingnew}>
                       <Typography variant='h5semibold'>Font Family</Typography>
-                      <Box sx={{ display: "inline-flex", gap: "33px" }}>
+                      <Box className={classes.typospace}>
                         <Box>
                           <Typography variant='h6medium'>Primary</Typography>
                           <Typography variant='h3semibold'>Poppins</Typography>

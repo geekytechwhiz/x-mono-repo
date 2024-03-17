@@ -15,32 +15,26 @@ import { AutoTextArea, PlatXLogo, HandsIcon, TextBox, SiteNewIcon } from "@platf
 import { useCreatesiteStepStyle } from "./Createstep.style";
 import { useState } from "react";
 import { Progressbar } from "../SiteListing/Progressbar";
-import PlateformXCreatestep2Dialog from "./CreateStep2";
 
 export type DialogList = {
   isDialogOpen: boolean;
   closeButtonHandle: any;
+  handlenextbutton: any;
 };
 
 export default function PlateformXCreatestep1Dialog({
   isDialogOpen,
   closeButtonHandle,
+  handlenextbutton,
 }: DialogList) {
   const classes = useCreatesiteStepStyle();
   const [, setAge] = useState("");
-  const [folderValue, setFolderValue] = useState(false);
-  const [progress, setProgress] = useState(0);
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);
   };
   const handleFilterClose = () => {
     // setAnchor(null);
   };
-  //   useEffect(() => {
-  // if(progress === 0) {
-  // setProgress(10);
-  // }
-  //   }, [progress]);
 
   return (
     <Box className='socialsharemodal'>
@@ -61,12 +55,12 @@ export default function PlateformXCreatestep1Dialog({
           <Box className={classes.modalcontain}>
             <Grid container>
               <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
-                <Box sx={{ padding: "5px 90px 5px 154px" }}>
+                <Box className={classes.xlogobox}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
                   </Box>
                   <Box className={classes.progrebar}>
-                    <Progressbar progress={progress} />
+                    <Progressbar progress={10} />
                   </Box>
                   <Box className={classes.textmargin}>
                     <Typography variant='h7regular'>Step 1 out of 5</Typography>
@@ -112,7 +106,7 @@ export default function PlateformXCreatestep1Dialog({
                     </Button>
                     <Button
                       onClick={() => {
-                        setFolderValue(true);
+                        handlenextbutton({ step2: true });
                         handleFilterClose();
                       }}
                       variant='primaryButton'>
@@ -120,12 +114,6 @@ export default function PlateformXCreatestep1Dialog({
                     </Button>
                   </Box>
                 </Box>
-                <PlateformXCreatestep2Dialog
-                  isDialogOpen={folderValue}
-                  progress={progress}
-                  setProgress={setProgress}
-                  closeButtonHandle={() => setFolderValue(false)}
-                />
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
                 <Box className={classes.createcontain}>

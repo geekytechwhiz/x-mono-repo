@@ -8,24 +8,24 @@ import { useCreatesiteStepStyle } from "./Createstep.style";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Skeleton from "@mui/material/Skeleton";
 import { Progressbar } from "../SiteListing/Progressbar";
-import { useState } from "react";
-import PlateformXCreatestep4Dialog from "./CreateStep4";
 
 export type DialogList = {
   isDialogOpen: boolean;
   closeButtonHandle: any;
-  progress: any;
-  setProgress: any;
+  handlenextbutton: any;
+  handlebackbutton: any;
 };
 
 export default function PlateformXCreatestep3Dialog({
   isDialogOpen,
   closeButtonHandle,
-  progress,
-  setProgress,
+  handlenextbutton,
+  handlebackbutton,
 }: DialogList) {
   const classes = useCreatesiteStepStyle();
-  const [backstep3, setBackStep3] = useState(false);
+  const handleFilterClose = () => {
+    // setAnchor(null);
+  };
   // Mock data (replace with your actual image URLs)
   const mockData = [
     { id: 1, value: "home" },
@@ -80,7 +80,7 @@ export default function PlateformXCreatestep3Dialog({
                   <Grid container>
                     {/* Mapping over mock data to display images */}
                     {mockData.map((item) => (
-                      <Grid item xs={6} sm={4} md={3} lg={4} key={item.id} marginTop={"13px"}>
+                      <Grid item xs={6} sm={4} md={4} lg={4} key={item.id} marginTop={"13px"}>
                         <Button
                           sx={{ marginTop: "10px", width: "160px" }}
                           variant='outlined'
@@ -94,46 +94,40 @@ export default function PlateformXCreatestep3Dialog({
 
                   <Box className={classes.btnbox}>
                     <Box className={classes.skipbtn}>
-                      <Typography sx={{ color: "#4B9EF9" }}>Skip</Typography>
-                      <ArrowForwardIosIcon sx={{ color: "#4B9EF9" }} />
+                      <Typography className={classes.skipbtncolor}>Skip</Typography>
+                      <ArrowForwardIosIcon
+                        className={classes.skipbtncolor}
+                        onClick={() => {
+                          handlenextbutton({ step4: true });
+                          handleFilterClose();
+                        }}
+                      />
                     </Box>
                     <Box className={classes.backbtn}>
-                      <Button className={classes.innercancel} variant='outlined'>
+                      <Button
+                        className={classes.innercancel}
+                        onClick={() => {
+                          handlebackbutton({ step3: false });
+                          handleFilterClose();
+                        }}
+                        variant='outlined'>
                         back
                       </Button>
                       <Button
                         onClick={() => {
-                          setBackStep3(true);
+                          handlenextbutton({ step4: true });
+                          handleFilterClose();
                         }}
                         variant='primaryButton'>
                         Next
                       </Button>
-                      <PlateformXCreatestep4Dialog
-                        isDialogOpen={backstep3}
-                        closeButtonHandle={() => setBackStep3(false)}
-                        progress={undefined}
-                        setProgress={undefined}
-                        tags={true}
-                        isEdit={false}
-                        tagData={true}
-                        selectedTag={true}
-                        handleTagOnChange={true}
-                      />
                     </Box>
                   </Box>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
                 <Box className={classes.maincontain}>
-                  <Box
-                    sx={{
-                      width: "540px",
-                      height: "64px",
-                      borderRadius: "5px",
-                      backgroundColor: "#FFF",
-                      boxShadow: "0px 49px 57px 0px rgba(0, 0, 0, 0.30)",
-                      marginTop: "73px",
-                    }}>
+                  <Box className={classes.maininnercontain}>
                     <Box className={classes.step2innercontainer}>
                       <Box>
                         <img src={PlatXLogo} alt='icon' />
@@ -156,10 +150,10 @@ export default function PlateformXCreatestep3Dialog({
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <Box sx={{ width: "462px", height: "424px", backgroundColor: "#FFF" }}>
-                    <img style={{ width: "100%" }} src={Step3newimg} alt='ici' />
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Box className={classes.step3boxn}>
+                  <Box className={classes.step3imgn}>
+                    <img className={classes.imgwidthstep3} src={Step3newimg} alt='ici' />
+                    <Box className={classes.step3justify}>
                       <Box className={classes.skeletonboxstep2}>
                         <Skeleton
                           className={classes.skeletonloader}
