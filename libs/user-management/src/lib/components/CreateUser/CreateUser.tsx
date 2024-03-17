@@ -1,20 +1,27 @@
+/* eslint-disable no-shadow */
 import { useMutation } from "@apollo/client";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Box } from "@mui/material";
-import { Loader } from "@platformx/utilities";
 import { useFormik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as yup from "yup";
-
-import { UserManagementQueries, userManagementAPI } from "@platformx/authoring-apis";
-import { PlateformXDialog, ShowToastError, ShowToastSuccess } from "@platformx/utilities";
-
-import { ThemeConstants, USERNAME_EMAIL_EXIST } from "@platformx/utilities";
-
-import { snowplowTrackingHook } from "@platformx/authoring-apis";
-import { getSelectedSite, getSubDomain } from "@platformx/utilities";
+import {
+  UserManagementQueries,
+  userManagementAPI,
+  snowplowTrackingHook,
+} from "@platformx/authoring-apis";
+import {
+  PlateformXDialog,
+  ShowToastError,
+  ShowToastSuccess,
+  ThemeConstants,
+  USERNAME_EMAIL_EXIST,
+  getSelectedSite,
+  getSubDomain,
+  Loader,
+} from "@platformx/utilities";
 import {
   BEFORE_UNLOAD,
   DRAFT,
@@ -40,9 +47,9 @@ const CreateUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [createUserDisable, setCreateUserDisable] = useState(true);
   const [isEdited, setIsEdited] = useState<boolean>(false);
-  const [galleryState, setGalleryState] = useState<boolean>(false);
+  const [, setGalleryState] = useState<boolean>(false);
   const galleryType = useRef<string>(IMAGES);
-  const [key, setKey] = useState("");
+  const [, setKey] = useState("");
   const unsavedChanges = useRef<boolean>(false);
   const [roleSelected, setRoleSelected] = useState("");
   const [prevRoles, setPrevRoles] = useState([]);
@@ -50,7 +57,6 @@ const CreateUser = () => {
   const [phone, setPhone] = useState("");
   const createPageUrl = new URL(window.location.href);
   const [isd, setISD] = useState("");
-  const scrollDebounceRef = useRef<any>(null);
   const [searchParams] = useSearchParams();
   const usertype = searchParams.get("usertype");
   const isEditMode = useRef(
@@ -58,7 +64,7 @@ const CreateUser = () => {
   );
   const navigate = useNavigate();
   //calling api to validate email existence
-  const validateEmail = async (value: string, authoringUser: boolean, renderingUser: boolean) => {
+  const validateEmail = (value: string, authoringUser: boolean, renderingUser: boolean) => {
     return userManagementAPI.validateEmailExist({
       userName: value,
       isAuthoringUser: authoringUser,
@@ -66,7 +72,7 @@ const CreateUser = () => {
     });
   };
   // calling api to get user details
-  const getUserDetails = async (value: string, authoringUser: boolean, renderingUser: boolean) => {
+  const getUserDetails = (value: string, authoringUser: boolean, renderingUser: boolean) => {
     return userManagementAPI.getUsersDetails({
       user_id: value,
       isAuthoringUser: authoringUser,
@@ -74,6 +80,7 @@ const CreateUser = () => {
     });
   };
   //this method used for update user details
+  // eslint-disable-next-line require-await
   const editUserDetails = async (url: any) => {
     const {
       timezone,
@@ -270,7 +277,7 @@ const CreateUser = () => {
         ShowToastSuccess(detailsRes.authoring_updateUser.message);
       }
     } catch (err: any) {
-      console.log("err", err);
+      console.error("err", err);
       err.graphQLErrors.length > 0 &&
         ShowToastError(
           err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
@@ -334,7 +341,7 @@ const CreateUser = () => {
           updateUser(url);
         } else {
           try {
-            const validationRes: any = await validateEmail(
+            await validateEmail(
               values.email,
               userDetails.is_Authoring_User,
               userDetails.is_Rendering_User,
@@ -363,7 +370,7 @@ const CreateUser = () => {
   const handleEmail = async (e: any) => {
     if (e.target.value !== "" && !formik.errors.email) {
       try {
-        const validationRes: any = await validateEmail(
+        await validateEmail(
           e.target.value,
           userDetails.is_Authoring_User,
           userDetails.is_Rendering_User,
@@ -380,39 +387,12 @@ const CreateUser = () => {
       }
     }
   };
-  const [, setSelectedImage] = useState({
-    Thumbnail: "",
-    title: "",
-    description: "",
-  });
 
-  const setImageToDefault = () => {
-    setSelectedImage({
-      title: "",
-      Thumbnail: "",
-      description: "",
-    });
-  };
-  const toggleGallery = (toggleState: any, type: any) => {
-    setGalleryState(toggleState);
-    if (type == "cancel") {
-      setImageToDefault();
-    }
-  };
   const showGallery = (gType: any, keyName: any) => {
     window.scrollTo(0, 0);
     galleryType.current = gType;
     setGalleryState(true);
     setKey(keyName);
-  };
-  const handleSelectedImage = (image: any, keyName: any) => {
-    setSelectedImage(image);
-
-    setUserDetails({
-      ...userDetails,
-      [keyName]: image?.Thumbnail,
-    });
-    unsavedChanges.current = true;
   };
 
   const handleConfirm = () => {
@@ -454,7 +434,7 @@ const CreateUser = () => {
   };
   const unloadCallback = (event: any) => {
     event.preventDefault();
-    if (unsavedChanges.current == true) {
+    if (unsavedChanges.current === true) {
       event.returnValue = "";
       return "";
     } else {
@@ -538,7 +518,6 @@ const CreateUser = () => {
   };
 
   const [parentToolTip, setParentToolTip] = useState("userTypes");
-  const [scrollToView, setscrollToView] = useState<any>();
 
   const icons = [
     { id: "user", tooltip: "user" },
@@ -580,16 +559,7 @@ const CreateUser = () => {
         <Box
           sx={{
             backgroundColor: ThemeConstants.WHITE_COLOR,
-          }}>
-          {/* {galleryState && (
-            <Gallery
-              handleImageSelected={handleSelectedImage}
-              toggleGallery={toggleGallery}
-              galleryMode={galleryType.current}
-              keyName={key}
-            />
-          )} */}
-        </Box>
+          }}></Box>
         <TopBar
           returnBack={returnBack}
           createUserDisable={createUserDisable}

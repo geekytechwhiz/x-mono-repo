@@ -4,6 +4,7 @@ import { Button, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useCustomStyle } from './AcceptRejectButton.styles';
 import { ADMIN_ACTIONS_BUTTON } from './Utils/constant';
+
 export default function AcceptRejectButton({
   variant,
   onClick = () => {},

@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-export const ShowToastSuccess = (message) => {
+export const showToastSuccess = (message) => {
   toast.success(message);
 };
 
