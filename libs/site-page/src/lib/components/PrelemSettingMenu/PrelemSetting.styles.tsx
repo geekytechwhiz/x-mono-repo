@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles(() => ({
   PrelemSettingBox: {
-    padding: '10px 15px',
+    padding: "10px 15px",
   },
 }));

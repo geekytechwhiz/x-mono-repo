@@ -1,76 +1,76 @@
-import { makeStyles } from '@material-ui/core';
-import { ThemeConstants } from '@platformx/utilities';
+import { makeStyles } from "@mui/styles";
+import { ThemeConstants } from "@platformx/utilities";
 
 export const useStyles = makeStyles(() => ({
   editPageComonBox: {
-    position: 'relative',
-    outline: '2px solid transparent',
-    marginBottom: '20px',
-    marginTop: '20px',
+    position: "relative",
+    outline: "2px solid transparent",
+    marginBottom: "20px",
+    marginTop: "20px",
     background: ThemeConstants.WHITE_COLOR,
-    '&:hover': {
-       outlineColor: ThemeConstants.BLUE_COLOR,
+    "&:hover": {
+      outlineColor: ThemeConstants.BLUE_COLOR,
     },
   },
   prelemButtonsWp: {
     background: ThemeConstants.BLACK_COLOR_V1,
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     color: ThemeConstants.WHITE_COLOR,
     zIndex: 999,
     [`@media(max-width:${ThemeConstants.EM}px)`]: {
-      left: 'auto',
+      left: "auto",
       right: 0,
-      top: '10px',
+      top: "10px",
     },
-    '& ul': {
+    "& ul": {
       padding: 0,
       margin: 0,
-      display: 'flex',
+      display: "flex",
       [`@media(max-width:${ThemeConstants.EM}px)`]: {
-        flexDirection: 'column',
+        flexDirection: "column",
       },
-      '& li': {
-        margin: '5px 2px',
-        display: 'flex',
-        cursor: 'pointer',
+      "& li": {
+        margin: "5px 2px",
+        display: "flex",
+        cursor: "pointer",
         [`@media(max-width:${ThemeConstants.EM}px)`]: {
-          margin: '2px',
+          margin: "2px",
         },
-        '& svg': {
-          fontSize: '20px',
+        "& svg": {
+          fontSize: "20px",
         },
-        '&:hover': {
+        "&:hover": {
           color: ThemeConstants.PRIMARY_COLOR,
         },
       },
     },
   },
   bottomaddCtaWp: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
-    bottom: '-15px',
-    width: '100%',
-    justifyContent: 'center',
-    height: '40px',
+    bottom: "-15px",
+    width: "100%",
+    justifyContent: "center",
+    height: "40px",
     zIndex: 99,
-    '& button': {
-      minWidth: '159px',
+    "& button": {
+      minWidth: "159px",
       margin: 0,
-    }
+    },
   },
   topaddCtaWp: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
-    top: '-25px',
-    width: '100%',
-    justifyContent: 'center',
+    top: "-25px",
+    width: "100%",
+    justifyContent: "center",
     zIndex: 99,
-    height: '40px',
-    '& button': {
-      minWidth: '159px',
+    height: "40px",
+    "& button": {
+      minWidth: "159px",
       margin: 0,
-    }
+    },
   },
 }));
