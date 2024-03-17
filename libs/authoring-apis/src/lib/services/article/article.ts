@@ -1,15 +1,16 @@
-import { ApolloError } from '@apollo/client';
-import graphqlInstance from '../../config/graphqlConfig';
-import { ArticleQueries } from '../../graphQL/queries/articleQueries';
-import { FETCH_TAG_LIST } from '../../graphQL/queries/tagQueries';
-import { ApiResponse } from '../../utils/types';
+import { ApolloError } from "@apollo/client";
+import graphqlInstance from "../../config/graphqlConfig";
+import { ArticleQueries } from "../../graphQL/queries/articleQueries";
+import { FETCH_TAG_LIST_QUERY } from "../../graphQL/queries/tagQueries";
+import { ApiResponse } from "../../utils/types";
+
 const articleApi = {
   getList: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data } = await graphqlInstance.query({
         query: ArticleQueries.FETCH_CONTENT_LIST_ALL,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
@@ -22,7 +23,7 @@ const articleApi = {
       const { data } = await graphqlInstance.query({
         query: ArticleQueries.CREATE_CONTENT,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
@@ -35,7 +36,7 @@ const articleApi = {
       const { data } = await graphqlInstance.query({
         query: ArticleQueries.PUBLISH_CONTENT,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
@@ -48,7 +49,7 @@ const articleApi = {
       const { data } = await graphqlInstance.query({
         query: ArticleQueries.FETCH_CONTENT_BY_PATH,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
@@ -61,7 +62,7 @@ const articleApi = {
       const { data } = await graphqlInstance.query({
         query: ArticleQueries.UPDATE_CONTENT,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
@@ -72,9 +73,9 @@ const articleApi = {
   getTags: async <T>(input: any): Promise<ApiResponse<T>> => {
     try {
       const { data } = await graphqlInstance.query({
-        query: FETCH_TAG_LIST,
+        query: FETCH_TAG_LIST_QUERY,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {

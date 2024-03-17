@@ -2,7 +2,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   commentsApi,
   contentTypeAPIs,
   useComment,
@@ -93,7 +93,7 @@ export const CreateQuiz = () => {
   const [tagArr, setTagArr] = useState<any>([]);
   const [parentToolTip, setParentToolTip] = useState("");
   const [, setFieldChanges] = useState();
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const scrollDebounceRef = useRef<any>(null);
   const [timerState, setTimerState] = useState(

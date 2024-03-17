@@ -1,7 +1,7 @@
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { CATEGORY_CONTENT, CONTENT_TYPES, fetchTagList } from "@platformx/authoring-apis";
+import { CATEGORY_CONTENT, CONTENT_TYPES, fetchTagListing } from "@platformx/authoring-apis";
 import { ContentListingHeader } from "@platformx/content";
 import { Card } from "@platformx/utilities";
 
@@ -12,7 +12,7 @@ export const TagListing = () => {
 
   const fetchTag = async () => {
     try {
-      const { authoring_getTagItems = [] }: any = await fetchTagList({
+      const { authoring_getTagItems = [] }: any = await fetchTagListing({
         searchCategory: "",
         searchString: "",
       });

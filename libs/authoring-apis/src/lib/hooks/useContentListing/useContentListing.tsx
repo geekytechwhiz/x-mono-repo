@@ -33,6 +33,7 @@ import { LanguageList } from "../../utils/constants";
 import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
+import { createSearchParams } from "react-router-dom";
 
 const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
   CONTENT_CONSTANTS;
@@ -185,6 +186,15 @@ const useContentListing = (filter = "ALL") => {
         state: listItemDetails.tagName?.toLowerCase(),
       },
     );
+  };
+
+  const editPage = async (listItemDetails: { path: any }) => {
+    navigate({
+      pathname: "/edit-page",
+      search: `?${createSearchParams({
+        page: listItemDetails.path.toString(),
+      })}`,
+    });
   };
 
   const preview = async (listItemDetails: any) => {
@@ -374,6 +384,7 @@ const useContentListing = (filter = "ALL") => {
     view,
     deleteContent,
     edit,
+    editPage,
     fetchContentDetails,
     duplicateToSite,
   };

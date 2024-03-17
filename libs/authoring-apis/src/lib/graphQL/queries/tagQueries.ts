@@ -1,11 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const FETCH_TAG_LIST = gql`
+export const FETCH_TAG_LIST_QUERY = gql`
   query FETCH_TAG_LIST($start: Int!, $rows: Int!) {
-    authoring_getTagsList(
-      pagination: { start: $start, rows: $rows }
-      sort: DESC
-    ) {
+    authoring_getTagsList(pagination: { start: $start, rows: $rows }, sort: DESC) {
       category
       tags
     }

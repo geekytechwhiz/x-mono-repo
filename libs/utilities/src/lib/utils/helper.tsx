@@ -1,6 +1,10 @@
 /* eslint-disable no-console */
 import { getRestApiCall, nullToObject, postRestApiCall } from "./helperFns";
 
+export const hasOwnProp = (obj: object, key: string): boolean => {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+};
+
 export const getStyleString = (styles: any) =>
   Object.entries(styles)
     .map(([prop, value]) => `${prop}: ${value}`)
@@ -107,6 +111,13 @@ export const openPageInNewTab = (url: string) => {
       infoUrl.focus();
     }
   }
+};
+
+export const formatPageUrl = (url) => {
+  let tmp = url?.toLowerCase();
+  tmp = tmp.replace(/\s/g, "");
+  tmp = tmp.replace(/[^a-z0-9\- ]/gi, "");
+  return tmp;
 };
 
 export const formatAddPrelem = (item) => {

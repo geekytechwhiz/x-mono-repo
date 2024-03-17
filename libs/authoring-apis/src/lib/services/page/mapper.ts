@@ -1,7 +1,10 @@
-export const mapFetchPages = (
-  startIndex: number,
+import { SORT_ORDER } from "../../utils/constants";
+
+export const mapFetchALL = (
   state: any,
-  filter: string
+  filter: string,
+  contentType: string,
+  pagination: { start: number; rows: number },
 ) => {
   return {
     searchTerm: state?.searchTerm,
@@ -11,12 +14,10 @@ export const mapFetchPages = (
       to: state?.toDate,
     },
     created_by: state?.author,
-    contentType: 'Sitepage',
+    contentType: contentType,
     pageFilter: filter,
-    sort: 'DESC',
-    pagination: { start: startIndex, rows: 20 },
+    sort: SORT_ORDER,
+    pagination: pagination,
     isSuggestive: false,
   };
 };
-
-export const ROW_SIZE = 20;

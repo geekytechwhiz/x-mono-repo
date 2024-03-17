@@ -219,6 +219,7 @@ import GalleryIcon from "./galleryIcon.svg";
 import AdvanceIcon from "./AdvanceIcon.svg";
 import LaptopImg from "./laptop.jpg";
 import SaveAnimationGif from "./saveAnimation.gif";
+import ChatGptCommonLoader from "./ChatGptCommonLoader.gif";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -439,4 +440,5 @@ export {
   AdvanceIcon,
   LaptopImg,
   SaveAnimationGif,
+  ChatGptCommonLoader,
 };

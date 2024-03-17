@@ -6,7 +6,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   commentsApi,
   contentTypeAPIs,
   useComment,
@@ -107,7 +107,7 @@ export const CreatePoll = (): JSX.Element => {
   const [parentToolTip, setParentToolTip] = useState("");
   const [addImage, setAddImage] = useState<boolean>(false);
   const scrollDebounceRef = useRef<any>(null);
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   // const [socialShareExpanded, setSocialShareExpanded] = useState(
   //   pollPageUrl.searchParams.get("open") ? true : false,

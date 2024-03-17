@@ -25,7 +25,7 @@ import {
 } from "@platformx/utilities";
 import {
   useWorkflow,
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   create_vod,
   fetchVodById,
   publish_vod,
@@ -89,7 +89,7 @@ export const CreateVod = () => {
   const [runFetchVodById] = useLazyQuery(fetchVodById);
   const [parentToolTip] = useState("");
   // const [scrollToView, setScrollToView] = useState("");
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [mutatePublish] = useMutation(publish_vod);
   const currentVodData = useRef(
     vodPageUrl.searchParams.get("path") ? (vodPageUrl.searchParams.get("path") as string) : "",

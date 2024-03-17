@@ -53,13 +53,15 @@ export const pageSlice = createSlice({
       const { SeoEnable } = action.payload;
       state.pageModel.SeoEnable = SeoEnable;
     },
+    updateAnalyticsEnable: (state, action: PayloadAction<any>) => {
+      const { AnalyticsEnabled } = action.payload;
+      state.pageModel.AnalyticsEnable = AnalyticsEnabled;
+      state.showSaveWarning = true;
+    },
     updatePageModel: (state, action: PayloadAction<any>) => {
       const { pageModelCreated } = action.payload;
-      state = {
-        ...state,
-        pageModel: pageModelCreated,
-        showSaveWarning: true,
-      };
+      state.pageModel = pageModelCreated;
+      state.showSaveWarning = true;
     },
     updatePageSettings: (state: PageState, action: PayloadAction<any>) => {
       const { pageInfo } = action.payload;
@@ -80,86 +82,42 @@ export const pageSlice = createSlice({
     },
     saveSchedulePublishDateTime: (state, action: PayloadAction<any>) => {
       const { status, time } = action.payload;
-      const pageSettingsNew = {
-        ...state.pageSettings,
-        IsSchedulePublish: status,
-        SchedulePublishDateTime: time,
-      };
-      state = {
-        ...state,
-        pageSettings: pageSettingsNew,
-        showSaveWarning: true,
-      };
+      state.pageSettings.IsSchedulePublish = status;
+      state.pageSettings.SchedulePublishDateTime = time;
+      state.showSaveWarning = true;
     },
     saveScheduleUnpublishDateTime: (state, action: PayloadAction<any>) => {
       const { status, time } = action.payload;
-      const pageSettingsNew = {
-        ...state.pageSettings,
-        IsScheduleUnpublish: status,
-        ScheduleUnpublishDateTime: time,
-      };
-      state = {
-        ...state,
-        pageSettings: pageSettingsNew,
-        showSaveWarning: true,
-      };
+      state.pageSettings.IsScheduleUnpublish = status;
+      state.pageSettings.ScheduleUnpublishDateTime = time;
+      state.showSaveWarning = true;
     },
     savePrelemAnalytics: (state, action: PayloadAction<any>) => {
-      const [analyticsAttributeVal, prelemIndex] = action.payload;
+      const { analyticsAttributeVal, prelemIndex } = action.payload;
       const prelemSchemaCopyArr: PrelemInstance[] = [...state.prelemMetaArray];
       prelemSchemaCopyArr[prelemIndex].AnalyticsEnabled = analyticsAttributeVal;
       prelemSchemaCopyArr[prelemIndex].IsModified = true;
-      state = { ...state, prelemMetaArray: prelemSchemaCopyArr };
+      state.prelemMetaArray = prelemSchemaCopyArr;
     },
     updateDynamicPrelemAssetInfo: (state, action: PayloadAction<any>) => {
-      const [selectedPrelemIndex, sectionToUpdate, data] = action.payload;
+      const { selectedPrelemIndex, sectionToUpdate, data } = action.payload;
       const existingEntries = JSON.parse(JSON.stringify(state.prelemMetaArray));
       existingEntries[selectedPrelemIndex].content[sectionToUpdate] = data;
-      state = { ...state, prelemMetaArray: existingEntries, showSaveWarning: true };
+      state.prelemMetaArray = existingEntries;
+      state.showSaveWarning = true;
     },
     updateLivestreamPrelemAssetInfo: (state, action: PayloadAction<any>) => {
-      const [selectedPrelemIndex, data] = action.payload;
+      const { selectedPrelemIndex, data } = action.payload;
       const existingEntries = JSON.parse(JSON.stringify(state.prelemMetaArray));
       existingEntries[selectedPrelemIndex].content = {
         ...existingEntries[selectedPrelemIndex].content,
         ...data,
       };
-      state = { ...state, prelemMetaArray: existingEntries, showSaveWarning: true };
-    },
-    updatePrelemContent: (state, action: PayloadAction<any>) => {
-      const [
-        mutatePrelemContentQuery,
-        updatedContent,
-        prelemAt,
-        documentPath,
-        documentCreationPath,
-        documentType,
-        instanceId,
-      ] = action.payload;
-      mutatePrelemContentQuery({
-        variables: {
-          input: updatedContent,
-          docPath: documentPath,
-          docCreationPath: documentCreationPath,
-          docType: documentType,
-          instanceId: instanceId,
-        },
-      })
-        .then((res) => {
-          const prelemMetaArr = [...state.prelemMetaArray];
-          prelemMetaArr[prelemAt].content = updatedContent;
-          prelemMetaArr[prelemAt].DocumentPath =
-            res.data.authoring_createOrUpdatePrelemContent.path;
-          prelemMetaArr[prelemAt].IsModified = true;
-          state = { ...state, prelemMetaArray: prelemMetaArr };
-        })
-        .catch((error) => {
-          console.error(JSON.stringify(error, null, 2));
-        });
+      state.prelemMetaArray = existingEntries;
+      state.showSaveWarning = true;
     },
     addPrelem: (state, action: PayloadAction<any>) => {
       const { prelemMetaInstance, prelemValidationInstance, prelemPosition } = action.payload;
-
       let existingEntriesMeta = [...state.prelemMetaArray];
       const validationsObjCopy = { ...state.prelemsValidationObject };
       validationsObjCopy[prelemMetaInstance.DocumentType] = prelemValidationInstance;
@@ -183,7 +141,8 @@ export const pageSlice = createSlice({
     },
     callSaveandResetWarning: (state, action: PayloadAction<any>) => {
       const callSaveStatus = action.payload;
-      state = { ...state, showSaveWarning: false, callSave: callSaveStatus };
+      state.showSaveWarning = false;
+      state.callSave = callSaveStatus;
     },
     deletePrelem: (state, action: PayloadAction<any>) => {
       const prelemIndex = action.payload;
@@ -191,11 +150,8 @@ export const pageSlice = createSlice({
         ...state.prelemMetaArray.slice(0, prelemIndex),
         ...state.prelemMetaArray.slice(prelemIndex + 1, state.prelemMetaArray.length),
       ];
-      state = {
-        ...state,
-        prelemMetaArray: newPrelemMetaArray,
-        showSaveWarning: true,
-      };
+      state.prelemMetaArray = newPrelemMetaArray;
+      state.showSaveWarning = true;
     },
     copyPrelem: (state, action: PayloadAction<any>) => {
       const prelemIndex = action.payload;
@@ -205,7 +161,8 @@ export const pageSlice = createSlice({
         duplicatedPrelemMeta,
         ...state.prelemMetaArray.slice(prelemIndex + 1, state.prelemMetaArray.length),
       ];
-      state = { ...state, prelemMetaArray: copyMeta, showSaveWarning: true };
+      state.prelemMetaArray = copyMeta;
+      state.showSaveWarning = true;
     },
     hidePrelem: (state, action: PayloadAction<any>) => {
       const prelemIndex = action.payload;
@@ -213,11 +170,8 @@ export const pageSlice = createSlice({
       newPrelemMetaArray[prelemIndex].IsHidden = newPrelemMetaArray[prelemIndex].IsHidden
         ? !newPrelemMetaArray[prelemIndex].IsHidden
         : true;
-      state = {
-        ...state,
-        prelemMetaArray: newPrelemMetaArray,
-        showSaveWarning: true,
-      };
+      state.prelemMetaArray = newPrelemMetaArray;
+      state.showSaveWarning = true;
     },
     movePrelem: (state, action: PayloadAction<any>) => {
       const { prelemIndex, operation } = action.payload;
@@ -253,23 +207,23 @@ export const pageSlice = createSlice({
       state.publishedPages = list;
     },
     setUpdatedContent: (state, action: PayloadAction<any>) => {
-      const { updatedContent, prelemIndex } = action.payload;
+      const { path, updatedContent, prelemIndex } = action.payload;
       const prelemMetaArr = [...state.prelemMetaArray];
       prelemMetaArr[prelemIndex].content = updatedContent;
-      prelemMetaArr[prelemIndex].DocumentPath = updatedContent;
+      prelemMetaArr[prelemIndex].DocumentPath = path;
       prelemMetaArr[prelemIndex].IsModified = true;
       state.prelemMetaArray = prelemMetaArr;
     },
     updateDynamicPrelemContent: (state, action: PayloadAction<any>) => {
       const { contentObj, prelemIndex } = action.payload;
       const newPrelemMetaArray = [...(state?.prelemMetaArray || [])];
-      const newSlotContent = contentObj?.slots.map(function (content) {
+      const newSlotContent = contentObj?.slots?.map(function (content) {
         return {
-          Description: content.Description,
-          Title: content.Title,
-          ContentType: content.ContentType,
+          Description: content?.Description,
+          Title: content?.Title,
+          ContentType: content?.ContentType,
           PublishedBy: content?.Author || "",
-          PublishedDate: content.PublishedDate,
+          PublishedDate: content?.PublishedDate,
           Thumbnail: {
             Url: content?.Thumbnail?.Url || content?.background_content?.Url || "",
             ext: content?.Thumbnail?.ext || "",
@@ -341,7 +295,7 @@ export const pageSlice = createSlice({
       state.prelemMetaArray = newPrelemMetaArray;
     },
     updateMultiSlotContent: (state, action: PayloadAction<any>) => {
-      const [slotContent, prelemIndex, currentSlot] = action.payload;
+      const { slotContent, prelemIndex, currentSlot } = action.payload;
       const newPrelemMetaArray = [...(state?.prelemMetaArray || [])];
       let newSlotContent = {};
       if (slotContent.ContentType === "Article") {
@@ -467,7 +421,6 @@ export const {
   savePrelemAnalytics,
   updateDynamicPrelemAssetInfo,
   updateLivestreamPrelemAssetInfo,
-  updatePrelemContent,
   addPrelem,
   callSaveandResetWarning,
   deletePrelem,
@@ -489,6 +442,7 @@ export const {
   updateDataAfterFetch,
   updatePageTitle,
   updateSeoEnable,
+  updateAnalyticsEnable,
 } = pageSlice.actions;
 
 export default pageSlice.reducer;
