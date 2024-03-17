@@ -32,7 +32,7 @@ export interface IHeader {
 }
 
 export interface HeaderProps {
-  data?: IHeader;
+  data?: any;
   homePageUrl: string;
   logoutButtonHandle?: any;
   langCode: string;
@@ -44,7 +44,10 @@ export interface HeaderProps {
   onLogin: () => void;
   handleChangePassword?: () => void;
   handleMyProfile?: () => void;
-  isLoginEnabled: boolean;
+  isLoginEnabled?: boolean;
   userData?: any;
   secondaryArgs?: any;
+  isAuthoring?: boolean;
+  authData?: any;
+  isEcomPage?: any;
 }
