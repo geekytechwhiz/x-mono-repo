@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyledMenu } from "./Submit.styles";
 
+import { ErrorTooltip, useAccess } from "@platformx/utilities";
 import {
   doAccessState,
   enableNextStep,
@@ -12,7 +13,6 @@ import {
   getPendingRole,
   isDisabledSubmit,
 } from "./helper";
-import { ErrorTooltip, useAccess } from "@platformx/utilities";
 import { workflowKeys } from "./utils/constants";
 
 const Submit = ({
@@ -21,7 +21,7 @@ const Submit = ({
   workflow,
   handleSave,
   handlePublish,
-  createComment = () => { },
+  createComment = () => {},
   prelemEditState = false,
 }) => {
   // const { workflowRequest } = useWorkflow(); // TODO: need to remove
@@ -44,7 +44,7 @@ const Submit = ({
       handlePublish();
     }
   };
-  const submitForNextStep = async (props, event_step) => {
+  const submitForNextStep = (props, event_step) => {
     handleSave(true, props, event_step);
   };
   const [workflowState, setWorkflowState] = useState(true);
@@ -88,8 +88,8 @@ const Submit = ({
               ? workflow?.workflow_status === workflowKeys.published.toLowerCase()
                 ? ""
                 : workflow?.task_user_name !== ""
-                  ? `${t("workflow_pending")} ${t("with")} ${workflow?.task_user_name}`
-                  : `${t("workflow_pending")} ${t("at")} ${getPendingRole(workflow?.stages)} ${t(
+                ? `${t("workflow_pending")} ${t("with")} ${workflow?.task_user_name}`
+                : `${t("workflow_pending")} ${t("at")} ${getPendingRole(workflow?.stages)} ${t(
                     "end",
                   )}`
               : " "
@@ -123,7 +123,7 @@ const Submit = ({
           </MenuItem>
         )}
         {canAccessAction(category, subCategory, workflowKeys.publish) &&
-          workflow?.workflow_status === workflowKeys.publish.toLowerCase() ? (
+        workflow?.workflow_status === workflowKeys.publish.toLowerCase() ? (
           <></>
         ) : (
           <ErrorTooltip

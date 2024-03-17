@@ -301,11 +301,11 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(response));
-          for (const res of response) {
+          for (const lang of selectedLanguage) {
             ShowToastSuccessMessage(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
-              )} ${res.language}`,
+              )} ${lang.value}`,
             );
           }
         }
