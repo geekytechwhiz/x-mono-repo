@@ -1,19 +1,18 @@
-import { Typography } from '@mui/material';
-import { memo } from 'react';
+import { Typography } from "@mui/material";
+import { memo } from "react";
 
 const Title = ({
-  title = '',
+  title = "",
   titleVarient,
-  titleColor = '',
-  textTransform = '',
-  margin = '',
-  padding= '',
+  titleColor = "",
+  textTransform = "",
+  margin = "",
+  padding = "",
 }: any) => {
   return (
     <Typography
       variant={titleVarient}
-      sx={{ color: titleColor, textTransform: textTransform, margin: margin, padding: padding }}
-    >
+      sx={{ color: titleColor, textTransform: textTransform, margin: margin, padding: padding }}>
       {title}
     </Typography>
   );

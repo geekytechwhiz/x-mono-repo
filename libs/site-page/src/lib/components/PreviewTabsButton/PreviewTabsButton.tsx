@@ -1,8 +1,8 @@
-import { PhoneIphone, TabletMac, Tv } from '@mui/icons-material';
-import { TabContext, TabList } from '@mui/lab';
-import { Tab } from '@mui/material';
-import { Box } from '@mui/system';
-import { useStyles } from './PreviewTabsButton.styles';
+import { PhoneIphone, TabletMac, Tv } from "@mui/icons-material";
+import { TabContext, TabList } from "@mui/lab";
+import { Tab } from "@mui/material";
+import { Box } from "@mui/system";
+import { useStyles } from "./PreviewTabsButton.styles";
 
 const PreviewTabsButton = ({ handleChange, value, previewStatus }) => {
   const classes = useStyles();
@@ -11,18 +11,13 @@ const PreviewTabsButton = ({ handleChange, value, previewStatus }) => {
       <TabContext value={value}>
         <TabList
           TabIndicatorProps={{
-            style: { display: 'none' },
+            style: { display: "none" },
           }}
           // className={classes.tabsbtns}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
           <Tab icon={<Tv />} value='window' disabled={!previewStatus} />
           <Tab icon={<TabletMac />} value='tablet' disabled={!previewStatus} />
-          <Tab
-            icon={<PhoneIphone />}
-            value='mobile'
-            disabled={!previewStatus}
-          />
+          <Tab icon={<PhoneIphone />} value='mobile' disabled={!previewStatus} />
         </TabList>
       </TabContext>
     </Box>

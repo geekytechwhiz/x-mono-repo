@@ -80,7 +80,7 @@
   padding-left: 14px;
 }
 .userlistbox .doticon:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0px;
   top: 0;
@@ -104,7 +104,7 @@
     margin-right: 25px; */
 }
 .userlistbox .doticonmobile:after {
-  content: '.';
+  content: ".";
   position: absolute;
   color: white;
   left: 0px;
@@ -292,7 +292,7 @@
     width: 185px;
   }
   .userlistbox .svg {
-    margin-left: '10px';
+    margin-left: "10px";
   }
   .edit-Box {
     width: 40px;

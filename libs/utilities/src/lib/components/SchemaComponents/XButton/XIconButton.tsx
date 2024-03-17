@@ -1,10 +1,7 @@
-import LoadingButton from '@mui/lab/LoadingButton';
-import {
-  ButtonProps as MuiButtonProps,
-  styled
-} from '@mui/material';
+import LoadingButton from "@mui/lab/LoadingButton";
+import { ButtonProps as MuiButtonProps, styled } from "@mui/material";
 // import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
-import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 
 // const fontStyle = `
 // @font-face {
@@ -14,23 +11,23 @@ import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVaria
 // }`;
 
 // Only include variant, size, and color
-type ButtonBaseProps = Pick<MuiButtonProps, 'variant'>;
+type ButtonBaseProps = Pick<MuiButtonProps, "variant">;
 
 export interface ButtonProps extends ButtonBaseProps {
   variant:
-  | 'primaryButton'
-  | 'secondaryButton'
-  | 'tertiaryButton'
-  | 'quaternaryButton'
-  | 'quaternaryButtonOutline'
-  | 'quinaryButton'
-  | 'textButton'
-  | 'warningButton'
-  | 'warningButtonOutline'
-  | 'errorButton'
-  | 'errorButtonOutline'
-  | 'successButton'
-  | 'successButtonOutline';
+    | "primaryButton"
+    | "secondaryButton"
+    | "tertiaryButton"
+    | "quaternaryButton"
+    | "quaternaryButtonOutline"
+    | "quinaryButton"
+    | "textButton"
+    | "warningButton"
+    | "warningButtonOutline"
+    | "errorButton"
+    | "errorButtonOutline"
+    | "successButton"
+    | "successButtonOutline";
   startIcon: any;
   disabled?: any;
   onClick?: any;
@@ -39,10 +36,10 @@ export interface ButtonProps extends ButtonBaseProps {
 }
 const StyledXIconButton = styled(LoadingButton)({
   fontFamily: ThemeConstants.FONTNAMEPRIMARY,
-  '&.onlyIconButton': {
-    minWidth: 'auto',
-    padding: '12px',
-    '& span': {
+  "&.onlyIconButton": {
+    minWidth: "auto",
+    padding: "12px",
+    "& span": {
       margin: 0,
     },
   },

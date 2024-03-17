@@ -25,13 +25,13 @@
 }
 
 .seobasicBox {
-  border: 1px solid #D9DBE9;
+  border: 1px solid #d9dbe9;
   border-radius: 5px;
   padding: 10px;
 }
 
 .ImageSecWp .deviderBox hr {
-  border-bottom: 1px solid #D9DBE9;
+  border-bottom: 1px solid #d9dbe9;
   border-top: 0;
 }
 .ImageSecWp:last-child .deviderBox.rowBox {

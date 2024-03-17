@@ -10,14 +10,14 @@ export const addQuestionMapper = (fileds, answers, username, addImage) => {
     short_title,
     bg_color,
   } = fileds;
-  const qus_type = question_type === 'Single Choice' ? 'Single' : 'Multiple';
+  const qus_type = question_type === "Single Choice" ? "Single" : "Multiple";
   data = {
-    contenttype: 'Question',
+    contenttype: "Question",
     input: {
       CommonFields: {
         page: short_title,
         short_description: short_description,
-        category: 'Question',
+        category: "Question",
         createdBy: username,
         page_lastmodifiedby: username,
         IsConfirm: false,
@@ -30,7 +30,7 @@ export const addQuestionMapper = (fileds, answers, username, addImage) => {
           return {
             option_image: {
               url: answer.image,
-              title: 'Option Image',
+              title: "Option Image",
             },
             is_correct: answer.status,
             option_text: answer.option,
@@ -38,12 +38,10 @@ export const addQuestionMapper = (fileds, answers, username, addImage) => {
           };
         }),
         background_content: {
-          Url: qus_background_content?.Thumbnail
-            ? qus_background_content?.Thumbnail
-            : '',
+          Url: qus_background_content?.Thumbnail ? qus_background_content?.Thumbnail : "",
           IsImage: qus_background_content?.Thumbnail ? true : false,
-          Title: 'Question Background Image',
-          Description: 'Question Background Image',
+          Title: "Question Background Image",
+          Description: "Question Background Image",
           ColorCode: bg_color,
         },
         question: short_title,

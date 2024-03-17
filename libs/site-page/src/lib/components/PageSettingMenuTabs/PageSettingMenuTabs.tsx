@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { Box, Tab, useMediaQuery } from '@mui/material';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import PageSettingList from '../PageSettingList/PageSettingList';
-import { useStyles } from './PageSettingMenuTabs.styles';
-import { ThemeConstants, EditIcon, SettingIcon } from '@platformx/utilities';
+import * as React from "react";
+import { Box, Tab, useMediaQuery } from "@mui/material";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import PageSettingList from "../PageSettingList/PageSettingList";
+import { useStyles } from "./PageSettingMenuTabs.styles";
+import { ThemeConstants, EditIcon, SettingIcon } from "@platformx/utilities";
 
 const LeftTabs = ({ setPageId }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Page_Setting');
+  const [value, setValue] = React.useState("Page_Setting");
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -15,18 +15,14 @@ const LeftTabs = ({ setPageId }) => {
   return (
     <Box className={classes.PageSettingMenuTabs}>
       <TabContext value={value}>
-        <Box
-          className={classes.tabButtonsBottom}
-          sx={{ borderBottom: 1, borderColor: 'divider' }}
-        >
+        <Box className={classes.tabButtonsBottom} sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList
             TabIndicatorProps={{
-              style: { display: 'none' },
+              style: { display: "none" },
             }}
             className={classes.TabButtons}
             onChange={handleChange}
-            aria-label='lab API tabs example'
-          >
+            aria-label='lab API tabs example'>
             {DesignTab && (
               <Tab
                 icon={<img src={EditIcon} alt='icon' />}
@@ -43,18 +39,10 @@ const LeftTabs = ({ setPageId }) => {
             />
           </TabList>
         </Box>
-        <TabPanel
-          sx={{ padding: 0 }}
-          className={classes.tabPanelSettingPage}
-          value='Page_Design'
-        >
+        <TabPanel sx={{ padding: 0 }} className={classes.tabPanelSettingPage} value='Page_Design'>
           Design
         </TabPanel>
-        <TabPanel
-          sx={{ padding: 0 }}
-          className={classes.tabPanelSettingPage}
-          value='Page_Setting'
-        >
+        <TabPanel sx={{ padding: 0 }} className={classes.tabPanelSettingPage} value='Page_Setting'>
           <PageSettingList setPageId={setPageId} />
         </TabPanel>
       </TabContext>

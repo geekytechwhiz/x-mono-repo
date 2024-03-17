@@ -6,6 +6,10 @@ import SocialShareStepSuccess from "./socialShareStepsSuccess";
 import SocialShareSteps from "./SocialShareSteps";
 
 export {
-    PlateformXSocialDialog, SocialShareStep1, SocialShareStep2, SocialShareStep3,
-    SocialShareStepSuccess, SocialShareSteps
+  PlateformXSocialDialog,
+  SocialShareStep1,
+  SocialShareStep2,
+  SocialShareStep3,
+  SocialShareStepSuccess,
+  SocialShareSteps,
 };

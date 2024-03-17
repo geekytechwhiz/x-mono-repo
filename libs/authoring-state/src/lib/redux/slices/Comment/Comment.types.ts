@@ -31,11 +31,7 @@ export type CommentContextData = {
   markAsRead: (isRead: boolean, commentId: number) => void;
   hasResolved: (hasResolve: boolean, commentId: number) => void;
   clearComment: () => void;
-  getComment: (
-    comments: ReviewComment[],
-    contentType: string,
-    contentName: string
-  ) => void;
+  getComment: (comments: ReviewComment[], contentType: string, contentName: string) => void;
   commentCountLength: any;
   contentType: string;
   contentTitle: string;

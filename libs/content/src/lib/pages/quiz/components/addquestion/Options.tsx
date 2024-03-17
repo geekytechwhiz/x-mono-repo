@@ -8,7 +8,15 @@ import { Box, Grid, TextField, Tooltip, Typography } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Drag, DragAndDrop, DeleteIcon, Drop, ShowToastError, getRandomNumber, Icon } from "@platformx/utilities";
+import {
+  Drag,
+  DragAndDrop,
+  DeleteIcon,
+  Drop,
+  ShowToastError,
+  getRandomNumber,
+  Icon,
+} from "@platformx/utilities";
 
 export const Options = ({
   addImage,
@@ -130,7 +138,7 @@ export const Options = ({
                             position: "relative",
                           }}>
                           <img
-                          alt="answer_image"
+                            alt='answer_image'
                             style={{
                               width: "inherit",
                               height: "inherit",
@@ -184,7 +192,7 @@ export const Options = ({
                             justifyContent: "center",
                             cursor: "pointer",
                           }}>
-                          <img src={Icon} alt="Icon" />
+                          <img src={Icon} alt='Icon' />
                         </Box>
                       )}
                     </Grid>

@@ -1,10 +1,10 @@
-import { Box, Button, Typography } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import BackButton from '../BackButton/BackButton';
-import '../PageSettings/PageSettings.css';
-import { ShowToastSuccess } from '@platformx/utilities';
+import { Box, Button, Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import BackButton from "../BackButton/BackButton";
+import "../PageSettings/PageSettings.css";
+import { ShowToastSuccess } from "@platformx/utilities";
 
 interface Props {
   index: string;
@@ -31,7 +31,7 @@ const PrelemEcom: React.FC<Props> = ({
   EcomHandle,
   handleSave,
   setPageId,
-  sectionToUpdate = 'EcomHandle',
+  sectionToUpdate = "EcomHandle",
 }) => {
   const { ApiEndPoint, OauthEndPoint, Username, Password } = EcomHandle;
   const [apiEndPoint, setApiEndPoint] = useState(ApiEndPoint);
@@ -49,20 +49,16 @@ const PrelemEcom: React.FC<Props> = ({
   return (
     <Box key={`${index}_content`} className='pageSettingmainWp'>
       <Box className='rowBox'>
-        <BackButton
-          setPageId={setPageId}
-          Title='Data Source'
-          backTo='prelemSetting'
-        />
+        <BackButton setPageId={setPageId} Title='Data Source' backTo='prelemSetting' />
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
-          {t('ecom_prelem_setting_text1')}
+          {t("ecom_prelem_setting_text1")}
         </Typography>
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
-          {t('ecom_prelem_setting_text2')}
+          {t("ecom_prelem_setting_text2")}
         </Typography>
         <TextField
           multiline
@@ -77,7 +73,7 @@ const PrelemEcom: React.FC<Props> = ({
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
-          {t('ecom_prelem_setting_text4')}
+          {t("ecom_prelem_setting_text4")}
         </Typography>
         <TextField
           multiline
@@ -92,7 +88,7 @@ const PrelemEcom: React.FC<Props> = ({
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
-          {t('ecom_prelem_setting_text5')}
+          {t("ecom_prelem_setting_text5")}
         </Typography>
         <TextField
           multiline
@@ -107,7 +103,7 @@ const PrelemEcom: React.FC<Props> = ({
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
-          {t('ecom_prelem_setting_text6')}
+          {t("ecom_prelem_setting_text6")}
         </Typography>
         <TextField
           type='password'
@@ -129,13 +125,12 @@ const PrelemEcom: React.FC<Props> = ({
             userName?.length === 0 ||
             password?.length === 0
           }
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
           onClick={() => {
             handleSave(sectionToUpdate, savedData, index);
-            ShowToastSuccess(`${t('prelem_ecom_info_toast')} ${t('saved_toast')}`);
-          }}
-        >
-          {t('ecom_prelem_setting_text7')}
+            ShowToastSuccess(`${t("prelem_ecom_info_toast")} ${t("saved_toast")}`);
+          }}>
+          {t("ecom_prelem_setting_text7")}
         </Button>
       </Box>
     </Box>

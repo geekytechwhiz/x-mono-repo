@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextareaAutosize } from '@mui/material';
+import React from "react";
+import { TextareaAutosize } from "@mui/material";
 
 export interface AutoTextAreaProps {
   placeHolder?: string;
@@ -11,15 +11,13 @@ export interface AutoTextAreaProps {
 }
 // eslint-disable-next-line no-empty-pattern
 export const XTextArea = ({
-  placeHolder = 'Write your text here',
+  placeHolder = "Write your text here",
   minRows,
   maxRows,
   isDisabled,
   onBlur,
-  maxLength
-}: AutoTextAreaProps
-
-) => {
+  maxLength,
+}: AutoTextAreaProps) => {
   return (
     <TextareaAutosize
       placeholder={placeHolder}
@@ -31,13 +29,13 @@ export const XTextArea = ({
       // inputProps={{ maxLength }}
       onBlur={onBlur}
       style={{
-        width: '100%',
-        resize: 'none',
-        padding: '12px',
-        border: 'solid 1px #ced3d9',
-        borderRadius: '5px',
-        backgroundColor: '#fff',
-        fontFamily: 'Inter',
+        width: "100%",
+        resize: "none",
+        padding: "12px",
+        border: "solid 1px #ced3d9",
+        borderRadius: "5px",
+        backgroundColor: "#fff",
+        fontFamily: "Inter",
       }}
     />
   );

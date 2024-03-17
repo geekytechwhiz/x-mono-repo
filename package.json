@@ -10,7 +10,8 @@
     "build:authoring-web": "nx build authoring-web",
     "build": "nx build",
     "deploy:authoring": "serve -s dist/apps/authoring-web -p 3000",
-    "deploy:user-experience": "nx start user-experience"
+    "deploy:user-experience": "nx start user-experience",
+    "format": "prettier apps libs --write"
   },
   "private": true,
   "dependencies": {

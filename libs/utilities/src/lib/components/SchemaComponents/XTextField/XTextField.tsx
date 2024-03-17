@@ -1,12 +1,12 @@
-import React from 'react';
-import { TextField } from '@mui/material';
+import React from "react";
+import { TextField } from "@mui/material";
 
 export interface TextBoxProps {
   maxLength?: number;
   error?: boolean;
   isDisabled?: boolean;
-  variant: 'outlined' | 'filled';
-  labelSize?: 'small' | 'medium';
+  variant: "outlined" | "filled";
+  labelSize?: "small" | "medium";
   placeholder?: string;
 }
 
@@ -15,8 +15,8 @@ export const XTextField = ({
   error,
   isDisabled,
   variant,
-  labelSize = 'small',
-  placeholder = 'Write your text here',
+  labelSize = "small",
+  placeholder = "Write your text here",
 }: TextBoxProps) => {
   return (
     <TextField

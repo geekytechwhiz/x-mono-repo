@@ -1,1 +1,1 @@
-export const Constants = ['male', 'female'];
+export const Constants = ["male", "female"];

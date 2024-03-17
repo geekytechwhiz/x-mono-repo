@@ -1,10 +1,10 @@
-import { Box, Typography } from '@mui/material';
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { capitalizeWords, formatContentTitle, getSubDomain } from '@platformx/utilities';
-import MenuList from '../menuList/MenuList';
-import { useStyles } from './ContentRow.styles';
-import { ContentRowProps } from './ContentRow.types';
+import { Box, Typography } from "@mui/material";
+import { memo } from "react";
+import { useTranslation } from "react-i18next";
+import { capitalizeWords, formatContentTitle, getSubDomain } from "@platformx/utilities";
+import MenuList from "../menuList/MenuList";
+import { useStyles } from "./ContentRow.styles";
+import { ContentRowProps } from "./ContentRow.types";
 
 const ContentRow = ({
   item,
@@ -19,14 +19,10 @@ const ContentRow = ({
   const classes = useStyles();
   const { i18n } = useTranslation();
   const { ContentType, CurrentPageURL } = item;
-  const url = CurrentPageURL?.startsWith('/')
-    ? CurrentPageURL?.substring(1)
-    : CurrentPageURL;
+  const url = CurrentPageURL?.startsWith("/") ? CurrentPageURL?.substring(1) : CurrentPageURL;
   // function to view published pages
   const handleView = () => {
-    window.open(
-      `${getSubDomain()}/${i18n.language}/${ContentType?.toLowerCase()}/${url}`
-    );
+    window.open(`${getSubDomain()}/${i18n.language}/${ContentType?.toLowerCase()}/${url}`);
   };
 
   return (
@@ -35,8 +31,7 @@ const ContentRow = ({
         component='h2'
         variant='h6regular'
         className={classes.contentRowText}
-        onClick={handleView}
-      >
+        onClick={handleView}>
         {capitalizeWords(formatContentTitle(item.Title))}
       </Typography>
       <MenuList
