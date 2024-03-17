@@ -259,11 +259,9 @@ const CustomerTestimonial2 = (props: CustomerTestimonial2Props) => {
               <Box className='iconUparrow'>
                 <img alt='iconuparrow' src={IconUpArrowSvg} height='13' width='24' />
               </Box>
-              <React.Fragment>
-                <Box className='sliderWidth'>
-                  <Box className='sliderHeight'> {sliderCommon} </Box>
-                </Box>
-              </React.Fragment>
+              <Box className='sliderWidth'>
+                <Box className='sliderHeight'> {sliderCommon} </Box>
+              </Box>
               <Typography variant='p3medium' color='secondaryParagraph' className='noMargin'>
                 {text1}{" "}
               </Typography>

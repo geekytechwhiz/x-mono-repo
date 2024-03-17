@@ -233,9 +233,7 @@ const AdvancedSeo = ({ setPageId }) => {
                       })}
                     </Select>
                   </FormControl>
-                ) : (
-                  <></>
-                )}
+                ) : null}
                 {tag.tagState === true && tag.tagName === "max-snippet" ? (
                   <Box>
                     <Typography className='labelbox' variant='p4regular'>
@@ -251,9 +249,7 @@ const AdvancedSeo = ({ setPageId }) => {
                       inputProps={{ min: -1 }}
                     />
                   </Box>
-                ) : (
-                  <></>
-                )}
+                ) : null}
                 {tag.tagState === true && tag.tagName === "max-video-preview" ? (
                   <Box>
                     <Typography className='labelbox' variant='p4regular'>
@@ -275,9 +271,7 @@ const AdvancedSeo = ({ setPageId }) => {
                       }}
                     />
                   </Box>
-                ) : (
-                  <></>
-                )}
+                ) : null}
               </Box>
             );
           })}

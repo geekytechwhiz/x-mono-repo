@@ -414,13 +414,13 @@ const ImageVideoGalleryModalSlider = ({
                           slide?.Thumbnail,
                           slide?.ext,
                           secondaryArgs,
-                        ),
-                        videoUrl: slide.Url,
-                        classname: "react-player-wrap",
-                        playing: currentSlide === index ? true : false,
-                      }}
-                    /> */}
-                    <>VideoPlayer</>
+                          ),
+                          videoUrl: slide.Url,
+                          classname: "react-player-wrap",
+                          playing: currentSlide === index ? true : false,
+                        }}
+                      /> */}
+                    {/* VideoPlayer */}
                   </Box>
                 )}
               </React.Fragment>

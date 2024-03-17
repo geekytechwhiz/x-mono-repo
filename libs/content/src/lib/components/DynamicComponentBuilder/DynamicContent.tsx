@@ -33,7 +33,6 @@ import DynamicComponent from "./DynamicComponent";
 import { Template } from "./schemas/index";
 import {
   AUTH_INFO,
-  CATEGORY_CONTENT,
   PlateformXDialog,
   SectionWrapper,
   ShowToastError,
@@ -46,7 +45,6 @@ import {
 import { useCustomStyle } from "./DynamicForm.style";
 import useDynamicForm from "../../hooks/useDynamicForm/useDynamicForm";
 import { articleApi, contentTypeAPIs } from "@platformx/authoring-apis";
-import { ContentType } from "../../enums/ContentType";
 import { SectionProps } from "./DynamicComponent.types";
 
 const DynamicContent = ({ contentType }: { contentType: string }) => {
@@ -124,15 +122,15 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
   });
   const [getSession] = useUserSession();
 
-  const { userInfo, role } = getSession();
+  const { userInfo } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
-  const [isDraft, setIsDraft] = useState<boolean>(true);
+  const [, setIsDraft] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(false);
-  const updateQuizSettings = (pageUrl = "", data) => {
+  const updateQuizSettings = (pageUrl, data) => {
     const { title, short_title, socialShareTitle, socialShareDesc, description, socialShareImage } =
       data;
     const contentSettings = {
-      socialog_url: `${AUTH_INFO.publishUri + i18n.language}/` + `quiz` + `/${pageUrl}`,
+      socialog_url: `${AUTH_INFO.publishUri + i18n.language}/quiz/${pageUrl}`,
       socialog_type: "quiz",
       socialog_sitename: title ? trimString(handleHtmlTags(title), 100) : "quiz",
       seo_title: title ? trimString(handleHtmlTags(title), 100) : "",
@@ -144,7 +142,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
       socialog_twitter_description: socialShareDesc
         ? trimString(handleHtmlTags(socialShareDesc), 163)
         : "",
-      socialog_twitter_url: `${AUTH_INFO.publishUri + i18n.language}/` + `quiz` + `/${pageUrl}`,
+      socialog_twitter_url: `${AUTH_INFO.publishUri + i18n.language}/quiz/${pageUrl}`,
       keywords: quizState?.tagsSocialShare,
       seo_keywords: tagArr,
       seo_description: description ? trimString(handleHtmlTags(description), 163) : "",
@@ -153,21 +151,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
     };
     return contentSettings;
   };
-  const publish = async (data) => {
-    const { title, short_description, description, short_title, background_content } = data || {};
-    if (title === "" || short_description === "" || description === "" || short_title === "") {
-    } else if (background_content === "") {
-      ShowToastError(`${t("banner_image")} ${t("is_required")}`);
-    } else if (tagArr?.length === 0) {
-      ShowToastError(t("tag_error"));
-    } else {
-      if (isDraft) {
-        createQuiz(data, "PUBLISHED");
-      } else {
-        // updateQUIZ('PUBLISHED', false);
-      }
-    }
-  };
+
   const publishContent = (pageURL) => {
     const quizToSend = {
       page: pageURL,
@@ -194,7 +178,8 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
       });
   };
 
-  const createQuiz = async (data, pageState = "DRAFT") => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const createQuiz = (data, pageState = "DRAFT") => {
     setIsLoading(true);
     const {
       title,
@@ -289,13 +274,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
         }
       });
   };
-  const save = (data) => {
-    const { title, short_description, description, short_title } = data || {};
-    if (title === "" || short_description === "" || description === "" || short_title === "") {
-    } else {
-      createQuiz(data);
-    }
-  };
+
   const getTags = async () => {
     try {
       const res: any = await articleApi.getTags({
@@ -306,7 +285,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
         setTagData(res?.authoring_getTagsList);
       }
     } catch (err: any) {
-      console.log(JSON.stringify(err, null, 2));
+      // console.log(JSON.stringify(err, null, 2));
     }
   };
 
@@ -314,7 +293,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
     getTags();
   }, []);
   const handleSubmit = (values) => {
-    console.log("val", values);
+    // console.log("val", values);
   };
   const toggleAddQuestion = () => {
     setAddQuestion(!addQuestion);
@@ -343,14 +322,6 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
   };
   const handleCloseDialog = () => {
     setShowPublishConfirm(false);
-  };
-
-  const saveQuestionCallBack = (questionInfo) => {
-    setQuizState({
-      ...quizState,
-      questions: [...quizState.questions, questionInfo],
-    });
-    toggleAddQuestion();
   };
 
   return (
@@ -431,9 +402,9 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
             {groupedFields?.length > 0 &&
               !addQuestion &&
               !questionListing &&
-              groupedFields.map((section: SectionProps) => {
+              groupedFields.map((section: SectionProps, index: any) => {
                 return (
-                  <Box className={classes.mainStyleWrapper}>
+                  <Box className={classes.mainStyleWrapper} key={index}>
                     <SectionWrapper
                       number={section.index}
                       title={section.title}

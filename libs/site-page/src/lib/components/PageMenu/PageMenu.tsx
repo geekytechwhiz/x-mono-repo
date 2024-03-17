@@ -268,15 +268,15 @@ const PageMenu = (props) => {
           confirmButtonHandle={handleConfirmDelete}
         />
       )}
-      {menuActions.approvalStatus && (
-        <></>
+      {
+        menuActions.approvalStatus && null
         // <WorkflowStepper
         //   open={menuActions.approvalStatus}
         //   setOpen={handleClose}
         //   path={listItemDetails?.currentPageUrl}
         //   contentType={capitalizeFirstLetter(listItemDetails?.tagName?.toLowerCase())}
         // />
-      )}
+      }
       <Menu
         anchorEl={anchorEl}
         open={open}

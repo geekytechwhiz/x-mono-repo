@@ -27,16 +27,13 @@ import {
   useUserSession,
   trimString,
   handleHtmlTags,
-  capitalizeFirstLetter,
   XLoader,
-  CATEGORY_CONTENT,
   PlateformXDialog,
   ShowToastSuccess,
   ShowToastError,
   AUTH_INFO,
   SectionWrapper,
 } from "@platformx/utilities";
-import { ContentType } from "../../enums/ContentType";
 import useDynamicForm from "../../hooks/useDynamicForm/useDynamicForm";
 import { SectionProps } from "./DynamicComponent.types";
 
@@ -44,10 +41,6 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   const [Template, setTemplate] = useState<any>();
   const { t, i18n } = useTranslation();
   const classes = useCustomStyle();
-  const [images, setImages] = useState({});
-  const pageUrl = new URL(window.location.href);
-  const arr = pageUrl.pathname.split("/");
-  const length = arr[arr.length - 1];
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   //   const [path, setPath] = useState("");
   const path = useRef("");
@@ -69,25 +62,20 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   const { initialValues } = useDynamicForm(Template?.fields);
   const [contentInstance, setContentInstance] = useState<any>(initialValues);
 
-  const [galleryState, setGalleryState] = useState<boolean>(false);
+  const [, setGalleryState] = useState<boolean>(false);
   const galleryType = useRef<string>("Images");
-  const [key, setKey] = useState("");
-  const [answerId, setAnswerId] = useState("");
+  const [, setKey] = useState("");
+  const [, setAnswerId] = useState("");
   const navigate = useNavigate();
   const [siteName, setSiteName] = useState("");
   const [getSession] = useUserSession();
 
-  const { userInfo, role } = getSession();
-  const login_user_id = userInfo?.user_id;
+  const { userInfo } = getSession();
   // const { getWorkflowDetails } = useWorkflow(); // TODO: need to change
-  const [workflow, setWorkflow] = useState({});
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const [isDraft, setIsDraft] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const toggleGallery = (toggleState, type) => {
-    setGalleryState(toggleState);
-  };
   const showGallery = (gType, keyName, id?: any) => {
     window.scrollTo(0, 0);
     galleryType.current = gType;
@@ -108,9 +96,9 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
     defaultValues: initialValues,
     mode: "onBlur",
   });
-  const { register, handleSubmit, formState, clearErrors, getValues, reset } = form;
+  const { register, handleSubmit, formState, clearErrors, getValues } = form;
   const { errors } = formState;
-  const [pageState, setPageState] = useState("DRAFT");
+  const [pageState] = useState("DRAFT");
   const updateQuizSettings = (pageUrl = "") => {
     const {
       full_name: title,
@@ -118,7 +106,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
       background_image: socialShareImage,
     } = contentInstance;
     const contentSettings = {
-      socialog_url: `${AUTH_INFO.publishUri + i18n.language}/` + `${contentType}` + `/${pageUrl}`,
+      socialog_url: `${AUTH_INFO.publishUri + i18n.language}/${contentType}/${pageUrl}`,
       socialog_type: contentType,
       socialog_sitename: title ? trimString(handleHtmlTags(title), 100) : contentType,
       seo_title: title ? trimString(handleHtmlTags(title), 100) : "",
@@ -126,7 +114,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
       socialog_twitter_title: title ? trimString(handleHtmlTags(title), 100) : "",
       socialog_description: title ? trimString(handleHtmlTags(title), 163) : "",
       socialog_twitter_description: title ? trimString(handleHtmlTags(title), 163) : "",
-      socialog_twitter_url: `${AUTH_INFO.publishUri + i18n.language}/` + `quiz` + `/${pageUrl}`,
+      socialog_twitter_url: `${AUTH_INFO.publishUri + i18n.language}/quiz/${pageUrl}`,
       keywords: ["Profile"],
       seo_keywords: ["Profile"],
       seo_description: title ? trimString(handleHtmlTags(title), 163) : "",
@@ -135,8 +123,8 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
     };
     return contentSettings;
   };
-  const createContentType = async () => {
-    const { full_name: title, bio, teaser, profile_image, birth_date } = contentInstance || {};
+  const createContentType = () => {
+    const { full_name: title, bio, profile_image } = contentInstance || {};
     const contentRequest = {
       CommonFields: {
         page: title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
@@ -196,9 +184,8 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
         setIsDraft(false);
         const pageName = detailsRes?.authoring_createContent?.path;
         const temp = pageName.split("/");
-        console.log("path", temp[temp.length - 1]);
         path.current = temp[temp.length - 1];
-        if (pageState == "DRAFT") {
+        if (pageState === "DRAFT") {
           ShowToastSuccess(`${contentType} ${t("created_toast")}`);
         } else {
           try {
@@ -210,7 +197,6 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
               setShowPublishConfirm(true);
             }
           } catch (err: any) {
-            console.log("err", err);
             setIsLoading(false);
 
             ShowToastError(
@@ -222,14 +208,12 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
         ShowToastSuccess(detailsRes.authoring_createContent.message);
       }
     } catch (err: any) {
-      console.log("err", err);
       setIsLoading(false);
 
       ShowToastError(t("api_error_toast"));
     }
   };
-  const publishContentType = async () => {
-    const { full_name: title } = contentInstance || {};
+  const publishContentType = () => {
     const pageURL = path.current; //title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const requestToSend = {
       page: pageURL,
@@ -250,7 +234,6 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
         setShowPublishConfirm(true);
       }
     } catch (err: any) {
-      console.log("err", err);
       setIsLoading(false);
 
       ShowToastError(
@@ -262,7 +245,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
     // }
   };
 
-  const onSubmit: SubmitHandler<any> = (data) => {
+  const onSubmit: SubmitHandler<any> = () => {
     const {
       background_image,
       profile_image,
@@ -321,17 +304,13 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
     }
   };
 
-  const handleSelectedImage = (image, keyName, id) => {
-    localStorage.setItem("keyname", keyName);
-    setContentInstance({ ...contentInstance, [keyName]: image });
-  };
-  const fetchSchema = async () => {
+  const fetchSchema = () => {
     return contentTypeSchemaApi.getSchema();
   };
   const getSchema = async () => {
     try {
       const detailsRes: any = await fetchSchema();
-      const schema = detailsRes?.authoring_getDocument?.filter((val, i) => {
+      const schema = detailsRes?.authoring_getDocument?.filter((val) => {
         return contentType === val?.name;
       });
       setSiteName(schema[0]?.sitename);
@@ -404,9 +383,9 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
           </Box>
 
           {groupedFields?.length > 0 &&
-            groupedFields.map((section: SectionProps) => {
+            groupedFields.map((section: SectionProps, index: any) => {
               return (
-                <Box className={classes.mainStyleWrapper}>
+                <Box className={classes.mainStyleWrapper} key={index}>
                   <SectionWrapper
                     number={section.index}
                     title={section.title}

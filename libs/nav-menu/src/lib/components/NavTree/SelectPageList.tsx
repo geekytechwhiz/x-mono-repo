@@ -38,67 +38,65 @@ export default function SelectPageList({
     setPageListOpen(false);
   };
   return (
-    <>
+    <Box
+      sx={{
+        width: { sm: "100%", xs: "100%", md: "100%", lg: "100%" },
+        display: { xs: "none", sm: "block" },
+        position: "absolute",
+        top: 0,
+        left: 0,
+        backgroundColor: "#fff",
+        zIndex: 1300,
+      }}>
       <Box
         sx={{
-          width: { sm: "100%", xs: "100%", md: "100%", lg: "100%" },
-          display: { xs: "none", sm: "block" },
-          position: "absolute",
-          top: 0,
-          left: 0,
-          backgroundColor: "#fff",
-          zIndex: 1300,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderBottom: "solid 1px #ced3d9",
+          padding: "15px",
         }}>
         <Box
           sx={{
             display: "flex",
+            width: { sm: "70%", xs: "100%", md: "70%", lg: "75%" },
+            justifyContent: { xs: "center", sm: "flex-start" },
             alignItems: "center",
-            justifyContent: "space-between",
-            borderBottom: "solid 1px #ced3d9",
-            padding: "15px",
           }}>
-          <Box
-            sx={{
-              display: "flex",
-              width: { sm: "70%", xs: "100%", md: "70%", lg: "75%" },
-              justifyContent: { xs: "center", sm: "flex-start" },
-              alignItems: "center",
-            }}>
-            <Typography variant='h4medium'>{t("choose_your_page")}</Typography>
-          </Box>
-          <Box sx={{ display: "flex" }}>
-            <Button
-              variant='secondaryButton'
-              disableElevation
-              onClick={onClickCancel}
-              className='sm'
-              sx={{ marginRight: "12px" }}>
-              {t("cancel")}
-            </Button>
-
-            <Button
-              className='sm addnewpage'
-              variant='primaryButton'
-              disabled={isDisableDone}
-              onClick={onClickDone}>
-              {t("done")}
-            </Button>
-          </Box>
+          <Typography variant='h4medium'>{t("choose_your_page")}</Typography>
         </Box>
+        <Box sx={{ display: "flex" }}>
+          <Button
+            variant='secondaryButton'
+            disableElevation
+            onClick={onClickCancel}
+            className='sm'
+            sx={{ marginRight: "12px" }}>
+            {t("cancel")}
+          </Button>
 
-        <MenuListing
-          setPageName1={setPageName1}
-          isDisable={isDisable}
-          currentButton={currentButton}
-          setCurrentButton={setCurrentButton}
-          isDisableDone={isDisableDone}
-          setisIsDisableDone={setisIsDisableDone}
-          isPageListCall={isPageListCall}
-          setUrl={setUrl}
-          editData={editData}
-          isedit={isedit}
-        />
+          <Button
+            className='sm addnewpage'
+            variant='primaryButton'
+            disabled={isDisableDone}
+            onClick={onClickDone}>
+            {t("done")}
+          </Button>
+        </Box>
       </Box>
-    </>
+
+      <MenuListing
+        setPageName1={setPageName1}
+        isDisable={isDisable}
+        currentButton={currentButton}
+        setCurrentButton={setCurrentButton}
+        isDisableDone={isDisableDone}
+        setisIsDisableDone={setisIsDisableDone}
+        isPageListCall={isPageListCall}
+        setUrl={setUrl}
+        editData={editData}
+        isedit={isedit}
+      />
+    </Box>
   );
 }

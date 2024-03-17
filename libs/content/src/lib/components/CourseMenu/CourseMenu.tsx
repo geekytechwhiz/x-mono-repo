@@ -4,71 +4,32 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
-import { ShowToastError, ShowToastSuccess, useAccess } from "@platformx/utilities";
+import { ShowToastError, ShowToastSuccess } from "@platformx/utilities";
 import { userManagementAPI } from "@platformx/authoring-apis";
 
 import { CourseReportDialog } from "../CourseReportDialog/CourseReportDialog";
 import InviteUserPopup from "../InviteUserPopup/InviteUserPopup";
-import { getEmbedTempData } from "../../utils/Helper";
 import { MenuActions } from "./CardMenu.types";
 
-export const CourseMenu = ({
-  anchorEl,
-  open,
-  handleClose,
-  contentType,
-  listItemDetails,
-  category,
-  subCategory,
-  deleteContent,
-  duplicate,
-  preview,
-  unPublish,
-  view,
-  edit,
-  fetchContentDetails,
-}: any) => {
-  const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const { canAccessAction } = useAccess();
+export const CourseMenu = ({ anchorEl, open, handleClose, contentType, listItemDetails }: any) => {
+  const { t } = useTranslation();
   const [menuActions, setMenuActions] = useState({
     inviteuser: false,
     courseReport: false,
   });
   const [selectedContent, setSelectedContent] = useState<any>(listItemDetails);
   const [language, setLanguage] = useState<string[]>([]);
-  const [embedData, setEmbedData] = useState({});
 
   useEffect(() => {
     setSelectedContent(listItemDetails);
   }, [listItemDetails]);
 
-  const getDuplicateTitle = () => {
-    const newVal = `${t("copy_of")} ${selectedContent?.title}`.trim();
-    const duplicateContentTitle = newVal.length > 100 ? newVal.slice(0, 100) : newVal;
-    return duplicateContentTitle.trim();
-  };
-
-  const deleteConfirmButtonHandle = () => {
-    deleteContent(selectedContent);
-    onClose();
-  };
-
-  const unPublishConfirmButtonHandle = () => {
-    unPublish(selectedContent);
-    onClose();
-  };
-  const handlePublishedPageView = () => {
-    preview(listItemDetails);
-  };
   const onClose = () => {
     setMenuActions({
       inviteuser: false,
       courseReport: false,
     });
   };
-  console.log("details", selectedContent);
   const onHandleMenuActions = (action: any) => {
     switch (action) {
       case MenuActions.INVITE_USER:
@@ -77,16 +38,13 @@ export const CourseMenu = ({
       case MenuActions.COURSE_REPORT:
         setMenuActions({ ...menuActions, courseReport: true });
         break;
+      default:
+      //add default
     }
   };
-  const getSelectedCardDetails = async () => {
-    const cardDetails = await fetchContentDetails(listItemDetails);
-    await setEmbedData(getEmbedTempData(cardDetails));
-  };
 
-  const inviteUsers = async (users: any) => {
-    const { description, teaser_image, title, current_page_url, course_id, author } =
-      selectedContent;
+  const inviteUsers = (users: any) => {
+    const { title, current_page_url, course_id } = selectedContent;
     const userData = users.map((val: any) => {
       return {
         user_id: val.user_id,
@@ -113,7 +71,6 @@ export const CourseMenu = ({
         ShowToastError(detailsRes.authoring_inviteUsers.message);
       }
     } catch (err: any) {
-      console.log("err", err);
       ShowToastError(
         err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
       );
