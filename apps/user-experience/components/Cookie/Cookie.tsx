@@ -11,16 +11,16 @@ import { useCustomStyle } from "./Cookie.style";
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
 const CookieComponent = ({ analyticHandle = () => {} }: any) => {
-  const classes = useCustomStyle();
-  const cookiesIsAccepted = document.cookie.includes("userConsentCookiePolicy=true");
-  const userLocation = useRef<string>("");
   const [data, setData] = useState<CookieDataType>();
   const [showPanel, setShowPanel] = useState("");
   const [isOpenManageCookie, set_isOpenManageCookie] = useState(false);
-
-  const popupRef = useRef<any>(null);
   const [nonEssentialCb, setnonEssentialCb] = useState<boolean>(false);
+  const popupRef = useRef<any>(null);
+  const userLocation = useRef<string>("");
+
+  const classes = useCustomStyle();
   const router = useRouter();
+  const cookiesIsAccepted = document.cookie.includes("userConsentCookiePolicy=true");
 
   const cookieConsentCheck = (cookieName: string) => {
     const allCookie = document.cookie;
@@ -302,24 +302,6 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
     return cookieUi;
   };
 
-  useEffect(() => {
-    if (
-      showPanel === "consent" &&
-      document?.cookie?.length &&
-      document?.cookie?.includes("userInformativeCookiePolicy")
-    ) {
-      clearAllCookie();
-    }
-  }, [showPanel]);
-
-  useEffect(() => {
-    if (cookiesIsAccepted && !nonEssentialCb) {
-      //if already cookies accepted
-      analyticApiCall();
-      setnonEssentialCb(cookiesIsAccepted);
-    }
-  }, [cookiesIsAccepted]);
-
   const fetchUserLocation = async () => {
     if (!userLocation.current) {
       try {
@@ -362,6 +344,24 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
     const cookieData = cookieSettingModelResponse?.data?.data?.fetchMultiSiteCookieSettings;
     setData(cookieData);
   };
+
+  useEffect(() => {
+    if (
+      showPanel === "consent" &&
+      document?.cookie?.length &&
+      document?.cookie?.includes("userInformativeCookiePolicy")
+    ) {
+      clearAllCookie();
+    }
+  }, [showPanel]);
+
+  useEffect(() => {
+    if (cookiesIsAccepted && !nonEssentialCb) {
+      //if already cookies accepted
+      analyticApiCall();
+      setnonEssentialCb(cookiesIsAccepted);
+    }
+  }, [cookiesIsAccepted]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {

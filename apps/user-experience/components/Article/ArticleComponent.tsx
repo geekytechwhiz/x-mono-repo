@@ -1,14 +1,15 @@
-import React from "react";
+import React, { memo } from "react";
 import dynamic from "next/dynamic";
+import { SkeletonLoader } from "../SkeletonLoader/SkeletonLoader";
 
 const ArticlePrelem = dynamic(
   () => import("@platformx/x-prelems-library").then((mod) => mod.Article),
   {
     ssr: false,
+    loading: () => <SkeletonLoader />,
   },
 );
-
-export const ArticleComponent = (props) => {
+const ArticleComponent = (props) => {
   const { pageData = {}, secondaryArgs = {} } = props || {};
   const prelemContentProp = pageData;
   const prelemAnalyticsProp = {
@@ -26,14 +27,15 @@ export const ArticleComponent = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <ArticlePrelem
         content={prelemContentProp}
         analytics={prelemAnalyticsProp}
         authoringHelper={prelemAuthoringHelper}
         secondaryArgs={secondaryArgs}
       />
-      {/* <div>hello article test</div> */}
-    </React.Fragment>
+    </>
   );
 };
+
+export default memo(ArticleComponent);
