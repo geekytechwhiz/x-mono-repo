@@ -383,13 +383,14 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     boxShadow: "none !impotant",
   },
   accordiansum: {
-    padding: "0px 15px 0px 0px",
+    padding: "0px 10px 0px 0px !important",
   },
   accordiandeatail: {
     display: "flex",
     gap: "8px",
     flexWrap: "wrap",
-    padding: "8px 0px 0px 0px",
+    padding: "8px 0px 0px 0px !important",
+    border: "1px solid #D9DBE9",
   },
   step5boxbtn: {
     backgroundColor: "#4B9EF9 !impotant",
