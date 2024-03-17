@@ -149,6 +149,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
     location.pathname.includes("/article-preview") ||
     location.pathname.includes("/vod-preview")) &&
     userSession?.isActive ? (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <></>
   ) : (
     <Box

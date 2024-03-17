@@ -177,9 +177,7 @@ export default function MenuSecondPage({
           }}>
           <Box sx={{ display: { sm: "none" } }}>
             {isloading ? (
-              <>
-                <ContentListMobileLoader />
-              </>
+              <ContentListMobileLoader />
             ) : (
               <>
                 {items?.length === 0 && (
@@ -263,9 +261,7 @@ export default function MenuSecondPage({
         }}>
         <Box sx={{ display: { sm: "none" } }}>
           {isloading ? (
-            <>
-              <ContentListMobileLoader />
-            </>
+            <ContentListMobileLoader />
           ) : (
             <>
               {items?.length === 0 && (

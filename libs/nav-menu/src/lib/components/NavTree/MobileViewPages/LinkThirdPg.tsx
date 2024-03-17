@@ -13,7 +13,7 @@ import { addMenu } from "@platformx/authoring-state";
 import {
   Loader,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   ThemeConstants,
   dateFormat,
   useUserSession,
@@ -170,9 +170,9 @@ function LinkThirdPg({
           setRadioSelectedLink("Current Tab");
           setAlignment("Page");
           if (resp.data.authoring_createOrUpdateNavigation.message === "Success") {
-            ShowToastSuccessMessage(t("menu_toast_added"));
+            ShowToastSuccess(t("menu_toast_added"));
           } else {
-            ShowToastSuccessMessage(t("api_error_toast"));
+            ShowToastSuccess(t("api_error_toast"));
           }
         })
         .catch((error) => {
@@ -245,7 +245,7 @@ function LinkThirdPg({
           setActiveStep(0);
           setIsLoading(false);
 
-          ShowToastSuccessMessage(`${t("menu")} ${t("updated_toast")}`);
+          ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
         })
         .catch((error) => {
           setIsLoading(false);

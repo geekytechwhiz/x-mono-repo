@@ -1,6 +1,6 @@
 import { useLazyQuery } from "@apollo/client";
 import { Box } from "@mui/material";
-import { FETCH_TAG_LIST } from "@platformx/authoring-apis";
+import { FETCH_TAG_LIST_QUERY } from "@platformx/authoring-apis";
 import { CommonBoxWithNumber, ShowToastError, XTags } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,7 @@ const EventChooseTags = ({
   const classes = useCustomStyle();
 
   const { currentContent = {} } = content;
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [tagData, setTagData] = useState([]);
   const [tagArr, setTagArr] = useState([]);
 

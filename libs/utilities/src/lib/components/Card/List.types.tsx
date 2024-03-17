@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export type CardProps = {
   CustomMenuList: React.ReactNode | React.ReactElement;
   contentType?: string;
@@ -16,7 +15,7 @@ export type CardProps = {
   editPage?: any;
   viewPage?: any;
   previewPage?: any;
-  // handleDuplicatePopup?: any; 
+  // handleDuplicatePopup?: any;
   // duplicatePage?: any;
   // unPublishPage?: any;
   // handleReschedulePopup?: any;

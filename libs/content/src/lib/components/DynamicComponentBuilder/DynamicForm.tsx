@@ -1,14 +1,19 @@
-import { Grid } from '@mui/material';
-import React from 'react';
-import { FieldDefinition } from './DynamicComponent.types';
-import { FormikTextField, TitleSubTitle, XButton, XFileUpload, XTextArea } from '@platformx/utilities';
+import { Grid } from "@mui/material";
+import React from "react";
+import { FieldDefinition } from "./DynamicComponent.types";
+import {
+  FormikTextField,
+  TitleSubTitle,
+  XButton,
+  XFileUpload,
+  XTextArea,
+} from "@platformx/utilities";
 // import FileUpload from '../../CommonSchemaComponents/FileUpload/FileUpload';
 // import { FieldDefinition } from '../../CommonSchemaComponents/FormTextField/FormTextField.types';
 // import TextArea from '../../CommonSchemaComponents/TextArea/TextArea';
 // import TitleSubTitle from '../../CommonSchemaComponents/TitleSubtitle/TitleSubTitle';
 // import { XButton } from '../../CommonSchemaComponents/XButton/XButton';
 // import FormikTextField from '../../components/Common/FormikTextField';
-
 
 interface DynamicFormProps {
   fields: FieldDefinition[];
@@ -19,14 +24,14 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, formik }) => {
   return (
     <>
       {fields.map((field: FieldDefinition) => (
-        <>{builder(field, formik)}</>
+        <>{builder(field)}</>
       ))}
     </>
   );
 
-  function builder(field: FieldDefinition, formik: any) {
+  function builder(field: FieldDefinition) {
     switch (field.type) {
-      case 'text':
+      case "text":
         return (
           <>
             {/* <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
@@ -40,25 +45,26 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, formik }) => {
             {/* <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
               <TextBox />
             </Grid> */}
-            {field.variant === 'multiline' ? (
+            {field.variant === "multiline" ? (
               <>
                 <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
-                  < TitleSubTitle titleVariant={'h6medium'}
-                    subTitleVariant={'h7regular'}
+                  <TitleSubTitle
+                    titleVariant={"h6medium"}
+                    subTitleVariant={"h7regular"}
                     title={field.title}
                     subTitle={field.description}
                   />
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} lg={7}>
                   <XTextArea minRows={6} maxRows={8} />
-                </Grid>{' '}
+                </Grid>{" "}
               </>
             ) : (
               <>
                 <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
                   <TitleSubTitle
-                    titleVariant={'h6medium'}
-                    subTitleVariant={'h7regular'}
+                    titleVariant={"h6medium"}
+                    subTitleVariant={"h7regular"}
                     title={field.title}
                     subTitle={field.description}
                   />
@@ -70,13 +76,13 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, formik }) => {
             )}
           </>
         );
-      case 'image':
+      case "image":
         return (
           <>
             <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
               <TitleSubTitle
-                titleVariant={'h6medium'}
-                subTitleVariant={'h7regular'}
+                titleVariant={"h6medium"}
+                subTitleVariant={"h7regular"}
                 title={field.title}
                 subTitle={field.description}
               />
@@ -86,8 +92,8 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, formik }) => {
             </Grid>
           </>
         );
-      case 'button':
-        return <XButton variant={'primaryButton'} />;
+      case "button":
+        return <XButton variant={"primaryButton"} />;
       default:
         return null;
     }

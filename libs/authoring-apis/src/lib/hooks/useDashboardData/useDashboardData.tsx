@@ -1,49 +1,38 @@
-import { useLazyQuery, useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 import {
+  useUserSession,
   ShowToastError,
-  ShowToastSuccessMessage,
-} from '@platformx/utilities';
-import { DashboardTypes, Dashboard_Keys } from '../../services/utils/dashboard/Dashboard.types';
-import { previewContent, previewArticle } from '@platformx/authoring-state';
+  ShowToastSuccess,
+  capitalizeFirstLetter,
+  getSubDomain,
+} from "@platformx/utilities";
+import { DashboardTypes, Dashboard_Keys } from "../../services/utils/dashboard/Dashboard.types";
+import { previewContent, previewArticle } from "@platformx/authoring-state";
 import fetchContentByPathAPI, {
   createContentType,
   deleteContentType,
   fetchContentByPath,
   publishContentType,
-} from '../../services/contentTypes/contentTypes.api';
-import dashboardApi from '../../services/dashboard/dashBoard.api';
-import { LanguageList } from '../../utils/constants';
-import {
-  capitalizeFirstLetter,
-  getSubDomain,
-} from '@platformx/utilities';
-import usePage from '../usePage/usePage';
-import { CONTENT_CONSTANTS } from '../useQuizPollEvents/Utils/Constants';
+} from "../../services/contentTypes/contentTypes.api";
+import dashboardApi from "../../services/dashboard/dashBoard.api";
+import { LanguageList } from "../../utils/constants";
+import usePage from "../usePage/usePage";
+import { CONTENT_CONSTANTS } from "../useQuizPollEvents/Utils/Constants";
 import {
   mapDeleteContent,
   mapDuplicateContent,
   mapUnPublishContent,
   pageObjectMapper,
-} from '../useQuizPollEvents/mapper';
-import { useUserSession } from "@platformx/utilities";
-import { useDispatch } from 'react-redux';
-import { UPDATE_TASK_STATUS } from '../../graphQL/queries/dashboardQueries';
+} from "../useQuizPollEvents/mapper";
+import { useDispatch } from "react-redux";
+import { UPDATE_TASK_STATUS } from "../../graphQL/queries/dashboardQueries";
 
-const {
-  LANG,
-  DRAFT,
-  EVENT,
-  POLL,
-  PUBLISHED,
-  QUESTION,
-  QUIZ,
-  UNPUBLISHED,
-  PREVIEW_PATH,
-} = CONTENT_CONSTANTS;
-const useDashboardData = (contentType = 'ALL') => {
+const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
+  CONTENT_CONSTANTS;
+const useDashboardData = (contentType = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,7 +54,7 @@ const useDashboardData = (contentType = 'ALL') => {
 
   const [dashBoardData, setDashBoardData] = useState<DashboardTypes>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const fetchDashBoardData = async () => {
     try {
       setLoading(true);
@@ -79,7 +68,7 @@ const useDashboardData = (contentType = 'ALL') => {
         contentPagination: { start: 0, rows: 10 },
         scheduledPagination: { start: 0, rows: 5 },
         sort: Dashboard_Keys.DESC,
-        searchTerm: '',
+        searchTerm: "",
         dashboardPage: Dashboard_Keys.DASHBOARD,
         boostPage: Dashboard_Keys.BOOST_PAGE,
       });
@@ -98,7 +87,7 @@ const useDashboardData = (contentType = 'ALL') => {
         const dt: any = {
           ...dashBoardData,
           recentPages: recentPages
-            ?.filter((page: any) => page?.page_state !== 'unpublished')
+            ?.filter((page: any) => page?.page_state !== "unpublished")
             ?.slice(0, 10),
           boostContent: boostContent[0]?.compoundData?.slice(0, 15),
           scheduled: [...publish, ...unPublish]?.slice(0, 9),
@@ -110,14 +99,11 @@ const useDashboardData = (contentType = 'ALL') => {
         };
         setDashBoardData(dt);
       } else {
-        console.log('error in dashboard api');
-
         //ShowToastError(t('api_error_toast'));
       }
     } catch (err: any) {
       // setError(err);
-      // ShowToastError(err);
-      console.log('error in dashboard api');
+      ShowToastError(err);
     } finally {
       setLoading(false);
     }
@@ -138,7 +124,7 @@ const useDashboardData = (contentType = 'ALL') => {
         return content;
       }
     } catch (err) {
-      ShowToastError(t('api_error_toast'));
+      ShowToastError(t("api_error_toast"));
     }
   };
   const deleteContent = async (listItemDetails: any) => {
@@ -146,7 +132,7 @@ const useDashboardData = (contentType = 'ALL') => {
     const { ContentType } = listItemDetails;
 
     if (selectedItem && Object.keys(selectedItem).length > 0) {
-      if (selectedItem.page_state == PUBLISHED) {
+      if (selectedItem.page_state === PUBLISHED) {
         await unPublish(listItemDetails);
       }
       try {
@@ -159,12 +145,10 @@ const useDashboardData = (contentType = 'ALL') => {
         });
         if (unPublishResponse) {
           fetchDashBoardData();
-          ShowToastSuccessMessage(`${ContentType} ${t('deleted_toast')}`);
+          ShowToastSuccess(`${ContentType} ${t("deleted_toast")}`);
         }
-      } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+      } catch (deleteError: any) {
+        ShowToastError(deleteError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
@@ -173,10 +157,7 @@ const useDashboardData = (contentType = 'ALL') => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
-        const contentToSend = mapUnPublishContent(
-          listItemDetails?.ContentType,
-          selectedItem.page
-        );
+        const contentToSend = mapUnPublishContent(listItemDetails?.ContentType, selectedItem.page);
         const unPublishResponse = await unPublishMutate({
           variables: {
             ...contentToSend,
@@ -184,80 +165,70 @@ const useDashboardData = (contentType = 'ALL') => {
         });
         if (unPublishResponse) {
           fetchDashBoardData();
-          ShowToastSuccessMessage(
-            `${listItemDetails?.ContentType} ${t('unpublished_toast')}`
-          );
+          ShowToastSuccess(`${listItemDetails?.ContentType} ${t("unpublished_toast")}`);
         }
-      } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+      } catch (unPublishError: any) {
+        ShowToastError(unPublishError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
 
   const view = (listItemDetails: any) => {
     window.open(
-      `${getSubDomain()}/${
-        i18n.language
-      }/${listItemDetails?.ContentType?.toLowerCase()}${
+      `${getSubDomain()}/${i18n.language}/${listItemDetails?.ContentType?.toLowerCase()}${
         listItemDetails?.currentPageUrl
-      }`
+      }`,
     );
   };
   const { editPage } = usePage();
   const edit = (listItemDetails: any, obj = {}) => {
-    if (listItemDetails?.ContentType?.toLowerCase() === 'sitepage') {
+    if (listItemDetails?.ContentType?.toLowerCase() === "sitepage") {
       editPage(pageObjectMapper(obj));
     } else {
       navigate(
         `/content/create-${listItemDetails?.ContentType?.toLowerCase()}?path=${
           listItemDetails.page
-        }`
+        }`,
       );
     }
   };
 
   const preview = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
-    const { contentType } = listItemDetails;
+    const { contentType: listContentType } = listItemDetails;
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
-        if (
-          selectedItem?.page_state === DRAFT ||
-          selectedItem?.page_state == UNPUBLISHED
-        ) {
+        if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
           const qusArry: any = [];
-          if (selectedItem?.questions?.length && contentType === QUIZ) {
+          if (selectedItem?.questions?.length && listContentType === QUIZ) {
             selectedItem?.questions?.map((qus: any) => {
               runFetchContentByPath({
-                variables: { contentType: QUESTION, path: qus },
+                variables: { listContentType: QUESTION, path: qus },
               })
                 .then((res) => {
                   if (res?.data?.authoring_getCmsContentByPath) {
-                    const qusObj = res?.data
-                      ?.authoring_getCmsContentByPath as never;
+                    const qusObj = res?.data?.authoring_getCmsContentByPath as never;
                     qusArry.push(qusObj);
                   }
                 })
                 .catch((err) => {
-                  console.log(JSON.stringify(err, null, 2));
+                  //error
                 });
             });
             const tempObj = {
               ...selectedItem,
               questions: qusArry,
-              contentType,
+              listContentType,
             };
             dispatch(previewContent(tempObj));
             navigate(PREVIEW_PATH);
-          } else if (contentType === POLL) {
-            dispatch(previewContent({ ...selectedItem, contentType }));
+          } else if (listContentType === POLL) {
+            dispatch(previewContent({ ...selectedItem, listContentType }));
             navigate(PREVIEW_PATH);
-          } else if (contentType === 'Article') {
+          } else if (listContentType === "Article") {
             dispatch(previewArticle(selectedItem));
-            navigate('/article-preview');
-          } else if (contentType === EVENT) {
+            navigate("/article-preview");
+          } else if (listContentType === EVENT) {
             const eventToPreview = {
               ...selectedItem,
               settings: selectedItem?.settingsProperties,
@@ -266,41 +237,33 @@ const useDashboardData = (contentType = 'ALL') => {
               last_modification_date: selectedItem?.modificationDate,
               AnalyticsEnable: selectedItem?.analytics_enable,
             };
-            dispatch(previewContent({ ...eventToPreview, contentType }));
+            dispatch(previewContent({ ...eventToPreview, listContentType }));
             navigate(PREVIEW_PATH);
           } else {
             ShowToastError(t(PREVIEW_PATH));
           }
         }
-      } catch (error: any) {
-        ShowToastError(
-          error?.graphQLErrors[0]?.message || t('api_error_toast')
-        );
+      } catch (previewError: any) {
+        ShowToastError(previewError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
-  const duplicate = async (
-    IsDuplicate = false,
-    title = '',
-    language = '',
-    listItemDetails: any
-  ) => {
+  const duplicate = async (IsDuplicate, title, language, listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     try {
       if (selectedItem && Object.keys(selectedItem).length > 0) {
         const contentToSend = mapDuplicateContent(
           listItemDetails?.ContentType,
-          title,
-          IsDuplicate,
+          title || "",
+          IsDuplicate || false,
           selectedItem,
           username,
-          i18n.language
+          i18n.language,
         );
-        const selectedLanguage = LanguageList.filter((langObj) =>
-          language.includes(langObj.value)
-        );
+        const selectedLanguage = LanguageList.filter((langObj) => language.includes(langObj.value));
         const response: any = [];
         for (const lang of selectedLanguage) {
+          // eslint-disable-next-line no-await-in-loop
           const result = await createMutate({
             variables: {
               contenttype: listItemDetails?.ContentType,
@@ -321,19 +284,17 @@ const useDashboardData = (contentType = 'ALL') => {
           fetchDashBoardData();
 
           for (const res of response) {
-            ShowToastSuccessMessage(
-              `${t(contentType)} ${t('duplicated_toast')} ${t('for')} ${
-                res.language
-              }`
+            ShowToastSuccess(
+              `${t(contentType)} ${t("duplicated_toast")} ${t("for")} ${res.language}`,
             );
           }
         }
       }
-    } catch (error: any) {
+    } catch (duplicateError: any) {
       ShowToastError(
-        error.graphQLErrors[0]
-          ? `${error.graphQLErrors[0].message} ${t('for')} ` //${l.value}
-          : t('api_error_toast')
+        duplicateError.graphQLErrors[0]
+          ? `${duplicateError.graphQLErrors[0].message} ${t("for")} ` //${l.value}
+          : t("api_error_toast"),
       );
     }
   };
@@ -354,12 +315,10 @@ const useDashboardData = (contentType = 'ALL') => {
         },
       });
       setLoading(false);
-      ShowToastSuccessMessage(responseAccept.data.authoring_updateTask.message);
+      ShowToastSuccess(responseAccept.data.authoring_updateTask.message);
     } catch (err: any) {
       ShowToastError(
-        err.graphQLErrors.length > 0
-          ? err.graphQLErrors[0].message
-          : t('api_error_toast')
+        err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
       );
       setLoading(false);
     }
@@ -377,7 +336,7 @@ const useDashboardData = (contentType = 'ALL') => {
     edit,
     fetchDashBoardData,
     fetchContentDetails,
-    changeStatus
+    changeStatus,
   };
 };
 

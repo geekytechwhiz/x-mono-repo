@@ -1,4 +1,6 @@
-import { gql } from '@apollo/client';
+/* eslint-disable template-tag-spacing */
+import { gql } from "@apollo/client";
+
 export const FETCH_PRELEM_VALIDATION = gql`
   query FETCH_PRELEM_VALIDATION($input: String!) {
     authoring_getDocValidationSchema(docType: $input) {
@@ -8,16 +10,8 @@ export const FETCH_PRELEM_VALIDATION = gql`
   }
 `;
 export const FETCH_PRELEM_CONTENT = gql`
-  query FETCH_PRELEM_CONTENT(
-    $path: String!
-    $docType: String!
-    $prelemId: String
-  ) {
-    authoring_getCmsItemContent(
-      path: $path
-      docType: $docType
-      prelemId: $prelemId
-    )
+  query FETCH_PRELEM_CONTENT($path: String!, $docType: String!, $prelemId: String) {
+    authoring_getCmsItemContent(path: $path, docType: $docType, prelemId: $prelemId)
   }
 `;
 export const FETCH_ALL_PRELEM_SEARCH_LIST = gql`

@@ -1,7 +1,7 @@
-import { Box, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { convertToLowerCase } from '../../../utils/helperFns';
+import { Box, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { convertToLowerCase } from "../../../utils/helperFns";
 
 interface TextBoxProps {
   name?: any;
@@ -37,7 +37,7 @@ const XTextBox = ({
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
 
-  const handleLength = (valueData = '') => {
+  const handleLength = (valueData = "") => {
     if (maxCharLength) {
       const lengthOfChar = convertToLowerCase(valueData).length;
       const rest = valueData ? maxCharLength - lengthOfChar : 0;
@@ -55,14 +55,12 @@ const XTextBox = ({
     if (handleChange) {
       handleChange(event);
     }
-    const { target: { value = '' } = {} } = event;
+    const { target: { value = "" } = {} } = event;
     handleLength(value);
   };
 
   useEffect(() => {
-    if (
-      state
-    ) {
+    if (state) {
       const x: any = document.querySelector(`#${name}`);
       x.value = state;
       handleLength(state);
@@ -70,7 +68,7 @@ const XTextBox = ({
   }, [state]);
 
   const handleKeydown = (e) => {
-    if (e.keyCode == 70) {
+    if (e.keyCode === 70) {
       e.stopPropagation();
     }
   };
@@ -88,7 +86,7 @@ const XTextBox = ({
         helperText={helperText}
         disabled={isDisabled}
         sx={{
-          input: { cursor: isDisabled && 'not-allowed' },
+          input: { cursor: isDisabled && "not-allowed" },
         }}
         inputProps={{
           maxLength: maxCharLength,
@@ -105,17 +103,14 @@ const XTextBox = ({
       />
 
       {maxCharLength && (
-        <Typography
-          variant='h7regular'
-          sx={{ color: '#5c6574', marginTop: '10px' }}
-        >
+        <Typography variant='h7regular' sx={{ color: "#5c6574", marginTop: "10px" }}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
           ) : (
             <>
               {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
+                ? `${restOfLength} ${t("characters")} ${t("left")} `
+                : `${maxCharLength} ${t("characters")} ${t("max")}`}
             </>
           )}
         </Typography>

@@ -1,7 +1,7 @@
-
 import XSwitch from "./XSwitch";
+
 export default {
-  title: 'X Component Library/Switch',
+  title: "X Component Library/Switch",
   component: XSwitch,
 };
 
@@ -11,6 +11,5 @@ const PrimaryInput: any = Template.bind({});
 
 PrimaryInput.args = {
   disabled: false,
-  color: '#000000',
+  color: "#000000",
 };
-
