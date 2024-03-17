@@ -1,10 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable default-param-last */
-/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
-
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
 import {
   ContentState,
@@ -188,7 +184,7 @@ const useContentListing = (filter = "ALL") => {
     );
   };
 
-  const editPage = async (listItemDetails: { path: any }) => {
+  const editPage = (listItemDetails: { path: any }) => {
     navigate({
       pathname: "/edit-page",
       search: `?${createSearchParams({
@@ -263,7 +259,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
   const duplicate = async (
-    IsDuplicate = false,
+    IsDuplicate,
     title: any,
     language: string | string[],
     listItemDetails: any,
@@ -278,7 +274,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -302,7 +298,7 @@ const useContentListing = (filter = "ALL") => {
         const response = await Promise.all(promises);
 
         if (response && response.length > 0) {
-          const response: any = await contentTypeAPIs.fetchSearchContent(
+          const searchResponse: any = await contentTypeAPIs.fetchSearchContent(
             capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
@@ -310,8 +306,8 @@ const useContentListing = (filter = "ALL") => {
             contentList,
             true,
           );
-          dispatch(updateContentList(response));
-          for (const res of response) {
+          dispatch(updateContentList(searchResponse));
+          for (const res of searchResponse) {
             ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
@@ -331,12 +327,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
 
-  const duplicateToSite = async (
-    IsDuplicate = false,
-    title: any,
-    listItemDetails: any,
-    siteTitle: any,
-  ) => {
+  const duplicateToSite = async (IsDuplicate, title: any, listItemDetails: any, siteTitle: any) => {
     try {
       const selectedItem = await fetchContentDetails(listItemDetails);
 
@@ -344,7 +335,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,

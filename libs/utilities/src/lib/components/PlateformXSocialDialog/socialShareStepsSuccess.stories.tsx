@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-import SocialShareStepSuccess from './socialShareStepsSuccess';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import SocialShareStepSuccess from "./socialShareStepsSuccess";
 
 const meta: Meta<typeof SocialShareStepSuccess> = {
   component: SocialShareStepSuccess,
-  title: 'SocialShareStepSuccess',
+  title: "SocialShareStepSuccess",
 };
 export default meta;
 type Story = StoryObj<typeof SocialShareStepSuccess>;
@@ -17,10 +17,8 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(
-      canvas.getByText(/Welcome to SocialShareStepSuccess!/gi)
-    ).toBeTruthy();
+    expect(canvas.getByText(/Welcome to SocialShareStepSuccess!/gi)).toBeTruthy();
   },
 };

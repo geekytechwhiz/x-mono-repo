@@ -306,7 +306,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           setfacebookProfileData(res?.data?.authoring_socialSharePageProfile[0]?.facebookRes);
         })
         .catch((err) => {
-          console.log(JSON.stringify(err, null, 2));
+          // console.log(JSON.stringify(err, null, 2));
         });
     }
 

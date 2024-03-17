@@ -2,7 +2,13 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import { ShowToastError, ShowToastSuccess } from "@platformx/utilities";
+import {
+  useUserSession,
+  ShowToastError,
+  ShowToastSuccess,
+  capitalizeFirstLetter,
+  getSubDomain,
+} from "@platformx/utilities";
 import { DashboardTypes, Dashboard_Keys } from "../../services/utils/dashboard/Dashboard.types";
 import { previewContent, previewArticle } from "@platformx/authoring-state";
 import fetchContentByPathAPI, {
@@ -13,7 +19,6 @@ import fetchContentByPathAPI, {
 } from "../../services/contentTypes/contentTypes.api";
 import dashboardApi from "../../services/dashboard/dashBoard.api";
 import { LanguageList } from "../../utils/constants";
-import { capitalizeFirstLetter, getSubDomain } from "@platformx/utilities";
 import usePage from "../usePage/usePage";
 import { CONTENT_CONSTANTS } from "../useQuizPollEvents/Utils/Constants";
 import {
@@ -22,7 +27,6 @@ import {
   mapUnPublishContent,
   pageObjectMapper,
 } from "../useQuizPollEvents/mapper";
-import { useUserSession } from "@platformx/utilities";
 import { useDispatch } from "react-redux";
 import { UPDATE_TASK_STATUS } from "../../graphQL/queries/dashboardQueries";
 
@@ -50,7 +54,7 @@ const useDashboardData = (contentType = "ALL") => {
 
   const [dashBoardData, setDashBoardData] = useState<DashboardTypes>();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const fetchDashBoardData = async () => {
     try {
       setLoading(true);
@@ -95,14 +99,11 @@ const useDashboardData = (contentType = "ALL") => {
         };
         setDashBoardData(dt);
       } else {
-        console.log("error in dashboard api");
-
         //ShowToastError(t('api_error_toast'));
       }
     } catch (err: any) {
       // setError(err);
-      // ShowToastError(err);
-      console.log("error in dashboard api");
+      ShowToastError(err);
     } finally {
       setLoading(false);
     }
@@ -131,7 +132,7 @@ const useDashboardData = (contentType = "ALL") => {
     const { ContentType } = listItemDetails;
 
     if (selectedItem && Object.keys(selectedItem).length > 0) {
-      if (selectedItem.page_state == PUBLISHED) {
+      if (selectedItem.page_state === PUBLISHED) {
         await unPublish(listItemDetails);
       }
       try {
@@ -146,8 +147,8 @@ const useDashboardData = (contentType = "ALL") => {
           fetchDashBoardData();
           ShowToastSuccess(`${ContentType} ${t("deleted_toast")}`);
         }
-      } catch (error: any) {
-        ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
+      } catch (deleteError: any) {
+        ShowToastError(deleteError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
@@ -166,8 +167,8 @@ const useDashboardData = (contentType = "ALL") => {
           fetchDashBoardData();
           ShowToastSuccess(`${listItemDetails?.ContentType} ${t("unpublished_toast")}`);
         }
-      } catch (error: any) {
-        ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
+      } catch (unPublishError: any) {
+        ShowToastError(unPublishError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
@@ -194,15 +195,15 @@ const useDashboardData = (contentType = "ALL") => {
 
   const preview = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
-    const { contentType } = listItemDetails;
+    const { contentType: listContentType } = listItemDetails;
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
-        if (selectedItem?.page_state === DRAFT || selectedItem?.page_state == UNPUBLISHED) {
+        if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
           const qusArry: any = [];
-          if (selectedItem?.questions?.length && contentType === QUIZ) {
+          if (selectedItem?.questions?.length && listContentType === QUIZ) {
             selectedItem?.questions?.map((qus: any) => {
               runFetchContentByPath({
-                variables: { contentType: QUESTION, path: qus },
+                variables: { listContentType: QUESTION, path: qus },
               })
                 .then((res) => {
                   if (res?.data?.authoring_getCmsContentByPath) {
@@ -211,23 +212,23 @@ const useDashboardData = (contentType = "ALL") => {
                   }
                 })
                 .catch((err) => {
-                  console.log(JSON.stringify(err, null, 2));
+                  //error
                 });
             });
             const tempObj = {
               ...selectedItem,
               questions: qusArry,
-              contentType,
+              listContentType,
             };
             dispatch(previewContent(tempObj));
             navigate(PREVIEW_PATH);
-          } else if (contentType === POLL) {
-            dispatch(previewContent({ ...selectedItem, contentType }));
+          } else if (listContentType === POLL) {
+            dispatch(previewContent({ ...selectedItem, listContentType }));
             navigate(PREVIEW_PATH);
-          } else if (contentType === "Article") {
+          } else if (listContentType === "Article") {
             dispatch(previewArticle(selectedItem));
             navigate("/article-preview");
-          } else if (contentType === EVENT) {
+          } else if (listContentType === EVENT) {
             const eventToPreview = {
               ...selectedItem,
               settings: selectedItem?.settingsProperties,
@@ -236,30 +237,25 @@ const useDashboardData = (contentType = "ALL") => {
               last_modification_date: selectedItem?.modificationDate,
               AnalyticsEnable: selectedItem?.analytics_enable,
             };
-            dispatch(previewContent({ ...eventToPreview, contentType }));
+            dispatch(previewContent({ ...eventToPreview, listContentType }));
             navigate(PREVIEW_PATH);
           } else {
             ShowToastError(t(PREVIEW_PATH));
           }
         }
-      } catch (error: any) {
-        ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
+      } catch (previewError: any) {
+        ShowToastError(previewError?.graphQLErrors[0]?.message || t("api_error_toast"));
       }
     }
   };
-  const duplicate = async (
-    IsDuplicate = false,
-    title = "",
-    language = "",
-    listItemDetails: any,
-  ) => {
+  const duplicate = async (IsDuplicate, title, language, listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     try {
       if (selectedItem && Object.keys(selectedItem).length > 0) {
         const contentToSend = mapDuplicateContent(
           listItemDetails?.ContentType,
-          title,
-          IsDuplicate,
+          title || "",
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -267,6 +263,7 @@ const useDashboardData = (contentType = "ALL") => {
         const selectedLanguage = LanguageList.filter((langObj) => language.includes(langObj.value));
         const response: any = [];
         for (const lang of selectedLanguage) {
+          // eslint-disable-next-line no-await-in-loop
           const result = await createMutate({
             variables: {
               contenttype: listItemDetails?.ContentType,
@@ -293,10 +290,10 @@ const useDashboardData = (contentType = "ALL") => {
           }
         }
       }
-    } catch (error: any) {
+    } catch (duplicateError: any) {
       ShowToastError(
-        error.graphQLErrors[0]
-          ? `${error.graphQLErrors[0].message} ${t("for")} ` //${l.value}
+        duplicateError.graphQLErrors[0]
+          ? `${duplicateError.graphQLErrors[0].message} ${t("for")} ` //${l.value}
           : t("api_error_toast"),
       );
     }

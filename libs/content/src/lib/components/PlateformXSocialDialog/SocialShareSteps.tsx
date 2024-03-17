@@ -1,25 +1,17 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Grid } from "@mui/material";
-import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import IconButton from "@mui/material/IconButton";
-import StepIcon from "@mui/material/StepIcon";
-import Tooltip from "@mui/material/Tooltip";
 import { addMinutes } from "date-fns";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 // import SkeltonLoader from '../../components/Skeleton-loader/skeleton';
 import SocialShareStep1 from "./socialShareSteps1";
 import SocialShareStep2 from "./socialShareSteps2";
 import SocialShareStep3 from "./socialShareSteps3";
 
 import { useTranslation } from "react-i18next";
-import { ShowToastError, ShowToastSuccess } from "@platformx/utilities";
-import { useUserSession } from "@platformx/utilities";
-import { ArticleMutations, ArticleQueries, FETCH_VOD_BY_ID } from "@platformx/authoring-apis";
 import {
+  ArticleQueries,
+  FETCH_VOD_BY_ID,
   fetchSocialShareProfile,
   rescheduleSocialShare,
   scheduleSocialShare,
@@ -29,81 +21,21 @@ import {
   convertToLowerCase,
   getSubDomain,
   SkeltonLoader,
+  ShowToastError,
+  ShowToastSuccess,
 } from "@platformx/utilities";
+
+// eslint-disable-next-line no-shadow
 enum ShareNetworkValues {
   fb = "Facebook",
   in = "LinkedIn",
-}
-
-const steps = [
-  {
-    label: "choose_network",
-    description: "network_subtitle",
-  },
-  {
-    label: "create_post",
-    description: "create_subtitlte",
-  },
-  {
-    label: "preview",
-    description: "preview_subtitle",
-  },
-];
-
-function BadgedlibStepIcon(props: any) {
-  const { active, completed, icon } = props;
-  const [open, setOpen] = React.useState(false);
-  const { t, i18n } = useTranslation();
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
-  return (
-    <Badge
-      badgeContent={
-        <ClickAwayListener onClickAway={handleTooltipClose}>
-          <Tooltip
-            PopperProps={{
-              sx: { color: "#fff", fontSize: "12px" },
-            }}
-            onClose={handleTooltipClose}
-            open={open}
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            title={t(steps[icon - 1].description)}>
-            <IconButton onClick={handleTooltipOpen} size='small'>
-              <Box
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: "50%",
-                  width: "24px",
-                  height: "24px",
-                }}>
-                <InfoOutlinedIcon color='disabled' />
-              </Box>
-            </IconButton>
-          </Tooltip>
-        </ClickAwayListener>
-      }
-      overlap='circular'
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "right",
-      }}>
-      <StepIcon sx={{ color: active || completed ? "#2d2d39" : "#ced3d9" }} icon={icon} />
-    </Badge>
-  );
 }
 
 const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneClick }: any) => {
   const { t, i18n } = useTranslation();
   const [activeStep, setActiveStep] = React.useState(1);
   const [selectedSocial, setSelectedSocial] = React.useState({
-    in: selectedItem?.NetworkType == "LinkedIn" ? true : false,
+    in: selectedItem?.NetworkType === "LinkedIn" ? true : false,
     fb: true,
   });
 
@@ -113,7 +45,6 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
   const [scheduleDate, setScheduleDate] = React.useState<Date | null>(
     selectedItem?.ScheduleDate ? selectedItem.ScheduleDate : addMinutes(new Date(), 15),
   );
-  const navigate = useNavigate();
   const [socialShareSchedule] = useMutation(scheduleSocialShare);
   const [socialShareReSchedule] = useMutation(rescheduleSocialShare);
   const [runFetchSocialShare] = useLazyQuery(fetchSocialShareProfile);
@@ -121,9 +52,6 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
   const [runFetchContentByPath] = useLazyQuery(ArticleQueries.FETCH_CONTENT_BY_PATH);
   const [runFetchArticleModel] = useLazyQuery(ArticleQueries.FETCH_ARTICLE_MODEL);
   const [runFetchVodById] = useLazyQuery(FETCH_VOD_BY_ID);
-  const [getSession] = useUserSession();
-  const { userInfo } = getSession();
-  const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
   //Social Share Schedule API Call
   const socialSchedule = (input: any, sharetype: any) => {
@@ -137,7 +65,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
     })
       .then((res) => {
         ShowToastSuccess(
-          `${t(contentType == "video" ? "VOD" : contentType)} ${t(
+          `${t(contentType === "video" ? "VOD" : contentType)} ${t(
             checked ? "scheduled" : "shared",
           )} ${t("successfully")}`,
         );
@@ -203,7 +131,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           }
         })
         .catch((err) => {
-          console.log("runFetchErr ", JSON.stringify(err, null, 2));
+          // console.log("runFetchErr ", JSON.stringify(err, null, 2));
           ShowToastError(t("api_error_toast"));
           onDoneClick();
           setLoading(false);
@@ -274,9 +202,9 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
   const handleNext = () => {
     const currentDateTime = addMinutes(new Date(), 14);
     //const scheduleDateTime= new Date(scheduleDate? scheduleDate :'');
-    if (activeStep == 1 && checked) {
+    if (activeStep === 1 && checked) {
       const scheduleDateTime: any = scheduleDate ? new Date(scheduleDate) : scheduleDate;
-      if (!scheduleDate || scheduleDateTime == "Invalid Date") {
+      if (!scheduleDate || scheduleDateTime === "Invalid Date") {
         ShowToastError(t("ss_date_format"));
         return false;
       }
@@ -285,7 +213,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
         return false;
       }
     }
-    if (activeStep == 1) {
+    if (activeStep === 1) {
       const shareNetwork = [ShareNetworkValues.fb];
       runFetchSocialShare({
         variables: { socialShareType: shareNetwork },
@@ -294,18 +222,18 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           setfacebookProfileData(res?.data?.authoring_socialSharePageProfile[0]?.facebookRes);
         })
         .catch((err) => {
-          console.log(JSON.stringify(err, null, 2));
+          // console.log(JSON.stringify(err, null, 2));
         });
     }
 
-    if (activeStep == 2) {
+    if (activeStep === 2) {
       const postURL = `${getSubDomain()}/${i18n.language}/${
         convertToLowerCase(contentType) === "vod" ? "video" : convertToLowerCase(contentType)
       }${selectedItem?.CurrentPageURL}`;
 
       if (checked) {
         const scheduleDateTime: any = scheduleDate ? new Date(scheduleDate) : scheduleDate;
-        if (!scheduleDate || scheduleDateTime == "Invalid Date") {
+        if (!scheduleDate || scheduleDateTime === "Invalid Date") {
           ShowToastError(t("ss_date_format"));
           return false;
         }
@@ -340,7 +268,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           item_title: selectedItem?.Title,
           content_type: selectedItem?.contentType
             ? selectedItem?.contentType
-            : contentType == "video"
+            : contentType === "video"
             ? "VOD"
             : contentType,
           item_path: selectedItem?.Page,
@@ -371,9 +299,6 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
   const inlineCss = `
   .desktopstepper .Platform-x-StepIcon-root {
     width: 58px;

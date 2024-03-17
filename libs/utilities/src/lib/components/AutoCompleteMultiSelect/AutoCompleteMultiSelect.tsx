@@ -1,11 +1,12 @@
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import './AutoCompleteMultiSelect.css';
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import "./AutoCompleteMultiSelect.css";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
+const checkedIcon = <CheckBoxIcon fontSize='small' />;
 export type AutoCompleteMultiSelectProps = {
   options: any;
   placeholder: string;
@@ -19,11 +20,11 @@ export type AutoCompleteMultiSelectProps = {
 export default function AutoCompleteMultiSelect({
   options,
   placeholder,
-  className = '',
+  className = "",
   values = [],
-  onChange = (event: any, newInputValue: any) => { },
+  onChange = (event: any, newInputValue: any) => {},
   getOptionLabel,
-  optionFormat = '',
+  optionFormat = "",
   limitTags = -1,
 }: AutoCompleteMultiSelectProps) {
   return (
@@ -32,20 +33,18 @@ export default function AutoCompleteMultiSelect({
       value={[...values]}
       className={className}
       multiple
-      id="checkboxesdemos"
+      id='checkboxesdemos'
       options={options}
       disableCloseOnSelect
       getOptionLabel={getOptionLabel}
-      isOptionEqualToValue={(option: any, value) =>
-        option[optionFormat] === value[optionFormat]
-      }
+      isOptionEqualToValue={(option: any, value) => option[optionFormat] === value[optionFormat]}
       onChange={onChange}
       classes={{
-        popper: 'autocompleteMultiSelectPopper',
-        paper: 'autocompleteMultiSelectPapper',
-        inputRoot: 'autocompleteMultiSelectInputRoot',
-        tag: 'autocompleteMultiSelectTag',
-        root: 'autocompleteMultiSelectroot',
+        popper: "autocompleteMultiSelectPopper",
+        paper: "autocompleteMultiSelectPapper",
+        inputRoot: "autocompleteMultiSelectInputRoot",
+        tag: "autocompleteMultiSelectTag",
+        root: "autocompleteMultiSelectroot",
       }}
       renderOption={(props, option: any, { selected }) => (
         <li {...props}>

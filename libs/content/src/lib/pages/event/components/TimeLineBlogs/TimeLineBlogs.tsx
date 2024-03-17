@@ -21,7 +21,7 @@ import {
   nullToObject,
   nullToString,
   ShowToastError as showToastError,
-  ShowToastSuccess as ShowToastSuccess,
+  ShowToastSuccess,
   AUTH_INFO as authInfo,
   apiCallForBlogs,
 } from "@platformx/utilities";

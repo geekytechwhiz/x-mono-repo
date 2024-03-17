@@ -14,7 +14,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -27,7 +29,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -40,7 +44,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -53,7 +59,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -66,7 +74,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -79,7 +89,9 @@ const articleApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },

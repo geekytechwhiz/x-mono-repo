@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import   TaskNotFound   from './TaskNotFound';
+import type { Meta, StoryObj } from "@storybook/react";
+import TaskNotFound from "./TaskNotFound";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof TaskNotFound> = {
   component: TaskNotFound,
-  title: 'TaskNotFound',
+  title: "TaskNotFound",
 };
 export default meta;
 type Story = StoryObj<typeof TaskNotFound>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to TaskNotFound!/gi)).toBeTruthy();
   },

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import  WarningToast   from './WarningToast';
+import type { Meta, StoryObj } from "@storybook/react";
+import WarningToast from "./WarningToast";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof WarningToast> = {
   component: WarningToast,
-  title: 'WarningToast',
+  title: "WarningToast",
 };
 export default meta;
 type Story = StoryObj<typeof WarningToast>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to WarningToast!/gi)).toBeTruthy();
   },

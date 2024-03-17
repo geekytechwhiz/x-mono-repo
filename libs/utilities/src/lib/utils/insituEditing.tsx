@@ -25,7 +25,7 @@ function capitalize(str) {
 function arrayToObject(objectArray, property) {
   return objectArray.reduce(function (acc, obj) {
     // checking if type is of button, giving special treatment
-    if (obj.type === "button" && obj?.buttonKeysObject != undefined) {
+    if (obj.type === "button" && obj?.buttonKeysObject !== undefined) {
       //getting all relative objects
       const keysObj = obj.buttonKeysObject;
       // fethcing all keys
@@ -143,7 +143,8 @@ export const doneInsituEditing = (keys, ref, buttonsKeysPopulatedObj, prelemId?:
             });
             break;
           default:
-            console.log(`function again that key is not available ${validationKey} `);
+          //Do nothing
+          // console.log(`function again that key is not available ${validationKey} `);
         }
       }
       field.errors = errors;

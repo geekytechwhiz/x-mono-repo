@@ -129,7 +129,6 @@ export const articleSlice = createSlice({
           state.updatedField.articleUrl = currentPageURL;
           state.updatedField.updatedObj = { Page_State: "publish" };
         }
-        console.log(resp);
       });
     },
     updateArticleInitialState: (state, action: PayloadAction<{ payload: any }>) => {

@@ -3,7 +3,15 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box, IconButton } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Drag, DragAndDrop, Drop, EditIcon, IconAndLabel, MoreHorizIcon, TitleSubTitle } from "@platformx/utilities";
+import {
+  Drag,
+  DragAndDrop,
+  Drop,
+  EditIcon,
+  IconAndLabel,
+  MoreHorizIcon,
+  TitleSubTitle,
+} from "@platformx/utilities";
 import React, { useState } from "react";
 
 const MIN_QUESTIONS = 4;
@@ -46,7 +54,7 @@ export const DraggableQuestions = ({ quizState, setQuizState, onClickEditQuestio
   };
   const onEditOption = () => {
     setAnchorEl(null);
-    console.info(items);
+    // console.info(items);
     onClickEditQuestion(items);
   };
 
