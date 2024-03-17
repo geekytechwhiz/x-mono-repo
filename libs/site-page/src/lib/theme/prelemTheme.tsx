@@ -190,7 +190,7 @@ declare module "@mui/system" {
     xl: true;
   }
 }
-const PrelemTheme = (ThemeConstants: any): Theme =>
+const PrelemTheme = (ThemeConstants: any) =>
   createTheme({
     prelemMargin: {
       value: "0px",

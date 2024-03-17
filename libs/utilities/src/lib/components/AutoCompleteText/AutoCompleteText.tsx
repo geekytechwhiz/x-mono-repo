@@ -28,8 +28,9 @@ const AutoCompleteText = ({ socialShareInfo, setSocialShareInfo }) => {
           value.map(
             (option: string, index: number) =>
               option && (
+                // eslint-disable-next-line react/jsx-key
                 <Chip
-                  key={index}
+                  // key={index}
                   variant='outlined'
                   label={option}
                   deleteIcon={
