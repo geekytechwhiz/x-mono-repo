@@ -70,7 +70,7 @@ export default function PlateformXCreatestep5Dialog({
                       You can the team administrator here. it is capable of runnig whole website.
                     </Typography>
                   </Box>
-                  <Box sx={{ marginTop: "15px" }}>
+                  <Box className={classes.step5boxh}>
                     <TextField
                       placeholder='Enter Email ID'
                       {...inputProps}
@@ -90,14 +90,7 @@ export default function PlateformXCreatestep5Dialog({
                   </Box>
                   <Grid item xs={6} sm={4} md={12} lg={12}>
                     {mockDatastep.map((transaction) => (
-                      <Box
-                        sx={{
-                          marginTop: "17px",
-                          display: "flex",
-                          justifyContent: "space-around",
-                          gap: "70px",
-                        }}
-                        key={transaction.id}>
+                      <Box className={classes.step5contain} key={transaction.id}>
                         <Typography>{transaction.value}</Typography>
                         <Typography>{transaction.name}</Typography>
                         <Typography sx={{ color: "#D32F2F" }}>{transaction.Cat}</Typography>

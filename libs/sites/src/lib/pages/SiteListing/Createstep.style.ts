@@ -283,6 +283,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginLeft: "6px",
   },
   platxlogo: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "5px 11px 5px 11px",
+    },
     padding: "5px 90px 5px 154px",
   },
   applyflex: {
@@ -338,6 +341,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     gap: "31px",
   },
   xlogobox: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "5px 8px 5px 8px",
+    },
     padding: "5px 90px 5px 154px",
   },
   skipbtncolor: {
@@ -390,10 +396,18 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     gap: "8px",
     flexWrap: "wrap",
     padding: "8px 0px 0px 0px !important",
-    border: "1px solid #D9DBE9",
   },
   step5boxbtn: {
     backgroundColor: "#4B9EF9 !impotant",
     color: "#FFF !important",
+  },
+  step5boxh: {
+    marginTop: "15px",
+  },
+  step5contain: {
+    marginTop: "17px",
+    display: "flex",
+    justifyContent: "space-around",
+    gap: "70px",
   },
 }));

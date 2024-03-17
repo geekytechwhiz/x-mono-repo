@@ -76,7 +76,7 @@ export default function PlateformXCreatestep4Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={7} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
                 <Box className={classes.platxlogo}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -93,7 +93,7 @@ export default function PlateformXCreatestep4Dialog({
                     </Typography>
                   </Box>
                   <Box className={classes.boxscroll}>
-                    <Grid item xs={6} sm={4} md={12} lg={12}>
+                    <Grid item xs={12} sm={4} md={12} lg={12}>
                       <Box className={classes.step4boxn}>
                         <Accordion sx={{ boxShadow: "none" }}>
                           <AccordionSummary
@@ -184,7 +184,7 @@ export default function PlateformXCreatestep4Dialog({
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={12} md={12} lg={5} className={classes.modalgrid}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
                 <Box className={classes.createcontainnew}>
                   <Typography className={classes.typowidthstep4} variant='h2bold'>
                     Choose the tags to provide additional information about the website and promote
