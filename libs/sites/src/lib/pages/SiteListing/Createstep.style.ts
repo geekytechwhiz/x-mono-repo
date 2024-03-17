@@ -410,4 +410,10 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     justifyContent: "space-around",
     gap: "70px",
   },
+  accordianborder: {
+    borderBottom: "1px solid #D9DBE9",
+    width: "512px",
+    height: "1px",
+    marginTop: "20px",
+  },
 }));

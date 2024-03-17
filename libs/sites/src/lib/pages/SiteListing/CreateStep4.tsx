@@ -110,6 +110,7 @@ export default function PlateformXCreatestep4Dialog({
                               </Box>
                             ))}
                           </AccordionDetails>
+                          <Box className={classes.accordianborder}></Box>
                         </Accordion>
                       </Box>
                       <Box className={classes.step4boxn}>
@@ -128,6 +129,7 @@ export default function PlateformXCreatestep4Dialog({
                               </Box>
                             ))}
                           </AccordionDetails>
+                          <Box className={classes.accordianborder}></Box>
                         </Accordion>
                       </Box>
                       <Box className={classes.step4boxn}>
@@ -146,6 +148,7 @@ export default function PlateformXCreatestep4Dialog({
                               </Box>
                             ))}
                           </AccordionDetails>
+                          <Box className={classes.accordianborder}></Box>
                         </Accordion>
                       </Box>
                     </Grid>

@@ -90,11 +90,14 @@ export default function PlateformXCreatestep5Dialog({
                   </Box>
                   <Grid item xs={6} sm={4} md={12} lg={12}>
                     {mockDatastep.map((transaction) => (
-                      <Box className={classes.step5contain} key={transaction.id}>
-                        <Typography>{transaction.value}</Typography>
-                        <Typography>{transaction.name}</Typography>
-                        <Typography sx={{ color: "#D32F2F" }}>{transaction.Cat}</Typography>
-                      </Box>
+                      <>
+                        <Box className={classes.step5contain} key={transaction.id}>
+                          <Typography>{transaction.value}</Typography>
+                          <Typography>{transaction.name}</Typography>
+                          <Typography sx={{ color: "#D32F2F" }}>{transaction.Cat}</Typography>
+                        </Box>
+                        <Box className={classes.accordianborder}></Box>
+                      </>
                     ))}
                   </Grid>
 
