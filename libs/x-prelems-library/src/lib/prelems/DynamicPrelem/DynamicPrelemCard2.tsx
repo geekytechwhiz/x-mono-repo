@@ -165,16 +165,16 @@ const DynamicPrelemCard2 = ({
             <Box className='card2ContentInnerWrapper'>
               <img
                 alt='DynamicPrelemCard2'
-                src={getIcon(content.ContentType)}
+                src={getIcon(content?.ContentType)}
                 style={{ width: "100%" }}
               />
             </Box>
             <Box>
               <Typography variant='h4semibold' className='cardTitle' color='textColor'>
-                {content.Title}
+                {content?.Title}
               </Typography>
               <Typography variant='p3regular' className='cardDescription' color='textColor'>
-                {handleHtmlTags(content.Description)}
+                {handleHtmlTags(content?.Description)}
               </Typography>
             </Box>
             <Box className='card2bottomButtonBox'>

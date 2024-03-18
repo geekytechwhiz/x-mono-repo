@@ -87,7 +87,7 @@ const BlogTiles = ({ content, analytics, authoringHelper, secondaryArgs }: any) 
             }}>
             {cardArr?.length > 0 ? (
               cardArr?.length <= 4 ? (
-                cardArr.map((item: any, index: any) => {
+                cardArr?.map((item: any, index: any) => {
                   const { md, em } = getGridValues(index);
                   return (
                     <Grid item xs={12} md={md} em={em} rowSpacing={1.5} p={1.5}>

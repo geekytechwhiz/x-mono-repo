@@ -189,8 +189,8 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
       <Box ref={ref} className={`banner5-slideshow ${classes.slideShowWrapper} banner5Bgwrapper`}>
         <Box className='slides prelem-py'>
           <Banner5Slide
-            idfortitle='Title1'
-            title={content?.Title1}
+            idfortitle='title1'
+            title={content?.title1}
             img={content?.ImageCompound?.ImageCompound_1}
             analytics={analytics}
             authoringHelper={authoringHelper}
@@ -200,8 +200,8 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
             showSlide={currentSlide === 0}
           />
           <Banner5Slide
-            idfortitle='Title2'
-            title={content?.Title2}
+            idfortitle='title2'
+            title={content?.title2}
             img={content?.ImageCompound?.ImageCompound_2}
             analytics={analytics}
             authoringHelper={authoringHelper}
@@ -211,8 +211,8 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
             showSlide={currentSlide === 1}
           />
           <Banner5Slide
-            idfortitle='Title3'
-            title={content?.Title3}
+            idfortitle='title3'
+            title={content?.title3}
             img={content?.ImageCompound?.ImageCompound_3}
             analytics={analytics}
             authoringHelper={authoringHelper}
@@ -222,8 +222,8 @@ const Banner5 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner5
             showSlide={currentSlide === 2}
           />
           <Banner5Slide
-            idfortitle='Title4'
-            title={content?.Title4}
+            idfortitle='title4'
+            title={content?.title4}
             img={content?.ImageCompound?.ImageCompound_4}
             analytics={analytics}
             authoringHelper={authoringHelper}
@@ -269,7 +269,7 @@ interface Banner5Props {
 interface Content {
   TagName?: string;
 
-  Title1: string;
+  title1: string;
   Button1_Action?: string;
   Button1_Content?: string;
   Button1_Name?: string;
@@ -278,7 +278,7 @@ interface Content {
   Button1_Type?: string;
   Button1_Value?: string;
 
-  Title2: string;
+  title2: string;
   Button2_Action?: string;
   Button2_Content?: string;
   Button2_Name?: string;
@@ -287,7 +287,7 @@ interface Content {
   Button2_Type?: string;
   Button2_Value?: string;
 
-  Title3: string;
+  title3: string;
   Button3_Action?: string;
   Button3_Content?: string;
   Button3_Name?: string;
@@ -296,7 +296,7 @@ interface Content {
   Button3_Type?: string;
   Button3_Value?: string;
 
-  Title4: string;
+  title4: string;
   Button4_Action?: string;
   Button4_Content?: string;
   Button4_Name?: string;
@@ -361,10 +361,10 @@ Banner5.defaultProps = {
     Button4_Value: "Lorem Ipsum",
 
     TagName: "SiteComponents",
-    Title1: "Lorem ipsum dolor sit amet1",
-    Title2: "Lorem ipsum dolor sit amet2",
-    Title3: "Lorem ipsum dolor sit amet3",
-    Title4: "Lorem ipsum dolor sit amet4",
+    title1: "Lorem ipsum dolor sit amet1",
+    title2: "Lorem ipsum dolor sit amet2",
+    title3: "Lorem ipsum dolor sit amet3",
+    title4: "Lorem ipsum dolor sit amet4",
     PrelemContentType: ["Select"],
     ImageCompound: {
       ImageCompound_1: {
