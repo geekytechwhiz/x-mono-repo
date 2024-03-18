@@ -45,6 +45,9 @@ export const pageSlice = createSlice({
   name: "Page",
   initialState: initialPageState,
   reducers: {
+    resetState: () => {
+      return { ...initialPageState };
+    },
     updatePageTitle: (state, action: PayloadAction<any>) => {
       const { Title } = action.payload;
       state.pageModel.Title = Title;
@@ -443,6 +446,7 @@ export const {
   updatePageTitle,
   updateSeoEnable,
   updateAnalyticsEnable,
+  resetState,
 } = pageSlice.actions;
 
 export default pageSlice.reducer;

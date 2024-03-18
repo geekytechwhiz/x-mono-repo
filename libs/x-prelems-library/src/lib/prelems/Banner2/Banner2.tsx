@@ -111,7 +111,7 @@ const Banner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner2
                       color='textColor'
                       className='textAlignmentRightWrapper'
                       id='Title'>
-                      {content.Title}
+                      {content?.Title}
                     </Typography>
                   </Grid>
                   <Grid item xs={12} md={1} sm={12} lg={1}>
@@ -145,7 +145,7 @@ const Banner2 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner2
                       color='textColor'
                       className='textAlignmentLeftWrapper'
                       id='Description'>
-                      {content.Description}
+                      {content?.Description}
                     </Typography>
                   </Grid>
                 </Grid>

@@ -23,7 +23,7 @@ export const analyticsInstance = () => {
         name: SNOWPLOW.SNOWPLOW,
         collectorUrl: publicRuntimeConfig.NEXT_SNOWPLOW_COLLECTOR_URL,
         trackerSettings: {
-          appId: "X",
+          appId: publicRuntimeConfig.NEXT_SNOWPLOW_APP_ID,
         },
       }),
     ],

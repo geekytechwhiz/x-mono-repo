@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
-import { onClickCardUrlNavigate } from "@platformx/utilities";
+import { Box, CardMedia, Typography } from "@mui/material";
+import { getImage, onClickCardUrlNavigate } from "@platformx/utilities";
 import React from "react";
 import { getIcon } from "../../Utils/helperFns";
 import { useCustomStyle } from "./XCard5.style";
@@ -15,8 +15,8 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
     }
   };
 
-  // const formedUrl = getImage(content, secondaryArgs);
-  // const { color, imageUrl } = formedUrl;
+  const formedUrl = getImage(content, secondaryArgs);
+  const { color, imageUrl } = formedUrl;
 
   return (
     <Box
@@ -25,12 +25,12 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
       <Box className='XCard5innderBox'>
         <Box className='imgWrapper'>
           <Typography> VideoPlayer has been commented</Typography>
-          {/* <CardMedia
+          <CardMedia
             component={imageUrl ? "img" : "div"}
             image={imageUrl ? imageUrl : ""}
             title={imageUrl ? content?.Thumbnail?.AltText : "image"}
             sx={{ backgroundColor: color ? color : "", height: "100%", width: "100%" }}
-          /> */}
+          />
           <Box className='mainContentBox'>
             <Box className='contentWrapperCard5Box'>
               <Box className='iconWrapper'>

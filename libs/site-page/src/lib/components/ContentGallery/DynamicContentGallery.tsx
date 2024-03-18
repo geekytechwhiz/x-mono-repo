@@ -827,7 +827,7 @@ const DynamicContentGallery = ({
                   border: "solid 1px #ced3d9",
                   backgroundColor: "#fff",
                 }}>
-                <img src={IconListViewSvg} alt='' />
+                <img src={IconListViewSvg} alt='IconListViewSvg' />
                 {/* <IconListViewSvg /> */}
               </Box>
             </Box>
