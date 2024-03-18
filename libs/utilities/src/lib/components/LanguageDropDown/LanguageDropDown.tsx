@@ -78,17 +78,17 @@ const LanguageDropDown = () => {
                     alt='language'
                     className={classes.dropdownmenuItemImg}
                     src={
-                      language === "en"
+                      l.id === "en"
                         ? `${English}`
-                        : language === "de"
+                        : l.id === "de"
                         ? `${German}`
-                        : language === "fr"
+                        : l.id === "fr"
                         ? `${French}`
                         : `${English}`
                     }
                   />
                 </Box>
-                <Typography variant='h6regular'>{l.value}</Typography>
+                <Typography variant='h6regular'>{l.label}</Typography>
               </Box>
               <Box className={classes.dropdownmenuItemIconWrap}>
                 {getCurrentLang() === l.id && (

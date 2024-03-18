@@ -12,15 +12,8 @@ import FileUploadWrapper from "./Components/FilleUploadWrapper/FileUploadWrapper
 import QuestionSection from "./Components/QuestionsSection/QuestionSection";
 import RadioGroupWrapper from "./Components/RadioGroupWrapper/RadioGroupWrapper";
 import SwitchWrapper from "./Components/SwitchWrapper/SwitchWrapper";
-import {
-  TitleSubTitle,
-  FormikField,
-  AddImage,
-  Answers,
-  XTable,
-  XTags,
-  TextArea,
-} from "@platformx/utilities";
+import { TitleSubTitle, FormikField, Answers, XTable, XTags, TextArea } from "@platformx/utilities";
+import { AddImage } from "@platformx/x-image-render";
 
 const DynamicComponent = ({
   fields,
