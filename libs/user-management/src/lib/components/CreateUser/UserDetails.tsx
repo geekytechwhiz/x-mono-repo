@@ -1,5 +1,5 @@
-import { withStyles } from "@mui/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { withStyles } from "@mui/styles";
 
 import {
   Autocomplete,

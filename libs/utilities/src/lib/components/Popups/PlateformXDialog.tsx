@@ -3,14 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  DeleteIcon,
-  DialogCloseIcon,
-  Errorpopicon,
-  PlateformXDialog,
-  XImage,
-} from "@platformx/utilities";
-import Image from "next/image";
+import { DialogCloseIcon, Errorpopicon } from "@platformx/utilities";
 
 export default function DeletePopup({
   isDialogOpen,
@@ -66,7 +59,7 @@ export default function DeletePopup({
           className='popupCloseIcon'
           edge='end'
           color='inherit'
-          onClick={closeButtonHandle}
+          onClick={confirmButtonHandle} //{closeButtonHandle}
           aria-label='close'>
           <img src={DialogCloseIcon} alt='img' />
         </IconButton>
@@ -121,7 +114,7 @@ export default function DeletePopup({
                 minHeight: { xs: "40px", md: "47px" },
               }}
               onClick={() => {
-                closeButtonHandle();
+                // closeButtonHandle();
                 confirmButtonHandle(selectedItem);
               }}
               autoFocus>

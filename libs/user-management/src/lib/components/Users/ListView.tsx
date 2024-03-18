@@ -15,6 +15,7 @@ import {
   EditIcon,
   GreenDot,
   Loader,
+  PlateformXDialog,
   RedDot,
   ShowToastError,
   ShowToastSuccess,
@@ -42,17 +43,17 @@ const ListView = ({
   adminAction = "",
 }: ListViewProps) => {
   // const [userMutate] = useMutation(UserManagementQueries.ACTIVATE_DEACTIVATE_USERS);
-  // const [reSendEmailMutate] = useMutation(UserManagementQueries.RESEND_EMAIL_TO_USERS);
+  const [reSendEmailMutate] = useMutation(UserManagementQueries.RESEND_EMAIL_TO_USERS);
   const [approveRejectUser] = useMutation(UserManagementQueries.APPROVE_REJECT_USER);
   const rolename = roles?.find((obj) => obj?.site === getSelectedSite())?.name || "";
   const { t } = useTranslation();
-  // const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   // const [openDialog, setOpenDialog] = useState(false);
-  // const open = Boolean(anchorEl);
+  const [isResend, setIsResend] = useState(false);
+
   // const dialog = useDialog();
   const [checked] = useState(enabled);
-  // const [isDelete, setIsDelete] = useState(false);
+  const [, setIsDelete] = useState(false);
   // const role: string = localStorage.getItem('role');
   const DateTime = format(new Date(created_timestamp || 0), "LLL dd, yyyy | H:mm");
   const isPendingWithAdmin = adminAction === ADMIN_ACTIONS.PENDING;
@@ -72,7 +73,7 @@ const ListView = ({
   //   setAnchorEl(null);
   // };
   const confirmDelete = () => {
-    // setIsDelete(true);
+    setIsDelete(true);
   };
 
   // const handleConfirm = async () => {
@@ -101,24 +102,25 @@ const ListView = ({
   //   }
   // };
 
-  // const handleconfirmResend = async () => {
-  //   setIsLoading(true);
+  const handleconfirmResend = async () => {
+    setIsResend(false);
+    setIsLoading(true);
 
-  //   try {
-  //     const responseEmail = await reSendEmailMutate({
-  //       variables: {
-  //         input: { user_id: user_id },
-  //       },
-  //     });
-  //     setIsLoading(false);
-  //     ShowToastSuccess(responseEmail.data.authoring_reinviteUser.message);
-  //   } catch (err: any) {
-  //     ShowToastError(
-  //       err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
-  //     );
-  //     setIsLoading(false);
-  //   }
-  // };
+    try {
+      const responseEmail = await reSendEmailMutate({
+        variables: {
+          input: { user_id: user_id },
+        },
+      });
+      setIsLoading(false);
+      ShowToastSuccess(responseEmail.data.authoring_reinviteUser.message);
+    } catch (err: any) {
+      ShowToastError(
+        err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
+      );
+      setIsLoading(false);
+    }
+  };
 
   // const handleChange = (checked: boolean) => {
   //   const dialogContent: DialogBoxContentProps = {
@@ -136,7 +138,7 @@ const ListView = ({
   //     SubTitle2: checked ? t("deactivate_subtitle2") : t("activate_subtitle2"),
   //   };
 
-  //   // dialog.show(dialogContent, handleConfirm, handleDialogClose);
+  //   dialog.show(dialogContent, handleConfirm, handleDialogClose);
   // };
 
   const handleApproveReject = async (actionType: string) => {
@@ -159,15 +161,16 @@ const ListView = ({
   };
 
   const handleReSendMail = () => {
-    //   const dialogContent: DialogBoxContentProps = {
-    //     Image: WarningIcon,
-    //     Title: t("resend_invite"),
-    //     Subtitle: `${t("resend_subtitle_pre")}
+    setIsResend(true);
+    // const dialogContent: DialogBoxContentProps = {
+    //   Image: WarningIcon,
+    //   Title: t("resend_invite"),
+    //   Subtitle: `${t("resend_subtitle_pre")}
     //  #${email}# ${"  "}${t("")}`,
-    //     LeftButtonText: t("resend_text_left_button"),
-    //     RightButtonText: t("resend_text_right_button"),
-    //     SubTitle2: `${t("resend_subtitle_post")}`,
-    //   };
+    //   LeftButtonText: t("resend_text_left_button"),
+    //   RightButtonText: t("resend_text_right_button"),
+    //   SubTitle2: `${t("resend_subtitle_post")}`,
+    // };
     // dialog.show(dialogContent, handleconfirmResend, handleDialogClose);
   };
 
@@ -395,6 +398,20 @@ const ListView = ({
             </Box>
           </Grid>
         </Grid>
+        <PlateformXDialog
+          isDialogOpen={isResend}
+          title={t("resend_invite")}
+          subTitle={`${t("resend_subtitle_pre")}
+        ${email}`}
+          closeButtonText={t("resend_invite")}
+          confirmButtonText={t("back")}
+          closeButtonHandle={handleconfirmResend}
+          confirmButtonHandle={() => setIsResend(false)}
+          crossButtonHandle={() => {
+            setIsResend(false);
+          }}
+          modalType='unsavedChanges'
+        />
       </Box>
     </>
   );
