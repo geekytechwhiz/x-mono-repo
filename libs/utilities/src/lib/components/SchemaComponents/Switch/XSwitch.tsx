@@ -1,14 +1,14 @@
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled } from '@mui/system';
-import clsx from 'clsx';
+import { useSwitch } from "@mui/base/SwitchUnstyled";
+import { styled } from "@mui/system";
+import clsx from "clsx";
 
 const grey = {
-  400: 'rgba(0, 0, 0, 0.16)',
-  500: '#AAB4BE',
-  600: 'rgba(0, 0, 0, 0.16)',
+  400: "rgba(0, 0, 0, 0.16)",
+  500: "#AAB4BE",
+  600: "rgba(0, 0, 0, 0.16)",
 };
 
-const BasicSwitchRoot = styled('span')<XBasicSwitchProps>(
+const BasicSwitchRoot = styled("span")<XBasicSwitchProps>(
   ({ theme, color, bgcolor }) => `
   font-size: 0;
   position: relative;
@@ -16,7 +16,7 @@ const BasicSwitchRoot = styled('span')<XBasicSwitchProps>(
   width: 40px;
   height: 20px;
   margin: 10px;
-  background:  ${bgcolor ? bgcolor : theme.palette.mode === 'dark' ? grey[600] : grey[400]};
+  background:  ${bgcolor ? bgcolor : theme.palette.mode === "dark" ? grey[600] : grey[400]};
   border-radius: 10px;
   cursor: pointer;
 
@@ -28,10 +28,10 @@ const BasicSwitchRoot = styled('span')<XBasicSwitchProps>(
   &.Switch-checked {
     background: ${color}
   }
-  `
+  `,
 );
 
-const BasicSwitchInput = styled('input')`
+const BasicSwitchInput = styled("input")`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -43,7 +43,7 @@ const BasicSwitchInput = styled('input')`
   margin: 0;
 `;
 
-const BasicSwitchThumb = styled('span')`
+const BasicSwitchThumb = styled("span")`
   display: block;
   width: 14px;
   height: 14px;
@@ -71,15 +71,14 @@ export interface XBasicSwitchProps {
   disabled?: any;
   onChange?: any;
   checked?: any;
-
 }
 function XSwitch(props: XBasicSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
-    'Switch-checked': checked,
-    'Switch-disabled': disabled,
-    'Switch-focusVisible': focusVisible,
+    "Switch-checked": checked,
+    "Switch-disabled": disabled,
+    "Switch-focusVisible": focusVisible,
   };
 
   return (

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
 import PageHead from "../../components/pageHead";
 import { useInView } from "react-intersection-observer";

@@ -339,7 +339,7 @@ export const mockProductdeatails = [
   {
     txId: "ravi.gupta@gmail.com",
     user: "$996.78",
-  }
+  },
 ];
 export const mockTopdeatails = [
   {
@@ -365,7 +365,7 @@ export const mockTopdeatails = [
   {
     txId: " Plus Foundation NC-42",
     user: "SPF 16",
-  }
+  },
 ];
 
 export const mockBarData = [
@@ -484,7 +484,7 @@ export const mockPieData = [
 export const mockLineData = [
   {
     id: "Revenue",
-    color: '#4B9EF9',
+    color: "#4B9EF9",
     data: [
       {
         x: "Jan",
@@ -522,7 +522,7 @@ export const mockLineData = [
   },
   {
     id: "Orders",
-    color: '#6E7191',
+    color: "#6E7191",
     data: [
       {
         x: "Jan",
@@ -560,7 +560,7 @@ export const mockLineData = [
   },
   {
     id: "Abandoned cart",
-    color: '#DCDBDF',
+    color: "#DCDBDF",
     data: [
       {
         x: "Jan",

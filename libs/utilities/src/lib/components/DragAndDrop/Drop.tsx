@@ -1,4 +1,4 @@
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable } from "react-beautiful-dnd";
 
 export const Drop = ({ id, type, ...props }) => {
   return (

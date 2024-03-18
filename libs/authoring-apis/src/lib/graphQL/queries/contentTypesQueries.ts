@@ -1,10 +1,7 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const FETCH_CONTENT_BY_PATH = gql`
-  query FETCH_CONTENT_BY_PATH(
-    $contentType: authoring_ContentTypes!
-    $path: String!
-  ) {
+  query FETCH_CONTENT_BY_PATH($contentType: authoring_ContentTypes!, $path: String!) {
     authoring_getCmsContentByPath(contentType: $contentType, path: $path)
   }
 `;

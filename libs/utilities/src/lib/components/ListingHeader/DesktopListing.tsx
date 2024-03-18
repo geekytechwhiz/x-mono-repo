@@ -1,9 +1,9 @@
-import { Button, Typography } from '@mui/material';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { useTranslation } from 'react-i18next';
-import { dateFormat, handleHtmlTags } from '../../utils/helperFns';
-import ThemeConstants from '../../themes/authoring/lightTheme/lightThemeVariable';
+import { Button, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import { useTranslation } from "react-i18next";
+import { dateFormat, handleHtmlTags } from "../../utils/helperFns";
+import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 
 interface DesktopListingProps {
   index?: any;
@@ -32,89 +32,72 @@ const DesktopListing = ({
         key={index}
         container
         sx={{
-          background: '#ffffff',
+          background: "#ffffff",
           // height: "60px",
           display: {
-            sm: 'flex',
-            xs: 'none',
+            sm: "flex",
+            xs: "none",
           },
-          alignItems: 'center',
+          alignItems: "center",
           // padding: "0 25px",
-          padding: '10px 20px 10px 20px',
-          marginBottom: '10px',
-          borderRadius: '3px',
+          padding: "10px 20px 10px 20px",
+          marginBottom: "10px",
+          borderRadius: "3px",
           //   border: isSelected() ? "solid 1px #2d2d39" : "none",
-        }}
-      >
+        }}>
         <Grid
           item
           lg={4.4}
           sm={3.8}
           sx={{
             // marginRight: "2%",
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            marginRight: '1%',
-          }}
-        >
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            marginRight: "1%",
+          }}>
           <Typography
             variant='h6medium'
             sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: '2',
-              WebkitBoxOrient: 'vertical',
-            }}
-          >
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}>
             {title}
           </Typography>
         </Grid>
-        <Grid
-          item
-          sm={2}
-          sx={{ display: 'flex', justifyContent: 'flex-start' }}
-        >
+        <Grid item sm={2} sx={{ display: "flex", justifyContent: "flex-start" }}>
           <Typography
             variant='h6regular'
             sx={{
-              color: '#b3b3b3',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: '2',
-              WebkitBoxOrient: 'vertical',
-            }}
-          >
+              color: "#b3b3b3",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "2",
+              WebkitBoxOrient: "vertical",
+            }}>
             {handleHtmlTags(description)}
           </Typography>
         </Grid>
-        <Grid
-          item
-          sm={2}
-          sx={{ display: 'flex', justifyContent: 'flex-start' }}
-        >
+        <Grid item sm={2} sx={{ display: "flex", justifyContent: "flex-start" }}>
           <Typography
             sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: '1',
-              WebkitBoxOrient: 'vertical',
-              textTransform: 'capitalize',
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: "1",
+              WebkitBoxOrient: "vertical",
+              textTransform: "capitalize",
             }}
-            variant='h6regular'
-          >
+            variant='h6regular'>
             {author}
           </Typography>
         </Grid>
-        <Grid
-          item
-          sm={2.4}
-          sx={{ display: 'flex', justifyContent: 'flex-start' }}
-        >
+        <Grid item sm={2.4} sx={{ display: "flex", justifyContent: "flex-start" }}>
           <Typography variant='h6regular'>{dateFormat(time)}</Typography>
         </Grid>
         <Grid
@@ -128,20 +111,15 @@ const DesktopListing = ({
               backgroundColor: isSelected(item)
                 ? ThemeConstants.BLACK_COLOR
                 : ThemeConstants.WHITE_COLOR,
-              color: isSelected(item)
-                ? ThemeConstants.WHITE_COLOR
-                : ThemeConstants.BLACK_COLOR,
-              '&:hover': {
-                backgroundColor: !isSelected(item)
-                  ? ThemeConstants.WHITE_COLOR
-                  : '',
-                color: !isSelected(item) ? ThemeConstants.BLACK_COLOR : '',
+              color: isSelected(item) ? ThemeConstants.WHITE_COLOR : ThemeConstants.BLACK_COLOR,
+              "&:hover": {
+                backgroundColor: !isSelected(item) ? ThemeConstants.WHITE_COLOR : "",
+                color: !isSelected(item) ? ThemeConstants.BLACK_COLOR : "",
               },
             }}
             disableElevation
-            onClick={() => onClickSelect(item)}
-          >
-            {isSelected(item) ? t('selected') : t('select')}
+            onClick={() => onClickSelect(item)}>
+            {isSelected(item) ? t("selected") : t("select")}
             {/* {btnText} */}
           </Button>
           {/* // } */}

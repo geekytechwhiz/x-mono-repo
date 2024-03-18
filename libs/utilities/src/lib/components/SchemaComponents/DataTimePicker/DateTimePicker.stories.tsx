@@ -1,8 +1,8 @@
-import React from 'react';
-import XDateTimePicker from './XDateTimePicker';
+import React from "react";
+import XDateTimePicker from "./XDateTimePicker";
 
 export default {
-  title: 'Schema Components/DateTimePicker',
+  title: "Schema Components/DateTimePicker",
   component: XDateTimePicker,
 };
 
@@ -16,7 +16,7 @@ PrimaryInput.args = {
 
 export const DateTime = {
   args: {
-    variant: 'outlined',
+    variant: "outlined",
     disablePast: false,
   },
 };

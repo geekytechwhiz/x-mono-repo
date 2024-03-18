@@ -1,4 +1,4 @@
-import { useStyles } from './PageContainer.styles';
+import { useStyles } from "./PageContainer.styles";
 
 const RightBox = ({ children }) => {
   const classes = useStyles();

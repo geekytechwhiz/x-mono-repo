@@ -32,6 +32,7 @@ const useContentSearch = ({
   startIndex,
 }: UseContentSearchProps): UseContentSearchResult => {
   const [contents, setContents] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const variables: any = mapFetchALL(locationState, filter, contentType, {
     start: startIndex,
@@ -55,7 +56,9 @@ const useContentSearch = ({
     const sortedContent = sortedData(
       data?.authoring_getContentTypeItems || data?.authoring_recentContents || [],
     );
-
+    if (!loading && sortedContent?.length < 20) {
+      setIsLoading(false);
+    }
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({
         ...item,
@@ -81,6 +84,7 @@ const useContentSearch = ({
       const fetchMoreData = result.data?.authoring_getContentTypeItems || [];
       const combinedData: any = [...contents, ...fetchMoreData];
       dispatch(updateContentList(combinedData));
+      if (fetchMoreData?.length < 20) setIsLoading(false);
       setContents(combinedData);
       // eslint-disable-next-line no-shadow
     } catch (error) {
@@ -91,7 +95,7 @@ const useContentSearch = ({
     await refetch(variables);
   };
   return {
-    loading,
+    loading: isLoading,
     error,
     fetchMore: fetchMoreContent,
     refetch: refresh,

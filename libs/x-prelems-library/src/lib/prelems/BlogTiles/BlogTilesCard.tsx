@@ -52,11 +52,11 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
           if (res) {
             let gallery = [];
             if (content.ContentType === "ImageGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Image);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Image);
             } else if (content.ContentType === "VideoGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Video);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Video);
             } else if (content.ContentType === "Gallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x);
             }
             setSliderData(gallery);
           }
@@ -120,8 +120,7 @@ const BlogTilesCard = ({ content, secondaryArgs, analytics, cardIndex }: BlogTil
                 },
                 backgroundColor: color ? color : "",
               }}
-              // image={imageUrl ? imageUrl : ""} #TODO: Fix this
-              image={""}>
+              image={imageUrl ? imageUrl : ""}>
               <Box className='cardOverlay'></Box>
               <Box className='contentIcons'>
                 <img
