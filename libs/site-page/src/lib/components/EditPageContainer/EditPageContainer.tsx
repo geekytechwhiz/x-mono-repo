@@ -6,9 +6,6 @@ import {
   FETCH_PRELEM_VALIDATION,
   PageQueries,
   commentsApi,
-  fetchAllPageList,
-  // fetchPrelemDefaultMeta,
-  // fetchResetData,
   fetchPageModel,
   fetchPrelemDefaultMeta,
   fetchResetData,
@@ -21,8 +18,6 @@ import {
   useWorkflow,
 } from "@platformx/authoring-apis";
 import {
-  // resetPrelemContent,
-  // PageState,
   RootState,
   callSaveandResetWarning,
   copyPrelem,
@@ -30,8 +25,8 @@ import {
   hidePrelem,
   movePrelem,
   resetPrelemContent,
+  resetState,
   savePrelemPosition,
-  setPublishedpages,
   setUpdatedContent,
   updateDynamicPrelemContent,
   updateEcommercePrelemQueryParam,
@@ -154,7 +149,6 @@ const EditPageContainer = () => {
   const [mutatePrelemContentQuery] = useMutation(updatePrelemData);
   const [fetchDefaultData] = useLazyQuery(fetchResetData);
   const [fetchPrelemDefaultInfo] = useLazyQuery(fetchPrelemDefaultMeta);
-  const [runAllFetchPageList] = useLazyQuery(fetchAllPageList);
   const [mutatePublish] = useMutation(publishPageModel);
   const [mutateSchedulePublish] = useMutation(schedulePublish);
   const [mutate] = useMutation(savePageModel);
@@ -184,8 +178,6 @@ const EditPageContainer = () => {
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState<boolean>(false);
   const { canAccessAction } = useAccess();
 
-  // const { runFetchPrelemDefaultInfo, runFetchDefaultData } = usePage();;
-
   const handleChangeTab = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -199,7 +191,7 @@ const EditPageContainer = () => {
     }
   }, [timerState]);
 
-  //Get Data from API
+  //Get Data from APIs
   useEffect(() => {
     const {
       Title,
@@ -224,27 +216,6 @@ const EditPageContainer = () => {
       setLoader(false);
     } else {
       setLoader(false);
-      runAllFetchPageList({
-        variables: {
-          obj: { start: 0, rows: 1000 },
-          type: "PUBLISHED",
-        },
-        context: {
-          headers: {
-            language: localStorage.getItem("lang"),
-            sitename: getSelectedSite(),
-          },
-        },
-      })
-        .then((resp) => {
-          const pageList = resp?.data?.authoring_pageList;
-          if (pageList && pageList.length) {
-            dispatch(setPublishedpages({ list: pageList }));
-          }
-        })
-        .catch((err) => {
-          console.error(JSON.stringify(err, null, 2));
-        });
       setWorkflow({
         title: Title,
         description: "",
@@ -1087,6 +1058,14 @@ const EditPageContainer = () => {
     setPublishLoading(true);
     callFnsCase("PUBLISH");
   };
+
+  //cleanup code
+  useEffect(() => {
+    return () => {
+      dispatch(resetState());
+    };
+  }, []);
+
   const theme = useTheme();
   const mobileHeader = useMediaQuery(`@media(max-width:${ThemeConstants.EM - 1}px)`);
   const webHeader = useMediaQuery(`@media(min-width:${ThemeConstants.EM - 1}px)`);
