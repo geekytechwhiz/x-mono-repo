@@ -1,13 +1,13 @@
 apiVersion: v1
 data:
-  NEXT_GA_ID: "G-20NJFNM3FK"
-  NEXT_GTM_ID: "GTM-TLTP6NV"
+  NEXT_GA_ID: G-20NJFNM3FK
+  NEXT_GTM_ID: GTM-TLTP6NV
   NEXT_PUBLISH_APP_URL: https://dev.hcl-x.com/
   NEXT_PUBLISH_API_URL: https://dev.delivery.hcl-x.com/platform-x/
   NEXT_PUBLISH_API_URL_GENERIC: https://dev.api.hcl-x.com/platform-x/
   NEXT_API_URL: https://dev.users.hcl-x.com/platform-x/
   NEXT_BLOGS_API: https://dev.blogging.hcl-x.com/platform-x/blogging/fetch
-  NEXT_GOOGLE_SEARCH_VERIFICATION: "GA-12345"
+  NEXT_GOOGLE_SEARCH_VERIFICATION: GA-12345
   NEXT_CLIENT_ID: nextpublish
   NEXT_GRANT_TYPE: authorization_code
   NEXT_REALM: platform-x-publish
@@ -16,8 +16,8 @@ data:
   NEXT_SESSION_VERIFY: https://dev.api-publish.hcl-x.com/platform-x-publish/auth/verify-session
   NEXT_SESSION: https://dev.api-publish.hcl-x.com/platform-x-publish/auth/session
   NEXT_ELASTIC_APM_SERVER_URL: "https://platx-apm-server.hcl-x.com"
-  NEXT_ELASTIC_APM_ENVIRONMENT: "develop"
-  NEXT_ELASTIC_APM_TRACING: false
+  NEXT_ELASTIC_APM_ENVIRONMENT: develop
+  NEXT_ELASTIC_APM_TRACING: "false"
   NEXT_GEOLOCATION_API_URL: https://api.ipgeolocation.io/ipgeo/
   NEXT_GEOLOCATION_API_KEY: 892b590647004e7fa3e910456ec34e8c
   NEXT_GCP_URL: https://storage.googleapis.com
