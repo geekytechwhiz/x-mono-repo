@@ -72,9 +72,9 @@ const MultiSlotCard2 = ({ content, secondaryArgs, index, analytics }: MultislotC
           if (res) {
             let gallery = [];
             if (content.ContentType === "ImageGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Image);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Image);
             } else if (content.ContentType === "VideoGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Video);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Video);
             } else {
               gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery;
             }

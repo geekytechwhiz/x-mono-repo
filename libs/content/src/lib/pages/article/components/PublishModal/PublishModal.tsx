@@ -22,7 +22,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .Platform-x-Paper-root": {
     height: "-webkit-fill-available",
     maxWidth: "none",
-    width: "-webkit-fill-available",
+    width: "100%",
     [`@media (min-width:${ThemeConstants.XS}px)`]: {
       margin: "0px",
       maxHeight: "calc(100vh - 0px)",

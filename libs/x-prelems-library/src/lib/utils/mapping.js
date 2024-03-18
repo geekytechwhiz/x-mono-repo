@@ -3,7 +3,7 @@ const Mapping = {
   Prelem_002: "productSummaryViaImage",
   Prelem_003: "productSummaryViaVideo",
   Prelem_004: "Sponsor",
-  Prelem_005: "quote",
+  Prelem_005: "Quote",
   Prelem_006: "ArticleDetail",
   Prelem_007: "ContactUs",
   Prelem_008: "AnimationOnPageScroll",
