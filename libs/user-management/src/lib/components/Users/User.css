@@ -6,7 +6,7 @@
   padding-left: 14px;
 }
 .userlistbox .doticon:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0px;
   top: 0;
@@ -30,7 +30,7 @@
   margin-right: 25px; */
 }
 .userlistbox .doticonmobile:after {
-  content: '.';
+  content: ".";
   position: absolute;
   color: white;
   left: 0px;
@@ -79,7 +79,8 @@
 .userlistbox .icons:hover {
   background: transparent;
 }
-.userlistbox:hover .icons, .userlistbox:hover .icons svg {
+.userlistbox:hover .icons,
+.userlistbox:hover .icons svg {
   color: #2d2d39;
 }
 .userlistbox .img {
@@ -155,7 +156,7 @@
 .userSearchBox input {
   padding: 0;
 }
-.listViewradionone .Platform-x-Radio-root{
+.listViewradionone .Platform-x-Radio-root {
   display: none;
 }
 .listViewradionone {
@@ -217,7 +218,7 @@
     width: 185px;
   }
   .userlistbox .svg {
-    margin-left: '10px';
+    margin-left: "10px";
   }
   .edit-Box {
     width: 40px;

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { XImageRender } from './x-image-render';
+import type { Meta, StoryObj } from "@storybook/react";
+import XImageRender from "./x-image-render";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof XImageRender> = {
   component: XImageRender,
-  title: 'XImageRender',
+  title: "XImageRender",
 };
 export default meta;
 type Story = StoryObj<typeof XImageRender>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to XImageRender!/gi)).toBeTruthy();
   },

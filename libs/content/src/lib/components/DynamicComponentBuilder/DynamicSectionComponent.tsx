@@ -1,7 +1,13 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { Container, Grid } from "@mui/material";
-import { ErrorHandleAutoTextArea, ErrorHandleTextBox, TitleSubTitle, XCheckBox, XDatePicker, XFileUpload } from "@platformx/utilities";
-import { useState } from "react";
+import {
+  ErrorHandleAutoTextArea,
+  ErrorHandleTextBox,
+  TitleSubTitle,
+  XCheckBox,
+  XDatePicker,
+  XFileUpload,
+} from "@platformx/utilities";
 
 const DynamicSectionComponent = ({
   fields,
@@ -16,11 +22,6 @@ const DynamicSectionComponent = ({
   clearErrors,
   getValues,
 }: any) => {
-  const [data, setData] = useState({});
-  const handleDateChangeRaw = (e) => {
-    e.preventDefault();
-  };
-
   const handleChange = (event) => {
     setState({
       ...state,
@@ -32,7 +33,6 @@ const DynamicSectionComponent = ({
       ...state,
       [event.target.name]: event.target.value,
     });
-    console.log("data", event);
   };
 
   const updateField = (updatedPartialObj) => {
@@ -44,9 +44,8 @@ const DynamicSectionComponent = ({
     //     published_images: updatedPartialObj?.published_images,
     //   },
     // });
-    console.log("local", JSON.parse(JSON.stringify(localStorage.getItem("keyname"))));
   };
-  console.log("shadow", state["background_image"]?.original_image);
+
   function builder(field: any) {
     switch (field.type) {
       case "text":
@@ -69,8 +68,8 @@ const DynamicSectionComponent = ({
                     handleChange={handleChange}
                     maxCharLength={
                       field?.validations.length > 0 &&
-                        (field?.validations[0]?.type === "maxlength" ||
-                          field?.validations[1]?.type === "maxlength")
+                      (field?.validations[0]?.type === "maxlength" ||
+                        field?.validations[1]?.type === "maxlength")
                         ? field?.validations[1]?.value || field?.validations[0]?.value
                         : 1000
                     }
@@ -114,8 +113,8 @@ const DynamicSectionComponent = ({
                     helperText={errors[field?.name]?.message}
                     maxCharLength={
                       field?.validations.length > 0 &&
-                        (field?.validations[0]?.type === "maxlength" ||
-                          field?.validations[1]?.type === "maxlength")
+                      (field?.validations[0]?.type === "maxlength" ||
+                        field?.validations[1]?.type === "maxlength")
                         ? field?.validations[1]?.value || field?.validations[0]?.value
                         : 1000
                     }
@@ -129,7 +128,7 @@ const DynamicSectionComponent = ({
                     }
                     handleChange={handleChange}
                     handleOnBlur={handleOnBlur}
-                  // state={getValues('title')}
+                    // state={getValues('title')}
                   />
                 </Grid>
               </>

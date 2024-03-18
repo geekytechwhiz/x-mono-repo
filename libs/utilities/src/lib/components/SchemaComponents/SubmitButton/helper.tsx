@@ -1,5 +1,3 @@
-
-
 import { capitalizeFirstLetter } from "../../../utils/helperFns";
 import { workflowKeys } from "./utils/constants";
 
@@ -23,13 +21,13 @@ export const enableReferBack = (props) => {
   const { workflow_status = "", role = "", stages = [], enable } = props || {};
   if (enable) {
     if (role.toLowerCase() === workflowKeys.admin.toLowerCase()) {
-      if (workflow_status == workflowKeys.draft || workflow_status == workflowKeys.published) {
+      if (workflow_status === workflowKeys.draft || workflow_status === workflowKeys.published) {
         return false;
       }
       return true;
     }
-    return workflow_status.toLowerCase() == workflowKeys.draft.toLowerCase() ||
-      workflow_status.toLowerCase() == workflowKeys.request_review.toLowerCase() ||
+    return workflow_status.toLowerCase() === workflowKeys.draft.toLowerCase() ||
+      workflow_status.toLowerCase() === workflowKeys.request_review.toLowerCase() ||
       isCurrentRoleCompleted(stages, role)
       ? false
       : true;
@@ -42,13 +40,13 @@ export const enableNextStep = (props) => {
   const { workflow_status = "", role = "", stages = [], enable } = props || {};
   if (enable) {
     if (role.toLowerCase() === workflowKeys.admin.toLowerCase()) {
-      if (workflow_status.toLowerCase() == workflowKeys.published.toLowerCase()) {
+      if (workflow_status.toLowerCase() === workflowKeys.published.toLowerCase()) {
         return false;
       }
       return true;
     }
     return isCurrentRoleCompleted(stages, role) ||
-      workflow_status.toLowerCase() == workflowKeys.published.toLowerCase()
+      workflow_status.toLowerCase() === workflowKeys.published.toLowerCase()
       ? false
       : true;
   } else {

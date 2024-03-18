@@ -1,8 +1,8 @@
-import { Box, TextField, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next'; 
-import { convertToLowerCase } from '../../utils/helperFns';
-import useTextboxStyle from './Textbox.styles';
+import { Box, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { convertToLowerCase } from "../../utils/helperFns";
+import useTextboxStyle from "./Textbox.styles";
 
 interface TextBoxProps {
   name?: any;
@@ -41,7 +41,7 @@ const TextBox = ({
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
 
-  const handleLength = (valueData = '') => {
+  const handleLength = (valueData = "") => {
     if (maxCharLength) {
       const lengthOfChar = convertToLowerCase(valueData).length;
       const rest = valueData ? maxCharLength - lengthOfChar : 0;
@@ -59,7 +59,7 @@ const TextBox = ({
     if (handleChange) {
       handleChange(event);
     }
-    const { target: { value = '' } = {} } = event;
+    const { target: { value = "" } = {} } = event;
     handleLength(value);
   };
 
@@ -80,8 +80,8 @@ const TextBox = ({
     // }
   }, [state]);
 
-  const handleKeydown = (e:any) => {
-    if (e.keyCode == 70) {
+  const handleKeydown = (e: any) => {
+    if (e.keyCode === 70) {
       e.stopPropagation();
     }
   };
@@ -99,8 +99,8 @@ const TextBox = ({
         helperText={helperText}
         disabled={isDisabled}
         // value={state || ""}
-        sx={{ 
-          input: { cursor: isDisabled ? 'not-allowed' : undefined },
+        sx={{
+          input: { cursor: isDisabled ? "not-allowed" : undefined },
           backgroundColor: backgroundColor,
         }}
         inputProps={{
@@ -112,24 +112,21 @@ const TextBox = ({
             notchedOutline: isEmailExist ? borderColor : null,
           },
         }}
-        onChange={(e:any) => onChange(e)}
-        onBlur={(e:any) => handleOnBlur && handleOnBlur(e)}
-        onKeyDown={(e:any) => handleKeydown(e)}
-        FormHelperTextProps={{className:classes.typotool}}
+        onChange={(e: any) => onChange(e)}
+        onBlur={(e: any) => handleOnBlur && handleOnBlur(e)}
+        onKeyDown={(e: any) => handleKeydown(e)}
+        FormHelperTextProps={{ className: classes.typotool }}
       />
 
       {maxCharLength && (
-        <Typography
-          variant='h7regular'
-          sx={{ color: '#5c6574', marginTop: '10px' }}
-        >
+        <Typography variant='h7regular' sx={{ color: "#5c6574", marginTop: "10px" }}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
           ) : (
             <>
               {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
+                ? `${restOfLength} ${t("characters")} ${t("left")} `
+                : `${maxCharLength} ${t("characters")} ${t("max")}`}
             </>
           )}
         </Typography>

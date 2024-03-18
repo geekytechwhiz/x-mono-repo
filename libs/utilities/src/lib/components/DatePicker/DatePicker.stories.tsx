@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import   DatePicker   from './DatePicker';
+import type { Meta, StoryObj } from "@storybook/react";
+import DatePicker from "./DatePicker";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof DatePicker> = {
   component: DatePicker,
-  title: 'DatePicker',
+  title: "DatePicker",
 };
 export default meta;
 type Story = StoryObj<typeof DatePicker>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to DatePicker!/gi)).toBeTruthy();
   },

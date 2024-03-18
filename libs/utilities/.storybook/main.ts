@@ -1,16 +1,16 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
-  stories: ['../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  stories: ["../src/lib/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@nx/react/plugins/storybook',
-    '@storybook/addon-actions',
-    '@storybook/addon-links',
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@nx/react/plugins/storybook",
+    "@storybook/addon-actions",
+    "@storybook/addon-links",
   ],
   framework: {
-    name: '@storybook/react-webpack5',
+    name: "@storybook/react-webpack5",
     options: {},
   },
 };

@@ -7,7 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
 import { capitalizeFirstLetter } from "@platformx/utilities";
-import { fetchTagList } from "@platformx/authoring-apis";
+import { fetchTagListing } from "@platformx/authoring-apis";
 
 export const CategoryDetail = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const CategoryDetail = () => {
 
   const fetchTag = async () => {
     try {
-      const { authoring_getTagItems = [] }: any = await fetchTagList({
+      const { authoring_getTagItems = [] }: any = await fetchTagListing({
         searchCategory: category,
         searchString: "",
       });

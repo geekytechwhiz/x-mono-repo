@@ -27,14 +27,12 @@ const ArticleComponent = (props) => {
   };
 
   return (
-    <>
-      <ArticlePrelem
-        content={prelemContentProp}
-        analytics={prelemAnalyticsProp}
-        authoringHelper={prelemAuthoringHelper}
-        secondaryArgs={secondaryArgs}
-      />
-    </>
+    <ArticlePrelem
+      content={prelemContentProp}
+      analytics={prelemAnalyticsProp}
+      authoringHelper={prelemAuthoringHelper}
+      secondaryArgs={secondaryArgs}
+    />
   );
 };
 

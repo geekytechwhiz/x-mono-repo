@@ -276,6 +276,7 @@
         "img": ["Image"],
         "input[type=\"image\"]": ["InputImage"]
       }
-    ]
+    ],
+    "react/jsx-no-useless-fragment": [2, { "allowExpressions": true }]
   }
 }

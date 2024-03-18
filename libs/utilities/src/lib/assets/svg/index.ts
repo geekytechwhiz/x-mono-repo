@@ -230,6 +230,19 @@ import Step4imgn1 from "./stepimgn1.svg";
 import Step4imgn2 from "./step4imgn2.svg";
 import Step4imgnblur from "./step4imgblur.svg";
 import Step5img from "./step5img.svg";
+import ThreeCardIcon from "./threeCard.svg";
+import SEOIcon from "./seo.svg";
+import seoBasicIcon from "./seoBasicIcon.svg";
+import ScheduleIcon from "./ScheduleIcon.svg";
+import PrelemVideosIcon from "./PrelemVideos.svg";
+import PrelemImagesIcon from "./PrelemImages.svg";
+import PrelemAnalyticsIcon from "./PrelemAnalyticsIcon.svg";
+import pageInfoIcon from "./pageInfoIcon.svg";
+import GalleryIcon from "./galleryIcon.svg";
+import AdvanceIcon from "./AdvanceIcon.svg";
+import LaptopImg from "./laptop.jpg";
+import SaveAnimationGif from "./saveAnimation.gif";
+import ChatGptCommonLoader from "./ChatGptCommonLoader.gif";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -461,4 +474,17 @@ export {
   Step4imgn2,
   Step4imgnblur,
   Step5img,
+  ThreeCardIcon,
+  SEOIcon,
+  seoBasicIcon,
+  ScheduleIcon,
+  PrelemVideosIcon,
+  PrelemImagesIcon,
+  PrelemAnalyticsIcon,
+  pageInfoIcon,
+  GalleryIcon,
+  AdvanceIcon,
+  LaptopImg,
+  SaveAnimationGif,
+  ChatGptCommonLoader,
 };

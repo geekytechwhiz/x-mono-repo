@@ -7,7 +7,7 @@
 .advSearch {
   display: flex;
   box-shadow: none;
-  border: 1px solid #D9DBE9;
+  border: 1px solid #d9dbe9;
   border-radius: 8px;
   min-width: 645px;
   justify-content: space-between;
@@ -15,7 +15,7 @@
   align-items: center;
 }
 .advSearch .filterBtn {
-  color: #6E7191;
+  color: #6e7191;
   margin-right: 20px;
   cursor: pointer;
   display: flex;
@@ -24,7 +24,7 @@
   font-size: 20px;
 }
 .advFilterBox .labelText {
-  color: #14142B;
+  color: #14142b;
   margin-bottom: 5px;
   text-transform: uppercase;
   display: inline-block;
@@ -36,7 +36,7 @@
 .advFilterBox .Platform-x-InputBase-root {
   min-height: 45px !important;
 }
-.advSearch .leftCol{
+.advSearch .leftCol {
   display: flex;
   align-items: center;
   width: 100%;
@@ -48,9 +48,9 @@
   width: 100%;
 }
 .allCatBtn {
-  background: #F7F7FC !important;
+  background: #f7f7fc !important;
   border-radius: 8px 0px 0px 8px !important;
-  color: #14142B !important;
+  color: #14142b !important;
   font-size: 14px !important;
   text-transform: capitalize !important;
   display: flex !important;
@@ -59,29 +59,29 @@
   padding-left: 20px !important;
   padding-right: 20px !important;
   height: 60px;
-  border-right: 1px solid #D9DBE9 !important;
+  border-right: 1px solid #d9dbe9 !important;
 }
-.gropuadvsearchlist .groupHeader{
+.gropuadvsearchlist .groupHeader {
   position: sticky;
   top: -8px;
   padding: 4px 12px;
-  color: #6E7191;
+  color: #6e7191;
 }
 .gropuadvsearchlist .listview {
   padding: 4px 7px;
   color: #000;
   list-style: none;
 }
-.gropuadvsearchlist .listview li { 
+.gropuadvsearchlist .listview li {
   padding: 6px 12px;
   border-radius: 5px;
 }
-.gropuadvsearchlist .listview li:hover { 
-  background: #F7F7FC;
+.gropuadvsearchlist .listview li:hover {
+  background: #f7f7fc;
 }
 .searchIconPos {
   position: absolute;
-  color: #6E7191;
+  color: #6e7191;
   display: flex;
   width: 40px;
   height: 100%;
@@ -108,7 +108,7 @@
 .searchBoxInput {
   display: inline-block;
 }
-@media (max-width: 850px) and (min-width: 601px){
+@media (max-width: 850px) and (min-width: 601px) {
   .searchBoxInput {
     white-space: nowrap;
     width: 200px;
@@ -119,7 +119,7 @@
     position: relative;
   }
 }
-@media (max-width: 700px) and (min-width: 601px){
+@media (max-width: 700px) and (min-width: 601px) {
   .searchBoxInput {
     width: 90px;
   }

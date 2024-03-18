@@ -107,11 +107,11 @@ const PrelemComponent = (props: any = {}) => {
             </Box>
           );
         } catch (e) {
-          return <></>;
+          return null;
         }
       });
     } catch (e) {
-      return <></>;
+      return null;
     }
   }
 };

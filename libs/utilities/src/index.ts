@@ -38,7 +38,7 @@ import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
 import TextBox from "./lib/components/TextBox/TextBox";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
 } from "./lib/components/ToastNotification/ToastNotification";
 // import { XDialog } from './lib/components/XDialog/XDialog'
 import XLoader from "./lib/components/XLoader/XLoader";
@@ -111,6 +111,11 @@ import useUserSession from "./lib/hooks/useUserSession/useUserSession";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
 import i18next from "./lib/utils/i18next";
+import { doneInsituEditing, initInsituEditing } from "./lib/utils/insituEditing";
+import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
+import LoadingTextModal from "./lib/components/LoadingTextModal";
+import Submit from "./lib/components/Submit/Submit";
+import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -186,7 +191,7 @@ export {
   RadioLabelWithSubheading,
   SectionWrapper,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   SkeltonLoader,
   ChartSkeltonLoader,
   StructureDataDialog,
@@ -229,4 +234,10 @@ export {
   useUserSession,
   workflowKeys,
   liveIcon,
+  doneInsituEditing,
+  initInsituEditing,
+  NotificationBox,
+  LoadingTextModal,
+  Submit,
+  WorkflowHistoryIcon,
 };

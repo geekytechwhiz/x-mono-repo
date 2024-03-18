@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-import { CourseMenu } from './CourseMenu';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import { CourseMenu } from "./CourseMenu";
 
 const meta: Meta<typeof CourseMenu> = {
   component: CourseMenu,
-  title: 'CourseMenu',
+  title: "CourseMenu",
 };
 export default meta;
 type Story = StoryObj<typeof CourseMenu>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to CourseMenu!/gi)).toBeTruthy();
   },

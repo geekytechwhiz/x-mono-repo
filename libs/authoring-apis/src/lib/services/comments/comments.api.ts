@@ -1,7 +1,7 @@
-import { ApolloError } from '@apollo/client';
-import graphqlInstance from '../../config/graphqlConfig';
-import { CommentQueries } from '../../graphQL/queries/commentsQueries';
-import { ApiResponse } from '../../utils/types';
+import { ApolloError } from "@apollo/client";
+import graphqlInstance from "../../config/graphqlConfig";
+import { CommentQueries } from "../../graphQL/queries/commentsQueries";
+import { ApiResponse } from "../../utils/types";
 
 const commentsApi = {
   createOrUpdateComment: async <T>(input: any): Promise<ApiResponse<T>> => {
@@ -9,11 +9,13 @@ const commentsApi = {
       const { data } = await graphqlInstance.query({
         query: CommentQueries.CREATE_OR_UPDATE_COMMENT,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -22,11 +24,13 @@ const commentsApi = {
       const { data } = await graphqlInstance.query({
         query: CommentQueries.GET_COMMENT,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },

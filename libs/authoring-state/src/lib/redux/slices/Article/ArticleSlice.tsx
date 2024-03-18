@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ShowToastSuccessMessage } from '@platformx/utilities';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ShowToastSuccess } from "@platformx/utilities";
 // Define the initial state for the relevant slice
 interface ArticleState {
   newArticle: any;
@@ -21,27 +21,27 @@ interface ArticleState {
 
 const initialArticleState: ArticleState = {
   newArticle: {
-    Page: '-10',
-    Title: '',
-    SubTitle: '',
-    Description: '',
-    Banner: '',
-    ContentType: 'article',
-    Category: 'article',
-    SiteName: 'PlatX',
-    ParentPageURL: '/',
-    CurrentPageURL: '-10', // hello-world
-    DevelopedBy: '',
+    Page: "-10",
+    Title: "",
+    SubTitle: "",
+    Description: "",
+    Banner: "",
+    ContentType: "article",
+    Category: "article",
+    SiteName: "PlatX",
+    ParentPageURL: "/",
+    CurrentPageURL: "-10", // hello-world
+    DevelopedBy: "",
     // DevelopedDate: new Date().toISOString(),
-    Page_State: 'draft',
+    Page_State: "draft",
     IsEdit: false,
     SeoEnable: true,
     AnalyticsEnable: true,
     RobotTxt: false,
     SiteMap: false,
-    Analytics: '',
-    Others: '',
-    StructureData: '',
+    Analytics: "",
+    Others: "",
+    StructureData: "",
     ArticleSettings: {
       // ArticleName: '',
       // IsSchedulePublish: false,
@@ -49,9 +49,9 @@ const initialArticleState: ArticleState = {
       // PageCaching: false,
       // PageMobileFriendly: false
     },
-    LinkTags: '',
+    LinkTags: "",
     creationDate: new Date().toISOString(),
-    modificationDate: '',
+    modificationDate: "",
     articleContent: {
       // Images: {
       //   Image_1: {
@@ -63,22 +63,22 @@ const initialArticleState: ArticleState = {
       //   },
       // },
     },
-    Tag: ['article'],
-    Links: '',
-    createdby: '',
-    Page_LastModifiedBy: '',
+    Tag: ["article"],
+    Links: "",
+    createdby: "",
+    Page_LastModifiedBy: "",
   },
 
   previewArticle: null,
   updatedField: {
-    articleUrl: '-10',
+    articleUrl: "-10",
     updatedObj: {},
   },
   saveArticle: {
     createmutate: null,
     newArticle: null,
-    pageState: 'draft',
-    currentPageURL: '',
+    pageState: "draft",
+    currentPageURL: "",
   },
   initialState: null,
   articleList: null,
@@ -86,7 +86,7 @@ const initialArticleState: ArticleState = {
 };
 
 export const articleSlice = createSlice({
-  name: 'article',
+  name: "article",
   initialState: initialArticleState,
   reducers: {
     createArticle: (state, action: PayloadAction<{ article: any }>) => {
@@ -100,7 +100,7 @@ export const articleSlice = createSlice({
       action: PayloadAction<{
         articleUrl: string;
         updatedObj: Record<string, any>;
-      }>
+      }>,
     ) => {
       state.updatedField.articleUrl = action.payload.articleUrl;
       state.updatedField.updatedObj = action.payload.updatedObj;
@@ -112,40 +112,32 @@ export const articleSlice = createSlice({
         newArticle: any;
         pageState: string;
         currentPageURL: string;
-      }>
+      }>,
     ) => {
-      const { createmutate, newArticle, pageState, currentPageURL } =
-        action.payload;
-      if (pageState === 'publish') {
-        newArticle.Page_State = 'publish';
+      const { createmutate, newArticle, pageState, currentPageURL } = action.payload;
+      if (pageState === "publish") {
+        newArticle.Page_State = "publish";
       }
       createmutate({
         variables: {
           input: newArticle,
         },
       }).then((resp: any) => {
-        if (pageState !== 'publish') {
-          ShowToastSuccessMessage('Article saved successfully!');
+        if (pageState !== "publish") {
+          ShowToastSuccess("Article saved successfully!");
         } else {
           state.updatedField.articleUrl = currentPageURL;
-          state.updatedField.updatedObj = { Page_State: 'publish' };
+          state.updatedField.updatedObj = { Page_State: "publish" };
         }
-        console.log(resp);
       });
     },
-    updateArticleInitialState: (
-      state,
-      action: PayloadAction<{ payload: any }>
-    ) => {
+    updateArticleInitialState: (state, action: PayloadAction<{ payload: any }>) => {
       state.initialState = action.payload;
     },
     updateArticleList: (state, action: PayloadAction<{ payload: any }>) => {
       state.articleList = action.payload;
     },
-    updateArticleSettings: (
-      state,
-      action: PayloadAction<{ articleInfo: any }>
-    ) => {
+    updateArticleSettings: (state, action: PayloadAction<{ articleInfo: any }>) => {
       state.articleSettings = action.payload.articleInfo;
     },
   },

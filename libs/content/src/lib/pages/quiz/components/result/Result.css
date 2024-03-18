@@ -1,8 +1,7 @@
-#inputID{
-    font-size: 12px;
+#inputID {
+  font-size: 12px;
 }
 #inputID::placeholder {
-    color: #2d2d39;
-    font-size: 12px;
-
+  color: #2d2d39;
+  font-size: 12px;
 }

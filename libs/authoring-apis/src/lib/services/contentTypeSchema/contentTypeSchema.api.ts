@@ -1,7 +1,10 @@
 import { ApolloError } from "@apollo/client";
 import graphqlInstance from "../../config/graphqlConfig";
 import { schemaQueries } from "../../graphQL/queries/contentTypeQueries";
-import { CREATE_CONTENT_TYPE, PUBLISH_CONTENT_TYPE } from "../../graphQL/mutations/contentTypeMutations";
+import {
+  CREATE_CONTENT_TYPE,
+  PUBLISH_CONTENT_TYPE,
+} from "../../graphQL/mutations/contentTypeMutations";
 import { ApiResponse } from "../../utils/types";
 
 const contentTypeSchemaApi = {
@@ -13,7 +16,9 @@ const contentTypeSchemaApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -26,7 +31,9 @@ const contentTypeSchemaApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -39,7 +46,9 @@ const contentTypeSchemaApi = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },

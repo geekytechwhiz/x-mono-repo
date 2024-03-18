@@ -213,37 +213,33 @@ export const MenuListing = ({
               </Grid>
             </Grid>
             {isloading ? (
-              <>
-                <ContentListDesktopLoader />
-              </>
+              <ContentListDesktopLoader />
             ) : (
-              <>
-                <InfiniteScroll
-                  dataLength={items !== undefined ? items.length : 0}
-                  next={fetchMoreData}
-                  hasMore={isLazyLoad}
-                  loader={<ContentListDesktopLoader />}
-                  scrollableTarget='scrollableDiv1'>
-                  <Box sx={{ display: "Grid" }}>
-                    {items?.map((item, index) => (
-                      <MenuPageList
-                        key={index}
-                        article={item}
-                        index={index}
-                        setPageName1={setPageName1}
-                        isDisable={isDisable}
-                        currentButton={currentButton}
-                        setCurrentButton={setCurrentButton}
-                        isDisableDone={isDisableDone}
-                        setisIsDisableDone={setisIsDisableDone}
-                        setUrl={setUrl}
-                        editData={editData}
-                        isedit={isedit}
-                      />
-                    ))}
-                  </Box>
-                </InfiniteScroll>
-              </>
+              <InfiniteScroll
+                dataLength={items !== undefined ? items.length : 0}
+                next={fetchMoreData}
+                hasMore={isLazyLoad}
+                loader={<ContentListDesktopLoader />}
+                scrollableTarget='scrollableDiv1'>
+                <Box sx={{ display: "Grid" }}>
+                  {items?.map((item, index) => (
+                    <MenuPageList
+                      key={index}
+                      article={item}
+                      index={index}
+                      setPageName1={setPageName1}
+                      isDisable={isDisable}
+                      currentButton={currentButton}
+                      setCurrentButton={setCurrentButton}
+                      isDisableDone={isDisableDone}
+                      setisIsDisableDone={setisIsDisableDone}
+                      setUrl={setUrl}
+                      editData={editData}
+                      isedit={isedit}
+                    />
+                  ))}
+                </Box>
+              </InfiniteScroll>
             )}
           </Box>
         </Box>

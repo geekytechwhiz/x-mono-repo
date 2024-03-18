@@ -1,7 +1,7 @@
-import { ApolloError } from '@apollo/client';
-import graphqlInstance from '../../config/graphqlConfig';
-import { UserManagementQueries } from '../../graphQL/queries/userManagementQueries';
-import { ApiResponse } from '../../utils/types';
+import { ApolloError } from "@apollo/client";
+import graphqlInstance from "../../config/graphqlConfig";
+import { UserManagementQueries } from "../../graphQL/queries/userManagementQueries";
+import { ApiResponse } from "../../utils/types";
 
 const userManagementAPI = {
   validateEmailExist: async <T>(input: any): Promise<ApiResponse<T>> => {
@@ -12,7 +12,9 @@ const userManagementAPI = {
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -21,11 +23,13 @@ const userManagementAPI = {
       const { data } = await graphqlInstance.query({
         query: UserManagementQueries.FETCH_USER_LIST,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -34,11 +38,13 @@ const userManagementAPI = {
       const { data } = await graphqlInstance.query({
         query: UserManagementQueries.FETCH_ROLE,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -47,11 +53,13 @@ const userManagementAPI = {
       const { data } = await graphqlInstance.query({
         query: UserManagementQueries.GET_USER_DETAILED_LIST,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -60,11 +68,13 @@ const userManagementAPI = {
       const { data } = await graphqlInstance.query({
         query: UserManagementQueries.EDIT_USER,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },
@@ -73,11 +83,13 @@ const userManagementAPI = {
       const { data } = await graphqlInstance.query({
         query: UserManagementQueries.INVITE_END_USER,
         variables: input,
-        fetchPolicy: 'no-cache',
+        fetchPolicy: "no-cache",
       });
       return data;
     } catch (err: any) {
-      if (err instanceof ApolloError) console.log(err.graphQLErrors);
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
       throw err;
     }
   },

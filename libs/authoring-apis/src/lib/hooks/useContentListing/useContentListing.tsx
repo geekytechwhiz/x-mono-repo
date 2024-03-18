@@ -1,10 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable default-param-last */
-/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
-
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
 import {
   ContentState,
@@ -14,7 +10,7 @@ import {
 } from "@platformx/authoring-state";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   convertToLowerCase,
   getCurrentLang,
@@ -33,6 +29,7 @@ import { LanguageList } from "../../utils/constants";
 import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
+import { createSearchParams } from "react-router-dom";
 
 const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
   CONTENT_CONSTANTS;
@@ -110,7 +107,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
           );
         }
@@ -145,7 +142,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(response));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("unpublished_toast")}`,
           );
         }
@@ -185,6 +182,15 @@ const useContentListing = (filter = "ALL") => {
         state: listItemDetails.tagName?.toLowerCase(),
       },
     );
+  };
+
+  const editPage = (listItemDetails: { path: any }) => {
+    navigate({
+      pathname: "/edit-page",
+      search: `?${createSearchParams({
+        page: listItemDetails.path.toString(),
+      })}`,
+    });
   };
 
   const preview = async (listItemDetails: any) => {
@@ -253,7 +259,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
   const duplicate = async (
-    IsDuplicate = false,
+    IsDuplicate,
     title: any,
     language: string | string[],
     listItemDetails: any,
@@ -268,7 +274,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -292,7 +298,7 @@ const useContentListing = (filter = "ALL") => {
         const response = await Promise.all(promises);
 
         if (response && response.length > 0) {
-          const response: any = await contentTypeAPIs.fetchSearchContent(
+          const searchResponse: any = await contentTypeAPIs.fetchSearchContent(
             capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
@@ -300,9 +306,9 @@ const useContentListing = (filter = "ALL") => {
             contentList,
             true,
           );
-          dispatch(updateContentList(response));
-          for (const res of response) {
-            ShowToastSuccessMessage(
+          dispatch(updateContentList(searchResponse));
+          for (const res of searchResponse) {
+            ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
               )} ${res.language}`,
@@ -321,12 +327,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
 
-  const duplicateToSite = async (
-    IsDuplicate = false,
-    title: any,
-    listItemDetails: any,
-    siteTitle: any,
-  ) => {
+  const duplicateToSite = async (IsDuplicate, title: any, listItemDetails: any, siteTitle: any) => {
     try {
       const selectedItem = await fetchContentDetails(listItemDetails);
 
@@ -334,7 +335,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -374,6 +375,7 @@ const useContentListing = (filter = "ALL") => {
     view,
     deleteContent,
     edit,
+    editPage,
     fetchContentDetails,
     duplicateToSite,
   };

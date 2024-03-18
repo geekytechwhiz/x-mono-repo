@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import XLoader  from './XLoader';
+import type { Meta, StoryObj } from "@storybook/react";
+import XLoader from "./XLoader";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof XLoader> = {
   component: XLoader,
-  title: 'XLoader',
+  title: "XLoader",
 };
 export default meta;
 type Story = StoryObj<typeof XLoader>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to XLoader!/gi)).toBeTruthy();
   },

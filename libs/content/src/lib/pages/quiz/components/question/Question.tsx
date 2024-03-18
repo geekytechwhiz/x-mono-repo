@@ -19,11 +19,11 @@ export const Question = ({
     setIsClickedQueList(true);
   };
   const { t } = useTranslation();
-  const { scrollToRef, } = useComment();
+  const { scrollToRef } = useComment();
   const classes = useCustomStyle();
   return (
     <Box id='questions' className={classes.mainStyleWrapper}>
-      <CommentWrapper elementId='3' scrollRef={scrollToRef} >
+      <CommentWrapper elementId='3' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='03'
           title={t("quiz_question_head")}

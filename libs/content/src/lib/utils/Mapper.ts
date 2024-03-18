@@ -1,11 +1,10 @@
 import { SORT_ORDER } from "./Constants";
 
-
 export const mapFetchALL = (
   state: any,
   filter: string,
   contentType: string,
-  pagination: { start: number; rows: number }
+  pagination: { start: number; rows: number },
 ) => {
   return {
     searchTerm: state?.searchTerm,

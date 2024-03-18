@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function PlateformXLoader() {
   const [progress, setProgress] = React.useState(0);
@@ -22,7 +22,7 @@ export default function PlateformXLoader() {
   }, []);
 
   return (
-    <Box sx={{ width: '60%' }}>
+    <Box sx={{ width: "60%" }}>
       <LinearProgress variant='determinate' value={progress} />
     </Box>
   );

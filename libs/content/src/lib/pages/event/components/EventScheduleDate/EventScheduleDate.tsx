@@ -49,18 +49,17 @@ const EventScheduleDate = ({ state, setState, unsavedChanges }: ScheduleProp) =>
     e.preventDefault();
   };
   return (
-    <>
-      <Box id='schedulePublish' className={classes.mainStyleWrapper}>
-        <CommonBoxWithNumber
-          number='04'
-          title={t("quiz_schedule_header")}
-          titleVarient='p3semibold'
-          subTitleVarient='p4regular'
-          subTitle={t("subhead")}>
-          <Grid container>
-            {/* Start Date & Time */}
-            <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
-              {/* <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
+    <Box id='schedulePublish' className={classes.mainStyleWrapper}>
+      <CommonBoxWithNumber
+        number='04'
+        title={t("quiz_schedule_header")}
+        titleVarient='p3semibold'
+        subTitleVarient='p4regular'
+        subTitle={t("subhead")}>
+        <Grid container>
+          {/* Start Date & Time */}
+          <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
+            {/* <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
                 <Checkbox
                   checked={state?.is_schedule_publish}
                   sx={{ pt: 0, pl: 0 }}
@@ -73,37 +72,37 @@ const EventScheduleDate = ({ state, setState, unsavedChanges }: ScheduleProp) =>
                   subTitleVarient='h7regular'
                 />
               </Box> */}
-              <FormControlLabel
-                style={{ marginLeft: 0 }}
-                control={
-                  <Checkbox
-                    sx={{ padding: "5px", margin: 0, width: "34px", height: "34px" }}
-                    checked={state?.is_schedule_publish}
-                    onChange={handlePublishChange}
-                  />
-                }
-                label={
-                  <TitleSubTitle
-                    title={t("schedule_publish")}
-                    subTitle=''
-                    titleVariant='h6medium'
-                    subTitleVariant='h7regular'
-                  />
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-              <DatePicker
-                time={state.schedule_publish_datetime}
-                handleValChange={publishHandleValChange}
-                handleDateChangeRaw={handleDateChangeRaw}
-                isDisabled={!state?.is_schedule_publish}
-              />
-            </Grid>
+            <FormControlLabel
+              style={{ marginLeft: 0 }}
+              control={
+                <Checkbox
+                  sx={{ padding: "5px", margin: 0, width: "34px", height: "34px" }}
+                  checked={state?.is_schedule_publish}
+                  onChange={handlePublishChange}
+                />
+              }
+              label={
+                <TitleSubTitle
+                  title={t("schedule_publish")}
+                  subTitle=''
+                  titleVariant='h6medium'
+                  subTitleVariant='h7regular'
+                />
+              }
+            />
+          </Grid>
+          <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
+            <DatePicker
+              time={state.schedule_publish_datetime}
+              handleValChange={publishHandleValChange}
+              handleDateChangeRaw={handleDateChangeRaw}
+              isDisabled={!state?.is_schedule_publish}
+            />
+          </Grid>
 
-            {/* End Date & Time */}
-            <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiledLast'>
-              {/* <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
+          {/* End Date & Time */}
+          <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiledLast'>
+            {/* <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
                 <Checkbox
                   checked={state?.is_schedule_unpublish}
                   sx={{ pt: 0, pl: 0 }}
@@ -116,37 +115,36 @@ const EventScheduleDate = ({ state, setState, unsavedChanges }: ScheduleProp) =>
                   subTitleVarient='h7regular'
                 />
               </Box> */}
-              <FormControlLabel
-                style={{ marginLeft: 0 }}
-                control={
-                  <Checkbox
-                    sx={{ padding: "5px", margin: 0, width: "34px", height: "34px" }}
-                    checked={state?.is_schedule_unpublish}
-                    onChange={handleUnpublishChange}
-                  />
-                }
-                label={
-                  <TitleSubTitle
-                    title={t("quiz_unpublish_title")}
-                    subTitle=''
-                    titleVariant='h6medium'
-                    subTitleVariant='h7regular'
-                  />
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
-              <DatePicker
-                time={state.schedule_unpublish_datetime}
-                handleValChange={unPublishHandleValChange}
-                handleDateChangeRaw={handleDateChangeRaw}
-                isDisabled={!state?.is_schedule_unpublish}
-              />
-            </Grid>
+            <FormControlLabel
+              style={{ marginLeft: 0 }}
+              control={
+                <Checkbox
+                  sx={{ padding: "5px", margin: 0, width: "34px", height: "34px" }}
+                  checked={state?.is_schedule_unpublish}
+                  onChange={handleUnpublishChange}
+                />
+              }
+              label={
+                <TitleSubTitle
+                  title={t("quiz_unpublish_title")}
+                  subTitle=''
+                  titleVariant='h6medium'
+                  subTitleVariant='h7regular'
+                />
+              }
+            />
           </Grid>
-        </CommonBoxWithNumber>
-      </Box>
-    </>
+          <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
+            <DatePicker
+              time={state.schedule_unpublish_datetime}
+              handleValChange={unPublishHandleValChange}
+              handleDateChangeRaw={handleDateChangeRaw}
+              isDisabled={!state?.is_schedule_unpublish}
+            />
+          </Grid>
+        </Grid>
+      </CommonBoxWithNumber>
+    </Box>
   );
 };
 

@@ -13,31 +13,31 @@ import {
   Tooltip,
   Typography,
   styled,
-} from '@mui/material';
+} from "@mui/material";
 
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import { useComment } from '@platformx/authoring-apis';
-import { addReply, hasResolved } from '@platformx/authoring-state';
-import { useUserSession } from '@platformx/utilities';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { CommentListProps, ReviewComment } from './ContentReview.types';
-import { formatTimestamp, stringAvatar } from './helper';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { useComment } from "@platformx/authoring-apis";
+import { addReply, hasResolved } from "@platformx/authoring-state";
+import { useUserSession } from "@platformx/utilities";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { CommentListProps, ReviewComment } from "./ContentReview.types";
+import { formatTimestamp, stringAvatar } from "./helper";
 
-const PrimaryText = styled('div')(({ theme }) => ({
-  wordWrap: 'break-word',
+const PrimaryText = styled("div")(({ theme }) => ({
+  wordWrap: "break-word",
 
-  marginBottom: '3px',
+  marginBottom: "3px",
 
   ...theme.typography.body1,
 }));
 
-const SecondaryText = styled('div')(({ theme }) => ({
-  wordWrap: 'break-word',
+const SecondaryText = styled("div")(({ theme }) => ({
+  wordWrap: "break-word",
 
   ...theme.typography.caption,
-  fontSize: '11px',
+  fontSize: "11px",
 }));
 
 const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
@@ -53,7 +53,6 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
   const reopenText = `Reopened By ${username}`;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [isReopenDisabled, setIsReopenDisabled] = useState(true);
   const handleMenuOpen = (event: any, comment: any) => {
     setAnchorEl(event.currentTarget);
     setItems(comment);
@@ -73,17 +72,15 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
   });
   const scrollToView = (elementId: any, commentId: any, event: any) => {
     document.getElementById(elementId)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
+      behavior: "smooth",
+      block: "start",
     });
 
     setTimeout(() => {
       handleCommentClick(event, elementId, commentId);
     }, 500);
   };
-  const commentCountLength = comments?.filter(
-    (x: ReviewComment) => x.elementId === items?.elementId //&& x.isResolved === false
-  );
+
   // useEffect(() => {
   //   console.log('reopen', isReopenDisabled);
   //   setIsReopenDisabled(
@@ -94,9 +91,8 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
   const isDisabled = () => {
     if (items) {
       if (
-        groupedComments[items?.elementId][
-          groupedComments[items?.elementId]?.length - 1
-        ].commentId === items?.commentId
+        groupedComments[items?.elementId][groupedComments[items?.elementId]?.length - 1]
+          .commentId === items?.commentId
       ) {
         return false;
       } else {
@@ -106,21 +102,21 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
   };
   return (
     <>
-      {' '}
+      {" "}
       <List>
         {Object.keys(groupedComments).map((elementId, index) => (
           <React.Fragment key={elementId}>
             {groupedComments[elementId].map((comment: ReviewComment) => (
               <Box
+                key={comment.commentId}
                 sx={{
-                  cursor: 'pointer',
-                  '&:hover': {
-                    backgroundColor: '#D9DBE9',
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#D9DBE9",
                   },
-                }}
-              >
+                }}>
                 <ListItem
-                  alignItems="flex-start"
+                  alignItems='flex-start'
                   // sx={{
                   //   cursor: 'pointer',
                   //   '&:hover': {
@@ -148,19 +144,16 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                     }
                   />{' '} */}
                   <ListItemSecondaryAction
-                    sx={{ position: 'absolute', right: '0px', display: 'flex' }}
-                  >
+                    sx={{ position: "absolute", right: "0px", display: "flex" }}>
                     <Tooltip
-                      title={comment.isResolved ? 'Resolved' : 'Resolve'}
-                      placement="left-end"
-                    >
+                      title={comment.isResolved ? "Resolved" : "Resolve"}
+                      placement='left-end'>
                       <span
                         style={{
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                        }}
-                      >
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                        }}>
                         <TaskAltIcon
                           onClick={() => {
                             !comment?.isResolved &&
@@ -168,7 +161,7 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                                 addReply({
                                   replyPayload: resolveText,
                                   comment: comment,
-                                })
+                                }),
                               );
 
                             !comment?.isResolved &&
@@ -176,13 +169,13 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                                 hasResolved({
                                   hasResolve: true,
                                   commentId: comment.commentId,
-                                })
+                                }),
                               );
                           }}
                           sx={{
-                            color: comment.isResolved ? 'green' : 'grey',
-                            width: '20px',
-                            height: '20px',
+                            color: comment.isResolved ? "green" : "grey",
+                            width: "20px",
+                            height: "20px",
                           }}
                         />
                       </span>
@@ -197,33 +190,27 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                 <Box
                   onClick={(event: any) => {
                     scrollToView(comment.elementId, comment.commentId, event);
-                  }}
-                >
+                  }}>
                   <ListItemText
-                    sx={{ paddingLeft: '16px' }}
+                    sx={{ paddingLeft: "16px" }}
                     primary={
-                      <PrimaryText
-                        sx={{ fontSize: '14px', fontWeight: 600, mb: '0px' }}
-                      >
+                      <PrimaryText sx={{ fontSize: "14px", fontWeight: 600, mb: "0px" }}>
                         {comment.reviewer}
                         {/* {comment.content} */}
                       </PrimaryText>
                     }
                     secondary={
-                      <SecondaryText sx={{ fontSize: '12px', fontWeight: 600 }}>
-                        {' '}
+                      <SecondaryText sx={{ fontSize: "12px", fontWeight: 600 }}>
+                        {" "}
                         {`${formatTimestamp(comment.timeStamp)}`}
                       </SecondaryText>
                     }
-                  />{' '}
-                  <Typography
-                    variant="h6regular"
-                    sx={{ paddingLeft: '16px', pb: '10px' }}
-                  >
+                  />{" "}
+                  <Typography variant='h6regular' sx={{ paddingLeft: "16px", pb: "10px" }}>
                     {comment.content}
                   </Typography>
                 </Box>
-                <Divider sx={{ borderColor: '#D9DBE9' }}></Divider>
+                <Divider sx={{ borderColor: "#D9DBE9" }}></Divider>
               </Box>
             ))}
             <Menu
@@ -231,24 +218,23 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
               anchorOrigin={{
-                vertical: 'bottom',
+                vertical: "bottom",
 
-                horizontal: 'right',
+                horizontal: "right",
               }}
               transformOrigin={{
-                vertical: 'top',
+                vertical: "top",
 
-                horizontal: 'right',
+                horizontal: "right",
               }}
               sx={{
-                '.Platform-x-Menu-paper': {
-                  boxShadow: '0 10px 25px 0 rgba(0, 0, 0, 0.12);',
-                  borderRadius: '5px',
+                ".Platform-x-Menu-paper": {
+                  boxShadow: "0 10px 25px 0 rgba(0, 0, 0, 0.12);",
+                  borderRadius: "5px",
                   // paddingLeft: '6px',
                   // paddingRight: '6px',
                 },
-              }}
-            >
+              }}>
               {/* <MenuItem
                 onClick={() => {
                   // markAsRead(true, comment.commentId);
@@ -263,8 +249,7 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                   scrollToView(items?.elementId, items?.commentId, event);
                   handleMenuClose();
                 }}
-                disabled={isDisabled()}
-              >
+                disabled={isDisabled()}>
                 Reply
               </MenuItem>
               {items?.isResolved && (
@@ -275,18 +260,15 @@ const CommentList: React.FC<any> = ({ comments }: CommentListProps) => {
                     isDisabled()
                   }
                   onClick={() => {
-                    dispatch(
-                      addReply({ replyPayload: reopenText, comment: items })
-                    );
+                    dispatch(addReply({ replyPayload: reopenText, comment: items }));
                     dispatch(
                       hasResolved({
                         hasResolve: false,
                         commentId: items.commentId,
-                      })
+                      }),
                     );
                     handleMenuClose();
-                  }}
-                >
+                  }}>
                   Reopen
                 </MenuItem>
               )}
