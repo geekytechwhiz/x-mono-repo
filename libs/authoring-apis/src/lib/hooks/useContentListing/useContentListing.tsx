@@ -19,6 +19,7 @@ import {
   useUserSession,
 } from "@platformx/utilities";
 import { useDispatch, useSelector } from "react-redux";
+import { createSearchParams } from "react-router-dom";
 import { FETCH_CONTENT_BY_PATH } from "../../graphQL/queries/contentTypesQueries";
 import contentTypeAPIs, {
   createContentType,
@@ -29,7 +30,6 @@ import { LanguageList } from "../../utils/constants";
 import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
-import { createSearchParams } from "react-router-dom";
 
 const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
   CONTENT_CONSTANTS;
@@ -307,11 +307,11 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          for (const res of searchResponse) {
+          for (const lang of selectedLanguage) {
             ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
-              )} ${res.language}`,
+              )} ${lang.value}`,
             );
           }
         }

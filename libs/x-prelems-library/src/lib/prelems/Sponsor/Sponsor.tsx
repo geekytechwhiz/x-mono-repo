@@ -85,7 +85,7 @@ SponsorProp) => {
         ref={ref}>
         <Grid className='wrapperMain' container ref={ref}>
           {content?.ImageCompound &&
-            Object.entries(content?.ImageCompound).map(([key], index) => (
+            Object.entries(content?.ImageCompound)?.map(([key], index) => (
               <Grid item xs={12} sm={6} md={3} lg={3} key={key} className='wrapperImg'>
                 <img alt={key} src={getImg(index + 1)} />
                 {/* <ImageRender

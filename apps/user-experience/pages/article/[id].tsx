@@ -44,8 +44,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 const Article = (props: any) => {
   const { pageProps = {}, authState = {}, instances = {} } = props;
-  const { pageData = {}, route = {}, MenuData = [], footerSettingData = {}, site_host } = pageProps;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {
+    pageData = null,
+    route = {},
+    MenuData = [],
+    footerSettingData = {},
+    site_host,
+  } = pageProps;
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
@@ -60,7 +65,7 @@ const Article = (props: any) => {
   usePageImpression(pageData, inView, instances, SNOWPLOW.CONTENT_TYPE.ARTICLE, route, site_host);
 
   return (
-    <Box>
+    <Box ref={ref}>
       {pageData ? (
         <>
           <PageHead

@@ -116,7 +116,7 @@ const Banner4 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner4
           <Grid container ref={ref} className='container'>
             <Grid item xs={12} className='gridItem'>
               <Typography variant='h1bold' className='title1' id='Title'>
-                {content.Title}
+                {content?.Title}
               </Typography>
               <Box>
                 <BasicButton
