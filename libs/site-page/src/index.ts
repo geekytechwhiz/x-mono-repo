@@ -1,3 +1,4 @@
+import ContentGallery from "./lib/components/ContentGallery/ContentGallery";
 import EditPage from "./lib/components/EditPageContainer/EditPageContainer";
 import PageMenu from "./lib/components/PageMenu/PageMenu";
 import { PagePreview } from "./lib/components/PagePreview/PagePreview";
@@ -6,4 +7,13 @@ import PrelemInfo from "./lib/components/PrelemSearch/PrelemInfo";
 import SearchPrelem from "./lib/components/PrelemSearch/SearchPrelem";
 import { SitePage } from "./lib/site-page";
 
-export { EditPage, PageMenu, PagePreview, PrelemInfo, PrelemPreview, SearchPrelem, SitePage };
+export {
+  ContentGallery,
+  EditPage,
+  PageMenu,
+  PagePreview,
+  PrelemInfo,
+  PrelemPreview,
+  SearchPrelem,
+  SitePage,
+};
