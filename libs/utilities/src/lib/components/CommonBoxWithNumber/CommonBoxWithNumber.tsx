@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
-import { PropsWithChildren } from 'react';
-import { useCustomStyle } from './CommonBoxWithNumber.style';
-import TitleSubTitle from '../SchemaComponents/TitleSubtitle/TitleSubTitle';
+import { Box } from "@mui/material";
+import { PropsWithChildren } from "react";
+import { useCustomStyle } from "./CommonBoxWithNumber.style";
+import TitleSubTitle from "../SchemaComponents/TitleSubtitle/TitleSubTitle";
 
 interface CommonBoxWithNumberProp {
   number: string;
@@ -23,8 +23,8 @@ export const CommonBoxWithNumber = ({
   const classes = useCustomStyle({ panelStyle });
   return (
     <Box className={`${classes.commonBoxWithNumber} commonBoxWithNumber`}>
-      <Box className="headerWrapper">
-        <Box className="numberBox">{number}</Box>
+      <Box className='headerWrapper'>
+        <Box className='numberBox'>{number}</Box>
         <TitleSubTitle
           title={title}
           subTitle={subTitle}
@@ -32,7 +32,7 @@ export const CommonBoxWithNumber = ({
           subTitleVariant={subTitleVarient}
         />
       </Box>
-      <Box className="contentWrapper" sx={panelStyle}>
+      <Box className='contentWrapper' sx={panelStyle}>
         {children}
       </Box>
     </Box>

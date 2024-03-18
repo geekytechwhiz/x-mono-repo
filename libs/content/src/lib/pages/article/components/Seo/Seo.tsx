@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { BasicSwitch, ShowToastSuccessMessage, ThemeConstants, TitleSubTitle } from "@platformx/utilities";
+import { BasicSwitch, ShowToastSuccess, ThemeConstants, TitleSubTitle } from "@platformx/utilities";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import StructureData from "../StructureData/StructureData";
@@ -19,7 +19,7 @@ const Seo = ({ state, setState, updateStructureDataArticle }) => {
 
   const copyStructureData = (structureData = structure_data) => {
     navigator.clipboard.writeText(JSON.stringify(structureData, undefined, 2));
-    ShowToastSuccessMessage(`${t("page_structure_data")} ${t("copied")}`);
+    ShowToastSuccess(`${t("page_structure_data")} ${t("copied")}`);
   };
   const handleSeoChange = () => {
     setState({

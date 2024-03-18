@@ -138,7 +138,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
     return (
       <Box className='textcenter'>
         <Typography variant='h1bold' id='primary_heading' className='title'>
-          {content.primary_heading}
+          {content?.primary_heading}
         </Typography>
         <Box className='blinkText'>
           <Typography
@@ -149,7 +149,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
             sx={{
               display: secondaryArgs?.editState ? "inherit" : "none",
             }}>
-            {content.typescript_heading}
+            {content?.typescript_heading}
           </Typography>
 
           {!secondaryArgs?.editState && (
@@ -160,7 +160,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
               className='categoryText'>
               <Typewriter
                 options={{
-                  strings: stringToArray(content.typescript_heading),
+                  strings: stringToArray(content?.typescript_heading),
                   autoStart: true,
                   loop: true,
                 }}
@@ -170,7 +170,7 @@ const AboutUs2 = ({ content, analytics, authoringHelper, secondaryArgs }: any) =
         </Box>
         <Box className='textMaxWidth'>
           <Typography variant='p1regular' id='description'>
-            {content.description}
+            {content?.description}
           </Typography>
           <BasicButton
             openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}

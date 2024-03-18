@@ -106,98 +106,96 @@ const EventTitleDescription = ({
   const classes = useCustomStyle();
 
   return (
-    <>
-      <Box id='titleDescription' className={classes.mainStyleWrapper}>
-        <CommonBoxWithNumber
-          number='02'
-          title={t("title_head")}
-          titleVarient='p3semibold'
-          subTitleVarient='p4regular'
-          subTitle={t("subhead")}>
-          <Grid container>
-            {/* Title*/}
-            <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
-              <TitleSubTitle
-                title={`${t("title")}*`}
-                subTitle={t("event_subtitle")}
-                titleVariant='h6medium'
-                subTitleVariant='h7regular'
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-              <TextBox
-                name='title'
-                placeHolder={t("event_title_placeholder")}
-                handleChange={handleChange}
-                maxCharLength={100}
-                state={state.title}
-                handleOnBlur={handleOnBlur}
-              />
-            </Grid>
-
-            {/* Short Title*/}
-            <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
-              <TitleSubTitle
-                title={t("short_title")}
-                subTitle={t("event_subshorttitle")}
-                titleVariant='h6medium'
-                subTitleVariant='h7regular'
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-              <TextBox
-                name='short_title'
-                placeHolder={t("event_short_title_placeholder")}
-                handleChange={handleChange}
-                maxCharLength={60}
-                state={state.short_title}
-                handleOnBlur={handleOnBlur}
-              />
-            </Grid>
-
-            {/* description*/}
-            <Grid item xs={12} sm={5} md={5} className='leftFiled'>
-              <TitleSubTitle
-                title={`${t("description")}*`}
-                subTitle={t("event_subdescription")}
-                titleVariant='h6medium'
-                subTitleVariant='h7regular'
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} className='textFiled'>
-              <AutoTextArea
-                name='description'
-                placeHolder={t("event_desciption_placeholder")}
-                handleChange={handleChange}
-                maxCharLength={1000}
-                state={state.description}
-                handleOnBlur={handleOnBlur}
-              />
-            </Grid>
-
-            {/* short  description*/}
-            <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
-              <TitleSubTitle
-                title={t("short_description")}
-                subTitle={t("event_subshort_des")}
-                titleVariant='h6medium'
-                subTitleVariant='h7regular'
-              />
-            </Grid>
-            <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-              <AutoTextArea
-                name='short_description'
-                placeHolder={t("short_des_placeholder")}
-                handleChange={handleChange}
-                maxCharLength={160}
-                state={state.short_description}
-                handleOnBlur={handleOnBlur}
-              />
-            </Grid>
+    <Box id='titleDescription' className={classes.mainStyleWrapper}>
+      <CommonBoxWithNumber
+        number='02'
+        title={t("title_head")}
+        titleVarient='p3semibold'
+        subTitleVarient='p4regular'
+        subTitle={t("subhead")}>
+        <Grid container>
+          {/* Title*/}
+          <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
+            <TitleSubTitle
+              title={`${t("title")}*`}
+              subTitle={t("event_subtitle")}
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
+            />
           </Grid>
-        </CommonBoxWithNumber>
-      </Box>
-    </>
+          <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
+            <TextBox
+              name='title'
+              placeHolder={t("event_title_placeholder")}
+              handleChange={handleChange}
+              maxCharLength={100}
+              state={state.title}
+              handleOnBlur={handleOnBlur}
+            />
+          </Grid>
+
+          {/* Short Title*/}
+          <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
+            <TitleSubTitle
+              title={t("short_title")}
+              subTitle={t("event_subshorttitle")}
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
+            />
+          </Grid>
+          <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
+            <TextBox
+              name='short_title'
+              placeHolder={t("event_short_title_placeholder")}
+              handleChange={handleChange}
+              maxCharLength={60}
+              state={state.short_title}
+              handleOnBlur={handleOnBlur}
+            />
+          </Grid>
+
+          {/* description*/}
+          <Grid item xs={12} sm={5} md={5} className='leftFiled'>
+            <TitleSubTitle
+              title={`${t("description")}*`}
+              subTitle={t("event_subdescription")}
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
+            />
+          </Grid>
+          <Grid item xs={12} sm={7} md={7} className='textFiled'>
+            <AutoTextArea
+              name='description'
+              placeHolder={t("event_desciption_placeholder")}
+              handleChange={handleChange}
+              maxCharLength={1000}
+              state={state.description}
+              handleOnBlur={handleOnBlur}
+            />
+          </Grid>
+
+          {/* short  description*/}
+          <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
+            <TitleSubTitle
+              title={t("short_description")}
+              subTitle={t("event_subshort_des")}
+              titleVariant='h6medium'
+              subTitleVariant='h7regular'
+            />
+          </Grid>
+          <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
+            <AutoTextArea
+              name='short_description'
+              placeHolder={t("short_des_placeholder")}
+              handleChange={handleChange}
+              maxCharLength={160}
+              state={state.short_description}
+              handleOnBlur={handleOnBlur}
+            />
+          </Grid>
+        </Grid>
+      </CommonBoxWithNumber>
+    </Box>
   );
 };
 

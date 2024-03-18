@@ -4,7 +4,6 @@ import { CreateSpace } from "@platformx/community";
 import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
-import { SitePage } from "@platformx/site-page";
 import {
   CategoryDetail,
   CookieSetting,
@@ -24,6 +23,13 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import {
+  EditPage,
+  PagePreview,
+  PrelemInfo,
+  PrelemPreview,
+  SearchPrelem,
+} from "@platformx/site-page";
 
 export const routes: RouteConfig[] = [
   {
@@ -103,15 +109,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
-  {
-    path: "/site-page",
-    element: (
-      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
-        <SitePage />
-      </ProtectedRoute>
-    ),
-  },
   // {
   //   path: "/page-list",
   //   element: (
@@ -160,15 +157,6 @@ export const routes: RouteConfig[] = [
   //       isSideBar={false}
   //       isHeader={false}>
   //       <PrelemComponent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/Sitepage",
-  //   element: (
-  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-  //       {" "}
-  //       {/* <SitePage />{" "} */}
   //     </ProtectedRoute>
   //   ),
   // },
@@ -509,6 +497,46 @@ export const routes: RouteConfig[] = [
         isHeader={false}
         isSideBar={false}>
         <TimeLineBlogs />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <SearchPrelem />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search/about",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PrelemInfo />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search/preview",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PrelemPreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/preview-page/:device",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PagePreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/edit-page",
+    element: (
+      <ProtectedRoute name='page' category='page' subCategory='' isSideBar={false} isHeader={false}>
+        <EditPage></EditPage>
       </ProtectedRoute>
     ),
   },

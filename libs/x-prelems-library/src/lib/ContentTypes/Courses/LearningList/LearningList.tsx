@@ -1,5 +1,4 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React from "react";
 import { useCustomStyle } from "./LearningList.style";
 import ListTabs from "./Tabs/ListTabs";
 
@@ -14,7 +13,9 @@ const LearningList = ({ content, authoringHelper, secondaryArgs = {} }: any) => 
               <Typography variant='h1bold' id='Title'>
                 {content?.Title}
               </Typography>
-              <Typography variant='p3regular'>{content?.Description}</Typography>
+              <Typography variant='p3regular' id='Description'>
+                {content?.Description}
+              </Typography>
             </Box>
             <Box className='listingTabsWrapper'>
               <ListTabs secondaryArgs={secondaryArgs} authoringHelper={authoringHelper} />

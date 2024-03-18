@@ -1,4 +1,5 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
+
 export const ArticleMutations = {
   FETCH_CONTENT_LIST_ALL: gql`
     query FETCH_CONTENT_LIST_ALL(
@@ -43,10 +44,7 @@ export const ArticleMutations = {
     }
   `,
   FETCH_CONTENT_BY_PATH: gql`
-    query authoring_getCmsContentByPath(
-      $contentType: authoring_ContentTypes!
-      $path: String!
-    ) {
+    query authoring_getCmsContentByPath($contentType: authoring_ContentTypes!, $path: String!) {
       authoring_getCmsContentByPath(contentType: $contentType, path: $path)
     }
   `,
@@ -103,11 +101,7 @@ export const ArticleMutations = {
       $parentpageurl: String!
     ) {
       authoring_deleteArticle(
-        articleInfo: {
-          Page: $page
-          currentpageurl: $currentpageurl
-          parentpageurl: $parentpageurl
-        }
+        articleInfo: { Page: $page, currentpageurl: $currentpageurl, parentpageurl: $parentpageurl }
       ) {
         message
       }

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { UserManagement } from './user-management';
+import type { Meta, StoryObj } from "@storybook/react";
+import { UserManagement } from "./user-management";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof UserManagement> = {
   component: UserManagement,
-  title: 'UserManagement',
+  title: "UserManagement",
 };
 export default meta;
 type Story = StoryObj<typeof UserManagement>;
@@ -17,6 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
+  // eslint-disable-next-line require-await
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to UserManagement!/gi)).toBeTruthy();

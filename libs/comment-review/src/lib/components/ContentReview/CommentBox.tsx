@@ -1,50 +1,33 @@
-import {
-  Box,
-  Card,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-} from '@mui/material'
-import { commentsApi, useComment } from '@platformx/authoring-apis'
+import { Box, Card, FormControl, IconButton, InputAdornment, OutlinedInput } from "@mui/material";
+import { commentsApi, useComment } from "@platformx/authoring-apis";
 import {
   RootState,
   addComment,
   getComment,
   setIsCommentPanelOpen,
   setSelectedComment,
-} from '@platformx/authoring-state'
+} from "@platformx/authoring-state";
 import {
   DefaultStateCommentIcon,
   SendIcon,
   ShowToastError,
   getCurrentLang,
-} from '@platformx/utilities'
-import { t } from 'i18next'
-import { memo, useEffect, useState } from 'react'
+} from "@platformx/utilities";
+import { t } from "i18next";
+import { memo, useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from 'react-redux'
-import { CommentPopover, useCustomStyle } from './ContentReview.styles'
-import { ReviewComment } from './ContentReview.types'
-const CommentBox: React.FC<any> = ({
-  elementId,
-  comments,
-  contentType,
-  contentName,
-  workflow,
-}) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const dispatch = useDispatch()
-  const { isReviewEnabled } = useSelector(
-    (state: RootState) => state.comment.commentInfo,
-  )
-  const [comment, setComment] = useState<string>('')
+import { useDispatch, useSelector } from "react-redux";
+import { CommentPopover, useCustomStyle } from "./ContentReview.styles";
+import { ReviewComment } from "./ContentReview.types";
+
+const CommentBox: React.FC<any> = ({ elementId, comments, contentType, contentName, workflow }) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const dispatch = useDispatch();
+  const { isReviewEnabled } = useSelector((state: RootState) => state.comment.commentInfo);
+  const [comment, setComment] = useState<string>("");
   const commentCount = comments?.filter(
     (x: ReviewComment) => x.elementId === elementId, //&& x.isResolved === false
-  )
-  const resolvedCommentCount = comments?.filter(
-    (x: ReviewComment) => x.elementId === elementId && x.isResolved === true,
-  )
+  );
   // const {
   //   addComment,
   //   setIsCommentPanelOpen,
@@ -52,120 +35,113 @@ const CommentBox: React.FC<any> = ({
   //   getComment,
   //   setSelectedComment,
   // } = useCommentContext();
-  const { handleCommentClick } = useComment()
+  const { handleCommentClick } = useComment();
 
-  const handleAddComment = (comment: string, elementId: string) => {
-    dispatch(addComment({ content: comment, elementId: elementId }))
-    setAnchorEl(null)
-  }
+  const handleAddComment = (addedComment: string, addedElementId: string) => {
+    dispatch(addComment({ content: addedComment, elementId: addedElementId }));
+    setAnchorEl(null);
+  };
 
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {
-      dispatch(addComment({ content: comment, elementId: elementId }))
-      setAnchorEl(null)
+    if (event.key === "Enter") {
+      dispatch(addComment({ content: comment, elementId: elementId }));
+      setAnchorEl(null);
     }
-  }
+  };
 
-  const open = Boolean(anchorEl)
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     if (commentCount?.length > 0) {
       //setIsCommentPanelOpen(true);
     }
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
-  const [highlighted, setHighlighted] = useState(false)
+    setAnchorEl(null);
+  };
+  const [highlighted, setHighlighted] = useState(false);
 
   const handleInputChange = (e: any) => {
-    setComment(e.target.value)
+    setComment(e.target.value);
     if (e.target.value.length > 0) {
-      setHighlighted(true)
+      setHighlighted(true);
     } else {
-      setHighlighted(false)
+      setHighlighted(false);
     }
-  }
+  };
   //Get Comments
   const commentDetails = async () => {
-    const currentLanguage = getCurrentLang()
-    dispatch(setIsCommentPanelOpen({ value: false }))
+    const currentLanguage = getCurrentLang();
+    dispatch(setIsCommentPanelOpen({ value: false }));
     // const temp: ReviewComment[] = [];
     // getComment(temp);
     try {
       const response: any = await commentsApi.getComment({
         document_path: `/content/documents/hclplatformx/${currentLanguage}/${contentType}/${contentName}`,
-      })
+      });
       const commentsData: ReviewComment[] =
-        response?.authoring_getReviewComments[0]?.reviewer_comments[0] || []
+        response?.authoring_getReviewComments[0]?.reviewer_comments[0] || [];
       dispatch(
         getComment({
           commentsNew: commentsData,
           contentType: contentType[0],
           contentName: contentName,
         }),
-      )
+      );
     } catch (err: any) {
-      ShowToastError(t('api_error_toast'))
+      ShowToastError(t("api_error_toast"));
     }
-  }
+  };
   useEffect(() => {
-    dispatch(setSelectedComment({ value: null }))
+    dispatch(setSelectedComment({ value: null }));
     if (contentType && contentName) {
-      commentDetails()
+      commentDetails();
     } else {
-      const commentsData: ReviewComment[] = []
+      const commentsData: ReviewComment[] = [];
       dispatch(
         getComment({
           commentsNew: commentsData,
           contentType: contentType[0],
           contentName: contentName,
         }),
-      )
+      );
     }
-  }, [contentType, contentName])
+  }, [contentType, contentName]);
 
-  const groupedComments: any = {}
-  comments?.forEach((comment: any) => {
-    if (!groupedComments[comment.elementId]) {
-      groupedComments[comment.elementId] = []
+  const groupedComments: any = {};
+  comments?.forEach((commentNew: any) => {
+    if (!groupedComments[commentNew.elementId]) {
+      groupedComments[commentNew.elementId] = [];
     }
-    groupedComments[comment.elementId].push(comment)
-  })
+    groupedComments[commentNew.elementId].push(commentNew);
+  });
   const handleCommentOpen = (event: React.MouseEvent<HTMLElement>) => {
     if (
       commentCount?.length > 0 &&
-      !groupedComments[elementId][groupedComments[elementId]?.length - 1]
-        .isResolved
+      !groupedComments[elementId][groupedComments[elementId]?.length - 1].isResolved
     ) {
-      console.log(
-        'group comment',
-        groupedComments[elementId][groupedComments[elementId]?.length - 1],
-      )
       handleCommentClick(
         event,
         elementId,
-        groupedComments[elementId][groupedComments[elementId]?.length - 1]
-          .commentId,
-      )
+        groupedComments[elementId][groupedComments[elementId]?.length - 1].commentId,
+      );
     } else {
-      handleClick(event)
+      handleClick(event);
     }
-  }
-  const pageUrl = new URL(window.location.href)
-  console.log('url123', pageUrl.pathname.includes('/edit-page'))
-  const classes = useCustomStyle()
+  };
+  const pageUrl = new URL(window.location.href);
+  const classes = useCustomStyle();
   return (
     <>
       {isReviewEnabled && (
         <>
           <div
             className={`${classes.commentBoxMaine} ${
-              pageUrl.pathname.includes('/edit-page')
-                ? 'commentPage'
-                : contentType[0] === 'article'
-                ? 'commentArticle'
-                : 'commentContent'
+              pageUrl.pathname.includes("/edit-page")
+                ? "commentPage"
+                : contentType[0] === "article"
+                ? "commentArticle"
+                : "commentContent"
             }`}
             // style={{ position: 'absolute', right: '-40px', top: 0, zIndex: 9 }}
           >
@@ -179,100 +155,90 @@ const CommentBox: React.FC<any> = ({
             {/* <Badge badgeContent={commentCount?.length} color='info'> */}
             <IconButton
               // sx={{ position: 'absolute', top: 0, left: 0, zIndex: 2000 }}
-              aria-label="chat"
+              aria-label='chat'
               onClick={
                 //handleClick
                 handleCommentOpen
               }
-              sx={{ position: 'relative' }}
-            >
+              sx={{ position: "relative" }}>
               {commentCount?.length > 0 ? (
                 <Box>
                   <span
-                    color="error"
+                    color='error'
                     style={{
-                      display: 'inline-block',
-                      marginLeft: ' 5px',
-                      marginRight: '5px',
-                      marginBottom: '-2px',
-                      borderRadius: '50%',
-                      position: 'absolute',
-                      top: '7px',
-                      right: '3px',
+                      display: "inline-block",
+                      marginLeft: " 5px",
+                      marginRight: "5px",
+                      marginBottom: "-2px",
+                      borderRadius: "50%",
+                      position: "absolute",
+                      top: "7px",
+                      right: "3px",
                       zIndex: 9,
-                      height: '8px',
-                      width: '8px',
-                      backgroundColor: '#D32F2F',
-                    }}
-                  >
-                    {' '}
+                      height: "8px",
+                      width: "8px",
+                      backgroundColor: "#D32F2F",
+                    }}>
+                    {" "}
                   </span>
                   <img
+                    alt='default comment'
                     src={DefaultStateCommentIcon}
-                    height="24px"
-                    width="24px"
-                  ></img>
+                    height='24px'
+                    width='24px'></img>
                 </Box>
               ) : (
                 <img
+                  alt='state comment'
                   src={DefaultStateCommentIcon}
-                  height="24px"
-                  width="24px"
-                ></img>
+                  height='24px'
+                  width='24px'></img>
               )}
               {/* <ChatBubbleOutlineOutlinedIcon color='info'></ChatBubbleOutlineOutlinedIcon> */}
             </IconButton>
             {/* </Badge> */}
           </div>
           <CommentPopover
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
+            id='demo-positioned-menu'
+            aria-labelledby='demo-positioned-button'
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
+              vertical: "bottom",
+              horizontal: "left",
             }}
             transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-          >
-            <Card
-              sx={{ minWidth: '250px', maxWidth: '275px', padding: '10px' }}
-            >
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-between"
-              >
-                <FormControl variant="filled">
+              vertical: "top",
+              horizontal: "left",
+            }}>
+            <Card sx={{ minWidth: "250px", maxWidth: "275px", padding: "10px" }}>
+              <Box display='flex' flexDirection='row' justifyContent='space-between'>
+                <FormControl variant='filled'>
                   <OutlinedInput
-                    id="filled-adornment-password"
-                    type={'text'}
-                    placeholder="Add comment"
-                    size="small"
+                    id='filled-adornment-password'
+                    type={"text"}
+                    placeholder='Add comment'
+                    size='small'
                     multiline
                     minRows={1}
                     maxRows={10}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                     endAdornment={
-                      <InputAdornment position="end">
+                      <InputAdornment position='end'>
                         <IconButton
-                          aria-label="toggle password visibility"
+                          aria-label='toggle password visibility'
                           onClick={() => {
-                            handleAddComment(comment, elementId)
+                            handleAddComment(comment, elementId);
                           }}
                           onMouseDown={() => {}}
                           disabled={comment?.length === 0}
-                          edge="end"
-                        >
+                          edge='end'>
                           <img
+                            alt='sendicon'
                             src={SendIcon}
-                            color={highlighted ? 'primary' : 'disabled'}
-                          ></img>
+                            color={highlighted ? "primary" : "disabled"}></img>
                           {/* <SendIcon
                             color={highlighted ? 'primary' : 'disabled'}
                           /> */}
@@ -288,6 +254,6 @@ const CommentBox: React.FC<any> = ({
         </>
       )}
     </>
-  )
-}
-export default memo(CommentBox)
+  );
+};
+export default memo(CommentBox);

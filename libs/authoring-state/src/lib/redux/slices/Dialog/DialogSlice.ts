@@ -1,16 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DialogState } from './DialogSlice.types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { DialogState } from "./DialogSlice.types";
+
 export const dialogSlice = createSlice({
-  name: 'Dialog',
+  name: "Dialog",
   initialState: {
     isOpen: false,
     dialogProps: {
-      imageIcon: '',
-      title: '',
-      leftButtonText: '',
-      rightButtonText: '',
-      subTitle: '',
-      subTitle2: '',
+      imageIcon: "",
+      title: "",
+      leftButtonText: "",
+      rightButtonText: "",
+      subTitle: "",
+      subTitle2: "",
     },
     handleCallback: () => {},
   } as DialogState,
@@ -41,11 +42,11 @@ export const dialogSlice = createSlice({
     },
     handleCancel: (state) => {
       state.isOpen = false;
-      state.dialogProps.title = '';
-      state.dialogProps.subTitle = '';
-      state.dialogProps.leftButtonText = '';
-      state.dialogProps.rightButtonText = '';
-      state.dialogProps.imageIcon = '';
+      state.dialogProps.title = "";
+      state.dialogProps.subTitle = "";
+      state.dialogProps.leftButtonText = "";
+      state.dialogProps.rightButtonText = "";
+      state.dialogProps.imageIcon = "";
       // cancelState?.onCancel();
       // setContent({ Title: '' });
       // setIsPopupVisible(false);
@@ -53,6 +54,5 @@ export const dialogSlice = createSlice({
   },
 });
 
-export const { handleDialog, handleConfirm, handleCancel } =
-  dialogSlice.actions;
+export const { handleDialog, handleConfirm, handleCancel } = dialogSlice.actions;
 export default dialogSlice.reducer;

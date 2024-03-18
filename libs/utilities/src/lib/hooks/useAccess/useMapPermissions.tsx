@@ -1,19 +1,19 @@
-import useUserSession from '../useUserSession/useUserSession';
+import useUserSession from "../useUserSession/useUserSession";
 
 export const useMapPermissions = (): any => {
   const [getSession] = useUserSession();
   const { permissions, role } = getSession();
-  let permissionRebuild = {};
+  const permissionRebuild = {};
 
   const hasContentAccess = (params: any): boolean => {
-    if (role?.toLowerCase() === 'admin') {
+    if (role?.toLowerCase() === "admin") {
       return true;
     } else {
       return permissions?.includes(params);
     }
   };
   const hasNavigationAccess = (params: any): boolean => {
-    if (role?.toLowerCase() === 'admin') {
+    if (role?.toLowerCase() === "admin") {
       return true;
     } else {
       const navigationAccess = Object.keys(permissionRebuild);

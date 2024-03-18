@@ -152,12 +152,13 @@ const ContentListing = ({
         next={fetchMore}
         hasMore={loading}
         loader={<ContentListDesktopLoader />}
-        endMessage={<NoSearchResult />}
         scrollableTarget='scrollableDiv'
         style={{ overflowX: "hidden" }}>
         <Box sx={{ padding: "0 10px 0 15px" }}>
           <Box>
-            {contentList?.length > 0 &&
+            {!loading && !contentList?.length ? (
+              <NoSearchResult />
+            ) : (
               contentList?.map((item: any, index: Key | null | undefined) => {
                 return (
                   <Box key={index}>
@@ -191,7 +192,8 @@ const ContentListing = ({
                     />
                   </Box>
                 );
-              })}
+              })
+            )}
           </Box>
         </Box>
       </InfiniteScroll>

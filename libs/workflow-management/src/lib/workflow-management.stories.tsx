@@ -1,9 +1,9 @@
-import type { Meta } from '@storybook/react';
-import { WorkflowManagement } from './workflow-management';
+import type { Meta } from "@storybook/react";
+import { WorkflowManagement } from "./workflow-management";
 
 const meta: Meta<typeof WorkflowManagement> = {
   component: WorkflowManagement,
-  title: 'WorkflowManagement',
+  title: "WorkflowManagement",
 };
 export default meta;
 

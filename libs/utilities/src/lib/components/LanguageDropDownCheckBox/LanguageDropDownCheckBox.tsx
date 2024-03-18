@@ -67,8 +67,8 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
       >
         {LanguageList().map((l: any) => (
           <MenuItem
-            key={l.value}
-            value={l.value}
+            key={l.label}
+            value={l.label}
             sx={{
               minWidth: "230px",
               display: "flex",
@@ -98,12 +98,12 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
                   }}
                 /> */}
               </Box>
-              <Typography variant='h6regular'>{l.value}</Typography>
+              <Typography variant='h6regular'>{l.label}</Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               {/* {getCurrentLang() === l.id && */}
               <ListItemIcon sx={{ minWidth: "auto" }}>
-                <Checkbox checked={language.indexOf(l.value) > -1} />
+                <Checkbox checked={language.indexOf(l.label) > -1} />
               </ListItemIcon>
               {/* } */}
             </Box>

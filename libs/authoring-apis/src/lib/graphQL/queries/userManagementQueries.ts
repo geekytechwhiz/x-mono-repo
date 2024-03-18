@@ -1,4 +1,5 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
+
 export const UserManagementQueries = {
   FETCH_USER_LIST: gql`
     query FETCH_USER_LIST(
@@ -100,9 +101,7 @@ export const UserManagementQueries = {
     }
   `,
   APPROVE_REJECT_USER: gql`
-    mutation authoring_approveRejectEndUser(
-      $input: authoring_approveRejectRequest
-    ) {
+    mutation authoring_approveRejectEndUser($input: authoring_approveRejectRequest) {
       authoring_approveRejectEndUser(input: $input) {
         message
       }

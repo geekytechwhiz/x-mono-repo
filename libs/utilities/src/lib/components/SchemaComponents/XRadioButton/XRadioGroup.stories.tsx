@@ -1,40 +1,39 @@
-import React from 'react';
-import XRadioGroup from './XRadioGroup';
+import React from "react";
+import XRadioGroup from "./XRadioGroup";
 
 export default {
-  title: 'X Component Library/XRadioButton',
+  title: "X Component Library/XRadioButton",
   component: XRadioGroup,
 };
-
 
 const Template = (args) => <XRadioGroup {...args} />;
 
 const RadioGroupTemp: any = Template.bind({});
 
 RadioGroupTemp.args = {
-  size: 'medium',
+  size: "medium",
 };
 
 export const RadioGroup = {
   argTypes: {
     labelPlacement: {
-      options: ['top', 'start', 'bottom', 'end'],
-      control: { type: 'select' },
+      options: ["top", "start", "bottom", "end"],
+      control: { type: "select" },
     },
     size: {
-      options: ['small', 'medium', 'large'],
-      control: { type: 'select' },
+      options: ["small", "medium", "large"],
+      control: { type: "select" },
     },
     color: {
-      options: ['primaryColor', 'secondaryColor', 'warningColor', 'successColor', 'errorColor'],
-      control: { type: 'select' },
+      options: ["primaryColor", "secondaryColor", "warningColor", "successColor", "errorColor"],
+      control: { type: "select" },
     },
   },
   args: {
-    label: 'First Radio Button',
-    color: 'primaryColor',
-    labelPlacement: 'end',
-    size: 'medium',
+    label: "First Radio Button",
+    color: "primaryColor",
+    labelPlacement: "end",
+    size: "medium",
     AlignmentVertical: false,
   },
 };

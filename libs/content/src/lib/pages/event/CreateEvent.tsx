@@ -15,7 +15,7 @@ import {
   Loader,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   useUserSession,
   workflowKeys,
@@ -223,7 +223,7 @@ const CreateEvent = () => {
           setWorkflowStatus(isWorkflow);
         } else {
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("event")} ${t("saved_toast")}`);
+            ShowToastSuccess(`${t("event")} ${t("saved_toast")}`);
           }
           // setOnSavedModal(true);
           setIsDraft(false);
@@ -247,7 +247,7 @@ const CreateEvent = () => {
           setOpenPageExistModal(true);
           setPageStatus(pageState);
         } else {
-          // ShowToastSuccessMessage(`${t('event')} ${t('published_toast')}`);
+          // ShowToastSuccess(`${t('event')} ${t('published_toast')}`);
           setShowPublishConfirm(true);
           publishEvent(eventWholeRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase());
         }
@@ -297,7 +297,7 @@ const CreateEvent = () => {
       if (pageState && pageState.toLowerCase() === DRAFT.toLowerCase()) {
         setIsLoading(false);
         if (!isWorkflow) {
-          ShowToastSuccessMessage(`${t("event")} ${t("updated_toast")}`);
+          ShowToastSuccess(`${t("event")} ${t("updated_toast")}`);
         } else {
           workflowSubmitRequest(props, event_step);
         }
@@ -305,7 +305,7 @@ const CreateEvent = () => {
         setShowExitWarning(false);
         setIsEdited(true);
       } else {
-        ShowToastSuccessMessage(`${t("event")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("event")} ${t("published_toast")}`);
         setShowPublishConfirm(true);
         publishEvent(draftPageURL ? draftPageURL : currentEventData.current);
       }

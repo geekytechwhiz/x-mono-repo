@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
   useContentListing,
   useContentSearch,
-  usePage,
 } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -11,12 +11,14 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
+import CreateNewPage from "../../pages/page/CreateNewPage";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
   const startIndex = 0;
   const location = useLocation();
   const [isSpinning, setIsSpinning] = useState(false);
+  const [isDialogOpen, setOpenCreatePage] = useState(false);
 
   const [filterValue, setFilterValue] = useState("ALL");
   const { contentArray } = useSelector((state: RootState) => state.content);
@@ -28,6 +30,10 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     reloadContent: false,
   });
 
+  const closeButtonHandle = () => {
+    setOpenCreatePage(false);
+  };
+
   const {
     deleteContent,
     duplicate,
@@ -35,21 +41,26 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     unPublish,
     view,
     edit,
+    editPage,
+    // viewPage,
+    // previewPage,
+    // handleDeleteData,
+    // handlePageDelete,
     fetchContentDetails,
     duplicateToSite,
   } = useContentListing("ALL");
-  const { editPage, previewPage, handleDeleteData, handlePageDelete, viewPage } = usePage();
 
   const memoizedMethods = useMemo(
     () => ({
-      deleteContent,
-      duplicate,
-      preview,
-      unPublish,
-      view,
-      edit,
-      fetchContentDetails,
-      duplicateToSite,
+      deleteContent: useMemo(() => deleteContent, [deleteContent]),
+      duplicate: useMemo(() => duplicate, [duplicate]),
+      preview: useMemo(() => preview, [preview]),
+      unPublish: useMemo(() => unPublish, [unPublish]),
+      view: useMemo(() => view, [view]),
+      edit: useMemo(() => edit, [edit]),
+      editPage: useMemo(() => editPage, [editPage]),
+      fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
+      duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
     }),
     [
       deleteContent,
@@ -58,6 +69,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       unPublish,
       view,
       edit,
+      editPage,
       fetchContentDetails,
       duplicateToSite,
     ],
@@ -74,9 +86,11 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   }, [contentType]);
 
   const createContentNew = () => {
-    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
-      state: contentType?.trim()?.toLowerCase(),
-    });
+    if (contentType?.trim()?.toLowerCase() === "sitepage") {
+      setOpenCreatePage(true);
+    } else {
+      navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
+    }
   };
 
   const handleFilter = (filter: string) => {
@@ -114,16 +128,20 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         unPublish={memoizedMethods.unPublish}
         view={memoizedMethods.view}
         edit={memoizedMethods.edit}
+        editPage={memoizedMethods.editPage}
         loading={loading}
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
-        viewPage={viewPage}
-        previewPage={previewPage}
-        editPage={editPage}
-        handleDeleteData={handleDeleteData}
-        handlePageDelete={handlePageDelete}
+        // viewPage={viewPage}
+        // previewPage={previewPage}
+        // handleDeleteData={handleDeleteData}
+        // handlePageDelete={handlePageDelete}
       />
+
+      <CreateNewPage
+        isDialogOpen={isDialogOpen}
+        closeButtonHandle={closeButtonHandle}></CreateNewPage>
     </>
   );
 };

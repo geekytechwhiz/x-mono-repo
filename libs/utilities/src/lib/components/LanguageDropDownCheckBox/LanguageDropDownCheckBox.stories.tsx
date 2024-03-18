@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-import LanguageDropDownCheckBox from './LanguageDropDownCheckBox';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import LanguageDropDownCheckBox from "./LanguageDropDownCheckBox";
 
 const meta: Meta<typeof LanguageDropDownCheckBox> = {
   component: LanguageDropDownCheckBox,
-  title: 'LanguageDropDownCheckBox',
+  title: "LanguageDropDownCheckBox",
 };
 export default meta;
 type Story = StoryObj<typeof LanguageDropDownCheckBox>;
@@ -17,10 +17,8 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(
-      canvas.getByText(/Welcome to LanguageDropDownCheckBox!/gi)
-    ).toBeTruthy();
+    expect(canvas.getByText(/Welcome to LanguageDropDownCheckBox!/gi)).toBeTruthy();
   },
 };

@@ -6,7 +6,7 @@ import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 import {
   BasicSwitch,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   useUserSession,
   Loader,
   PictureIcon,
@@ -89,7 +89,7 @@ export const MediaHandle: React.FC = () => {
       toastMessage.current = `${controlName.charAt(0).toUpperCase()}${controlName.slice(
         1,
       )} updated successfully!`;
-      ShowToastSuccessMessage(t(toastMessage.current));
+      ShowToastSuccess(t(toastMessage.current));
     }
   };
 

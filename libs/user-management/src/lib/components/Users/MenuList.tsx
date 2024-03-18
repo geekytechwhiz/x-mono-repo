@@ -10,7 +10,6 @@ import { useState } from "react";
 
 const MenuList = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
   const open = Boolean(anchorEl);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -21,9 +20,9 @@ const MenuList = () => {
   };
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Box className="iconsmob" onClick={handleClickListItem}>
-        <MoreHorizIcon className="horizThreeDotIcon" />
-        <MoreVertIcon className="vertThreeDotIcon" />
+      <Box className='iconsmob' onClick={handleClickListItem}>
+        <MoreHorizIcon className='horizThreeDotIcon' />
+        <MoreVertIcon className='vertThreeDotIcon' />
       </Box>
       <Menu
         anchorOrigin={{

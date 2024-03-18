@@ -29,45 +29,42 @@ const MobileListing = ({
         container
         onClick={() => onClickHandle(item)}
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: '#fff',
-          borderRadius: '3px',
-          padding: '10px 14px 0px 14px',
-          marginBottom: '10px',
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          backgroundColor: "#fff",
+          borderRadius: "3px",
+          padding: "10px 14px 0px 14px",
+          marginBottom: "10px",
           // height: "74px",
-            border: isSelected(item) ? 'solid 1px #2d2d39' : 'none'
-        }}
-      >
+          border: isSelected(item) ? "solid 1px #2d2d39" : "none",
+        }}>
         <Grid
           item
           xs={12} //sx={{ paddingLeft: "14px", width: "85%" }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitLineClamp: '2',
-                WebkitBoxOrient: 'vertical',
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "2",
+                WebkitBoxOrient: "vertical",
               }}
-              variant='h6medium'
-            >
+              variant='h6medium'>
               {title}
             </Typography>
           </Box>
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              color: '#89909a',
-              padding: '4px 0px 9px 0px',
-            }}
-          >
+              display: "flex",
+              alignItems: "center",
+              color: "#89909a",
+              padding: "4px 0px 9px 0px",
+            }}>
             <Typography variant='h7regular'>{`By ${author}`}</Typography>
-            <span style={{ margin: '0 2px', fontSize: '12px' }}>|</span>
+            <span style={{ margin: "0 2px", fontSize: "12px" }}>|</span>
             <Typography variant='h7regular'>{dateFormat(time)}</Typography>
           </Box>
         </Grid>

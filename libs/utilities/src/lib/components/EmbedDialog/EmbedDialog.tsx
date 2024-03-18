@@ -1,9 +1,9 @@
-import CloseIcon from '@mui/icons-material/Close';
-import { Box } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import { DialogList } from './EmbedDialog.types';
-import CardContent from './CardContent';
-import React from 'react';
+import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import { DialogList } from "./EmbedDialog.types";
+import CardContent from "./CardContent";
+import React from "react";
 
 export default function EmbedDialog({
   isDialogOpen,
@@ -12,40 +12,37 @@ export default function EmbedDialog({
   contentType,
 }: DialogList) {
   return (
-    <Box className="embedmodal">
+    <Box className='embedmodal'>
       <Dialog
         fullWidth
         open={isDialogOpen}
         onClose={closeEmbedButtonHandle}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
         PaperProps={{
           sx: {
-            maxWidth: { xs: '97%', sm: '1080px' },
-            width: '97%',
-            margin: { xs: '0px' },
-            overflow: 'hidden',
+            maxWidth: { xs: "97%", sm: "1080px" },
+            width: "97%",
+            margin: { xs: "0px" },
+            overflow: "hidden",
           },
         }}
         sx={{
-          display: { xs: 'block', md: 'block' },
-        }}
-      >
+          display: { xs: "block", md: "block" },
+        }}>
         <Box
           sx={{
-            paddingLeft: '20px',
-            marginTop: '8px',
-            marginLeft: { xs: 'initial', md: 'auto' },
-            position: 'absolute',
-            right: '-10px',
-          }}
-        >
+            paddingLeft: "20px",
+            marginTop: "8px",
+            marginLeft: { xs: "initial", md: "auto" },
+            position: "absolute",
+            right: "-10px",
+          }}>
           <Box
-            sx={{ textAlign: 'right', cursor: 'pointer', zIndex: '99999' }}
+            sx={{ textAlign: "right", cursor: "pointer", zIndex: "99999" }}
             mt={1}
             mr={3}
-            onClick={closeEmbedButtonHandle}
-          >
+            onClick={closeEmbedButtonHandle}>
             <CloseIcon />
           </Box>
         </Box>

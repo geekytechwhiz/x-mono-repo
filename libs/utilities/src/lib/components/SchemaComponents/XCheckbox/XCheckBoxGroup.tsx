@@ -1,7 +1,7 @@
-import { Box, RadioProps, styled } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+import { Box, RadioProps, styled } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 
 const fontStyle = `
 @font-face {
@@ -18,16 +18,11 @@ const fontStyle = `
   flex-direction: column;
 }`;
 export interface XCheckBoxGroupProps {
-  labelPlacement?: 'top' | 'start' | 'bottom' | 'end';
-  size?: 'small' | 'medium' | 'large';
+  labelPlacement?: "top" | "start" | "bottom" | "end";
+  size?: "small" | "medium" | "large";
   label?: string;
   value?: string;
-  color?:
-  | 'primaryColor'
-  | 'secondaryColor'
-  | 'warningColor'
-  | 'successColor'
-  | 'errorColor';
+  color?: "primaryColor" | "secondaryColor" | "warningColor" | "successColor" | "errorColor";
   AlignmentVertical?: boolean;
   disabled?: boolean;
 }
@@ -46,7 +41,7 @@ export default function XRadioGroup({
   return (
     <>
       <style>{fontStyle}</style>
-      <Box className={AlignmentVertical ? 'groupcolumn' : 'grouprow'}>
+      <Box className={AlignmentVertical ? "groupcolumn" : "grouprow"}>
         <StyledFormControlLabel
           value={value}
           disabled={disabled}

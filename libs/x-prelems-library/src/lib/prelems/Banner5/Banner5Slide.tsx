@@ -1,10 +1,10 @@
-import React from "react";
-import { Typography, Box } from "@mui/material";
-import BasicButton from "../../components/BasicButton/BasicButton";
 import EastIcon from "@mui/icons-material/East";
-import "./Banner5.css";
-import ImageRender from "../../components/ImageRender";
+import { Box, Typography } from "@mui/material";
 import { Analytics } from "@platformx/utilities";
+import React from "react";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import ImageRender from "../../components/ImageRender";
+import "./Banner5.css";
 
 const Banner5Slide = ({
   idfortitle,

@@ -1,11 +1,11 @@
-import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { nullToArray, nullToObject } from '../../../utils/helperFns';
-import { tagInlineCss } from './TagCommonCss';
-import TagListing from './TagListing';
-import { ShowToastError } from '../../ToastNotification/ToastNotification';
+import { nullToArray, nullToObject } from "../../../utils/helperFns";
+import { tagInlineCss } from "./TagCommonCss";
+import TagListing from "./TagListing";
+import { ShowToastError } from "../../ToastNotification/ToastNotification";
 
 interface TagsProps {
   isEdit?: boolean;
@@ -42,29 +42,25 @@ export const XTags = (props: TagsProps) => {
   };
 
   const updateTagFieldCheck = (e: any, tagsData: any) => {
-    const { target: { value = '', checked = false } = {} } = e;
+    const { target: { value = "", checked = false } = {} } = e;
     const { newTag: newTagsArray = [] } = tagsData;
     let countArray: any = [];
     const oldArray: any = [...tagArray];
     oldArray.forEach((ele: any) => {
-      const getValue = ele.newTag.filter(
-        (eleFilter: any) => eleFilter.isCheck === true
-      );
+      const getValue = ele.newTag.filter((eleFilter: any) => eleFilter.isCheck === true);
       countArray = [...countArray, ...getValue];
     });
 
     if (nullToArray(countArray).length > 14 && checked) {
-      ShowToastError(t('allowed_tags_toast'));
+      ShowToastError(t("allowed_tags_toast"));
     } else {
       handleTagOnChange(e);
       //PASS CATEGORY NAME AND FIND INDEX
       const findIndexMainArray = oldArray.findIndex(
-        (ele: any) => ele.category === tagsData.category
+        (ele: any) => ele.category === tagsData.category,
       );
       //PASS TAG'S NAME AND FIND INDEX
-      const findIndexNestedArray = newTagsArray.findIndex(
-        (ele: any) => ele.name === value
-      );
+      const findIndexNestedArray = newTagsArray.findIndex((ele: any) => ele.name === value);
 
       const findObj = tagArray[findIndexMainArray].newTag[findIndexNestedArray];
       const newObj = {
@@ -83,10 +79,7 @@ export const XTags = (props: TagsProps) => {
           .filter((ele) => ele.isCheck === false)
           .map((ele: any) => ele.name) || [];
 
-      const concatArray = [
-        ...nameSort(checkedArray),
-        ...nameSort(unCheckedArray),
-      ];
+      const concatArray = [...nameSort(checkedArray), ...nameSort(unCheckedArray)];
       oldArray[findIndexMainArray].tags = concatArray;
       setTagArray(oldArray);
     }
@@ -118,11 +111,7 @@ export const XTags = (props: TagsProps) => {
             newTag: nullToArray(eleTag.tags).map((ele) => {
               return {
                 name: ele,
-                isCheck: selectedTag.some(
-                  (selectedEle: any) => selectedEle === ele
-                )
-                  ? true
-                  : false,
+                isCheck: selectedTag.some((selectedEle: any) => selectedEle === ele) ? true : false,
               };
             }),
           };
@@ -150,7 +139,7 @@ export const XTags = (props: TagsProps) => {
     <Box
       className='noSpace'
       sx={{
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         // padding: isPublishModal
         //   ? '0px'
         //   : {
@@ -158,9 +147,8 @@ export const XTags = (props: TagsProps) => {
         //       sm: '40px 98px 40px 40px',
         //       md: '40px 98px 0px 40px',
         //     },
-        marginBottom: '12px',
-      }}
-    >
+        marginBottom: "12px",
+      }}>
       <style>{tagInlineCss}</style>
       <Box>
         {/* <Grid container rowSpacing={1}>

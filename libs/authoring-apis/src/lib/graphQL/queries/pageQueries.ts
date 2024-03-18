@@ -1,5 +1,5 @@
-import { gql } from '@apollo/client';
-//mutate queries
+/* eslint-disable template-tag-spacing */
+import { gql } from "@apollo/client";
 
 export const PageQueries = {
   SAVE_PAGE_MODEL: gql`
@@ -10,39 +10,39 @@ export const PageQueries = {
     }
   `,
   FETCH_PAGE_MODEL_DRAFT: gql`
-  query FETCH_PAGE_MODEL_DRAFT($folder: String!, $path: String!) {
-    authoring_getCmsItemByPath(folderPath: $folder, path: $path) {
-      Page
-      SiteName
-      Title
-      ParentPageURL
-      CurrentPageURL
-      Page_CreatedBy
-      Page_LastModifiedBy
-      Page_LastModificationDate
-      Page_PublishedBy
-      IsEdit
-      SeoEnable
-      AnalyticsEnable
-      RobotTxt
-      SiteMap
-      Others
-      Analytics
-      StructureData
-      PageSettings
-      children
-      content
-      stages
-      workflow_id
-      workflow_status
-      is_workflow_enabled
-      Path
-      task_status
-      user_name
-      user_id
+    query FETCH_PAGE_MODEL_DRAFT($folder: String!, $path: String!) {
+      authoring_getCmsItemByPath(folderPath: $folder, path: $path) {
+        Page
+        SiteName
+        Title
+        ParentPageURL
+        CurrentPageURL
+        Page_CreatedBy
+        Page_LastModifiedBy
+        Page_LastModificationDate
+        Page_PublishedBy
+        IsEdit
+        SeoEnable
+        AnalyticsEnable
+        RobotTxt
+        SiteMap
+        Others
+        Analytics
+        StructureData
+        PageSettings
+        children
+        content
+        stages
+        workflow_id
+        workflow_status
+        is_workflow_enabled
+        Path
+        task_status
+        user_name
+        user_id
+      }
     }
-  }
-`,
+  `,
   CREATE_PAGE_MODEL: gql`
     mutation createPage($input: authoring_PageModelRequest) {
       authoring_createPage(input: $input) {
@@ -126,10 +126,7 @@ export const PageQueries = {
     }
   `,
   FETCH_ALL_PAGE_LIST: gql`
-    query FETCH_PAGE_LIST_ALL(
-      $obj: authoring_Paginate!
-      $type: authoring_PageFilter!
-    ) {
+    query FETCH_PAGE_LIST_ALL($obj: authoring_Paginate!, $type: authoring_PageFilter!) {
       authoring_pageList(pagination: $obj, pageFilter: $type) {
         CurrentPageUrl
         Page
@@ -182,11 +179,7 @@ export const PageQueries = {
       $parentpageurl: String!
     ) {
       authoring_deletePage(
-        pageInfo: {
-          page: $page
-          currentpageurl: $currentpageurl
-          parentpageurl: $parentpageurl
-        }
+        pageInfo: { page: $page, currentpageurl: $currentpageurl, parentpageurl: $parentpageurl }
       ) {
         message
       }
@@ -218,10 +211,7 @@ export const PageQueries = {
       $requestdto: authoring_PublishRequestDto
       $scheduleTime: String!
     ) {
-      authoring_reSchedulePublish(
-        publishrequestdto: $requestdto
-        scheduleTime: $scheduleTime
-      ) {
+      authoring_reSchedulePublish(publishrequestdto: $requestdto, scheduleTime: $scheduleTime) {
         Message
         ParentPageURL
         CurrentPageURL
@@ -233,10 +223,7 @@ export const PageQueries = {
       $requestdto: authoring_PublishRequestDto
       $scheduleTime: String!
     ) {
-      authoring_reScheduleUnPublish(
-        unpublishrequestdto: $requestdto
-        scheduleTime: $scheduleTime
-      ) {
+      authoring_reScheduleUnPublish(unpublishrequestdto: $requestdto, scheduleTime: $scheduleTime) {
         Message
         ParentPageURL
         CurrentPageURL
@@ -244,9 +231,7 @@ export const PageQueries = {
     }
   `,
   CANCEL_PUBLISH: gql`
-    mutation authoring_cancelPublishTrigger(
-      $requestdto: authoring_PublishRequestDto
-    ) {
+    mutation authoring_cancelPublishTrigger($requestdto: authoring_PublishRequestDto) {
       authoring_cancelPublishTrigger(publishrequestdto: $requestdto) {
         Message
         ParentPageURL
@@ -255,9 +240,7 @@ export const PageQueries = {
     }
   `,
   CANCEL_UNPUBLISH: gql`
-    mutation authoring_cancelUnPublishTrigger(
-      $requestdto: authoring_PublishRequestDto
-    ) {
+    mutation authoring_cancelUnPublishTrigger($requestdto: authoring_PublishRequestDto) {
       authoring_cancelUnPublishTrigger(unpublishrequestdto: $requestdto) {
         Message
         ParentPageURL

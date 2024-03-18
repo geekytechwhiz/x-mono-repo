@@ -8,7 +8,7 @@ import { useStyles } from "./Space.styles";
 import { getSpacesList } from "./utils/SpacesHelper";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   ContentListLoader,
   NoSearchResult,
 } from "@platformx/utilities";
@@ -76,7 +76,7 @@ export default function Space() {
       });
       if (response) {
         reFetchSpaceListing();
-        ShowToastSuccessMessage(`${title} ${t("deleted_toast")}`);
+        ShowToastSuccess(`${title} ${t("deleted_toast")}`);
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
@@ -92,7 +92,7 @@ export default function Space() {
       });
       if (response) {
         reFetchSpaceListing();
-        ShowToastSuccessMessage(t("left_toast"));
+        ShowToastSuccess(t("left_toast"));
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
@@ -108,7 +108,7 @@ export default function Space() {
       });
       if (response) {
         reFetchSpaceListing();
-        ShowToastSuccessMessage(t("join_toast"));
+        ShowToastSuccess(t("join_toast"));
       }
     } catch (error: any) {
       ShowToastError(error?.graphQLErrors[0]?.message || t("api_error_toast"));
