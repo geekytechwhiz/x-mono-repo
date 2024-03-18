@@ -10,7 +10,7 @@ import {
 } from "../../components/toastNotification/ToastNotification";
 import getConfig from "next/config";
 import { MESSAGE_API_ERROR } from "../../constants/CommonConstants";
-import { snowplowTrackingHook } from "../../components/Common/customHook/snowplowTrackingHook";
+import { useSnowplowTracking } from "../../components/Common/customHook/snowplowTrackingHook";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 export async function getServerSideProps(context) {
@@ -32,7 +32,7 @@ const Signup = (props: any) => {
   const { route = {}, site_host } = pageProps;
   const { locale = "", host = "" } = route;
   const router = useRouter();
-  const { userRegisterImpression } = snowplowTrackingHook();
+  const { userRegisterImpression } = useSnowplowTracking();
   const onLogin = () => {
     const loginUrl = `${publicRuntimeConfig?.NEXT_AUTH}${getDomainUrl(host)}${locale}`;
     window?.location.replace(loginUrl);
