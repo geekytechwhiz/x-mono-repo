@@ -18,7 +18,7 @@ const Mapping = {
   Prelem_017: "ProductSummaryViaImage2",
   Prelem_018: "ExpertiseShowcase",
   Prelem_019: "FullWidthImage",
-  Prelem_020: "fullWidthVideo",
+  Prelem_020: "FullWidthVideo",
   Prelem_021: "ImageCarousel1",
   Prelem_022: "Banner1",
   Prelem_023: "Description",

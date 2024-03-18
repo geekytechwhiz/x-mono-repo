@@ -2,10 +2,10 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import "../../Style.css";
-import { useCustomStyle } from "./ImageCards.style";
-import prelemTypes from "../../globalStyle";
-import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import ImageRender from "../../components/ImageRender";
+import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
+import prelemTypes from "../../globalStyle";
+import { useCustomStyle } from "./ImageCards.style";
 
 const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: ImageCardsProp) => {
   const firstRender = useRef(true);
@@ -20,7 +20,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
       ImageCardsStructureData = {
         "@context": "http://schema.org/",
         "@type": "ItemList",
-        name: content?.Title,
+        name: content?.title1,
         itemListElement: [
           {
             "@type": "ListItem",
@@ -28,7 +28,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
             item: {
               "@type": "ImageObject",
               // contentUrl: getImg(1),
-              name: content?.ImageText1,
+              name: content?.title2,
             },
           },
           {
@@ -37,7 +37,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
             item: {
               "@type": "ImageObject",
               // contentUrl: getImg(2),
-              name: content?.ImageText2,
+              name: content?.title3,
             },
           },
         ],
@@ -76,7 +76,7 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
       authoringHelper?.sendStructureDataToAuthoringCB(stringifyStructureData || "");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [content?.ImageCompound, content?.Title, content?.ImageText1, content?.ImageText2]);
+  }, [content?.ImageCompound, content?.title1, content?.title2, content?.title3]);
 
   usePrelemImpression(analytics, inView, secondaryArgs);
   const classes = useCustomStyle();
@@ -92,8 +92,8 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
             : "grid_container grid_container_nopadding prelem-py"
         }
         ref={ref}>
-        <Typography variant='h2semibold' textAlign='center' id='Title'>
-          {content?.Title}
+        <Typography variant='h2semibold' textAlign='center' id='title1'>
+          {content?.title1}
         </Typography>
         <Grid container>
           <Grid item xs={12} sm={6} p={1}>
@@ -114,8 +114,8 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
                   }}
                 />
               </Box>
-              <Typography variant='p1semibold' id='ImageText1'>
-                {content?.ImageText1}
+              <Typography variant='p1semibold' id='title2'>
+                {content?.title2}
               </Typography>
             </Box>
           </Grid>
@@ -136,8 +136,8 @@ const ImageCards = ({ content, analytics, authoringHelper, secondaryArgs }: Imag
                   }}
                 />
               </Box>
-              <Typography variant='p1semibold' id='ImageText2'>
-                {content?.ImageText2}
+              <Typography variant='p1semibold' id='title3'>
+                {content?.title3}
               </Typography>
             </Box>
           </Grid>
@@ -183,9 +183,9 @@ interface AuthoringHelper {
 
 interface Content {
   //Heading?: string;
-  Title?: string;
-  ImageText1?: string;
-  ImageText2?: string;
+  title1?: string;
+  title2?: string;
+  title3?: string;
   ImageCompound: {
     ImageCompound_1: ImageCompound;
     ImageCompound_2: ImageCompound;
@@ -207,9 +207,9 @@ interface PublishedImages {
 
 ImageCards.defaultProps = {
   content: {
-    Title: "Lorum ipsum dolor sit amet",
-    ImageText1: "Lorum ipsum dolor sit amet",
-    ImageText2: "Lorum ipsum dolor sit amet",
+    title1: "Lorum ipsum dolor sit amet",
+    title2: "Lorum ipsum dolor sit amet",
+    title3: "Lorum ipsum dolor sit amet",
     ImageCompound: {
       ImageCompound_1: {
         original_image: {
