@@ -1,11 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const WorkflowQueries = {
   CONTENT_WORKFLOW_SUBMISSION: gql`
-    mutation (
-      $contentType: authoring_ContentTypes!
-      $input: authoring_workflowInputRequest
-    ) {
+    mutation ($contentType: authoring_ContentTypes!, $input: authoring_workflowInputRequest) {
       authoring_contentWorkflow(contentType: $contentType, input: $input) {
         message
       }

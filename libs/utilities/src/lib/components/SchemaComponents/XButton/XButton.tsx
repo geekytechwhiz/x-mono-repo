@@ -1,11 +1,8 @@
-import SaveIcon from '@mui/icons-material/Save';
-import LoadingButton from '@mui/lab/LoadingButton';
-import {
-  ButtonProps as MuiButtonProps,
-  styled
-} from '@mui/material';
+import SaveIcon from "@mui/icons-material/Save";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { ButtonProps as MuiButtonProps, styled } from "@mui/material";
 // import InterRegular from '../../fonts/Inter/Inter-Regular.ttf';
-import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVariable';
+import ThemeConstants from "../../../themes/authoring/lightTheme/lightThemeVariable";
 // const fontStyle = `
 // @font-face {
 //   font-family: ${ThemeConstants.FONTNAMEPRIMARY};
@@ -14,26 +11,26 @@ import ThemeConstants from '../../../themes/authoring/lightTheme/lightThemeVaria
 // }`;
 
 // Only include variant, size, and color
-type ButtonBaseProps = Pick<MuiButtonProps, 'variant'>;
+type ButtonBaseProps = Pick<MuiButtonProps, "variant">;
 
 export interface ButtonProps extends ButtonBaseProps {
   label?: string;
   variant:
-  | 'primaryButton'
-  | 'secondaryButton'
-  | 'tertiaryButton'
-  | 'quaternaryButton'
-  | 'quaternaryButtonOutline'
-  | 'quinaryButton'
-  | 'textButton'
-  | 'warningButton'
-  | 'warningButtonOutline'
-  | 'errorButton'
-  | 'errorButtonOutline'
-  | 'successButton'
-  | 'successButtonOutline';
+    | "primaryButton"
+    | "secondaryButton"
+    | "tertiaryButton"
+    | "quaternaryButton"
+    | "quaternaryButtonOutline"
+    | "quinaryButton"
+    | "textButton"
+    | "warningButton"
+    | "warningButtonOutline"
+    | "errorButton"
+    | "errorButtonOutline"
+    | "successButton"
+    | "successButtonOutline";
   loading?: boolean;
-  loadingPosition?: 'start' | 'end' | 'center';
+  loadingPosition?: "start" | "end" | "center";
   startIcon?: boolean;
   endIcon?: boolean;
   disabled?: any;
@@ -43,18 +40,18 @@ export interface ButtonProps extends ButtonBaseProps {
 }
 
 const StyledButton = styled(LoadingButton, {
-  shouldForwardProp: (prop) => prop !== 'open',
+  shouldForwardProp: (prop) => prop !== "open",
 })<{
   position?: string;
 }>(({ position }) => ({
   fontFamily: ThemeConstants.FONTNAMEPRIMARY,
-  '.MuiLoadingButton-loadingIndicator': {
-    position: position === 'center' ? 'absolute' : 'initial',
-    ...(position === 'start' && {
-      paddingRight: '8px',
+  ".MuiLoadingButton-loadingIndicator": {
+    position: position === "center" ? "absolute" : "initial",
+    ...(position === "start" && {
+      paddingRight: "8px",
     }),
-    ...(position === 'end' && {
-      paddingLeft: '8px',
+    ...(position === "end" && {
+      paddingLeft: "8px",
     }),
   },
 }));
@@ -84,8 +81,7 @@ export const XButton = ({
       onClick={onClick}
       className={className}
       style={style}
-      {...rest}
-    >
+      {...rest}>
       {label}
     </StyledButton>
   </>

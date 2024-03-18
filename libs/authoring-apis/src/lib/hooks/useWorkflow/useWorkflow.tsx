@@ -1,6 +1,6 @@
-import { ShowToastError } from '@platformx/utilities'
-import workflowApi from '../../services/workflow/workflow.api'
-import { workflowMapper } from './mapper'
+import { ShowToastError } from "@platformx/utilities";
+import workflowApi from "../../services/workflow/workflow.api";
+import { workflowMapper } from "./mapper";
 
 interface WorkflowResponse {
   workflow_status: string;
@@ -10,7 +10,7 @@ interface WorkflowResponse {
 function useWorkflow() {
   const workflowRequest = async (
     props: { [key: string]: any },
-    event_step: string
+    event_step: string,
   ): Promise<WorkflowResponse> => {
     try {
       const response: any = await workflowApi.workflow_submission({
@@ -33,55 +33,44 @@ function useWorkflow() {
     }
   };
 
-
-  const getWorkflowDetails = async (
-    role: any,
-    user_id = '',
-    setWorkflow: any,
-    contentType: any,
-  ) => {
-    if (contentType != '') {
+  const getWorkflowDetails = async (role: any, user_id, setWorkflow: any, contentType: any) => {
+    if (contentType !== "") {
       try {
-        const response: any = await workflowApi.getWorkflowList()
-        setWorkflow({ enable: false })
+        const response: any = await workflowApi.getWorkflowList();
+        setWorkflow({ enable: false });
         if (
           response?.authoring_getWorkFlowListing &&
           response?.authoring_getWorkFlowListing?.length > 0
         ) {
-          const getWorkFlowListing = [
-            ...(response?.authoring_getWorkFlowListing || []),
-          ]
+          const getWorkFlowListing = [...(response?.authoring_getWorkFlowListing || [])];
           getWorkFlowListing.map((val: any) => {
             val.content_type.map((type: any) => {
-              if (
-                type.toLowerCase() === contentType.toLowerCase() &&
-                val?.status
-              ) {
+              if (type.toLowerCase() === contentType.toLowerCase() && val?.status) {
                 setWorkflow({
-                  title: '',
-                  path: '',
-                  description: '',
-                  workflow_status: 'draft',
+                  title: "",
+                  path: "",
+                  description: "",
+                  workflow_status: "draft",
                   stages: val.stages,
                   tag_name: contentType,
-                  last_modifiedBy: '',
-                  createdBy: '',
+                  last_modifiedBy: "",
+                  createdBy: "",
                   role,
                   enable: val.status,
-                  login_user_id: user_id,
-                  task_status: '',
-                  task_user_id: '',
-                })
+                  login_user_id: user_id || "",
+                  task_status: "",
+                  task_user_id: "",
+                });
               }
-            })
-          })
+            });
+          });
         }
       } catch (err: any) {
-        console.log('error', err)
+        /* empty */
       }
     }
-  }
-  return { workflowRequest, getWorkflowDetails }
+  };
+  return { workflowRequest, getWorkflowDetails };
 }
 
-export default useWorkflow
+export default useWorkflow;

@@ -12,7 +12,7 @@ import {
   TextBox,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   AutoTextArea,
   useUserSession,
   workflowKeys,
@@ -25,7 +25,7 @@ import {
 } from "@platformx/utilities";
 import {
   useWorkflow,
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   create_vod,
   fetchVodById,
   publish_vod,
@@ -89,7 +89,7 @@ export const CreateVod = () => {
   const [runFetchVodById] = useLazyQuery(fetchVodById);
   const [parentToolTip] = useState("");
   // const [scrollToView, setScrollToView] = useState("");
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [mutatePublish] = useMutation(publish_vod);
   const currentVodData = useRef(
     vodPageUrl.searchParams.get("path") ? (vodPageUrl.searchParams.get("path") as string) : "",
@@ -218,7 +218,7 @@ export const CreateVod = () => {
           // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setOpenPageExistModal(false);
           setIsDraft(false);
-          ShowToastSuccessMessage(`${t("vod")} ${t("created_toast")}`);
+          ShowToastSuccess(`${t("vod")} ${t("created_toast")}`);
           setOpenSaveModal(true);
           // setOpenPageExistModal(false);
           const pageUrl = resp?.data?.authoring_createVod?.path.substring(
@@ -285,7 +285,7 @@ export const CreateVod = () => {
         if (isWorkflow) {
           workflowSubmitRequest(workflowObj, workflowKeys.approve);
         }
-        ShowToastSuccessMessage(`${t("vod")} ${t("updated_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("updated_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowExitWarning(false);
@@ -364,7 +364,7 @@ export const CreateVod = () => {
       },
     })
       .then(() => {
-        ShowToastSuccessMessage(`${t("vod")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);

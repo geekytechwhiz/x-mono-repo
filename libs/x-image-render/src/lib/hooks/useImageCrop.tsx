@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShowToastError, ShowToastSuccessMessage, nullToObject } from "@platformx/utilities";
+import { ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
 import { BREAKPOINTS } from "../utils/constants";
 import { usePostImageCrop } from "./usePostImageCrop";
 
@@ -26,7 +26,7 @@ const useImageCrop = (originalImage: any, doneCropCompleted: any) => {
         bitstream_id = "",
       } = nullToObject(data);
       if (images?.length > 0) {
-        ShowToastSuccessMessage("Image Cropped Successfully");
+        ShowToastSuccess("Image Cropped Successfully");
         setDoneLoader(false);
         doneCropCompleted(images, ext, original_image_relative_path, visibility, bitstream_id, img);
       } else {

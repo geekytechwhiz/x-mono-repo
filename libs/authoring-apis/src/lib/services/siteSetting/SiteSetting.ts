@@ -338,7 +338,7 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
   }
 };
 
-export const fetchTagList = async <T>(input: T): Promise<ApiResponse<T>> => {
+export const fetchTagListing = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.query({
       query: FETCH_TAG_LISTING,

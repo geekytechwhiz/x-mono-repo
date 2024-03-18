@@ -6,14 +6,12 @@ const toastPosition = "bottom-left";
 
 const convertFontSize = (mag = "") => {
   return (
-    <React.Fragment>
-      <span
-        style={{
-          fontSize: "18px",
-        }}>
-        {mag}
-      </span>
-    </React.Fragment>
+    <span
+      style={{
+        fontSize: "18px",
+      }}>
+      {mag}
+    </span>
   );
 };
 

@@ -1,16 +1,10 @@
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { Grid, Typography } from '@mui/material';
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import TitleSubTitle from '../TitleSubtitle/TitleSubTitle';
-const Answers = ({
-  showGallery,
-  answers,
-  setAnswers,
-  addImage,
-  setAddImage,
-  questionType,
-}) => {
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Grid, Typography } from "@mui/material";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import TitleSubTitle from "../TitleSubtitle/TitleSubTitle";
+
+const Answers = ({ showGallery, answers, setAnswers, addImage, setAddImage, questionType }) => {
   const [isDisable, setsDisable] = useState<boolean>(false);
   const { t } = useTranslation();
   const handleChange = (event) => {
@@ -37,16 +31,14 @@ const Answers = ({
       <Grid container>
         <Grid item xs={12} md={5} className='leftFiledLast'>
           <TitleSubTitle
-            title={t('answers')}
-            subTitle={t('enter_answer')}
+            title={t("answers")}
+            subTitle={t("enter_answer")}
             titleVariant='h6medium'
             subTitleVariant='h7regular'
             toolTipIcon={
-              <InfoOutlinedIcon
-                sx={{ height: '18px', width: '18px', paddingLeft: '4px' }}
-              />
+              <InfoOutlinedIcon sx={{ height: "18px", width: "18px", paddingLeft: "4px" }} />
             }
-            toolTipText={t('answer_content_tp')}
+            toolTipText={t("answer_content_tp")}
           />
         </Grid>
         <Grid item xs={12} md={7} className='textFiledLast'>

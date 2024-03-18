@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
-import { PropsWithChildren } from 'react';
-import TitleSubTitle from '../TitleSubtitle/TitleSubTitle';
-import { useStyles } from './SectionWrapper.styles';
-import { SectionWrapperProp } from './SectionWrapper.types';
+import { Box } from "@mui/material";
+import { PropsWithChildren } from "react";
+import TitleSubTitle from "../TitleSubtitle/TitleSubTitle";
+import { useStyles } from "./SectionWrapper.styles";
+import { SectionWrapperProp } from "./SectionWrapper.types";
 
 const SectionWrapper = ({
   number,

@@ -3,7 +3,7 @@ import { FC } from "react";
 import { useStyles } from "./GridRowWrap.styles";
 import { GridRowWrapProps } from "./GridRowWrap.types";
 
-export const GridRowWrap: FC<GridRowWrapProps> = ({ left: left, right: right, mt: marginTop }) => {
+export const GridRowWrap: FC<GridRowWrapProps> = ({ left, right, mt: marginTop }) => {
   const classes = useStyles();
   return (
     <Box mt={marginTop}>

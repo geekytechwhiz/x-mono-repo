@@ -56,55 +56,53 @@ export default function MediaTray({ showGallery }) {
         )}
       </Fab>
       {showTray ? (
-        <>
-          <Box
+        <Box
+          sx={{
+            zIndex: { xs: 99, sm: 1 },
+            display: { xs: "flex", sm: "unset" },
+            flexDirection: { xs: "column", sm: "unset" },
+          }}
+          className={classes.plusIconBox}>
+          <IconButton
+            className={classes.iconBoxCta}
             sx={{
-              zIndex: { xs: 99, sm: 1 },
-              display: { xs: "flex", sm: "unset" },
-              flexDirection: { xs: "column", sm: "unset" },
+              padding: { xs: "5px", em: "15px" },
+              borderRadius: 0,
+              "&:hover": { background: "transparent" },
             }}
-            className={classes.plusIconBox}>
-            <IconButton
-              className={classes.iconBoxCta}
-              sx={{
-                padding: { xs: "5px", em: "15px" },
-                borderRadius: 0,
-                "&:hover": { background: "transparent" },
-              }}
-              color='primary'
-              aria-label='upload picture'
-              component='label'
-              onClick={() => openGallery("Images")}>
-              <ImageOutlinedIcon />
-            </IconButton>
-            <IconButton
-              className={classes.iconBoxCta}
-              sx={{
-                padding: { xs: "5px", em: "15px" },
-                borderRadius: 0,
-                "&:hover": { background: "transparent" },
-              }}
-              color='primary'
-              aria-label='upload video'
-              component='label'
-              onClick={() => openGallery("Videos")}>
-              <VideocamOutlinedIcon />
-            </IconButton>
-            <IconButton
-              className={classes.iconBoxCta}
-              sx={{
-                padding: { xs: "5px", em: "15px" },
-                borderRadius: 0,
-                "&:hover": { background: "transparent" },
-              }}
-              color='primary'
-              aria-label='upload content'
-              component='label'
-              onClick={() => openGallery("content")}>
-              <EmojiObjectsOutlinedIcon />
-            </IconButton>
-          </Box>
-        </>
+            color='primary'
+            aria-label='upload picture'
+            component='label'
+            onClick={() => openGallery("Images")}>
+            <ImageOutlinedIcon />
+          </IconButton>
+          <IconButton
+            className={classes.iconBoxCta}
+            sx={{
+              padding: { xs: "5px", em: "15px" },
+              borderRadius: 0,
+              "&:hover": { background: "transparent" },
+            }}
+            color='primary'
+            aria-label='upload video'
+            component='label'
+            onClick={() => openGallery("Videos")}>
+            <VideocamOutlinedIcon />
+          </IconButton>
+          <IconButton
+            className={classes.iconBoxCta}
+            sx={{
+              padding: { xs: "5px", em: "15px" },
+              borderRadius: 0,
+              "&:hover": { background: "transparent" },
+            }}
+            color='primary'
+            aria-label='upload content'
+            component='label'
+            onClick={() => openGallery("content")}>
+            <EmojiObjectsOutlinedIcon />
+          </IconButton>
+        </Box>
       ) : null}
     </Box>
   );

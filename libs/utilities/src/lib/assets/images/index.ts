@@ -12,6 +12,9 @@ import inGreen from "./in-green.png";
 
 import Logo from "./logo.png";
 import noResults from "./no-results.png";
+import PopupImage from "./createPagePopupImage.png";
+import upload from "./upload.png";
+import replace from "./replace.png";
 import successGif from "./success.gif";
 
 export { default as Guideline_Img1 } from "./Guideline_Img1.png";
@@ -35,5 +38,8 @@ export {
   inGray,
   inGreen,
   noResults,
+  PopupImage,
+  upload,
+  replace,
   successGif,
 };

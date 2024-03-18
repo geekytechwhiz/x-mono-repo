@@ -1,6 +1,6 @@
-import { Box, Grid } from '@mui/material';
-import { useStyles } from './QuestionSection.styles';
-import { TitleSubTitle, XButton } from '@platformx/utilities';
+import { Box, Grid } from "@mui/material";
+import { useStyles } from "./QuestionSection.styles";
+import { TitleSubTitle, XButton } from "@platformx/utilities";
 
 const QuestionSection = ({
   field,
@@ -14,8 +14,8 @@ const QuestionSection = ({
     <>
       <Grid item xs={12} sm={5} md={5} lg={5}>
         <TitleSubTitle
-          titleVariant={'h6medium'}
-          subTitleVariant={'h7regular'}
+          titleVariant={"h6medium"}
+          subTitleVariant={"h7regular"}
           title={field?.title}
           subTitle={field?.description}
         />
@@ -28,12 +28,12 @@ const QuestionSection = ({
         /> */}
         <Box className={classes.container}>
           <XButton
-            variant={'primaryButton'}
+            variant={"primaryButton"}
             label={field?.buttonObj?.buttonLabel1}
             onClick={toggleAddQuestion}
           />
           <XButton
-            variant={'primaryButton'}
+            variant={"primaryButton"}
             label={field?.buttonObj?.buttonLabel2}
             onClick={toggleQuestionListing}
           />

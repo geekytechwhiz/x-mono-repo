@@ -7,13 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const CardContent = ({ selectedItem, contentType }: any) => {
   const { t, i18n } = useTranslation();
-  // const [value, setValue] = React.useState(0);
   const [copyStatus, setICopyStatus] = useState<boolean>(false);
-  // const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-  //   setValue(newValue);
-  //   setICopyStatus(false);
-  // };
-
   const pageURL = `${getSubDomain()}/${i18n.language}/embed/${contentType}/${selectedItem?.Page}`;
   const landingPageURL = `${getSubDomain()}/${i18n.language}/${contentType}/${selectedItem?.Page}`;
 

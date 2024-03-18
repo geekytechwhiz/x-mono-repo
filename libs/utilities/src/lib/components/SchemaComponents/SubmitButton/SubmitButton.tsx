@@ -124,6 +124,7 @@ const Submit = ({
         )}
         {canAccessAction(category, subCategory, workflowKeys.publish) &&
         workflow?.workflow_status === workflowKeys.publish.toLowerCase() ? (
+          // eslint-disable-next-line react/jsx-no-useless-fragment
           <></>
         ) : (
           <ErrorTooltip

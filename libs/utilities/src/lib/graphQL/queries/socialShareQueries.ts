@@ -1,9 +1,7 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const FETCH_SOCIAL_SHARE_PROFILE = gql`
-  query FETCH_SOCIAL_SHARE_PROFILE(
-    $socialShareType: [authoring_socialShareType]!
-  ) {
+  query FETCH_SOCIAL_SHARE_PROFILE($socialShareType: [authoring_socialShareType]!) {
     authoring_socialSharePageProfile(socialShareType: $socialShareType)
   }
 `;
@@ -25,4 +23,3 @@ export const FETCH_CONTENT_TYPE_SOCIAL_SHARE_LIST_CALL = gql`
     )
   }
 `;
-

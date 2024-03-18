@@ -54,20 +54,20 @@ const ImageRender = (props: any = {}) => {
                 width: width,
               }}>
               {breakpoints.map(({ breakpoint, ratio }, key) => {
-                // const img = publishedImages.find(
-                //   ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
-                // );
-                // const { folder_path: imgPath = "" } = img || {};
+                const img = publishedImages.find(
+                  ({ aspect_ratio }: any) => aspect_ratio === (imgOrder[breakpoint] || ratio),
+                );
+                const { folder_path: imgPath = "" } = img || {};
                 return (
                   <React.Fragment key={key}>
-                    {/* <source
+                    <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, "webp")}
+                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, "webp")}
                     />
                     <source
                       media={`(min-width:${breakpoint}px)`}
-                      srcSet={formCroppedUrlString(gcpUrl, bucketName, imgPath, ext)}
-                    /> */}
+                      srcSet={formCroppedUrl(gcpUrl, bucketName, imgPath, ext)}
+                    />
                   </React.Fragment>
                 );
               })}

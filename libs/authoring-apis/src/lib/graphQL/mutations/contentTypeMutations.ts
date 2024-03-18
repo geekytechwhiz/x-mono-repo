@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const PUBLISH_CONTENT_TYPE = gql`
   mutation authoring_publishContent(
@@ -46,10 +46,7 @@ export const DELETE_CONTENT_TYPE = gql`
     $contentType: authoring_ContentTypes!
     $contentInfo: authoring_ContentInfo
   ) {
-    authoring_deleteContent(
-      contentType: $contentType
-      contentInfo: $contentInfo
-    ) {
+    authoring_deleteContent(contentType: $contentType, contentInfo: $contentInfo) {
       path
       message
       __typename

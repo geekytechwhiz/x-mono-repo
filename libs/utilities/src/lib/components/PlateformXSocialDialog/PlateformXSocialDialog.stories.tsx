@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-import PlateformXSocialDialog from './PlateformXSocialDialog';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import PlateformXSocialDialog from "./PlateformXSocialDialog";
 
 const meta: Meta<typeof PlateformXSocialDialog> = {
   component: PlateformXSocialDialog,
-  title: 'PlateformXSocialDialog',
+  title: "PlateformXSocialDialog",
 };
 export default meta;
 type Story = StoryObj<typeof PlateformXSocialDialog>;
@@ -17,10 +17,8 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(
-      canvas.getByText(/Welcome to PlateformXSocialDialog!/gi)
-    ).toBeTruthy();
+    expect(canvas.getByText(/Welcome to PlateformXSocialDialog!/gi)).toBeTruthy();
   },
 };

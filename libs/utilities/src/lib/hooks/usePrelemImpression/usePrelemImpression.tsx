@@ -1,17 +1,16 @@
-import { IMPRESSIONS } from '../usePrelemImpression/constants';
+import { IMPRESSIONS } from "../usePrelemImpression/constants";
 
-import { useState, useEffect } from 'react';
-import usePlatformAnalytics from '../usePlatformAnalytics/usePlatformAnalytics';
-import { Analytics, secondaryArgsObj } from './usePrelemImpression.types';
-import { createPrelemImpression, snowplowPrelemImpression } from './helper';
+import { useState, useEffect } from "react";
+import usePlatformAnalytics from "../usePlatformAnalytics/usePlatformAnalytics";
+import { Analytics, secondaryArgsObj } from "./usePrelemImpression.types";
+import { createPrelemImpression, snowplowPrelemImpression } from "./helper";
 
 export const usePrelemImpression = (
   analytics: Analytics,
   inView: boolean,
-  secondaryArgs: secondaryArgsObj
+  secondaryArgs: secondaryArgsObj,
 ) => {
-  const [enableImpressionTracking, setEnableImpressionTracking] =
-    useState(true);
+  const [enableImpressionTracking, setEnableImpressionTracking] = useState(true);
   const [handleImpression, handleTrack] = usePlatformAnalytics();
 
   useEffect(() => {
@@ -22,10 +21,7 @@ export const usePrelemImpression = (
       inView
     ) {
       const prelemImpressionObj = createPrelemImpression(analytics);
-      const snowplowPrelemImpressionObj = snowplowPrelemImpression(
-        analytics,
-        secondaryArgs
-      );
+      const snowplowPrelemImpressionObj = snowplowPrelemImpression(analytics, secondaryArgs);
       handleImpression(IMPRESSIONS.PRELEM_IMPRESSION, prelemImpressionObj);
       handleTrack(IMPRESSIONS.TRACKID, snowplowPrelemImpressionObj);
       setEnableImpressionTracking(false);

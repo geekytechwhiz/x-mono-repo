@@ -1,6 +1,7 @@
-import { Box } from '@mui/material';
-import { t } from 'i18next';
-import { useCustomStyle } from './XTable.style';
+import { Box } from "@mui/material";
+import { t } from "i18next";
+import { useCustomStyle } from "./XTable.style";
+
 export interface XTableprops {
   data: any;
   handleInput?: any;
@@ -15,29 +16,26 @@ const XTable = ({ data, handleInput, handleOnBlur }: XTableprops) => {
         <tr>
           <th
             style={{
-              width: '14.5%',
-              borderRight: '1px solid #ced3d9',
-              textTransform: 'capitalize',
-            }}
-          >
-            {t('to')}
+              width: "14.5%",
+              borderRight: "1px solid #ced3d9",
+              textTransform: "capitalize",
+            }}>
+            {t("to")}
           </th>
           <th
             style={{
-              width: '14.5%',
-              borderRight: '1px solid #ced3d9',
-              textTransform: 'capitalize',
-            }}
-          >
-            {t('from')}
+              width: "14.5%",
+              borderRight: "1px solid #ced3d9",
+              textTransform: "capitalize",
+            }}>
+            {t("from")}
           </th>
           <th
             style={{
-              width: '100%',
-              textTransform: 'capitalize',
-            }}
-          >
-            {t('quotes')}
+              width: "100%",
+              textTransform: "capitalize",
+            }}>
+            {t("quotes")}
           </th>
         </tr>
         {Object.keys(data).map((val, key) => {
@@ -45,20 +43,19 @@ const XTable = ({ data, handleInput, handleOnBlur }: XTableprops) => {
             <tr
               key={key}
               style={{
-                backgroundColor: key % 2 === 0 ? '#f5f6f8' : '#e6eaed',
-              }}
-            >
+                backgroundColor: key % 2 === 0 ? "#f5f6f8" : "#e6eaed",
+              }}>
               <td>{data[val].to}</td>
               <td>{data[val].from}</td>
-              <td style={{ color: '#2d2d39', borderRight: '0px' }}>
+              <td style={{ color: "#2d2d39", borderRight: "0px" }}>
                 <input
                   id='inputID'
                   style={{
-                    border: 'none',
-                    width: '-webkit-fill-available',
-                    backgroundColor: ' inherit',
-                    textAlign: 'center',
-                    height: 'inherit',
+                    border: "none",
+                    width: "-webkit-fill-available",
+                    backgroundColor: " inherit",
+                    textAlign: "center",
+                    height: "inherit",
                   }}
                   type='text'
                   name='quotes'

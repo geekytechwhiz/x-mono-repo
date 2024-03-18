@@ -9,17 +9,17 @@ export const formatTimestamp = (timestamp: string): string => {
   const days = Math.floor(hours / 24);
 
   if (seconds < 60) {
-    return 'Just now';
+    return "Just now";
   } else if (minutes < 60) {
-    return `${minutes} min${minutes !== 1 ? 's' : ''} ago`;
+    return `${minutes} min${minutes !== 1 ? "s" : ""} ago`;
   } else if (hours < 24) {
-    return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    return `${hours} hour${hours !== 1 ? "s" : ""} ago`;
   } else if (days === 1) {
-    return 'Yesterday';
+    return "Yesterday";
   } else if (days < 7) {
-    return `${days} day${days !== 1 ? 's' : ''} ago`;
+    return `${days} day${days !== 1 ? "s" : ""} ago`;
   } else {
-    return '';
+    return "";
   }
 };
 
@@ -30,7 +30,7 @@ export function stringToColor(string: string) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  let color = '#';
+  let color = "#";
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
@@ -41,9 +41,10 @@ export function stringToColor(string: string) {
 }
 
 export function stringAvatar(name: string) {
-  const nameArr = name.split(' ');
+  const nameArr = name.split(" ");
+  // eslint-disable-next-line prefer-destructuring
   const fName = nameArr[0][0];
-  const lName = nameArr.length > 1 ? nameArr[1][0] : '';
+  const lName = nameArr.length > 1 ? nameArr[1][0] : "";
   return {
     sx: {
       bgcolor: stringToColor(name),

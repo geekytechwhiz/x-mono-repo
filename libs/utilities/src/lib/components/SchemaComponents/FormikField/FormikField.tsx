@@ -1,23 +1,25 @@
-import { TextField, Typography } from '@mui/material';
-import { useField, useFormikContext } from 'formik';
-import { t } from 'i18next';
-import { useState } from 'react';;
-import { convertToLowerCase } from '../../../utils/helperFns';
+import { TextField, Typography } from "@mui/material";
+import { useField, useFormikContext } from "formik";
+import { t } from "i18next";
+import { useState } from "react";
+import { convertToLowerCase } from "../../../utils/helperFns";
+
+// eslint-disable-next-line no-shadow
 enum ValidationType {
-  Required = 'required',
-  MinLength = 'minLength',
-  MaxLength = 'maxLength',
-  Email = 'email',
-  Number = 'number',
+  Required = "required",
+  MinLength = "minLength",
+  MaxLength = "maxLength",
+  Email = "email",
+  Number = "number",
 }
 const FormikField = ({ name, label, metadata, formik, ...rest }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
-  console.log('data', metadata);
+  // console.log('data', metadata);
   const handleChange = (e) => {
-    if (name === 'title') {
+    if (name === "title") {
       setFieldValue(name, e.target.value);
-      setFieldValue('socialShareTitle', e.target.value);
+      setFieldValue("socialShareTitle", e.target.value);
     } else {
       setFieldValue(name, e.target.value);
     }
@@ -25,11 +27,9 @@ const FormikField = ({ name, label, metadata, formik, ...rest }) => {
 
   const maxLength =
     metadata?.validations?.find(
-      (x) =>
-        x.type?.toLocaleLowerCase() ===
-        ValidationType.MaxLength.toLocaleLowerCase()
+      (x) => x.type?.toLocaleLowerCase() === ValidationType.MaxLength.toLocaleLowerCase(),
     ) || 0;
-  const maxCharLength = maxLength['value'];
+  const maxCharLength = maxLength["value"];
   const [restOfChar, setRestOfChar] = useState({
     lengthOfState: 0,
     restOfLength: 0,
@@ -37,20 +37,19 @@ const FormikField = ({ name, label, metadata, formik, ...rest }) => {
   });
   const { restOfLength = 0, reachLimit = false } = restOfChar;
 
-  const handleLength = (valueData = '') => {
+  const handleLength = (valueData = "") => {
     if (maxCharLength) {
       const lengthOfChar = convertToLowerCase(valueData).length;
-      const rest = valueData ? maxCharLength - lengthOfChar : 0;
+      const newRest = valueData ? maxCharLength - lengthOfChar : 0;
 
       setRestOfChar({
         ...restOfChar,
-        restOfLength: rest,
+        restOfLength: newRest,
         lengthOfState: lengthOfChar,
         reachLimit: maxCharLength === lengthOfChar ? true : false,
       });
     }
   };
-  console.log('meta', meta);
   return (
     <>
       <TextField
@@ -66,20 +65,17 @@ const FormikField = ({ name, label, metadata, formik, ...rest }) => {
           handleLength(e.target.value);
           handleChange(e);
         }}
-      // onBlur={formik.handleBlur}
+        // onBlur={formik.handleBlur}
       />
       {maxCharLength && !meta.error && (
-        <Typography
-          variant='h7regular'
-          sx={{ color: '#5c6574', marginTop: '10px' }}
-        >
+        <Typography variant='h7regular' sx={{ color: "#5c6574", marginTop: "10px" }}>
           {reachLimit ? (
-            <>0 {`${t('characters')} ${t('left')}`}</>
+            <>0 {`${t("characters")} ${t("left")}`}</>
           ) : (
             <>
               {restOfLength
-                ? `${restOfLength} ${t('characters')} ${t('left')} `
-                : `${maxCharLength} ${t('characters')} ${t('max')}`}
+                ? `${restOfLength} ${t("characters")} ${t("left")} `
+                : `${maxCharLength} ${t("characters")} ${t("max")}`}
             </>
           )}
         </Typography>

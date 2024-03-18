@@ -1,13 +1,13 @@
 /* eslint-disable require-await */
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
-import ContentListDesktopLoader from './ContentListDesktopLoader';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
+import ContentListDesktopLoader from "./ContentListDesktopLoader";
 
 const meta: Meta<typeof ContentListDesktopLoader> = {
   component: ContentListDesktopLoader,
-  title: 'ContentListLoader',
+  title: "ContentListLoader",
 };
 export default meta;
 type Story = StoryObj<typeof ContentListDesktopLoader>;
@@ -18,7 +18,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to ContentListDesktopLoader!/gi)).toBeTruthy();
   },

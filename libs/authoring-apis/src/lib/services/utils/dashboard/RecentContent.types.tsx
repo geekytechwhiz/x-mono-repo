@@ -8,12 +8,7 @@ export type RecentContents = {
 export type RecentContentProps = {
   recentContent: RecentContents[];
   deleteContent?: (content: any) => void;
-  duplicate?: (
-    content: any,
-    isDuplicate: boolean,
-    title: string,
-    language: string
-  ) => void;
+  duplicate?: (content: any, isDuplicate: boolean, title: string, language: string) => void;
   preview?: (content: any) => void;
   unPublish?: (content: any) => void;
   view?: (content: any) => void;

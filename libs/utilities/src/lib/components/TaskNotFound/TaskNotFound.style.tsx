@@ -1,26 +1,26 @@
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
-import useTheme from '@mui/material/styles/useTheme';
+import useTheme from "@mui/material/styles/useTheme";
 
 export const useCustomStyle = makeStyles(() => {
   // const theme = useTheme(); // TODO: use theme
   return {
     taskNotFoundWp: {
-      '&.taskNotFoundWp': {
-        '& .contentWpBox': {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
+      "&.taskNotFoundWp": {
+        "& .contentWpBox": {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
           // [theme.breakpoints.down('em')]: { // TODO: use theme
           //   flexDirection: 'column',
           //   textAlign: 'center',
           //   paddingBottom: '15px',
           // },
-          '& .imgboxWp': {
-            width: '100px',
-            height: '100%',
-            marginRight: '20px',
+          "& .imgboxWp": {
+            width: "100px",
+            height: "100%",
+            marginRight: "20px",
             // [theme.breakpoints.down('em')]: { //TODO use theme
             //   marginRight: '0px',
             // },

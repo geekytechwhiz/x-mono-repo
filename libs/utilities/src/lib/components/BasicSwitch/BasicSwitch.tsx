@@ -1,10 +1,6 @@
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-import clsx from 'clsx';
-import {
-  BasicSwitchInput,
-  BasicSwitchRoot,
-  BasicSwitchThumb,
-} from './BasicSwitch.styles';
+import { useSwitch } from "@mui/base/SwitchUnstyled";
+import clsx from "clsx";
+import { BasicSwitchInput, BasicSwitchRoot, BasicSwitchThumb } from "./BasicSwitch.styles";
 
 interface BasicSwitchProps {
   color: string;
@@ -17,19 +13,15 @@ const BasicSwitch = (props: BasicSwitchProps) => {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
-    'Switch-checked': checked,
-    'Switch-disabled': disabled,
-    'Switch-focusVisible': focusVisible,
+    "Switch-checked": checked,
+    "Switch-disabled": disabled,
+    "Switch-focusVisible": focusVisible,
   };
 
   return (
-    <BasicSwitchRoot
-      className={clsx(stateClasses)}
-      color={props.color}
-      bgcolor={props.bgcolor}
-    >
+    <BasicSwitchRoot className={clsx(stateClasses)} color={props.color} bgcolor={props.bgcolor}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
-      <BasicSwitchInput {...getInputProps()} aria-label="Demo switch" />
+      <BasicSwitchInput {...getInputProps()} aria-label='Demo switch' />
     </BasicSwitchRoot>
   );
 };

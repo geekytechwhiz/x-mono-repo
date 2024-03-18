@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import * as Yup from "yup";
 
 const useDynamicForm = (fields) => {
@@ -29,7 +30,7 @@ const useDynamicForm = (fields) => {
         }
         return validations;
       }, Yup.string());
-      console.log("valid", fieldValidations?.label(field.title));
+      // console.log("valid", fieldValidations?.label(field.title));
       if (field.variant?.toLowerCase().includes("multiline")) {
         validationSchemaFields[field.name] = fieldValidations?.label(field.title);
       } else {
@@ -39,7 +40,7 @@ const useDynamicForm = (fields) => {
 
     // const
     validationSchema = Yup.object().shape(validationSchemaFields);
-    console.log("schema", validationSchema);
+    // console.log("schema", validationSchema);
   }
   return { initialValues, validationSchema };
 };

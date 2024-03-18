@@ -1,1 +1,1 @@
-export const filterValue = ['SCHEDULED_PUBLISH', 'SCHEDULED_UNPUBLISH'];
+export const filterValue = ["SCHEDULED_PUBLISH", "SCHEDULED_UNPUBLISH"];

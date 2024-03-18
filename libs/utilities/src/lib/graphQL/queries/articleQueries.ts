@@ -1,85 +1,86 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
+
 export const ArticleQueries = {
   FETCH_ARTICLE_LIST_ALL: gql`
-  query FETCH_ARTICLE_LIST_ALL(
-    $obj: authoring_Paginate!
-    $type: authoring_PageFilter!
-    $searchTerm: String!
-    $sort: authoring_sortOption!
-    $dateFilter: authoring_DateFilter!
-  ) {
-    authoring_articleList(
-      pagination: $obj
-      pageFilter: $type
-      pageSearch: $searchTerm
-      sort: $sort
-      dateFilter: $dateFilter
+    query FETCH_ARTICLE_LIST_ALL(
+      $obj: authoring_Paginate!
+      $type: authoring_PageFilter!
+      $searchTerm: String!
+      $sort: authoring_sortOption!
+      $dateFilter: authoring_DateFilter!
     ) {
-      CurrentPageUrl
-      ParentPageUrl
-      Name
-      Status
-      Title
-      Description
-      LastModificationDate
-      LastModifiedBy
-      PublishedBy
-      Author
-      ArticleSettings {
+      authoring_articleList(
+        pagination: $obj
+        pageFilter: $type
+        pageSearch: $searchTerm
+        sort: $sort
+        dateFilter: $dateFilter
+      ) {
+        CurrentPageUrl
+        ParentPageUrl
         Name
-        PageTags
-        PageDescription
+        Status
+        Title
+        Description
+        LastModificationDate
+        LastModifiedBy
+        PublishedBy
+        Author
+        ArticleSettings {
+          Name
+          PageTags
+          PageDescription
+        }
+        Path
+        LastPublishedDate
+        PublishedDate
+        AnalyticsEnable
+        SeoEnable
+        StructuredData
       }
-      Path
-      LastPublishedDate
-      PublishedDate
-      AnalyticsEnable
-      SeoEnable
-      StructuredData
     }
-  }
-`,
+  `,
 
   FETCH_ARTICLE_MODEL: gql`
-  query FETCH_ARTICLE_MODEL($folder: String!, $path: String!) {
-    authoring_getCmsArticleByPath(folderPath: $folder, path: $path) {
-      Page
-      SiteName
-      Title
-      SubTitle
-      Banner
-      Description
-      ContentType
-      Category
-      ParentPageURL
-      CurrentPageURL
-      Page_CreatedBy
-      Page_LastModifiedBy
-      Page_PublishedBy
-      IsEdit
-      SeoEnable
-      AnalyticsEnable
-      RobotTxt
-      SiteMap
-      Others
-      Analytics
-      StructureData
-      DevelopedBy
-      DevelopedDate
-      Page_State
-      Analytics
-      creationDate
-      modificationDate
-      articleContent
-      ArticleSettings
-      Tag
-      original_image
-      published_images
-      PublishedDate
-      LastPublishedDate
+    query FETCH_ARTICLE_MODEL($folder: String!, $path: String!) {
+      authoring_getCmsArticleByPath(folderPath: $folder, path: $path) {
+        Page
+        SiteName
+        Title
+        SubTitle
+        Banner
+        Description
+        ContentType
+        Category
+        ParentPageURL
+        CurrentPageURL
+        Page_CreatedBy
+        Page_LastModifiedBy
+        Page_PublishedBy
+        IsEdit
+        SeoEnable
+        AnalyticsEnable
+        RobotTxt
+        SiteMap
+        Others
+        Analytics
+        StructureData
+        DevelopedBy
+        DevelopedDate
+        Page_State
+        Analytics
+        creationDate
+        modificationDate
+        articleContent
+        ArticleSettings
+        Tag
+        original_image
+        published_images
+        PublishedDate
+        LastPublishedDate
+      }
     }
-  }
-`,
+  `,
   FETCH_CONTENT_LIST_ALL: gql`
     query FETCH_CONTENT_LIST_ALL(
       $contentType: authoring_ContentTypes!
@@ -123,10 +124,7 @@ export const ArticleQueries = {
     }
   `,
   FETCH_CONTENT_BY_PATH: gql`
-    query authoring_getCmsContentByPath(
-      $contentType: authoring_ContentTypes!
-      $path: String!
-    ) {
+    query authoring_getCmsContentByPath($contentType: authoring_ContentTypes!, $path: String!) {
       authoring_getCmsContentByPath(contentType: $contentType, path: $path)
     }
   `,
@@ -183,11 +181,7 @@ export const ArticleQueries = {
       $parentpageurl: String!
     ) {
       authoring_deleteArticle(
-        articleInfo: {
-          Page: $page
-          currentpageurl: $currentpageurl
-          parentpageurl: $parentpageurl
-        }
+        articleInfo: { Page: $page, currentpageurl: $currentpageurl, parentpageurl: $parentpageurl }
       ) {
         message
       }

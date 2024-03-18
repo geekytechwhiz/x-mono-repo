@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import   PlateformXSnackbar   from './PlateformXSnackbar';
+import type { Meta, StoryObj } from "@storybook/react";
+import PlateformXSnackbar from "./PlateformXSnackbar";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof PlateformXSnackbar> = {
   component: PlateformXSnackbar,
-  title: 'PlateformXSnackbar',
+  title: "PlateformXSnackbar",
 };
 export default meta;
 type Story = StoryObj<typeof PlateformXSnackbar>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to PlateformXSnackbar!/gi)).toBeTruthy();
   },

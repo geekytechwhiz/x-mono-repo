@@ -31,10 +31,10 @@
 .userlisttophead {
   display: flex;
   justify-content: space-between;
-  flex-direction:  row;
+  flex-direction: row;
   align-items: center;
 }
-.userlisttophead .thicon{
+.userlisttophead .thicon {
   font-size: 24px;
   vertical-align: middle;
 }
@@ -45,7 +45,7 @@
   margin: auto;
   border: solid 1px #f5f6f8;
 }
-.UserDetailssc{
+.UserDetailssc {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -58,10 +58,10 @@
 }
 @media (max-width: 767px) {
   .userlisttophead {
-    flex-direction:  column;
+    flex-direction: column;
     align-items: flex-start;
   }
-  .UserDetailssc{
+  .UserDetailssc {
     border-left: 0;
     border-top: 1px solid #ced3d9;
     padding: 15px 0;
