@@ -12,7 +12,7 @@ import "../../Style.css";
 import "../../utils/service/i18n";
 
 const Article = ({
-  content,
+  content = {},
   analytics,
   authoringHelper,
   secondaryArgs = {},
@@ -189,7 +189,7 @@ const Article = ({
               }}
             />
             {/* <img
-              src={fetchCroppedUrl(content.Banner, content.published_images, { 1440: 'landscape', 1280: 'landscape', 1024: 'portrait', 768: 'portrait', 600: 'square', 320: 'square' })}
+              src={fetchCroppedUrl(content?.Banner, content?.published_images, { 1440: 'landscape', 1280: 'landscape', 1024: 'portrait', 768: 'portrait', 600: 'square', 320: 'square' })}
               alt={"Banner_Image"}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             /> */}
@@ -222,7 +222,7 @@ const Article = ({
                   bottom: "5%",
                   // margin: { xs: '0 5%', md: '0%' },
                 }}>
-                {content.title}
+                {content?.title}
               </Typography>
             </Box>
           </Box>
@@ -252,7 +252,7 @@ const Article = ({
                 ></img> */}
                 <AccountCircleOutlinedIcon className='avtartIcon' width='16px' height='20px' />
                 <Typography variant='p4regular' className='noMarginBoth' sx={{ ml: "5px" }}>
-                  {content.page_lastmodifiedby}
+                  {content?.page_lastmodifiedby}
                 </Typography>
               </Box>
               <Typography variant='p4regular' className='noMarginBoth'>
@@ -265,7 +265,7 @@ const Article = ({
             <CardContent style={{ padding: "12px 0px 12px 0px" }}>
               <Typography
                 variant='p3regular'
-                dangerouslySetInnerHTML={{ __html: content.description }}></Typography>
+                dangerouslySetInnerHTML={{ __html: content?.description }}></Typography>
             </CardContent>
             <Divider variant='fullWidth' />
             <Box
@@ -276,12 +276,12 @@ const Article = ({
                 mb: "30px",
                 mt: "25px",
               }}>
-              {content.tags && content.tags?.length > 0 && (
+              {content?.tags && content?.tags?.length > 0 && (
                 <Box sx={{ mb: { xs: "15px", md: 0 } }}>
                   <Typography variant='h4medium' className='title'>
                     {t("related_tags")}
                   </Typography>
-                  {content.tags?.map((tag: string) => {
+                  {content?.tags?.map((tag: string) => {
                     return (
                       <Fragment key={tag}>
                         {tag && (
@@ -326,7 +326,7 @@ const Article = ({
               {showRecentArticles && (
                 <RecentCarousel
                   isArticleLandingPage={true}
-                  data={content.latest_articles}
+                  data={content?.latest_articles}
                   secondaryArgs={secondaryArgs}
                 />
               )}
