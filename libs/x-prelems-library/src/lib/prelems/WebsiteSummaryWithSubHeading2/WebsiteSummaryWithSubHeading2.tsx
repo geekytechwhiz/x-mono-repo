@@ -125,15 +125,15 @@ const WebsiteSummaryWithSubHeading2 = ({
           <Box className='innerHeading'>
             <Box className='title'>
               <Typography variant='labelbold' id='Title1'>
-                {content.Title1}
+                {content?.Title1}
               </Typography>
             </Box>
             <Typography variant='h2medium' id='Title2'>
-              {content.Title2}
+              {content?.Title2}
             </Typography>
           </Box>
           <Typography variant='p3regular' id='Description'>
-            {content.Description}
+            {content?.Description}
           </Typography>
           <BasicButton
             openButtonEditWindow={authoringHelper?.openButtonEditWindowInAuthoringCB}
