@@ -24,7 +24,6 @@ import "./App.css";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
-import i18next from "./utils/i18next";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -75,7 +74,7 @@ function App() {
         const lang = getCurrentLang();
         if (lang) {
           setLanguage(lang);
-          i18next.changeLanguage(lang);
+          i18n.changeLanguage(lang);
         }
       } catch (error: any) {
         console.error("Error during initialization:", error);
@@ -88,7 +87,7 @@ function App() {
   return (
     <Suspense fallback={<div>...Loading</div>}>
       <div className='App'>
-        <I18nextProvider i18n={i18next}>
+        <I18nextProvider i18n={i18n}>
           <ApolloProvider client={graphqlInstance}>
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>
