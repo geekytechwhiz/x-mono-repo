@@ -1,8 +1,8 @@
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import { Box, Typography } from '@mui/material';
-import { memo } from 'react';
-import './SingleCard.css';
-import { dateFormat } from './utils/helper';
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { Box, Typography } from "@mui/material";
+import { memo } from "react";
+import "./SingleCard.css";
+import { dateFormat } from "./utils/helper";
 
 const SingleCard = ({
   title,
@@ -25,7 +25,7 @@ const SingleCard = ({
         <Box className='icon'>
           <DescriptionOutlinedIcon />
         </Box>
-        <Box sx={{ margin: 0, display: 'block' }}>
+        <Box sx={{ margin: 0, display: "block" }}>
           <Typography variant='h7regular' className='boticontext'>
             Pages
           </Typography>
@@ -37,7 +37,7 @@ const SingleCard = ({
           {published_by}
         </Typography>
         <Typography component='div' variant='h7medium' className='datetime'>
-          {publish ? 'Will publish on' : 'Will Unpublish on'} : {date_time}
+          {publish ? "Will publish on" : "Will Unpublish on"} : {date_time}
         </Typography>
       </Box>
     </Box>

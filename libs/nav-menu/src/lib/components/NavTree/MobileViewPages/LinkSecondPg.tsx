@@ -16,7 +16,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import TextField from "@mui/material/TextField";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { ShowToastError, ShowToastSuccessMessage, ThemeConstants } from "@platformx/utilities";
+import { ShowToastError, ShowToastSuccess, ThemeConstants } from "@platformx/utilities";
 import * as React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -74,7 +74,7 @@ function LinkSecondPg({
   };
   const copyText = () => {
     navigator.clipboard.writeText(linkMenuItemName);
-    ShowToastSuccessMessage(t("url_copy_toast"));
+    ShowToastSuccess(t("url_copy_toast"));
   };
   const handleLinkMenuItemName = (evnt) => {
     setLinkMenuItemName(evnt.target.value.trim());

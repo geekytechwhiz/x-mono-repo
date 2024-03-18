@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const SOCIAL_SHARE_SCHEDULE = gql`
   mutation authoring_socialShareFeedRequest(
@@ -38,10 +38,6 @@ export const SOCIAL_SHARE_CANCEL_POST = gql`
     $shareType: [authoring_socialShareType]!
     $contentType: String!
   ) {
-    authoring_socialShareCancelPost(
-      input: $input
-      shareType: $shareType
-      contentType: $contentType
-    )
+    authoring_socialShareCancelPost(input: $input, shareType: $shareType, contentType: $contentType)
   }
 `;

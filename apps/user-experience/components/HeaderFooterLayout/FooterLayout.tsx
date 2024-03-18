@@ -1,6 +1,7 @@
+import React, { memo } from "react";
 import getConfig from "next/config";
 import dynamic from "next/dynamic";
-import React from "react";
+import { SkeletonLoader } from "../SkeletonLoader/SkeletonLoader";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -20,6 +21,7 @@ const FooterLayout = (props: any) => {
     () => import("@platformx/x-prelems-library").then((mod) => mod.Footer),
     {
       ssr: false,
+      loading: () => <SkeletonLoader />,
     },
   );
 
@@ -40,4 +42,4 @@ const FooterLayout = (props: any) => {
     </>
   );
 };
-export default React.memo(FooterLayout);
+export default memo(FooterLayout);

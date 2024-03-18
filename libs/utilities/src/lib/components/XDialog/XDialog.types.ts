@@ -4,7 +4,7 @@ export type XDialogProps = {
   open: boolean;
   title: string;
   subTitle?: string;
-  subTitle2?:string;
+  subTitle2?: string;
   imageIcon?: string;
   leftButtonText?: string;
   rightButtonText?: string;

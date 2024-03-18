@@ -1,10 +1,9 @@
 export const userCourseListMapper = (usersData: any) => {
-  const ref = ['Referee', 'Instructor', 'Moderator'];
-  const sts = ['Registered', 'Pending', 'Delivered	'];
-
+  const ref = ["Referee", "Instructor", "Moderator"];
+  const sts = ["Registered", "Pending", "Delivered"];
   if (usersData) {
     const userList = usersData?.map((user: any, index: number) => {
-      const { user_id, firstName, lastName, email } = user;
+      const { user_id, firstName, lastName } = user;
       return {
         orderNo: user_id,
         date: `June 3${index + 2}, 202${index + 2}`,

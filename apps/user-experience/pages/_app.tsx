@@ -42,14 +42,14 @@ type MyAppType = {
 function MyApp(props: MyAppType) {
   const { Component, pageProps, pageData } = props;
   const pageRouter = useRouter();
-  // const anaInstance: any = {
-  //   identify: () => {},
-  //   track: () => {},
-  //   page: () => {},
-  //   user: () => {},
-  //   // ...and 7 more properties
-  // };
-  const [instances, setInstances] = useState({});
+  const anaInstance: any = {
+    identify: () => {},
+    track: () => {},
+    page: () => {},
+    user: () => {},
+    // ...and 7 more properties
+  };
+  const [instances, setInstances] = useState(anaInstance);
   const [loading, setLoading] = useState(false);
   const clientSideEmotionCache = createEmotionCache();
   const { emotionCache = clientSideEmotionCache } = props;
@@ -99,37 +99,28 @@ function MyApp(props: MyAppType) {
     <>
       <ToastContainer position='bottom-right' />
       {loading ? (
-        <>
-          <PlatformXLoader />
-        </>
+        <PlatformXLoader />
       ) : (
-        <>
-          <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={PrelemTheme(ThemeConstant)}>
-              <CssBaseline />
-              <ErrorBoundary>
-                <AnalyticsProvider instance={instances}>
-                  <Box
-                    sx={{
-                      margin: (themeOptions) => themeOptions.prelemMargin.value,
-                      minHeight: "100vh",
-                    }}>
-                    <ChatPopUp />
-                    <Component
-                      {...props}
-                      {...pageProps}
-                      pageData={pageData}
-                      instances={instances}
-                    />
-                  </Box>
-                </AnalyticsProvider>
-              </ErrorBoundary>
-              {!pageRouter?.asPath?.includes("embed") ? (
-                <CookieComponent analyticHandle={analyticHandle} />
-              ) : null}
-            </ThemeProvider>
-          </CacheProvider>
-        </>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={PrelemTheme(ThemeConstant)}>
+            <CssBaseline />
+            <ErrorBoundary>
+              <AnalyticsProvider instance={instances}>
+                <Box
+                  sx={{
+                    margin: (themeOptions) => themeOptions.prelemMargin.value,
+                    minHeight: "100vh",
+                  }}>
+                  <ChatPopUp />
+                  <Component {...props} {...pageProps} pageData={pageData} instances={instances} />
+                </Box>
+              </AnalyticsProvider>
+            </ErrorBoundary>
+            {!pageRouter?.asPath?.includes("embed") ? (
+              <CookieComponent analyticHandle={analyticHandle} />
+            ) : null}
+          </ThemeProvider>
+        </CacheProvider>
       )}
     </>
   );

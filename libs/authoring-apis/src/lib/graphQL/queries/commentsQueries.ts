@@ -1,4 +1,5 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
+
 export const CommentQueries = {
   CREATE_OR_UPDATE_COMMENT: gql`
     mutation ($input: authoring_ReviewRequest) {

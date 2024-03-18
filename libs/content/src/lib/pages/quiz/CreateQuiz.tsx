@@ -2,7 +2,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   commentsApi,
   contentTypeAPIs,
   useComment,
@@ -15,7 +15,7 @@ import {
   PlateformXDialog,
   PlateformXDialogSuccess,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
@@ -93,7 +93,7 @@ export const CreateQuiz = () => {
   const [tagArr, setTagArr] = useState<any>([]);
   const [parentToolTip, setParentToolTip] = useState("");
   const [, setFieldChanges] = useState();
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const scrollDebounceRef = useRef<any>(null);
   const [timerState, setTimerState] = useState(
@@ -246,7 +246,7 @@ export const CreateQuiz = () => {
           setWorkflowStatus(isWorkflow);
         } else {
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("quiz")} ${t("saved_toast")}`);
+            ShowToastSuccess(`${t("quiz")} ${t("saved_toast")}`);
           }
           setIsDraft(false);
           const { createdBy } = quizInstance.CommonFields;
@@ -400,7 +400,7 @@ export const CreateQuiz = () => {
         if (status && status.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("quiz")} ${t("updated_toast")}`);
+            ShowToastSuccess(`${t("quiz")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }

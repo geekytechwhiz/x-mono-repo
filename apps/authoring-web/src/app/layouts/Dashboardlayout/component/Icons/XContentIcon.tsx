@@ -1,4 +1,5 @@
-import { SvgIcon } from '@mui/material';
+import { SvgIcon } from "@mui/material";
+
 const XContentIcon = ({ svgComponent: SvgComponent, ...props }) => {
   return (
     <SvgIcon {...props}>

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { EventHeader } from './EventHeader';
+import type { Meta, StoryObj } from "@storybook/react";
+import { EventHeader } from "./EventHeader";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof EventHeader> = {
   component: EventHeader,
-  title: 'EventHeader',
+  title: "EventHeader",
 };
 export default meta;
 type Story = StoryObj<typeof EventHeader>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to EventHeader!/gi)).toBeTruthy();
   },

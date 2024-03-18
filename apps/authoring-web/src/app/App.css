@@ -132,7 +132,7 @@ ul::-webkit-scrollbar {
   width: 100%;
 }
 
-.Toastify__toast>button>svg {
+.Toastify__toast > button > svg {
   margin-top: 18px;
   color: #a0a3bd !important;
 }

@@ -1,7 +1,7 @@
-import { Skeleton } from '@mui/material';
-import ContentRow from '../contentRow/ContentRow';
-import '../../Dashboard.css';
-import { memo } from 'react';
+import { Skeleton } from "@mui/material";
+import ContentRow from "../contentRow/ContentRow";
+import "../../Dashboard.css";
+import { memo } from "react";
 
 const RecentContent = ({
   recentContent,

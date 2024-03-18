@@ -17,7 +17,7 @@ import {
   Loader,
   RedDot,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   ThemeConstants,
   getSelectedSite,
 } from "@platformx/utilities";
@@ -90,8 +90,8 @@ const ListView = ({
   //     setIsLoading(false);
   //     {
   //       checked
-  //         ? ShowToastSuccessMessage(t("deactivate_message"))
-  //         : ShowToastSuccessMessage(t("activate_message"));
+  //         ? ShowToastSuccess(t("deactivate_message"))
+  //         : ShowToastSuccess(t("activate_message"));
   //     }
   //   } catch (err: any) {
   //     ShowToastError(
@@ -111,7 +111,7 @@ const ListView = ({
   //       },
   //     });
   //     setIsLoading(false);
-  //     ShowToastSuccessMessage(responseEmail.data.authoring_reinviteUser.message);
+  //     ShowToastSuccess(responseEmail.data.authoring_reinviteUser.message);
   //   } catch (err: any) {
   //     ShowToastError(
   //       err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
@@ -148,7 +148,7 @@ const ListView = ({
         },
       });
       setIsLoading(false);
-      ShowToastSuccessMessage(approveRejectUserResponse?.data?.authoring_approveRejectEndUser?.message);
+      ShowToastSuccess(approveRejectUserResponse?.data?.authoring_approveRejectEndUser?.message);
       handleReload();
     } catch (err: any) {
       ShowToastError(

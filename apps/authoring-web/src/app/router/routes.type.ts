@@ -1,5 +1,5 @@
 export type RouteConfig = {
-    path: string;
-    element: React.ReactNode;
-    // allowedRoles?: UserRole[];
+  path: string;
+  element: React.ReactNode;
+  // allowedRoles?: UserRole[];
 };

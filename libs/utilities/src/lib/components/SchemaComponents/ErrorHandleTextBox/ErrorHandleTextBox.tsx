@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { convertToLowerCase } from "../../../utils/helperFns";
 import { TextBoxProps } from "./ErrorHandleTextBox.types";
 
-
 const ErrorHandleTextBox = ({
   name,
   placeHolder,

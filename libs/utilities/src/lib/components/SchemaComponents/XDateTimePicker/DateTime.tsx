@@ -1,29 +1,22 @@
-import { TextField } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { useState } from 'react';
-import { addMinutes } from 'date-fns';
+import { TextField } from "@mui/material";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { useState } from "react";
+import { addMinutes } from "date-fns";
 
 export interface DateTimeProps {
   error?: boolean;
   isDisabled?: boolean;
-  variant?: 'outlined' | 'filled';
+  variant?: "outlined" | "filled";
   placeholder?: string;
-  size?: 'small' | 'medium';
+  size?: "small" | "medium";
   Date?: string;
 }
 
-export const XDateTimePicker = (
-  error,
-  isDisabled,
-  variant,
-  placeholder,
-  size,
-
-) => {
+export const XDateTimePicker = (error, isDisabled, variant, placeholder, size) => {
   const handleDateChangeRaw = (e) => {
     e.preventDefault();
   };
-  const InitialValue = addMinutes(new Date(), 6)
+  const InitialValue = addMinutes(new Date(), 6);
 
   const [selectedDate, setSelectedDate] = useState(InitialValue);
 
@@ -48,4 +41,4 @@ export const XDateTimePicker = (
       )}
     />
   );
-}; 
+};

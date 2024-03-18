@@ -1,22 +1,20 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import { useTranslation } from 'react-i18next';
-import { useCustomStyle } from '../../quiz.style';
-import { CommonBoxWithNumber, XTags } from '@platformx/utilities';
+import { useTranslation } from "react-i18next";
+import { useCustomStyle } from "../../quiz.style";
+import { CommonBoxWithNumber, XTags } from "@platformx/utilities";
 
 const ChooseTags = ({ isEdit, tagData, selectedTag, handleTagOnChange }) => {
   const { t } = useTranslation();
   const classes = useCustomStyle();
   return (
-
     <Box id='tags' className={`${classes.chooseTagsWp}`}>
       <CommonBoxWithNumber
         number='05'
-        title={t('choose_tags')}
+        title={t("choose_tags")}
         titleVarient='p3semibold'
         subTitleVarient='p4regular'
-        subTitle={t('subhead')}
-      >
+        subTitle={t("subhead")}>
         <Box className='noSpacWp'>
           <XTags
             isEdit={isEdit}

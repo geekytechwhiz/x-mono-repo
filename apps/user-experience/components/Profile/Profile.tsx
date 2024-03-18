@@ -26,13 +26,11 @@ export const ProfileComponent = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <ProfilePrelem
-        content={prelemContentProp}
-        analytics={prelemAnalyticsProp}
-        authoringHelper={prelemAuthoringHelper}
-        secondaryArgs={secondaryArgs}
-      />
-    </React.Fragment>
+    <ProfilePrelem
+      content={prelemContentProp}
+      analytics={prelemAnalyticsProp}
+      authoringHelper={prelemAuthoringHelper}
+      secondaryArgs={secondaryArgs}
+    />
   );
 };

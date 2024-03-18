@@ -6,14 +6,14 @@ export function isEmpty(obj) {
 }
 export const formatPageUrl = (url) => {
   let tmp = url?.toLowerCase();
-  tmp = tmp.replace(/\s/g, '');
-  tmp = tmp.replace(/[^a-z0-9\- ]/gi, '');
+  tmp = tmp.replace(/\s/g, "");
+  tmp = tmp.replace(/[^a-z0-9\- ]/gi, "");
   return tmp;
 };
 
-export const createSession = (userSession, isActive = false, role: string) => {
+export const createSession = (userSession, isActive, role: string) => {
   return {
-    isActive: isActive,
+    isActive: isActive || false,
     role: role,
     permissions: userSession?.permissions,
     userInfo: userSession,
@@ -23,7 +23,7 @@ export const createSession = (userSession, isActive = false, role: string) => {
 export const getStyleString = (styles) =>
   Object.entries(styles)
     .map(([prop, value]) => `${prop}: ${value}`)
-    .join('; ');
+    .join("; ");
 
 /**
  * string to parse convert
@@ -48,8 +48,8 @@ export const defaultFalBackImage = () => {
 };
 
 export const removeSearchLocalStorage = () => {
-  localStorage.removeItem('contentType');
-  localStorage.removeItem('searchKeyword');
-  localStorage.removeItem('searchTags');
-  localStorage.removeItem('author');
+  localStorage.removeItem("contentType");
+  localStorage.removeItem("searchKeyword");
+  localStorage.removeItem("searchTags");
+  localStorage.removeItem("author");
 };

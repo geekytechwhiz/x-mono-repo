@@ -1,12 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material';
-import React, { useEffect } from 'react';
-import { userCourseListMapper } from '../../../utils/mapper';
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import React, { useEffect } from "react";
+import { userCourseListMapper } from "../../../utils/mapper";
+
 interface user {
   orderNo: string;
   date: string;
@@ -27,7 +22,7 @@ const AllStudents = ({ users }: any) => {
   return (
     <Table>
       <TableHead>
-        <TableRow sx={{ backgroundColor: '#F7F7FC' }}>
+        <TableRow sx={{ backgroundColor: "#F7F7FC" }}>
           <TableCell>No</TableCell>
           <TableCell>ID Users</TableCell>
           <TableCell>Users Name</TableCell>
@@ -40,7 +35,7 @@ const AllStudents = ({ users }: any) => {
       <TableBody>
         {userList?.length > 0 &&
           userList.map((order) => (
-            <TableRow key={order.orderNo} sx={{ backgroundColor: 'white' }}>
+            <TableRow key={order.orderNo} sx={{ backgroundColor: "white" }}>
               <TableCell>{order.number}</TableCell>
               <TableCell>{order.orderNo}</TableCell>
               <TableCell>{order.userName}</TableCell>

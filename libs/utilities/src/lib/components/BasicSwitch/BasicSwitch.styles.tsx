@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { styled } from "@mui/system";
 
 interface BasicSwitchProps {
   color: string;
@@ -9,12 +9,12 @@ interface BasicSwitchProps {
 }
 
 const grey = {
-  400: 'rgba(0, 0, 0, 0.16)',
-  500: '#AAB4BE',
-  600: 'rgba(0, 0, 0, 0.16)',
+  400: "rgba(0, 0, 0, 0.16)",
+  500: "#AAB4BE",
+  600: "rgba(0, 0, 0, 0.16)",
 };
 
-export const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
+export const BasicSwitchRoot = styled("span")<BasicSwitchProps>(
   ({ theme, color, bgcolor }) => `
     font-size: 0;
     position: relative;
@@ -22,9 +22,7 @@ export const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
     width: 40px;
     height: 20px;
     margin: 10px;
-    background:  ${
-      bgcolor ? bgcolor : theme.palette.mode === 'dark' ? grey[600] : grey[400]
-    };
+    background:  ${bgcolor ? bgcolor : theme.palette.mode === "dark" ? grey[600] : grey[400]};
     border-radius: 10px;
     cursor: pointer;
   
@@ -36,10 +34,10 @@ export const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
     &.Switch-checked {
       background: ${color}
     }
-    `
+    `,
 );
 
-export const BasicSwitchInput = styled('input')`
+export const BasicSwitchInput = styled("input")`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -51,7 +49,7 @@ export const BasicSwitchInput = styled('input')`
   margin: 0;
 `;
 
-export const BasicSwitchThumb = styled('span')`
+export const BasicSwitchThumb = styled("span")`
   display: block;
   width: 14px;
   height: 14px;

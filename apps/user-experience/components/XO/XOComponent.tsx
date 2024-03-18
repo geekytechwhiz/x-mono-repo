@@ -6,9 +6,5 @@ const XOComponents = dynamic(() => import("@platformx/x-prelems-library").then((
 });
 
 export const XOComponent = () => {
-  return (
-    <React.Fragment>
-      <XOComponents />
-    </React.Fragment>
-  );
+  return <XOComponents />;
 };

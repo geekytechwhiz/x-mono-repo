@@ -1,8 +1,9 @@
+import React, { memo } from "react";
 import getConfig from "next/config";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import React from "react";
 import { getDomainUrl, navigateTo } from "../../utils/helperFunctions";
+import { SkeletonLoader } from "../SkeletonLoader/SkeletonLoader";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
@@ -37,6 +38,7 @@ const HeaderLayout = (props: any) => {
     () => import("@platformx/x-prelems-library").then((mod) => mod.Header),
     {
       ssr: false,
+      loading: () => <SkeletonLoader />,
     },
   );
 
@@ -75,4 +77,4 @@ const HeaderLayout = (props: any) => {
     </>
   );
 };
-export default React.memo(HeaderLayout);
+export default memo(HeaderLayout);

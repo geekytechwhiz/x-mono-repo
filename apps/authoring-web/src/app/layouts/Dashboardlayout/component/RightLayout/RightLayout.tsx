@@ -1,32 +1,33 @@
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
+
 const DrawerWidth = 250;
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
   isSideBar?: boolean;
 }>(({ theme, open, isSideBar }) => ({
-  transition: theme.transitions.create('margin', {
+  transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(!open && {
     ...(isSideBar
       ? {
-          [theme.breakpoints.up('sm')]: {
-            marginLeft: '65px',
-            width: 'calc(100% - 65px)',
+          [theme.breakpoints.up("sm")]: {
+            marginLeft: "65px",
+            width: "calc(100% - 65px)",
           },
         }
       : {
-          [theme.breakpoints.up('sm')]: {
-            marginLeft: '0',
-            width: '100%',
+          [theme.breakpoints.up("sm")]: {
+            marginLeft: "0",
+            width: "100%",
           },
         }),
   }),
   ...(open && {
     marginLeft: DrawerWidth,
     width: `calc(100% - ${DrawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),

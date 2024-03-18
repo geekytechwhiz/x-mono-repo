@@ -18,7 +18,7 @@ import {
   Loader,
   useUserSession,
   RadioControlLabel,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   PlateformXDialogSuccess,
 } from "@platformx/utilities";
 import { useEffect, useState } from "react";
@@ -80,7 +80,7 @@ export const CreateTags = () => {
       const { authoring_createOrUpdateSiteSettings = "" }: any = await createTag(payload);
       //setPublishUrl(authoring_createOrUpdateSiteSettings.name);
       setPublishUrl(authoring_createOrUpdateSiteSettings.message.split(" ")[0]);
-      ShowToastSuccessMessage(`${t("tag")} ${t("created_toast")}`);
+      ShowToastSuccess(`${t("tag")} ${t("created_toast")}`);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
