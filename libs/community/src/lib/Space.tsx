@@ -36,6 +36,7 @@ export default function Space() {
     start: 0,
     searchTerm: "",
   });
+  const didMount = useRef(false);
   const isSearch = useRef(false);
   const assignSpacestoStateLogic = async (searchTermsData: any) => {
     try {
@@ -57,7 +58,15 @@ export default function Space() {
     }
     isSearch.current = false;
   };
-
+  const reFetchSpaceListing = () => {
+    isSearch.current = true;
+    setSearchTerms((prevState) => {
+      return {
+        ...prevState,
+        start: 0,
+      };
+    });
+  };
   const deleteSpaceHandler = async (id: string, title: string) => {
     try {
       const response = await deleteSpace({
@@ -66,13 +75,7 @@ export default function Space() {
         },
       });
       if (response) {
-        isSearch.current = true;
-        setSearchTerms((prevState) => {
-          return {
-            ...prevState,
-            start: 0,
-          };
-        });
+        reFetchSpaceListing();
         ShowToastSuccessMessage(`${title} ${t("deleted_toast")}`);
       }
     } catch (error: any) {
@@ -88,13 +91,7 @@ export default function Space() {
         },
       });
       if (response) {
-        isSearch.current = true;
-        setSearchTerms((prevState) => {
-          return {
-            ...prevState,
-            start: 0,
-          };
-        });
+        reFetchSpaceListing();
         ShowToastSuccessMessage(t("left_toast"));
       }
     } catch (error: any) {
@@ -110,13 +107,7 @@ export default function Space() {
         },
       });
       if (response) {
-        isSearch.current = true;
-        setSearchTerms((prevState) => {
-          return {
-            ...prevState,
-            start: 0,
-          };
-        });
+        reFetchSpaceListing();
         ShowToastSuccessMessage(t("join_toast"));
       }
     } catch (error: any) {
@@ -140,13 +131,7 @@ export default function Space() {
         },
       });
       if (response) {
-        isSearch.current = true;
-        setSearchTerms((prevState) => {
-          return {
-            ...prevState,
-            start: 0,
-          };
-        });
+        reFetchSpaceListing();
         setIsInvited(true);
       }
     } catch (error: any) {
@@ -180,8 +165,12 @@ export default function Space() {
     const runAsyncFunction = async () => {
       await assignSpacestoStateLogic(searchTerms);
     };
-    runAsyncFunction();
-  }, [searchTerms.searchTerm, searchTerms.start]);
+    if (didMount.current) {
+      runAsyncFunction();
+    } else {
+      didMount.current = true;
+    }
+  }, [searchTerms]);
 
   return (
     <Box className={`${classes.container} main-container`}>

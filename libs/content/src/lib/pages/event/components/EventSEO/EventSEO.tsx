@@ -50,7 +50,7 @@ const EventSEO = ({
         eventInstance?.postalCode !== state?.postalCode ||
         eventInstance?.regionState !== state?.regionState ||
         eventInstance?.country !== state?.country ||
-        eventInstance?.imageUrl !== state?.imageUrl
+        eventInstance?.original_image?.Thumbnail !== state?.original_image?.Thumbnail
           ? updateStructureData(state, eventInstance?.page_state)
           : state?.structure_data
           ? JSON.parse(state?.structure_data)
@@ -83,7 +83,7 @@ const EventSEO = ({
         eventInstance?.postalCode !== state?.postalCode ||
         eventInstance?.regionState !== state?.regionState ||
         eventInstance?.country !== state?.country ||
-        eventInstance?.imageUrl !== state?.imageUrl
+        eventInstance?.original_image?.Thumbnail !== state?.original_image?.Thumbnail
           ? updateStructureData(state, eventInstance?.page_state)
           : state?.structure_data
           ? JSON.parse(state?.structure_data)
