@@ -9,9 +9,9 @@ import { RootState } from "@platformx/authoring-state";
 import { memo, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import CreateNewPage from "../../pages/page/CreateNewPage";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
-import CreateNewPage from "../../pages/page/CreateNewPage";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -89,7 +89,9 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     if (contentType?.trim()?.toLowerCase() === "sitepage") {
       setOpenCreatePage(true);
     } else {
-      navigate(`/content/create`, { state: contentType?.trim()?.toLowerCase() });
+      navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+        state: contentType?.trim()?.toLowerCase(),
+      });
     }
   };
 
