@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
@@ -16,7 +17,7 @@ import i18next from "i18next";
 import { DamContentGallery } from "@platformx/x-image-render";
 // import DescriptionContentCard from "../DescriptionContentCard";
 import { createChatGptRequest } from "@platformx/authoring-apis";
-import { ContentGallery } from "@platformx/site-page";
+// import { ContentGallery } from "@platformx/site-page";
 import ReactDomServer from "react-dom/server";
 import DescriptionContentCard from "../DescriptionContentCard";
 import MediaTray from "../MediaTray/MediaTray";
@@ -490,11 +491,12 @@ function Description({
           />
         )}
         <Dialog fullScreen open={contentGalleryState}>
-          <ContentGallery
+          <h3>Commented due to circular dependency</h3>
+          {/* <ContentGallery
             handleSelectedContent={handleSelectedContent}
             onToggleContentGallery={onToggleContentGallery}
             contentType={contentType.current}
-          />
+          /> */}
         </Dialog>
       </Box>
       <Box
