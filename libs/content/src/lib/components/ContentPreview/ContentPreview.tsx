@@ -36,6 +36,7 @@ const ContentPreview = () => {
   const { t } = useTranslation();
   const iframeRef = React.useRef<any>();
   const [deviceType, setDeviceType] = useState("desktop");
+  const [initialContent, setInitialContent] = useState("");
   // const { state, dispatch } = useContext(Store);
   // const { content } = state;
   const { currentContent } = useSelector((state: RootState) => state.content);
@@ -88,24 +89,16 @@ const ContentPreview = () => {
     contentType: "",
   });
 
-  //   const mappingDynamicInstance = {};
-  // Object.keys(Mapping).map((item) => {
-  //   mappingDynamicInstance[item] = React.lazy(() =>
-  //     import(`@platformx/x-prelems-library`).then((module) => ({
-  //       default: module[Mapping[item]],
-  //     })),
-  //   );
-  //   return mappingDynamicInstance;
-  // });
-  const initialContent = `<!DOCTYPE html><html><head>
-  <script>
-  ${document?.head?.innerHTML}
-  </script>
-  <style>
-    body {
-      overflow-x: hidden;
-    }
-  </style></head><body><div class="frame-root"></div><div id="modal-root"></div></body></html>`;
+  useEffect(() => {
+    const headContent = document.head.innerHTML;
+    setInitialContent(`<!DOCTYPE html><html><head>
+      <script>${headContent}</script>
+      <style>
+        body {
+          overflow-x: hidden;
+        }
+      </style></head><body><div class="frame-root"></div><div id="modal-root"></div></body></html>`);
+  }, []);
 
   const handleReturn = () => {
     window.history.back();
