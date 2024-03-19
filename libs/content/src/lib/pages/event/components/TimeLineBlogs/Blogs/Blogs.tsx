@@ -8,26 +8,25 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { useEffect, useRef, useState } from "react";
-//uncomment after Content Gallery implementation
-// import ReactDomServer from "react-dom/server";
+import ReactDomServer from "react-dom/server";
 import {
   Loader,
   ThemeConstants,
   convertToLowerCase,
-  // formCroppedUrl,
-  // AUTH_INFO as authInfo,
+  formCroppedUrlInCrop,
+  AUTH_INFO as authInfo,
   TextBoxWithBorder as TextBoxWidthBorder,
   TextBoxWithoutBorder,
 } from "@platformx/utilities";
 import { DamContentGallery } from "@platformx/x-image-render";
-// import { defaultFallBackImage } from "../helperBlogs";
-// import ContentGallery from "../../ContentGallery/ContentGallery";
 import { blockQuotes } from "../blogCss";
 import BlogContentEdit from "./BlogContentEdit";
 import BlogContentTypeMobile from "./BlogContentType/BlogContentTypeMobile";
 import BlogContentTypeWeb from "./BlogContentType/BlogContentTypeWeb";
 import "./Blogs.css";
-// import ContentTypeCard from "./ContentTypeCard";
+import ContentTypeCard from "./ContentTypeCard";
+import { ContentGallery } from "@platformx/site-page";
+import { defaultFallBackImage } from "../Utils/helperBlogs";
 
 const bQuotes = blockQuotes();
 const useStyles = makeStyles({
@@ -132,10 +131,10 @@ const Blogs = ({
   const [contentGalleryState, setContentGalleryState] = useState<boolean>(false);
   const contentType = useRef<string[]>();
   const contentTypes: string[] = ["Quiz", "Poll", "Article", "Vod"];
-  // const secondaryArgs = {
-  //   gcpUrl: authInfo.gcpUri,
-  //   bucketName: authInfo.gcpBucketName,
-  // };
+  const secondaryArgs = {
+    gcpUrl: authInfo.gcpUri,
+    bucketName: authInfo.gcpBucketName,
+  };
 
   const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
@@ -173,32 +172,32 @@ const Blogs = ({
     setIsCode(!isCode);
   };
 
-  // const handleSelectedContent = (item) => {
-  //   const newObj = {
-  //     ...item,
-  //     Thumbnail: {
-  //       ...item?.Thumbnail,
-  //       Url: item?.Thumbnail?.Url
-  //         ? formCroppedUrl(item?.Thumbnail?.Url, item?.Thumbnail?.ext)
-  //         : defaultFallBackImage(),
-  //     },
-  //   };
+  const handleSelectedContent = (item) => {
+    const newObj = {
+      ...item,
+      Thumbnail: {
+        ...item?.Thumbnail,
+        Url: item?.Thumbnail?.Url
+          ? formCroppedUrlInCrop(item?.Thumbnail?.Url, item?.Thumbnail?.ext)
+          : defaultFallBackImage(),
+      },
+    };
 
-  //   const contentAdded = ReactDomServer.renderToString(
-  //     <Box className='contentTypeBox'>
-  //       <ContentTypeCard content={newObj} secondaryArgs={secondaryArgs}></ContentTypeCard>
-  //     </Box>,
-  //   );
-  //   setContentGalleryState(!contentGalleryState);
-  //   handleContentType({
-  //     contentItem: newObj,
-  //     contentHtml: contentAdded,
-  //   });
-  // };
+    const contentAdded = ReactDomServer.renderToString(
+      <Box className='contentTypeBox'>
+        <ContentTypeCard content={newObj} secondaryArgs={secondaryArgs}></ContentTypeCard>
+      </Box>,
+    );
+    setContentGalleryState(!contentGalleryState);
+    handleContentType({
+      contentItem: newObj,
+      contentHtml: contentAdded,
+    });
+  };
 
-  // const onToggleContentGallery = () => {
-  //   setContentGalleryState(!contentGalleryState);
-  // };
+  const onToggleContentGallery = () => {
+    setContentGalleryState(!contentGalleryState);
+  };
 
   const handlePlaceholder = (e) => {
     const ele = document.getElementById("desc");
@@ -261,11 +260,11 @@ const Blogs = ({
 
         {/* content dialog */}
         <Dialog fullScreen open={contentGalleryState}>
-          {/* <ContentGallery
+          <ContentGallery
             handleSelectedContent={handleSelectedContent}
             onToggleContentGallery={onToggleContentGallery}
             contentType={contentType.current}
-          /> */}
+          />
         </Dialog>
 
         {/* content type attachment mobile view */}
