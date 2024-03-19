@@ -2,17 +2,13 @@
 import { useMutation } from "@apollo/client";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Box } from "@mui/material";
-import { useFormik } from "formik";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import * as yup from "yup";
 import {
   UserManagementQueries,
-  userManagementAPI,
   snowplowTrackingHook,
+  userManagementAPI,
 } from "@platformx/authoring-apis";
 import {
+  Loader,
   PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
@@ -20,8 +16,13 @@ import {
   USERNAME_EMAIL_EXIST,
   getSelectedSite,
   getSubDomain,
-  Loader,
 } from "@platformx/utilities";
+import { DamContentGallery } from "@platformx/x-image-render";
+import { useFormik } from "formik";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import * as yup from "yup";
 import {
   BEFORE_UNLOAD,
   DRAFT,
@@ -47,9 +48,9 @@ const CreateUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [createUserDisable, setCreateUserDisable] = useState(true);
   const [isEdited, setIsEdited] = useState<boolean>(false);
-  const [, setGalleryState] = useState<boolean>(false);
+  const [galleryState, setGalleryState] = useState<boolean>(false);
   const galleryType = useRef<string>(IMAGES);
-  const [, setKey] = useState("");
+  const [key, setKey] = useState("");
   const unsavedChanges = useRef<boolean>(false);
   const [roleSelected, setRoleSelected] = useState("");
   const [prevRoles, setPrevRoles] = useState([]);
@@ -387,14 +388,31 @@ const CreateUser = () => {
       }
     }
   };
-
+  const setImageToDefault = () => {
+    setUserDetails({
+      ...userDetails,
+      ["image"]: userDetails?.image,
+    });
+  };
+  const toggleGallery = (toggleState, type) => {
+    setGalleryState(toggleState);
+    if (type === "cancel") {
+      setImageToDefault();
+    }
+  };
   const showGallery = (gType: any, keyName: any) => {
     window.scrollTo(0, 0);
     galleryType.current = gType;
     setGalleryState(true);
     setKey(keyName);
   };
-
+  const handleSelectedImage = (image, keyName) => {
+    setUserDetails({
+      ...userDetails,
+      [keyName]: image?.Thumbnail,
+    });
+    unsavedChanges.current = true;
+  };
   const handleConfirm = () => {
     setShowExitWarning(false);
     unsavedChanges.current = false;
@@ -559,7 +577,17 @@ const CreateUser = () => {
         <Box
           sx={{
             backgroundColor: ThemeConstants.WHITE_COLOR,
-          }}></Box>
+          }}>
+          {galleryState && (
+            <DamContentGallery
+              dialogOpen={galleryState}
+              handleImageSelected={handleSelectedImage}
+              toggleGallery={toggleGallery}
+              assetType={"Image"}
+              keyName={key}
+            />
+          )}
+        </Box>
         <TopBar
           returnBack={returnBack}
           createUserDisable={createUserDisable}

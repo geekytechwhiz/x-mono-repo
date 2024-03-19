@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+  NEXT_GA_ID: G-20NJFNM3FK
+  NEXT_GTM_ID: GTM-TLTP6NV
+  NEXT_PUBLISH_APP_URL: https://dev.hcl-x.com/
+  NEXT_PUBLISH_API_URL: https://dev.delivery.hcl-x.com/platform-x/
+  NEXT_PUBLISH_API_URL_GENERIC: https://dev.api.hcl-x.com/platform-x/
+  NEXT_API_URL: https://dev.users.hcl-x.com/platform-x/
+  NEXT_BLOGS_API: https://dev.blogging.hcl-x.com/platform-x/blogging/fetch
+  NEXT_GOOGLE_SEARCH_VERIFICATION: GA-12345
+  NEXT_CLIENT_ID: nextpublish
+  NEXT_GRANT_TYPE: authorization_code
+  NEXT_REALM: platform-x-publish
+  NEXT_LOGOUT: https://dev.api.hcl-x.com/platform-x/auth/publish/logout
+  NEXT_AUTH: https://dev.idp.hcl-x.com/auth/realms/platform-x-publish/protocol/openid-connect/auth?client_id=nextpublish&response_type=code&redirect_uri=
+  NEXT_SESSION_VERIFY: https://dev.api-publish.hcl-x.com/platform-x-publish/auth/verify-session
+  NEXT_SESSION: https://dev.api-publish.hcl-x.com/platform-x-publish/auth/session
+  NEXT_ELASTIC_APM_SERVER_URL: "https://platx-apm-server.hcl-x.com"
+  NEXT_ELASTIC_APM_ENVIRONMENT: develop
+  NEXT_ELASTIC_APM_TRACING: "false"
+  NEXT_GEOLOCATION_API_URL: https://api.ipgeolocation.io/ipgeo/
+  NEXT_GEOLOCATION_API_KEY: 892b590647004e7fa3e910456ec34e8c
+  NEXT_GCP_URL: https://storage.googleapis.com
+  NEXT_BUCKET_NAME: cropped_image_public
+  NEXT_SNOWPLOW_APP_ID: X
+  NEXT_SNOWPLOW_COLLECTOR_URL: collector.hcl-x.com
+  NEXT_CLUSTER_API_URL: https://dev.delivery.hcl-x.com/platform-x/
+  NEXT_USER_SERVICE_APP_URL: https://dev.users.hcl-x.com/platform-x/user-service/
+  NEXT_SITE_HOST: monorepo.hcl-x.com
+  NEXT_RPI_PUBLISH_ID: 23f56cd2-4673-4841-810f-e92535e623e7
+  NEXT_RPI_CLIENT_ID: aa07a6db-0e70-4aca-93cc-45056347ed04
+  NEXT_RPI_AUTH_KEY: 2697e37d-282f-412a-8ffe-eabd5dd01a2e
+  NEXT_RPI_VIEW_NAME: ViewA
+  NEXT_LOYALTY_PORTAL_END_POINT: https://loyalty.portal.hcl-x.com/
+  NEXT_LOYALTY_END_POINT: https://loyalty.backend.hcl-x.com/
+  NEXT_DELIVERY_ENGINE: https://dev.delivery.hcl-x.com/platform-x/delivery-engine
+kind: ConfigMap
+metadata:
+  name: hep-user-experience-ui-config
+  namespace: dev-v2

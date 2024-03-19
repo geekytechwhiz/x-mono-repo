@@ -1,5 +1,5 @@
-import { withStyles } from "@mui/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { withStyles } from "@mui/styles";
 
 import {
   Autocomplete,
@@ -18,7 +18,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { countries } from "@platformx/authoring-apis";
 import {
-  AddImage,
   BasicSwitch,
   CommonBoxWithNumber,
   TextBox,
@@ -26,6 +25,7 @@ import {
   TitleSubTitle,
   getUniqueTimeZone,
 } from "@platformx/utilities";
+import { AddImage } from "@platformx/x-image-render";
 import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import { Constants } from "./Constants";
 import { useCustomStyle } from "./RolePermissions.style";

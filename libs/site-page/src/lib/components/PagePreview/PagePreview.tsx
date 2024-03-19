@@ -10,15 +10,15 @@ import {
   ThemeConstants,
   getSubDomain,
 } from "@platformx/utilities";
-import React, { createRef, useRef, useState } from "react";
+import { Mapping } from "@platformx/x-prelems-library";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import Frame from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Mapping } from "@platformx/x-prelems-library";
+import PrelemTheme from "../../theme/prelemTheme";
 import { PrelemInstance } from "../utils/prelemTypes";
 import { useStyles } from "./PagePreview.styles";
-import PrelemTheme from "../../theme/prelemTheme";
 
 const mappingDynamicInstance = {};
 Object.keys(Mapping).map((item) => {
@@ -33,10 +33,9 @@ Object.keys(Mapping).map((item) => {
 export const PagePreview = () => {
   const classes = useStyles();
   const { t, i18n } = useTranslation();
-  const { device } = useParams();
-  const [deviceType, setDeviceType] = useState(device);
-  const [height, setHeight] = useState(300);
-  const [, setWidth] = useState(0);
+  const { device = "" } = useParams();
+  const [deviceType, setDeviceType] = useState<string>("");
+  // const [height, setHeight] = useState(400);
   const iframeRef = React.useRef<any>();
   const { page } = useSelector((state: RootState) => state);
   const myRefs = useRef([]);
@@ -51,8 +50,7 @@ export const PagePreview = () => {
   );
   const handleResize = (iframe: any) => {
     if (iframe?.current?.contentDocument?.body?.scrollHeight > 100) {
-      setHeight(window.parent.innerHeight - 48);
-      setWidth(window.parent.innerWidth);
+      // setHeight(window?.parent?.innerHeight - 48);
     }
   };
   const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
@@ -68,6 +66,12 @@ export const PagePreview = () => {
       overflow-x: hidden;
     }
     </style></head><body><div></div></body></html>`;
+
+  useEffect(() => {
+    if (device !== "") {
+      setDeviceType(device);
+    }
+  }, [device]);
 
   return (
     <>
@@ -130,7 +134,7 @@ export const PagePreview = () => {
           {page && page?.prelemMetaArray && page?.prelemMetaArray.length && (
             <Frame
               width={deviceType === "window" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
-              height={height}
+              height={window?.parent?.innerHeight}
               initialContent={initialContent}
               id='site-frame'
               ref={iframeRef}
