@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
@@ -8,7 +9,7 @@ import {
   useComment,
   useWorkflow,
 } from "@platformx/authoring-apis";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
@@ -25,7 +26,7 @@ import {
 import { WorkflowHistory } from "@platformx/workflow-management";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Analytics from "../../components/Analytics/Analytics";
 import ContentPageScroll from "../../components/ContentPageScroll";
@@ -55,6 +56,8 @@ export const CreateQuiz = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t } = useTranslation();
   const params = useParams();
+  const dispatch = useDispatch();
+
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
   const { currentQuiz } = useSelector((state: RootState) => state.quiz);
@@ -838,20 +841,20 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
   };
   const handelPreview = () => {
-    // const backgroundContent = {
-    //   objectType: "image",
-    //   Url: quizState?.imagevideoURL,
-    //   Title: "",
-    //   Thumbnail: quizState?.imagevideoURL,
-    //   Color: "",
-    // };
-    // const tempObj = {
-    //   ...quizState,
-    //   background_content: backgroundContent,
-    //   contentType: "Quiz",
-    // };
-    // dispatch(previewContent(tempObj));
-    navigate("/content-preview");
+    const backgroundContent = {
+      objectType: "image",
+      Url: quizState?.imagevideoURL,
+      Title: "",
+      Thumbnail: quizState?.imagevideoURL,
+      Color: "",
+    };
+    const tempObj = {
+      ...quizState,
+      background_content: backgroundContent,
+      contentType: "Quiz",
+    };
+    dispatch(previewContent(tempObj));
+    navigate("/content/preview");
   };
 
   useEffect(() => {
