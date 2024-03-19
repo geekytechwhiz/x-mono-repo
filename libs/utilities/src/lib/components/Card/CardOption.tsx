@@ -38,9 +38,10 @@ const CardOption = (props: any) => {
                 disableRipple
                 onClick={handleEdit}
                 disabled={
-                  (false &&
-                    !canAccessAction(getContentCategory(), getContentSubCategory(), "Update")) ||
-                  tagName === "courses"
+                  tagName === "tagscategories"
+                    ? false
+                    : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+                      tagName === "courses"
                 }>
                 <IconButton className='hoverIcon'>
                   {/* <img src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
@@ -49,9 +50,10 @@ const CardOption = (props: any) => {
               </MenuItem>
             }
             doAccess={
-              !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
-              tagName === "courses" ||
               tagName === "tagscategories"
+                ? false
+                : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
+                  tagName === "courses"
             }
           />
         ) : null}
@@ -64,8 +66,10 @@ const CardOption = (props: any) => {
               disableRipple
               onClick={handleDeleteButton}
               disabled={
-                !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
-                tagName === "courses"
+                tagName === "tagscategories"
+                  ? false
+                  : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
+                    tagName === "courses"
               }>
               <IconButton className='hoverIcon'>
                 {/* <img src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
@@ -74,8 +78,10 @@ const CardOption = (props: any) => {
             </MenuItem>
           }
           doAccess={
-            !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
-            tagName === "courses"
+            tagName === "tagscategories"
+              ? false
+              : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
+                tagName === "courses"
           }
         />
         {/* <IconButton
