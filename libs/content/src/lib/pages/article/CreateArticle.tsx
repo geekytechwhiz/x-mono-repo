@@ -600,7 +600,7 @@ export const CreateArticle = () => {
 
     dispatch(previewContent(articlePreview));
 
-    navigate("/article-preview");
+    navigate("/content/preview");
   };
   const updateStructureDataArticle = () => {
     const contentData = articleInstance?.CommonFields || {};
