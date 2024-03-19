@@ -160,7 +160,6 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     height: "107px",
     display: "flex",
     justifyContent: "center",
-    marginTop: "40px",
     alignItems: "center",
     marginLeft: "35px",
   },
@@ -254,6 +253,10 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginLeft: "47px",
   },
   step2containerbox2: {
+    [theme.breakpoints.down("md")]: {
+      width: "556px",
+      paddingRight: "10px",
+    },
     width: "610px",
     height: "135px",
     border: "1px solid #D9DBE9",
@@ -301,6 +304,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginTop: "34px",
   },
   btnbox: {
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "20px",
+    },
     display: "flex",
     justifyContent: "space-between",
     marginTop: "30px",
@@ -355,7 +361,7 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   },
   typospace: {
     display: "inline-flex",
-    sgap: "33px",
+    gap: "33px",
   },
   maininnercontain: {
     width: "540px",
@@ -415,5 +421,10 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     width: "512px",
     height: "1px",
     marginTop: "20px",
+  },
+  step5imgtag: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "5px",
   },
 }));

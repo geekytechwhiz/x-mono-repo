@@ -79,7 +79,11 @@ export default function PlateformXCreatestep5Dialog({
                         endAdornment: (
                           <InputAdornment position='end'>
                             <Button
-                              sx={{ backgroundColor: "#4B9EF9", color: "#FFF " }}
+                              sx={{
+                                backgroundColor: "#4B9EF9",
+                                color: "#FFF ",
+                                marginRight: "-10px",
+                              }}
                               variant='contained'>
                               Add
                             </Button>
@@ -123,7 +127,7 @@ export default function PlateformXCreatestep5Dialog({
               </Grid>
               <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
                 <Box className={classes.createcontainnew}></Box>
-                <Box sx={{ display: "flex", justifyContent: "center", marginTop: "5px" }}>
+                <Box className={classes.step5imgtag}>
                   <img src={Step5img} alt='icon' />
                 </Box>
               </Grid>

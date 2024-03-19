@@ -98,7 +98,7 @@ export default function PlateformXCreatestep2Dialog({
                     <Grid container spacing={2}>
                       {/* Mapping over mock data to display images */}
                       {mockData.map((image) => (
-                        <Grid item xs={12} sm={4} md={3} lg={6} key={image.id}>
+                        <Grid item xs={12} sm={12} md={3} lg={6} key={image.id}>
                           <Box
                             className={`${classes.themebox} ${
                               selectedImage === image.url && classes.selected
