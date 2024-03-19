@@ -1,6 +1,5 @@
 import getConfig from "next/config";
 import Head from "next/head";
-import Link from "next/link";
 import Script from "next/script";
 import {
   convertLowerCase,
@@ -69,7 +68,7 @@ export const PageHead = (props: PageHeadProps) => {
       {seoEnabled ? (
         <Head>
           {/* Add the favicon link tag */}
-          <Link rel='icon' type='image/x-icon' href={faviconUrl} />
+          <link rel='icon' type='image/x-icon' href={faviconUrl} />
           <title>{siteTitle}</title>
           <meta charSet='UTF-8' />
           <meta
@@ -85,7 +84,7 @@ export const PageHead = (props: PageHeadProps) => {
 
           {noIndex && <meta name='robots' content='noindex' />}
 
-          {cUrl && <Link rel='canonical' href={cUrl} />}
+          {cUrl && <link rel='canonical' href={cUrl} />}
 
           {/* Facebook Meta Tags  */}
           <meta property='og:site_name' content={siteName} />
@@ -132,7 +131,7 @@ export const PageHead = (props: PageHeadProps) => {
       ) : (
         <Head>
           {/* Add the favicon link tag */}
-          <Link rel='icon' type='image/x-icon' href={favIcon || "%PUBLIC_URL%/favicon.ico"} />
+          <link rel='icon' type='image/x-icon' href={favIcon || "%PUBLIC_URL%/favicon.ico"} />
           <meta charSet='UTF-8' />
           <title>{siteTitle}</title>
           <meta

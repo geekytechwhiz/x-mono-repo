@@ -2,9 +2,8 @@ import CachedIcon from "@mui/icons-material/Cached";
 import { Box, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import ArrowUpwardIcon from "../../assets/svg/UploadThumbnail.svg";
-import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
-// import CommonImageRender from '../Gallery/CommonImageRender';
+import XImageRender from "./x-image-render";
+import { ThemeConstants, ArrowUpwardIcon } from "@platformx/utilities";
 
 interface ImageProps {
   url?: any;
@@ -53,44 +52,17 @@ const AddImage = ({
           }}
           mb={2}>
           {isShowCrop ? (
-            // <CommonImageRender
-            //   content={content}
-            //   imgOrder={{
-            //     1440: 'hero',
-            //     1280: 'landscape',
-            //     1024: 'card2',
-            //     768: 'square',
-            //     600: 'card2',
-            //     320: 'card2',
-            //   }}
-            //   updateField={updateField}
-            //   originalImage={originalImage}
-            //   publishedImages={publishedImages}
-            //   operationType={operationType}
-            // />
-            // <XImageRender
-            //   callBack={updateField}
-            //   editData={{
-            //     original_image: originalImage,
-            //     published_images: publishedImages,
-            //   }}
-            //   isCrop={true}
-            // />
-
-            <img
-              alt='image'
-              style={{
-                width: "100%",
-                height: "206px",
-                objectFit: "cover",
-                display: "flex",
-                borderRadius: "15px",
+            <XImageRender
+              callBack={updateField}
+              editData={{
+                original_image: originalImage,
+                published_images: publishedImages,
               }}
-              src={url}
+              isCrop={true}
             />
           ) : (
             <img
-              alt='image'
+              alt='selected'
               style={{
                 width: "100%",
                 height: "206px",

@@ -1,7 +1,7 @@
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { Box, CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { unstable_ClassNameGenerator } from "@mui/material/utils";
+import { unstable_ClassNameGenerator } from "@mui/material/className";
 import getConfig from "next/config";
 import { Router, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";

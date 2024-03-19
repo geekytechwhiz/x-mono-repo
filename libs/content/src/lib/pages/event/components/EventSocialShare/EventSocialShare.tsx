@@ -1,7 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { Category, ContentAction, ContentType, relativeImageURL } from "@platformx/content";
 import {
-  AddImage,
   AutoCompleteText,
   AutoTextArea,
   CommonBoxWithNumber,
@@ -10,6 +9,8 @@ import {
   TitleSubTitle,
   useAccess,
 } from "@platformx/utilities";
+import { AddImage } from "@platformx/x-image-render";
+
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 // import "../../../../components/Common/commonStyles/disabledStyles.css";

@@ -384,7 +384,8 @@ const CreateEvent = () => {
       short_title: shortTitle,
       description,
       short_description: shortDescription,
-      imageUrl,
+      original_image,
+      published_images,
       tags,
       address,
       postalCode,
@@ -399,7 +400,7 @@ const CreateEvent = () => {
       ShowToastError(`${t("description")} ${t("is_required")}`);
     } else if (shortDescription === "") {
       ShowToastError(`${t("short_description")} ${t("is_required")}`);
-    } else if (imageUrl === "") {
+    } else if (Object.keys(original_image).length === 0 && published_images.length === 0) {
       ShowToastError(`${t("banner_image")} ${t("is_required")}`);
     } else if (address === "") {
       ShowToastError(`${t("event_address")} ${t("is_required")}`);

@@ -413,7 +413,7 @@ export const updateStructureData = (eventState, pageState = "DRAFT") => {
           },
         ],
       }),
-    image: [eventState?.imageUrl],
+    image: [eventState?.original_image?.Thumbnail],
     description: eventState?.short_description,
   };
   return EventStructureData;
