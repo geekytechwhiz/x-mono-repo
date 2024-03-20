@@ -4,7 +4,7 @@ metadata:
   labels:
     app: platformx-userexp-nx
   name: platformx-userexp-nx
-  namespace: dev-v2
+  namespace: qa-v2
 spec:
   replicas: 2
   selector:
