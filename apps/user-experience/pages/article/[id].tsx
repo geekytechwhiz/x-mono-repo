@@ -1,56 +1,61 @@
-import { GetServerSidePropsContext } from "next";
 import { Box } from "@mui/material";
-import getConfig from "next/config";
-import { useInView } from "react-intersection-observer";
 import PageHead from "../../components/pageHead";
-import ArticleComponent from "../../components/Article/ArticleComponent";
+import { useInView } from "react-intersection-observer";
+import ErrorBoundary from "../../components/Common/ErrorBoundary";
 import HeaderFooterLayout from "../../components/HeaderFooterLayout/HeaderFooterLayout";
 import { prelemBaseEndpointObj, snowplowSchemaUrl } from "../../utils/helperFunctions";
+import getConfig from "next/config";
+import { GetServerSidePropsContext } from "next";
 import { getInitialData } from "../../utils/helperInitialData";
 import { CONTENT_TYPES, SNOWPLOW } from "../../constants/CommonConstants";
 import { usePageImpression } from "../../components/Common/customHook/PageImpressionHook";
+import ArticleComponent from "apps/user-experience/components/Article/ArticleComponent";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { query = {}, locale = "en", req, res } = context;
+  const { query = {}, locale = "", req, res } = context;
   const { id = "" } = query;
   const host = req.headers.host || "";
+  // const host = "https://du.hcl-x.com/"; //NOSONAR
   res.setHeader("site_host", host);
   res.setHeader("Cache-Control", "public, max-age=604800, stale-while-revalidate=604800");
-  // try {
-  const [menuData, footerSettingData, contentResponse] = await getInitialData(
-    CONTENT_TYPES.ARTICLE,
-    id,
-    locale || "en",
-    host,
-  );
-  if (!contentResponse?.fetchArticleContent) {
+  try {
+    const [menuData, footerSettingData, contentResponse] = await getInitialData(
+      CONTENT_TYPES.ARTICLE,
+      id,
+      locale || "en",
+      host,
+    );
+
     return {
-      notFound: true,
+      props: {
+        route: { ...query, locale: locale, query: id, host },
+        pageData: contentResponse?.fetchArticleContent || {},
+        type: "",
+        MenuData: menuData,
+        footerSettingData: footerSettingData,
+        site_host: host,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        type: "",
+        MenuData: [],
+        footerSettingData: {},
+        route: {},
+        pageData: {},
+        site_host: host,
+      },
     };
   }
-  return {
-    props: {
-      route: { ...query, locale: locale, query: id, host },
-      pageData: contentResponse?.fetchArticleContent || {},
-      type: "",
-      MenuData: menuData,
-      footerSettingData: footerSettingData,
-      site_host: host,
-    },
-  };
 }
 
 const Article = (props: any) => {
   const { pageProps = {}, authState = {}, instances = {} } = props;
-  const {
-    pageData = null,
-    route = {},
-    MenuData = [],
-    footerSettingData = {},
-    site_host,
-  } = pageProps;
+  const { pageData = {}, route = {}, MenuData = [], footerSettingData = {}, site_host } = pageProps;
+
   const { ref, inView } = useInView({
     /* Optional options */
     threshold: 0,
@@ -66,40 +71,40 @@ const Article = (props: any) => {
 
   return (
     <Box ref={ref}>
-      {pageData ? (
-        <>
-          <PageHead
-            pageData={{
-              ...pageData,
-              settings: {
-                ...pageData.settings,
-                socialog_title: pageData.title,
-              },
+      <ErrorBoundary>
+        {/* page head */}
+        <PageHead
+          pageData={{
+            ...pageData,
+            settings: {
+              ...pageData.settings,
+              socialog_title: pageData.title,
+            },
+          }}
+          favIcon={footerSettingData?.fav_icon}
+        />
+
+        <HeaderFooterLayout
+          route={route}
+          userData={{}}
+          isEcomPage={false}
+          MenuData={MenuData}
+          authState={authState}
+          isProductUpdateCount={0} //ecom purpose
+          isCartIconEnable={true}
+          footerSettingData={footerSettingData}
+          prelemBaseEndpoint={prelemBaseEndpoint}>
+          <ArticleComponent
+            pageData={pageData}
+            secondaryArgs={{
+              prelemBaseEndpoint,
+              ...snowplowSchemaUrl(),
+              gcpUrl: publicRuntimeConfig.NEXT_GCP_URL,
+              bucketName: publicRuntimeConfig.NEXT_BUCKET_NAME,
             }}
-            favIcon={footerSettingData?.fav_icon}
           />
-          <HeaderFooterLayout
-            route={route}
-            userData={{}}
-            isEcomPage={false}
-            MenuData={MenuData}
-            authState={authState}
-            isProductUpdateCount={0} //ecom purpose
-            isCartIconEnable={true}
-            footerSettingData={footerSettingData}
-            prelemBaseEndpoint={prelemBaseEndpoint}>
-            <ArticleComponent
-              pageData={pageData}
-              secondaryArgs={{
-                prelemBaseEndpoint,
-                ...snowplowSchemaUrl(),
-                gcpUrl: publicRuntimeConfig.NEXT_GCP_URL,
-                bucketName: publicRuntimeConfig.NEXT_BUCKET_NAME,
-              }}
-            />
-          </HeaderFooterLayout>
-        </>
-      ) : null}
+        </HeaderFooterLayout>
+      </ErrorBoundary>
     </Box>
   );
 };
