@@ -24,7 +24,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { CATEGORY_CONTENT, DRAFT, PUBLISHED } from "../../utils/Constants";
-import { onBackButtonEvent, unloadCallback } from "../../utils/Helper";
 import { useStyles } from "./CreateArticle.styles";
 import {
   ArticleInitialState,
@@ -674,22 +673,22 @@ export const CreateArticle = () => {
     }
   };
 
-  useEffect(() => {
-    if (unsavedChanges.current === true) {
-      // eslint-disable-next-line no-restricted-globals
-      window.history.pushState(null, "", window.location.pathname + location?.search);
-      window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    }
-    return () => {
-      window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    };
-  }, [unsavedChanges.current, articleInstance]);
+  // useEffect(() => {
+  //   if (unsavedChanges.current === true) {
+  //     // eslint-disable-next-line no-restricted-globals
+  //     window.history.pushState(null, "", window.location.pathname + location?.search);
+  //     window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.addEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   }
+  //   return () => {
+  //     window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.removeEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   };
+  // }, [unsavedChanges.current, articleInstance]);
 
   return (
     <Box

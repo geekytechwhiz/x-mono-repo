@@ -11,6 +11,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { RootState } from "@platformx/authoring-state";
 import { AUTH_INFO, PrelemTheme, ThemeConstants } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
+// import Frame from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";

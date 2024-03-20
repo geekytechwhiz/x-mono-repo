@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
@@ -34,13 +35,7 @@ import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
 import { DRAFT, PUBLISHED, icons } from "../../utils/Constants";
-import {
-  getCurrentQuiz,
-  onBackButtonEvent,
-  quizResponseMapper,
-  unloadCallback,
-  updateStructureData,
-} from "../../utils/Helper";
+import { getCurrentQuiz, quizResponseMapper, updateStructureData } from "../../utils/Helper";
 import { QuizType } from "./Quiz.types";
 import ImageVideo from "./components/ImageVideo";
 import { TitleDescription } from "./components/TitleDescription";
@@ -857,21 +852,21 @@ export const CreateQuiz = () => {
     navigate("/content/preview");
   };
 
-  useEffect(() => {
-    if (unsavedChanges.current === true) {
-      window.history.pushState(null, "", window.location.pathname + window.location?.search);
-      window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
-      );
-    }
-    return () => {
-      window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
-      );
-    };
-  }, [unsavedChanges.current]);
+  // useEffect(() => {
+  //   if (unsavedChanges.current === true) {
+  //     window.history.pushState(null, "", window.location.pathname + window.location?.search);
+  //     window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.addEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+  //     );
+  //   }
+  //   return () => {
+  //     window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.removeEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+  //     );
+  //   };
+  // }, [unsavedChanges.current]);
 
   useEffect(() => {
     // dispatch(checkIfUnsavedChanges(unsavedChanges.current));

@@ -1,7 +1,13 @@
 import { Typography } from "@mui/material";
 import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
-import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
+import {
+  Content,
+  ContentPreview,
+  CreateArticle,
+  CreateContent,
+  TimeLineBlogs,
+} from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import {
@@ -199,7 +205,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create/*",
+    path: "/content/create/:contentType",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -387,7 +393,7 @@ export const routes: RouteConfig[] = [
         subCategory='article'
         isHeader={false}
         isSideBar={false}>
-        <CreateContent />
+        <CreateArticle />
       </ProtectedRoute>
     ),
   },

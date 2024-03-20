@@ -1,15 +1,14 @@
 import { CreateCourse } from "@platformx/course";
-import { useLocation } from "react-router";
+import { useParams } from "react-router-dom";
+import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 import { CreateQuiz } from "../pages/quiz/CreateQuiz";
 import { CreateVod } from "../pages/vod/createVOD/CreateVod";
 import { CreatePoll } from "./Polls/CreatePoll";
-import { DynamicContentType } from "../components/DynamicComponentBuilder/DynamicContentType";
 import { CreateArticle } from "./article/CreateArticle";
 import CreateEvent from "./event/CreateEvent";
 
 export const CreateContent = () => {
-  const location = useLocation();
-  const contentType = location.state;
+  const { contentType } = useParams();
 
   switch (contentType) {
     case "profile":
