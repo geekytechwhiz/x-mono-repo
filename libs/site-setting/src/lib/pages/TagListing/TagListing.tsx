@@ -71,8 +71,6 @@ export const TagListing = () => {
         animationState={refreshState}
         handleRefresh={() => {}}
       />
-      {/* {loading && <ContentListDesktopLoader />} */}
-      {tags.length === 0 && !loading && <NoSearchResult />}
       <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
         <InfiniteScroll
           dataLength={tags?.length}
