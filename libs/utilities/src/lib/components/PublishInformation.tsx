@@ -56,8 +56,13 @@ export const PublishInformation = (props: PublishInformationProps) => {
             }`
           }>
           <Typography sx={{ marginLeft: "10px" }}>
-            {(dataList.scheduledPublishTriggerDateTime !== undefined || null) &&
-              tagName === "sitepage" && <img src={stateIcons["schedulePublish"]} alt='' />}
+            {dataList.scheduledPublishTriggerDateTime !== undefined &&
+            dataList.scheduledPublishTriggerDateTime !== null &&
+            tagName === "sitepage" ? (
+              <img src={stateIcons["schedulePublish"]} alt='' />
+            ) : (
+              ""
+            )}
           </Typography>
         </Tooltip>
 
@@ -72,11 +77,13 @@ export const PublishInformation = (props: PublishInformationProps) => {
             }`
           }>
           <Typography sx={{ marginLeft: "10px" }}>
-            {(dataList.scheduledUnPublishTriggerDateTime !== undefined ||
-              dataList.scheduledUnPublishTriggerDateTime !== null) &&
-              tagName === "sitepage" && (
-                <img src={stateIcons["scheduleUnpublish"]} alt='un publish' />
-              )}
+            {dataList.scheduledUnPublishTriggerDateTime !== undefined &&
+            dataList.scheduledUnPublishTriggerDateTime !== null &&
+            tagName === "sitepage" ? (
+              <img src={stateIcons["scheduleUnpublish"]} alt='un publish' />
+            ) : (
+              ""
+            )}
           </Typography>
         </Tooltip>
       </Box>
