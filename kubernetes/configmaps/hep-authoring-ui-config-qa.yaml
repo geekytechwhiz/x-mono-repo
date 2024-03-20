@@ -54,4 +54,4 @@ data:
 kind: ConfigMap
 metadata:
   name: hep-authoring-ui-config
-  namespace: dev-v2
+  namespace: qa-v2
