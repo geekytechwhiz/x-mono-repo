@@ -105,17 +105,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_ELASTIC_APM_SERVER_URL
-                  name: hep-user-experience-ui-config
+                  name: apm-config
             - name: NEXT_ELASTIC_APM_ENVIRONMENT
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_ELASTIC_APM_ENVIRONMENT
-                  name: hep-user-experience-ui-config
+                  name: apm-config
             - name: NEXT_ELASTIC_APM_TRACING
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_ELASTIC_APM_TRACING
-                  name: hep-user-experience-ui-config
+                  name: apm-config
             - name: NEXT_GEOLOCATION_API_URL
               valueFrom:
                 configMapKeyRef:
@@ -155,22 +155,22 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_USER_SERVICE_APP_URL
-                  name: apm-config
+                  name: hep-user-experience-ui-config
             - name: NEXT_SITE_HOST
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_SITE_HOST
-                  name: apm-config
+                  name: hep-user-experience-ui-config
             - name: NEXT_RPI_PUBLISH_ID
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_RPI_PUBLISH_ID
-                  name: apm-config
+                  name: hep-user-experience-ui-config
             - name: NEXT_RPI_CLIENT_ID
               valueFrom:
                 configMapKeyRef:
                   key: NEXT_RPI_CLIENT_ID
-                  name: apm-config
+                  name: hep-user-experience-ui-config
             - name: NEXT_RPI_AUTH_KEY
               valueFrom:
                 configMapKeyRef:

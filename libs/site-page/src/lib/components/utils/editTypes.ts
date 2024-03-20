@@ -129,7 +129,7 @@ export type PrelemImagesProps = {
   handleSave(sectionToUpdate: string, data: any, index: string): void;
   sectionToUpdate: string;
   published_images;
-  original_image: ImageProps;
+  original_image: any;
 };
 export type SeoInfo = {
   showContent: boolean;

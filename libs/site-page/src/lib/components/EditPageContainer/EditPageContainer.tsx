@@ -25,7 +25,6 @@ import {
   hidePrelem,
   movePrelem,
   resetPrelemContent,
-  resetState,
   savePrelemPosition,
   setUpdatedContent,
   updateDynamicPrelemContent,
@@ -64,7 +63,6 @@ import { createSearchParams, useNavigate, useSearchParams } from "react-router-d
 import EditPageIcons from "../utils/EditPageIcons";
 import { consolidatePageModel } from "../utils/helper";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { StatusKey } from "@platformx/content";
 import ContentGallery from "../../components/ContentGallery/ContentGallery";
 import DynamicContentGallery from "../../components/ContentGallery/DynamicContentGallery";
 import EcommerceAuthoring from "../../components/EcommerceAuthoring/EcommerceAuthoring";
@@ -89,6 +87,7 @@ import {
   PrelemActions,
   PrelemSettingCardList,
   isGalleryContentTypeCheck,
+  StatusKey,
 } from "../utils/constants";
 import { PrelemInstance } from "../utils/editTypes";
 import { useStyles } from "./EditPageContainer.styles";
@@ -205,7 +204,7 @@ const EditPageContainer = () => {
       user_id,
       user_name,
     } = page.pageModel;
-    if (Object.keys(page?.pageModel).length === 0) {
+    if (Object.keys(page?.pageModel).length === 0 || searchParams?.get("page") !== Path) {
       setLoader(true);
       fetchPageModel(
         dispatch,
@@ -1058,13 +1057,6 @@ const EditPageContainer = () => {
     setPublishLoading(true);
     callFnsCase("PUBLISH");
   };
-
-  //cleanup code
-  useEffect(() => {
-    return () => {
-      dispatch(resetState());
-    };
-  }, []);
 
   const theme = useTheme();
   const mobileHeader = useMediaQuery(`@media(max-width:${ThemeConstants.EM - 1}px)`);

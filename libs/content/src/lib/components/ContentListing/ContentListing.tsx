@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Box } from "@mui/material";
-import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
+import { fetchUserSitePermissionList, usePage } from "@platformx/authoring-apis";
 import {
   Card,
   ContentListDesktopLoader,
@@ -29,10 +29,6 @@ const ContentListing = ({
   view,
   edit,
   editPage,
-  viewPage,
-  previewPage,
-  handleDeleteData,
-  handlePageDelete,
   fetchContentDetails,
 }: ContentListingProps) => {
   const [sitelist, setSiteList] = useState([]);
@@ -40,6 +36,7 @@ const ContentListing = ({
   const { userInfo } = getSession();
   const pageUrl = new URL(window.location.href);
   const path = pageUrl.pathname.split("/")?.pop();
+  const { handlePageDelete } = usePage();
 
   const fetchUserSite = async () => {
     try {
@@ -171,12 +168,9 @@ const ContentListing = ({
                       view={view}
                       edit={edit}
                       editPage={editPage}
-                      viewPage={viewPage}
-                      previewPage={previewPage}
-                      handleDeleteData={handleDeleteData}
-                      handlePageDelete={handlePageDelete}
                       siteList={sitelist}
                       contentType={contentType}
+                      handlePageDelete={handlePageDelete}
                       CustomMenuList={
                         <ContentTypeMenuList
                           item={makeContentData(item)}

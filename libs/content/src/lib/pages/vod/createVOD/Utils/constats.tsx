@@ -16,17 +16,17 @@ const createVodFlatIcon = [
   },
   {
     id: "ImageAndThumbnail",
-    iconName: MenuIcon2,
+    iconName: MenuIcon8,
     tooltip: "Image And Thumbnail",
   },
   {
     id: "titleDescription",
-    iconName: MenuIcon4,
+    iconName: MenuIcon2,
     tooltip: "Title & description",
   },
   {
     id: "tags",
-    iconName: MenuIcon8,
+    iconName: MenuIcon4,
     tooltip: "Choose Tags",
   },
 ];
