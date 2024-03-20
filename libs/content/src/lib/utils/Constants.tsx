@@ -120,14 +120,6 @@ export const enum WorkFlowStatus {
   publish = "publish pending",
   published = "published",
 }
-export const enum StatusKey {
-  draft = "draft",
-  review = "review",
-  approval = "approval",
-  publish = "publish",
-  published = "published",
-  unpublish = "unpublish",
-}
 
 export type PageType = {
   type: string;
