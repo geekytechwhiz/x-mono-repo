@@ -37,11 +37,8 @@ export const Card = ({
   view,
   edit,
   editPage,
-  viewPage,
-  previewPage,
-  handleDeleteData,
-  handlePageDelete,
   contentType,
+  handlePageDelete,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
   const navigate = useNavigate();
@@ -52,7 +49,7 @@ export const Card = ({
   const date = new Date().toJSON();
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
-      handlePageDelete(dataList);
+      await handlePageDelete(dataList);
     } else if (
       tagName === "quiz" ||
       tagName === "poll" ||
@@ -109,8 +106,8 @@ export const Card = ({
   const handleCardClick = () => {
     const sitePage: any = {
       draft: editPage,
-      published: viewPage,
-      unpublished: previewPage,
+      published: view,
+      unpublished: preview,
     };
     const ContentAction: any = {
       draft: edit,
@@ -165,7 +162,6 @@ export const Card = ({
     switch (tagName) {
       case "sitepage":
         setSubTitle(t("page_delete_subtitle"));
-        handleDeleteData(dataList);
         break;
       case "vod":
       case "quiz":
@@ -242,13 +238,19 @@ export const Card = ({
                         <img src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
+                        {dataList.scheduledPublishTriggerDateTime !== null &&
+                        tagName === "sitepage" ? (
                           <img src={statusIcons["schedulePublish"]} alt='' />
+                        ) : (
+                          ""
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
+                        {dataList.scheduledUnPublishTriggerDateTime !== null &&
+                        tagName === "sitepage" ? (
                           <img src={statusIcons["scheduleUnpublish"]} alt='' />
+                        ) : (
+                          ""
                         )}
                       </Typography>
                     </Box>

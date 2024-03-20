@@ -310,38 +310,38 @@ const usePage = (filter = "ALL") => {
   };
 
   /**handle delete popup data */
-  const handleDeleteData = (pageSelected: {
-    status: string;
-    scheduledUnPublishTriggerDateTime: null;
-    page: any;
-    currentPageUrl: any;
-    parentPageUrl: any;
-    scheduledPublishTriggerDateTime: null;
-  }) => {
-    setPageData(pageSelected);
-    if (pageSelected.status === "published") {
-      setDirectDelete(true);
-      if (pageSelected?.scheduledUnPublishTriggerDateTime != null) {
-        // const requestDto = {
-        //   page: pageSelected.page,
-        //   currentpageurl: pageSelected.currentPageUrl,
-        //   parentpageurl: pageSelected.parentPageUrl,
-        // };
-        // setRescheduledDto(requestDto);
-        //setCancelTriggerType("2");
-      }
-    }
-    if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
-      setDirectDelete(true);
-      // const requestDto = {
-      //   page: pageSelected.page,
-      //   currentpageurl: pageSelected.currentPageUrl,
-      //   parentpageurl: pageSelected.parentPageUrl,
-      // };
-      // setRescheduledDto(requestDto);
-      // setCancelTriggerType("1");
-    }
-  };
+  // const handleDeleteData = (pageSelected: {
+  //   status: string;
+  //   scheduledUnPublishTriggerDateTime: null;
+  //   page: any;
+  //   currentPageUrl: any;
+  //   parentPageUrl: any;
+  //   scheduledPublishTriggerDateTime: null;
+  // }) => {
+  //   setPageData(pageSelected);
+  //   if (pageSelected.status === "published") {
+  //     setDirectDelete(true);
+  //     if (pageSelected?.scheduledUnPublishTriggerDateTime != null) {
+  //       // const requestDto = {
+  //       //   page: pageSelected.page,
+  //       //   currentpageurl: pageSelected.currentPageUrl,
+  //       //   parentpageurl: pageSelected.parentPageUrl,
+  //       // };
+  //       // setRescheduledDto(requestDto);
+  //       //setCancelTriggerType("2");
+  //     }
+  //   }
+  //   if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
+  //     setDirectDelete(true);
+  //     // const requestDto = {
+  //     //   page: pageSelected.page,
+  //     //   currentpageurl: pageSelected.currentPageUrl,
+  //     //   parentpageurl: pageSelected.parentPageUrl,
+  //     // };
+  //     // setRescheduledDto(requestDto);
+  //     // setCancelTriggerType("1");
+  //   }
+  // };
 
   /**remove page */
   const handleRemove = (itemsdata: { page: any; currentPageUrl: any; parentPageUrl: any }) => {
@@ -414,23 +414,23 @@ const usePage = (filter = "ALL") => {
   };
 
   /**handle page delete conditions */
-  const handlePageDelete = () => {
+  const handlePageDelete = (selectedPage) => {
     const requestDto = {
-      page: selectedPageData.page,
-      currentpageurl: selectedPageData.currentPageUrl,
-      parentpageurl: selectedPageData.parentPageUrl,
+      page: selectedPage.page,
+      currentpageurl: selectedPage.currentPageUrl,
+      parentpageurl: selectedPage.parentPageUrl,
     };
-    if (selectedPageData?.status === "published") {
-      if (selectedPageData?.scheduledUnPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("2", requestDto, selectedPageData);
+    if (selectedPage?.status === "published") {
+      if (selectedPage?.scheduledUnPublishTriggerDateTime != null) {
+        cancelPublishUnpublishTrigger("2", requestDto, selectedPage);
       } else {
-        unPublishPage(selectedPageData);
+        unPublishPage(selectedPage);
       }
     } else {
-      if (selectedPageData?.scheduledPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("1", requestDto, selectedPageData);
+      if (selectedPage?.scheduledPublishTriggerDateTime != null) {
+        cancelPublishUnpublishTrigger("1", requestDto, selectedPage);
       } else {
-        handleRemove(selectedPageData);
+        handleRemove(selectedPage);
       }
     }
   };
@@ -746,7 +746,7 @@ const usePage = (filter = "ALL") => {
     rescheduleUnPublishPage,
     handleCancelTriggerPopup,
     cancelPublishUnpublishTrigger,
-    handleDeleteData,
+    //handleDeleteData,
     handlePageDelete,
   };
 };
