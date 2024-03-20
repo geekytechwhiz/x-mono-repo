@@ -8,15 +8,23 @@ import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
-// import { Store } from '../../store/ContextStore';
 import { RootState } from "@platformx/authoring-state";
 import { AUTH_INFO, PrelemTheme, ThemeConstants } from "@platformx/utilities";
-import { Article } from "@platformx/x-prelems-library";
-import Frame from "react-frame-component";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { Mapping } from "../../utils/Mapper";
+
+const mappingDynamicInstance = {};
+Object.keys(Mapping).map((item) => {
+  mappingDynamicInstance[item] = React.lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module[Mapping[item]],
+    })),
+  );
+  return mappingDynamicInstance;
+});
 
 const tabs = [
   { type: "desktop", icon: ComputerRoundedIcon },
@@ -24,23 +32,13 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 
-// const prelemAuthoringHelper = {
-//   isAuthoring: true,
-// };
-// const secondaryArgs = {
-//   gcpUrl: AUTH_INFO.gcpUri,
-//   bucketName: AUTH_INFO.gcpBucketName,
-// };
 const ContentPreview = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const iframeRef = React.useRef<any>();
   const [deviceType, setDeviceType] = useState("desktop");
   const [initialContent, setInitialContent] = useState("");
-  // const { state, dispatch } = useContext(Store);
-  // const { content } = state;
   const { currentContent } = useSelector((state: RootState) => state.content);
-
   const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
     const newCache = createCache({ container, key: "css", prepend: true });
     return newCache;
@@ -89,17 +87,6 @@ const ContentPreview = () => {
     contentType: "",
   });
 
-  useEffect(() => {
-    const headContent = document.head.innerHTML;
-    setInitialContent(`<!DOCTYPE html><html><head>
-      <script>${headContent}</script>
-      <style>
-        body {
-          overflow-x: hidden;
-        }
-      </style></head><body><div class="frame-root"></div><div id="modal-root"></div></body></html>`);
-  }, []);
-
   const handleReturn = () => {
     window.history.back();
   };
@@ -110,11 +97,21 @@ const ContentPreview = () => {
   };
   useEffect(() => {
     if (Object.keys(currentContent).length > 0) {
-      // setPreviewObject(currentContent);
+      setPreviewObject(currentContent);
     } else {
-      // window.history.back();
+      window.history.back();
     }
   }, [currentContent]);
+
+  useEffect(() => {
+    const headContent = document.head.innerHTML;
+    setInitialContent(`<!DOCTYPE html><html><head>
+      <style>
+        body {
+          overflow-x: hidden;
+        }
+      </style></head><body><div id="site-frame"></div><script>${headContent}</script></body></html>`);
+  }, []);
   // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   const prelemAuthoringHelper = {
     isAuthoring: true,
@@ -123,6 +120,8 @@ const ContentPreview = () => {
     gcpUrl: AUTH_INFO.gcpUri,
     bucketName: AUTH_INFO.gcpBucketName,
   };
+  const ContentType =
+    mappingDynamicInstance[currentContent?.contentType || currentContent?.category];
 
   return (
     <>
@@ -208,7 +207,7 @@ const ContentPreview = () => {
               borderRadius: "30px",
               overflow: "hidden",
             }}>
-            <Frame
+            {/* <Frame
               width={deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
               height={window?.parent?.innerHeight}
               initialContent={initialContent}
@@ -216,19 +215,19 @@ const ContentPreview = () => {
               ref={iframeRef}
               contentDidMount={() => handleResize(iframeRef)}
               contentDidUpdate={() => handleResize(iframeRef)}
-              frameBorder='0'>
-              <ThemeProvider theme={PrelemTheme}>
-                {/* <ContentType
-              // content={previewObject}
-              // showLoading={false}
-              // results={previewObject.options_compound_fields}
-              // enablePreview
-              // authoringHelper={prelemAuthoringHelper}
-              // secondaryArgs={secondaryArgs}
-              /> */}
-                <Article />
-              </ThemeProvider>
-            </Frame>
+              frameBorder='0'> */}
+            <ThemeProvider theme={PrelemTheme}>
+              <ContentType
+                showRecentArticles={false}
+                content={previewObject}
+                showLoading={false}
+                results={previewObject.options_compound_fields}
+                enablePreview
+                authoringHelper={prelemAuthoringHelper}
+                secondaryArgs={secondaryArgs}
+              />
+            </ThemeProvider>
+            {/* </Frame> */}
           </Box>
         </Box>
       </Box>
