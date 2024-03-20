@@ -27,6 +27,7 @@ import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
 import { useNavigate } from "react-router";
+import { RedBlinkingDot } from "../../assets/svg";
 
 export const Card = ({
   CustomMenuList,
@@ -230,9 +231,8 @@ export const Card = ({
                       date < dataList.eventEndDate && (
                         <img
                           style={{ height: "43px", width: "43px" }}
-                          // src={RedBlinkingDot}
-                          src='imggepath'
-                          alt=''
+                          src={RedBlinkingDot}
+                          alt='live gif'
                           width={24}
                           height={24}
                         />
