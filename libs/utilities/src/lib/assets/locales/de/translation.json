@@ -1162,5 +1162,6 @@
   "last_name_label": "Familienname, Nachname",
   "toolTip_title": "Als Hervorgehoben markieren:",
   "toolTip_message": "Aktivieren Sie es, wenn Sie diesen Inhalt für eine bessere Sichtbarkeit hervorheben möchten.",
-  "loading": "Wird geladen..."
+  "loading": "Wird geladen...",
+  "page_title": "Buchseite Titel"
 }

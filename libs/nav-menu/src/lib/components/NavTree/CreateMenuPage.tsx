@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -23,7 +22,9 @@ import Stepper from "@mui/material/Stepper";
 import TextField from "@mui/material/TextField";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { withStyles } from "@mui/styles";
 import { save_menu, update_menu } from "@platformx/authoring-apis";
+import { ContentGallery } from "@platformx/site-page";
 import {
   BasicSwitch,
   Loader,
@@ -107,7 +108,7 @@ function CreateMenuPage({
   const mainMenuLength = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
-  const [, setGalleryState] = useState<boolean>(false);
+  const [galleryState, setGalleryState] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<ContentProps>({
     Title: "",
     Description: "",
@@ -152,6 +153,24 @@ function CreateMenuPage({
     setGalleryState(true);
   };
 
+  const handleSelectedContent = (item) => {
+    if (item.ContentType === "Article" || item.ContentType === "VOD") {
+      setSelectedItem({
+        Title: item.Title,
+        Description: item.Description,
+        Image: item.Banner,
+        RedirectionUrl: item.CurrentPageURL,
+        Internal: true,
+        ContentType: item.ContentType,
+        CreatedDate: item.PublishedDate,
+        Author: item.Author,
+      });
+    }
+    setGalleryState(false);
+  };
+  const onToggleContentGallery = () => {
+    setGalleryState(false);
+  };
   const handleHomePage = (event) => {
     // leftSideBarContent.forEach((val) => {
     //   if (val.HomePage === true) {
@@ -542,13 +561,13 @@ function CreateMenuPage({
     <>
       {isLoading && <Loader />}
       <style>{minCss}</style>
-      {/* {galleryState && (
+      {galleryState && (
         <ContentGallery
           handleSelectedContent={handleSelectedContent}
           onToggleContentGallery={onToggleContentGallery}
-          contentType={['Article']}
+          contentType={["Article"]}
         />
-      )} */}
+      )}
       {!isPageList && (
         <Box
           sx={{

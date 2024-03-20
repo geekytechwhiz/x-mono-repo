@@ -1161,5 +1161,6 @@
   "last_name_label": "Nom de famille",
   "toolTip_title": "Marquer comme présenté:",
   "toolTip_message": "Activez-le si vous souhaitez mettre en avant ce contenu pour une meilleure visibilité.",
-  "loading": "Chargement..."
+  "loading": "Chargement...",
+  "page_title": "Page Titre"
 }

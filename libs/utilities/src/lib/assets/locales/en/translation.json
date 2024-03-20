@@ -1171,5 +1171,6 @@
   "last_name_label": "Last Name",
   "toolTip_title": "Mark as Featured:",
   "toolTip_message": "Enable it if you want to highlight this content for better enhanced visibility.",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "page_title": "Page Title"
 }
