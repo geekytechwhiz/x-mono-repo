@@ -137,7 +137,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
     }
   }, [eventPath]);
 
-  return selectedEventDetaiils && selectedEventDetaiils?.banner_image ? (
+  return selectedEventDetaiils && selectedEventDetaiils?.original_image?.Thumbnail ? (
     <Box sx={{ position: "relative", left: "0", top: "0", right: "0" }}>
       <Box
         className='eventArea'
@@ -166,7 +166,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
             }}>
             <Box sx={{ position: "relative", width: "100%" }}>
               <img
-                src={selectedEventDetaiils?.banner_image}
+                src={selectedEventDetaiils?.original_image?.Thumbnail}
                 className='eventImage'
                 width='100%'
                 alt='banner'

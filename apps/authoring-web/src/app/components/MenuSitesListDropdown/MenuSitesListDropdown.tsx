@@ -18,6 +18,7 @@ const MenuSitesListDropdown = () => {
     selectedSite = localStorage.getItem("selectedSite");
   }
   const classes = useSitesMenuStyle();
+
   return (
     <Box>
       <Box className={`${classes.dropdowncontain} ddmenu`} onClick={mySite}>

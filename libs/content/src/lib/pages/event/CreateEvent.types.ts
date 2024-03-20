@@ -41,8 +41,8 @@ export type State = {
   postalCode: string;
   regionState: string;
   country: string;
-  original_image?: any;
-  published_images?: any;
+  published_images: any[];
+  original_image: any;
   structure_data?: string;
 };
 
@@ -95,8 +95,8 @@ export type EventDataType = {
   postalCode: string;
   regionState: string;
   country: string;
-  original_image?: any;
-  published_images?: any;
+  published_images: any[];
+  original_image: any;
 };
 
 export type SelectedImage = {

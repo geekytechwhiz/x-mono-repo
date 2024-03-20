@@ -214,6 +214,11 @@ const SpaceListingCard = ({
     inviteMembersHandler(dataList.id, removeMembers, [], cancleMembers);
   };
 
+  const leaveSpaceHandlerFunction = async () => {
+    await leaveSpace(dataList.id, dataList.title);
+    onCloseMenuActions();
+  };
+
   return (
     <>
       {loading && <Loader />}
@@ -261,7 +266,7 @@ const SpaceListingCard = ({
           closeButtonText={t("no_don't_leave")}
           confirmButtonText={t("leave")}
           closeButtonHandle={onCloseMenuActions}
-          confirmButtonHandle={() => leaveSpace(dataList.id, dataList.title)}
+          confirmButtonHandle={leaveSpaceHandlerFunction}
         />
       )}
       <Box className='listbox'>

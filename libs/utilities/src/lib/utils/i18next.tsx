@@ -1,6 +1,8 @@
 import i18next from "i18next";
-import HttpApi from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
+import english from "../locales/en/translation.json";
+import french from "../locales/fr/translation.json";
+import deutsch from "../locales/de/translation.json";
 
 declare module "i18next" {
   interface CustomTypeOptions {
@@ -8,19 +10,23 @@ declare module "i18next" {
   }
 }
 
-i18next
-  .use(initReactI18next)
-  .use(HttpApi) // Registering the back-end plugin
-  .init({
-    lng: "en",
-    interpolation: {
-      escapeValue: false,
+i18next.use(initReactI18next).init({
+  resources: {
+    en: {
+      translation: english,
     },
-    react: {
-      useSuspense: false,
+    fr: {
+      translation: french,
     },
-    fallbackLng: "en",
-    debug: true,
-  });
+    de: {
+      translation: deutsch,
+    },
+  },
+  lng: "en",
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18next;

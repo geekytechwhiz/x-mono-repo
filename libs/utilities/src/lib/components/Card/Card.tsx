@@ -27,7 +27,7 @@ import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
 import { useNavigate } from "react-router";
-import { usePage } from "@platformx/authoring-apis";
+import { RedBlinkingDot } from "../../assets/svg";
 
 export const Card = ({
   CustomMenuList,
@@ -38,6 +38,7 @@ export const Card = ({
   edit,
   editPage,
   contentType,
+  handlePageDelete,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
   const navigate = useNavigate();
@@ -46,7 +47,6 @@ export const Card = ({
   const { t } = useTranslation();
   const [isDelete, setDelete] = useState(false);
   const date = new Date().toJSON();
-  const { handlePageDelete } = usePage();
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
       await handlePageDelete(dataList);
@@ -227,9 +227,8 @@ export const Card = ({
                       date < dataList.eventEndDate && (
                         <img
                           style={{ height: "43px", width: "43px" }}
-                          // src={RedBlinkingDot}
-                          src='imggepath'
-                          alt=''
+                          src={RedBlinkingDot}
+                          alt='live gif'
                           width={24}
                           height={24}
                         />

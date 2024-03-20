@@ -1304,7 +1304,7 @@ export async function postData(url = "", data = {}, site_host = "") {
 }
 
 export const getIcon = (contentType) => {
-  const gcpUrl = `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/`;
+  const gcpUrl = `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/`;
   switch (convertToLowerCase(contentType)) {
     case "article":
       return `${gcpUrl}${CONTENT_ICON.ARTICLE}`;

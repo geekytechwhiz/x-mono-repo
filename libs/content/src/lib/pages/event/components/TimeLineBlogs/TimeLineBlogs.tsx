@@ -16,7 +16,7 @@ import BlogTimeline from "./BlogTimeline/BlogTimeline";
 import {
   EventHeader,
   useUserSession,
-  formCroppedUrl,
+  formCroppedUrlInCrop,
   nullToArray,
   nullToObject,
   nullToString,
@@ -250,7 +250,7 @@ const TimeLineBlogs = () => {
           Title: nullToString(item?.title),
           Description: nullToString(item?.description),
           Url:
-            formCroppedUrl(
+            formCroppedUrlInCrop(
               item?.original_image?.original_image_relative_path,
               item?.original_image?.ext,
             ) || defaultFallBackImage(),
