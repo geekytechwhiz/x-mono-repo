@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 import weakMemoize from "@emotion/weak-memoize";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -11,7 +12,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { RootState } from "@platformx/authoring-state";
 import { AUTH_INFO, PrelemTheme, ThemeConstants } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
-// import Frame from "react-frame-component";
+import Frame, { FrameContextConsumer } from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -46,44 +47,6 @@ const ContentPreview = () => {
   });
   const [height, setHeight] = useState(300);
   const [previewObject, setPreviewObject] = useState({
-    title: "",
-    short_description: "",
-    background_content: {
-      objectType: "",
-      Url: "",
-      Color: "",
-    },
-    display_scores: "",
-    result_range_1: "",
-    result_range_2: "",
-    result_range_3: "",
-    result_range_4: "",
-    questions: [
-      {
-        question_type: "",
-        question: "",
-        short_description: "",
-        background_content: {
-          Url: "",
-          IsImage: Boolean,
-          Title: "",
-          Description: "",
-          ColorCode: "",
-        },
-        is_image_option: Boolean,
-        options_compound_fields: [
-          {
-            option_id: Number,
-            option_image: {
-              url: "",
-              title: "",
-            },
-            is_correct: Boolean,
-            option_text: "",
-          },
-        ],
-      },
-    ],
     options_compound_fields: "",
     contentType: "",
   });
@@ -107,11 +70,12 @@ const ContentPreview = () => {
   useEffect(() => {
     const headContent = document.head.innerHTML;
     setInitialContent(`<!DOCTYPE html><html><head>
+    ${headContent}
       <style>
         body {
           overflow-x: hidden;
         }
-      </style></head><body><div id="site-frame"></div><script>${headContent}</script></body></html>`);
+      </style></head><body><div id="site-root"></div></body></html>`);
   }, []);
   // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   const prelemAuthoringHelper = {
@@ -208,27 +172,35 @@ const ContentPreview = () => {
               borderRadius: "30px",
               overflow: "hidden",
             }}>
-            {/* <Frame
+            <Frame
               width={deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
               height={window?.parent?.innerHeight}
               initialContent={initialContent}
-              id='site-frame'
+              id='site-root'
               ref={iframeRef}
               contentDidMount={() => handleResize(iframeRef)}
               contentDidUpdate={() => handleResize(iframeRef)}
-              frameBorder='0'> */}
-            <ThemeProvider theme={PrelemTheme}>
-              <ContentType
-                showRecentArticles={false}
-                content={previewObject}
-                showLoading={false}
-                results={previewObject.options_compound_fields}
-                enablePreview
-                authoringHelper={prelemAuthoringHelper}
-                secondaryArgs={secondaryArgs}
-              />
-            </ThemeProvider>
-            {/* </Frame> */}
+              frameBorder='0'>
+              <FrameContextConsumer>
+                {({ document }: any) => {
+                  return (
+                    <CacheProvider value={memoizedCreateCacheWithContainer(document.head)}>
+                      <ThemeProvider theme={PrelemTheme}>
+                        <ContentType
+                          showRecentArticles={false}
+                          content={previewObject}
+                          showLoading={false}
+                          results={previewObject.options_compound_fields}
+                          enablePreview
+                          authoringHelper={prelemAuthoringHelper}
+                          secondaryArgs={secondaryArgs}
+                        />
+                      </ThemeProvider>
+                    </CacheProvider>
+                  );
+                }}
+              </FrameContextConsumer>
+            </Frame>
           </Box>
         </Box>
       </Box>
