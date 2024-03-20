@@ -30,8 +30,19 @@ import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
 
-const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH, ARTICLE } =
-  CONTENT_CONSTANTS;
+const {
+  LANG,
+  DRAFT,
+  VOD,
+  EVENT,
+  POLL,
+  PUBLISHED,
+  QUESTION,
+  QUIZ,
+  UNPUBLISHED,
+  PREVIEW_PATH,
+  ARTICLE,
+} = CONTENT_CONSTANTS;
 const useContentListing = (filter = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -232,6 +243,16 @@ const useContentListing = (filter = "ALL") => {
               AnalyticsEnable: selectedItem?.analytics_enable,
             };
             dispatch(previewContent({ ...eventToPreview, contentType: type }));
+            navigate(PREVIEW_PATH);
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === VOD) {
+            dispatch(
+              previewContent({
+                ...selectedItem,
+                page_lastmodifiedby: selectedItem.last_modifiedBy,
+                developed_date: selectedItem.creationDate,
+                contentType: type,
+              }),
+            );
             navigate(PREVIEW_PATH);
           } else {
             ShowToastError(t(PREVIEW_PATH));

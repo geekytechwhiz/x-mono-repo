@@ -10,6 +10,7 @@ export const CONTENT_CONSTANTS = {
   EVENT: "Event",
   PREVIEW_PATH: "/content/preview",
   ARTICLE: "Article",
+  VOD: "Vod",
 };
 
 export const ROW_SIZE: number = 20;
