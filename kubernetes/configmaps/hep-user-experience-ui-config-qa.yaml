@@ -34,4 +34,4 @@ data:
 kind: ConfigMap
 metadata:
   name: hep-user-experience-ui-config
-  namespace: dev-v2
+  namespace: qa-v2
