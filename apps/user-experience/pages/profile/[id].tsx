@@ -74,7 +74,8 @@ const Profile = (props: any) => {
         <PageHead pageData={pageData} favIcon={footerSettingData?.fav_icon} />
 
         <HeaderFooterLayout
-          {...props}
+          userData={{}}
+          isEcomPage={false}
           route={route}
           MenuData={MenuData}
           authState={authState}

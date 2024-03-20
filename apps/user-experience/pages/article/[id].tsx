@@ -79,10 +79,12 @@ const Article = (props: any) => {
             favIcon={footerSettingData?.fav_icon}
           />
           <HeaderFooterLayout
-            {...props}
             route={route}
+            userData={{}}
+            isEcomPage={false}
             MenuData={MenuData}
             authState={authState}
+            isProductUpdateCount={0} //ecom purpose
             isCartIconEnable={true}
             footerSettingData={footerSettingData}
             prelemBaseEndpoint={prelemBaseEndpoint}>
