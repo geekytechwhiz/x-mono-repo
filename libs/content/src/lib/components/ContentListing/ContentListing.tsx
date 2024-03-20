@@ -29,10 +29,6 @@ const ContentListing = ({
   view,
   edit,
   editPage,
-  viewPage,
-  previewPage,
-  handleDeleteData,
-  handlePageDelete,
   fetchContentDetails,
 }: ContentListingProps) => {
   const [sitelist, setSiteList] = useState([]);
@@ -171,10 +167,6 @@ const ContentListing = ({
                       view={view}
                       edit={edit}
                       editPage={editPage}
-                      viewPage={viewPage}
-                      previewPage={previewPage}
-                      handleDeleteData={handleDeleteData}
-                      handlePageDelete={handlePageDelete}
                       siteList={sitelist}
                       contentType={contentType}
                       CustomMenuList={

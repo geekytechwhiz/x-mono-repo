@@ -19,15 +19,12 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
   const { t } = useTranslation();
   const [content, setContent] = useState(original_image);
   const [handleImpression] = usePlatformAnalytics();
-  const getBitstreamIdFromUrl = (url: string) => {
-    return url ? url.split("/")[7] : "";
-  };
   const [originalImage, setOriginalImage] = useState({
     Thumbnail: original_image?.original_image_relative_path,
-    bitStreamId: getBitstreamIdFromUrl(original_image?.Url),
-    auto: published_images.length ? false : true,
+    bitStreamId: original_image?.bitStreamId,
+    auto: original_image.auto,
     ext: original_image?.ext,
-    Visibility: original_image?.Visibility,
+    Visibility: original_image?.visibility,
   });
   const [publishedImages, setPublishedImages] = useState(published_images);
 
@@ -83,7 +80,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
 
   const getDisabledState = () => {
     if (
-      (JSON.stringify(original_image) === JSON.stringify(content) &&
+      (JSON.stringify(original_image) === JSON.stringify(originalImage) &&
         JSON.stringify(published_images) === JSON.stringify(publishedImages)) ||
       content?.MetaFields?.Title === "" ||
       content?.MetaFields?.Title?.trim()?.length === 0 ||
@@ -99,7 +96,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
     const { original_image = {}, published_images = [] } = updatedPartialObj || {};
     const contentNew = {
       ...content,
-      Url: original_image?.Thumbnail,
+      Url: original_image?.Url,
       MetaFields: {
         ...content?.MetaFields,
         Title: original_image.Title,

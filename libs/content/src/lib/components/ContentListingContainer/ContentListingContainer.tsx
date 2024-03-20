@@ -42,10 +42,6 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     view,
     edit,
     editPage,
-    // viewPage,
-    // previewPage,
-    // handleDeleteData,
-    // handlePageDelete,
     fetchContentDetails,
     duplicateToSite,
   } = useContentListing("ALL");
@@ -133,10 +129,6 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
-        // viewPage={viewPage}
-        // previewPage={previewPage}
-        // handleDeleteData={handleDeleteData}
-        // handlePageDelete={handlePageDelete}
       />
 
       <CreateNewPage

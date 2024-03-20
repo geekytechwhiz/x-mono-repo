@@ -27,6 +27,7 @@ import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
 import { useNavigate } from "react-router";
+import { usePage } from "@platformx/authoring-apis";
 
 export const Card = ({
   CustomMenuList,
@@ -36,10 +37,6 @@ export const Card = ({
   view,
   edit,
   editPage,
-  viewPage,
-  previewPage,
-  handleDeleteData,
-  handlePageDelete,
   contentType,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
@@ -49,9 +46,10 @@ export const Card = ({
   const { t } = useTranslation();
   const [isDelete, setDelete] = useState(false);
   const date = new Date().toJSON();
+  const { handlePageDelete } = usePage();
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
-      handlePageDelete(dataList);
+      await handlePageDelete(dataList);
     } else if (
       tagName === "quiz" ||
       tagName === "poll" ||
@@ -108,8 +106,8 @@ export const Card = ({
   const handleCardClick = () => {
     const sitePage: any = {
       draft: editPage,
-      published: viewPage,
-      unpublished: previewPage,
+      published: view,
+      unpublished: preview,
     };
     const ContentAction: any = {
       draft: edit,
@@ -164,7 +162,6 @@ export const Card = ({
     switch (tagName) {
       case "sitepage":
         setSubTitle(t("page_delete_subtitle"));
-        handleDeleteData(dataList);
         break;
       case "vod":
       case "quiz":
@@ -242,13 +239,19 @@ export const Card = ({
                         <img src={statusIcons[dataList.status]} alt='' />
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledPublishTriggerDateTime && tagName === "sitepage" && (
+                        {dataList.scheduledPublishTriggerDateTime !== null &&
+                        tagName === "sitepage" ? (
                           <img src={statusIcons["schedulePublish"]} alt='' />
+                        ) : (
+                          ""
                         )}
                       </Typography>
                       <Typography sx={{ marginLeft: "10px" }}>
-                        {dataList.scheduledUnPublishTriggerDateTime && tagName === "sitepage" && (
+                        {dataList.scheduledUnPublishTriggerDateTime !== null &&
+                        tagName === "sitepage" ? (
                           <img src={statusIcons["scheduleUnpublish"]} alt='' />
+                        ) : (
+                          ""
                         )}
                       </Typography>
                     </Box>
