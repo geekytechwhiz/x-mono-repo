@@ -189,6 +189,11 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     height: "320px",
     marginTop: "25px",
   },
+  gridcls: {
+    [theme.breakpoints.down("sm")]: {
+      paddingRight: "10px",
+    },
+  },
   themebox: {
     display: "flex",
     flexDirection: "row",
@@ -254,8 +259,12 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   },
   step2containerbox2: {
     [theme.breakpoints.down("md")]: {
+      marginLeft: "0px",
+    },
+    [theme.breakpoints.down("sm")]: {
       width: "556px",
       paddingRight: "10px",
+      marginLeft: "10px",
     },
     width: "610px",
     height: "135px",
@@ -338,6 +347,7 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   maincontain: {
     display: "flex",
     justifyContent: "center",
+    padding: "8px",
   },
   boxmargin: {
     marginRight: "80px",
@@ -411,6 +421,12 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginTop: "15px",
   },
   step5contain: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "17px",
+      gap: "0px",
+      display: "block",
+    },
+
     marginTop: "17px",
     display: "flex",
     justifyContent: "space-around",
@@ -426,5 +442,17 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
     marginTop: "5px",
+  },
+  imgwidth: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  step2btnbreak: {
+    marginTop: "10px",
+    width: "160px",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
 }));

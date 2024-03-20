@@ -96,7 +96,7 @@ export default function PlateformXCreatestep5Dialog({
                     {mockDatastep.map((transaction) => (
                       <>
                         <Box className={classes.step5contain} key={transaction.id}>
-                          <Typography>{transaction.value}</Typography>
+                          <Typography variant='h6bold'>{transaction.value}</Typography>
                           <Typography>{transaction.name}</Typography>
                           <Typography sx={{ color: "#D32F2F" }}>{transaction.Cat}</Typography>
                         </Box>

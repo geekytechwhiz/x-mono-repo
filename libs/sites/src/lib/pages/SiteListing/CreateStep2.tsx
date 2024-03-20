@@ -83,6 +83,7 @@ export default function PlateformXCreatestep2Dialog({
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
                   </Box>
+                  {/* progress bar showing here */}
                   <Box className={classes.progrebar}>
                     <Progressbar progress={25} />
                   </Box>
@@ -105,7 +106,11 @@ export default function PlateformXCreatestep2Dialog({
                             }`}
                             onClick={() => handleImageClick(image.url)} // Pass image URL to handleImageClick function
                           >
-                            <img src={image.url} alt={`image-${image.id}`} />
+                            <img
+                              className={classes.imgwidth}
+                              src={image.url}
+                              alt={`image-${image.id}`}
+                            />
                           </Box>
                         </Grid>
                       ))}

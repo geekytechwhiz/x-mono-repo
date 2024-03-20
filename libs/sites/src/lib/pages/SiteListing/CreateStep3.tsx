@@ -80,9 +80,17 @@ export default function PlateformXCreatestep3Dialog({
                   <Grid container>
                     {/* Mapping over mock data to display images */}
                     {mockData.map((item) => (
-                      <Grid item xs={6} sm={6} md={4} lg={4} key={item.id} marginTop={"13px"}>
+                      <Grid
+                        item
+                        xs={6}
+                        sm={6}
+                        md={4}
+                        lg={4}
+                        key={item.id}
+                        className={classes.gridcls}
+                        marginTop={"13px"}>
                         <Button
-                          sx={{ marginTop: "10px", width: "160px" }}
+                          className={classes.step2btnbreak}
                           variant='outlined'
                           key={item.id}
                           name={item.value}>

@@ -12,7 +12,7 @@ export const useStyles = makeStyles(() => ({
     // minHeight: '359px',
   },
   mainbox: {
-    padding: "13px",
+    padding: "15px",
   },
   boxtypo: {
     display: "flex",
@@ -30,15 +30,21 @@ export const useStyles = makeStyles(() => ({
   contentbox: {
     display: "flex",
     justifyContent: "space-between",
-    padding: "20px",
+    padding: "20px 20px 20px 5px",
     borderBottom: "1px solid #D9DBE9",
   },
   boxhead: {
     display: "inline-flex",
+    gap: "10px",
+    marginTop: "10px",
   },
   typocolor: {
     color: "#6E7191",
   },
+  typocolor2: {
+    color: "#4B9EF9",
+  },
+
   righttypobox: {
     wordWrap: "break-word",
     color: "#4B9EF9",
@@ -51,6 +57,22 @@ export const useStyles = makeStyles(() => ({
   scrollbox: {
     marginTop: "15px",
     overflowY: "scroll",
-    height: "130px",
+    height: "307px",
+    float: "left",
+    width: "100%",
+  },
+  innercontainerbox1: {
+    display: "flex",
+    justifyContent: "space-between",
+    marginRight: "34px",
+  },
+  innercontainerbox2: {
+    width: "25%",
+    alignItems: "center",
+    display: "flex",
+    gap: "10px",
+  },
+  innertypo: {
+    width: "100%",
   },
 }));

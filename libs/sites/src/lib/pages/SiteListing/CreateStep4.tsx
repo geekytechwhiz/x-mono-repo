@@ -219,7 +219,7 @@ export default function PlateformXCreatestep4Dialog({
                       position: "relative",
                       backgroundRepeat: "no-repeat",
                       padding: "10px",
-                      backgroundPosition: "-10px bottom",
+                      backgroundPosition: "10px top",
                     }}>
                     <Box sx={{ position: "relative", marginTop: "67px" }}>
                       <img src={Step4imgupdate} alt='icon' />

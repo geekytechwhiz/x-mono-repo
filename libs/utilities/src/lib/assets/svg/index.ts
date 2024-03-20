@@ -245,6 +245,8 @@ import SaveAnimationGif from "./saveAnimation.gif";
 import ChatGptCommonLoader from "./ChatGptCommonLoader.gif";
 import Closexicon from "./Closexicon.svg";
 import Checkicon from "./Checkicon.svg";
+import Doticon from "./doticon.svg";
+import Crossnewicons from "./Crossnewicon.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -491,4 +493,6 @@ export {
   ChatGptCommonLoader,
   Closexicon,
   Checkicon,
+  Doticon,
+  Crossnewicons,
 };
