@@ -249,6 +249,7 @@ export const CreateArticle = () => {
           user_id,
           user_name,
           is_featured,
+          modificationDate,
         } = articleObj;
         setIsFeatured(is_featured);
         const instance = {
@@ -264,6 +265,7 @@ export const CreateArticle = () => {
             seo_enable,
             analytics_enable,
             lastModifiedBy,
+            modificationDate,
           },
           ObjectFields: {
             ...articleInstance.ObjectFields,
@@ -571,7 +573,7 @@ export const CreateArticle = () => {
     updateImageData(obj, content, setArticleInstance, articleInstance, selectedImage);
   };
   const handelPreview = () => {
-    const { title, creationDate: developed_date } = articleInstance.CommonFields;
+    const { title, modificationDate: developed_date } = articleInstance.CommonFields;
     const pageUrl = currentArticleData.current
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
@@ -595,6 +597,7 @@ export const CreateArticle = () => {
       current_page_url,
       article_settings,
       sub_title,
+      contentType: "Article",
     };
 
     dispatch(previewContent(articlePreview));

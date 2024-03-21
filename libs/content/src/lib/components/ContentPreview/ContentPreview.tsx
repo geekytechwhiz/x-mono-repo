@@ -39,7 +39,12 @@ const ContentPreview = () => {
   const { t } = useTranslation();
   const iframeRef = React.useRef<any>();
   const [deviceType, setDeviceType] = useState("desktop");
-  const [initialContent, setInitialContent] = useState("");
+  const [initialContent, setInitialContent] = useState(`<!DOCTYPE html><html><head>
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+    </style></head><body><div id="site-root"></div></body></html>`);
   const { currentContent } = useSelector((state: RootState) => state.content);
   const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
     const newCache = createCache({ container, key: "css", prepend: true });
@@ -70,12 +75,12 @@ const ContentPreview = () => {
   useEffect(() => {
     const headContent = document.head.innerHTML;
     setInitialContent(`<!DOCTYPE html><html><head>
-    ${headContent}
-      <style>
-        body {
-          overflow-x: hidden;
-        }
-      </style></head><body><div id="site-root"></div></body></html>`);
+      ${headContent}
+        <style>
+          body {
+            overflow-x: hidden;
+          }
+        </style></head><body><div id="site-root"></div></body></html>`);
   }, []);
   // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   const prelemAuthoringHelper = {
@@ -85,8 +90,7 @@ const ContentPreview = () => {
     gcpUrl: AUTH_INFO.gcpUri,
     bucketName: AUTH_INFO.gcpBucketName,
   };
-  const ContentType =
-    mappingDynamicInstance[currentContent?.contentType || currentContent?.category];
+  const ContentType = mappingDynamicInstance[currentContent?.contentType];
 
   return (
     <>

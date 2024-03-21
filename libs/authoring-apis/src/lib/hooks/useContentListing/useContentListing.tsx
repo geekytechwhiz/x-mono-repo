@@ -230,6 +230,7 @@ const useContentListing = (filter = "ALL") => {
                 ...selectedItem,
                 page_lastmodifiedby: selectedItem.last_modifiedBy,
                 developed_date: selectedItem.creationDate,
+                contentType: ARTICLE,
               }),
             );
             navigate(PREVIEW_PATH);
