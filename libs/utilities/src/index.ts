@@ -97,7 +97,6 @@ import {
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 //import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
-import i18next from "../../../apps/authoring-web/src/app/i18next";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
@@ -226,7 +225,6 @@ export {
   getSubDomain,
   getUniqueTimeZone,
   handleHtmlTags,
-  i18next,
   initInsituEditing,
   liveIcon,
   loadergif,
