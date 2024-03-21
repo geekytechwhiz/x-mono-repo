@@ -1,9 +1,13 @@
 import { Box, Button, Typography } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { updateContentForCard, updateAnalyticsEnable, RootState } from "@platformx/authoring-state";
-import { ThemeConstants, ShowToastSuccess, BasicSwitch } from "@platformx/utilities";
+import {
+  ThemeConstants,
+  ShowToastSuccess,
+  BasicSwitch,
+  usePlatformAnalytics,
+} from "@platformx/utilities";
 import { AnalyticsInfo } from "../utils/editTypes";
 import BackButton from "../BackButton/BackButton";
 import "./PageSettings.css";

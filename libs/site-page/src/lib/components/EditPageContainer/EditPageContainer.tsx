@@ -54,9 +54,9 @@ import {
   useAccess,
   useUserSession,
   workflowKeys,
+  usePlatformAnalytics,
 } from "@platformx/utilities";
 import { addMinutes, format } from "date-fns";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";

@@ -1,6 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Autocomplete, Box, Button, Chip, TextField, Typography } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,6 +13,7 @@ import {
   BasicSwitch,
   ShowToastSuccess,
   siteLevelSchema,
+  usePlatformAnalytics,
 } from "@platformx/utilities";
 import { descriptionLength, nameLength, previewNameLength } from "../utils/constants";
 import { PageSeoInformation } from "../utils/editTypes";
@@ -45,20 +45,20 @@ const SEOBasics = ({ setPageId }) => {
           SeoTitle !== undefined
             ? SeoTitle
             : PageName === undefined
-            ? ""
-            : `${PageName} | ${siteLevelSchema.siteName}`,
+              ? ""
+              : `${PageName} | ${siteLevelSchema.siteName}`,
         SeoDescription:
           SeoDescription !== undefined
             ? SeoDescription
             : PageDescription === undefined
-            ? ""
-            : PageDescription,
+              ? ""
+              : PageDescription,
         SeoKeywords:
           SeoKeywords !== undefined
             ? [...page.pageSettings.SeoKeywords]
             : PageTags === undefined
-            ? []
-            : [...PageTags],
+              ? []
+              : [...PageTags],
         PageURL: PageURL !== undefined ? PageURL : "",
         SeoBlockIndexing: SeoEnable !== undefined ? SeoEnable : true,
       };

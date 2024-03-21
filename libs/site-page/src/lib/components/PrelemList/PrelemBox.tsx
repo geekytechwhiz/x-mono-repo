@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { ThemeConstants, createImageURL } from "@platformx/utilities";
+import { ThemeConstants, createImageURL, usePlatformAnalytics } from "@platformx/utilities";
 import { useStyles } from "./PrelemList.styles";
 import { useLazyQuery } from "@apollo/client";
 import { CloseOutlined, InfoOutlined } from "@mui/icons-material";
@@ -15,7 +15,6 @@ import {
   // runPageFetchContentQuery,
   // runPageFetchValidationQuery,
 } from "@platformx/authoring-apis";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@platformx/authoring-state";
