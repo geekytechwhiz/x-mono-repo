@@ -21,6 +21,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import i18next from "./i18next";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
@@ -87,7 +88,7 @@ function App() {
   return (
     <Suspense fallback={<div>...Loading</div>}>
       <div className='App'>
-        <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18next}>
           <ApolloProvider client={graphqlInstance}>
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>

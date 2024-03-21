@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import Events from "./Events";
-import Blogs from "../Blogs/Blogs";
 import { nullToObject } from "@platformx/utilities";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import "../../utils/service/i18n";
+
+import Blogs from "../Blogs/Blogs";
+import Events from "./Events";
 
 const EventLandingPage = (props: any) => {
   const {

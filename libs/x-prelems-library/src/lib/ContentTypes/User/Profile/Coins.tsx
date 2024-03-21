@@ -3,7 +3,6 @@ import { Coin, nullToObject } from "@platformx/utilities";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
-import "../../../utils/service/i18n";
 
 type CoinsProps = {
   secondaryArgs: any;

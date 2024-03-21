@@ -11,7 +11,6 @@ import {
   WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
-  i18next,
   nullToObject,
   successGif,
   useUserSession,
@@ -577,7 +576,7 @@ export const CreateArticle = () => {
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const article_settings = {
-      socialog_url: `${AUTH_INFO.publishUri + i18next.language}/article/${pageUrl}`,
+      socialog_url: `${AUTH_INFO.publishUri + "en"}/article/${pageUrl}`,
       keywords: socialOgTags.tagsSocialShare,
     };
     const current_page_url = `/${pageUrl}`;
