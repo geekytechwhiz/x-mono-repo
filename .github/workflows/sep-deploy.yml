@@ -1,4 +1,4 @@
-name: 4
+name: platformx-workflow-with-nx
 on:
   push:
     branches:
@@ -41,9 +41,9 @@ jobs:
       # Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
-        # with:
-        #   node-version: 20
-        #   cache: 'npm' # commenting for testing
+        with:
+          node-version: 20
+          cache: 'npm'
 
       # Install dependencies
       - name: Install Dependencies
