@@ -1,17 +1,17 @@
-import React, { useState, useRef } from "react";
-import { Box, Grid, Button } from "@mui/material";
-import Tabs from "@mui/material/Tabs";
+import { Box, Button, Grid } from "@mui/material";
 import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import axios from "axios";
 import { ethers } from "ethers";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { errorRequest } from "../../../components/ConstantData";
-import ToastService from "../../../components/ToastContainer/ToastService";
 import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
-import "../../../utils/service/i18n";
+import ToastService from "../../../components/ToastContainer/ToastService";
+
 // import Confirmation from "components/Ecommerce/Common/Confirmation/Confirmation";
+import { GreenTick, nullToObject } from "@platformx/utilities";
 import Confirmation from "../../../components/Confirmation/Confirmation";
-import { nullToObject, GreenTick } from "@platformx/utilities";
 
 interface TabPanelProps {
   children?: React.ReactNode;

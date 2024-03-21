@@ -12,7 +12,7 @@ import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
-import "../../utils/service/i18n";
+
 import PollContext from "./PollContext";
 import QuestionIndex from "./QuestionIndex";
 import Result from "./Result";

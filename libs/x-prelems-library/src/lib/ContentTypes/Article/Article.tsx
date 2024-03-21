@@ -1,15 +1,15 @@
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Box, Card, CardContent, Chip, Divider, Grid, Typography, useTheme } from "@mui/material";
 import { format } from "date-fns";
 import { Fragment, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import ImageRender from "../../components/ImageRender";
-import Share from "../../components/Share/Share";
-import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
-import { useCustomStyle } from "../Article/Article.style";
 import "../../Style.css";
-import "../../utils/service/i18n";
+import ImageRender from "../../components/ImageRender";
+import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
+import Share from "../../components/Share/Share";
+
+import { useCustomStyle } from "../Article/Article.style";
 
 const Article = ({
   content = {},

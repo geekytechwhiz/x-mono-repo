@@ -18,7 +18,7 @@ import BasicButton from "../../components/BasicButton/BasicButton";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import prelemTypes from "../../globalStyle";
-import "../../utils/service/i18n";
+
 import "./ServiceCard6.css";
 import { useCustomStyle } from "./ServiceCard6.style";
 
