@@ -35,11 +35,8 @@ const PageMenu = (props) => {
     // duplicatePage,
     unPublishPage,
     handleReschedulePopup,
-    // reschedulePublishPage,
-    // rescheduleUnPublishPage,
     handleCancelTriggerPopup,
     cancelPublishUnpublishTrigger,
-    handleDeleteData,
     handlePageDelete,
   } = usePage();
   const [cancelTriggerType, setCancelTriggerType] = useState("");
@@ -49,7 +46,7 @@ const PageMenu = (props) => {
     status,
     scheduledPublishTriggerDateTime,
     scheduledUnPublishTriggerDateTime,
-    lastPublishedDate,
+    // lastPublishedDate,
   } = listItemDetails;
   const [menuActions, setMenuActions] = useState({
     duplicate: false,
@@ -62,21 +59,22 @@ const PageMenu = (props) => {
     canceltrigger: false,
     approvalStatus: false,
   });
+  const [data, setData] = useState({});
   const handleDeletePopup = (pageSelected) => {
     if (pageSelected.status === "published") {
       setMenuActions({ ...menuActions, pageunpublish: true });
-      handleDeleteData(pageSelected);
+      setData(pageSelected);
     }
     if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
       setMenuActions({ ...menuActions, pageunpublish: true });
-      handleDeleteData(pageSelected);
+      setData(pageSelected);
     }
     if (
       (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime == null) ||
       pageSelected.status === "unpublished"
     ) {
       setMenuActions({ ...menuActions, delete: true });
-      handleDeleteData(pageSelected);
+      setData(pageSelected);
     }
   };
 
@@ -152,26 +150,6 @@ const PageMenu = (props) => {
     handleClose();
   };
 
-  // const handleReschedulePublish = (publishTime) => {
-  //   const requestDto = {
-  //     page: listItemDetails.page,
-  //     currentpageurl: listItemDetails.currentPageUrl,
-  //     parentpageurl: listItemDetails.parentPageUrl,
-  //   };
-  //   reschedulePublishPage(publishTime, requestDto);
-  //   handleClose();
-  // };
-
-  // const handleRescheduleUnPublish = (unpublishTime) => {
-  //   const requestDto = {
-  //     page: listItemDetails.page,
-  //     currentpageurl: listItemDetails.currentPageUrl,
-  //     parentpageurl: listItemDetails.parentPageUrl,
-  //   };
-  //   rescheduleUnPublishPage(unpublishTime, requestDto, listItemDetails);
-  //   handleClose();
-  // };
-
   const handleCancelTrigger = () => {
     const requestDto = {
       page: listItemDetails.page,
@@ -183,7 +161,7 @@ const PageMenu = (props) => {
   };
 
   const handleConfirmDelete = () => {
-    handlePageDelete();
+    handlePageDelete(data);
     handleClose();
   };
 
@@ -216,26 +194,6 @@ const PageMenu = (props) => {
           confirmButtonHandle={handleUnpublishPage}
         />
       )}
-      {/* {(menuActions.reschedulepublish || menuActions.rescheduleunpublish) && (
-        <Reschedule
-          isOpen={
-            menuActions.reschedulepublish || menuActions.rescheduleunpublish
-          }
-          rescheduleFlag={
-            menuActions.reschedulepublish ? 'Publish' : 'Unpublish'
-          }
-          schedulePublishDateTime={
-            listItemDetails.scheduledPublishTriggerDateTime
-          }
-          scheduleUnpublishDateTime={
-            listItemDetails.scheduledUnPublishTriggerDateTime
-          }
-          rescheduleDto={rescheduleDto}
-          handleConfirmPublishReschedule={handleReschedulePublish}
-          handleConfirmUnpublishReschedule={handleRescheduleUnPublish}
-          closeButtonHandle={handleClose}
-        />
-      )} */}
       {menuActions.canceltrigger && (
         <PlateformXDialog
           isDialogOpen={menuActions.canceltrigger}
@@ -318,13 +276,13 @@ const PageMenu = (props) => {
           ) : (
             <>
               <div className={classes.icon}>
-                <img src={CardOptionViewIcon} alt='view' />
+                <img src={CardOptionViewIcon} alt='preview' />
               </div>
               {t("preview")}
             </>
           )}
         </MenuItem>
-        {status === "draft" && lastPublishedDate !== "" ? (
+        {/* {status === "draft" && lastPublishedDate !== "" ? (
           <MenuItem
             disableRipple
             onClick={() => {
@@ -335,7 +293,7 @@ const PageMenu = (props) => {
             </div>
             {t("view")}
           </MenuItem>
-        ) : null}
+        ) : null} */}
         {(scheduledPublishTriggerDateTime === null ||
           scheduledPublishTriggerDateTime === undefined) &&
         (scheduledUnPublishTriggerDateTime === null ||

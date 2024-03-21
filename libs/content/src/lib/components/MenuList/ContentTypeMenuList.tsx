@@ -1,6 +1,5 @@
 /* eslint-disable no-debugger */
 import { Box, IconButton } from "@mui/material";
-import { usePage } from "@platformx/authoring-apis";
 import { MoreHorizIcon } from "@platformx/utilities";
 import React, { memo, useState } from "react";
 import { QuizPollEventMenu } from "../QuizPollEventsMenu/QuizPollEventsMenu";
@@ -14,37 +13,9 @@ const ContentTypeMenuList = ({
   unPublish,
   view,
   edit,
-  // editPage,
-  // viewPage,
-  // previewPage,
-  // handleDuplicatePopup,
-  // duplicatePage,
-  // unPublishPage,
-  // handleReschedulePopup,
-  // reschedulePublishPage,
-  // rescheduleUnPublishPage,
-  // handleCancelTriggerPopup,
-  // cancelPublishUnpublishTrigger,
-  // handleDeleteData,
-  // handlePageDelete,
   fetchContentDetails,
 }) => {
   // const selectedItem = getSelectedObject(item); // TODO: need to check
-  const {
-    editPage,
-    cancelPublishUnpublishTrigger,
-    duplicatePage,
-    handleCancelTriggerPopup,
-    handleDeleteData,
-    handleDuplicatePopup,
-    handlePageDelete,
-    handleReschedulePopup,
-    previewPage,
-    reschedulePublishPage,
-    rescheduleUnPublishPage,
-    unPublishPage,
-    viewPage,
-  } = usePage("ALL");
   const selectedItem = item;
   const contentType = selectedItem.contentType || selectedItem.tagName;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -107,19 +78,6 @@ const ContentTypeMenuList = ({
           }}
           category='Page'
           subCategory=''
-          editPage={editPage}
-          viewPage={viewPage}
-          previewPage={previewPage}
-          handleDuplicatePopup={handleDuplicatePopup}
-          duplicatePage={duplicatePage}
-          unPublishPage={unPublishPage}
-          handleReschedulePopup={handleReschedulePopup}
-          reschedulePublishPage={reschedulePublishPage}
-          rescheduleUnPublishPage={rescheduleUnPublishPage}
-          handleCancelTriggerPopup={handleCancelTriggerPopup}
-          cancelPublishUnpublishTrigger={cancelPublishUnpublishTrigger}
-          handleDeleteData={handleDeleteData}
-          handlePageDelete={handlePageDelete}
         />
       )}
     </Box>

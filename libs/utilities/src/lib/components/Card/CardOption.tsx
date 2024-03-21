@@ -1,7 +1,6 @@
 import { Box, IconButton, MenuItem } from "@mui/material";
 import DeleteIcon from "../../assets/svg//deleteIcon.svg";
 import EditIcon from "../../assets/svg//editIcon.svg";
-// import MoreHorizIcon from '../../assets/svg/moreHoriz.svg';
 import { useState } from "react";
 import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
 
@@ -68,7 +67,6 @@ const CardOption = (props: any) => {
                 tagName === "courses"
               }>
               <IconButton className='hoverIcon'>
-                {/* <img src={DeleteIcon} style={{ objectFit: 'cover' }} /> */}
                 <img src={DeleteIcon} alt='' />
               </IconButton>
             </MenuItem>
@@ -78,17 +76,6 @@ const CardOption = (props: any) => {
             tagName === "courses"
           }
         />
-        {/* <IconButton
-            aria-label='settings'
-            id='long-button'
-            aria-controls={open ? 'long-menu' : undefined}
-            aria-expanded={open ? 'true' : undefined}
-            aria-haspopup='true'
-            onClick={handleClick}
-            className='viewallctamob'
-          >
-            <img  src={MoreHorizIcon} style={{ objectFit: 'cover' }} />
-          </IconButton> */}
       </Box>
     </Box>
   );

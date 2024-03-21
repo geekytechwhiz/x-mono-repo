@@ -1,8 +1,3 @@
-import Step from "@mui/material/Step";
-import StepConnector from "@mui/material/StepConnector";
-import StepLabel from "@mui/material/StepLabel";
-import Stepper from "@mui/material/Stepper";
-import { withStyles } from "@mui/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
@@ -11,17 +6,22 @@ import { Box, Button, Divider, Slide, Typography } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
+import Step from "@mui/material/Step";
+import StepConnector from "@mui/material/StepConnector";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
 import TextField from "@mui/material/TextField";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { withStyles } from "@mui/styles";
 import { RootState } from "@platformx/authoring-state";
+import { ContentGallery } from "@platformx/site-page";
 import { BasicSwitch, ThemeConstants, dateFormat } from "@platformx/utilities";
 import * as React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import iconMapping from "../utils/iconMapping";
-// import ContentGallery from '../../ContentGallery/ContentGallery'
 import LinkSecondPg from "./LinkSecondPg";
 import MainMenuDialog from "./MainMenuDialog";
 import MenuSecondPage from "./MenuSecondPage";
@@ -96,7 +96,7 @@ function MenuCreationFirstPage({
     Author: "",
   });
   const [menuDescription, setMenuDescription] = useState("");
-  const [, setGalleryState] = useState<boolean>(false);
+  const [galleryState, setGalleryState] = useState<boolean>(false);
 
   const handleHomePage = (event) => {
     // leftSideBarContent.map((val) => {
@@ -215,6 +215,25 @@ function MenuCreationFirstPage({
     }
     setGalleryState(true);
   };
+
+  const handleSelectedContent = (item) => {
+    if (item.ContentType === "Article" || item.ContentType === "VOD") {
+      setSelectedItem({
+        Title: item.Title,
+        Description: item.Description,
+        Image: item.Banner,
+        RedirectionUrl: item.CurrentPageURL,
+        Internal: true,
+        ContentType: item.ContentType,
+        CreatedDate: item.PublishedDate,
+        Author: item.Author,
+      });
+    }
+    setGalleryState(false);
+  };
+  const onToggleContentGallery = () => {
+    setGalleryState(false);
+  };
   const [itemExist, setItemExist] = useState(false);
   const isMenuExist = () => {
     const tempArr: any = JSON.parse(JSON.stringify(leftSideBarContent));
@@ -231,12 +250,12 @@ function MenuCreationFirstPage({
   return (
     <>
       <style>{minCss}</style>
-      {/* {galleryState && (
+      {galleryState && (
         <ContentGallery
           handleSelectedContent={handleSelectedContent}
           onToggleContentGallery={onToggleContentGallery}
         />
-      )} */}
+      )}
       {/* <Box sx={{ display: "flex", position: "relative" }}> */}
       <Box
         sx={{
