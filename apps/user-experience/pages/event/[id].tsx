@@ -77,8 +77,9 @@ const Event = (props: any) => {
         />
 
         <HeaderFooterLayout
-          {...props}
+          userData={{}}
           route={route}
+          isEcomPage={false}
           MenuData={MenuData}
           authState={authState}
           isCartIconEnable={true}

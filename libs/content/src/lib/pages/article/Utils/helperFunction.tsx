@@ -3,7 +3,6 @@ import {
   dateFormat,
   getSubDomain,
   handleHtmlTags,
-  i18next,
   trimString,
 } from "@platformx/utilities";
 import { t } from "i18next";
@@ -213,8 +212,8 @@ export const updateStructureData = (content, banner, keywords, pageUrl) => {
     Description: trimString(handleHtmlTags(content?.description), 200),
     keywords: keywords,
     image: banner,
-    url: `${getSubDomain()}/${i18next.language}/article/${pageUrl}`,
-    datePublished: dateFormat(new Date().toISOString()),
+    url: `${getSubDomain()}/en/article/${pageUrl}`,
+    datePublished: dateFormat(),
     dateModified: dateFormat(new Date().toISOString()),
     author: [
       {
@@ -254,8 +253,8 @@ export const updateSettings = (articleInstance, tagArrRef, socialOgTags, pageUrl
   const { title, description, settings } = articleCommonFields;
   const { socialog_title, socialog_description, socialog_image } = settings || {};
   const articleSettings = {
-    socialog_url: `${getSubDomain()}/${i18next.language}/article/${pageUrl}`,
-    socialog_twitter_url: `${getSubDomain()}/${i18next.language}/article/${pageUrl}`,
+    socialog_url: `${getSubDomain()}/en/article/${pageUrl}`,
+    socialog_twitter_url: `${getSubDomain()}/en/article/${pageUrl}`,
     socialog_type: "article",
     socialog_sitename: title ? trimString(handleHtmlTags(title), 100) : "article",
     seo_title: title ? trimString(handleHtmlTags(title), 100) : "",

@@ -9,7 +9,7 @@ import "../../Style.css";
 import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
 import Share from "../../components/Share/Share";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import "../../utils/service/i18n";
+
 import { useCustomStyle } from "./videoLandingPage.style";
 
 const BrightcovePlayer: any = React.lazy(

@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "../../../Style.css";
-import "../../../utils/service/i18n";
 import { useCustomStyle } from "./RightCard.style";
 
 const RightCard = ({ content, setIsCourseFrame }: any) => {

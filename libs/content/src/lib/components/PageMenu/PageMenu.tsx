@@ -46,7 +46,7 @@ const PageMenu = (props) => {
     status,
     scheduledPublishTriggerDateTime,
     scheduledUnPublishTriggerDateTime,
-    lastPublishedDate,
+    // lastPublishedDate,
   } = listItemDetails;
   const [menuActions, setMenuActions] = useState({
     duplicate: false,
@@ -276,13 +276,13 @@ const PageMenu = (props) => {
           ) : (
             <>
               <div className={classes.icon}>
-                <img src={CardOptionViewIcon} alt='view' />
+                <img src={CardOptionViewIcon} alt='preview' />
               </div>
               {t("preview")}
             </>
           )}
         </MenuItem>
-        {status === "draft" && lastPublishedDate !== "" ? (
+        {/* {status === "draft" && lastPublishedDate !== "" ? (
           <MenuItem
             disableRipple
             onClick={() => {
@@ -293,7 +293,7 @@ const PageMenu = (props) => {
             </div>
             {t("view")}
           </MenuItem>
-        ) : null}
+        ) : null} */}
         {(scheduledPublishTriggerDateTime === null ||
           scheduledPublishTriggerDateTime === undefined) &&
         (scheduledUnPublishTriggerDateTime === null ||

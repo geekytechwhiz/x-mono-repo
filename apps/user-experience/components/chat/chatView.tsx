@@ -14,7 +14,7 @@ export default function ChatView() {
       const userDetails = JSON.parse(userLoginDetails);
       setName(userDetails.data.name);
     }
-  });
+  }, []);
 
   // useEffect(() => {
   //   console.log(publicRuntimeConfig.NEXT_PUBLISH_API_URL);

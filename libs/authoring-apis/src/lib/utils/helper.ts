@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import { LanguageList, dateFormat, handleHtmlTags, trimString } from "@platformx/utilities";
-import { DefaultLocale, ROW_SIZE } from "./constants";
-import i18n from "./i18n";
-import { SearchContentListQueries } from "../graphQL/queries/searchQueries";
 import graphqlInstance from "../config/graphqlConfig";
+import { SearchContentListQueries } from "../graphQL/queries/searchQueries";
 import { mapFetchALL } from "../services/page/mapper";
+import { DefaultLocale, ROW_SIZE } from "./constants";
 
 export const getCurrentLang = () => {
   let lang = "";
@@ -76,7 +75,7 @@ export const updateStructureData = (content: any, banner: any, keywords: any, pa
     Description: trimString(handleHtmlTags(content?.description), 200),
     keywords: keywords,
     image: banner,
-    url: `${getSubDomain()}/${i18n.language}/article/${pageUrl}`,
+    url: `${getSubDomain()}/en/article/${pageUrl}`,
     datePublished: dateFormat(new Date().toISOString()),
     dateModified: dateFormat(new Date().toISOString()),
     author: [

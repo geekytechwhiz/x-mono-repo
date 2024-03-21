@@ -6,12 +6,12 @@ import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
-import "../../utils/service/i18n";
+
 import QuestionIndex from "./QuestionIndex";
+import { useCustomStyle } from "./Quiz.style";
 import QuizContext from "./QuizContext";
 import ScoreScreen from "./ScoreScreen";
 import ViewAnswers from "./ViewAnswers";
-import { useCustomStyle } from "./Quiz.style";
 
 const Quiz = ({
   content,

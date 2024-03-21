@@ -80,7 +80,8 @@ const Video = (props: any) => {
         />
 
         <HeaderFooterLayout
-          {...props}
+          userData={{}}
+          isEcomPage={false}
           route={route}
           MenuData={MenuData}
           authState={authState}
