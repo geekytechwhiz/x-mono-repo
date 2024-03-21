@@ -38,6 +38,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Setup Nx Cloud
+      - name: Setup Nx Cloud
+        uses: nrwl/nx-set-shas@v3
+
+      # Record Nx Cloud actions and execute Nx commands
+      - name: Record Nx Cloud Actions and Execute Nx Commands
+        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
+
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
         if: endsWith(github.ref, '/develop')
@@ -115,7 +134,26 @@ jobs:
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Setup Nx Cloud
+      - name: Setup Nx Cloud
+        uses: nrwl/nx-set-shas@v3
+
+      # Record Nx Cloud actions and execute Nx commands
+      - name: Record Nx Cloud Actions and Execute Nx Commands
+        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
