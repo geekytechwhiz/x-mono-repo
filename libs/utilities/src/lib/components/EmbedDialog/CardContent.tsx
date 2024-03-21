@@ -1,6 +1,5 @@
 import { Box, Button, Grid } from "@mui/material";
 import Typography from "@mui/material/Typography";
-// import EmbedDesktopTabCard from 'platform-x-prelems/prelems/EmbedDesktopTabCard';
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getSubDomain } from "../../utils/helperFns";

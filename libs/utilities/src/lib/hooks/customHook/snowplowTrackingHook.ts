@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import getConfig from "next/config";
-import usePlatformAnalytics from "platform-x-prelems/prelems/analytics";
+import { usePlatformAnalytics } from "@platformx/utilities";
 import { SNOWPLOW } from "../../constants/CommonConstants";
 import { locationApiCallService } from "../../utils/helperFns";
 

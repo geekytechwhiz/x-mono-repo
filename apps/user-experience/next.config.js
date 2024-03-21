@@ -50,45 +50,45 @@ const nextConfig = {
       },
     ];
   },
-  // webpack: (config, { isServer }) => {
-  //   // Added a loader for font files
-  //   config.module.rules.push(
-  //     {
-  //       test: /\.(woff|woff2|eot|ttf|otf)$/,
-  //       use: {
-  //         loader: "file-loader",
-  //         options: {
-  //           name: "[name].[ext]",
-  //           outputPath: "static/fonts/",
-  //           publicPath: "/_next/static/fonts/",
-  //         },
-  //       },
-  //     },
-  //     // {
-  //     //   test: /\.(png|jpe?g|gif)$/i,
-  //     //   use: [
-  //     //     {
-  //     //       loader: 'file-loader',
-  //     //     },
-  //     //   ],
-  //     // },
-  //     {
-  //       test: /\.css$/,
-  //       use: ["style-loader", "css-loader"],
-  //     },
-  //     {
-  //       test: /\.node$/,
-  //       use: "raw-loader",
-  //     },
-  //   );
+  webpack: (config, { isServer }) => {
+    // Added a loader for font files
+    config.module.rules.push(
+      //   {
+      //     test: /\.(woff|woff2|eot|ttf|otf)$/,
+      //     use: {
+      //       loader: "file-loader",
+      //       options: {
+      //         name: "[name].[ext]",
+      //         outputPath: "static/fonts/",
+      //         publicPath: "/_next/static/fonts/",
+      //       },
+      //     },
+      //   },
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   use: [
+      //     {
+      //       loader: 'file-loader',
+      //     },
+      //   ],
+      // },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      // {
+      //   test: /\.node$/,
+      //   use: "raw-loader",
+      // },
+    );
 
-  //   // Conditionally exclude @platformx/x-prelem-library from server-side bundling
-  //   if (!isServer) {
-  //     config.externals.push("@platformx/x-prelem-library");
-  //   }
+    //   // Conditionally exclude @platformx/x-prelem-library from server-side bundling
+    //   if (!isServer) {
+    //     config.externals.push("@platformx/x-prelem-library");
+    //   }
 
-  //   return config;
-  // },
+    return config;
+  },
   publicRuntimeConfig: {
     NEXT_GA_ID: process.env.NEXT_GA_ID,
     NEXT_GTM_ID: process.env.NEXT_GTM_ID,
