@@ -455,4 +455,40 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+  step4blur: {
+    marginBottom: "5px",
+    position: "relative",
+    backgroundRepeat: "no-repeat",
+    padding: "10px",
+    backgroundPosition: "10px bottom",
+  },
+  step4blur1: {
+    marginBottom: "5px",
+    position: "relative",
+    backgroundRepeat: "no-repeat",
+    padding: "10px",
+    backgroundPosition: "10px top",
+  },
+  step4imgtc: {
+    position: "relative",
+  },
+  step4imgtc1: {
+    position: "absolute",
+    top: "45px",
+    left: "-23px",
+  },
+  step4innerimg1: {
+    position: "relative",
+    marginTop: "67px",
+  },
+  step4innerimg2: {
+    position: "absolute",
+    top: "110px",
+    left: "88px",
+  },
+  step4innerimg3: {
+    position: "absolute",
+    bottom: "29px",
+    left: "-39px",
+  },
 }));

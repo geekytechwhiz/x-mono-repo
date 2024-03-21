@@ -196,39 +196,31 @@ export default function PlateformXCreatestep4Dialog({
                 </Box>
                 <Box className={classes.siteiconnew}>
                   <Box
+                    className={classes.step4blur}
                     sx={{
                       backgroundImage: `url('${Step4imgnblur}')`,
-                      marginBottom: "5px",
-                      position: "relative",
-                      backgroundRepeat: "no-repeat",
-                      padding: "10px",
-                      backgroundPosition: "10px bottom",
                     }}>
-                    <Box sx={{ position: "relative" }}>
+                    <Box className={classes.step4imgtc}>
                       <img className={classes.siteiconinner} src={Step4img} alt='icon' />
                     </Box>
-                    <Box sx={{ position: "absolute", top: "45px", left: "-23px" }}>
+                    <Box className={classes.step4imgtc1}>
                       <img src={Step4imgn2} alt='icon' />
                     </Box>
                   </Box>
 
                   <Box
+                    className={classes.step4blur1}
                     sx={{
                       backgroundImage: `url('${Step4imgnblur}')`,
-                      marginBottom: "5px",
-                      position: "relative",
-                      backgroundRepeat: "no-repeat",
-                      padding: "10px",
-                      backgroundPosition: "10px top",
                     }}>
-                    <Box sx={{ position: "relative", marginTop: "67px" }}>
+                    <Box className={classes.step4innerimg1}>
                       <img src={Step4imgupdate} alt='icon' />
                     </Box>
-                    <Box sx={{ position: "absolute", top: "110px", left: "88px" }}>
+                    <Box className={classes.step4innerimg2}>
                       <img src={Step4imgn} alt='' />
                     </Box>
 
-                    <Box sx={{ position: "absolute", bottom: "29px", left: "-39px" }}>
+                    <Box className={classes.step4innerimg3}>
                       <img src={Step4imgn1} alt='icon' />
                     </Box>
                   </Box>
