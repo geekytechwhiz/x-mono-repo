@@ -14,7 +14,7 @@ permissions:
 jobs:
   main:
     name: Nx Cloud - Main Job
-    uses: nrwl/ci/.github/workflows/nx-cloud-main.yml@v0.13.1
+    uses: .github/workflows/nx-cloud-main.yml
     with:
       main-branch-name: develop
       number-of-agents: 3
