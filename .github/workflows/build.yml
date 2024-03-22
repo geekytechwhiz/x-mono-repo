@@ -8,13 +8,13 @@ on:
 
 # Needed for nx-set-shas within nx-cloud-main.yml, when run on the master branch
 permissions:
-  actions: read
-  contents: read
+  actions: write
+  contents: write
 
 jobs:
   main:
     name: Nx Cloud - Main Job
-    uses: .github/workflows/nx-cloud-main.yml
+    uses: ./.github/workflows/nx-cloud-main.yml
     with:
       main-branch-name: develop
       number-of-agents: 3
