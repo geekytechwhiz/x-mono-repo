@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box, ListItemIcon, Select, Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
+import { DE_FLAG, EN_FLAG, FR_FLAG } from "@platformx/utilities";
 import { useEffect } from "react";
 import { LanguageList } from "../../utils/helperConstants";
 import { getCurrentLang } from "../../utils/helperFns";
@@ -42,6 +43,20 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
       }
     });
   }, []);
+
+  const RenderFlag = (lang: string) => {
+    switch (lang) {
+      case "fr":
+        return FR_FLAG;
+      case "de":
+        return DE_FLAG;
+      case "en":
+        return EN_FLAG;
+      default:
+        return EN_FLAG;
+    }
+  };
+
   return (
     <FormControl
       // fullWidth
@@ -88,15 +103,15 @@ export default function LanguageDropDownCheckBox({ language, setLanguage }: any)
                   borderRadius: "50%",
                   marginRight: "10px",
                 }}>
-                {/* <img  // To DO Need to check
-                  alt=""
-                  src={require(`../../../assets/${l.id}_flag.png`)}
+                <img
+                  alt=''
+                  src={RenderFlag(l.id)}
                   style={{
-                    objectFit: 'cover',
-                    width: '24px',
-                    height: '24px',
+                    objectFit: "cover",
+                    width: "24px",
+                    height: "24px",
                   }}
-                /> */}
+                />
               </Box>
               <Typography variant='h6regular'>{l.label}</Typography>
             </Box>
