@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { i18next } from "@platformx/utilities";
 import { getLocale, getSelectedSite } from "../utils/helper";
 
 const defaultOptions: any = {
@@ -22,7 +21,7 @@ const link = createHttpLink({
   credentials: "include",
 });
 const updateLanguageheader = setContext((_, { headers }) => {
-  const language = headers && headers.language ? headers.language : i18next.language;
+  const language = headers && headers.language ? headers.language : "en";
   return {
     headers: {
       ...headers,

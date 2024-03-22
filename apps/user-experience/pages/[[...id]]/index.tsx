@@ -63,7 +63,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     );
 
     //Logic for login
-    const { isLoggedIn, userData } = await verifyLoggedInStatus(req, res);
+    const { isLoggedIn, userData = {} } = await verifyLoggedInStatus(req, res);
     // const isPageBehindLogin = true;
     const isPageBehindLogin =
       contentResponse?.fetchPageContent?.PageSettings?.PageViewer === BEHIND_LOGIN;

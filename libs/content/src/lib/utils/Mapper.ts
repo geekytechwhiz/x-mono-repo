@@ -21,3 +21,11 @@ export const mapFetchALL = (
     isSuggestive: false,
   };
 };
+
+export const Mapping = {
+  Article: "Article",
+  Poll: "Poll",
+  Quiz: "Quiz",
+  Event: "EventLandingPage",
+  Vod: "VideoLandingPage",
+};

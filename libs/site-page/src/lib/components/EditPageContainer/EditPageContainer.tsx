@@ -25,7 +25,6 @@ import {
   hidePrelem,
   movePrelem,
   resetPrelemContent,
-  resetState,
   savePrelemPosition,
   setUpdatedContent,
   updateDynamicPrelemContent,
@@ -205,7 +204,7 @@ const EditPageContainer = () => {
       user_id,
       user_name,
     } = page.pageModel;
-    if (Object.keys(page?.pageModel).length === 0) {
+    if (Object.keys(page?.pageModel).length === 0 || searchParams?.get("page") !== Path) {
       setLoader(true);
       fetchPageModel(
         dispatch,
@@ -1058,13 +1057,6 @@ const EditPageContainer = () => {
     setPublishLoading(true);
     callFnsCase("PUBLISH");
   };
-
-  //cleanup code
-  useEffect(() => {
-    return () => {
-      dispatch(resetState());
-    };
-  }, []);
 
   const theme = useTheme();
   const mobileHeader = useMediaQuery(`@media(max-width:${ThemeConstants.EM - 1}px)`);

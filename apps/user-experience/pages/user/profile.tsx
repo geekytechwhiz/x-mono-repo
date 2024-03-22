@@ -44,7 +44,8 @@ const Profile = (props: any) => {
     <Box>
       <ErrorBoundary>
         <HeaderFooterLayout
-          {...props}
+          userData={{}}
+          isEcomPage={false}
           route={route}
           MenuData={MenuData}
           authState={authState}

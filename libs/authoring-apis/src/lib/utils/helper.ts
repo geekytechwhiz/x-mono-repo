@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import { LanguageList, dateFormat, handleHtmlTags, trimString } from "@platformx/utilities";
-import { DefaultLocale, ROW_SIZE } from "./constants";
-import i18n from "./i18n";
-import { SearchContentListQueries } from "../graphQL/queries/searchQueries";
 import graphqlInstance from "../config/graphqlConfig";
+import { SearchContentListQueries } from "../graphQL/queries/searchQueries";
 import { mapFetchALL } from "../services/page/mapper";
+import { DefaultLocale, ROW_SIZE } from "./constants";
 
 export const getCurrentLang = () => {
   let lang = "";
@@ -21,14 +20,14 @@ export const getCurrentLang = () => {
 
 export const getSelectedSite = () => {
   let site = "";
-  const split = location.pathname.split("/");
-  const [, selectedSite] = split;
-  site = selectedSite;
-  // if (site === "en" || site === "fr" || site === "de") {
-  return localStorage.getItem("selectedSite") ?? site;
-  // } else {
-  //   return site;
-  // }
+  const split = window?.location.pathname.split("/");
+  // eslint-disable-next-line prefer-destructuring
+  site = split[1];
+  if (site === "en" || site === "fr" || site === "de") {
+    return localStorage.getItem("selectedSite") || "";
+  } else {
+    return site || "";
+  }
 };
 
 export const getLocale = (language: string, location: string) => {
@@ -76,7 +75,7 @@ export const updateStructureData = (content: any, banner: any, keywords: any, pa
     Description: trimString(handleHtmlTags(content?.description), 200),
     keywords: keywords,
     image: banner,
-    url: `${getSubDomain()}/${i18n.language}/article/${pageUrl}`,
+    url: `${getSubDomain()}/en/article/${pageUrl}`,
     datePublished: dateFormat(new Date().toISOString()),
     dateModified: dateFormat(new Date().toISOString()),
     author: [
