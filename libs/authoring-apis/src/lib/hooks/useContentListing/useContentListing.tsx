@@ -194,6 +194,7 @@ const useContentListing = (filter = "ALL") => {
   };
 
   const editPage = (listItemDetails: { path: any }) => {
+    localStorage.setItem("path", listItemDetails.path.toString());
     navigate({
       pathname: "/edit-page",
       search: `?${createSearchParams({

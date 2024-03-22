@@ -5,6 +5,7 @@ import {
   updateContentList,
   updatePageSettings,
   updateSaveWarning,
+  updateContent,
 } from "@platformx/authoring-state";
 import {
   ShowToastError,
@@ -233,7 +234,7 @@ const usePage = (filter = "ALL") => {
         };
         handleImpression(pageDataObj.eventType, pageDataObj);
         if (isDuplicate) {
-          dispatch(await fetchContent(content.contentType, location, filter, content, true));
+          dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
         } else {
           navigate(
             {
@@ -279,7 +280,7 @@ const usePage = (filter = "ALL") => {
       ),
     );
     dispatch(updateSaveWarning(false));
-    dispatch(await fetchContent("Sitepage", location, filter, content, true));
+    dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
   };
 
   /**duplicate page */
@@ -297,9 +298,9 @@ const usePage = (filter = "ALL") => {
         language.map((lang) => {
           // eslint-disable-next-line array-callback-return
           LanguageList().map((l: any) => {
-            if (l.id === lang) {
+            if (l.label === lang) {
               localStorage.setItem("lang", l.id);
-              createPageModel(newPageModel, isDuplicate, l.id);
+              createPageModel(newPageModel, isDuplicate, l.label);
             }
           });
         });

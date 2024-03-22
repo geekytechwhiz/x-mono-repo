@@ -110,11 +110,9 @@ export const fetchContent = async (
   const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
 
   return {
-    type: "UPDATE_CONTENT",
     content: reloadContent
       ? [...JSON.parse(JSON.stringify(sortedContent))]
       : [...contentList, ...JSON.parse(JSON.stringify(sortedContent))],
-    loading: false,
     newDataSize: [...JSON.parse(JSON.stringify(sortedContent))].length,
     contentType: contentType,
   };
