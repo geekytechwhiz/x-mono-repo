@@ -2,14 +2,14 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab } from "@mui/material";
 import { CATEGORY_CONTENT, CONTENT_TYPES } from "@platformx/authoring-apis";
-import { previewArticle } from "@platformx/authoring-state";
+// import { previewArticle } from "@platformx/authoring-state";
 import { capitalizeFirstLetter, useAccess } from "@platformx/utilities";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContListingContainer from "./components/ContentListingContainer/ContentListingContainer";
 
 export default function Content() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { canAccessAction } = useAccess();
   const location = useLocation();
 
@@ -17,10 +17,17 @@ export default function Content() {
   const lastSegment = pathSegments[pathSegments.length - 1];
   const contentType: string = capitalizeFirstLetter(lastSegment);
   const navigate = useNavigate();
-  const createContent = () => {
-    dispatch(previewArticle({}));
-    navigate(`/content/create-${contentType?.toLowerCase()}`, {
-      state: contentType?.toLowerCase(),
+
+  // const createContent = () => {
+  //   dispatch(previewArticle({}));
+  //   navigate(`/content/create-${contentType?.toLowerCase()}`, {
+  //     state: contentType?.toLowerCase(),
+  //   });
+  // };
+
+  const createContentNew = () => {
+    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+      state: contentType?.trim()?.toLowerCase(),
     });
   };
 
@@ -41,7 +48,7 @@ export default function Content() {
           sx={{
             margin: "0 15px 24px 0",
           }}
-          onClick={createContent}>
+          onClick={createContentNew}>
           <Fab size='large' color='primary' aria-label='add'>
             <AddIcon />
           </Fab>

@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { Category, ContentAction, ContentType, relativeImageURL } from "@platformx/content";
+import { Category, ContentAction, ContentType } from "@platformx/content";
 import {
   AutoCompleteText,
   AutoTextArea,
@@ -9,28 +9,19 @@ import {
   TitleSubTitle,
   useAccess,
 } from "@platformx/utilities";
-import { AddImage } from "@platformx/x-image-render";
+import { XImageRender } from "@platformx/x-image-render";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 // import "../../../../components/Common/commonStyles/disabledStyles.css";
 import { useCustomStyle } from "../../CreateEvent.styles";
 import { SocialShareProp } from "../../CreateEvent.types";
-import { IMAGES, SOCIAL_SHARE } from "../../Utils/Constants";
+// import { IMAGES, SOCIAL_SHARE } from "../../Utils/Constants";
 
-const EventSocialShare = ({
-  state,
-  setState,
-  eventWholeRef,
-  showGalleryHandle,
-  unsavedChanges,
-}: // selectedImage,
-SocialShareProp) => {
+const EventSocialShare = ({ state, setState, eventWholeRef, unsavedChanges }: SocialShareProp) => {
   const { t } = useTranslation();
   const classes = useCustomStyle();
   const { canAccessAction } = useAccess();
-
-  const [, setImageUrlLink] = useState("");
 
   const handleOnBlur = (event: any) => {
     unsavedChanges.current = true;
@@ -43,13 +34,18 @@ SocialShareProp) => {
       [event.target.name]: event.target.value,
     };
   };
-  const onUploadClick = () => {
-    showGalleryHandle(IMAGES, SOCIAL_SHARE);
-  };
+  // const onUploadClick = () => {
+  //   showGalleryHandle(IMAGES, SOCIAL_SHARE);
+  // };
 
-  useEffect(() => {
-    setImageUrlLink(state.socialShareImgURL);
-  }, [state.socialShareImgURL]);
+  const updateField = (data) => {
+    setState({ ...state, socialShareImgURL: data.relativeUrl });
+    eventWholeRef.current = {
+      ...eventWholeRef.current,
+      socialShareImgURL: data.relativeUrl,
+    };
+    unsavedChanges.current = true;
+  };
 
   return (
     <Box id='socialShare' className={classes.mainStyleWrapper}>
@@ -76,15 +72,12 @@ SocialShareProp) => {
                     !canAccessAction(Category.Content, ContentType.Event, ContentAction.View) &&
                     "disable"
                   }>
-                  <AddImage
-                    // url={
-                    //   selectedImage !== ''
-                    //     ? selectedImage
-                    //     : state.socialShareImgURL
-                    // }
-                    url={relativeImageURL(state.socialShareImgURL)}
-                    onUploadClick={onUploadClick}
-                    type='Images'
+                  <XImageRender
+                    callBack={updateField}
+                    editData={{
+                      relativeUrl: state.socialShareImgURL,
+                    }}
+                    isCrop={false}
                   />
                 </Box>
               }
