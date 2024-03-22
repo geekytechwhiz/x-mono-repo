@@ -96,7 +96,7 @@ const CreateEvent = () => {
   const [scrollToView, setScrollToView] = useState("");
   const [showExitWarning, setShowExitWarning] = useState(false);
   const navigate = useNavigate();
-  const [previewButton, setPreviewButton] = useState(true);
+  const [, setPreviewButton] = useState(true);
   // const [publishButton, setPublishButton] = useState(true);
   // const [saveButton, setSaveButton] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -758,7 +758,7 @@ const CreateEvent = () => {
             <CreateHeader
               // className={isKeyboardOpen ? "sticky-header keyboard-open" : "sticky-header"}
               // previewButton={previewButton}
-              showPreview={previewButton}
+              showPreview={true}
               handelPreview={handelPreview}
               createText={
                 currentQuizData.current
