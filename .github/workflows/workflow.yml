@@ -1,4 +1,4 @@
-name: platformx-workflow-with-nx
+name: X-workflow
 on:
   push:
     branches:
@@ -10,8 +10,8 @@ jobs:
   authoring-ui:
     name: authoring-ui
     permissions:
-      contents: write
-      id-token: write
+      contents: "read"
+      id-token: "write"
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -37,28 +37,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
-
-      # Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          # cache: 'npm'
-
-      # Install dependencies
-      - name: Install Dependencies
-        run: npm i --legacy-peer-deps
-
-      # Setup Nx Cloud
-      # - name: Setup Nx Cloud
-      #   uses: nrwl/nx-set-shas@v3
-      # Setup Nx Cloud
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
-
-      # Record Nx Cloud actions and execute Nx commands
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -118,8 +96,8 @@ jobs:
   user-experience-ui:
     name: user-experience-ui
     permissions:
-      contents: write
-      id-token: write
+      contents: "read"
+      id-token: "write"
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -137,29 +115,7 @@ jobs:
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v4
-
-      # Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          #cache: "npm"
-
-      # Install dependencies
-      - name: Install Dependencies
-        run: npm i --legacy-peer-deps
-
-      # Setup Nx Cloud
-      # - name: Setup Nx Cloud
-      #   uses: nrwl/nx-set-shas@v3
-      # Setup Nx Cloud
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
-
-      # Record Nx Cloud actions and execute Nx commands
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
+        uses: actions/checkout@v3
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
