@@ -31,9 +31,9 @@ const ExpertiseShowcaseSlot = ({ content, secondaryArgs }: ExpertiseShowcaseSlot
         if (res) {
           let gallery = [];
           if (selectedContentType === "ImageGallery") {
-            gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Image);
+            gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Image);
           } else if (selectedContentType === "VideoGallery") {
-            gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Video);
+            gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Video);
           }
           setSliderData(gallery);
           setContentType(filterType);

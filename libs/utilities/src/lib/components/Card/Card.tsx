@@ -60,6 +60,8 @@ export const Card = ({
       if (deleteContent) {
         await deleteContent(dataList);
       }
+    } else if (tagName === "tagscategories") {
+      setDelete(false); // temporary
     }
     setDelete(false);
   };
@@ -90,6 +92,20 @@ export const Card = ({
             isDialogOpen
             title={t("delete_title")}
             subTitle={subTitle}
+            closeButtonText={t("no_keep_it")}
+            confirmButtonText={t("yes_delete_it")}
+            closeButtonHandle={() => {
+              setDelete(false);
+            }}
+            confirmButtonHandle={handleConfirmation}
+          />
+        );
+      case "tagscategories":
+        return (
+          <PlateformXDialog
+            isDialogOpen
+            title={t("delete_title")}
+            subTitle={`${t("delete_confirm")} ${t("tag")}?. ${t("process_undone")}`}
             closeButtonText={t("no_keep_it")}
             confirmButtonText={t("yes_delete_it")}
             closeButtonHandle={() => {
@@ -130,6 +146,9 @@ export const Card = ({
       case "vod":
         ContentAction[dataList.status](dataList);
         break;
+      case "tagscategories":
+        view && view(dataList);
+        break;
       default:
         return "";
     }
@@ -153,7 +172,7 @@ export const Card = ({
         }
         break;
       case "tagscategories":
-        navigate(`/site-setting/tags/${dataList.title}`);
+        edit && edit(dataList);
         break;
       default:
     }
@@ -169,6 +188,8 @@ export const Card = ({
       case "event":
       case "article":
         setSubTitle(`${t("delete_confirm")} ${t(tagName)}?. ${t("process_undone")}`);
+        break;
+      case "tagscategories":
         break;
       default:
         setSubTitle(t("page_delete_subtitle"));

@@ -20,14 +20,14 @@ export const getCurrentLang = () => {
 
 export const getSelectedSite = () => {
   let site = "";
-  const split = location.pathname.split("/");
-  const [, selectedSite] = split;
-  site = selectedSite;
-  // if (site === "en" || site === "fr" || site === "de") {
-  return localStorage.getItem("selectedSite") ?? site;
-  // } else {
-  //   return site;
-  // }
+  const split = window?.location.pathname.split("/");
+  // eslint-disable-next-line prefer-destructuring
+  site = split[1];
+  if (site === "en" || site === "fr" || site === "de") {
+    return localStorage.getItem("selectedSite") || "";
+  } else {
+    return site || "";
+  }
 };
 
 export const getLocale = (language: string, location: string) => {
@@ -110,11 +110,9 @@ export const fetchContent = async (
   const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
 
   return {
-    type: "UPDATE_CONTENT",
     content: reloadContent
       ? [...JSON.parse(JSON.stringify(sortedContent))]
       : [...contentList, ...JSON.parse(JSON.stringify(sortedContent))],
-    loading: false,
     newDataSize: [...JSON.parse(JSON.stringify(sortedContent))].length,
     contentType: contentType,
   };

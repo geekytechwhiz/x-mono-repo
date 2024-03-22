@@ -10,8 +10,8 @@ jobs:
   authoring-ui:
     name: authoring-ui
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: write
+      id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -115,8 +115,8 @@ jobs:
   user-experience-ui:
     name: user-experience-ui
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: write
+      id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -141,7 +141,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: "npm"
+          #cache: "npm"
 
       # Install dependencies
       - name: Install Dependencies
