@@ -826,9 +826,8 @@ const CreateEvent = () => {
                 <EventImageAndThumbnail
                   state={eventState}
                   setState={setEventState}
-                  setPreviewButton={setPreviewButton}
-                  showGalleryHandle={showGalleryHandle}
-                  selectedImage={selectedImage}
+                  eventWholeRef={eventWholeRef}
+                  unsavedChanges={unsavedChanges}
                 />
 
                 <EventTitleDescription
@@ -867,8 +866,8 @@ const CreateEvent = () => {
                   state={eventState}
                   setState={setEventState}
                   eventWholeRef={eventWholeRef}
-                  showGalleryHandle={showGalleryHandle}
                   unsavedChanges={unsavedChanges}
+                  showGalleryHandle={showGalleryHandle}
                   selectedImage={selectedImage.Thumbnail}
                 />
                 <EventAnalytics

@@ -208,9 +208,9 @@ export type SocialShareProp = {
   state: State;
   setState: SetState;
   eventWholeRef: React.MutableRefObject<EventWhole>;
-  showGalleryHandle: (a: string, b: string) => void;
   unsavedChanges: React.MutableRefObject<boolean>;
-  selectedImage: string;
+  showGalleryHandle?: (a: string, b: string) => void;
+  selectedImage?: string;
 };
 export type EventSEOProp = {
   state: State;
@@ -230,13 +230,15 @@ export type ScheduleProp = {
 export type ImageThumbnailProp = {
   state: State;
   setState: React.Dispatch<React.SetStateAction<State>>;
-  showGalleryHandle: (a: string, b: string) => void;
-  setPreviewButton: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedImage: {
-    Thumbnail: string;
-    title: string;
-    description: string;
-  };
+  eventWholeRef: React.MutableRefObject<EventWhole>;
+  unsavedChanges: React.MutableRefObject<boolean>;
+  // showGalleryHandle?: (a: string, b: string) => void;
+  // setPreviewButton?: React.Dispatch<React.SetStateAction<boolean>>;
+  // selectedImage?: {
+  //   Thumbnail: string;
+  //   title: string;
+  //   description: string;
+  // };
 };
 export type TagsProp = {
   state: State;
