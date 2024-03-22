@@ -117,7 +117,6 @@ jobs:
     permissions:
       contents: write
       id-token: write
-      issue: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
