@@ -275,6 +275,7 @@ const ChatProvider = (props: any) => {
               </div>
             );
           default:
+            // eslint-disable-next-line react/jsx-no-useless-fragment
             return <></>;
         }
       })}

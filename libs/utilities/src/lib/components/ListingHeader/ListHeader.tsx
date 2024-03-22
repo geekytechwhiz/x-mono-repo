@@ -1,12 +1,7 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import CancelIcon from "@mui/icons-material/Cancel";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
-import {
-  Box,
-  Button,
-  Grid,
-  Typography
-} from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 interface ListHeaderProps {
@@ -39,33 +34,30 @@ const ListHeader = ({
   searchTerm,
   handleSearchChange,
 }: ListHeaderProps) => {
-  const { t }= useTranslation();
+  const { t } = useTranslation();
   // const [isSearchHeaderOpen, setIsSearchHeaderOpen] = useState(false);
   return (
     <Grid
       container
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: '#ffffff',
-        padding: { sm: '15px', xs: '10px' },
-        margin: '0px',
-      }}
-    >
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: "#ffffff",
+        padding: { sm: "15px", xs: "10px" },
+        margin: "0px",
+      }}>
       <Grid
         item
         // xs={isSearchHeaderOpen?6:11}
         // lg={3}
         // md={2.25}
-        sx={{ display: 'flex', alignItems: 'center' }}
-      >
+        sx={{ display: "flex", alignItems: "center" }}>
         <Button
           variant='text'
           startIcon={<ArrowBackIosNewIcon />}
-          sx={{ minWidth: '0px', display: { xs: 'flex', sm: 'none' } }}
-          onClick={returnBack}
-        ></Button>
+          sx={{ minWidth: "0px", display: { xs: "flex", sm: "none" } }}
+          onClick={returnBack}></Button>
         <Typography variant='h4medium'>{headertext}</Typography>
       </Grid>
       {/* <Grid
@@ -132,18 +124,12 @@ const ListHeader = ({
       <Grid
         item
         sm={3}
-        sx={{ display: { xs: 'none', sm: 'flex' } }}
+        sx={{ display: { xs: "none", sm: "flex" } }}
         alignItems='flex-end'
-        justifyContent='flex-end'
-      >
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-          <Button
-            className="sm"
-            variant="secondaryButton"
-            disableElevation
-            onClick={returnBack}
-          >
-            {t('cancel')}
+        justifyContent='flex-end'>
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <Button className='sm' variant='secondaryButton' disableElevation onClick={returnBack}>
+            {t("cancel")}
           </Button>
 
           <Button
@@ -151,12 +137,11 @@ const ListHeader = ({
             variant='primaryButton'
             disabled={isDisableDone}
             sx={{
-              display: { xs: 'none', sm: 'flex' },
-              marginLeft: '12px',
+              display: { xs: "none", sm: "flex" },
+              marginLeft: "12px",
             }}
-            onClick={handleDone}
-          >
-            {t('done')}
+            onClick={handleDone}>
+            {t("done")}
           </Button>
         </Box>
       </Grid>

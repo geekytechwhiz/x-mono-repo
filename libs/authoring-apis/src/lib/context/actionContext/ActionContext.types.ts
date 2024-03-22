@@ -1,9 +1,5 @@
 export type ActionType = {
-  show: (
-    content: DialogBoxContentProps,
-    onConfirm?: () => void,
-    onCancel?: () => void
-  ) => void;
+  show: (content: DialogBoxContentProps, onConfirm?: () => void, onCancel?: () => void) => void;
   hide: () => void;
 };
 

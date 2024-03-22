@@ -1,38 +1,38 @@
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Typography } from '@mui/material';
-import Button from '@mui/material/Button';
-import Menu, { MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { styled } from '@mui/material/styles';
-import * as React from 'react';
-import { useTranslation } from 'react-i18next';
-import { categoryData } from '../../../../../utils/constant';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Box, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Menu, { MenuProps } from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { styled } from "@mui/material/styles";
+import * as React from "react";
+import { useTranslation } from "react-i18next";
+import { categoryData } from "../../../../../utils/constant";
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
     anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'left',
+      vertical: "bottom",
+      horizontal: "left",
     }}
     transformOrigin={{
-      vertical: 'top',
-      horizontal: 'left',
+      vertical: "top",
+      horizontal: "left",
     }}
     {...props}
   />
 ))(() => ({
-  '& .Platform-x-Paper-root': {
+  "& .Platform-x-Paper-root": {
     borderRadius: 8,
     minWidth: 285,
     padding: 5,
-    boxShadow: 'none',
-    marginTop: '17px',
-    marginLeft: '-12px',
-    '& .Platform-x-MenuItem-root': {
-      borderRadius: '5px',
-      '&:hover': {
-        backgroundColor: '#F7F7FC',
+    boxShadow: "none",
+    marginTop: "17px",
+    marginLeft: "-12px",
+    "& .Platform-x-MenuItem-root": {
+      borderRadius: "5px",
+      "&:hover": {
+        backgroundColor: "#F7F7FC",
       },
     },
   },
@@ -66,16 +66,14 @@ export default function AllCatCta({ setCategory }) {
   return (
     <div>
       <Button
-        className="allCatBtn"
+        className='allCatBtn'
         disableElevation
         onClick={handleClick}
-        endIcon={<KeyboardArrowDownIcon />}
-      >
-        <Box className="allcatctabox">
-          <Box className="icon">{selectedCategory.Icon}</Box>
-          <Typography variant="h6regular">
-            {typeof selectedCategory.Icon === 'function' &&
-              t(selectedCategory.id)}
+        endIcon={<KeyboardArrowDownIcon />}>
+        <Box className='allcatctabox'>
+          <Box className='icon'>{selectedCategory.Icon}</Box>
+          <Typography variant='h6regular'>
+            {typeof selectedCategory.Icon === "function" && t(selectedCategory.id)}
           </Typography>
         </Box>
       </Button>
@@ -87,11 +85,10 @@ export default function AllCatCta({ setCategory }) {
                 handleSelectedCategory(val);
                 handleClose();
               }}
-              key={index}
-            >
-              <Box className="allcatctabox">
-                <Box className="icon">{val.icon}</Box>
-                <Typography variant="h6regular">{t(val.id)}</Typography>
+              key={index}>
+              <Box className='allcatctabox'>
+                <Box className='icon'>{val.icon}</Box>
+                <Typography variant='h6regular'>{t(val.id)}</Typography>
               </Box>
             </MenuItem>
           );

@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useCustomStyle } from '../../pages/quiz/quiz.style';
-import { BasicSwitchText, CommonBoxWithNumber } from '@platformx/utilities';
+import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useCustomStyle } from "../../pages/quiz/quiz.style";
+import { BasicSwitchText, CommonBoxWithNumber } from "@platformx/utilities";
 
 const Analytics = ({ state, setState, number, unsavedChanges }) => {
   const { t } = useTranslation();
@@ -28,17 +28,16 @@ const Analytics = ({ state, setState, number, unsavedChanges }) => {
     <Box id='Analytics' className={classes.mainStyleWrapper}>
       <CommonBoxWithNumber
         number={number}
-        title={t('analytics')}
+        title={t("analytics")}
         titleVarient='p3semibold'
         subTitleVarient='p4regular'
-        subTitle={t('subhead')}
-      >
+        subTitle={t("subhead")}>
         <Box className='textFiled'>
           <BasicSwitchText
             state={state1.analytics_enable}
             isDisable={false}
             handleChange={handleChange}
-            title={`${t('quiz')} ${t('analytics')}`}
+            title={`${t("quiz")} ${t("analytics")}`}
             subtitle=''
             keyName='analytics_enable'
           />
@@ -48,7 +47,7 @@ const Analytics = ({ state, setState, number, unsavedChanges }) => {
             state={state1.impression}
             isDisable={false}
             handleChange={handleChange}
-            title={t('impression')}
+            title={t("impression")}
             subtitle=''
             keyName='impression'
           />

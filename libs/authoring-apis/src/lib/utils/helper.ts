@@ -1,7 +1,9 @@
 /* eslint-disable no-restricted-globals */
 import { LanguageList, dateFormat, handleHtmlTags, trimString } from "@platformx/utilities";
-import { DefaultLocale } from "./constants";
-import i18n from "./i18n";
+import graphqlInstance from "../config/graphqlConfig";
+import { SearchContentListQueries } from "../graphQL/queries/searchQueries";
+import { mapFetchALL } from "../services/page/mapper";
+import { DefaultLocale, ROW_SIZE } from "./constants";
 
 export const getCurrentLang = () => {
   let lang = "";
@@ -73,7 +75,7 @@ export const updateStructureData = (content: any, banner: any, keywords: any, pa
     Description: trimString(handleHtmlTags(content?.description), 200),
     keywords: keywords,
     image: banner,
-    url: `${getSubDomain()}/${i18n.language}/article/${pageUrl}`,
+    url: `${getSubDomain()}/en/article/${pageUrl}`,
     datePublished: dateFormat(new Date().toISOString()),
     dateModified: dateFormat(new Date().toISOString()),
     author: [
@@ -85,4 +87,35 @@ export const updateStructureData = (content: any, banner: any, keywords: any, pa
   };
 
   return articleStructureData;
+};
+
+export const fetchContent = async (
+  contentType,
+  location,
+  filter,
+  content,
+  reloadContent = false,
+) => {
+  const { startIndex, contentList } = content;
+  const newPagination = {
+    start: reloadContent ? 0 : startIndex,
+    rows: ROW_SIZE,
+  };
+  const variables = mapFetchALL(location.state, filter, contentType, newPagination);
+  const { data } = await graphqlInstance.query({
+    query: SearchContentListQueries.FETCH_CONTENT_TYPE_LIST,
+    variables: variables,
+    fetchPolicy: "no-cache",
+  });
+  const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
+
+  return {
+    type: "UPDATE_CONTENT",
+    content: reloadContent
+      ? [...JSON.parse(JSON.stringify(sortedContent))]
+      : [...contentList, ...JSON.parse(JSON.stringify(sortedContent))],
+    loading: false,
+    newDataSize: [...JSON.parse(JSON.stringify(sortedContent))].length,
+    contentType: contentType,
+  };
 };

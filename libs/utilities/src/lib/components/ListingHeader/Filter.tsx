@@ -1,10 +1,5 @@
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { FormControl, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface filterProps {
   filterValue?: any;
@@ -22,40 +17,36 @@ export default function Filter({
 
   return (
     <FormControl className='form_Control'>
-      <RadioGroup
-        value={filterValue}
-        onChange={handleChange}
-        sx={{ textTransform: 'capitalize' }}
-      >
+      <RadioGroup value={filterValue} onChange={handleChange} sx={{ textTransform: "capitalize" }}>
         <FormControlLabel
           onClick={handleCloseFilter}
           value='ALL'
           control={<Radio className='form_Control_radio' />}
-          label={t('all')}
+          label={t("all")}
         />
         <FormControlLabel
           onClick={handleCloseFilter}
           value='PUBLISHED'
           control={<Radio className='form_Control_radio' />}
-          label={t('published')}
+          label={t("published")}
         />
         <FormControlLabel
           onClick={handleCloseFilter}
           value='DRAFT'
           control={<Radio className='form_Control_radio' />}
-          label={t('draft')}
+          label={t("draft")}
         />
         <FormControlLabel
           onClick={handleCloseFilter}
           value='UNPUBLISHED'
           control={<Radio className='form_Control_radio' />}
-          label={t('unpublished')}
+          label={t("unpublished")}
         />
 
-        {contentType === 'Event' && (
+        {contentType === "Event" && (
           <FormControlLabel
             value='LIVE'
-            label={t('live')}
+            label={t("live")}
             onClick={handleCloseFilter}
             control={<Radio className='form_Control_radio' />}
           />

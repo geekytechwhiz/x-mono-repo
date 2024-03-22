@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const FETCH_VOD_BY_ID = gql`
   query FETCH_VOD_MODEL_DRAFT($folder: String!, $path: String!) {

@@ -15,7 +15,7 @@ import {
   Loader,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   useUserSession,
   workflowKeys,
@@ -96,7 +96,7 @@ const CreateEvent = () => {
   const [scrollToView, setScrollToView] = useState("");
   const [showExitWarning, setShowExitWarning] = useState(false);
   const navigate = useNavigate();
-  const [previewButton, setPreviewButton] = useState(true);
+  const [, setPreviewButton] = useState(true);
   // const [publishButton, setPublishButton] = useState(true);
   // const [saveButton, setSaveButton] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -223,7 +223,7 @@ const CreateEvent = () => {
           setWorkflowStatus(isWorkflow);
         } else {
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("event")} ${t("saved_toast")}`);
+            ShowToastSuccess(`${t("event")} ${t("saved_toast")}`);
           }
           // setOnSavedModal(true);
           setIsDraft(false);
@@ -247,7 +247,7 @@ const CreateEvent = () => {
           setOpenPageExistModal(true);
           setPageStatus(pageState);
         } else {
-          // ShowToastSuccessMessage(`${t('event')} ${t('published_toast')}`);
+          // ShowToastSuccess(`${t('event')} ${t('published_toast')}`);
           setShowPublishConfirm(true);
           publishEvent(eventWholeRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase());
         }
@@ -297,7 +297,7 @@ const CreateEvent = () => {
       if (pageState && pageState.toLowerCase() === DRAFT.toLowerCase()) {
         setIsLoading(false);
         if (!isWorkflow) {
-          ShowToastSuccessMessage(`${t("event")} ${t("updated_toast")}`);
+          ShowToastSuccess(`${t("event")} ${t("updated_toast")}`);
         } else {
           workflowSubmitRequest(props, event_step);
         }
@@ -305,7 +305,7 @@ const CreateEvent = () => {
         setShowExitWarning(false);
         setIsEdited(true);
       } else {
-        ShowToastSuccessMessage(`${t("event")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("event")} ${t("published_toast")}`);
         setShowPublishConfirm(true);
         publishEvent(draftPageURL ? draftPageURL : currentEventData.current);
       }
@@ -384,7 +384,8 @@ const CreateEvent = () => {
       short_title: shortTitle,
       description,
       short_description: shortDescription,
-      imageUrl,
+      original_image,
+      published_images,
       tags,
       address,
       postalCode,
@@ -399,7 +400,7 @@ const CreateEvent = () => {
       ShowToastError(`${t("description")} ${t("is_required")}`);
     } else if (shortDescription === "") {
       ShowToastError(`${t("short_description")} ${t("is_required")}`);
-    } else if (imageUrl === "") {
+    } else if (Object.keys(original_image).length === 0 && published_images.length === 0) {
       ShowToastError(`${t("banner_image")} ${t("is_required")}`);
     } else if (address === "") {
       ShowToastError(`${t("event_address")} ${t("is_required")}`);
@@ -757,7 +758,7 @@ const CreateEvent = () => {
             <CreateHeader
               // className={isKeyboardOpen ? "sticky-header keyboard-open" : "sticky-header"}
               // previewButton={previewButton}
-              showPreview={previewButton}
+              showPreview={true}
               handelPreview={handelPreview}
               createText={
                 currentQuizData.current

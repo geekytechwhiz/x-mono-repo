@@ -4,7 +4,6 @@ metadata:
   labels:
     app: platformx-userexp-nx
   name: platformx-userexp-nx
-  namespace: dev-v2
 spec:
   replicas: 2
   selector:
@@ -20,250 +19,179 @@ spec:
           image: gcr.io/PROJECT_ID/IMAGE:TAG
           resources:
             limits:
-              cpu: '4'
+              cpu: "4"
               memory: 12Gi
             requests:
-              cpu: '3'
+              cpu: "3"
               memory: 8Gi
           env:
-            - name: NX_API_URI
+            - name: NEXT_GA_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_API_URI
-                  name: hep-authoring-ui-config
-            - name: NX_KEYCLOAK_URI
+                  key: NEXT_GA_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_GTM_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_KEYCLOAK_URI
-                  name: hep-authoring-ui-config
-            - name: NX_REALM
+                  key: NEXT_GTM_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_PUBLISH_APP_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_REALM
-                  name: hep-authoring-ui-config
-            - name: NX_REDIRECT_URI
+                  key: NEXT_PUBLISH_APP_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_PUBLISH_API_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_REDIRECT_URI
-                  name: hep-authoring-ui-config
-            - name: NX_CLIENT_ID
+                  key: NEXT_PUBLISH_API_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_PUBLISH_API_URL_GENERIC
               valueFrom:
                 configMapKeyRef:
-                  key: NX_CLIENT_ID
-                  name: hep-authoring-ui-config
-            - name: NX_GRANT_TYPE
+                  key: NEXT_PUBLISH_API_URL_GENERIC
+                  name: hep-user-experience-ui-config
+            - name: NEXT_API_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_GRANT_TYPE
-                  name: hep-authoring-ui-config
-            - name: NX_AUTHOR_URI
+                  key: NEXT_API_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_BLOGS_API
               valueFrom:
                 configMapKeyRef:
-                  key: NX_AUTHOR_URI
-                  name: hep-authoring-ui-config
-            - name: NX_PUBLISH_URI
+                  key: NEXT_BLOGS_API
+                  name: hep-user-experience-ui-config
+            - name: NEXT_GOOGLE_SEARCH_VERIFICATION
               valueFrom:
                 configMapKeyRef:
-                  key: NX_PUBLISH_URI
-                  name: hep-authoring-ui-config
-            - name: NX_GRAPHQL_URI
+                  key: NEXT_GOOGLE_SEARCH_VERIFICATION
+                  name: hep-user-experience-ui-config
+            - name: NEXT_CLIENT_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_GRAPHQL_URI
-                  name: hep-authoring-ui-config
-            - name: NX_DSPACE_URI
+                  key: NEXT_CLIENT_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_GRANT_TYPE
               valueFrom:
                 configMapKeyRef:
-                  key: NX_DSPACE_URI
-                  name: hep-authoring-ui-config
-            - name: NX_DSPACE_IMAGES_UUID
+                  key: NEXT_GRANT_TYPE
+                  name: hep-user-experience-ui-config
+            - name: NEXT_REALM
               valueFrom:
                 configMapKeyRef:
-                  key: NX_DSPACE_IMAGES_UUID
-                  name: hep-authoring-ui-config
-            - name: NX_DSPACE_VIDEOS_UUID
+                  key: NEXT_REALM
+                  name: hep-user-experience-ui-config
+            - name: NEXT_LOGOUT
               valueFrom:
                 configMapKeyRef:
-                  key: NX_DSPACE_VIDEOS_UUID
-                  name: hep-authoring-ui-config
-            - name: NX_HEADER
+                  key: NEXT_LOGOUT
+                  name: hep-user-experience-ui-config
+            - name: NEXT_AUTH
               valueFrom:
                 configMapKeyRef:
-                  key: NX_HEADER
-                  name: hep-authoring-ui-config
-            - name: NX_FOOTER
+                  key: NEXT_AUTH
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SESSION_VERIFY
               valueFrom:
                 configMapKeyRef:
-                  key: NX_FOOTER
-                  name: hep-authoring-ui-config
-            - name: NX_FOOTER_THEME
+                  key: NEXT_SESSION_VERIFY
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SESSION
               valueFrom:
                 configMapKeyRef:
-                  key: NX_FOOTER_THEME
-                  name: hep-authoring-ui-config
-            - name: NX_HEADER_THEME
+                  key: NEXT_SESSION
+                  name: hep-user-experience-ui-config
+            - name: NEXT_ELASTIC_APM_SERVER_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_HEADER_THEME
-                  name: hep-authoring-ui-config
-            - name: NX_COMPONENT_THEME
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_COMPONENT_THEME
-                  name: hep-authoring-ui-config
-            - name: NX_PRELEM_THEME
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_PRELEM_THEME
-                  name: hep-authoring-ui-config
-            - name: NX_GA_ID
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_GA_ID
-                  name: hep-authoring-ui-config
-            - name: NX_GTM_ID
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_GTM_ID
-                  name: hep-authoring-ui-config
-            - name: NX_ANALYTICS_PROVIDER
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_ANALYTICS_PROVIDER
-                  name: hep-authoring-ui-config
-            - name: NX_GOOGLE_SEARCH_VERIFICATION
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_GOOGLE_SEARCH_VERIFICATION
-                  name: hep-authoring-ui-config
-            - name: NX_DELIVERY_URI
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_DELIVERY_URI
-                  name: hep-authoring-ui-config
-            - name: NX_BLOG_API_URI
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_BLOG_API_URI
-                  name: hep-authoring-ui-config
-            - name: NX_CHATGPT_API_URI
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_CHATGPT_API_URI
-                  name: hep-authoring-ui-config
-            - name: NX_APM_ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  key: APM_ENV
+                  key: NEXT_ELASTIC_APM_SERVER_URL
                   name: apm-config
-            - name: NX_APM_SERVER_URL
+            - name: NEXT_ELASTIC_APM_ENVIRONMENT
               valueFrom:
                 configMapKeyRef:
-                  # key: APM_HOST_URL
-                  key: NX_APM_SERVER_URL
+                  key: NEXT_ELASTIC_APM_ENVIRONMENT
                   name: apm-config
-            - name: NX_APM_TRACING
+            - name: NEXT_ELASTIC_APM_TRACING
               valueFrom:
                 configMapKeyRef:
-                  key: APM_HOST_TRACING
+                  key: NEXT_ELASTIC_APM_TRACING
                   name: apm-config
-            - name: NX_APM_TRACING_ORIGINS
+            - name: NEXT_GEOLOCATION_API_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_APM_TRACING_ORIGINS
-                  name: apm-config
-            - name: NX_CHAT_GPT_PROMPT
+                  key: NEXT_GEOLOCATION_API_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_GEOLOCATION_API_KEY
               valueFrom:
                 configMapKeyRef:
-                  key: NX_CHAT_GPT_PROMPT
-                  name: hep-authoring-ui-config
-            - name: NX_GCP_URL
+                  key: NEXT_GEOLOCATION_API_KEY
+                  name: hep-user-experience-ui-config
+            - name: NEXT_GCP_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_GCP_URL
-                  name: hep-authoring-ui-config
-            - name: NX_BUCKET_NAME
+                  key: NEXT_GCP_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_BUCKET_NAME
               valueFrom:
                 configMapKeyRef:
-                  key: NX_BUCKET_NAME
-                  name: hep-authoring-ui-config
-            - name: NX_DEFAULT_IMAGE
+                  key: NEXT_BUCKET_NAME
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_APP_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_DEFAULT_IMAGE
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_1
+                  key: NEXT_SNOWPLOW_APP_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_COLLECTOR_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_1
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_2
+                  key: NEXT_SNOWPLOW_COLLECTOR_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_CLUSTER_API_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_2
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_3
+                  key: NEXT_CLUSTER_API_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_USER_SERVICE_APP_URL
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_3
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_4
+                  key: NEXT_USER_SERVICE_APP_URL
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SITE_HOST
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_4
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_5
+                  key: NEXT_SITE_HOST
+                  name: hep-user-experience-ui-config
+            - name: NEXT_RPI_PUBLISH_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_5
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_6
+                  key: NEXT_RPI_PUBLISH_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_RPI_CLIENT_ID
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_6
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_7
+                  key: NEXT_RPI_CLIENT_ID
+                  name: hep-user-experience-ui-config
+            - name: NEXT_RPI_AUTH_KEY
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_7
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_8
+                  key: NEXT_RPI_AUTH_KEY
+                  name: hep-user-experience-ui-config
+            - name: NEXT_RPI_VIEW_NAME
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_8
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_9
+                  key: NEXT_RPI_VIEW_NAME
+                  name: hep-user-experience-ui-config
+            - name: NEXT_LOYALTY_PORTAL_END_POINT
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_9
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_10
+                  key: NEXT_LOYALTY_PORTAL_END_POINT
+                  name: hep-user-experience-ui-config
+            - name: NEXT_LOYALTY_END_POINT
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_10
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_11
+                  key: NEXT_LOYALTY_END_POINT
+                  name: hep-user-experience-ui-config
+            - name: NEXT_DELIVERY_ENGINE
               valueFrom:
                 configMapKeyRef:
-                  key: NX_NAV_ICON_11
-                  name: hep-authoring-ui-config
-            - name: NX_NAV_ICON_12
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_NAV_ICON_12
-                  name: hep-authoring-ui-config
-            - name: NX_BASE_URL
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_BASE_URL
-                  name: hep-authoring-ui-config
-            - name: NX_SITE_BASED_THEME
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_SITE_BASED_THEME
-                  name: hep-authoring-ui-config
-            - name: NX_USER_REGISTER_SCHEMA
-              valueFrom:
-                configMapKeyRef:
-                  key: NX_USER_REGISTER_SCHEMA
-                  name: hep-authoring-ui-config
+                  key: NEXT_DELIVERY_ENGINE
+                  name: hep-user-experience-ui-config

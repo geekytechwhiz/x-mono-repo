@@ -1,5 +1,6 @@
 import getConfig from "next/config";
 import Head from "next/head";
+import Script from "next/script";
 import {
   convertLowerCase,
   defaultSocialImage,
@@ -118,7 +119,8 @@ export const PageHead = (props: PageHeadProps) => {
             arrStructuredData?.length &&
             arrStructuredData.map((item: any, key: number) => {
               return (
-                <script
+                <Script
+                  id={`SD${key}`}
                   key={convertLowerCase(key + "arrStructuredData")}
                   type='application/ld+json'
                   dangerouslySetInnerHTML={{ __html: item }}

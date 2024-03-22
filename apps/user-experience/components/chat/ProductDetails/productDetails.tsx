@@ -60,7 +60,7 @@ const ProductDetails = ({
         <span className='brand-name'>{brand}</span>
         <p className='title'>{title}</p>
         <div className='prices'>
-          {salePrice ? <span className='sale-price'>{`$${salePrice.toFixed(2)}`}</span> : <></>}
+          {salePrice ? <span className='sale-price'>{`$${salePrice.toFixed(2)}`}</span> : null}
           <span className='regular-price'>{`$${regularPrice.toFixed(2)}`}</span>
         </div>
         <div className='size-section'>

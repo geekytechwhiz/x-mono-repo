@@ -6,12 +6,11 @@ import {
   AUTH_INFO,
   Loader,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   ThemeConstants,
   WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
-  i18next,
   nullToObject,
   successGif,
   useUserSession,
@@ -24,7 +23,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { CATEGORY_CONTENT, DRAFT, PUBLISHED } from "../../utils/Constants";
-import { onBackButtonEvent, unloadCallback } from "../../utils/Helper";
 import { useStyles } from "./CreateArticle.styles";
 import {
   ArticleInitialState,
@@ -250,6 +248,7 @@ export const CreateArticle = () => {
           user_id,
           user_name,
           is_featured,
+          modificationDate,
         } = articleObj;
         setIsFeatured(is_featured);
         const instance = {
@@ -265,6 +264,7 @@ export const CreateArticle = () => {
             seo_enable,
             analytics_enable,
             lastModifiedBy,
+            modificationDate,
           },
           ObjectFields: {
             ...articleInstance.ObjectFields,
@@ -438,7 +438,7 @@ export const CreateArticle = () => {
           const detailsRes: any = await updateArticle(DRAFT, pageURL);
           if (detailsRes.authoring_updateContent.message === "Successfully updated!!!") {
             if (!isWorkflow) {
-              ShowToastSuccessMessage(`${t("article")} ${t("updated_toast")}`);
+              ShowToastSuccess(`${t("article")} ${t("updated_toast")}`);
               getArticleData();
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
@@ -456,13 +456,13 @@ export const CreateArticle = () => {
 
             unsavedChanges.current = false;
           } else {
-            ShowToastSuccessMessage(detailsRes.authoring_updateContent.message);
+            ShowToastSuccess(detailsRes.authoring_updateContent.message);
           }
         } else {
           const detailsRes: any = await createArticle(DRAFT, pageURL);
           if (detailsRes.authoring_createContent.message === "Successfully created!!!") {
             if (!isWorkflow) {
-              ShowToastSuccessMessage(`${t("article")} ${t("saved_toast")}`);
+              ShowToastSuccess(`${t("article")} ${t("saved_toast")}`);
             }
             // setOnSavedModal(true);
             setIsDraft(false);
@@ -492,7 +492,7 @@ export const CreateArticle = () => {
             setIsLoading(false);
             unsavedChanges.current = false;
           } else {
-            ShowToastSuccessMessage(detailsRes.authoring_createContent.message);
+            ShowToastSuccess(detailsRes.authoring_createContent.message);
           }
         }
       } catch (err: any) {
@@ -541,7 +541,7 @@ export const CreateArticle = () => {
               setTimerState(true);
               setLastmodifiedDate(new Date().toISOString());
             } else {
-              ShowToastSuccessMessage(response.authoring_publishContent.message);
+              ShowToastSuccess(response.authoring_publishContent.message);
             }
           } catch (err: any) {
             setTimerState(false);
@@ -552,7 +552,7 @@ export const CreateArticle = () => {
             );
           }
         } else {
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             currentArticleData.current
               ? detailsRes.authoring_updateContent.message
               : detailsRes.authoring_createContent.message,
@@ -572,12 +572,12 @@ export const CreateArticle = () => {
     updateImageData(obj, content, setArticleInstance, articleInstance, selectedImage);
   };
   const handelPreview = () => {
-    const { title, creationDate: developed_date } = articleInstance.CommonFields;
+    const { title, modificationDate: developed_date } = articleInstance.CommonFields;
     const pageUrl = currentArticleData.current
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const article_settings = {
-      socialog_url: `${AUTH_INFO.publishUri + i18next.language}/article/${pageUrl}`,
+      socialog_url: `${AUTH_INFO.publishUri + "en"}/article/${pageUrl}`,
       keywords: socialOgTags.tagsSocialShare,
     };
     const current_page_url = `/${pageUrl}`;
@@ -596,11 +596,12 @@ export const CreateArticle = () => {
       current_page_url,
       article_settings,
       sub_title,
+      contentType: "Article",
     };
 
     dispatch(previewContent(articlePreview));
 
-    navigate("/article-preview");
+    navigate("/content/preview");
   };
   const updateStructureDataArticle = () => {
     const contentData = articleInstance?.CommonFields || {};
@@ -674,22 +675,22 @@ export const CreateArticle = () => {
     }
   };
 
-  useEffect(() => {
-    if (unsavedChanges.current === true) {
-      // eslint-disable-next-line no-restricted-globals
-      window.history.pushState(null, "", window.location.pathname + location?.search);
-      window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    }
-    return () => {
-      window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    };
-  }, [unsavedChanges.current, articleInstance]);
+  // useEffect(() => {
+  //   if (unsavedChanges.current === true) {
+  //     // eslint-disable-next-line no-restricted-globals
+  //     window.history.pushState(null, "", window.location.pathname + location?.search);
+  //     window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.addEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   }
+  //   return () => {
+  //     window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.removeEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   };
+  // }, [unsavedChanges.current, articleInstance]);
 
   return (
     <Box

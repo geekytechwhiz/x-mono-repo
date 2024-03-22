@@ -1,20 +1,20 @@
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled } from '@mui/system';
-import clsx from 'clsx';
+import { useSwitch } from "@mui/base/SwitchUnstyled";
+import { styled } from "@mui/system";
+import clsx from "clsx";
 
-import ThemeConstants from '../../themes/authoring/lightTheme/lightThemeVariable';
+import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 
 const blue = {
   500: ThemeConstants.PRIMARY_MAIN_COLOR,
 };
 
 const grey = {
-  400: 'rgba(0, 0, 0, 0.16)',
-  500: '#AAB4BE',
-  600: 'rgba(0, 0, 0, 0.16)',
+  400: "rgba(0, 0, 0, 0.16)",
+  500: "#AAB4BE",
+  600: "rgba(0, 0, 0, 0.16)",
 };
 
-const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
+const BasicSwitchRoot = styled("span")<BasicSwitchProps>(
   ({ theme, color, bgcolor }) => `
   font-size: 0;
   position: relative;
@@ -22,9 +22,7 @@ const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
   width: 40px;
   height: 20px;
   margin: 10px;
-  background:  ${
-    bgcolor ? bgcolor : theme.palette.mode === 'dark' ? grey[600] : grey[400]
-  };
+  background:  ${bgcolor ? bgcolor : theme.palette.mode === "dark" ? grey[600] : grey[400]};
   border-radius: 10px;
   cursor: pointer;
 
@@ -36,10 +34,10 @@ const BasicSwitchRoot = styled('span')<BasicSwitchProps>(
   &.Switch-checked {
     background: ${color}
   }
-  `
+  `,
 );
 
-const BasicSwitchInput = styled('input')`
+const BasicSwitchInput = styled("input")`
   cursor: inherit;
   position: absolute;
   width: 100%;
@@ -51,7 +49,7 @@ const BasicSwitchInput = styled('input')`
   margin: 0;
 `;
 
-const BasicSwitchThumb = styled('span')`
+const BasicSwitchThumb = styled("span")`
   display: block;
   width: 14px;
   height: 14px;
@@ -84,19 +82,15 @@ function BasicSwitch(props: BasicSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
-    'Switch-checked': checked,
-    'Switch-disabled': disabled,
-    'Switch-focusVisible': focusVisible,
+    "Switch-checked": checked,
+    "Switch-disabled": disabled,
+    "Switch-focusVisible": focusVisible,
   };
 
   return (
-    <BasicSwitchRoot
-      className={clsx(stateClasses)}
-      color={props.color}
-      bgcolor={props.bgcolor}
-    >
+    <BasicSwitchRoot className={clsx(stateClasses)} color={props.color} bgcolor={props.bgcolor}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
-      <BasicSwitchInput {...getInputProps()} aria-label="Demo switch" />
+      <BasicSwitchInput {...getInputProps()} aria-label='Demo switch' />
     </BasicSwitchRoot>
   );
 }

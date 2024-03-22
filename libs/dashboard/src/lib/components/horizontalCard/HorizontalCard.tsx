@@ -1,12 +1,12 @@
-import { Box, Typography } from '@mui/material';
-import React, { memo } from 'react';
-import './HorizontalCard.css';
-import { useStyles } from './HorizontalCard.styles';
+import { Box, Typography } from "@mui/material";
+import React, { memo } from "react";
+import "./HorizontalCard.css";
+import { useStyles } from "./HorizontalCard.styles";
 
 const HorizontalCard = ({ Title, Description, url, icon }: any) => {
   const classes = useStyles();
   const handelCardClick = () => {
-    window.open(url, '_self');
+    window.open(url, "_self");
   };
   return (
     <Box className='borderbox' onClick={handelCardClick}>
@@ -14,8 +14,7 @@ const HorizontalCard = ({ Title, Description, url, icon }: any) => {
         className={classes.backgroundIconImage}
         sx={{
           backgroundImage: `url(${icon})`,
-        }}
-      ></Box>
+        }}></Box>
       <Box>
         <Box>
           <img src={icon} alt={Title} />
@@ -23,11 +22,7 @@ const HorizontalCard = ({ Title, Description, url, icon }: any) => {
         <Typography component='div' variant='h5bold' className='title'>
           {Title}
         </Typography>
-        <Typography
-          component='div'
-          variant='h6medium'
-          className={classes.description}
-        >
+        <Typography component='div' variant='h6medium' className={classes.description}>
           {Description}
         </Typography>
       </Box>

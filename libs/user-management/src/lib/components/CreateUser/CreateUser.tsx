@@ -1,27 +1,28 @@
-import { useMutation } from '@apollo/client';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import { Box } from '@mui/material';
-import { Loader } from '@platformx/utilities';
-import { useFormik } from 'formik';
-import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import * as yup from 'yup';
-
+/* eslint-disable no-shadow */
+import { useMutation } from "@apollo/client";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import { Box } from "@mui/material";
 import {
   UserManagementQueries,
+  snowplowTrackingHook,
   userManagementAPI,
-} from '@platformx/authoring-apis';
+} from "@platformx/authoring-apis";
 import {
+  Loader,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
-} from '@platformx/utilities';
-
-import { ThemeConstants, USERNAME_EMAIL_EXIST } from '@platformx/utilities';
-
-import { snowplowTrackingHook } from '@platformx/authoring-apis';
-import { getSelectedSite, getSubDomain } from '@platformx/utilities';
+  ShowToastSuccess,
+  ThemeConstants,
+  USERNAME_EMAIL_EXIST,
+  getSelectedSite,
+  getSubDomain,
+} from "@platformx/utilities";
+import { DamContentGallery } from "@platformx/x-image-render";
+import { useFormik } from "formik";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import * as yup from "yup";
 import {
   BEFORE_UNLOAD,
   DRAFT,
@@ -30,13 +31,13 @@ import {
   POPSTATE,
   PUBLISH,
   USERTYPES,
-} from '../Users/Utils/constant';
-import './CreateUser.css';
-import ExternalAccess from './ExternalAccess';
-import RolePermissions from './RolePermissions';
-import TopBar from './TopBar';
-import UserDetails from './UserDetails';
-import UserTypes from './UserTypes';
+} from "../Users/Utils/constant";
+import "./CreateUser.css";
+import ExternalAccess from "./ExternalAccess";
+import RolePermissions from "./RolePermissions";
+import TopBar from "./TopBar";
+import UserDetails from "./UserDetails";
+import UserTypes from "./UserTypes";
 
 const CreateUser = () => {
   const { t } = useTranslation();
@@ -49,29 +50,22 @@ const CreateUser = () => {
   const [isEdited, setIsEdited] = useState<boolean>(false);
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const galleryType = useRef<string>(IMAGES);
-  const [key, setKey] = useState('');
+  const [key, setKey] = useState("");
   const unsavedChanges = useRef<boolean>(false);
-  const [roleSelected, setRoleSelected] = useState('');
+  const [roleSelected, setRoleSelected] = useState("");
   const [prevRoles, setPrevRoles] = useState([]);
   const [isEmailExists, setIsEmailExist] = useState(false);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
   const createPageUrl = new URL(window.location.href);
-  const [isd, setISD] = useState('');
-  const scrollDebounceRef = useRef<any>(null);
+  const [isd, setISD] = useState("");
   const [searchParams] = useSearchParams();
-  const usertype = searchParams.get('usertype');
+  const usertype = searchParams.get("usertype");
   const isEditMode = useRef(
-    createPageUrl.searchParams.get(PATH)
-      ? (createPageUrl.searchParams.get(PATH) as string)
-      : '',
+    createPageUrl.searchParams.get(PATH) ? (createPageUrl.searchParams.get(PATH) as string) : "",
   );
   const navigate = useNavigate();
   //calling api to validate email existence
-  const validateEmail = async (
-    value: string,
-    authoringUser: boolean,
-    renderingUser: boolean,
-  ) => {
+  const validateEmail = (value: string, authoringUser: boolean, renderingUser: boolean) => {
     return userManagementAPI.validateEmailExist({
       userName: value,
       isAuthoringUser: authoringUser,
@@ -79,11 +73,7 @@ const CreateUser = () => {
     });
   };
   // calling api to get user details
-  const getUserDetails = async (
-    value: string,
-    authoringUser: boolean,
-    renderingUser: boolean,
-  ) => {
+  const getUserDetails = (value: string, authoringUser: boolean, renderingUser: boolean) => {
     return userManagementAPI.getUsersDetails({
       user_id: value,
       isAuthoringUser: authoringUser,
@@ -91,6 +81,7 @@ const CreateUser = () => {
     });
   };
   //this method used for update user details
+  // eslint-disable-next-line require-await
   const editUserDetails = async (url: any) => {
     const {
       timezone,
@@ -109,9 +100,7 @@ const CreateUser = () => {
       (val, index, arr) => arr.indexOf(val) === index,
     );
     //const temp = default_site_checked ? sites : accessible_sites || sites;
-    const isRoleExist = prevRoles.find(
-      (obj: any) => obj?.site === getSelectedSite(),
-    );
+    const isRoleExist = prevRoles.find((obj: any) => obj?.site === getSelectedSite());
     const roleid = prevRoles.map((obj: any) => {
       if (obj?.site === getSelectedSite()) {
         return roleSelected;
@@ -130,9 +119,7 @@ const CreateUser = () => {
       image: image,
       phone: `${isd}-${phone}`,
       id: isEditMode.current,
-      default_site: default_site_checked
-        ? getSelectedSite()
-        : default_site || getSelectedSite(),
+      default_site: default_site_checked ? getSelectedSite() : default_site || getSelectedSite(),
       accessible_sites: sites,
       preferred_sites_languages: {
         ...(preferred_sites_languages || {}),
@@ -163,33 +150,29 @@ const CreateUser = () => {
           input: userDetails,
         },
       });
-      if (
-        response.data.authoring_createUser.message === 'Successfully created!!!'
-      ) {
+      if (response.data.authoring_createUser.message === "Successfully created!!!") {
         userRegisterImpression(userDetails);
-        // ShowToastSuccessMessage(t('succces_user_toast'));
+        // ShowToastSuccess(t('succces_user_toast'));
         setOnSavedModal(true);
         setIsLoading(false);
         unsavedChanges.current = false;
         setIsEdited(false);
       } else {
-        ShowToastSuccessMessage(response.data.authoring_createUser.message);
+        ShowToastSuccess(response.data.authoring_createUser.message);
       }
     } catch (err: any) {
       ShowToastError(
-        err.graphQLErrors.length > 0
-          ? err.graphQLErrors[0].message
-          : t('api_error_toast'),
+        err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
       );
       setIsLoading(false);
     }
   };
 
   const validationSchema = yup.object({
-    first_name: yup.string().required(t('first_name_required')),
-    last_name: yup.string().required(t('last_name_required')),
-    email: yup.string().email(t('email_valid')).required(t('email_required')),
-    phone: yup.string().min(10, 'Phone number must be 10 characters'),
+    first_name: yup.string().required(t("first_name_required")),
+    last_name: yup.string().required(t("last_name_required")),
+    email: yup.string().email(t("email_valid")).required(t("email_required")),
+    phone: yup.string().min(10, "Phone number must be 10 characters"),
     // gender: yup
     //   .string()
     //   .oneOf([t('male'), t('female')])
@@ -197,20 +180,20 @@ const CreateUser = () => {
     // dob: yup.string().required(`${t('date_of_birth')} ${t('is_required')}`),
   });
   const [userDetails, setUserDetails] = useState<any>({
-    first_name: '',
-    last_name: '',
-    email: '',
-    role_id: '',
-    role: '',
-    timezone: '',
-    image: '',
-    phone: '',
-    default_language: 'en',
+    first_name: "",
+    last_name: "",
+    email: "",
+    role_id: "",
+    role: "",
+    timezone: "",
+    image: "",
+    phone: "",
+    default_language: "en",
     default_site_checked: true,
     is_Authoring_User: true,
     is_Rendering_User: false,
     is_Community_User: false,
-    gender: '',
+    gender: "",
     dob: null,
     enabled: true,
   });
@@ -222,7 +205,7 @@ const CreateUser = () => {
         isEditMode.current,
         usertype === USERTYPES.AUTHORINGUSER.toLowerCase(),
         usertype === USERTYPES.ENDUSER.toLowerCase() ||
-        usertype === USERTYPES.COMMUNITYUSER.toLowerCase(),
+          usertype === USERTYPES.COMMUNITYUSER.toLowerCase(),
       );
       setIsLoading(false);
       const {
@@ -248,18 +231,13 @@ const CreateUser = () => {
         first_name,
         last_name,
         email,
-        dob: dob !== '' ? dob : null,
+        dob: dob !== "" ? dob : null,
         gender,
       };
-      const tempPhone = phone.substring(
-        phone.lastIndexOf('-') + 1,
-        phone?.length,
-      );
-      const ISD = phone.substring(0, phone.lastIndexOf('-'));
+      const tempPhone = phone.substring(phone.lastIndexOf("-") + 1, phone?.length);
+      const ISD = phone.substring(0, phone.lastIndexOf("-"));
       formik.setValues(tempObj);
-      setRoleSelected(
-        role?.find((obj: any) => obj?.site === getSelectedSite())?._id || '',
-      );
+      setRoleSelected(role?.find((obj: any) => obj?.site === getSelectedSite())?._id || "");
       setPrevRoles(role);
       setISD(ISD);
       setPhone(tempPhone);
@@ -282,9 +260,7 @@ const CreateUser = () => {
     } catch (err: any) {
       err.graphQLErrors.length > 0 &&
         ShowToastError(
-          err.graphQLErrors.length > 0
-            ? err.graphQLErrors[0].message
-            : t('api_error_toast'),
+          err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
         );
     }
   };
@@ -293,33 +269,29 @@ const CreateUser = () => {
     setIsLoading(true);
     try {
       const detailsRes: any = await editUserDetails(url);
-      if (
-        detailsRes.authoring_updateUser.message === 'Successfully updated!!!'
-      ) {
-        // ShowToastSuccessMessage(t('update_user_toast'));
+      if (detailsRes.authoring_updateUser.message === "Successfully updated!!!") {
+        // ShowToastSuccess(t('update_user_toast'));
         setOnSavedModal(true);
         setIsLoading(false);
         unsavedChanges.current = false;
       } else {
-        ShowToastSuccessMessage(detailsRes.authoring_updateUser.message);
+        ShowToastSuccess(detailsRes.authoring_updateUser.message);
       }
     } catch (err: any) {
-      console.log('err', err);
+      console.error("err", err);
       err.graphQLErrors.length > 0 &&
         ShowToastError(
-          err.graphQLErrors.length > 0
-            ? err.graphQLErrors[0].message
-            : t('api_error_toast'),
+          err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
         );
     }
   };
   const formik = useFormik({
     initialValues: {
-      first_name: '',
-      last_name: '',
-      email: '',
-      phone: '',
-      gender: '',
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      gender: "",
       dob: null,
     },
     validationSchema: validationSchema,
@@ -327,9 +299,9 @@ const CreateUser = () => {
       const default__site = userDetails.default_site_checked
         ? getSelectedSite()
         : userDetails?.default_site
-          ? userDetails.default_site
-          : getSelectedSite();
-      const url = getSubDomain()?.replace('https://', '');
+        ? userDetails.default_site
+        : getSelectedSite();
+      const url = getSubDomain()?.replace("https://", "");
       // try {
       //   const { authoring_getSitedetails = {} } = await fetchSites({
       //     page: default__site,
@@ -365,15 +337,12 @@ const CreateUser = () => {
 
       setShowExitWarning(false);
 
-      if (
-        createRequest &&
-        (userDetails.is_Rendering_User || roleSelected.length !== 0)
-      ) {
+      if (createRequest && (userDetails.is_Rendering_User || roleSelected.length !== 0)) {
         if (isEditMode.current) {
           updateUser(url);
         } else {
           try {
-            const validationRes: any = await validateEmail(
+            await validateEmail(
               values.email,
               userDetails.is_Authoring_User,
               userDetails.is_Rendering_User,
@@ -388,9 +357,7 @@ const CreateUser = () => {
               setIsEmailExist(true);
             } else {
               ShowToastError(
-                err.graphQLErrors.length > 0
-                  ? err.graphQLErrors[0].message
-                  : t('api_error_toast'),
+                err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
               );
             }
           }
@@ -402,46 +369,34 @@ const CreateUser = () => {
   });
   //this method is used to check the response of valid email api
   const handleEmail = async (e: any) => {
-    if (e.target.value !== '' && !formik.errors.email) {
+    if (e.target.value !== "" && !formik.errors.email) {
       try {
-        const validationRes: any = await validateEmail(
+        await validateEmail(
           e.target.value,
           userDetails.is_Authoring_User,
           userDetails.is_Rendering_User,
         );
         setIsEmailExist(false);
       } catch (err: any) {
-        if (
-          err.graphQLErrors.length > 0 &&
-          err.graphQLErrors[0].message === USERNAME_EMAIL_EXIST
-        ) {
+        if (err.graphQLErrors.length > 0 && err.graphQLErrors[0].message === USERNAME_EMAIL_EXIST) {
           setIsEmailExist(true);
         } else {
           ShowToastError(
-            err.graphQLErrors.length > 0
-              ? err.graphQLErrors[0].message
-              : t('api_error_toast'),
+            err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
           );
         }
       }
     }
   };
-  const [, setSelectedImage] = useState({
-    Thumbnail: '',
-    title: '',
-    description: '',
-  });
-
   const setImageToDefault = () => {
-    setSelectedImage({
-      title: '',
-      Thumbnail: '',
-      description: '',
+    setUserDetails({
+      ...userDetails,
+      ["image"]: userDetails?.image,
     });
   };
-  const toggleGallery = (toggleState: any, type: any) => {
+  const toggleGallery = (toggleState, type) => {
     setGalleryState(toggleState);
-    if (type == 'cancel') {
+    if (type === "cancel") {
       setImageToDefault();
     }
   };
@@ -451,38 +406,35 @@ const CreateUser = () => {
     setGalleryState(true);
     setKey(keyName);
   };
-  const handleSelectedImage = (image: any, keyName: any) => {
-    setSelectedImage(image);
-
+  const handleSelectedImage = (image, keyName) => {
     setUserDetails({
       ...userDetails,
       [keyName]: image?.Thumbnail,
     });
     unsavedChanges.current = true;
   };
-
   const handleConfirm = () => {
     setShowExitWarning(false);
     unsavedChanges.current = false;
 
-    navigate('/user-management/user-list');
+    navigate("/user-management/user-list");
   };
 
   useEffect(() => {
-    if (formik.errors.email || formik.values.email === '') {
+    if (formik.errors.email || formik.values.email === "") {
       setIsEmailExist(false);
     }
   }, [formik.values.email]);
 
   useEffect(() => {
     if (
-      formik.values.first_name === '' &&
-      formik.values.last_name === '' &&
-      formik.values.email === '' &&
-      phone === '' &&
+      formik.values.first_name === "" &&
+      formik.values.last_name === "" &&
+      formik.values.email === "" &&
+      phone === "" &&
       roleSelected.length !== 0 &&
       formik.values.dob === null &&
-      formik.values.gender === ''
+      formik.values.gender === ""
     ) {
       unsavedChanges.current = false;
       setIsEdited(false);
@@ -495,26 +447,22 @@ const CreateUser = () => {
     if (unsavedChanges.current === true) {
       setShowExitWarning(true);
     } else {
-      navigate('/user-management/user-list');
+      navigate("/user-management/user-list");
     }
   };
   const unloadCallback = (event: any) => {
     event.preventDefault();
-    if (unsavedChanges.current == true) {
-      event.returnValue = '';
-      return '';
+    if (unsavedChanges.current === true) {
+      event.returnValue = "";
+      return "";
     } else {
-      navigate('/user-management/user-list');
+      navigate("/user-management/user-list");
     }
   };
 
   useEffect(() => {
     if (isEdited) {
-      window.history.pushState(
-        null,
-        '',
-        window.location.pathname + window.location?.search,
-      );
+      window.history.pushState(null, "", window.location.pathname + window.location?.search);
 
       window.addEventListener(BEFORE_UNLOAD, unloadCallback);
       window.addEventListener(POPSTATE, returnBack);
@@ -538,9 +486,9 @@ const CreateUser = () => {
       // dob,
     } = formik.values;
     if (
-      firstName === '' ||
-      lastName === '' ||
-      email === '' ||
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
       (userDetails.is_Authoring_User && roleSelected?.length === 0)
       // gender === '' ||
       // dob === ''
@@ -551,13 +499,7 @@ const CreateUser = () => {
     } else {
       setCreateUserDisable(false);
     }
-  }, [
-    formik.values,
-    roleSelected,
-    userDetails.phone,
-    phone,
-    userDetails.is_Authoring_User,
-  ]);
+  }, [formik.values, roleSelected, userDetails.phone, phone, userDetails.is_Authoring_User]);
   useEffect(() => {
     if (isEditMode.current) {
       getUserData();
@@ -585,24 +527,21 @@ const CreateUser = () => {
   }, []);
 
   const savePopUpContent = {
-    title: isEditMode.current
-      ? `${t('update_user_toast')}`
-      : `${t('succces_user_toast')}`,
+    title: isEditMode.current ? `${t("update_user_toast")}` : `${t("succces_user_toast")}`,
     subtitle: isEditMode.current
-      ? ' '
-      : `${t('save_popup_subtitle_1')} #${formik.values.email}#.` +
-      `<br />` +
-      `${t('save_popup_subtitle_2')}`,
+      ? " "
+      : `${t("save_popup_subtitle_1")} #${formik.values.email}#.` +
+        `<br />` +
+        `${t("save_popup_subtitle_2")}`,
   };
 
-  const [parentToolTip, setParentToolTip] = useState('userTypes');
-  const [scrollToView, setscrollToView] = useState<any>();
+  const [parentToolTip, setParentToolTip] = useState("userTypes");
 
   const icons = [
-    { id: 'user', tooltip: 'user' },
+    { id: "user", tooltip: "user" },
     {
-      id: 'rolepermission',
-      tooltip: 'rolepermission',
+      id: "rolepermission",
+      tooltip: "rolepermission",
     },
   ];
   const isInViewport = (element: any, isSeo: any) => {
@@ -624,10 +563,10 @@ const CreateUser = () => {
     setParentToolTip(active?.tooltip);
   };
   useEffect(() => {
-    const dataHolder: any = document.getElementById('scrollableDiv');
-    dataHolder?.addEventListener('scroll', scrollHandler);
+    const dataHolder: any = document.getElementById("scrollableDiv");
+    dataHolder?.addEventListener("scroll", scrollHandler);
     return () => {
-      dataHolder.removeEventListener('scroll', scrollHandler);
+      dataHolder.removeEventListener("scroll", scrollHandler);
     };
   }, []);
 
@@ -638,36 +577,35 @@ const CreateUser = () => {
         <Box
           sx={{
             backgroundColor: ThemeConstants.WHITE_COLOR,
-          }}
-        >
-          {/* {galleryState && (
-            <Gallery
+          }}>
+          {galleryState && (
+            <DamContentGallery
+              dialogOpen={galleryState}
               handleImageSelected={handleSelectedImage}
               toggleGallery={toggleGallery}
-              galleryMode={galleryType.current}
+              assetType={"Image"}
               keyName={key}
             />
-          )} */}
+          )}
         </Box>
         <TopBar
           returnBack={returnBack}
           createUserDisable={createUserDisable}
           isEmailExists={isEmailExists}
           t={t}
-          createText={isEditMode.current ? t('edit_user') : t('create_user')}
+          createText={isEditMode.current ? t("edit_user") : t("create_user")}
           parentToolTip={parentToolTip}
         />
         <Box
-          id="scrollableDiv"
+          id='scrollableDiv'
           sx={{
             height: {
-              sm: 'calc(100vh - 127px)',
-              xs: 'calc(100vh - 45px)',
+              sm: "calc(100vh - 127px)",
+              xs: "calc(100vh - 45px)",
             },
-            overflowY: 'scroll',
-            overflowX: 'hidden',
-          }}
-        >
+            overflowY: "scroll",
+            overflowX: "hidden",
+          }}>
           <UserTypes
             t={t}
             state={userDetails}
@@ -690,12 +628,8 @@ const CreateUser = () => {
             setISD={setISD}
           />
           {userDetails.is_Rendering_User ? (
-            <Box sx={{ marginBottom: '30px' }}>
-              <ExternalAccess
-                t={t}
-                state={userDetails}
-                setState={setUserDetails}
-              />
+            <Box sx={{ marginBottom: "30px" }}>
+              <ExternalAccess t={t} state={userDetails} setState={setUserDetails} />
             </Box>
           ) : (
             <RolePermissions
@@ -710,30 +644,26 @@ const CreateUser = () => {
       </form>
       <PlateformXDialog
         isDialogOpen={showExitWarning}
-        title={t('save_warn_title')}
-        subTitle={t('save_warn_subtitle')}
-        closeButtonText={t('take_me_out')}
-        confirmButtonText="Stay Here"
+        title={t("save_warn_title")}
+        subTitle={t("save_warn_subtitle")}
+        closeButtonText={t("take_me_out")}
+        confirmButtonText='Stay Here'
         closeButtonHandle={handleConfirm}
         confirmButtonHandle={() => setShowExitWarning(false)}
         crossButtonHandle={() => {
           setShowExitWarning(false);
         }}
-        modalType="unsavedChanges"
+        modalType='unsavedChanges'
       />
       <PlateformXDialog
         isDialogOpen={onSavedModal}
         title={savePopUpContent.title}
         subTitle={savePopUpContent.subtitle}
-        closeButtonText={!isEditMode.current && t('go_to_listing')}
-        confirmButtonText={
-          isEditMode.current ? t('go_to_listing') : t('create_another_user')
-        }
-        closeButtonHandle={() => navigate('/user-management/user-list')}
+        closeButtonText={!isEditMode.current && t("go_to_listing")}
+        confirmButtonText={isEditMode.current ? t("go_to_listing") : t("create_another_user")}
+        closeButtonHandle={() => navigate("/user-management/user-list")}
         confirmButtonHandle={() => {
-          !isEditMode.current
-            ? crossButtonHandle()
-            : navigate('/user-management/user-list');
+          !isEditMode.current ? crossButtonHandle() : navigate("/user-management/user-list");
         }}
         modalType={isEditMode.current ? PUBLISH : DRAFT}
         closeIcon={!isEditMode.current && <FormatListBulletedIcon />}

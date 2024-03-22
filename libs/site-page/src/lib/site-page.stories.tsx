@@ -1,12 +1,13 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { SitePage } from './site-page';
+/* eslint-disable require-await */
+import type { Meta, StoryObj } from "@storybook/react";
+import { SitePage } from "./site-page";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof SitePage> = {
   component: SitePage,
-  title: 'SitePage',
+  title: "SitePage",
 };
 export default meta;
 type Story = StoryObj<typeof SitePage>;

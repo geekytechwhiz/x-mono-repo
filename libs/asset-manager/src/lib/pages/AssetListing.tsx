@@ -5,7 +5,7 @@ import {
   AssetyesIcon,
   NewfolderIcon,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   AUTH_INFO,
 } from "@platformx/utilities";
 import { useSearchParams } from "react-router-dom";
@@ -78,7 +78,7 @@ export const AssetListing = () => {
           entityType: entityType[assetType],
         });
       }
-      ShowToastSuccessMessage(authoring_createAssets.message);
+      ShowToastSuccess(authoring_createAssets.message);
     } catch (error) {
       ShowToastError(t("api_error_toast"));
     } finally {
@@ -95,7 +95,7 @@ export const AssetListing = () => {
         uuid1: communityId,
       });
 
-      ShowToastSuccessMessage(data.community?.message);
+      ShowToastSuccess(data.community?.message);
       fetchCommunityCollect(true);
       setStartIndex(0);
     } catch (error) {
@@ -110,7 +110,7 @@ export const AssetListing = () => {
         uuid: communityId,
       });
 
-      ShowToastSuccessMessage(`${t("assetType")} ${t("deleted_toast")}`);
+      ShowToastSuccess(`${t("assetType")} ${t("deleted_toast")}`);
       fetchCollectionAsset();
       setStartIndex(0);
     } catch (error) {

@@ -62,11 +62,11 @@ const ContentDisplayWithCategories = ({
           if (res) {
             let gallery = [];
             if (content?.Slots?.ContentType === "ImageGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Image);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Image);
             } else if (content?.Slots?.ContentType === "VideoGallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x.Video);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x.Video);
             } else if (content?.Slots?.ContentType === "Gallery") {
-              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery.map((x: any) => x);
+              gallery = res?.data?.data?.fetchMultiSlotContent?.Gallery?.map((x: any) => x);
             }
             setSliderData(gallery);
           }
@@ -211,7 +211,7 @@ const ContentDisplayWithCategories = ({
                   justifyContent: "space-between",
                 }}>
                 <Typography variant='h2medium' id='Title1'>
-                  {content.Title1}
+                  {content?.Title1}
                 </Typography>
               </Box>
               <Box
@@ -249,7 +249,7 @@ const ContentDisplayWithCategories = ({
                                 color='textColor'
                                 id='Title3'
                                 className='marginZero'>
-                                {value.Title}
+                                {value?.Title}
                               </Typography>
                             </Box>
                           </Box>
@@ -289,7 +289,7 @@ const ContentDisplayWithCategories = ({
             </Grid>
             <Grid item xs={12} md={12} em={4} className='hotcategoryheading'>
               <Typography variant='h2medium' id='Title2'>
-                {content.Title2}
+                {content?.Title2}
               </Typography>
               <Box className='hotcategoryWrapper'>
                 <Box className='hotcatmn'>
@@ -298,15 +298,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category1'>
-                      {content.Category1}
+                      {content?.Category1}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter1'>
-                        {parseInt(content.Category_Counter1)}
+                        {parseInt(content?.Category_Counter1)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter1'>
-                        ({parseInt(content.Category_Counter1)})
+                        ({parseInt(content?.Category_Counter1)})
                       </Typography>
                     )}
                   </Box>
@@ -320,15 +320,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category2'>
-                      {content.Category2}
+                      {content?.Category2}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter2'>
-                        {parseInt(content.Category_Counter2)}
+                        {parseInt(content?.Category_Counter2)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter2'>
-                        ({parseInt(content.Category_Counter2)})
+                        ({parseInt(content?.Category_Counter2)})
                       </Typography>
                     )}
                   </Box>
@@ -342,15 +342,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category3'>
-                      {content.Category3}
+                      {content?.Category3}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter3'>
-                        {parseInt(content.Category_Counter3)}
+                        {parseInt(content?.Category_Counter3)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter3'>
-                        ({parseInt(content.Category_Counter3)})
+                        ({parseInt(content?.Category_Counter3)})
                       </Typography>
                     )}
                   </Box>
@@ -364,15 +364,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category4'>
-                      {content.Category4}
+                      {content?.Category4}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter4'>
-                        {parseInt(content.Category_Counter4)}
+                        {parseInt(content?.Category_Counter4)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter4'>
-                        ({parseInt(content.Category_Counter4)})
+                        ({parseInt(content?.Category_Counter4)})
                       </Typography>
                     )}
                   </Box>
@@ -386,15 +386,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category5'>
-                      {content.Category5}
+                      {content?.Category5}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter5'>
-                        {parseInt(content.Category_Counter5)}
+                        {parseInt(content?.Category_Counter5)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter5'>
-                        ({parseInt(content.Category_Counter5)})
+                        ({parseInt(content?.Category_Counter5)})
                       </Typography>
                     )}
                   </Box>
@@ -408,15 +408,15 @@ const ContentDisplayWithCategories = ({
                   </Box>
                   <Box className='contentwp'>
                     <Typography variant='p3medium' className='marginZero' id='Category6'>
-                      {content.Category6}
+                      {content?.Category6}
                     </Typography>
                     {secondaryArgs?.editState ? (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter6'>
-                        {parseInt(content.Category_Counter6)}
+                        {parseInt(content?.Category_Counter6)}
                       </Typography>
                     ) : (
                       <Typography variant='p3medium' className='marginZero' id='Category_Counter6'>
-                        ({parseInt(content.Category_Counter6)})
+                        ({parseInt(content?.Category_Counter6)})
                       </Typography>
                     )}
                   </Box>

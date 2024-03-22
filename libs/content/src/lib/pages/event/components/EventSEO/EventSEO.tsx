@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import {
   BasicSwitchText,
   CommonBoxWithNumber,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   StructureDataDialog,
   TitleSubTitle,
 } from "@platformx/utilities";
@@ -50,7 +50,7 @@ const EventSEO = ({
         eventInstance?.postalCode !== state?.postalCode ||
         eventInstance?.regionState !== state?.regionState ||
         eventInstance?.country !== state?.country ||
-        eventInstance?.imageUrl !== state?.imageUrl
+        eventInstance?.original_image?.Thumbnail !== state?.original_image?.Thumbnail
           ? updateStructureData(state, eventInstance?.page_state)
           : state?.structure_data
           ? JSON.parse(state?.structure_data)
@@ -63,7 +63,7 @@ const EventSEO = ({
   const closeStructureData = (doneClick: boolean) => {
     if (doneClick && isEdit) {
       setEditedSD(seoInfo.structureData);
-      ShowToastSuccessMessage(`${t("page_structure_data")} ${t("saved_toast")}`);
+      ShowToastSuccess(`${t("page_structure_data")} ${t("saved_toast")}`);
     }
     setIsOpen(false);
     setICopyStatus(false);
@@ -83,7 +83,7 @@ const EventSEO = ({
         eventInstance?.postalCode !== state?.postalCode ||
         eventInstance?.regionState !== state?.regionState ||
         eventInstance?.country !== state?.country ||
-        eventInstance?.imageUrl !== state?.imageUrl
+        eventInstance?.original_image?.Thumbnail !== state?.original_image?.Thumbnail
           ? updateStructureData(state, eventInstance?.page_state)
           : state?.structure_data
           ? JSON.parse(state?.structure_data)
@@ -93,7 +93,7 @@ const EventSEO = ({
     navigator.clipboard.writeText(JSON.stringify(structureData, undefined, 2));
     setICopyStatus(true);
 
-    ShowToastSuccessMessage(`${t("page_structure_data")} ${t("copied")} ${t("successfully")}`);
+    ShowToastSuccess(`${t("page_structure_data")} ${t("copied")} ${t("successfully")}`);
   };
 
   const handleChange = (event, keyName) => {

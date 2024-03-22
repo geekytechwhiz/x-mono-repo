@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import getConfig from "next/config";
 import { Box } from "@mui/material";
 import HeaderLayout from "./HeaderLayout";
@@ -25,13 +25,13 @@ const HeaderFooterLayout = (props: headerFooterTypeProps) => {
     children = "",
     route = {},
     MenuData = [],
+    userData = {},
     authState = {},
     isEcomPage = false,
     footerSettingData = {},
     prelemBaseEndpoint = {},
     isCartIconEnable = true, //ecom purpose
     isProductUpdateCount = 0, //ecom purpose
-    userData,
   } = props;
   const { locale = "", host = "" } = route;
   const showHeader = children ? true : false;
@@ -54,7 +54,6 @@ const HeaderFooterLayout = (props: headerFooterTypeProps) => {
 
   return (
     <div className='layout'>
-      {/* header */}
       <HeaderLayout
         onLogin={onLogin}
         route={route}
@@ -71,15 +70,12 @@ const HeaderFooterLayout = (props: headerFooterTypeProps) => {
         host={host}
         locale={locale}
       />
-
       <Box
         sx={{
           minHeight: "100vh",
         }}>
         {children}
       </Box>
-
-      {/* footer */}
       <FooterLayout
         route={route}
         MenuData={MenuData}
@@ -89,4 +85,4 @@ const HeaderFooterLayout = (props: headerFooterTypeProps) => {
     </div>
   );
 };
-export default React.memo(HeaderFooterLayout);
+export default memo(HeaderFooterLayout);

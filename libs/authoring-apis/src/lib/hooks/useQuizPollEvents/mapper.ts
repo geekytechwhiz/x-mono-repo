@@ -1,11 +1,11 @@
-import { SORT_ORDER } from '../../utils/constants';
-import { updateStructureData, formatUrl, getSubDomain } from '../../utils/helper';
+import { SORT_ORDER } from "../../utils/constants";
+import { updateStructureData, formatUrl, getSubDomain } from "../../utils/helper";
 
 export const mapFetchALL = (
   state: any,
   filter: string,
   contentType: string,
-  pagination: { start: number; rows: number }
+  pagination: { start: number; rows: number },
 ) => {
   return {
     searchTerm: state?.searchTerm,
@@ -28,7 +28,7 @@ export const mapUnPublishContent = (contentType: string, page: string) => {
     contentType: contentType,
     input: {
       page: page,
-      status: 'depublish',
+      status: "depublish",
     },
   };
 };
@@ -45,26 +45,19 @@ export const mapDeleteContent = (contentType: string, selectedContent: any) => {
   };
 };
 const getUpdatedStructuredData = (contentType: string, content: any, language: string) => {
-  if (contentType.toLowerCase() == 'Article'.toLowerCase()) {
-    return updateStructureData(
-      content,
-      content.banner,
-      content.keywords,
-      content.current_page_url
-    );
-  } else if (contentType.toLowerCase() == 'Poll'.toLowerCase()) {
+  if (contentType.toLowerCase() === "Article".toLowerCase()) {
+    return updateStructureData(content, content.banner, content.keywords, content.current_page_url);
+  } else if (contentType.toLowerCase() === "Poll".toLowerCase()) {
     const PollStructureData = {
-      '@context': 'https://schema.org',
-      '@type': 'VoteAction',
+      "@context": "https://schema.org",
+      "@type": "VoteAction",
       name: content?.title,
       description: content?.description,
       url:
-        content.status === 'PUBLISHED'
+        content.status === "PUBLISHED"
           ? `${getSubDomain()}/${language}/` +
-            `poll/${content?.title
-              ?.replace(/[^A-Z0-9]+/gi, '-')
-              ?.toLowerCase()}`
-          : content.title?.replace(/[^A-Z0-9]+/gi, '-')?.toLowerCase(),
+            `poll/${content?.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase()}`
+          : content.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase(),
       startTime: new Date().toISOString(),
       option: content.options_compound_fields?.map((ans: any) => ans.option_text),
     };
@@ -75,14 +68,15 @@ const getUpdatedStructuredData = (contentType: string, content: any, language: s
 };
 
 export const mapDuplicateContent = (
-  contentType = '',
-  title = '',
+  contentType = "",
+  title = "",
   IsDuplicate = false,
-  selectedContent: any = {},
-  username = '',
-  language = ''
+  inputSelectedContent: any = {},
+  username = "",
+  language = "",
 ) => {
-  let url = '';
+  let selectedContent = { ...inputSelectedContent };
+  let url = "";
   if (title) {
     url = formatUrl(title);
     selectedContent = {
@@ -98,14 +92,14 @@ export const mapDuplicateContent = (
     background_content: {
       objectType: selectedContent?.background_content?.objectType,
       Url: selectedContent?.background_content?.Url,
-      Title: '',
+      Title: "",
       Thumbnail: selectedContent?.background_content?.Url,
       Color: selectedContent?.background_content?.Color,
     },
     display_scores: selectedContent?.display_scores,
   };
   const tempObjField =
-    contentType === 'Quiz'
+    contentType === "Quiz"
       ? {
           ...commonFields,
           questions: selectedContent?.questions,
@@ -114,12 +108,12 @@ export const mapDuplicateContent = (
           result_range_3: selectedContent?.result_range_3,
           result_range_4: selectedContent?.result_range_4,
         }
-      : contentType === 'Article'
+      : contentType === "Article"
       ? {
           banner: selectedContent?.banner,
           sub_title: selectedContent?.sub_title,
         }
-      : contentType === 'Event'
+      : contentType === "Event"
       ? {
           banner_image: selectedContent?.banner_image,
           thumbnail_image: selectedContent?.thumbnail_image,
@@ -131,8 +125,7 @@ export const mapDuplicateContent = (
         }
       : {
           ...commonFields,
-          question_background_content:
-            selectedContent?.question_background_content,
+          question_background_content: selectedContent?.question_background_content,
           poll_description: selectedContent?.description,
           poll_question: selectedContent?.poll_question,
           poll_result: selectedContent?.poll_result,
@@ -143,7 +136,7 @@ export const mapDuplicateContent = (
         };
   const contentToSend = {
     CommonFields: {
-      analytics: '',
+      analytics: "",
       analytics_enable: selectedContent?.analytics_enable,
       category: selectedContent?.category,
       createdBy: selectedContent?.createdBy,
@@ -155,8 +148,8 @@ export const mapDuplicateContent = (
       others: selectedContent?.others,
       page: url,
       // page_lastmodifiedby: selectedContent?.createdBy,
-      page_state: 'DRAFT',
-      parent_page_url: '/',
+      page_state: "DRAFT",
+      parent_page_url: "/",
       robot_txt: selectedContent?.robot_txt,
       seo_enable: selectedContent?.seo_enable,
       settings: selectedContent?.settingsProperties,
@@ -165,7 +158,7 @@ export const mapDuplicateContent = (
       site_name: selectedContent?.site_name,
       sitemap: selectedContent?.sitemap,
       structure_data: JSON.stringify(
-        getUpdatedStructuredData(contentType, selectedContent, language)
+        getUpdatedStructuredData(contentType, selectedContent, language),
       ),
       tags: selectedContent?.tags,
       title: url,
@@ -200,19 +193,19 @@ export const pageObjectMapper = (props: any) => {
     description: description,
     author: created_by,
     lastModifiedDate: last_modified_by,
-    status: 'draft',
+    status: "draft",
     path: document_path,
     page: document_title,
-    scheduledPublishTriggerDateTime: '',
-    scheduledUnPublishTriggerDateTime: '',
-    lastPublishedDate: '',
+    scheduledPublishTriggerDateTime: "",
+    scheduledUnPublishTriggerDateTime: "",
+    lastPublishedDate: "",
     lastModifiedBy: last_modified_by,
-    publishedBy: '',
-    publishedDate: '',
+    publishedBy: "",
+    publishedDate: "",
     currentPageUrl: `/${document_title}`,
-    parentPageUrl: '/',
+    parentPageUrl: "/",
     name: document_title,
-    page_state: 'draft',
+    page_state: "draft",
     is_published: false,
     current_page_url: `/${document_title}`,
   };

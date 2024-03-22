@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import weakMemoize from "@emotion/weak-memoize";
@@ -7,17 +8,25 @@ import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
-// import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
+import { RootState } from "@platformx/authoring-state";
+import { AUTH_INFO, PrelemTheme, ThemeConstants } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import Frame, { FrameContextConsumer } from "react-frame-component";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
-// import { Store } from '../../store/ContextStore';
-import { RootState } from "@platformx/authoring-state";
-import { ThemeConstants } from "@platformx/utilities";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { Mapping } from "../../utils/Mapper";
 
-// import { ThemeConstantForPrelemThemeBasedOnSite } from '../../utils/helperFunctions';
+const mappingDynamicInstance = {};
+Object.keys(Mapping).map((item) => {
+  mappingDynamicInstance[item] = React.lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module[Mapping[item]],
+    })),
+  );
+  return mappingDynamicInstance;
+});
 
 const tabs = [
   { type: "desktop", icon: ComputerRoundedIcon },
@@ -25,92 +34,64 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 
-// const prelemAuthoringHelper = {
-//   isAuthoring: true,
-// };
-// const secondaryArgs = {
-//   gcpUrl: AUTH_INFO.gcpUri,
-//   bucketName: AUTH_INFO.gcpBucketName,
-// };
 const ContentPreview = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const iframeRef = React.useRef<any>();
   const [deviceType, setDeviceType] = useState("desktop");
-  // const { state, dispatch } = useContext(Store);
-  // const { content } = state;
+  const [initialContent, setInitialContent] = useState(`<!DOCTYPE html><html><head>
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+    </style></head><body><div id="site-root"></div></body></html>`);
   const { currentContent } = useSelector((state: RootState) => state.content);
-
   const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
     const newCache = createCache({ container, key: "css", prepend: true });
     return newCache;
   });
   const [height, setHeight] = useState(300);
-  // const [previewObject, setPreviewObject] = useState({
-  //   title: "",
-  //   short_description: "",
-  //   background_content: {
-  //     objectType: "",
-  //     Url: "",
-  //     Color: "",
-  //   },
-  //   display_scores: "",
-  //   result_range_1: "",
-  //   result_range_2: "",
-  //   result_range_3: "",
-  //   result_range_4: "",
-  //   questions: [
-  //     {
-  //       question_type: "",
-  //       question: "",
-  //       short_description: "",
-  //       background_content: {
-  //         Url: "",
-  //         IsImage: Boolean,
-  //         Title: "",
-  //         Description: "",
-  //         ColorCode: "",
-  //       },
-  //       is_image_option: Boolean,
-  //       options_compound_fields: [
-  //         {
-  //           option_id: Number,
-  //           option_image: {
-  //             url: "",
-  //             title: "",
-  //           },
-  //           is_correct: Boolean,
-  //           option_text: "",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  //   options_compound_fields: "",
-  //   contentType: "",
-  // });
-  const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}
-  <style>
-    body {
-      overflow-x: hidden;
-    }
-  </style></head><body><div class="frame-root"></div><div id="modal-root"></div></body></html>`;
+  const [previewObject, setPreviewObject] = useState({
+    options_compound_fields: "",
+    contentType: "",
+  });
 
   const handleReturn = () => {
     window.history.back();
   };
   const handleResize = (iframe: any) => {
     if (iframe?.current?.contentDocument?.body?.scrollHeight > 100) {
-      setHeight(window.parent.innerHeight);
+      // setHeight(window.parent.innerHeight);
     }
   };
   useEffect(() => {
     if (Object.keys(currentContent).length > 0) {
-      // setPreviewObject(currentContent);
+      setPreviewObject(currentContent);
     } else {
       window.history.back();
     }
   }, [currentContent]);
+
+  useEffect(() => {
+    const headContent = document.head.innerHTML;
+    setInitialContent(`<!DOCTYPE html><html><head>
+      ${headContent}
+        <style>
+          body {
+            overflow-x: hidden;
+          }
+        </style></head><body><div id="site-root"></div></body></html>`);
+  }, []);
   // const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
+  const prelemAuthoringHelper = {
+    isAuthoring: true,
+  };
+  const secondaryArgs = {
+    gcpUrl: AUTH_INFO.gcpUri,
+    bucketName: AUTH_INFO.gcpBucketName,
+  };
+  const ContentType = mappingDynamicInstance[currentContent?.contentType];
+
   return (
     <>
       <Box
@@ -197,9 +178,9 @@ const ContentPreview = () => {
             }}>
             <Frame
               width={deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
-              height={height}
+              height={window?.parent?.innerHeight}
               initialContent={initialContent}
-              id='site-frame'
+              id='site-root'
               ref={iframeRef}
               contentDidMount={() => handleResize(iframeRef)}
               contentDidUpdate={() => handleResize(iframeRef)}
@@ -208,16 +189,17 @@ const ContentPreview = () => {
                 {({ document }: any) => {
                   return (
                     <CacheProvider value={memoizedCreateCacheWithContainer(document.head)}>
-                      {/* <ThemeProvider theme={() => PrelemTheme(ThemeConstant)}> */}
-                      {/* <ContentType
-                        content={previewObject}
-                        showLoading={false}
-                        results={previewObject.options_compound_fields}
-                        enablePreview
-                        authoringHelper={prelemAuthoringHelper}
-                        secondaryArgs={secondaryArgs}
-                      /> */}
-                      {/* </ThemeProvider> */}
+                      <ThemeProvider theme={PrelemTheme}>
+                        <ContentType
+                          showRecentArticles={false}
+                          content={previewObject}
+                          showLoading={false}
+                          results={previewObject.options_compound_fields}
+                          enablePreview
+                          authoringHelper={prelemAuthoringHelper}
+                          secondaryArgs={secondaryArgs}
+                        />
+                      </ThemeProvider>
                     </CacheProvider>
                   );
                 }}

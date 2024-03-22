@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Blogs from "./Blogs/Blogs";
-import $ from "jquery";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TabPanel from "@mui/lab/TabPanel";
@@ -16,12 +15,12 @@ import BlogTimeline from "./BlogTimeline/BlogTimeline";
 import {
   EventHeader,
   useUserSession,
-  formCroppedUrl,
+  formCroppedUrlInCrop,
   nullToArray,
   nullToObject,
   nullToString,
   ShowToastError as showToastError,
-  ShowToastSuccessMessage as showToastSuccess,
+  ShowToastSuccess,
   AUTH_INFO as authInfo,
   apiCallForBlogs,
 } from "@platformx/utilities";
@@ -45,8 +44,13 @@ const assetArrayMake = (selectedImage, selectedVideo) => {
 };
 
 const removeHTML = (str) => {
-  const without_Html = $(str).find(".removeContentDescription").remove().end();
-  return without_Html[0]?.outerHTML;
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = str;
+  const divToRemove = tempDiv.querySelectorAll(".removeContentDescription");
+  if (divToRemove.length > 0) {
+    divToRemove.forEach((item) => item.remove());
+  }
+  return tempDiv.innerHTML;
 };
 
 const assetDescMake = (selectedImage, selectedVideo, contentHtml = "") => {
@@ -169,12 +173,12 @@ const TimeLineBlogs = () => {
   };
 
   const onRemoveImage = () => {
-    showToastSuccess("Image removed.");
+    ShowToastSuccess("Image removed.");
     setSelectedImage({});
   };
 
   const onRemoveVideo = () => {
-    showToastSuccess("Video removed.");
+    ShowToastSuccess("Video removed.");
     setSelectedVideo({});
   };
 
@@ -191,20 +195,20 @@ const TimeLineBlogs = () => {
    * content type
    */
   const onRemoveContentType = () => {
-    showToastSuccess("Content removed.");
+    ShowToastSuccess("Content removed.");
     setContentTypeData({});
   };
 
   const handleSelectedVideo = (video, showToast) => {
     if (!showToast) {
-      showToastSuccess("Video added.");
+      ShowToastSuccess("Video added.");
     }
     setSelectedVideo({ ...video, media: "video" });
   };
 
   const handleSelectedImage = (image, showToast) => {
     if (!showToast) {
-      showToastSuccess("Image added.");
+      ShowToastSuccess("Image added.");
     }
     setSelectedImage({ ...image, media: "image" });
   };
@@ -250,7 +254,7 @@ const TimeLineBlogs = () => {
           Title: nullToString(item?.title),
           Description: nullToString(item?.description),
           Url:
-            formCroppedUrl(
+            formCroppedUrlInCrop(
               item?.original_image?.original_image_relative_path,
               item?.original_image?.ext,
             ) || defaultFallBackImage(),
@@ -377,7 +381,7 @@ const TimeLineBlogs = () => {
     const { data: { success = false } = {} } = response;
     if (success) {
       setImageOrVideoToDefault(); //default image set
-      showToastSuccess("Blog published successfully.");
+      ShowToastSuccess("Blog published successfully.");
       setApiCountCall(apiCountCall + 1); //fetch blog reload
       const emptyCustomerData = {
         BlogTitle: "",
@@ -478,7 +482,7 @@ const TimeLineBlogs = () => {
     if (success) {
       setImageOrVideoToDefault(); //default image set
 
-      showToastSuccess("Blog published successfully.");
+      ShowToastSuccess("Blog published successfully.");
       //fetchBlogData('');
       setApiCountCall(apiCountCall + 1); //fetch blog reload
       const emptyCustomerData = {
@@ -544,7 +548,7 @@ const TimeLineBlogs = () => {
       const { data: { success = false } = {} } = response;
 
       if (success) {
-        showToastSuccess("Blog saved successfully.");
+        ShowToastSuccess("Blog saved successfully.");
       } else {
         showToastError(t("api_error_toast"));
       }

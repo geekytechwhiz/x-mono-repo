@@ -270,13 +270,13 @@ const Banner3 = ({ content, analytics, authoringHelper, secondaryArgs }: Banner3
               className={authoringHelper?.isEditPage ? "grid_full_width" : "grid_container"}>
               <Box>
                 <Typography variant='h2semibold' color='textColor' id='Title'>
-                  {content.Title}
+                  {content?.Title}
                 </Typography>
                 <Typography variant='p1regular' color='textColor' id='Subtitle'>
-                  {content.Subtitle}
+                  {content?.Subtitle}
                 </Typography>
                 <Typography variant='p3regular' color='textColor' id='Description'>
-                  {content.Description}
+                  {content?.Description}
                 </Typography>
               </Box>
               <Grid container className='buttonsWrapper'>

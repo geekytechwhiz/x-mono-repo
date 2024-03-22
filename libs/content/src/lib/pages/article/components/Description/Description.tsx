@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
@@ -16,6 +17,9 @@ import i18next from "i18next";
 import { DamContentGallery } from "@platformx/x-image-render";
 // import DescriptionContentCard from "../DescriptionContentCard";
 import { createChatGptRequest } from "@platformx/authoring-apis";
+// import { ContentGallery } from "@platformx/site-page";
+import ReactDomServer from "react-dom/server";
+import DescriptionContentCard from "../DescriptionContentCard";
 import MediaTray from "../MediaTray/MediaTray";
 import AddUrlDialog from "../url-dialog-box/AddUrlDialog";
 import ChatGptLoader from "./ChatGptLoader";
@@ -325,37 +329,37 @@ function Description({
     });
   };
 
-  // const handleSelectedContent = (item) => {
-  //   const el = document.getElementById("desc");
-  //   const contentAdded = ReactDomServer.renderToString(
-  //     <DescriptionContentCard content={item}></DescriptionContentCard>,
-  //   );
-  //   if (el !== null) {
-  //     el.innerHTML = el.innerHTML + contentAdded;
-  //   }
-  //   desc.current = desc.current + contentAdded;
-  //   setShowOutput(document?.getElementById("desc")?.innerHTML);
-  //   setContentGalleryState(!contentGalleryState);
-  //   // updateField({ Description: document?.getElementById('desc')?.innerHTML });
-  //   setState({
-  //     ...state,
-  //     CommonFields: {
-  //       ...state.CommonFields,
-  //       description: document?.getElementById("desc")?.innerHTML,
-  //       settings: {
-  //         ...state.CommonFields.settings,
-  //         socialog_description: trimString(
-  //           handleHtmlTags(document?.getElementById("desc")?.innerHTML),
-  //           200,
-  //         ),
-  //       },
-  //     },
-  //   });
-  // };
+  const handleSelectedContent = (item) => {
+    const el = document.getElementById("desc");
+    const contentAdded = ReactDomServer.renderToString(
+      <DescriptionContentCard content={item}></DescriptionContentCard>,
+    );
+    if (el !== null) {
+      el.innerHTML = el.innerHTML + contentAdded;
+    }
+    desc.current = desc.current + contentAdded;
+    setShowOutput(document?.getElementById("desc")?.innerHTML);
+    setContentGalleryState(!contentGalleryState);
+    // updateField({ Description: document?.getElementById('desc')?.innerHTML });
+    setState({
+      ...state,
+      CommonFields: {
+        ...state.CommonFields,
+        description: document?.getElementById("desc")?.innerHTML,
+        settings: {
+          ...state.CommonFields.settings,
+          socialog_description: trimString(
+            handleHtmlTags(document?.getElementById("desc")?.innerHTML),
+            200,
+          ),
+        },
+      },
+    });
+  };
 
-  // const onToggleContentGallery = () => {
-  //   setContentGalleryState(!contentGalleryState);
-  // };
+  const onToggleContentGallery = () => {
+    setContentGalleryState(!contentGalleryState);
+  };
 
   const setImageOrVideoToDefault = () => {
     setSelectedImage({
@@ -459,7 +463,7 @@ function Description({
       ? process.env.REACT_APP_CHAT_GPT_PROMPT
       : "Please write 3 paragraph article about";
 
-    chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping[i18next.language]}`);
+    chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping["en"]}`);
   };
 
   useEffect(() => {
@@ -487,6 +491,7 @@ function Description({
           />
         )}
         <Dialog fullScreen open={contentGalleryState}>
+          <h3>Commented due to circular dependency</h3>
           {/* <ContentGallery
             handleSelectedContent={handleSelectedContent}
             onToggleContentGallery={onToggleContentGallery}

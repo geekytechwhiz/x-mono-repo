@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Box } from "@mui/material";
-import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
+import { fetchUserSitePermissionList, usePage } from "@platformx/authoring-apis";
 import {
   Card,
   ContentListDesktopLoader,
@@ -29,10 +29,6 @@ const ContentListing = ({
   view,
   edit,
   editPage,
-  viewPage,
-  previewPage,
-  handleDeleteData,
-  handlePageDelete,
   fetchContentDetails,
 }: ContentListingProps) => {
   const [sitelist, setSiteList] = useState([]);
@@ -40,6 +36,7 @@ const ContentListing = ({
   const { userInfo } = getSession();
   const pageUrl = new URL(window.location.href);
   const path = pageUrl.pathname.split("/")?.pop();
+  const { handlePageDelete } = usePage();
 
   const fetchUserSite = async () => {
     try {
@@ -152,12 +149,13 @@ const ContentListing = ({
         next={fetchMore}
         hasMore={loading}
         loader={<ContentListDesktopLoader />}
-        endMessage={<NoSearchResult />}
         scrollableTarget='scrollableDiv'
         style={{ overflowX: "hidden" }}>
         <Box sx={{ padding: "0 10px 0 15px" }}>
           <Box>
-            {contentList?.length > 0 &&
+            {!loading && !contentList?.length ? (
+              <NoSearchResult />
+            ) : (
               contentList?.map((item: any, index: Key | null | undefined) => {
                 return (
                   <Box key={index}>
@@ -170,12 +168,9 @@ const ContentListing = ({
                       view={view}
                       edit={edit}
                       editPage={editPage}
-                      viewPage={viewPage}
-                      previewPage={previewPage}
-                      handleDeleteData={handleDeleteData}
-                      handlePageDelete={handlePageDelete}
                       siteList={sitelist}
                       contentType={contentType}
+                      handlePageDelete={handlePageDelete}
                       CustomMenuList={
                         <ContentTypeMenuList
                           item={makeContentData(item)}
@@ -191,7 +186,8 @@ const ContentListing = ({
                     />
                   </Box>
                 );
-              })}
+              })
+            )}
           </Box>
         </Box>
       </InfiniteScroll>

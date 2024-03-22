@@ -30,7 +30,7 @@ import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxCompon
 import ToastContainerHandle from "../../../components/ToastContainer/ToastContainerHandle";
 import ToastService from "../../../components/ToastContainer/ToastService";
 import prelemTypes from "../../../globalStyle";
-import "../../../utils/service/i18n";
+
 import Coins from "./Coins";
 import { useCustomStyle } from "./Profile.style";
 import ProfileHeader from "./ProfileHeader";

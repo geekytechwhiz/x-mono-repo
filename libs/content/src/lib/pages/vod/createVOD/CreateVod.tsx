@@ -6,13 +6,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
-// import { useDispatch, useSelector } from "react-redux";
 import {
   TitleSubTitle,
   TextBox,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   AutoTextArea,
   useUserSession,
   workflowKeys,
@@ -25,35 +24,27 @@ import {
 } from "@platformx/utilities";
 import {
   useWorkflow,
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   create_vod,
   fetchVodById,
   publish_vod,
   update_vod,
 } from "@platformx/authoring-apis";
+import { useDispatch, useSelector } from "react-redux";
 import { ContentType } from "../../../enums/ContentType";
-
 import ContentPageScroll from "../../../components/ContentPageScroll";
-
-// import "../../../components/Common/commonStyles/disabledStyles.css";
-
-// import { Store } from "../../../store/ContextStore";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import TagListing from "../Components/TagListing";
-// import { DEF_VOD } from './Utils/constats';
-// import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
-// import Submit from "../../../components/Submit/Submit";
 import icons, { DEF_VOD } from "./Utils/constats";
 import { createVodInstance, updateStructureData, updateVodSettings } from "./Utils/helper";
 import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
 import "./createVod.css";
 import { useStyles } from "./createVod.styles";
 import { DspaceObject } from "./createVod.types";
-// import MarkFeatured from "libs/utilities/src/lib/components/MarkFeatured/MarkedFeatured";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 
 export const CreateVod = () => {
+  const dispatch = useDispatch();
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   // const [workflowStatus, setWorkflowStatus] = useState(true);
   const [, setShowWorkflowSubmit] = useState(false);
@@ -89,7 +80,7 @@ export const CreateVod = () => {
   const [runFetchVodById] = useLazyQuery(fetchVodById);
   const [parentToolTip] = useState("");
   // const [scrollToView, setScrollToView] = useState("");
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [mutatePublish] = useMutation(publish_vod);
   const currentVodData = useRef(
     vodPageUrl.searchParams.get("path") ? (vodPageUrl.searchParams.get("path") as string) : "",
@@ -121,8 +112,8 @@ export const CreateVod = () => {
     };
     setVodInstance(modifiedVod);
     if (callPreview) {
-      // dispatch(previewVod(modifiedVod));
-      navigate("/vod-preview");
+      dispatch(previewContent({ ...modifiedVod, contentType: "Vod" }));
+      navigate("/content/preview");
     }
   };
   // const scrollHandler = () => {
@@ -218,7 +209,7 @@ export const CreateVod = () => {
           // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setOpenPageExistModal(false);
           setIsDraft(false);
-          ShowToastSuccessMessage(`${t("vod")} ${t("created_toast")}`);
+          ShowToastSuccess(`${t("vod")} ${t("created_toast")}`);
           setOpenSaveModal(true);
           // setOpenPageExistModal(false);
           const pageUrl = resp?.data?.authoring_createVod?.path.substring(
@@ -285,7 +276,7 @@ export const CreateVod = () => {
         if (isWorkflow) {
           workflowSubmitRequest(workflowObj, workflowKeys.approve);
         }
-        ShowToastSuccessMessage(`${t("vod")} ${t("updated_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("updated_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowExitWarning(false);
@@ -364,7 +355,7 @@ export const CreateVod = () => {
       },
     })
       .then(() => {
-        ShowToastSuccessMessage(`${t("vod")} ${t("published_toast")}`);
+        ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);

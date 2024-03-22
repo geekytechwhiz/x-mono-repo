@@ -13,6 +13,7 @@ import {
   LightTheme,
   getCurrentLang,
   getSelectedRoute,
+  i18next,
 } from "@platformx/utilities";
 import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -87,7 +88,7 @@ function App() {
   return (
     <Suspense fallback={<div>...Loading</div>}>
       <div className='App'>
-        <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18next}>
           <ApolloProvider client={graphqlInstance}>
             {/* <AnalyticsProvider instance={instances}> */}
             <ThemeProvider theme={LightTheme}>

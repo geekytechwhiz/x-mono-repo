@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import   PasswordTextBox    from './PasswordTextBox';
+import type { Meta, StoryObj } from "@storybook/react";
+import PasswordTextBox from "./PasswordTextBox";
 
-import { within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof PasswordTextBox> = {
   component: PasswordTextBox,
-  title: 'PasswordTextBox',
+  title: "PasswordTextBox",
 };
 export default meta;
 type Story = StoryObj<typeof PasswordTextBox>;
@@ -17,7 +17,7 @@ export const Primary = {
 
 export const Heading: Story = {
   args: {},
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to PasswordTextBox!/gi)).toBeTruthy();
   },

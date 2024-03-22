@@ -6,7 +6,7 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
-  FETCH_TAG_LIST,
+  FETCH_TAG_LIST_QUERY,
   commentsApi,
   contentTypeAPIs,
   useComment,
@@ -18,7 +18,7 @@ import {
   CATEGORY_CONTENT,
   PlateformXDialog,
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   XLoader,
   capitalizeFirstLetter,
   getCurrentLang,
@@ -107,7 +107,7 @@ export const CreatePoll = (): JSX.Element => {
   const [parentToolTip, setParentToolTip] = useState("");
   const [addImage, setAddImage] = useState<boolean>(false);
   const scrollDebounceRef = useRef<any>(null);
-  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST);
+  const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   // const [socialShareExpanded, setSocialShareExpanded] = useState(
   //   pollPageUrl.searchParams.get("open") ? true : false,
@@ -526,7 +526,7 @@ export const CreatePoll = (): JSX.Element => {
         } else {
           setShowPublishConfirm(true);
         }
-        // showToastSuccess(`${t('poll')} ${t('published_toast')}`);
+        // ShowToastSuccess(`${t('poll')} ${t('published_toast')}`);
         setPublishUrl(resp?.data?.authoring_publishContent?.current_page_url);
       })
       .catch((error) => {
@@ -641,7 +641,7 @@ export const CreatePoll = (): JSX.Element => {
             setWorkflowStatus(isWorkflow);
           } else {
             if (!isWorkflow) {
-              ShowToastSuccessMessage(`${t("poll")} ${t("saved_toast")}`);
+              ShowToastSuccess(`${t("poll")} ${t("saved_toast")}`);
             }
             //setOnSavedModal(true);
             setIsDraft(false);
@@ -803,7 +803,7 @@ export const CreatePoll = (): JSX.Element => {
         if (status && status?.toLowerCase() === DRAFT.toLowerCase()) {
           setIsLoading(false);
           if (!isWorkflow) {
-            ShowToastSuccessMessage(`${t("poll")} ${t("updated_toast")}`);
+            ShowToastSuccess(`${t("poll")} ${t("updated_toast")}`);
           } else {
             workflowSubmitRequest(props, event_step);
           }
@@ -1362,7 +1362,7 @@ export const CreatePoll = (): JSX.Element => {
       contentType: "Poll",
     };
     dispatch(previewContent(tempObj));
-    navigate("/content-preview");
+    navigate("/content/preview");
   };
 
   useEffect(() => {

@@ -14,13 +14,16 @@ import {
   countries,
   defaultImages,
 } from "./helperConstants";
+import feyenoord from "../themes/prelems/Feyenoord/index";
+import fifa from "../themes/prelems/Fifa/index";
 import { Content, SecondaryArgs } from "./interface";
 import { Props } from "./types";
-import { fallBackImage } from "../assets/images";
+//import hockeyAustralia from "../themes/prelems/HockeyAustralia/index";
+import light from "../themes/prelems/LightTheme/index";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 
-const siteLevelSchema = {
+export const siteLevelSchema = {
   siteName: "X",
   siteURL: "https://platform-x.com",
   siteDescription: "Lorem Ipsum is simply dummy text of the printing",
@@ -28,6 +31,29 @@ const siteLevelSchema = {
     "https://www.google.com/url?sa=i&url=https%3A%2F%2Fuicookies.com%2Ffree-html-contact-forms%2F&psig=AOvVaw2eVA8o8PsBkQZBaD49Qxf7&ust=1646374746446000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCIC60qamqfYCFQAAAAAdAAAAABAO",
   facebookAppId: "Platform-X",
   twitterAppId: "Platform-X",
+};
+
+export const ThemeConstantForPrelemThemeBasedOnSite = () => {
+  let ThemeConstant = light;
+  const siteName = process.env.NX_SITE_BASED_THEME || "";
+  const site_array = siteName.split(",");
+  const currentSiteName = getSelectedSite();
+  if (site_array[0] === currentSiteName) {
+    ThemeConstant = fifa;
+  } else if (site_array[1] === currentSiteName) {
+    ThemeConstant = feyenoord;
+    // } else if (site_array[2] === currentSiteName) {
+    //   ThemeConstant = hockeyAustralia;
+  } else {
+    ThemeConstant = light;
+  }
+  return ThemeConstant;
+};
+
+export const createImageURL = (imageUrl, imageExt = "png") => {
+  const gcpUrl = process.env.NX_GCP_URL;
+  const bucketName = process.env.NX_BUCKET_NAME;
+  return `${gcpUrl}/${bucketName}/${imageUrl}.${imageExt}`;
 };
 
 const errorRequest =
@@ -169,6 +195,7 @@ export const handleHtmlTags = (inputString: any) => {
   if (inputString) {
     return inputString.replace(/<[^>]*(>|$)|&nbsp;/g, "");
   }
+  return inputString;
 };
 
 /**
@@ -730,41 +757,28 @@ export const unloadCallback = (event, unsavedChanges) => {
   }
 };
 
-// export const getSelectedSite = () => {
-//   const splitPath = window?.location.pathname.split("/");
-//   const [, x] = splitPath;
-//   const site = x;
-
-//   if (["en", "fr", "de"].includes(site)) {
-//     return localStorage.getItem("selectedSite") || "";
-//   }
-
-//   return site || "";
-// };
-
 export const getSelectedSite = () => {
-  let site = "";
-  const split = window?.location.pathname.split("/");
-  // eslint-disable-next-line prefer-destructuring
-  site = split[1];
-  if (site === "en" || site === "fr" || site === "de") {
+  const splitPath = window?.location.pathname.split("/");
+  const [, x] = splitPath;
+  const site = x;
+
+  if (["en", "fr", "de"].includes(site)) {
     return localStorage.getItem("selectedSite") || "";
-  } else {
-    return site || "";
   }
+
+  return site || "";
 };
 
 export const getSelectedRoute = () => {
   let site = "";
-  // const selectedSite = localStorage.getItem("selectedSite");
+  const selectedSite = localStorage.getItem("selectedSite");
   const split = window?.location.pathname.split("/");
   const [, x] = split;
   site = x;
   if (site === "en" || site === "fr" || site === "de") {
     return "";
   } else {
-    //return selectedSite ?? site;
-    return site;
+    return selectedSite ?? site;
   }
 };
 
@@ -1139,6 +1153,59 @@ export const getFlag = (code = "") => {
       return EN_FLAG;
   }
 };
+
+// setDuplicate Page settings
+export function setDuplicatePageSettings(name: string, url: string, pageSettings) {
+  const pageSettingsCopy = {
+    ...pageSettings,
+    PageName: name,
+    PageURL: `${getSubDomain()}/${url}`,
+    SeoTitle: `${name} | ${siteLevelSchema.siteName}`,
+    SocialOgTitle: `${name} | ${siteLevelSchema.siteName}`,
+    SocialOgSiteName: `${name} | ${siteLevelSchema.siteName}`,
+    SocialOgURL: `${getSubDomain()}/${url}`,
+    SocialOgTwitterTitle: `${name} | ${siteLevelSchema.siteName}`,
+    SocialOgTwitterURL: `${getSubDomain()}/${url}`,
+    IsSchedulePublish: false,
+    IsScheduleUnpublish: false,
+    SchedulePublishDateTime: "",
+    ScheduleUnpublishDateTime: "",
+  };
+  return pageSettingsCopy;
+}
+
+export const formatChildrenForPageDuplicate = (pageModel, pageName, pageUrl, currentUser) => {
+  const ChildrenArray: any = [];
+  pageModel.Page = pageUrl;
+  pageModel.Title = pageName;
+  pageModel.CurrentPageURL = `/${pageUrl}`;
+  pageModel.DevelopedBy = currentUser;
+  pageModel.Page_LastModificationDate = new Date();
+  pageModel.PageSettings = setDuplicatePageSettings(pageName, pageUrl, pageModel.PageSettings);
+  for (let i = 0; i < pageModel?.Children.length; i++) {
+    const instance = { ...pageModel.Children[i] };
+    delete instance.content;
+    ChildrenArray.push(instance);
+  }
+  pageModel.Children = ChildrenArray;
+  return pageModel;
+};
+
+export function removeParamsFromURL(sParam) {
+  let url = `${window.location.href.split("?")[0]}?`;
+  const sPageURL = decodeURIComponent(window.location.search.substring(1));
+  const sURLVariables = sPageURL.split("&");
+  let sParameterName;
+  let i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split("=");
+    if (sParameterName[0] !== sParam) {
+      url = `${url + sParameterName[0]}=${sParameterName[1]}&`;
+    }
+  }
+  return url.substring(0, url.length - 1);
+}
 export const locationApiCallService = async () => {
   const res = await axios.get(
     `${publicRuntimeConfig.NEXT_GEOLOCATION_API_URL}?apiKey=${publicRuntimeConfig.NEXT_GEOLOCATION_API_KEY}`,
@@ -1237,7 +1304,7 @@ export async function postData(url = "", data = {}, site_host = "") {
 }
 
 export const getIcon = (contentType) => {
-  const gcpUrl = `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/`;
+  const gcpUrl = `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/`;
   switch (convertToLowerCase(contentType)) {
     case "article":
       return `${gcpUrl}${CONTENT_ICON.ARTICLE}`;

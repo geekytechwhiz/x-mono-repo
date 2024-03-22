@@ -102,11 +102,11 @@ export const FETCH_DASHBOARD_CHARTS = gql`
 `;
 
 export const UPDATE_TASK_STATUS = gql`
-mutation ($input: authoring_taskRequest) {
-  authoring_updateTask(input: $input) {
-    message
-    path
-    __typename
+  mutation ($input: authoring_taskRequest) {
+    authoring_updateTask(input: $input) {
+      message
+      path
+      __typename
+    }
   }
-}
 `;

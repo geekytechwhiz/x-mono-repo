@@ -25,7 +25,7 @@ import {
   TextBox,
   Loader,
   PlateformXDialogSuccess,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   Pencil,
 } from "@platformx/utilities";
 import AddSiteSelect from "./AddSiteSelect";
@@ -407,7 +407,7 @@ export const AddSite = () => {
           setSavedPageURL(promiseRes?.authoring_createSiteConfig?.name);
           setIsSaved(true);
           setIsLoading(false);
-          ShowToastSuccessMessage(t(toastMessage.current));
+          ShowToastSuccess(t(toastMessage.current));
         }
       }
     } catch (error: any) {

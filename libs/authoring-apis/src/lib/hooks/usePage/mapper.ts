@@ -1,12 +1,6 @@
-import { SORT_ORDER } from '@platformx/utilities';
+import { SORT_ORDER } from "@platformx/utilities";
 
-
-
-export const mapFetchPages = (
-  startIndex: number,
-  state: any,
-  filter: string
-) => {
+export const mapFetchPages = (startIndex: number, state: any, filter: string) => {
   return {
     searchTerm: state?.searchTerm,
     tags: state?.tags,
@@ -15,7 +9,7 @@ export const mapFetchPages = (
       to: state?.toDate,
     },
     created_by: state?.author,
-    contentType: 'Sitepage',
+    contentType: "Sitepage",
     pageFilter: filter,
     sort: SORT_ORDER,
     pagination: { start: startIndex, rows: 20 },
@@ -27,7 +21,7 @@ export const consolidatePageModel = (
   pageModel: any,
   prelemMetaArray: any[],
   pageSettings: any,
-  username = ''
+  username = "",
 ) => {
   const newModel = {
     ...pageModel,
@@ -38,15 +32,10 @@ export const consolidatePageModel = (
   const structuredDataArray: any = [];
   for (let i = 0; i < prelemMetaArray.length; i++) {
     const prelemMetaArrayInstance: any = prelemMetaArray[i];
-    if (
-      prelemMetaArray[i]?.IsHidden === false &&
-      prelemMetaArray[i].SeoEnabled === true
-    ) {
+    if (prelemMetaArray[i]?.IsHidden === false && prelemMetaArray[i].SeoEnabled === true) {
       structuredDataArray.push(prelemMetaArrayInstance.StructuredData);
     }
-    const prelemMetaArrayInstanceCopy = JSON.parse(
-      JSON.stringify(prelemMetaArray[i])
-    );
+    const prelemMetaArrayInstanceCopy = JSON.parse(JSON.stringify(prelemMetaArray[i]));
     delete prelemMetaArrayInstanceCopy.content;
     delete prelemMetaArrayInstanceCopy.prelemTag;
     delete prelemMetaArrayInstanceCopy.DefaultStructureDataForReset;

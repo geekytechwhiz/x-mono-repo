@@ -5,5 +5,5 @@ const hideFilterArray = ["Community"];
  * @param type
  */
 export const contentTypeBasedHideFilter = (type = "") => {
-    return hideFilterArray.some((ele) => ele !== type);
-}
+  return hideFilterArray.some((ele) => ele !== type);
+};

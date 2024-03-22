@@ -1,16 +1,16 @@
 /* eslint-disable eqeqeq */
 import { Cached } from "@mui/icons-material";
 import { Box, Container, Paper, Typography } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Slider from "react-slick";
 import "../../Style.css";
-import "./MultiSlot2.css";
-import MultiSlotCard2 from "./MultiSlotCard2";
-import prelemTypes from "../../globalStyle";
-import { useCustomStyle } from "./MultiSlot2.style";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
-import { Analytics, AuthoringHelper, SecondaryArgs } from "@platformx/utilities";
+import prelemTypes from "../../globalStyle";
+import "./MultiSlot2.css";
+import { useCustomStyle } from "./MultiSlot2.style";
+import MultiSlotCard2 from "./MultiSlotCard2";
 
 const windowSettings = {
   arrows: true,
@@ -166,7 +166,7 @@ const MultiSlot2 = ({ content, analytics, authoringHelper, secondaryArgs }: Mult
                         </Box>
                       </Box>
                       <MultiSlotCard2
-                        content={content.Slots[index]}
+                        content={content?.Slots[index]}
                         secondaryArgs={secondaryArgs}
                         index={index}
                         analytics={analytics}

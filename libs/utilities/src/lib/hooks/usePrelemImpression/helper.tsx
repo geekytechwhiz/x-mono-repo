@@ -1,17 +1,17 @@
-import { IMPRESSIONS } from '../usePrelemImpression/constants';
+import { IMPRESSIONS } from "../usePrelemImpression/constants";
 import {
   Analytics,
   ButtonObjInfo,
   CardDataObj,
   secondaryArgsObj,
-} from './usePrelemImpression.types';
+} from "./usePrelemImpression.types";
 import {
   completeExternalUrl,
   conCatUrlPath,
   eComTypeUriToJSON,
   nullToObject,
   uriToJSON,
-} from '../../utils/helperFns';
+} from "../../utils/helperFns";
 
 export const createPrelemImpression = (analytics: Analytics) => {
   return {
@@ -29,7 +29,7 @@ export const createPrelemImpression = (analytics: Analytics) => {
 
 export const snowplowPrelemImpression = (
   analytics: Analytics,
-  secondaryArgs?: secondaryArgsObj
+  secondaryArgs?: secondaryArgsObj,
 ) => {
   return {
     schema: secondaryArgs?.prelemImpressionSchema,
@@ -44,7 +44,7 @@ export const createClickImpression = (
   type: string,
   secondaryArgs: any,
   buttonDataObj: ButtonObjInfo,
-  cardDataObj: CardDataObj
+  cardDataObj: CardDataObj,
 ) => {
   let buttonURL = IMPRESSIONS.NA;
   let contentTitle = IMPRESSIONS.NA;
@@ -54,54 +54,43 @@ export const createClickImpression = (
   let eventLabel = IMPRESSIONS.NA;
   const eventValue = IMPRESSIONS.NA;
   const isRegistered =
-    (localStorage.getItem('userId') ? IMPRESSIONS.YES : IMPRESSIONS.NO) ||
-    IMPRESSIONS.NA;
+    (localStorage.getItem("userId") ? IMPRESSIONS.YES : IMPRESSIONS.NO) || IMPRESSIONS.NA;
   const age = IMPRESSIONS.NA;
   const gender =
-    JSON.parse(localStorage.getItem('userLoginDetails') || '')?.data?.gender ||
-    IMPRESSIONS.NA;
+    JSON.parse(localStorage.getItem("userLoginDetails") || "")?.data?.gender || IMPRESSIONS.NA;
 
   if (type === IMPRESSIONS.Button) {
     const { prelemBaseEndpoint = {} } = nullToObject(secondaryArgs);
     const {
-      buttonBaseUrl = '',
-      PublishEndPoint = '',
-      language = '',
+      buttonBaseUrl = "",
+      PublishEndPoint = "",
+      language = "",
     } = nullToObject(prelemBaseEndpoint);
     const platformEndPoint = buttonBaseUrl ? buttonBaseUrl : PublishEndPoint;
     eventLabel = buttonDataObj?.Button_Name || IMPRESSIONS.NA;
     switch (buttonDataObj?.Button_Action) {
-      case 'Internal':
+      case "Internal":
         if (buttonDataObj?.Button_RedirectURL) {
-          buttonURL =
-            platformEndPoint + language + buttonDataObj.Button_RedirectURL;
+          buttonURL = platformEndPoint + language + buttonDataObj.Button_RedirectURL;
         }
         break;
-      case 'External':
+      case "External":
         if (buttonDataObj?.Button_RedirectURL) {
           buttonURL = completeExternalUrl(buttonDataObj.Button_RedirectURL);
         }
         break;
-      case 'Content': {
+      case "Content": {
         const contentObjHandle = uriToJSON(buttonDataObj); //convertToParse
-        const {
-          ContentType = '',
-          currentPath = '',
-          Title = '',
-        } = nullToObject(contentObjHandle);
+        const { ContentType = "", currentPath = "", Title = "" } = nullToObject(contentObjHandle);
         contentTitle = Title || IMPRESSIONS?.NA;
         contentType = ContentType || IMPRESSIONS?.NA;
-        const isGalleryContentType = [
-          'ImageGallery',
-          'VideoGallery',
-          'Gallery',
-        ].some(
-          (ele) => ele?.toLocaleLowerCase() === ContentType?.toLocaleLowerCase()
+        const isGalleryContentType = ["ImageGallery", "VideoGallery", "Gallery"].some(
+          (ele) => ele?.toLocaleLowerCase() === ContentType?.toLocaleLowerCase(),
         );
         const typeOfContent = conCatUrlPath(ContentType);
 
         let id = currentPath;
-        if (id.charAt(0) === '/') {
+        if (id.charAt(0) === "/") {
           id = id.substring(1);
         }
 
@@ -113,14 +102,13 @@ export const createClickImpression = (
         contentUrl = buttonURL || IMPRESSIONS.NA;
         break;
       }
-      case 'Ecommerce': {
+      case "Ecommerce": {
         const ecomObjHandle = eComTypeUriToJSON(buttonDataObj); //convertToParse
-        const { ContentType = '', currentPath = '' } =
-          nullToObject(ecomObjHandle);
+        const { ContentType = "", currentPath = "" } = nullToObject(ecomObjHandle);
         const typeOfContent = conCatUrlPath(ContentType);
 
         let id = currentPath;
-        if (id.charAt(0) === '/') {
+        if (id.charAt(0) === "/") {
           id = id.substring(1);
         }
         buttonURL =
@@ -167,18 +155,12 @@ export const snowplowPrelemClickImpression = (
   type: string,
   secondaryArgs: any,
   buttonDataObj: ButtonObjInfo,
-  cardDataObj: CardDataObj
+  cardDataObj: CardDataObj,
 ) => {
   return {
     schema: secondaryArgs?.clickImpressionSchema,
     data: {
-      ...createClickImpression(
-        analytics,
-        type,
-        secondaryArgs,
-        buttonDataObj,
-        cardDataObj
-      ),
+      ...createClickImpression(analytics, type, secondaryArgs, buttonDataObj, cardDataObj),
     },
   };
 };

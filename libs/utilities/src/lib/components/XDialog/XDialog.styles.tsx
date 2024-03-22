@@ -1,18 +1,18 @@
-import { styled, Box, Theme } from '@mui/system';
-import { Button, DialogActions, DialogContent } from '@mui/material';
+import { styled, Box, Theme } from "@mui/system";
+import { Button, DialogActions, DialogContent } from "@mui/material";
 
 export const XDialogContent = styled(DialogContent)({
-  textAlign: 'center',
-  padding: '10px 20px',
+  textAlign: "center",
+  padding: "10px 20px",
   maxWidth: 700,
-  margin: 'auto',
+  margin: "auto",
 });
 
 export const XDialogActions = styled(DialogActions)({
-  display: 'flex',
-  justifyContent: 'center',
-  margin: '61px 0 74px',
-  paddingBottom: '30px',
+  display: "flex",
+  justifyContent: "center",
+  margin: "61px 0 74px",
+  paddingBottom: "30px",
 });
 
 interface XDialogImageContainerProps {
@@ -20,20 +20,18 @@ interface XDialogImageContainerProps {
 }
 
 export const XDialogImageContainer = styled(Box)<XDialogImageContainerProps>({
-  textAlign: 'center',
-  color: '#fd0c0d',
-  margin: '71px 0 4px',
+  textAlign: "center",
+  color: "#fd0c0d",
+  margin: "71px 0 4px",
 });
 
 type DialogButtonPros = {
   loading?: boolean;
-  startIcon: '';
+  startIcon: "";
 };
 
 export const XDialogButton = ({
-  variant = 'contained',
-  startIcon = '',
+  variant = "contained",
+  startIcon = "",
   ...rest
-}: any & DialogButtonPros) => (
-  <Button startIcon={startIcon} variant={variant} {...rest} />
-)
+}: any & DialogButtonPros) => <Button startIcon={startIcon} variant={variant} {...rest} />;

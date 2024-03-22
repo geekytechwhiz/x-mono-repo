@@ -1,10 +1,22 @@
 import { Typography } from "@mui/material";
 import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
-import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
+import {
+  Content,
+  ContentPreview,
+  CreateArticle,
+  CreateContent,
+  TimeLineBlogs,
+} from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
-import { SitePage } from "@platformx/site-page";
+import {
+  EditPage,
+  PagePreview,
+  PrelemInfo,
+  PrelemPreview,
+  SearchPrelem,
+} from "@platformx/site-page";
 import {
   CategoryDetail,
   CookieSetting,
@@ -103,15 +115,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
-  {
-    path: "/site-page",
-    element: (
-      <ProtectedRoute category='page' subCategory='SitePage' name='SitePage'>
-        <SitePage />
-      </ProtectedRoute>
-    ),
-  },
   // {
   //   path: "/page-list",
   //   element: (
@@ -164,15 +167,6 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   // {
-  //   path: "/Sitepage",
-  //   element: (
-  //     <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-  //       {" "}
-  //       {/* <SitePage />{" "} */}
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
   //   path: "/user-management/user-list",
   //   element: (
   //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
@@ -211,7 +205,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create/*",
+    path: "/content/create/:contentType",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -247,7 +241,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/content/preview",
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+      <ProtectedRoute
+        name='content'
+        category='content'
+        subCategory='content-preview'
+        isSideBar={false}
+        isHeader={false}>
         <ContentPreview />
       </ProtectedRoute>
     ),
@@ -394,7 +393,7 @@ export const routes: RouteConfig[] = [
         subCategory='article'
         isHeader={false}
         isSideBar={false}>
-        <CreateContent />
+        <CreateArticle />
       </ProtectedRoute>
     ),
   },
@@ -509,6 +508,46 @@ export const routes: RouteConfig[] = [
         isHeader={false}
         isSideBar={false}>
         <TimeLineBlogs />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <SearchPrelem />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search/about",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PrelemInfo />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/prelem-search/preview",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PrelemPreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/preview-page/:device",
+    element: (
+      <ProtectedRoute subCategory='' category='page' name='page' isSideBar={false} isHeader={false}>
+        <PagePreview />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/edit-page",
+    element: (
+      <ProtectedRoute name='page' category='page' subCategory='' isSideBar={false} isHeader={false}>
+        <EditPage></EditPage>
       </ProtectedRoute>
     ),
   },

@@ -1,10 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable default-param-last */
-/* eslint-disable no-debugger */
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
-
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
 import {
   ContentState,
@@ -14,7 +10,7 @@ import {
 } from "@platformx/authoring-state";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   convertToLowerCase,
   getCurrentLang,
@@ -23,7 +19,7 @@ import {
   useUserSession,
 } from "@platformx/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { FETCH_CONTENT_BY_PATH } from "../../graphQL/queries/contentTypesQueries";
+import { createSearchParams } from "react-router-dom";
 import contentTypeAPIs, {
   createContentType,
   deleteContentType,
@@ -34,8 +30,19 @@ import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
 
-const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
-  CONTENT_CONSTANTS;
+const {
+  LANG,
+  DRAFT,
+  VOD,
+  EVENT,
+  POLL,
+  PUBLISHED,
+  QUESTION,
+  QUIZ,
+  UNPUBLISHED,
+  PREVIEW_PATH,
+  ARTICLE,
+} = CONTENT_CONSTANTS;
 const useContentListing = (filter = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -47,7 +54,6 @@ const useContentListing = (filter = "ALL") => {
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const [deleteMutate] = useMutation(deleteContentType);
   const [unPublishMutate] = useMutation(publishContentType);
-  const [runFetchContentByPath] = useLazyQuery(FETCH_CONTENT_BY_PATH);
   const [createMutate] = useMutation(createContentType, {
     context: {
       headers: {
@@ -110,7 +116,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
           );
         }
@@ -145,7 +151,7 @@ const useContentListing = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(response));
-          ShowToastSuccessMessage(
+          ShowToastSuccess(
             `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("unpublished_toast")}`,
           );
         }
@@ -187,51 +193,47 @@ const useContentListing = (filter = "ALL") => {
     );
   };
 
+  const editPage = (listItemDetails: { path: any }) => {
+    navigate({
+      pathname: "/edit-page",
+      search: `?${createSearchParams({
+        page: listItemDetails.path.toString(),
+      })}`,
+    });
+  };
   const preview = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     const type = capitalizeFirstLetter(listItemDetails?.tagName);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
         if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
-          const qusArry: never[] = [];
           if (
             selectedItem?.questions?.length &&
             capitalizeFirstLetter(listItemDetails.tagName) === QUIZ
           ) {
-            selectedItem?.questions?.map((qus: any) => {
-              runFetchContentByPath({
-                variables: { contentType: QUESTION, path: qus },
-              })
-                .then((res) => {
-                  if (res?.data?.authoring_getCmsContentByPath) {
-                    const qusObj = res?.data?.authoring_getCmsContentByPath as never;
-                    qusArry.push(qusObj);
-                  }
-                })
-                .catch(() => {
-                  // console.log(JSON.stringify(err, null, 2));
-                });
-              return "";
+            const questionPromise = selectedItem?.questions?.map(async (qus: any) => {
+              const question = await fetchContentDetails({ tagName: QUESTION, page: qus });
+              if (question?.background_content) {
+                return question;
+              }
             });
-            const tempObj = {
-              ...selectedItem,
-              questions: qusArry,
-              contentType: type,
-            };
-            dispatch(previewContent(tempObj));
-            navigate(PREVIEW_PATH);
+            Promise.all(questionPromise).then(function (results) {
+              dispatch(previewContent({ ...selectedItem, contentType: type, questions: results }));
+              navigate(PREVIEW_PATH);
+            });
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === POLL) {
             dispatch(previewContent({ ...selectedItem, contentType: type }));
             navigate(PREVIEW_PATH);
-          } else if (capitalizeFirstLetter(listItemDetails.tagName) === "Article") {
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === ARTICLE) {
             dispatch(
-              previewArticle({
+              previewContent({
                 ...selectedItem,
                 page_lastmodifiedby: selectedItem.last_modifiedBy,
                 developed_date: selectedItem.creationDate,
+                contentType: ARTICLE,
               }),
             );
-            navigate("/article-preview");
+            navigate(PREVIEW_PATH);
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === EVENT) {
             const eventToPreview = {
               ...selectedItem,
@@ -243,6 +245,16 @@ const useContentListing = (filter = "ALL") => {
             };
             dispatch(previewContent({ ...eventToPreview, contentType: type }));
             navigate(PREVIEW_PATH);
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === VOD) {
+            dispatch(
+              previewContent({
+                ...selectedItem,
+                page_lastmodifiedby: selectedItem.last_modifiedBy,
+                developed_date: selectedItem.creationDate,
+                contentType: type,
+              }),
+            );
+            navigate(PREVIEW_PATH);
           } else {
             ShowToastError(t(PREVIEW_PATH));
           }
@@ -253,7 +265,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
   const duplicate = async (
-    IsDuplicate = false,
+    IsDuplicate,
     title: any,
     language: string | string[],
     listItemDetails: any,
@@ -268,7 +280,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -292,7 +304,7 @@ const useContentListing = (filter = "ALL") => {
         const response = await Promise.all(promises);
 
         if (response && response.length > 0) {
-          const response: any = await contentTypeAPIs.fetchSearchContent(
+          const searchResponse: any = await contentTypeAPIs.fetchSearchContent(
             capitalizeFirstLetter(listItemDetails.tagName),
             location,
             filter,
@@ -300,12 +312,12 @@ const useContentListing = (filter = "ALL") => {
             contentList,
             true,
           );
-          dispatch(updateContentList(response));
-          for (const res of response) {
-            ShowToastSuccessMessage(
+          dispatch(updateContentList(searchResponse));
+          for (const lang of selectedLanguage) {
+            ShowToastSuccess(
               `${t(capitalizeFirstLetter(listItemDetails.tagName))} ${t("duplicated_toast")} ${t(
                 "for",
-              )} ${res.language}`,
+              )} ${lang.value}`,
             );
           }
         }
@@ -321,12 +333,7 @@ const useContentListing = (filter = "ALL") => {
     }
   };
 
-  const duplicateToSite = async (
-    IsDuplicate = false,
-    title: any,
-    listItemDetails: any,
-    siteTitle: any,
-  ) => {
+  const duplicateToSite = async (IsDuplicate, title: any, listItemDetails: any, siteTitle: any) => {
     try {
       const selectedItem = await fetchContentDetails(listItemDetails);
 
@@ -334,7 +341,7 @@ const useContentListing = (filter = "ALL") => {
         const contentToSend = mapDuplicateContent(
           capitalizeFirstLetter(listItemDetails.tagName),
           title,
-          IsDuplicate,
+          IsDuplicate || false,
           selectedItem,
           username,
           i18n.language,
@@ -374,6 +381,7 @@ const useContentListing = (filter = "ALL") => {
     view,
     deleteContent,
     edit,
+    editPage,
     fetchContentDetails,
     duplicateToSite,
   };

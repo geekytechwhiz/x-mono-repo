@@ -1,4 +1,4 @@
-import useUserSession from '../useUserSession/useUserSession';
+import useUserSession from "../useUserSession/useUserSession";
 
 interface Permission {
   site: string;
@@ -9,11 +9,7 @@ interface Permission {
 
 interface Access {
   canAccessContent: (category: string, subcategory: string) => boolean;
-  canAccessAction: (
-    category: string,
-    subcategory: string | string[],
-    action: string
-  ) => boolean;
+  canAccessAction: (category: string, subcategory: string | string[], action: string) => boolean;
 }
 
 const useAccess = (): Access => {
@@ -24,16 +20,15 @@ const useAccess = (): Access => {
   const canAccessContent = (category: string, subcategory: string): boolean => {
     let isValid = false;
 
-    if (category?.toLowerCase() === 'public') {
+    if (category?.toLowerCase() === "public") {
       return true;
     }
 
     isValid = permissions?.some(
       (permission) =>
+        (permission.category?.toLowerCase() === category?.toLowerCase() && subcategory === "") ||
         (permission.category?.toLowerCase() === category?.toLowerCase() &&
-          subcategory === '') ||
-        (permission.category?.toLowerCase() === category?.toLowerCase() &&
-          permission.sub_category?.toLowerCase() === subcategory?.toLowerCase())
+          permission.sub_category?.toLowerCase() === subcategory?.toLowerCase()),
     );
     return isValid;
   };
@@ -42,22 +37,19 @@ const useAccess = (): Access => {
   const canAccessAction = (
     category: string,
     subcategory: string | string[],
-    allowedAction: string
+    allowedAction: string,
   ): boolean => {
-    if (permissions[0]?.actions[0]?.toLowerCase() === 'all') {
+    if (permissions[0]?.actions[0]?.toLowerCase() === "all") {
       return true;
     }
-    const subCategories = Array.isArray(subcategory)
-      ? subcategory
-      : [subcategory];
+    const subCategories = Array.isArray(subcategory) ? subcategory : [subcategory];
     const accessObject = permissions?.find((permission: any) => {
       return (
         permission.category?.toLowerCase() === category?.toLowerCase() &&
         subCategories.includes(permission.sub_category?.toLowerCase())
       );
     });
-    const lowerCaseActions =
-      accessObject?.actions.map((x) => x.toLowerCase()) || [];
+    const lowerCaseActions = accessObject?.actions.map((x) => x.toLowerCase()) || [];
     return lowerCaseActions.includes(allowedAction?.toLowerCase());
   };
 

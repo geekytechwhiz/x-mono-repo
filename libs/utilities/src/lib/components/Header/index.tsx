@@ -124,6 +124,7 @@ export const Header = (props) => {
     location.pathname.includes("/article-preview") ||
     location.pathname.includes("/vod-preview")) &&
     isActive ? (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <></>
   ) : (
     <Box

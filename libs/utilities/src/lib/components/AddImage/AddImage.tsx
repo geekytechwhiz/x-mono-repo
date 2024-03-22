@@ -4,7 +4,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import ArrowUpwardIcon from "../../assets/svg/UploadThumbnail.svg";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
-//import { XImageRender } from "@platformx/x-image-render";
 // import CommonImageRender from '../Gallery/CommonImageRender';
 
 interface ImageProps {
@@ -37,7 +36,7 @@ const AddImage = ({
   return (
     <Box //sx={{ marginTop: '30px' }}
     >
-      {/* <Box sx={{ display: "none" }}>
+      <Box sx={{ display: "none" }}>
         <TextField
         // onChange={handleChange('imagevideoURL')}
         />
@@ -69,13 +68,25 @@ const AddImage = ({
             //   publishedImages={publishedImages}
             //   operationType={operationType}
             // />
-            <XImageRender
-              callBack={updateField}
-              editData={{
-                original_image: originalImage,
-                published_images: publishedImages,
+            // <XImageRender
+            //   callBack={updateField}
+            //   editData={{
+            //     original_image: originalImage,
+            //     published_images: publishedImages,
+            //   }}
+            //   isCrop={true}
+            // />
+
+            <img
+              alt='image'
+              style={{
+                width: "100%",
+                height: "206px",
+                objectFit: "cover",
+                display: "flex",
+                borderRadius: "15px",
               }}
-              isCrop={true}
+              src={url}
             />
           ) : (
             <img
@@ -176,7 +187,7 @@ const AddImage = ({
             </Box>
           </Box>
         </>
-      )} */}
+      )}
     </Box>
   );
 };

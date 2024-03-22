@@ -7,20 +7,18 @@ injectStyle();
 
 const ToastContainerHandle = () => {
   return (
-    <React.Fragment>
-      <ToastContainer
-        position='bottom-left'
-        autoClose={4000}
-        hideProgressBar={true}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        pauseOnHover
-        theme={"colored"}
-        icon={true}
-      />
-    </React.Fragment>
+    <ToastContainer
+      position='bottom-left'
+      autoClose={4000}
+      hideProgressBar={true}
+      newestOnTop={true}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      pauseOnHover
+      theme={"colored"}
+      icon={true}
+    />
   );
 };
 export default React.memo(ToastContainerHandle);

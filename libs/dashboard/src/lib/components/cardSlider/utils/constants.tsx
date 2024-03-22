@@ -1,5 +1,5 @@
-export const COLORS = ['#6D8F97', '#FFD3B6', '#FFAAA5'];
-export const DASHBOARD = 'dashboard';
+export const COLORS = ["#6D8F97", "#FFD3B6", "#FFAAA5"];
+export const DASHBOARD = "dashboard";
 export const SETTINGS = {
   slidesToShow: 3,
   slidesToScroll: 3,
@@ -25,22 +25,22 @@ export const SETTINGS = {
 };
 
 export const PAGE_MODEL_INSTANCE = {
-  Page: '',
-  SiteName: '',
-  Title: '',
-  ParentPageURL: '/',
-  CurrentPageURL: '/',
-  DevelopedBy: '',
-  DevelopedDate: '',
+  Page: "",
+  SiteName: "",
+  Title: "",
+  ParentPageURL: "/",
+  CurrentPageURL: "/",
+  DevelopedBy: "",
+  DevelopedDate: "",
   IsEdit: false,
   SeoEnable: true,
   AnalyticsEnable: true,
   RobotTxt: false,
   SiteMap: false,
   Children: null,
-  Analytics: '',
-  Others: '',
-  StructureData: '',
+  Analytics: "",
+  Others: "",
+  StructureData: "",
   PageSettings: {},
-  Page_LastModificationDate: '',
+  Page_LastModificationDate: "",
 };

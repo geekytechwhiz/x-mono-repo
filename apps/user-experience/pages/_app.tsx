@@ -1,7 +1,7 @@
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { Box, CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { unstable_ClassNameGenerator } from "@mui/material/utils";
+import { unstable_ClassNameGenerator } from "@mui/material/className";
 import getConfig from "next/config";
 import { Router, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -99,37 +99,28 @@ function MyApp(props: MyAppType) {
     <>
       <ToastContainer position='bottom-right' />
       {loading ? (
-        <>
-          <PlatformXLoader />
-        </>
+        <PlatformXLoader />
       ) : (
-        <>
-          <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={PrelemTheme(ThemeConstant)}>
-              <CssBaseline />
-              <ErrorBoundary>
-                <AnalyticsProvider instance={instances}>
-                  <Box
-                    sx={{
-                      margin: (themeOptions) => themeOptions.prelemMargin.value,
-                      minHeight: "100vh",
-                    }}>
-                    <ChatPopUp />
-                    <Component
-                      {...props}
-                      {...pageProps}
-                      pageData={pageData}
-                      instances={instances}
-                    />
-                  </Box>
-                </AnalyticsProvider>
-              </ErrorBoundary>
-              {!pageRouter?.asPath?.includes("embed") ? (
-                <CookieComponent analyticHandle={analyticHandle} />
-              ) : null}
-            </ThemeProvider>
-          </CacheProvider>
-        </>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={PrelemTheme(ThemeConstant)}>
+            <CssBaseline />
+            <ErrorBoundary>
+              <AnalyticsProvider instance={instances}>
+                <Box
+                  sx={{
+                    margin: (themeOptions) => themeOptions.prelemMargin.value,
+                    minHeight: "100vh",
+                  }}>
+                  <ChatPopUp />
+                  <Component {...props} {...pageProps} pageData={pageData} instances={instances} />
+                </Box>
+              </AnalyticsProvider>
+            </ErrorBoundary>
+            {!pageRouter?.asPath?.includes("embed") ? (
+              <CookieComponent analyticHandle={analyticHandle} />
+            ) : null}
+          </ThemeProvider>
+        </CacheProvider>
       )}
     </>
   );

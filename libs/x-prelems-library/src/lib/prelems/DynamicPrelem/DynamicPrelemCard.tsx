@@ -103,7 +103,7 @@ const DynamicPrelemCard = ({
               image={imageUrl ? imageUrl : ""}>
               <Box className='imgboxOverlay'></Box>
               <Box className='IconBox'>
-                <img alt='DynamicPrelemCardImg' src={getIcon(content.ContentType)} />
+                <img alt='DynamicPrelemCardImg' src={getIcon(content?.ContentType)} />
               </Box>
             </CardMedia>
           </Box>
@@ -113,7 +113,7 @@ const DynamicPrelemCard = ({
               {content.Title}
             </Typography>
             <Typography variant='p3regular' className='cardDescription'>
-              {handleHtmlTags(content.Description)}
+              {handleHtmlTags(content?.Description)}
             </Typography>
           </CardContent>
           <Box className='devider' />

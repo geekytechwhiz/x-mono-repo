@@ -5,13 +5,13 @@ import {
   BasicSwitchText,
   CommonBoxWithNumber,
   TitleSubTitle,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   ContentSeoStructureData,
 } from "@platformx/utilities";
 // import BasicSwitchText from "../Common/BasicSwitchText";
 // import ContentSeoStructureData from "../Common/ContentSeoStructureData";
 // import TitleSubTitle from "../Common/TitleSubTitle";
-// import { showToastSuccess } from "../toastNotification/toastNotificationReactTostify";
+// import { ShowToastSuccess } from "../toastNotification/toastNotificationReactTostify";
 import { useCustomStyle } from "../Poll.style";
 // import CommonBoxWithNumber from "../../Common/CommonBoxWithNumber/CommonBoxWithNumber";
 // import QuizSeoStructureData from "./QuizSeoStructureData";
@@ -60,7 +60,7 @@ const Seo = ({
   const closeStructureData = (doneClick) => {
     if (doneClick && isEdit) {
       setEditedSD(seoInfo.structureData);
-      ShowToastSuccessMessage(`${t("page_structure_data")} ${t("saved")}`);
+      ShowToastSuccess(`${t("page_structure_data")} ${t("saved")}`);
     }
     setIsOpen(false);
   };
@@ -79,7 +79,7 @@ const Seo = ({
       setSeoInfo({ ...seoInfo, structureData });
     }
     navigator.clipboard.writeText(JSON.stringify(structureData, undefined, 2));
-    ShowToastSuccessMessage(`${t("page_structure_data")} ${t("copied")}`);
+    ShowToastSuccess(`${t("page_structure_data")} ${t("copied")}`);
   };
   const handleChange = (event, keyName) => {
     setState({ ...state, [keyName]: event.target.checked });

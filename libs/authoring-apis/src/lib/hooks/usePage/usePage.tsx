@@ -1,17 +1,26 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { ContentState, PageData, updateContentList } from "@platformx/authoring-state";
+import {
+  ContentState,
+  RootState,
+  updateContentList,
+  updatePageSettings,
+  updateSaveWarning,
+} from "@platformx/authoring-state";
 import {
   ShowToastError,
-  ShowToastSuccessMessage,
+  ShowToastSuccess,
   capitalizeFirstLetter,
   getCurrentLang,
   getSelectedSite,
   getSubDomain,
   usePlatformAnalytics,
   useUserSession,
+  formatChildrenForPageDuplicate,
+  LanguageList,
+  setDefaultPageSettings,
+  AUTH_INFO,
 } from "@platformx/utilities";
 import { addMinutes } from "date-fns";
-import { TFunction } from "i18next";
 import { SetStateAction, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +30,7 @@ import { FETCH_PRELEM_VALIDATION } from "../../graphQL/queries/prelemQueries";
 import contentTypeAPIs from "../../services/contentTypes/contentTypes.api";
 import { fetchPageModel } from "../../services/page/page.api";
 import { consolidatePageModel } from "./mapper";
+import { fetchContent } from "../../utils/helper";
 
 const PageModelInstanceDefault = {
   Page: "",
@@ -42,12 +52,13 @@ const PageModelInstanceDefault = {
   PageSettings: {},
   Page_LastModificationDate: "",
 };
+
 const usePage = (filter = "ALL") => {
   const location = useLocation();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const { t, i18n } = useTranslation();
-  const { pageInfo } = useSelector((state: PageData) => state);
+  const { page, content } = useSelector((state: RootState) => state);
   const [runFetchPageModel] = useLazyQuery(PageQueries.FETCH_PAGE_MODEL_DRAFT);
   const [runFetchValidationQuery] = useLazyQuery(FETCH_PRELEM_VALIDATION);
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -196,7 +207,55 @@ const usePage = (filter = "ALL") => {
   };
 
   /**create page */
-  const createPageByName = (pageName: any, pageUrl: any) => {
+  const createPageModel = (newPageModel: any, isDuplicate?: any, code?: any) => {
+    mutate({
+      variables: { input: newPageModel },
+      context: {
+        headers: {
+          language: localStorage.getItem("lang"),
+          sitename: getSelectedSite(),
+        },
+      },
+    })
+      .then(async (resp) => {
+        localStorage.removeItem("lang");
+        if (code) {
+          ShowToastSuccess(`${t("page")} ${t("created_toast")} ${t("for")} ${code}`);
+        } else {
+          ShowToastSuccess(`${t("page")} ${t("created_toast")}`);
+        }
+        localStorage.setItem("path", resp?.data?.authoring_createPage?.path);
+        const pageDataObj = {
+          eventType: "Successful Page Creation",
+          pageCreated: true,
+          created_page_title: newPageModel.Page,
+          createdBy: newPageModel.DevelopedBy,
+        };
+        handleImpression(pageDataObj.eventType, pageDataObj);
+        if (isDuplicate) {
+          dispatch(await fetchContent(content.contentType, location, filter, content, true));
+        } else {
+          navigate(
+            {
+              pathname: "/edit-page",
+              search: `?${createSearchParams({
+                page: resp?.data?.authoring_createPage?.path.toString(),
+              })}`,
+            },
+            { state: "new" },
+          );
+        }
+      })
+      .catch((error) => {
+        if (code) {
+          ShowToastError(`${error.graphQLErrors[0].message} ${t("for")} ${code}`);
+        } else {
+          ShowToastError(error.graphQLErrors[0].message);
+        }
+      });
+  };
+
+  const createPageByName = async (pageName: any, pageUrl: any) => {
     const newPageModel = JSON.parse(JSON.stringify(PageModelInstanceDefault));
     newPageModel.Page = pageUrl;
     newPageModel.Title = pageName;
@@ -208,135 +267,42 @@ const usePage = (filter = "ALL") => {
     newPageModel.CurrentPageURL = `/${pageUrl}`;
     newPageModel.PageSettings = { PageName: pageName };
     newPageModel.SiteName = useremail;
-    createPageModel(newPageModel, mutate, navigate, handleImpression, t);
-    // dispatch(
-    //   updatePageSettings(
-    //     setDefaultPageSettings(
-    //       pageName,
-    //       undefined,
-    //       undefined,
-    //       `${authInfo.publishUri + i18n.language}/${pageUrl}`
-    //     )
-    //   )
-    // );
-    // dispatch(updateSaveWarning(false));
-    // dispatch(
-    //   await fetchContent(
-    //     state.content.contentType,
-    //     location,
-    //     filter,
-    //     state,
-    //     true
-    //   )
-    // );
-  };
-
-  /**create page model */
-  const createPageModel = (
-    newPageModel: any,
-    mutateCall: any,
-    navigateCall: any,
-    handleImpressionCall: any,
-    tCall: TFunction<"translation", undefined>,
-    isDuplicate?: any,
-    code?: any,
-  ) => {
-    mutateCall({
-      variables: { input: newPageModel },
-      context: {
-        headers: {
-          language: localStorage.getItem("lang"),
-          sitename: getSelectedSite(),
-        },
-      },
-    })
-      .then(async (resp: { data: { authoring_createPage: { path: string } } }) => {
-        localStorage.removeItem("lang");
-        if (code) {
-          ShowToastSuccessMessage(`${t("page")} ${t("created_toast")} ${t("for")} ${code}`);
-        } else {
-          ShowToastSuccessMessage(`${t("page")} ${t("created_toast")}`);
-        }
-        localStorage.setItem("path", resp?.data?.authoring_createPage?.path);
-        const pageDataObj = {
-          eventType: "Successful Page Creation",
-          pageCreated: true,
-          created_page_title: newPageModel.Page,
-          createdBy: newPageModel.DevelopedBy,
-        };
-        handleImpressionCall(pageDataObj.eventType, pageDataObj);
-        if (isDuplicate) {
-          // dispatch(
-          //   await fetchContent(
-          //     state.content.contentType,
-          //     location,
-          //     filter,
-          //     state,
-          //     true
-          //   )
-          // );
-          const searchResponse = await contentTypeAPIs.fetchSearchContent(
-            capitalizeFirstLetter("sitepage"),
-            location,
-            filter,
-            startIndex,
-            contentList,
-            true,
-          );
-          dispatch(updateContentList(searchResponse));
-        } else {
-          navigateCall(
-            {
-              pathname: "/edit-page",
-              search: `?${createSearchParams({
-                page: resp?.data?.authoring_createPage?.path.toString(),
-              })}`,
-            },
-            { state: "new" },
-          );
-        }
-      })
-      .catch((error: { graphQLErrors: { message: any }[] }) => {
-        if (code) {
-          ShowToastError(`${error.graphQLErrors[0].message} ${tCall("for")} ${code}`);
-        } else {
-          ShowToastError(error.graphQLErrors[0].message);
-        }
-      });
+    createPageModel(newPageModel, false);
+    dispatch(
+      updatePageSettings(
+        setDefaultPageSettings(
+          pageName,
+          undefined,
+          undefined,
+          `${AUTH_INFO.publishUri + i18n.language}/${pageUrl}`,
+        ),
+      ),
+    );
+    dispatch(updateSaveWarning(false));
+    dispatch(await fetchContent("Sitepage", location, filter, content, true));
   };
 
   /**duplicate page */
-  const duplicatePage = (
-    isDuplicate: any,
-    pageName: { trim: () => { (): any; new (): any; length: number } },
-    pageUrl: any,
-    // language: any[],
-  ) => {
+  const duplicatePage = (isDuplicate, pageName, pageUrl, language) => {
     if (pageName.trim().length > 0) {
       if (isDuplicate) {
-        // const copyPageModel = JSON.parse(JSON.stringify(pageInfo?.pageModel));
-        // const newPageModel = formatChildrenForPageDuplicate(
-        //   copyPageModel,
-        //   pageName,
-        //   pageUrl,
-        //   username
-        // );
-        // language.map((lang: any) => {
-        //   LanguageList.map((l: { value: any; id: string }) => {
-        //     if (l.value === lang) {
-        //       localStorage.setItem('lang', l.id);
-        //       createPageModel(
-        //         newPageModel,
-        //         mutate,
-        //         navigate,
-        //         handleImpression,
-        //         t,
-        //         isDuplicate,
-        //         l.value
-        //       );
-        //     }
-        //   });
-        // });
+        const copyPageModel = JSON.parse(JSON.stringify(page?.pageModel));
+        const newPageModel = formatChildrenForPageDuplicate(
+          copyPageModel,
+          pageName,
+          pageUrl,
+          username,
+        );
+        //eslint-disable-next-line array-callback-return
+        language.map((lang) => {
+          // eslint-disable-next-line array-callback-return
+          LanguageList().map((l: any) => {
+            if (l.id === lang) {
+              localStorage.setItem("lang", l.id);
+              createPageModel(newPageModel, isDuplicate, l.id);
+            }
+          });
+        });
       } else {
         createPageByName(pageName, pageUrl);
       }
@@ -344,38 +310,38 @@ const usePage = (filter = "ALL") => {
   };
 
   /**handle delete popup data */
-  const handleDeleteData = (pageSelected: {
-    status: string;
-    scheduledUnPublishTriggerDateTime: null;
-    page: any;
-    currentPageUrl: any;
-    parentPageUrl: any;
-    scheduledPublishTriggerDateTime: null;
-  }) => {
-    setPageData(pageSelected);
-    if (pageSelected.status === "published") {
-      setDirectDelete(true);
-      if (pageSelected?.scheduledUnPublishTriggerDateTime != null) {
-        // const requestDto = {
-        //   page: pageSelected.page,
-        //   currentpageurl: pageSelected.currentPageUrl,
-        //   parentpageurl: pageSelected.parentPageUrl,
-        // };
-        // setRescheduledDto(requestDto);
-        //setCancelTriggerType("2");
-      }
-    }
-    if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
-      setDirectDelete(true);
-      // const requestDto = {
-      //   page: pageSelected.page,
-      //   currentpageurl: pageSelected.currentPageUrl,
-      //   parentpageurl: pageSelected.parentPageUrl,
-      // };
-      // setRescheduledDto(requestDto);
-      // setCancelTriggerType("1");
-    }
-  };
+  // const handleDeleteData = (pageSelected: {
+  //   status: string;
+  //   scheduledUnPublishTriggerDateTime: null;
+  //   page: any;
+  //   currentPageUrl: any;
+  //   parentPageUrl: any;
+  //   scheduledPublishTriggerDateTime: null;
+  // }) => {
+  //   setPageData(pageSelected);
+  //   if (pageSelected.status === "published") {
+  //     setDirectDelete(true);
+  //     if (pageSelected?.scheduledUnPublishTriggerDateTime != null) {
+  //       // const requestDto = {
+  //       //   page: pageSelected.page,
+  //       //   currentpageurl: pageSelected.currentPageUrl,
+  //       //   parentpageurl: pageSelected.parentPageUrl,
+  //       // };
+  //       // setRescheduledDto(requestDto);
+  //       //setCancelTriggerType("2");
+  //     }
+  //   }
+  //   if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
+  //     setDirectDelete(true);
+  //     // const requestDto = {
+  //     //   page: pageSelected.page,
+  //     //   currentpageurl: pageSelected.currentPageUrl,
+  //     //   parentpageurl: pageSelected.parentPageUrl,
+  //     // };
+  //     // setRescheduledDto(requestDto);
+  //     // setCancelTriggerType("1");
+  //   }
+  // };
 
   /**remove page */
   const handleRemove = (itemsdata: { page: any; currentPageUrl: any; parentPageUrl: any }) => {
@@ -388,7 +354,7 @@ const usePage = (filter = "ALL") => {
     })
       .then(async () => {
         // handleDeleteData;
-        ShowToastSuccessMessage(`${t("page")} ${t("deleted_toast")}`);
+        ShowToastSuccess(`${t("page")} ${t("deleted_toast")}`);
         // dispatch(
         //   await fetchContent(
         //     state.content.contentType,
@@ -436,7 +402,7 @@ const usePage = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccessMessage(t("unpublish_toast"));
+          ShowToastSuccess(t("unpublish_toast"));
         }
         if (directDelete) {
           handleRemove(selectedPageData);
@@ -448,23 +414,23 @@ const usePage = (filter = "ALL") => {
   };
 
   /**handle page delete conditions */
-  const handlePageDelete = () => {
+  const handlePageDelete = (selectedPage) => {
     const requestDto = {
-      page: selectedPageData.page,
-      currentpageurl: selectedPageData.currentPageUrl,
-      parentpageurl: selectedPageData.parentPageUrl,
+      page: selectedPage.page,
+      currentpageurl: selectedPage.currentPageUrl,
+      parentpageurl: selectedPage.parentPageUrl,
     };
-    if (selectedPageData?.status === "published") {
-      if (selectedPageData?.scheduledUnPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("2", requestDto, selectedPageData);
+    if (selectedPage?.status === "published") {
+      if (selectedPage?.scheduledUnPublishTriggerDateTime != null) {
+        cancelPublishUnpublishTrigger("2", requestDto, selectedPage);
       } else {
-        unPublishPage(selectedPageData);
+        unPublishPage(selectedPage);
       }
     } else {
-      if (selectedPageData?.scheduledPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("1", requestDto, selectedPageData);
+      if (selectedPage?.scheduledPublishTriggerDateTime != null) {
+        cancelPublishUnpublishTrigger("1", requestDto, selectedPage);
       } else {
-        handleRemove(selectedPageData);
+        handleRemove(selectedPage);
       }
     }
   };
@@ -553,7 +519,7 @@ const usePage = (filter = "ALL") => {
               true,
             );
             dispatch(updateContentList(searchResponse));
-            ShowToastSuccessMessage(`${t("page")} ${t("publish")} ${t("rescheduled_success_toast")}`);
+            ShowToastSuccess(`${t("page")} ${t("publish")} ${t("rescheduled_success_toast")}`);
           })
           .catch(() => {
             ShowToastError(t("api_error_toast"));
@@ -567,15 +533,15 @@ const usePage = (filter = "ALL") => {
   const publishPage = () => {
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
     const newModel = consolidatePageModel(
-      pageInfo?.pageModel,
-      pageInfo?.prelemMetaArray,
-      pageInfo?.pageSettings,
+      page.pageInfo?.pageModel,
+      page.pageInfo?.prelemMetaArray,
+      page.pageInfo?.pageSettings,
       username,
     );
     const requestdto = {
-      page: pageInfo?.pageModel.Page,
+      page: page.pageInfo?.pageModel.Page,
       parentpageurl: "/",
-      currentpageurl: pageInfo?.pageModel.CurrentPageURL,
+      currentpageurl: page.pageInfo?.pageModel.CurrentPageURL,
     };
     mutatePublish({
       variables: {
@@ -594,7 +560,7 @@ const usePage = (filter = "ALL") => {
         //     true
         //   )
         // );
-        // ShowToastSuccessMessage(`${t('page')} ${t('pubished_success_toast')}`);
+        // ShowToastSuccess(`${t('page')} ${t('pubished_success_toast')}`);
         const pageDataObj = {
           eventType: "Page Published",
           pagePublished: true,
@@ -646,7 +612,7 @@ const usePage = (filter = "ALL") => {
               true,
             );
             dispatch(updateContentList(searchResponse));
-            ShowToastSuccessMessage(`${t("page")} ${t("unpublish")} ${t("rescheduled_success_toast")}`);
+            ShowToastSuccess(`${t("page")} ${t("unpublish")} ${t("rescheduled_success_toast")}`);
           })
           .catch(() => {
             ShowToastError(t("api_error_toast"));
@@ -718,7 +684,7 @@ const usePage = (filter = "ALL") => {
           //     true
           //   )
           // );
-          ShowToastSuccessMessage(`${t("page")} ${t("publish")} ${t("schedule_cancel_toast")}`);
+          ShowToastSuccess(`${t("page")} ${t("publish")} ${t("schedule_cancel_toast")}`);
           if (
             (directDelete &&
               listItemDetails &&
@@ -752,7 +718,7 @@ const usePage = (filter = "ALL") => {
           //     true
           //   )
           // );
-          ShowToastSuccessMessage(`${t("page")} ${t("unpublish")} ${t("schedule_cancel_toast")}`);
+          ShowToastSuccess(`${t("page")} ${t("unpublish")} ${t("schedule_cancel_toast")}`);
           if (directDelete) {
             if (listItemDetails?.status !== "published") {
               //  handleRemove(listItemDetails);
@@ -780,7 +746,7 @@ const usePage = (filter = "ALL") => {
     rescheduleUnPublishPage,
     handleCancelTriggerPopup,
     cancelPublishUnpublishTrigger,
-    handleDeleteData,
+    //handleDeleteData,
     handlePageDelete,
   };
 };
