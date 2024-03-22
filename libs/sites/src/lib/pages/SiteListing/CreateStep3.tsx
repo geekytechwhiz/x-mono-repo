@@ -52,10 +52,7 @@ export default function PlateformXCreatestep3Dialog({
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         className={classes.dialograpper}>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "flex" },
-          }}>
+        <Box>
           <Box className={classes.modalbox} onClick={closeButtonHandle}>
             <CloseIcon className={classes.closeicon} />
           </Box>
@@ -139,6 +136,7 @@ export default function PlateformXCreatestep3Dialog({
                       <Box>
                         <img src={PlatXLogo} alt='icon' />
                       </Box>
+                      {/* Top header box */}
                       <Box className={classes.applyflex}>
                         <Typography variant='h7medium'>About</Typography>
                         <Typography variant='h7medium' className={classes.headertypo}>

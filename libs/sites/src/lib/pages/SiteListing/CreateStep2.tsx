@@ -55,11 +55,6 @@ export default function PlateformXCreatestep2Dialog({
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
   };
-  // useEffect(() => {
-  //   if(progress === 10) {
-  //   setProgress(20);
-  //   }
-  //     }, [progress]);
   return (
     <Box className='socialsharemodal'>
       <Dialog
@@ -69,10 +64,7 @@ export default function PlateformXCreatestep2Dialog({
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         className={classes.dialograpper}>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "flex" },
-          }}>
+        <Box>
           <Box className={classes.modalbox} onClick={closeButtonHandle}>
             <CloseIcon className={classes.closeicon} />
           </Box>

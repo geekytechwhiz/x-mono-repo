@@ -67,10 +67,7 @@ export default function PlateformXCreatestep4Dialog({
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         className={classes.dialograpper}>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "flex" },
-          }}>
+        <Box>
           <Box className={classes.modalbox} onClick={closeButtonHandle}>
             <CloseIcon className={classes.closeicon} />
           </Box>

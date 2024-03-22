@@ -46,10 +46,7 @@ export default function PlateformXCreatestep5Dialog({
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
         className={classes.dialograpper}>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "flex" },
-          }}>
+        <Box>
           <Box className={classes.modalbox} onClick={closeButtonHandle}>
             <CloseIcon className={classes.closeicon} />
           </Box>
@@ -71,6 +68,7 @@ export default function PlateformXCreatestep5Dialog({
                     </Typography>
                   </Box>
                   <Box className={classes.step5boxh}>
+                    {/* using InputAdornment to add email name */}
                     <TextField
                       placeholder='Enter Email ID'
                       {...inputProps}
