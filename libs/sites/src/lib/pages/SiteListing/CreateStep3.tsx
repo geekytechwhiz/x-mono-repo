@@ -61,7 +61,7 @@ export default function PlateformXCreatestep3Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.step2margin}>
                 <Box className={classes.platxlogo}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -87,8 +87,7 @@ export default function PlateformXCreatestep3Dialog({
                         md={4}
                         lg={4}
                         key={item.id}
-                        className={classes.gridcls}
-                        marginTop={"13px"}>
+                        className={classes.gridcls}>
                         <Button
                           className={classes.step2btnbreak}
                           variant='outlined'
@@ -162,43 +161,21 @@ export default function PlateformXCreatestep3Dialog({
                   <Box className={classes.step3imgn}>
                     <img className={classes.imgwidthstep3} src={Step3newimg} alt='ici' />
                     <Box className={classes.step3justify}>
-                      <Box className={classes.skeletonboxstep2}>
-                        <Skeleton
-                          className={classes.skeletonloader}
-                          variant='rectangular'
-                          width={300}
-                          height={10}
-                        />
-                        <Skeleton
-                          className={classes.skeletonloadernew}
-                          variant='rectangular'
-                          width={200}
-                          height={10}
-                        />
-                        <Skeleton
-                          className={classes.skeletonloader}
-                          variant='rectangular'
-                          width={300}
-                          height={10}
-                        />
-                        <Skeleton
-                          className={classes.skeletonloadernew}
-                          variant='rectangular'
-                          width={200}
-                          height={10}
-                        />
-                        <Skeleton
-                          className={classes.skeletonloader}
-                          variant='rectangular'
-                          width={300}
-                          height={10}
-                        />
-                        <Skeleton
-                          className={classes.skeletonloadernew}
-                          variant='rectangular'
-                          width={200}
-                          height={10}
-                        />
+                      <Box className={classes.skeletons}>
+                        <Box className={classes.skeletonboxstep2}>
+                          <Skeleton
+                            className={classes.skeletonloader}
+                            variant='rectangular'
+                            width={300}
+                            height={10}
+                          />
+                          <Skeleton
+                            className={classes.skeletonloadernew}
+                            variant='rectangular'
+                            width={200}
+                            height={10}
+                          />
+                        </Box>
                       </Box>
                     </Box>
                   </Box>

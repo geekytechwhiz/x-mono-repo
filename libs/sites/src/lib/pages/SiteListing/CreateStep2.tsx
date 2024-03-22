@@ -78,7 +78,7 @@ export default function PlateformXCreatestep2Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.step2margin}>
                 <Box className={classes.platxlogo}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -194,8 +194,8 @@ export default function PlateformXCreatestep2Dialog({
                   </Box>
                 </Box>
                 <Box className={classes.step2containerbox2}>
-                  <Box className={classes.box1}>
-                    <Box className={classes.textpadding}>
+                  <Grid container className={classes.box1}>
+                    <Grid item sm={12} md={6} lg={6} className={classes.textpadding}>
                       <Typography variant='h5semibold'>Colours</Typography>
                       <Box className={classes.boxadd}>
                         <Box>
@@ -212,8 +212,8 @@ export default function PlateformXCreatestep2Dialog({
                           <img src={Elipse5} alt='icon' />
                         </Box>
                       </Box>
-                    </Box>
-                    <Box className={classes.textpaddingnew}>
+                    </Grid>
+                    <Grid item sm={12} md={6} lg={6} className={classes.textpaddingnew}>
                       <Typography variant='h5semibold'>Font Family</Typography>
                       <Box className={classes.typospace}>
                         <Box>
@@ -225,8 +225,8 @@ export default function PlateformXCreatestep2Dialog({
                           <Typography variant='h3semibold'>Roboto</Typography>
                         </Box>
                       </Box>
-                    </Box>
-                  </Box>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
             </Grid>

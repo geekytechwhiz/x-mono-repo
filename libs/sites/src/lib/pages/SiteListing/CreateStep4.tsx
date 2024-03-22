@@ -76,7 +76,7 @@ export default function PlateformXCreatestep4Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.step2margin}>
                 <Box className={classes.platxlogo}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -105,7 +105,7 @@ export default function PlateformXCreatestep4Dialog({
                           </AccordionSummary>
                           <AccordionDetails className={classes.accordiandeatail}>
                             {mockDatastep.map((item) => (
-                              <Box key={item.id} sx={{ gap: "5px" }}>
+                              <Box key={item.id} className={classes.stepmockval}>
                                 <Button variant='outlined'>{item.value}</Button>
                               </Box>
                             ))}
@@ -124,7 +124,7 @@ export default function PlateformXCreatestep4Dialog({
                           </AccordionSummary>
                           <AccordionDetails className={classes.accordiandeatail}>
                             {mockDatastep.map((item) => (
-                              <Box key={item.id} sx={{ gap: "5px" }}>
+                              <Box key={item.id} className={classes.stepmockval}>
                                 <Button variant='outlined'>{item.value}</Button>
                               </Box>
                             ))}
@@ -133,6 +133,7 @@ export default function PlateformXCreatestep4Dialog({
                         </Accordion>
                       </Box>
                       <Box className={classes.step4boxn}>
+                        {/* using accordian to showcase the button with mock data */}
                         <Accordion sx={{ boxShadow: "none" }}>
                           <AccordionSummary
                             className={classes.accordiansum}
@@ -143,7 +144,7 @@ export default function PlateformXCreatestep4Dialog({
                           </AccordionSummary>
                           <AccordionDetails className={classes.accordiandeatail}>
                             {mockDatastep.map((item) => (
-                              <Box key={item.id} sx={{ gap: "5px" }}>
+                              <Box key={item.id} className={classes.stepmockval}>
                                 <Button variant='outlined'>{item.value}</Button>
                               </Box>
                             ))}
@@ -195,11 +196,8 @@ export default function PlateformXCreatestep4Dialog({
                   </Typography>
                 </Box>
                 <Box className={classes.siteiconnew}>
-                  <Box
-                    className={classes.step4blur}
-                    sx={{
-                      backgroundImage: `url('${Step4imgnblur}')`,
-                    }}>
+                  <Box className={classes.step4blur}>
+                    <img src={Step4imgnblur} alt='' className={classes.blurboximg1} />
                     <Box className={classes.step4imgtc}>
                       <img className={classes.siteiconinner} src={Step4img} alt='icon' />
                     </Box>
@@ -208,13 +206,14 @@ export default function PlateformXCreatestep4Dialog({
                     </Box>
                   </Box>
 
-                  <Box
-                    className={classes.step4blur1}
-                    sx={{
-                      backgroundImage: `url('${Step4imgnblur}')`,
-                    }}>
+                  <Box className={classes.step4blur1}>
+                    <img src={Step4imgnblur} alt='' className={classes.blurboximg2} />
                     <Box className={classes.step4innerimg1}>
-                      <img src={Step4imgupdate} alt='icon' />
+                      <img
+                        className={classes.step4innerimgupdate}
+                        src={Step4imgupdate}
+                        alt='icon'
+                      />
                     </Box>
                     <Box className={classes.step4innerimg2}>
                       <img src={Step4imgn} alt='' />

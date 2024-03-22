@@ -55,7 +55,7 @@ export default function PlateformXCreatestep5Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.step2margin}>
                 <Box className={classes.platxlogo}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -78,13 +78,7 @@ export default function PlateformXCreatestep5Dialog({
                       InputProps={{
                         endAdornment: (
                           <InputAdornment position='end'>
-                            <Button
-                              sx={{
-                                backgroundColor: "#4B9EF9",
-                                color: "#FFF ",
-                                marginRight: "-10px",
-                              }}
-                              variant='contained'>
+                            <Button className={classes.step5addbtn} variant='contained'>
                               Add
                             </Button>
                           </InputAdornment>
@@ -92,14 +86,27 @@ export default function PlateformXCreatestep5Dialog({
                       }}
                     />
                   </Box>
-                  <Grid item xs={6} sm={4} md={12} lg={12}>
+                  <Grid item xs={12} sm={12} md={12} lg={12}>
+                    {/* using mock data to show the name id and remove functionality */}
                     {mockDatastep.map((transaction) => (
                       <>
-                        <Box className={classes.step5contain} key={transaction.id}>
-                          <Typography variant='h6bold'>{transaction.value}</Typography>
-                          <Typography>{transaction.name}</Typography>
-                          <Typography sx={{ color: "#D32F2F" }}>{transaction.Cat}</Typography>
-                        </Box>
+                        <Grid container className={classes.step5contain} key={transaction.id}>
+                          <Grid item xs={8} sm={8} md={10} lg={10}>
+                            <Grid container>
+                              <Grid item xs={12} sm={12} md={6} lg={6}>
+                                <Typography variant='h6bold'>{transaction.value}</Typography>
+                              </Grid>
+                              <Grid item xs={12} sm={12} md={6} lg={6}>
+                                <Typography>{transaction.name}</Typography>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid item xs={4} sm={4} md={2} lg={2}>
+                            <Typography className={classes.step5typoxcat}>
+                              {transaction.Cat}
+                            </Typography>
+                          </Grid>
+                        </Grid>
                         <Box className={classes.accordianborder}></Box>
                       </>
                     ))}
@@ -107,8 +114,8 @@ export default function PlateformXCreatestep5Dialog({
 
                   <Box className={classes.btnbox}>
                     <Box className={classes.skipbtn}>
-                      <Typography sx={{ color: "#4B9EF9" }}>Skip</Typography>
-                      <ArrowForwardIosIcon sx={{ color: "#4B9EF9" }} />
+                      <Typography className={classes.skipbtncolor}>Skip</Typography>
+                      <ArrowForwardIosIcon className={classes.skipbtncolor} />
                     </Box>
                     <Box className={classes.backbtn}>
                       <Button
@@ -128,7 +135,7 @@ export default function PlateformXCreatestep5Dialog({
               <Grid item xs={12} sm={12} md={12} lg={6} className={classes.modalgrid}>
                 <Box className={classes.createcontainnew}></Box>
                 <Box className={classes.step5imgtag}>
-                  <img src={Step5img} alt='icon' />
+                  <img className={classes.imgtag} src={Step5img} alt='icon' />
                 </Box>
               </Grid>
             </Grid>

@@ -11,7 +11,14 @@ import {
   Typography,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
-import { AutoTextArea, PlatXLogo, HandsIcon, TextBox, SiteNewIcon } from "@platformx/utilities";
+import {
+  AutoTextArea,
+  PlatXLogo,
+  HandsIcon,
+  TextBox,
+  SiteNewIcon,
+  Step4imgnblur,
+} from "@platformx/utilities";
 import { useCreatesiteStepStyle } from "./Createstep.style";
 import { useState } from "react";
 import { Progressbar } from "../SiteListing/Progressbar";
@@ -54,7 +61,7 @@ export default function PlateformXCreatestep1Dialog({
           </Box>
           <Box className={classes.modalcontain}>
             <Grid container>
-              <Grid item xs={12} sm={12} md={12} lg={6} marginTop={"20px"}>
+              <Grid item xs={12} sm={12} md={12} lg={6} className={classes.commontop}>
                 <Box className={classes.xlogobox}>
                   <Box className={classes.xlogo}>
                     <img src={PlatXLogo} alt='logo' />
@@ -73,7 +80,7 @@ export default function PlateformXCreatestep1Dialog({
                     </Typography>
                   </Box>
                   <Box className={classes.inputselect}>
-                    <Box marginTop={2}>
+                    <Box className={classes.commontop}>
                       <FormControl fullWidth>
                         <Select
                           labelId='demo-simple-select-label'
@@ -89,7 +96,7 @@ export default function PlateformXCreatestep1Dialog({
                     <Box marginTop={2} marginRight={-2}>
                       <TextBox maxCharLength={50} placeHolder={"Enter the Site Name"} />
                     </Box>
-                    <Box marginTop={2}>
+                    <Box className={classes.commontop}>
                       <AutoTextArea
                         name='short_description'
                         placeHolder={"Enter the Site description"}
@@ -122,8 +129,19 @@ export default function PlateformXCreatestep1Dialog({
                   </Typography>
                 </Box>
                 <Box className={classes.siteicon}>
-                  <img className={classes.siteiconinner} src={SiteNewIcon} alt='icon' />
-                  <img src={SiteNewIcon} alt='icon' />
+                  <Box className={classes.step4blur}>
+                    <img src={Step4imgnblur} alt='' className={classes.blurboximg1} />
+                    <Box className={classes.step4imgtc}>
+                      <img className={classes.siteiconinner} src={SiteNewIcon} alt='icon' />
+                    </Box>
+                  </Box>
+
+                  <Box className={classes.step4blur1}>
+                    <img src={Step4imgnblur} alt='' className={classes.blurboximg2} />
+                    <Box className={classes.step4innerimg1}>
+                      <img className={classes.step4innerimgupdate} src={SiteNewIcon} alt='icon' />
+                    </Box>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>

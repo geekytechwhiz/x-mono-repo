@@ -148,13 +148,16 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginRight: "10px !important",
   },
   createcontain: {
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "46px",
+    },
     height: "107px",
     textalign: "center",
     display: "flex",
     justifyContent: "flex-start",
     marginTop: "40px",
     alignItems: "center",
-    marginLeft: "99px",
+    marginLeft: "155px",
   },
   createcontainnew: {
     height: "107px",
@@ -162,6 +165,7 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
     marginLeft: "35px",
+    marginTop: "20px",
   },
   typowidth: {
     maxWidth: "324px",
@@ -170,7 +174,14 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     maxWidth: "494px",
   },
   siteicon: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      padding: "9px",
+      gap: "9px",
+    },
     textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
   },
   siteiconnew: {
     textAlign: "center",
@@ -180,9 +191,18 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     justifyContent: "center",
   },
   siteiconinner: {
+    [theme.breakpoints.down("sm")]: {
+      width: "143px",
+    },
     marginBottom: "30px",
     marginRight: "10px",
     marginLeft: "30px",
+  },
+  siteiconinnerc: {
+    [theme.breakpoints.down("sm")]: {
+      width: "143px",
+      marginTop: "20px",
+    },
   },
   boxscroll: {
     overflowY: "scroll",
@@ -193,6 +213,7 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingRight: "10px",
     },
+    marginTop: "13px !important",
   },
   themebox: {
     display: "flex",
@@ -237,6 +258,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginLeft: "72px",
   },
   step2innercontainer: {
+    [theme.breakpoints.down("md")]: {
+      padding: "14px",
+    },
     display: "flex",
     justifyContent: "space-around",
     padding: "14px 1px",
@@ -251,9 +275,19 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginBottom: "24px",
   },
   skeletonloader: {
+    [theme.breakpoints.down("sm")]: {
+      width: "204px !important",
+      height: "10px",
+    },
     marginTop: "6px",
+    width: "300px",
+    height: "10px",
   },
   skeletonloadernew: {
+    [theme.breakpoints.down("sm")]: {
+      width: "105px !important",
+      height: "10px",
+    },
     marginTop: "6px",
     marginLeft: "47px",
   },
@@ -262,7 +296,8 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
       marginLeft: "0px",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "556px",
+      width: "341px",
+      height: "270px",
       paddingRight: "10px",
       marginLeft: "10px",
     },
@@ -301,11 +336,18 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     padding: "5px 90px 5px 154px",
   },
   applyflex: {
+    [theme.breakpoints.down("sm")]: {
+      gap: "9px",
+      marginLeft: "38px",
+    },
     display: "flex",
     marginTop: "2px",
     marginLeft: "75px",
   },
   headertypo: {
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "0px !important",
+    },
     marginLeft: "34px !important",
   },
   backbtn: {
@@ -337,10 +379,15 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     gap: "30px",
   },
   textpadding: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "30px 46px 30px 9px",
+    },
     padding: "30px",
-    paddingLeft: "0px",
   },
   textpaddingnew: {
+    [theme.breakpoints.down("sm")]: {
+      padding: "30px 72px 30px 9px",
+    },
     padding: "30px",
     paddingLeft: "35px",
   },
@@ -374,6 +421,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     gap: "33px",
   },
   maininnercontain: {
+    [theme.breakpoints.down("sm")]: {
+      width: "327px",
+    },
     width: "540px",
     height: "64px",
     borderRadius: "5px",
@@ -386,9 +436,14 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     justifyContent: "center",
   },
   step3imgn: {
+    [theme.breakpoints.down("sm")]: {
+      width: "277px",
+      height: "361px",
+    },
     width: "462px",
     height: "424px",
     backgroundColor: "#FFF",
+    marginTop: "-8px",
   },
   imgwidthstep3: {
     width: "100%",
@@ -430,9 +485,12 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     marginTop: "17px",
     display: "flex",
     justifyContent: "space-around",
-    gap: "70px",
   },
   accordianborder: {
+    [theme.breakpoints.down("sm")]: {
+      width: "337px",
+    },
+
     borderBottom: "1px solid #D9DBE9",
     width: "512px",
     height: "1px",
@@ -442,6 +500,11 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
     marginTop: "5px",
+  },
+  imgtag: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
   },
   imgwidth: {
     [theme.breakpoints.down("sm")]: {
@@ -463,6 +526,9 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     backgroundPosition: "10px bottom",
   },
   step4blur1: {
+    [theme.breakpoints.down("sm")]: {
+      backgroundPosition: "10px bottom",
+    },
     marginBottom: "5px",
     position: "relative",
     backgroundRepeat: "no-repeat",
@@ -481,7 +547,15 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     position: "relative",
     marginTop: "67px",
   },
+  step4innerimgupdate: {
+    [theme.breakpoints.down("sm")]: {
+      width: "143px",
+    },
+  },
   step4innerimg2: {
+    [theme.breakpoints.down("sm")]: {
+      left: "-43px",
+    },
     position: "absolute",
     top: "110px",
     left: "88px",
@@ -490,5 +564,40 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
     position: "absolute",
     bottom: "29px",
     left: "-39px",
+  },
+  blurboximg1: {
+    position: "absolute",
+    left: "2px",
+    bottom: "70px",
+  },
+  blurboximg2: {
+    [theme.breakpoints.down("sm")]: {
+      left: "-46px",
+    },
+    position: "absolute",
+    right: "-42px",
+    top: "44px",
+  },
+  commontop: {
+    marginTop: "2px",
+  },
+  commontopm: {
+    marginTop: "16px",
+    marginRight: "0px !important",
+  },
+  step2margin: {
+    marginTop: "20px",
+  },
+  step5addbtn: {
+    backgroundColor: "#4B9EF9 !important",
+    color: "#FFF !important ",
+    marginRight: "-10px !important",
+  },
+  stepmockval: {
+    gap: "5px !important",
+  },
+  step5typoxcat: {
+    color: "#D32F2F",
+    textAlign: "end",
   },
 }));
