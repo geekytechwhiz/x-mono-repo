@@ -28,6 +28,7 @@ const CommentListPanel: React.FC = () => {
               top: 64,
               boxShadow: "none",
               borderLeft: "solid 1px #D9DBE9",
+              width: "250px !important",
             },
           }}
           open={isCommentsPanelOpen}
