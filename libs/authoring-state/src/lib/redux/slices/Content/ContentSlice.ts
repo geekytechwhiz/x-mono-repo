@@ -20,6 +20,14 @@ export const contentSlice = createSlice({
     updateContentList: (state, action: PayloadAction<any>) => {
       state.contentArray = [...action.payload];
     },
+    updateContent: (state, action: PayloadAction<any>) => {
+      const { content, newDataSize, contentType } = action.payload;
+      state.contentArray = content;
+      state.startIndex = content.length + 1;
+      content.loading = newDataSize < 20 ? false : true;
+      content.contentType = contentType;
+      content.apiState = true;
+    },
     previewContent: (state, action: PayloadAction<any>) => {
       state.contentArray = [...state.contentArray];
       state.currentContent = action.payload;
@@ -37,6 +45,7 @@ export const contentSlice = createSlice({
   },
 });
 
-export const { updateContentList, previewContent, contentProp, contentList } = contentSlice.actions;
+export const { updateContentList, previewContent, contentProp, contentList, updateContent } =
+  contentSlice.actions;
 
 export default contentSlice.reducer;

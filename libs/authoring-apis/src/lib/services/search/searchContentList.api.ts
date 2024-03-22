@@ -26,7 +26,7 @@ export const SearchContentApi = {
       fetchPolicy: "no-cache",
     });
     const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
-
+    //needs to be updated
     return {
       type: "UPDATE_CONTENT",
       content: reloadContent

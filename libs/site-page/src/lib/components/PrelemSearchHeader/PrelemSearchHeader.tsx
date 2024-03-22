@@ -35,7 +35,9 @@ const PrelemSearchHeader = () => {
                     page: path.toString(),
                   })}`,
                 });
-              } else navigate("/edit-page");
+              } else {
+                console.error("path from localstorage is empty in PrelemSearchHeader.tsx");
+              }
             }}>
             <ArrowBackIcon sx={{ marginRight: "10px" }} /> {!noWeb && t("back")}
           </Box>

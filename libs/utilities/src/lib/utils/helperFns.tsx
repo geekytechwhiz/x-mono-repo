@@ -1182,10 +1182,12 @@ export const formatChildrenForPageDuplicate = (pageModel, pageName, pageUrl, cur
   pageModel.DevelopedBy = currentUser;
   pageModel.Page_LastModificationDate = new Date();
   pageModel.PageSettings = setDuplicatePageSettings(pageName, pageUrl, pageModel.PageSettings);
-  for (let i = 0; i < pageModel?.Children.length; i++) {
-    const instance = { ...pageModel.Children[i] };
-    delete instance.content;
-    ChildrenArray.push(instance);
+  if (pageModel?.Children) {
+    for (let i = 0; i < pageModel?.Children?.length; i++) {
+      const instance = { ...pageModel.Children[i] };
+      delete instance.content;
+      ChildrenArray.push(instance);
+    }
   }
   pageModel.Children = ChildrenArray;
   return pageModel;

@@ -68,56 +68,58 @@ export const fetchPageModel = (
   searchTermURL?: string,
   sortByURL?: string,
 ) => {
-  const arr = path?.split("/");
-  // eslint-disable-next-line prefer-destructuring
-  const folder = arr[6];
-  const pathnm = `${arr[10]}`;
-  return runFetchPageModel({
-    variables: { folder: folder, path: pathnm },
-    context: {
-      headers: {
-        sitename: getSelectedSite(),
+  if (path !== "") {
+    const arr = path?.split("/");
+    // eslint-disable-next-line prefer-destructuring
+    const folder = arr[6];
+    const pathnm = `${arr[10]}`;
+    return runFetchPageModel({
+      variables: { folder: folder, path: pathnm },
+      context: {
+        headers: {
+          sitename: getSelectedSite(),
+        },
       },
-    },
-  })
-    .then((resp: any) => {
-      const data = JSON.parse(JSON.stringify(resp.data.authoring_getCmsItemByPath));
-      const { children, content, PageSettings } = data;
-      delete data.children;
-      delete data.content;
-      delete data.__typename;
-      fetchValidationForPageSelected(dispatch, runFetchValidationQuery, children);
-      const pm = data;
-      const childrenWithContent = formatChildren(children, content);
-      pm.Children = childrenWithContent;
-
-      dispatch(
-        updateDataAfterFetch({
-          pageModel: pm,
-          pageSettings: PageSettings,
-          prelemMetaArray: childrenWithContent,
-        }),
-      );
-      if (navigate) {
-        localStorage.setItem("path", path);
-        navigate(
-          {
-            pathname: actionType ? `/preview-page/${deviceType}` : "/edit-page",
-            search: `?${createSearchParams({
-              page: path.toString(),
-              editoption: editOption ? editOption.toString() : "",
-              searchCat: searchCatURL ? searchCatURL.toString() : "",
-              searchTerm: searchTermURL ? searchTermURL.toString() : "",
-              sortBy: sortByURL ? sortByURL.toString() : "",
-            })}`,
-          },
-          { state: "old" },
-        );
-      }
     })
-    .catch((err: any) => {
-      console.error(JSON.stringify(err, null, 2));
-    });
+      .then((resp: any) => {
+        const data = JSON.parse(JSON.stringify(resp.data.authoring_getCmsItemByPath));
+        const { children, content, PageSettings } = data;
+        delete data.children;
+        delete data.content;
+        delete data.__typename;
+        fetchValidationForPageSelected(dispatch, runFetchValidationQuery, children);
+        const pm = data;
+        const childrenWithContent = formatChildren(children, content);
+        pm.Children = childrenWithContent;
+
+        dispatch(
+          updateDataAfterFetch({
+            pageModel: pm,
+            pageSettings: PageSettings,
+            prelemMetaArray: childrenWithContent,
+          }),
+        );
+        if (navigate) {
+          localStorage.setItem("path", path);
+          navigate(
+            {
+              pathname: actionType ? `/preview-page/${deviceType}` : "/edit-page",
+              search: `?${createSearchParams({
+                page: path.toString(),
+                editoption: editOption ? editOption.toString() : "",
+                searchCat: searchCatURL ? searchCatURL.toString() : "",
+                searchTerm: searchTermURL ? searchTermURL.toString() : "",
+                sortBy: sortByURL ? sortByURL.toString() : "",
+              })}`,
+            },
+            { state: "old" },
+          );
+        }
+      })
+      .catch((err: any) => {
+        console.error(JSON.stringify(err, null, 2));
+      });
+  }
 };
 
 // export const runPageFetchContentQuery = async (prelemMetaInfo: any, fetchContentQuery: any) => {
