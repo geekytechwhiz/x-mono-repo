@@ -1168,7 +1168,7 @@ const EditPageContainer = () => {
                   triggerCase === "PUBLISH" ? t("publish_anyways") : t("take_me_out")
                 }
                 confirmButtonText={t("done")}
-                closeButtonHandle={callFnsCase(triggerCase)}
+                closeButtonHandle={() => callFnsCase(triggerCase)}
                 confirmButtonHandle={onCloseSaveWarningHandler}
                 crossButtonHandle={unsavedChangesCrossButtonHandle}
                 modalType='unsavedChanges'
