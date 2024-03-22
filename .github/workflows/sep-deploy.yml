@@ -10,7 +10,8 @@ jobs:
   authoring-ui:
     name: authoring-ui
     permissions:
-      contents: "read"
+      contents: "write"
+      issues: "write"
       id-token: "write"
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
