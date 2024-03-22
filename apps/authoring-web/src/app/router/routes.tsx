@@ -1,9 +1,22 @@
 import { Typography } from "@mui/material";
 import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
-import { Content, ContentPreview, CreateContent, TimeLineBlogs } from "@platformx/content";
+import {
+  Content,
+  ContentPreview,
+  CreateArticle,
+  CreateContent,
+  TimeLineBlogs,
+} from "@platformx/content";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
+import {
+  EditPage,
+  PagePreview,
+  PrelemInfo,
+  PrelemPreview,
+  SearchPrelem,
+} from "@platformx/site-page";
 import {
   CategoryDetail,
   CookieSetting,
@@ -23,13 +36,6 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import {
-  EditPage,
-  PagePreview,
-  PrelemInfo,
-  PrelemPreview,
-  SearchPrelem,
-} from "@platformx/site-page";
 
 export const routes: RouteConfig[] = [
   {
@@ -199,7 +205,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create/*",
+    path: "/content/create/:contentType",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -235,7 +241,12 @@ export const routes: RouteConfig[] = [
   {
     path: "/content/preview",
     element: (
-      <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
+      <ProtectedRoute
+        name='content'
+        category='content'
+        subCategory='content-preview'
+        isSideBar={false}
+        isHeader={false}>
         <ContentPreview />
       </ProtectedRoute>
     ),
@@ -382,7 +393,7 @@ export const routes: RouteConfig[] = [
         subCategory='article'
         isHeader={false}
         isSideBar={false}>
-        <CreateContent />
+        <CreateArticle />
       </ProtectedRoute>
     ),
   },

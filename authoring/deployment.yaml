@@ -4,7 +4,6 @@ metadata:
   labels:
     app: platformx-authoring-nx
   name: platformx-authoring-nx
-  namespace: dev-v2
 spec:
   replicas: 2
   selector:

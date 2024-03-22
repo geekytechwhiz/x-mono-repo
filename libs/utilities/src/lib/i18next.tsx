@@ -1,14 +1,8 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import english from "../locales/en/translation.json";
-import french from "../locales/fr/translation.json";
-import deutsch from "../locales/de/translation.json";
-
-declare module "i18next" {
-  interface CustomTypeOptions {
-    returnNull: false;
-  }
-}
+import deutsch from "./locales/de/translation.json";
+import english from "./locales/en/translation.json";
+import french from "./locales/fr/translation.json";
 
 i18next.use(initReactI18next).init({
   resources: {

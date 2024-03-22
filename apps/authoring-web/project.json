@@ -16,15 +16,7 @@
         "baseHref": "/",
         "main": "apps/authoring-web/src/main.tsx",
         "tsConfig": "apps/authoring-web/tsconfig.app.json",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "libs/utilities/src/lib/assets/locales",
-            "output": "/assets/i18next"
-          },
-          "apps/authoring-web/src/favicon.ico",
-          "apps/authoring-web/src/locales"
-        ],
+        "assets": ["apps/authoring-web/src/favicon.ico"],
         "styles": [],
         "scripts": [],
         "webpackConfig": "apps/authoring-web/webpack.config.js"

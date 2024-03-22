@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import FormValidate from "../../../components/CustomHook/FormValidate";
 import ToastService from "../../../components/ToastContainer/ToastService";
 import prelemTypes from "../../../globalStyle";
-import "../../../utils/service/i18n";
+
 import { useCustomStyle } from "./ChangePassword.style";
 import { changePasswordServiceCall } from "./helperChangePassword";
 

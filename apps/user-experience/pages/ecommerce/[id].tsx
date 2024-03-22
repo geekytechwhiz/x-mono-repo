@@ -64,7 +64,7 @@ const EcommercePage = (props: any) => {
   return (
     <ErrorBoundary>
       <HeaderFooterLayout
-        {...props}
+        userData={{}}
         route={route}
         MenuData={MenuData}
         isEcomPage={true}

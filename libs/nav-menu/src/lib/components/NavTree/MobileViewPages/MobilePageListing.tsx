@@ -80,7 +80,9 @@ export default function MobilePageListing({
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", color: "#89909a" }}>
-          <Typography variant='h7regular'>{`By ${article?.Author}`}</Typography>
+          <Typography variant='h7regular'>{`By ${
+            article?.Author || article?.LastModifiedBy
+          }`}</Typography>
           <span style={{ margin: "0 2px", fontSize: "12px" }}>|</span>
           <Typography variant='h7regular'>{dateFormat(article?.LastModificationDate)}</Typography>
         </Box>

@@ -25,13 +25,13 @@ const HeaderFooterLayout = (props: headerFooterTypeProps) => {
     children = "",
     route = {},
     MenuData = [],
+    userData = {},
     authState = {},
     isEcomPage = false,
     footerSettingData = {},
     prelemBaseEndpoint = {},
     isCartIconEnable = true, //ecom purpose
     isProductUpdateCount = 0, //ecom purpose
-    userData,
   } = props;
   const { locale = "", host = "" } = route;
   const showHeader = children ? true : false;
