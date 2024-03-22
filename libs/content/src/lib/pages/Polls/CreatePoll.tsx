@@ -1362,7 +1362,7 @@ export const CreatePoll = (): JSX.Element => {
       contentType: "Poll",
     };
     dispatch(previewContent(tempObj));
-    navigate("/content-preview");
+    navigate("/content/preview");
   };
 
   useEffect(() => {
