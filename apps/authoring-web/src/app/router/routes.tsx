@@ -36,6 +36,7 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import { CreateCourse } from "@platformx/course";
 
 export const routes: RouteConfig[] = [
   {
@@ -251,19 +252,19 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/content/course",
-  //   element: (
-  //     <ProtectedRoute
-  //       name='course'
-  //       subCategory=''
-  //       category='content'
-  //       isHeader={false}
-  //       isSideBar={false}>
-  //       <CreateCourse />
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/content/create/course",
+    element: (
+      <ProtectedRoute
+        name='course'
+        subCategory=''
+        category='content'
+        isHeader={false}
+        isSideBar={false}>
+        <CreateCourse />
+      </ProtectedRoute>
+    ),
+  },
   // {
   //   path: "/create_asset",
   //   element: (
@@ -397,6 +398,7 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
+
   // {
   //   path: "/content",
   //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
