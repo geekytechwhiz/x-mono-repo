@@ -568,7 +568,7 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   blurboximg1: {
     position: "absolute",
     left: "2px",
-    bottom: "70px",
+    bottom: "46px",
   },
   blurboximg2: {
     [theme.breakpoints.down("sm")]: {
@@ -588,6 +588,12 @@ export const useCreatesiteStepStyle = makeStyles((theme: Theme) => ({
   step2margin: {
     marginTop: "20px",
   },
+  step5margin: {
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "10px !important",
+    },
+  },
+
   step5addbtn: {
     backgroundColor: "#4B9EF9 !important",
     color: "#FFF !important ",

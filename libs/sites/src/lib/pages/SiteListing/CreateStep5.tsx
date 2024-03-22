@@ -99,7 +99,7 @@ export default function PlateformXCreatestep5Dialog({
                               </Grid>
                             </Grid>
                           </Grid>
-                          <Grid item xs={4} sm={4} md={2} lg={2}>
+                          <Grid item xs={4} sm={4} md={2} lg={2} className={classes.step5margin}>
                             <Typography className={classes.step5typoxcat}>
                               {transaction.Cat}
                             </Typography>
