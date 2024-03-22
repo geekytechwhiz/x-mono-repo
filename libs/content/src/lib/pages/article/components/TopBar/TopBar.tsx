@@ -64,7 +64,7 @@ const TopBar = ({
   const { comments, isReviewEnabled } = commentInfo;
   const handleReview = () => {
     dispatch(setIsReviewEnabled(!isReviewEnabled));
-    dispatch(setIsCommentPanelOpen(true));
+    dispatch(setIsCommentPanelOpen({ value: true }));
   };
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));

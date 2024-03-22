@@ -12,7 +12,7 @@ import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../components/ConstantData";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import Share from "../../components/Share/Share";
-import "../../utils/service/i18n";
+
 import PollContext from "./PollContext";
 import QuestionIndex from "./QuestionIndex";
 import Result from "./Result";
@@ -207,15 +207,17 @@ const Poll = ({
     return {
       document_path: content.document_path,
       title,
-      options: options.map((option: any) => {
-        return {
-          option_id: option.option_id,
-          option_image: { url: option.option_image.url },
-          option_text: option.option_text,
-          count: "",
-          percentage: "",
-        };
-      }),
+      options:
+        options.length &&
+        options.map((option: any) => {
+          return {
+            option_id: option.option_id,
+            option_image: { url: option.option_image.url },
+            option_text: option.option_text,
+            count: "",
+            percentage: "",
+          };
+        }),
       status: true,
       total_vote: 0,
       start_date: content.start_date,

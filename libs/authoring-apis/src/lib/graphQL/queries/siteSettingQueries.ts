@@ -116,15 +116,20 @@ export const FETCH_USER_SITE = gql`
 `;
 
 export const FETCH_TAG_LISTING = gql`
-  query FETCH_TAG_LISTING($searchCategory: String!, $searchString: String!) {
+  query FETCH_TAG_LISTING(
+    $searchCategory: String!
+    $searchString: String!
+    $start: Int!
+    $rows: Int!
+  ) {
     authoring_getTagItems(
-      pagination: { start: 0, rows: 1000 }
+      pagination: { start: $start, rows: $rows }
+      sort: DESC
       searchCategory: $searchCategory
       searchString: $searchString
-    ) {
-      tags
-      category
-    }
+      pageFilter: ALL
+      isDraft: true
+    )
   }
 `;
 

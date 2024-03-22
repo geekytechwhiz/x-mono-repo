@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Blogs from "./Blogs/Blogs";
-import $ from "jquery";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import TabPanel from "@mui/lab/TabPanel";
@@ -45,8 +44,13 @@ const assetArrayMake = (selectedImage, selectedVideo) => {
 };
 
 const removeHTML = (str) => {
-  const without_Html = $(str).find(".removeContentDescription").remove().end();
-  return without_Html[0]?.outerHTML;
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = str;
+  const divToRemove = tempDiv.querySelectorAll(".removeContentDescription");
+  if (divToRemove.length > 0) {
+    divToRemove.forEach((item) => item.remove());
+  }
+  return tempDiv.innerHTML;
 };
 
 const assetDescMake = (selectedImage, selectedVideo, contentHtml = "") => {

@@ -1,7 +1,6 @@
-import "../../../utils/service/i18n";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import { AVATAR } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
-import { Avatar, Box, Button, Typography } from "@mui/material";
 
 type ProfileHeaderProps = {
   isDisabled?: boolean;

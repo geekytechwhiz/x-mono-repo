@@ -463,7 +463,7 @@ function Description({
       ? process.env.REACT_APP_CHAT_GPT_PROMPT
       : "Please write 3 paragraph article about";
 
-    chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping[i18next.language]}`);
+    chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping["en"]}`);
   };
 
   useEffect(() => {

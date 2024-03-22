@@ -1,4 +1,4 @@
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router";
 // import { previewContent } from '../../pages/QuizPollEvents/store/ContentAction';
@@ -20,7 +20,6 @@ import {
 } from "@platformx/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams } from "react-router-dom";
-import { FETCH_CONTENT_BY_PATH } from "../../graphQL/queries/contentTypesQueries";
 import contentTypeAPIs, {
   createContentType,
   deleteContentType,
@@ -31,8 +30,19 @@ import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
 
-const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
-  CONTENT_CONSTANTS;
+const {
+  LANG,
+  DRAFT,
+  VOD,
+  EVENT,
+  POLL,
+  PUBLISHED,
+  QUESTION,
+  QUIZ,
+  UNPUBLISHED,
+  PREVIEW_PATH,
+  ARTICLE,
+} = CONTENT_CONSTANTS;
 const useContentListing = (filter = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -44,7 +54,6 @@ const useContentListing = (filter = "ALL") => {
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const [deleteMutate] = useMutation(deleteContentType);
   const [unPublishMutate] = useMutation(publishContentType);
-  const [runFetchContentByPath] = useLazyQuery(FETCH_CONTENT_BY_PATH);
   const [createMutate] = useMutation(createContentType, {
     context: {
       headers: {
@@ -185,6 +194,7 @@ const useContentListing = (filter = "ALL") => {
   };
 
   const editPage = (listItemDetails: { path: any }) => {
+    localStorage.setItem("path", listItemDetails.path.toString());
     navigate({
       pathname: "/edit-page",
       search: `?${createSearchParams({
@@ -192,52 +202,39 @@ const useContentListing = (filter = "ALL") => {
       })}`,
     });
   };
-
   const preview = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     const type = capitalizeFirstLetter(listItemDetails?.tagName);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
         if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
-          const qusArry: never[] = [];
           if (
             selectedItem?.questions?.length &&
             capitalizeFirstLetter(listItemDetails.tagName) === QUIZ
           ) {
-            selectedItem?.questions?.map((qus: any) => {
-              runFetchContentByPath({
-                variables: { contentType: QUESTION, path: qus },
-              })
-                .then((res) => {
-                  if (res?.data?.authoring_getCmsContentByPath) {
-                    const qusObj = res?.data?.authoring_getCmsContentByPath as never;
-                    qusArry.push(qusObj);
-                  }
-                })
-                .catch(() => {
-                  // console.log(JSON.stringify(err, null, 2));
-                });
-              return "";
+            const questionPromise = selectedItem?.questions?.map(async (qus: any) => {
+              const question = await fetchContentDetails({ tagName: QUESTION, page: qus });
+              if (question?.background_content) {
+                return question;
+              }
             });
-            const tempObj = {
-              ...selectedItem,
-              questions: qusArry,
-              contentType: type,
-            };
-            dispatch(previewContent(tempObj));
-            navigate(PREVIEW_PATH);
+            Promise.all(questionPromise).then(function (results) {
+              dispatch(previewContent({ ...selectedItem, contentType: type, questions: results }));
+              navigate(PREVIEW_PATH);
+            });
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === POLL) {
             dispatch(previewContent({ ...selectedItem, contentType: type }));
             navigate(PREVIEW_PATH);
-          } else if (capitalizeFirstLetter(listItemDetails.tagName) === "Article") {
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === ARTICLE) {
             dispatch(
-              previewArticle({
+              previewContent({
                 ...selectedItem,
                 page_lastmodifiedby: selectedItem.last_modifiedBy,
                 developed_date: selectedItem.creationDate,
+                contentType: ARTICLE,
               }),
             );
-            navigate("/article-preview");
+            navigate(PREVIEW_PATH);
           } else if (capitalizeFirstLetter(listItemDetails.tagName) === EVENT) {
             const eventToPreview = {
               ...selectedItem,
@@ -248,6 +245,16 @@ const useContentListing = (filter = "ALL") => {
               AnalyticsEnable: selectedItem?.analytics_enable,
             };
             dispatch(previewContent({ ...eventToPreview, contentType: type }));
+            navigate(PREVIEW_PATH);
+          } else if (capitalizeFirstLetter(listItemDetails.tagName) === VOD) {
+            dispatch(
+              previewContent({
+                ...selectedItem,
+                page_lastmodifiedby: selectedItem.last_modifiedBy,
+                developed_date: selectedItem.creationDate,
+                contentType: type,
+              }),
+            );
             navigate(PREVIEW_PATH);
           } else {
             ShowToastError(t(PREVIEW_PATH));

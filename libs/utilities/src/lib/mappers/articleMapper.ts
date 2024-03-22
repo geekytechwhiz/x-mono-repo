@@ -1,5 +1,4 @@
 import { dateFormat, getSubDomain, handleHtmlTags, trimString } from "../utils/helperFns";
-import i18n from "../utils/i18next";
 
 export const ArticleMapper = {
   updateStructureData: (content: any, banner: any, keywords: any, pageUrl: string) => {
@@ -11,7 +10,7 @@ export const ArticleMapper = {
       Description: trimString(handleHtmlTags(content?.description), 200),
       keywords: keywords,
       image: banner,
-      url: `${getSubDomain()}/${i18n.language}/article/${pageUrl}`,
+      url: `${getSubDomain()}/en/article/${pageUrl}`,
       datePublished: dateFormat(new Date().toISOString()),
       dateModified: dateFormat(new Date().toISOString()),
       author: [

@@ -150,15 +150,9 @@ export const ArticleDetails = ({
                     </Box>
                   )}
                   <Box sx={{ paddingLeft: "14px" }}>
-                    <CommentWrapper
-                      elementId='1'
-                      scrollRef={scrollToRef}
-                      // comments={comments}
-                      workflow={workflow}>
-                      <Typography variant='h7medium'>
-                        {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
-                      </Typography>
-                    </CommentWrapper>
+                    <Typography variant='h7medium'>
+                      {content?.Url ? `${t("banner")}: ${content?.Title}` : t("choose_banner")}
+                    </Typography>
                   </Box>
                   {state?.ObjectFields?.published_images.length > 0 && (
                     <Box onClick={handleClearImage} className={classes.closeIconStyle}>

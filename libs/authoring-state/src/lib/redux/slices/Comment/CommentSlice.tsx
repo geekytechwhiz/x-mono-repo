@@ -30,19 +30,30 @@ function removeDuplicates(arr: any) {
     return index === arr.findIndex((o: any) => obj.commentId === o.commentId);
   });
 }
-// const [getSession] = useUserSession();
-// const { userInfo } = getSession();
-const storedUserInfoString: string | null = localStorage.getItem("userInfo");
+
+const sessions: any = localStorage.getItem("userSession");
+let storedUserInfoString: any | null = null;
+
 let username = "";
-if (storedUserInfoString !== null) {
-  const userInfo: any = JSON.parse(storedUserInfoString);
-  username = `${userInfo.first_name} ${userInfo.last_name}`;
+if (typeof sessions === "string") {
+  storedUserInfoString = JSON.parse(sessions);
 }
+const userSession: any = storedUserInfoString || {
+  isActive: false,
+  permissions: [],
+  role: "",
+  userInfo: {},
+};
+username = `${userSession?.userInfo.first_name} ${userSession?.userInfo.last_name}`;
+
 export const commentSlice = createSlice({
   name: "Comment",
   initialState,
   reducers: {
     getComment: (state, action: PayloadAction<any>) => {
+      const tempContentType = state.commentInfo.contentType;
+      const tempcontentTitle = state.commentInfo.contentTitle;
+
       state.commentInfo.contentType = action.payload.contentType;
       state.commentInfo.contentTitle = action.payload.contentName;
 
@@ -51,8 +62,8 @@ export const commentSlice = createSlice({
         : [];
 
       if (
-        state.commentInfo.contentType === action.payload.contentType &&
-        state.commentInfo.contentTitle === action.payload.contentName
+        tempContentType === action.payload.contentType &&
+        tempcontentTitle === action.payload.contentName
       ) {
         state.commentInfo.comments = removeDuplicates([
           ...state.commentInfo.comments,
@@ -169,7 +180,7 @@ export const commentSlice = createSlice({
       state.commentInfo.isCommentsPanelOpen = action.payload.value;
     },
     setIsReviewEnabled: (state, action: PayloadAction<any>) => {
-      state.commentInfo.isCommentsPanelOpen = action.payload.value;
+      state.commentInfo.isReviewEnabled = action.payload;
     },
   },
 });
