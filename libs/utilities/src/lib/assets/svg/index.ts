@@ -204,9 +204,32 @@ import IconFbSvg from "./facebookIcon.svg";
 import IconGoogleSvg from "./googlesearchnicon.svg";
 import Morevarwhite from "../icons/moreverwhite.png";
 import Errorpopicon from "../svg/errorPopupIcon.svg";
+import Sitedashboardicon from "./sitedasboard.svg";
+import SiteNewIcon from "./Sitenewicon.svg";
+import HandsIcon from "./handsicon.svg";
 import UserEngagmentIcon from "../svg/UserEngagmentIcon.svg";
 import Webmaster from "../svg/Webmaster.svg";
 import NoSearchResultSvg from "../svg/NoSearchResult.svg";
+import Sitethemeicon from "./sitethemeicon.svg";
+import Sitethemenewicon from "../pngIcons/sitethemenew.png";
+import Sitethemenewnewicon from "../pngIcons/sitethemenewnew.png";
+import Sitethemeframe from "../pngIcons/sitethemeframe.png";
+import SkipIcon from "./skipicon.png";
+import Sitejourneyimg from "../pngIcons/sitejourneyimg.png";
+import Elipse1 from "./Ellipse_1.svg";
+import Elipse2 from "./Ellipse_2.svg";
+import Elipse3 from "./Ellipse_3.svg";
+import Elipse4 from "./Ellipse_4.svg";
+import Elipse5 from "./Ellipse_5.svg";
+import Step3img from "../pngIcons/step3img.png";
+import Step3newimg from "../pngIcons/step3newimg.png";
+import Step4img from "../pngIcons/step4image.png";
+import Step4imgupdate from "../pngIcons/step4imgupdate.png";
+import Step4imgn from "./step4imgn.svg";
+import Step4imgn1 from "./stepimgn1.svg";
+import Step4imgn2 from "./step4imgn2.svg";
+import Step4imgnblur from "./step4imgblur.svg";
+import Step5img from "./step5img.svg";
 import ThreeCardIcon from "./threeCard.svg";
 import SEOIcon from "./seo.svg";
 import seoBasicIcon from "./seoBasicIcon.svg";
@@ -220,6 +243,10 @@ import AdvanceIcon from "./AdvanceIcon.svg";
 import LaptopImg from "./laptop.jpg";
 import SaveAnimationGif from "./saveAnimation.gif";
 import ChatGptCommonLoader from "./ChatGptCommonLoader.gif";
+import Closexicon from "./Closexicon.svg";
+import Checkicon from "./Checkicon.svg";
+import Doticon from "./doticon.svg";
+import Crossnewicons from "./Crossnewicon.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -425,9 +452,32 @@ export {
   warning,
   Morevarwhite,
   Errorpopicon,
+  Sitedashboardicon,
+  SiteNewIcon,
+  HandsIcon,
   UserEngagmentIcon,
   Webmaster,
   NoSearchResultSvg,
+  Sitethemeicon,
+  Sitethemenewicon,
+  Sitethemenewnewicon,
+  Sitethemeframe,
+  SkipIcon,
+  Sitejourneyimg,
+  Elipse1,
+  Elipse2,
+  Elipse3,
+  Elipse4,
+  Elipse5,
+  Step3img,
+  Step3newimg,
+  Step4img,
+  Step4imgupdate,
+  Step4imgn,
+  Step4imgn1,
+  Step4imgn2,
+  Step4imgnblur,
+  Step5img,
   ThreeCardIcon,
   SEOIcon,
   seoBasicIcon,
@@ -441,4 +491,8 @@ export {
   LaptopImg,
   SaveAnimationGif,
   ChatGptCommonLoader,
+  Closexicon,
+  Checkicon,
+  Doticon,
+  Crossnewicons,
 };
