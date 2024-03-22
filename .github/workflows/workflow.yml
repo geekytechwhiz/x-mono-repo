@@ -1,4 +1,4 @@
-name: platformx-workflow-temp
+name: X-workflow
 on:
   push:
     branches:
