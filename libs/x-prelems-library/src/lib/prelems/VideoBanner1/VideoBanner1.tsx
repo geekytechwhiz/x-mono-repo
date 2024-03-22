@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Typography } from "@mui/material";
-import { Analytics } from "@platformx/utilities";
+import { Analytics, fetchCroppedUrl, getThumbImages } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpressionHook";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 import "./VideoBanner1.css";
 import { useCustomStyle } from "./VideoBanner1.style";
+import useCustomMediaQuery from "../../components/CustomHook/useCustomMediaQuery";
 
 const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: VideoBanner1Prop) => {
   const [val, setVal] = useState(1);
@@ -19,7 +20,27 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
     threshold: 0,
   });
   const boxRef = useRef<null | HTMLElement>(null);
-
+  const mediaQueryValues = useCustomMediaQuery();
+  const thumbnailImg = getThumbImages(content?.Videos?.Video_1?.Thumbnail);
+  const posterImage =
+    thumbnailImg &&
+    fetchCroppedUrl(
+      content?.Videos?.Video_1?.Url ? content.Videos.Video_1.Url : "",
+      thumbnailImg,
+      {
+        1440: "landscape",
+        1280: "landscape",
+        1024: "landscape",
+        768: "landscape",
+        600: "landscape",
+        320: "landscape",
+      },
+      {},
+      mediaQueryValues,
+      secondaryArgs,
+      false,
+      content?.Videos?.Video_1?.ext ? content?.Videos?.Video_1?.ext : "",
+    );
   const generateStructureData = () => {
     let fullWidthVideoStructureData;
     const tempSD = String(authoringHelper?.lastSavedStructuredData);
@@ -80,9 +101,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               if (newVal >= 1 && newVal < 1.5) {
                 scrollValueRef.current = newVal;
                 if (doc)
-                  doc.querySelector(
-                    "#BannerTitle",
-                  )!.style.transform = `scale(${scrollValueRef.current})`;
+                  doc.querySelector("#BannerTitle")!.style.transform =
+                    `scale(${scrollValueRef.current})`;
               }
               return newVal;
             });
@@ -94,9 +114,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               if (newVal >= 1 && newVal < 1.5) {
                 scrollValueRef.current = newVal;
                 if (doc)
-                  doc.querySelector(
-                    "#BannerTitle",
-                  )!.style.transform = `scale(${scrollValueRef.current})`;
+                  doc.querySelector("#BannerTitle")!.style.transform =
+                    `scale(${scrollValueRef.current})`;
               }
               if (window?.scrollY === 0) {
                 if (doc) doc.querySelector("#BannerTitle")!.style.transform = `scale(1)`;
@@ -123,9 +142,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               const newVal = prevVal + 0.006;
               if (newVal >= 1 && newVal < 1.5) {
                 scrollValueRef.current = newVal;
-                doc.querySelector(
-                  "#BannerTitle",
-                )!.style.transform = `scale(${scrollValueRef.current})`;
+                doc.querySelector("#BannerTitle")!.style.transform =
+                  `scale(${scrollValueRef.current})`;
               }
               return newVal;
             });
@@ -136,9 +154,8 @@ const VideoBanner1 = ({ content, analytics, authoringHelper, secondaryArgs }: Vi
               const newVal = prevVal - 0.009;
               if (newVal >= 1 && newVal < 1.5) {
                 scrollValueRef.current = newVal;
-                doc.querySelector(
-                  "#BannerTitle",
-                )!.style.transform = `scale(${scrollValueRef.current})`;
+                doc.querySelector("#BannerTitle")!.style.transform =
+                  `scale(${scrollValueRef.current})`;
               }
               if (iframe?.contentWindow!.scrollY === 0) {
                 doc.querySelector("#BannerTitle")!.style.transform = `scale(1)`;
@@ -269,6 +286,7 @@ interface Content {
       Transcript: boolean;
       CC: boolean;
       Thumbnail: string;
+      ext: string;
     };
   };
 }
@@ -280,14 +298,57 @@ VideoBanner1.defaultProps = {
     Videos: {
       Video_1: {
         Name: "HCL 360 Video",
-        Url: "https://dev.dam.hcl-x.com/server/api/core/bitstreams/69ba1992-15d9-4d0d-9251-f79ae37184d5/content",
+        Url: "https://dev.dam.hcl-x.com/server/api/core/bitstreams/222ba388-4da7-456a-9957-fd5a13c93c86/content",
         Title: "HCL 360 Video",
         Description: "This is for HCL 360 Video",
         Attribution: false,
         CC: false,
         Transcript: false,
-        Thumbnail:
-          "https://platx-dspace-dev.fanuep.com/server/api/core/bitstreams/34810a26-1b45-4349-9848-e37f0994fc75/content",
+        Thumbnail: {
+          original_image_relative_path:
+            "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept",
+          bitstream_id: "4af3e224-4716-464c-b7d9-8f481826bdd8",
+          visibility: "public",
+          ext: "png",
+          urgency: 0,
+          folder_path: "",
+          file_name: "Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept.png",
+          images: [
+            {
+              aspect_ratio: "card1",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-card1",
+            },
+            {
+              aspect_ratio: "portrait",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-portrait",
+            },
+            {
+              aspect_ratio: "square",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-square",
+            },
+            {
+              aspect_ratio: "hero",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-hero",
+            },
+            {
+              aspect_ratio: "landscape",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-landscape",
+            },
+            {
+              aspect_ratio: "card2",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-card2",
+            },
+          ],
+        },
+        ext: "png",
+        visibility: "public",
+        bitStreamId: "",
       },
     },
     PlayerType: "dspace",

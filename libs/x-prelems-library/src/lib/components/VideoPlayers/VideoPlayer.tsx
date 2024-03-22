@@ -1,7 +1,9 @@
 import { PlayIcon } from "@platformx/utilities";
 import ReactPlayer from "react-player";
+import { useCustomStyle } from "./VideoPlayer.style";
 
 const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
+  const classes = useCustomStyle();
   const {
     muted = true,
     playing = true,
@@ -15,7 +17,7 @@ const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {
   } = playerProp;
   return (
     <ReactPlayer
-      className={classname}
+      className={`${classname} ${classes.VideoPlayerWrapper} reactPlayerWrapper`}
       light={posterImg}
       url={videoUrl}
       height={height}

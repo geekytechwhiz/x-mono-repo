@@ -6,7 +6,9 @@ import {
   AuthoringHelper,
   SecondaryArgs,
   completeButtonUrl,
+  fetchCroppedUrl,
   formCroppedUrlString,
+  getThumbImages,
 } from "@platformx/utilities";
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -16,6 +18,7 @@ import { usePrelemImpression } from "../../components/ImpressionHooks/PrelemImpr
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
 import prelemTypes from "../../globalStyle";
 import { useCustomStyle } from "./AboutUsThree.style";
+import useCustomMediaQuery from "../../components/CustomHook/useCustomMediaQuery";
 
 const AboutUsThree = ({
   content,
@@ -25,6 +28,7 @@ const AboutUsThree = ({
 }: AboutUsThreeProps) => {
   const classes = useCustomStyle();
   const globalClasses = prelemTypes();
+  const mediaQueryValues = useCustomMediaQuery;
   const ButtonObj1 = {
     Button_Name: "Button1_Name",
     Button_RedirectURL: "Button1_RedirectURL",
@@ -117,6 +121,26 @@ const AboutUsThree = ({
   ]);
 
   usePrelemImpression(analytics, inView, secondaryArgs);
+  const thumbnailImg = getThumbImages(content?.Videos?.Video_1?.Thumbnail);
+  const posterImage =
+    thumbnailImg &&
+    fetchCroppedUrl(
+      content?.Videos?.Video_1?.Url ? content.Videos.Video_1.Url : "",
+      thumbnailImg,
+      {
+        1440: "portrait",
+        1280: "portrait",
+        1024: "portrait",
+        768: "portrait",
+        600: "portrait",
+        320: "portrait",
+      },
+      {},
+      mediaQueryValues,
+      secondaryArgs,
+      false,
+      content?.Videos?.Video_1?.ext ? content?.Videos?.Video_1?.ext : "",
+    );
 
   return (
     <div ref={authoringHelper?.innerRef}>
@@ -146,16 +170,10 @@ const AboutUsThree = ({
                 </Grid>
                 <Grid item xs={6}>
                   <Box className='imageWrapper1'>
-                    {content?.Videos?.Video_1.Url && (
+                    {content?.Videos?.Video_1?.Url && (
                       <VideoPlayer
                         playerProp={{
-                          posterImg: "",
-                          // posterImg: formCroppedUrlString(
-                          //   secondaryArgs?.gcpUrl,
-                          //   secondaryArgs?.bucketName,
-                          //   content?.Videos?.Video_1.Thumbnail,
-                          //   content?.Videos?.Video_1.ext,
-                          // ),
+                          posterImg: posterImage,
                           videoUrl: content?.Videos?.Video_1.Url,
                         }}
                       />
@@ -307,12 +325,53 @@ AboutUsThree.defaultProps = {
     Videos: {
       Video_1: {
         Name: "HCL 360 Video",
-        Thumbnail: "machine_assets/1690978664393/public/png/AboutUsThree_thumbnail",
-        Url: "https://dev.dam.hcl-x.com/server/api/core/bitstreams/69ba1992-15d9-4d0d-9251-f79ae37184d5/content",
+        Url: "https://dev.dam.hcl-x.com/server/api/core/bitstreams/222ba388-4da7-456a-9957-fd5a13c93c86/content",
         Title: "HCL 360 Video",
         Description: "This is for HCL 360 Video",
         Attribution: false,
         CC: false,
+        Thumbnail: {
+          original_image_relative_path:
+            "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept",
+          bitstream_id: "4af3e224-4716-464c-b7d9-8f481826bdd8",
+          visibility: "public",
+          ext: "png",
+          urgency: 0,
+          folder_path: "",
+          file_name: "Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept.png",
+          images: [
+            {
+              aspect_ratio: "card1",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-card1",
+            },
+            {
+              aspect_ratio: "portrait",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-portrait",
+            },
+            {
+              aspect_ratio: "square",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-square",
+            },
+            {
+              aspect_ratio: "hero",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-hero",
+            },
+            {
+              aspect_ratio: "landscape",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-landscape",
+            },
+            {
+              aspect_ratio: "card2",
+              folder_path:
+                "1710240445145/public/png/Y2Mate-is-Santas-gift-The-Audi-grandsphere-concept-card2",
+            },
+          ],
+        },
         ext: "png",
         Visibility: "public",
         BitStreamId: "",
