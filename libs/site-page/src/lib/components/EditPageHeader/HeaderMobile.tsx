@@ -1,19 +1,19 @@
 import { KeyboardBackspace, SaveOutlined } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
-import { useEffect } from "react";
+import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
 import {
   CATEGORY_PAGE,
+  DefaultStateCommentIcon,
+  ErrorTooltip,
+  Submit,
+  Timer,
   WorkflowHistoryIcon,
   enableReferBack,
-  Submit,
-  ErrorTooltip,
-  Timer,
-  DefaultStateCommentIcon,
   useAccess,
 } from "@platformx/utilities";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./Header.styles";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
 
 const HeaderMobile = ({
   lastmodifiedDate,
@@ -32,18 +32,20 @@ const HeaderMobile = ({
 }) => {
   const classes = useStyles();
   const { canAccessAction } = useAccess();
-  const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } = useSelector(
+  const { isReviewEnabled, comments } = useSelector(
     (state: RootState) => state.comment.commentInfo,
   );
+  const dispatch = useDispatch();
+
   const handleReview = () => {
-    setIsReviewEnabled(!isReviewEnabled);
-    setIsCommentPanelOpen(true);
+    dispatch(setIsReviewEnabled(!isReviewEnabled));
+    dispatch(setIsCommentPanelOpen({ value: true }));
   };
   useEffect(() => {
     if (enableReferBack(workflow) || comments?.length > 0) {
-      setIsReviewEnabled(true);
+      dispatch(setIsReviewEnabled(true));
     } else {
-      setIsReviewEnabled(false);
+      dispatch(setIsReviewEnabled(false));
     }
   }, [isReviewEnabled, workflow, comments]);
   return (

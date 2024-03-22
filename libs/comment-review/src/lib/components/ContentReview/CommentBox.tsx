@@ -98,6 +98,7 @@ const CommentBox: React.FC<any> = ({ elementId, comments, contentType, contentNa
       commentDetails();
     } else {
       const commentsData: ReviewComment[] = [];
+
       dispatch(
         getComment({
           commentsNew: commentsData,
