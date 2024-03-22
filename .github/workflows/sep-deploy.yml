@@ -50,8 +50,11 @@ jobs:
         run: npm i --legacy-peer-deps
 
       # Setup Nx Cloud
+      # - name: Setup Nx Cloud
+      #   uses: nrwl/nx-set-shas@v3
+      # Setup Nx Cloud
       - name: Setup Nx Cloud
-        uses: nrwl/nx-set-shas@v3
+        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       # Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
@@ -148,8 +151,11 @@ jobs:
         run: npm i --legacy-peer-deps
 
       # Setup Nx Cloud
+      # - name: Setup Nx Cloud
+      #   uses: nrwl/nx-set-shas@v3
+      # Setup Nx Cloud
       - name: Setup Nx Cloud
-        uses: nrwl/nx-set-shas@v3
+        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       # Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
