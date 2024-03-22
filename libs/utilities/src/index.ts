@@ -112,6 +112,7 @@ import useAccess from "./lib/hooks/useAccess/useAccess";
 import usePlatformAnalytics from "./lib/hooks/usePlatformAnalytics/usePlatformAnalytics";
 import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemImpression";
 import useUserSession from "./lib/hooks/useUserSession/useUserSession";
+import i18next from "./lib/i18next";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
 import { doneInsituEditing, initInsituEditing } from "./lib/utils/insituEditing";
@@ -225,6 +226,7 @@ export {
   getSubDomain,
   getUniqueTimeZone,
   handleHtmlTags,
+  i18next,
   initInsituEditing,
   liveIcon,
   loadergif,

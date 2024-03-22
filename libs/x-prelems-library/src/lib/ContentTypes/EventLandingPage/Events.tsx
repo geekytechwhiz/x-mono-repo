@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { Grid, Box, Paper, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
 import { dateTimeFormat, getRelativeImageURL, nullToObject } from "@platformx/utilities";
 import { addMinutes } from "date-fns";
-import EventSummary from "./EventSummary";
-import EventDetails from "./EventDetails";
+import { useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { breakpoints } from "../../utils/constants/constant";
+import EventDetails from "./EventDetails";
+import EventSummary from "./EventSummary";
 import { useCustomStyle } from "./Events.style";
 
 const Events = (props: any) => {
@@ -150,7 +150,7 @@ const Events = (props: any) => {
         );
       }
     } else {
-      if (Url.search("dspace") !== -1) {
+      if (Url?.search("dspace") !== -1) {
         //normal dspace url
         returnUrl = Url;
       }

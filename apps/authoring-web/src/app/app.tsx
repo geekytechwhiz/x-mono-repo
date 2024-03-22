@@ -13,6 +13,7 @@ import {
   LightTheme,
   getCurrentLang,
   getSelectedRoute,
+  i18next,
 } from "@platformx/utilities";
 import { Suspense, useEffect, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -21,7 +22,6 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import i18next from "./i18next";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
