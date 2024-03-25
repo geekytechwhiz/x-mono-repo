@@ -1,8 +1,6 @@
 import { usePlatformAnalytics } from "@platformx/utilities";
 import { SNOWPLOW } from "../../utils/constants";
 
-// import usePlatformAnalytics from 'platform-x-utils/dist/analytics';
-
 export const snowplowTrackingHook = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [handleTrack] = usePlatformAnalytics();

@@ -205,8 +205,8 @@ jobs:
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       # Record Nx Cloud actions and execute Nx commands
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
+      # - name: Record Nx Cloud Actions and Execute Nx Commands
+      #   run: npx nx-cloud record -- npx nx affected --target=lint,test,build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth

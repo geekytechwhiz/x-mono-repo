@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { Box, Typography, Grid } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ContentTypeCard from "platform-x-prelems/prelems/ContentTypeCard";
+import { ContentTypeCard } from "@platformx/x-prelems-library";
 import {
   ThemeConstants,
   nullToArray,

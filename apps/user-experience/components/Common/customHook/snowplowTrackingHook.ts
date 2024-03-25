@@ -1,7 +1,7 @@
 import getConfig from "next/config";
 import { SNOWPLOW } from "../../../constants/CommonConstants";
 import { locationApiCallService, postPageImpressionEvent } from "../../../utils/helperFunctions";
-import usePlatformAnalytics from "platform-x-prelems/prelems/analytics";
+import usePlatformAnalytics from "../customHook/usePlatformAnalytics";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 

@@ -10,11 +10,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RootState, updatePageTitle, updatePageSettings } from "@platformx/authoring-state";
-import { ThemeConstants, getSubDomain, BasicSwitch, ShowToastSuccess } from "@platformx/utilities";
+import {
+  ThemeConstants,
+  getSubDomain,
+  BasicSwitch,
+  ShowToastSuccess,
+  usePlatformAnalytics,
+} from "@platformx/utilities";
 import { descriptionLength, nameLength } from "../utils/constants";
 import { PageInformation } from "../utils/editTypes";
 import BackButton from "../BackButton/BackButton";
