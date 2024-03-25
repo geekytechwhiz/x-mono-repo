@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-debugger */
 
 import { Box } from "@mui/material";
@@ -12,7 +13,7 @@ import MenuItems from "./MenuItems";
 
 export default function Menu(props) {
   const [getSession] = useUserSession();
-  const [dynamicMenu, setDynamicMenu] = useState<any>();
+  const [dynamicMenu, setDynamicMenu] = useState<any>(MenuData);
   const { permissions } = getSession();
   const filtered = permissions
     ?.map((val) => val?.category?.toLowerCase())
@@ -46,7 +47,7 @@ export default function Menu(props) {
     }
   };
   useEffect(() => {
-    getSchema();
+    // getSchema();  // Commented out because API is not returning all content types
   }, []);
 
   return (
