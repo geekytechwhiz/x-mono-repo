@@ -17,12 +17,10 @@ import PrelemTheme from "../utils/theme/prelemtheme";
 //mapping dynamic instance
 const mappingDynamicInstance = {};
 Object.keys(Mapping).map((item) => {
-  mappingDynamicInstance[item] = React.lazy(
-    //() => import(`platform-x-prelems/prelems/${Mapping[item]}`),
-    () =>
-      import(`@platformx/x-prelems-library`).then((module) => ({
-        default: module[Mapping[item]],
-      })),
+  mappingDynamicInstance[item] = React.lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module[Mapping[item]],
+    })),
   );
   return mappingDynamicInstance;
 });
@@ -77,8 +75,8 @@ const PrelemPreview = () => {
                     device === "window"
                       ? "webinner"
                       : device === "tablet"
-                      ? "tabinner"
-                      : "mobinner";
+                        ? "tabinner"
+                        : "mobinner";
                   return (
                     <TabPanel key={index} className={classes[classNames]} value={device}>
                       <Box className={classes[innerClass]}>

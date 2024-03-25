@@ -3,12 +3,16 @@ import { Edit } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Box, Button, Typography } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import JSONInput from "react-json-editor-ajrm";
 import locale from "react-json-editor-ajrm/locale/en";
-import { ShowToastSuccess, ThemeConstants, BasicSwitch } from "@platformx/utilities";
+import {
+  ShowToastSuccess,
+  ThemeConstants,
+  BasicSwitch,
+  usePlatformAnalytics,
+} from "@platformx/utilities";
 import { PrelemSeoProps, SeoInfo } from "../utils/editTypes";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";

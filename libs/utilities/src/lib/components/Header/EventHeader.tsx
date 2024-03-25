@@ -7,7 +7,7 @@ import Profile from "../../assets/images/avatar.png";
 // import { Store } from '../../store/ContextStore';
 // import ThemeConstants from '../../theme/variable';
 // import { logoutUrl } from '../../utils/authConstants';
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
+import { usePlatformAnalytics } from "@platformx/utilities";
 import useUserSession from "../../hooks/useUserSession/useUserSession";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";

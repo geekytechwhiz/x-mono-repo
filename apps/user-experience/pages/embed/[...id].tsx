@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useInView } from "react-intersection-observer";
 import { getEmbedResponse } from "../../utils/helperEmbed";
 import ErrorBoundary from "../../components/Common/ErrorBoundary";
-import usePlatformAnalytics from "platform-x-prelems/prelems/analytics";
+import usePlatformAnalytics from "../../components/Common/customHook/usePlatformAnalytics";
 import EmbededCardComponent from "../../components/Embeded/EmbededCard";
 import {
   nullToObject,
