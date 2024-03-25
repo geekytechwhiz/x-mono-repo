@@ -46,6 +46,6 @@ RUN npm install --legacy-peer-deps
 # start app
 EXPOSE 3000
 
-RUN nx start user-experience --parallel=10 --verbose
+# RUN nx start user-experience --parallel=10 --verbose
 
-# CMD nx start user-experience --parallel=10
+CMD nx start user-experience --parallel=10
