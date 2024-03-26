@@ -6,19 +6,19 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-permissions:
-  contents: write
-  id-token: write
-  actions: read
+# permissions:
+#   contents: write
+#   id-token: write
+#   actions: read
 
 jobs:
   authoring-ui:
     name: authoring-ui
-    permissions:
-      contents: write
-      id-token: write
+    # permissions:
+    #   contents: write
+    #   id-token: write
     runs-on: ubuntu-16core-64GB
-    timeout-minutes: 60
+    # timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,27 +51,27 @@ jobs:
         env:
           gh_token: ${{ secrets.gh_token }}
 
-  user-experience-ui:
-    name: user-experience-ui
-    permissions:
-      contents: write
-      id-token: write
-    runs-on: ubuntu-16core-64GB
-    timeout-minutes: 60
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # user-experience-ui:
+  #   name: user-experience-ui
+  #   permissions:
+  #     contents: write
+  #     id-token: write
+  #   runs-on: ubuntu-16core-64GB
+  #   timeout-minutes: 60
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: "18.x"
 
-      - name: Install Dependencies
-        run: npm i --legacy-peer-deps
+  #     - name: Install Dependencies
+  #       run: npm i --legacy-peer-deps
 
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+  #     - name: Setup Nx Cloud
+  #       run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+  #     - name: Record Nx Cloud Actions and Execute Nx Commands
+  #       run: npx nx-cloud record -- npx nx affected --base=develop --target=build

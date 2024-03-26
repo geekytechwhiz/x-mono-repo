@@ -1,0 +1,38 @@
+name: NRWL CI
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  authoring-ui:
+    name: authoring-ui
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3 # Replaced pnpm/action-setup with actions/setup-node
+        with:
+          node-version: "18.x" # Use the desired Node.js version
+      - name: Restore cached npm dependencies
+        id: cache-dependencies-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+          key: npm-dependencies-${{ hashFiles('package-lock.json') }}
+      - run: npm install --force
+      - name: Cache npm dependencies
+        id: cache-dependencies-save
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            node_modules
+          key: ${{ steps.cache-dependencies-restore.outputs.cache-primary-key }}
+      - uses: nrwl/nx-set-shas@v3
+      # This line is needed for nx affected to work when CI is running on a PR
+      - run: git branch --track main origin/main
+      - run: npm run affected:test # Replaced pnpm nx affected -t lint,test,build with npm run affected:test
+      - run: npm run affected:e2e # Replaced pnpm nx affected -t e2e with npm run affected:e2e
