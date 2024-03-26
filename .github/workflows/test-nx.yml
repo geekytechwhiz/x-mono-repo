@@ -47,7 +47,7 @@ jobs:
         #   gh_token: ${{ secrets.gh_token }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx affected -t build --parallel=10
+        run: npx nx affected -t build --parallel=10 --base=develop
         # run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build --with-deps --clear-cache
         env:
           gh_token: ${{ secrets.gh_token }}
