@@ -55,7 +55,7 @@ jobs:
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
         # run: npx nx affected --target=build --parallel --base=origin/main --head=HEAD --apps=authoring-web
-        run: npx nx affected authoring-web --base=origin/master -t build
+        run: npx nx affected authoring-web --base=origin/develop -t build --head=HEAD
         # run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build --with-deps --clear-cache
         env:
           gh_token: ${{ secrets.gh_token }}
