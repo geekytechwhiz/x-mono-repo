@@ -31,7 +31,7 @@ unstable_ClassNameGenerator.configure((componentName) =>
 );
 
 initApm({
-  // This will disable APM To test the NX Cloud
+  // This will disable APM
   active: process.env?.NX_APM_TRACING === "true" || false,
   // Set required service name
   serviceName: "platormx-authoring-ui-service",
@@ -60,7 +60,7 @@ function App() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
-  const [, setInstances] = useState({});
+  const [, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
 
