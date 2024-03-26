@@ -31,11 +31,17 @@ jobs:
 
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+        env:
+          gh_token: ${{ secrets.gh_token }}
 
-      - uses: nrwl/nx-set-shas@v3
+      - uses: nrwl/nx-set-shas@v3      
+        env:
+          gh_token: ${{ secrets.gh_token }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
         run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build --with-deps --clear-cache
+        env:
+          gh_token: ${{ secrets.gh_token }}
 
   user-experience-ui:
     name: user-experience-ui
