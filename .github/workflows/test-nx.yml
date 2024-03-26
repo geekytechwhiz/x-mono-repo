@@ -47,6 +47,7 @@ jobs:
 
         with:
           main-branch-name: develop
+          workflow-id: ${{ github.workflow }}
         #   set-environment-variables-for-job: true
         #   error-on-no-successful-workflow: false
         #   last-successful-event: push
