@@ -30,6 +30,9 @@
         "^production"
       ]
     },
+    "affected": {
+      "defaultBase": "main"
+    },
     "@nx/jest:jest": {
       "cache": true,
       "inputs": [
