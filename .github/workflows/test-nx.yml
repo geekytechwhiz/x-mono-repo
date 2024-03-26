@@ -36,7 +36,12 @@ jobs:
           gh_token: ${{ secrets.gh_token }}
 
       - uses: nrwl/nx-set-shas@v4.0.4
-        env:
+        with:
+          main-branch-name: develop
+          set-environment-variables-for-job: true
+          error-on-no-successful-workflow: false
+          last-successful-event: push
+          working-directory: .
           gh_token: ${{ secrets.gh_token }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
