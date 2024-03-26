@@ -15,7 +15,7 @@ module.exports = composePlugins(
       ...config.resolve,
       fallback: {
         ...config.resolve.fallback,
-        path: false,
+        path: require.resolve("path-browserify"),
       },
     };
     // Update the webpack config as needed here.
