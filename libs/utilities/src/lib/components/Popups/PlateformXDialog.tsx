@@ -3,7 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { DialogCloseIcon, Errorpopicon } from "@platformx/utilities";
+import { DialogCloseIcon, Errorpopicon, WarningIcon } from "@platformx/utilities";
 
 export default function DeletePopup({
   isDialogOpen,
@@ -14,6 +14,7 @@ export default function DeletePopup({
   selectedItem = {},
   confirmButtonHandle,
   closeButtonHandle = () => {},
+  modalType,
 }: any) {
   return (
     <div className='deletePopupContaniner'>
@@ -70,7 +71,12 @@ export default function DeletePopup({
             margin: { xs: 0, md: "71px 0 4px" },
             height: "120px",
           }}>
-          <img src={Errorpopicon} alt='img' />
+          <img
+            src={
+              modalType === "unsavedChanges" || modalType === "draft" ? WarningIcon : Errorpopicon
+            }
+            alt='img'
+          />
         </Box>
         {title ? (
           <DialogTitle

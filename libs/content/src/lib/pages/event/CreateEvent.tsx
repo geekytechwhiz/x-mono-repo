@@ -900,7 +900,7 @@ const CreateEvent = () => {
           closeButtonText={t("take_me_out")}
           confirmButtonText={t("done")}
           closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={saveEvent}
+          confirmButtonHandle={() => saveEvent(false)}
           crossButtonHandle={() => {
             setShowExitWarning(false);
           }}
