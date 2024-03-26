@@ -31,7 +31,7 @@
       ]
     },
     "affected": {
-      "defaultBase": "main"
+      "defaultBase": "develop"
     },
     "@nx/jest:jest": {
       "cache": true,
