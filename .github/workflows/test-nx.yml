@@ -45,8 +45,8 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v3
 
-        # with:
-        #   main-branch-name: develop
+        with:
+          main-branch-name: develop
         #   set-environment-variables-for-job: true
         #   error-on-no-successful-workflow: false
         #   last-successful-event: push
