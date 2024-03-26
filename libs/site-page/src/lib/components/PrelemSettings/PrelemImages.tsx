@@ -96,7 +96,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
     const { original_image = {}, published_images = [] } = updatedPartialObj || {};
     const contentNew = {
       ...content,
-      Url: original_image?.Url,
+      Url: original_image?.Thumbnail,
       MetaFields: {
         ...content?.MetaFields,
         Title: original_image.Title,
