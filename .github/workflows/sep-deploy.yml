@@ -58,7 +58,7 @@ jobs:
 
       # Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --target=lint,test,build
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -113,7 +113,7 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s
 
   user-experience-ui:
     name: user-experience-ui
@@ -157,9 +157,9 @@ jobs:
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      # Record Nx Cloud actions and execute Nx commands
-      # - name: Record Nx Cloud Actions and Execute Nx Commands
-      #   run: npx nx-cloud record -- npx nx affected --target=lint,test,build
+      Record Nx Cloud actions and execute Nx commands
+      - name: Record Nx Cloud Actions and Execute Nx Commands
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -214,4 +214,4 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s
