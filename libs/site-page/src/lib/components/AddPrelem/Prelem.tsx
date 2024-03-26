@@ -27,12 +27,10 @@ import PrelemButtons from "./PrelemButtons";
 //mapping dynamic instance
 const mappingDynamicInstance = {};
 Object.keys(Mapping).map((item) => {
-  mappingDynamicInstance[item] = React.lazy(
-    //() => import(`platform-x-prelems/prelems/${Mapping[item]}`),
-    () =>
-      import(`@platformx/x-prelems-library`).then((module) => ({
-        default: module[Mapping[item]],
-      })),
+  mappingDynamicInstance[item] = React.lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module[Mapping[item]],
+    })),
   );
   return mappingDynamicInstance;
 });
@@ -559,8 +557,8 @@ const Prelem = ({
     ]?.currentEditWindow?.windowTarget
       ? buttonStateTarget.currentEditWindow.windowTarget
       : prelemState?.[buttonRef.Button_Type] !== ""
-      ? prelemState?.[buttonRef.Button_Type]
-      : "current window";
+        ? prelemState?.[buttonRef.Button_Type]
+        : "current window";
     buttonState[buttonRef.Button_Value] = buttonStateTarget.target.innerText;
     updateCurrentButtonObject(
       buttonStateTarget.target.innerText,

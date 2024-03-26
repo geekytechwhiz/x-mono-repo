@@ -12,11 +12,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RootState, updatePageModel } from "@platformx/authoring-state";
-import { ThemeConstants } from "@platformx/utilities";
+import { ThemeConstants, usePlatformAnalytics } from "@platformx/utilities";
 import BackButton from "../BackButton/BackButton";
 import "./PageSettings.css";
 import { useDispatch, useSelector } from "react-redux";

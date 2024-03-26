@@ -9,7 +9,7 @@ import { GetServerSidePropsContext } from "next";
 import { getInitialData } from "../../utils/helperInitialData";
 import { CONTENT_TYPES, SNOWPLOW } from "../../constants/CommonConstants";
 import { usePageImpression } from "../../components/Common/customHook/PageImpressionHook";
-import ArticleComponent from "apps/user-experience/components/Article/ArticleComponent";
+import ArticleComponent from "../../components/Article/ArticleComponent";
 
 const { publicRuntimeConfig = {} } = getConfig() || {};
 

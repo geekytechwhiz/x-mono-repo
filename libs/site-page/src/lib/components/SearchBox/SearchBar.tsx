@@ -1,7 +1,7 @@
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { Autocomplete, IconButton, InputAdornment, Paper, TextField } from "@mui/material";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
+import { usePlatformAnalytics } from "@platformx/utilities";
 import { FilterProps } from "../utils/prelemTypes";
 
 const SearchBar = ({

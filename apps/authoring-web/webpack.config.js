@@ -9,7 +9,15 @@ module.exports = composePlugins(
     // See: https://react-svgr.com/
     // svgr: false
   }),
+
   (config) => {
+    config.resolve = {
+      ...config.resolve,
+      fallback: {
+        ...config.resolve.fallback,
+        path: require.resolve("path-browserify"),
+      },
+    };
     // Update the webpack config as needed here.
     // e.g. `config.plugins.push(new MyPlugin())`
     return config;

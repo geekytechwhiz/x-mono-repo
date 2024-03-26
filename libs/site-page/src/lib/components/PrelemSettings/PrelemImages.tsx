@@ -1,10 +1,14 @@
 /* eslint-disable no-shadow */
 import { Box, Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ShowToastSuccess, ThemeConstants, BasicSwitch } from "@platformx/utilities";
+import {
+  ShowToastSuccess,
+  ThemeConstants,
+  BasicSwitch,
+  usePlatformAnalytics,
+} from "@platformx/utilities";
 import { PrelemImagesProps } from "../utils/editTypes";
 import "../PageSettings/PageSettings.css";
 import { XImageRender } from "@platformx/x-image-render";

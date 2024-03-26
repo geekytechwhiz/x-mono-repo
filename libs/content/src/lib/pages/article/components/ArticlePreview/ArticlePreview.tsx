@@ -92,8 +92,6 @@ const ArticlePreview = () => {
   //   }
   // </style></head><body><div></div></body></html>`;
 
-  // const ContentType = React.lazy(() => import(`platform-x-prelems/prelems/${"Article"}`));
-
   const handleReturn = () => {
     window.history.back();
   };
