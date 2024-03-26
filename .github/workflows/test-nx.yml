@@ -27,6 +27,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
+      - name: Restore cached npm dependencies
+        id: cache-dependencies-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            node_modules
+          key: npm-dependencies-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
@@ -47,7 +54,7 @@ jobs:
         #   gh_token: ${{ secrets.gh_token }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx affected -t build --parallel=10 --base=develop
+        run: npx nx affected --target=build --parallel --base=main --head=HEAD  --apps=authoring-web
         # run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build --with-deps --clear-cache
         env:
           gh_token: ${{ secrets.gh_token }}
