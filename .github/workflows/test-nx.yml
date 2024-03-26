@@ -8,6 +8,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   authoring-ui:
@@ -34,7 +35,7 @@ jobs:
         env:
           gh_token: ${{ secrets.gh_token }}
 
-      - uses: nrwl/nx-set-shas@v3      
+      - uses: nrwl/nx-set-shas@v3
         env:
           gh_token: ${{ secrets.gh_token }}
 
