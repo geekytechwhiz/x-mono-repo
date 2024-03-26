@@ -44,6 +44,7 @@ import ChooseTags from "./components/choosetags/ChooseTags";
 import { Question } from "./components/question/Question";
 import QuestionListing from "./components/questionlisting/QuestionListing";
 import Result from "./components/result/Result";
+import Seo from "./components/seo/Seo";
 import SocialShare from "./components/socialshare/SocialShare";
 import { createInitialQuizState, createNewQuiz } from "./helper";
 
@@ -219,7 +220,7 @@ export const CreateQuiz = () => {
     publishConfirmText: "View QUIZ",
   });
   const [pageStatus, setPageStatus] = useState(DRAFT);
-  const [editedSD] = useState("");
+  const [editedSD, setEditedSD] = useState("");
   const [workflowStatus, setWorkflowStatus] = useState(true);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
   const workflowSubmitRequest = async (workflowObj, status) => {
@@ -1049,6 +1050,13 @@ export const CreateQuiz = () => {
                   setState={setQuizState}
                   unsavedChanges={unsavedChanges}
                 />
+                <Seo
+                  state={quizState}
+                  setState={setQuizState}
+                  setEditedSD={setEditedSD}
+                  quizInstance={quizInstance}
+                  unsavedChanges={unsavedChanges}
+                />
               </>
             )}
           </Box>
@@ -1060,7 +1068,7 @@ export const CreateQuiz = () => {
           closeButtonText={t("take_me_out")}
           confirmButtonText={t("done")}
           closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={saveQuiz}
+          confirmButtonHandle={() => saveQuiz(false)}
           crossButtonHandle={() => {
             setShowExitWarning(false);
           }}
