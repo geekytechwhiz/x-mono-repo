@@ -1,4 +1,4 @@
-name: platformx-workflow-with-nx
+name: test-nx
 on:
   push:
     branches:
@@ -33,7 +33,7 @@ jobs:
         run: npx nx-cloud record -- npx nx affected --target=lint,test,build
 
   user-experience-ui:
-    name: user-experience-ui
+    name: test-nx
     permissions:
       contents: write
       id-token: write
