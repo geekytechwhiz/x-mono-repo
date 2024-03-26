@@ -30,7 +30,7 @@ jobs:
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
   user-experience-ui:
     name: user-experience-ui
@@ -55,4 +55,4 @@ jobs:
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
