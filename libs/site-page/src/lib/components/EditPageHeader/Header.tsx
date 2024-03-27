@@ -1,23 +1,23 @@
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
-import { memo, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
 import {
   CATEGORY_PAGE,
-  Timer,
+  DefaultStateCommentIcon,
   ErrorTooltip,
   MiniHeader,
-  Submit,
-  enableReferBack,
-  WorkflowHistoryIcon,
   SaveAnimationGif,
-  DefaultStateCommentIcon,
+  Submit,
+  Timer,
+  WorkflowHistoryIcon,
+  enableReferBack,
   useAccess,
 } from "@platformx/utilities";
+import { memo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import PreviewTabsButton from "../PreviewTabsButton/PreviewTabsButton";
 import { useStyles } from "./Header.styles";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
 
 const Header = ({
   lastmodifiedDate,
@@ -39,18 +39,20 @@ const Header = ({
   const { t } = useTranslation();
   const classes = useStyles();
   const { canAccessAction } = useAccess();
-  const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } = useSelector(
+  const dispatch = useDispatch();
+
+  const { isReviewEnabled, comments } = useSelector(
     (state: RootState) => state.comment.commentInfo,
   );
   const handleReview = () => {
-    setIsReviewEnabled(!isReviewEnabled);
-    setIsCommentPanelOpen(true);
+    dispatch(setIsReviewEnabled(!isReviewEnabled));
+    dispatch(setIsCommentPanelOpen({ value: true }));
   };
   useEffect(() => {
     if (enableReferBack(workflow) || comments?.length > 0) {
-      setIsReviewEnabled(true);
+      dispatch(setIsReviewEnabled(true));
     } else {
-      setIsReviewEnabled(false);
+      dispatch(setIsReviewEnabled(false));
     }
   }, [isReviewEnabled, workflow, comments]);
 

@@ -54,9 +54,9 @@ import {
   useAccess,
   useUserSession,
   workflowKeys,
+  usePlatformAnalytics,
 } from "@platformx/utilities";
 import { addMinutes, format } from "date-fns";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
@@ -124,7 +124,6 @@ const EditPageContainer = () => {
   const [isResetPopop, setIsResetPopup] = useState(false);
   const [isDeletePopop, setIsDeletePopup] = useState(false);
   const [, setIsDeleteSuccess] = useState(false);
-  const [, setBrowserBackButtonState] = useState<boolean>(false);
   const [showSaveWarning, setShowSaveWarning] = useState<boolean>(false);
   const insituContentIndex = useRef(0);
   const [triggerCase, setTriggerCase] = useState<string | null>(null);
@@ -171,7 +170,6 @@ const EditPageContainer = () => {
   const DesignTab = useMediaQuery(`@media(max-width:${ThemeConstants.SM}px)`);
   const DesignWeb = useMediaQuery(`@media(max-width:${ThemeConstants.SM}px)`);
   const { comments } = useSelector((state: RootState) => state.comment.commentInfo);
-  const [browserBackButtonClick] = useState<boolean>(false);
   const [mutateScheduleUnPublish] = useMutation(scheduleUnpublish);
   const [openPublishModal, setOpenPublishModal] = useState<boolean>(false);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState<boolean>(false);
@@ -204,7 +202,10 @@ const EditPageContainer = () => {
       user_id,
       user_name,
     } = page.pageModel;
-    if (Object.keys(page?.pageModel).length === 0 || searchParams?.get("page") !== Path) {
+    if (
+      Object.keys(page?.pageModel).length === 0 ||
+      (searchParams?.get("page") && searchParams?.get("page") !== Path)
+    ) {
       setLoader(true);
       fetchPageModel(
         dispatch,
@@ -993,6 +994,7 @@ const EditPageContainer = () => {
     switch (triggerCaseSent) {
       case "PAGE_LIST":
         setSaveUpdate(true);
+        localStorage.removeItem("path");
         navigate({
           pathname: "/sitepage",
           search: `?${createSearchParams({
@@ -1166,11 +1168,7 @@ const EditPageContainer = () => {
                   triggerCase === "PUBLISH" ? t("publish_anyways") : t("take_me_out")
                 }
                 confirmButtonText={t("done")}
-                closeButtonHandle={
-                  browserBackButtonClick
-                    ? () => setBrowserBackButtonState(true)
-                    : () => callFnsCase(triggerCase)
-                }
+                closeButtonHandle={() => callFnsCase(triggerCase)}
                 confirmButtonHandle={onCloseSaveWarningHandler}
                 crossButtonHandle={unsavedChangesCrossButtonHandle}
                 modalType='unsavedChanges'
@@ -1384,7 +1382,11 @@ const EditPageContainer = () => {
                               <Typography variant='p3regular' mb='10px' mt='10px'>
                                 {t("create_first_section_now")}
                               </Typography>
-                              <Typography sx={{ color: "#4B9EF9" }}>{t("add_prelem")}</Typography>
+                              <Typography
+                                sx={{ color: "#4B9EF9", cursor: "pointer" }}
+                                onClick={() => routeChange()}>
+                                {t("add_prelem")}
+                              </Typography>
                             </Box>
                           </Box>
                         )}
@@ -1553,7 +1555,10 @@ const EditPageContainer = () => {
                       <Typography variant='p3regular' mb='10px' mt='10px'>
                         {t("create_first_section_now")}
                       </Typography>
-                      <Typography variant='p3regular' sx={{ color: "#4B9EF9" }}>
+                      <Typography
+                        variant='p3regular'
+                        sx={{ color: "#4B9EF9", cursor: "pointer" }}
+                        onClick={() => routeChange()}>
                         {t("add_prelem")}
                       </Typography>
                     </Box>

@@ -21,6 +21,7 @@ import {
 } from "@platformx/utilities";
 import { WorkflowStepper } from "@platformx/workflow-management";
 import { useStyles } from "./PageMenu.styles";
+import CreateNewPage from "../../pages/page/CreateNewPage";
 
 const PageMenu = (props) => {
   const classes = useStyles();
@@ -31,13 +32,12 @@ const PageMenu = (props) => {
     editPage,
     viewPage,
     previewPage,
-    handleDuplicatePopup,
-    // duplicatePage,
     unPublishPage,
     handleReschedulePopup,
     handleCancelTriggerPopup,
     cancelPublishUnpublishTrigger,
     handlePageDelete,
+    handleDuplicatePopup,
   } = usePage();
   const [cancelTriggerType, setCancelTriggerType] = useState("");
   const theme = useTheme();
@@ -46,7 +46,7 @@ const PageMenu = (props) => {
     status,
     scheduledPublishTriggerDateTime,
     scheduledUnPublishTriggerDateTime,
-    lastPublishedDate,
+    // lastPublishedDate,
   } = listItemDetails;
   const [menuActions, setMenuActions] = useState({
     duplicate: false,
@@ -140,11 +140,6 @@ const PageMenu = (props) => {
     });
   };
 
-  // const confirmDuplicatePage = (pageName, pageUrl) => {
-  //   duplicatePage(true, pageName, pageUrl);
-  //   handleClose();
-  // };
-
   const handleUnpublishPage = () => {
     unPublishPage(listItemDetails);
     handleClose();
@@ -171,18 +166,13 @@ const PageMenu = (props) => {
 
   return (
     <>
-      {/* {menuActions.duplicate && (
-        <CreatePage
+      {menuActions.duplicate && (
+        <CreateNewPage
           isDialogOpen={menuActions.duplicate}
-          title={menuActions.duplicate ? t("page_duplicate_title") : t("page_create_title")}
-          pageNameInitial={menuActions.duplicate ? listItemDetails?.title : ""}
-          isDuplicate={menuActions.duplicate}
-          confirmButtonHandle={confirmDuplicatePage}
           closeButtonHandle={handleClose}
-          language={language}
-          setLanguage={setLanguage}
-        />
-      )} */}
+          pageNameInitial={listItemDetails.title}
+          isDuplicateValue={true}></CreateNewPage>
+      )}
       {menuActions.unpublish && (
         <PlateformXDialog
           isDialogOpen={menuActions.unpublish}
@@ -276,24 +266,12 @@ const PageMenu = (props) => {
           ) : (
             <>
               <div className={classes.icon}>
-                <img src={CardOptionViewIcon} alt='view' />
+                <img src={CardOptionViewIcon} alt='preview' />
               </div>
               {t("preview")}
             </>
           )}
         </MenuItem>
-        {status === "draft" && lastPublishedDate !== "" ? (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              onHandleMenuActions("view");
-            }}>
-            <div className={classes.icon}>
-              <img src={CardOptionViewIcon} alt='view' />
-            </div>
-            {t("view")}
-          </MenuItem>
-        ) : null}
         {(scheduledPublishTriggerDateTime === null ||
           scheduledPublishTriggerDateTime === undefined) &&
         (scheduledUnPublishTriggerDateTime === null ||

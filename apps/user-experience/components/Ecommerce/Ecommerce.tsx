@@ -16,43 +16,23 @@ const ProductListing = dynamic(
   },
 );
 
-// const ProductListing: any = dynamic(
-//   () => import(`platform-x-prelems/prelems/${ECOMMERCE_PATH}`).then((mod) => mod.ProductDetail),
-//   {
-//     ssr: false,
-//   },
-// );
 const ProductDetail = dynamic(
   () => import("@platformx/x-prelems-library").then((mod) => mod.ProductDetail),
   {
     ssr: false,
   },
 );
-// const ProductDetail: any = dynamic(
-//   () => import(`platform-x-prelems/prelems/${ECOMMERCE_PATH}`).then((mod) => mod.ProductDetail),
-//   {
-//     ssr: false,
-//   },
-// );
+
 const Cart: any = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Cart), {
   ssr: false,
 });
 
-// const Cart = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Cart), {
-//   ssr: false,
-// });
 const ShippingDetails: any = dynamic(
   () => import("@platformx/x-prelems-library").then((mod) => mod.ShippingDetails),
   {
     ssr: false,
   },
 );
-// const ShippingDetails: any = dynamic(
-//   () => import(`platform-x-prelems/prelems/${ECOMMERCE_PATH}`).then((mod) => mod.ShippingDetails),
-//   {
-//     ssr: false,
-//   },
-// );
 
 const PaymentDetail: any = dynamic(
   () => import("@platformx/x-prelems-library").then((mod) => mod.PaymentDetail),
@@ -60,13 +40,6 @@ const PaymentDetail: any = dynamic(
     ssr: false,
   },
 );
-
-// const PaymentDetail: any = dynamic(
-//   () => import(`platform-x-prelems/prelems/${ECOMMERCE_PATH}`).then((mod) => mod.PaymentDetail),
-//   {
-//     ssr: false,
-//   },
-// );
 
 export const Ecommerce = ({
   secondaryArgs = {},

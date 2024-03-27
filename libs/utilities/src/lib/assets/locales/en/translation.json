@@ -1157,6 +1157,7 @@
   "approve": "Approve",
   "reject": "Reject",
   "workflow_pending": "This Content is already under workflow and its pending",
+  "typo_dashboard": "First you must construct your website. it's quite simple, just click the bottom CTA and adhere to the instructions.",
   "with": "with",
   "end": "end",
   "at": "at",
@@ -1169,6 +1170,7 @@
   "message": "Message",
   "form_update_message": "Form details updated successfully",
   "last_name_label": "Last Name",
+  "typo_label": "First you must construct your website.",
   "toolTip_title": "Mark as Featured:",
   "toolTip_message": "Enable it if you want to highlight this content for better enhanced visibility.",
   "loading": "Loading..."

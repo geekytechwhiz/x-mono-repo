@@ -3,7 +3,7 @@ import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import { Box, Button, Grid, Tooltip, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
 import {
   DefaultStateCommentIcon,
   ErrorTooltip,
@@ -17,7 +17,7 @@ import {
 } from "@platformx/utilities";
 import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./CreateHeader.style";
 import { HeaderProps } from "./Header.types";
 
@@ -49,20 +49,22 @@ export const CreateHeader = ({
 }: HeaderProps) => {
   const { canAccessAction } = useAccess();
   const theme = useTheme();
-  const { setIsReviewEnabled, setIsCommentPanelOpen, isReviewEnabled, comments } = useSelector(
+  const dispatch = useDispatch();
+
+  const { isReviewEnabled, comments } = useSelector(
     (state: RootState) => state.comment.commentInfo,
   );
   const handleReview = () => {
-    setIsReviewEnabled(!isReviewEnabled);
-    if (comments?.length > 0) {
-      setIsCommentPanelOpen(true);
-    }
+    dispatch(setIsReviewEnabled(!isReviewEnabled));
+    // if (comments?.length > 0) {
+    dispatch(setIsCommentPanelOpen({ value: true }));
+    // }
   };
   useEffect(() => {
     if (enableReferBack(workflow) || comments?.length > 0) {
-      setIsReviewEnabled(true);
+      dispatch(setIsReviewEnabled(true));
     } else {
-      setIsReviewEnabled(false);
+      dispatch(setIsReviewEnabled(false));
     }
   }, [isReviewEnabled, workflow, comments]);
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));

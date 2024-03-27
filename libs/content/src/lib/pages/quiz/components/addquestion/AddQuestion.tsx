@@ -10,17 +10,19 @@ import {
   PlateformXDialog,
   RadioControlLabel,
   Refresh,
+  ShowToastSuccess,
   TextBox,
   ThemeConstants,
   TitleSubTitle,
   XLoader,
 } from "@platformx/utilities";
-import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
+import { DamContentGallery } from "@platformx/x-image-render";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateHeader } from "../../../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../../../enums/ContentType";
 import useQuestion from "../../../../hooks/useQuestion/useQuestion";
+import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useCustomStyle } from "../../quiz.style";
 import AnswerContent from "./AnswerContent";
 
@@ -44,9 +46,9 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
   });
   const galleryType = useRef<string>("Images");
   const [, setOperationType] = useState("");
-  const [, setGalleryState] = useState<boolean>(false);
-  const [, setKey] = useState("");
-  const [, setAnswerId] = useState("");
+  const [galleryState, setGalleryState] = useState<boolean>(false);
+  const [key, setKey] = useState("");
+  const [answerId, setAnswerId] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [exitPopUp, setExitPopUp] = useState(false);
@@ -183,6 +185,22 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     qusUnsavedChanges.current = false;
   };
 
+  const toggleGallery = (toggleState, type) => {
+    setGalleryState(toggleState);
+  };
+
+  const handleSelectedImage = (image, keyName) => {
+    qusUnsavedChanges.current = true;
+    if (keyName === "answers") {
+      setAnswers(
+        answers.map((answer) =>
+          answer.id === answerId ? { ...answer, image: image?.Thumbnail } : answer,
+        ) as [],
+      );
+    }
+    ShowToastSuccess(`${t("image")} ${t("added_toast")}`);
+  };
+
   useEffect(() => {
     if (qusUnsavedChanges.current === true) {
       window.history.pushState(null, "", window.location.pathname + window.location?.search);
@@ -204,29 +222,14 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
   const classes = useCustomStyle();
   return (
     <>
-      {/* <Box
-        sx={{
-          backgroundColor: "#FFF",
-        }}>
-        {galleryState && (
-          <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={galleryType.current === "Images" ? "Image" : "Video"}
-            handleSelectedVideo={handleSelectedVideo}
-            keyName={key}
-            id={answerId}
-          />
-          // <Gallery
-          //   handleImageSelected={handleSelectedImage}
-          //   toggleGallery={toggleGallery}
-          //   galleryMode={galleryType.current}
-          //   handleVideoSelected={handleSelectedVideo}
-          //   keyName={key}
-          //   id={answerId}
-          // />
-        )}
-      </Box> */}
+      <DamContentGallery
+        handleImageSelected={handleSelectedImage}
+        toggleGallery={toggleGallery}
+        assetType={"Image"}
+        keyName={key}
+        isCrop={false}
+        dialogOpen={galleryState}
+      />
       <Box>
         {isLoading && <XLoader type='linear' />}
 

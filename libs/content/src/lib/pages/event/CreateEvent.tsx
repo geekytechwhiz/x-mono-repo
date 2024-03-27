@@ -96,7 +96,7 @@ const CreateEvent = () => {
   const [scrollToView, setScrollToView] = useState("");
   const [showExitWarning, setShowExitWarning] = useState(false);
   const navigate = useNavigate();
-  const [previewButton, setPreviewButton] = useState(true);
+  const [, setPreviewButton] = useState(true);
   // const [publishButton, setPublishButton] = useState(true);
   // const [saveButton, setSaveButton] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -758,7 +758,7 @@ const CreateEvent = () => {
             <CreateHeader
               // className={isKeyboardOpen ? "sticky-header keyboard-open" : "sticky-header"}
               // previewButton={previewButton}
-              showPreview={previewButton}
+              showPreview={true}
               handelPreview={handelPreview}
               createText={
                 currentQuizData.current
@@ -826,9 +826,8 @@ const CreateEvent = () => {
                 <EventImageAndThumbnail
                   state={eventState}
                   setState={setEventState}
-                  setPreviewButton={setPreviewButton}
-                  showGalleryHandle={showGalleryHandle}
-                  selectedImage={selectedImage}
+                  eventWholeRef={eventWholeRef}
+                  unsavedChanges={unsavedChanges}
                 />
 
                 <EventTitleDescription
@@ -867,8 +866,8 @@ const CreateEvent = () => {
                   state={eventState}
                   setState={setEventState}
                   eventWholeRef={eventWholeRef}
-                  showGalleryHandle={showGalleryHandle}
                   unsavedChanges={unsavedChanges}
+                  showGalleryHandle={showGalleryHandle}
                   selectedImage={selectedImage.Thumbnail}
                 />
                 <EventAnalytics
@@ -901,7 +900,7 @@ const CreateEvent = () => {
           closeButtonText={t("take_me_out")}
           confirmButtonText={t("done")}
           closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={saveEvent}
+          confirmButtonHandle={() => saveEvent(false)}
           crossButtonHandle={() => {
             setShowExitWarning(false);
           }}

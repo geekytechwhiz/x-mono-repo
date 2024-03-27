@@ -22,7 +22,7 @@ const CreateNewPage = ({
   isDuplicateValue = false,
 }: DialogList) => {
   const { t } = useTranslation();
-  const [isDuplicate, setIsDuplicate] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(isDuplicateValue);
   const [language, setLanguage] = useState<string[]>([]);
   const copiedPageName = pageNameInitial
     ? `${t("page_duplicate_placeholder")} ${pageNameInitial}`
@@ -34,7 +34,7 @@ const CreateNewPage = ({
   const { duplicatePage } = usePage();
 
   const confirmButtonHandle = (pgName, pgUrl) => {
-    duplicatePage(false, pgName, pgUrl, language);
+    duplicatePage(isDuplicate, pgName, pgUrl, language);
     closeButtonHandle();
   };
 

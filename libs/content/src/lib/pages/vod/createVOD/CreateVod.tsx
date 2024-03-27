@@ -6,7 +6,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
-// import { useDispatch, useSelector } from "react-redux";
 import {
   TitleSubTitle,
   TextBox,
@@ -31,29 +30,21 @@ import {
   publish_vod,
   update_vod,
 } from "@platformx/authoring-apis";
+import { useDispatch, useSelector } from "react-redux";
 import { ContentType } from "../../../enums/ContentType";
-
 import ContentPageScroll from "../../../components/ContentPageScroll";
-
-// import "../../../components/Common/commonStyles/disabledStyles.css";
-
-// import { Store } from "../../../store/ContextStore";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import TagListing from "../Components/TagListing";
-// import { DEF_VOD } from './Utils/constats';
-// import DamContentGallery from "../../../components/Common/DamContentGallery/DamContentGallery";
-// import Submit from "../../../components/Submit/Submit";
 import icons, { DEF_VOD } from "./Utils/constats";
 import { createVodInstance, updateStructureData, updateVodSettings } from "./Utils/helper";
 import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
 import "./createVod.css";
 import { useStyles } from "./createVod.styles";
 import { DspaceObject } from "./createVod.types";
-// import MarkFeatured from "libs/utilities/src/lib/components/MarkFeatured/MarkedFeatured";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 
 export const CreateVod = () => {
+  const dispatch = useDispatch();
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   // const [workflowStatus, setWorkflowStatus] = useState(true);
   const [, setShowWorkflowSubmit] = useState(false);
@@ -121,8 +112,8 @@ export const CreateVod = () => {
     };
     setVodInstance(modifiedVod);
     if (callPreview) {
-      // dispatch(previewVod(modifiedVod));
-      navigate("/vod-preview");
+      dispatch(previewContent({ ...modifiedVod, contentType: "Vod" }));
+      navigate("/content/preview");
     }
   };
   // const scrollHandler = () => {

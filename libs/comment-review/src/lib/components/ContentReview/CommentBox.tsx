@@ -98,6 +98,7 @@ const CommentBox: React.FC<any> = ({ elementId, comments, contentType, contentNa
       commentDetails();
     } else {
       const commentsData: ReviewComment[] = [];
+
       dispatch(
         getComment({
           commentsNew: commentsData,
@@ -140,8 +141,8 @@ const CommentBox: React.FC<any> = ({ elementId, comments, contentType, contentNa
               pageUrl.pathname.includes("/edit-page")
                 ? "commentPage"
                 : contentType[0] === "article"
-                ? "commentArticle"
-                : "commentContent"
+                  ? "commentArticle"
+                  : "commentContent"
             }`}
             // style={{ position: 'absolute', right: '-40px', top: 0, zIndex: 9 }}
           >

@@ -1,6 +1,3 @@
-// import Gallery from './lib/components/Gallery/Gallery'
-
-// import { XDialog } from './lib/components/XDialog/XDialog'
 import AddImage from "./lib/components/AddImage/AddImage";
 import AutoCompleteMultiSelect from "./lib/components/AutoCompleteMultiSelect/AutoCompleteMultiSelect";
 import AutoTextArea from "./lib/components/AutoTextArea/AutoTextArea";
@@ -12,16 +9,13 @@ import Error from "./lib/components/Error/Error";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
 import Icons from "./lib/components/Icons";
 import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
-// import Gallery from './lib/components/Gallery/Gallery'
 import { MiniHeader } from "./lib/components/Header/MiniHeader";
 import LanguageDropDown from "./lib/components/LanguageDropDown/LanguageDropDown";
 import { Loader } from "./lib/components/Loader";
-//import ContentListLoader from "./lib/components/Loader/ContentListLoader";
 import General_community from "./lib/assets/svg/General_community.svg";
 import News_community from "./lib/assets/svg/News_community.svg";
 import ContentListDesktopLoader from "./lib/components/Loader/ContentListDesktopLoader";
 import ContentListMobileLoader from "./lib/components/Loader/ContentListLoaderMobile";
-//import ContentListLoader from "./lib/components/Loader/ContentListLoader";
 import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import NoSearchResult from "./lib/components/NoSearchResult/NoSearchResult";
 import {
@@ -31,8 +25,8 @@ import {
 import PlateformXDialogSuccess from "./lib/components/Popups/SuccessPopup";
 import RadioControlLabel from "./lib/components/RadioControlLabel";
 import { RadioLabelWithSubheading } from "./lib/components/RadioLabelWithSubheading";
-import SkeltonLoader from "./lib/components/Skeleton-loader/skeleton";
 import ChartSkeltonLoader from "./lib/components/Skeleton-loader/chartSkelton";
+import SkeltonLoader from "./lib/components/Skeleton-loader/skeleton";
 import BasicSwitch from "./lib/components/Switch/Switch";
 import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
 import TextBox from "./lib/components/TextBox/TextBox";
@@ -40,9 +34,7 @@ import {
   ShowToastError,
   ShowToastSuccess,
 } from "./lib/components/ToastNotification/ToastNotification";
-// import { XDialog } from './lib/components/XDialog/XDialog'
 import XLoader from "./lib/components/XLoader/XLoader";
-//import ArticleListDesktopLoader from "./lib/components/contentListLoaderDesktop";
 import ErrorBoundary from "./lib/components/ErrorBoundary";
 import {
   AUTH_INFO,
@@ -54,11 +46,6 @@ import {
 
 import ThemeConstants from "./lib/themes/authoring/lightTheme/lightThemeVariable";
 import LightTheme from "./lib/themes/authoring/theme";
-// import PrelemsDarkThemeConstants from "./lib/themes/prelems/DarkTheme";
-// import PrelemsFeyenoordThemeConstants from "./lib/themes/prelems/Feyenoord";
-// import PrelemsFifaThemeConstants from "./lib/themes/prelems/Fifa";
-// import PrelemsHockeyAustraliaThemeConstants from "./lib/themes/prelems/HockeyAustralia";
-// import PrelemsLightThemeConstants from "./lib/themes/prelems/LightTheme";
 import PrelemTheme from "./lib/themes/prelems/prelemTheme";
 import {
   capitalizeFirstLetter,
@@ -71,7 +58,6 @@ import {
   trimString,
   unloadCallback,
 } from "./lib/utils/helperFns";
-// import { LanguageList } from "./lib/utils/helperConstants";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
 import { default as CommonPlateformXDialog } from "./lib/components/Modal";
 import NoResultsFound from "./lib/components/NoResultsFound";
@@ -96,11 +82,14 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
-//import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
-import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
+import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
+import LoadingTextModal from "./lib/components/LoadingTextModal";
+import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
+import Submit from "./lib/components/Submit/Submit";
+import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
 import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
@@ -108,14 +97,10 @@ import useAccess from "./lib/hooks/useAccess/useAccess";
 import usePlatformAnalytics from "./lib/hooks/usePlatformAnalytics/usePlatformAnalytics";
 import { usePrelemImpression } from "./lib/hooks/usePrelemImpression/usePrelemImpression";
 import useUserSession from "./lib/hooks/useUserSession/useUserSession";
+import i18next from "./lib/i18next";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
-import i18next from "./lib/utils/i18next";
 import { doneInsituEditing, initInsituEditing } from "./lib/utils/insituEditing";
-import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
-import LoadingTextModal from "./lib/components/LoadingTextModal";
-import Submit from "./lib/components/Submit/Submit";
-import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -150,10 +135,10 @@ export {
   AutoCompleteMultiSelect,
   AutoTextArea,
   BasicSwitch,
+  ChartSkeltonLoader,
   ColorPallet,
   CommonBoxWithNumber,
   CommonPlateformXDialog,
-  // CommonImageRender,
   ContentGridLoader,
   ContentListDesktopLoader,
   ContentListMobileLoader,
@@ -169,12 +154,12 @@ export {
   FormikField,
   General_community,
   Icons,
-  // Gallery,
   InterRegular,
   LOGOUT_URL,
   LanguageDropDown,
   LightTheme,
   Loader,
+  LoadingTextModal,
   MiniHeader,
   MultiSelect,
   NEW_LOGOUT_URL,
@@ -182,6 +167,7 @@ export {
   NoContentFound,
   NoResultsFound,
   NoSearchResult,
+  NotificationBox,
   PlateformXDialog,
   PlateformXDialogSuccess,
   PrelemTheme,
@@ -193,8 +179,8 @@ export {
   ShowToastError,
   ShowToastSuccess,
   SkeltonLoader,
-  ChartSkeltonLoader,
   StructureDataDialog,
+  Submit,
   TaskNotFound,
   TextArea,
   TextBox,
@@ -202,13 +188,11 @@ export {
   TitleSubTitle,
   ToastContainerHandle,
   ToolTip,
-  // TitleSubTitle,
   USERNAME_EMAIL_EXIST,
-  //WorkflowHistoryIcon,
+  WorkflowHistoryIcon,
   XButton,
   XCheckBox,
   XDatePicker,
-  // ArticleListDesktopLoader,
   XDialog,
   XFileUpload,
   XLoader,
@@ -216,12 +200,15 @@ export {
   XTable,
   XTextArea,
   capitalizeFirstLetter,
+  doneInsituEditing,
   getCurrentLang,
   getFormattedImageUrl,
   getSubDomain,
   getUniqueTimeZone,
   handleHtmlTags,
   i18next,
+  initInsituEditing,
+  liveIcon,
   loadergif,
   onBackButtonEvent,
   prelemTypes,
@@ -233,11 +220,4 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
-  liveIcon,
-  doneInsituEditing,
-  initInsituEditing,
-  NotificationBox,
-  LoadingTextModal,
-  Submit,
-  WorkflowHistoryIcon,
 };

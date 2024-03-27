@@ -11,7 +11,6 @@ import {
   WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
-  i18next,
   nullToObject,
   successGif,
   useUserSession,
@@ -24,7 +23,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { CATEGORY_CONTENT, DRAFT, PUBLISHED } from "../../utils/Constants";
-import { onBackButtonEvent, unloadCallback } from "../../utils/Helper";
 import { useStyles } from "./CreateArticle.styles";
 import {
   ArticleInitialState,
@@ -250,6 +248,7 @@ export const CreateArticle = () => {
           user_id,
           user_name,
           is_featured,
+          modificationDate,
         } = articleObj;
         setIsFeatured(is_featured);
         const instance = {
@@ -265,6 +264,7 @@ export const CreateArticle = () => {
             seo_enable,
             analytics_enable,
             lastModifiedBy,
+            modificationDate,
           },
           ObjectFields: {
             ...articleInstance.ObjectFields,
@@ -572,12 +572,12 @@ export const CreateArticle = () => {
     updateImageData(obj, content, setArticleInstance, articleInstance, selectedImage);
   };
   const handelPreview = () => {
-    const { title, creationDate: developed_date } = articleInstance.CommonFields;
+    const { title, modificationDate: developed_date } = articleInstance.CommonFields;
     const pageUrl = currentArticleData.current
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const article_settings = {
-      socialog_url: `${AUTH_INFO.publishUri + i18next.language}/article/${pageUrl}`,
+      socialog_url: `${AUTH_INFO.publishUri + "en"}/article/${pageUrl}`,
       keywords: socialOgTags.tagsSocialShare,
     };
     const current_page_url = `/${pageUrl}`;
@@ -596,11 +596,12 @@ export const CreateArticle = () => {
       current_page_url,
       article_settings,
       sub_title,
+      contentType: "Article",
     };
 
     dispatch(previewContent(articlePreview));
 
-    navigate("/article-preview");
+    navigate("/content/preview");
   };
   const updateStructureDataArticle = () => {
     const contentData = articleInstance?.CommonFields || {};
@@ -674,22 +675,22 @@ export const CreateArticle = () => {
     }
   };
 
-  useEffect(() => {
-    if (unsavedChanges.current === true) {
-      // eslint-disable-next-line no-restricted-globals
-      window.history.pushState(null, "", window.location.pathname + location?.search);
-      window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    }
-    return () => {
-      window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
-      );
-    };
-  }, [unsavedChanges.current, articleInstance]);
+  // useEffect(() => {
+  //   if (unsavedChanges.current === true) {
+  //     // eslint-disable-next-line no-restricted-globals
+  //     window.history.pushState(null, "", window.location.pathname + location?.search);
+  //     window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.addEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   }
+  //   return () => {
+  //     window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.removeEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, exitWarnDialog, navigateTo),
+  //     );
+  //   };
+  // }, [unsavedChanges.current, articleInstance]);
 
   return (
     <Box

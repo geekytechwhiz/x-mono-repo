@@ -1,8 +1,7 @@
 import { ExpandMore } from "@mui/icons-material";
 import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { RootState, updatePageSettings } from "@platformx/authoring-state";
-import { ShowToastSuccess, siteLevelSchema } from "@platformx/utilities";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
+import { ShowToastSuccess, siteLevelSchema, usePlatformAnalytics } from "@platformx/utilities";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,20 +42,20 @@ const SocialShare = ({ setPageId }: socialShareinsting) => {
       SocialOgTitle !== undefined
         ? SocialOgTitle
         : PageName === undefined
-        ? ""
-        : `${PageName} | ${siteLevelSchema.siteName}`,
+          ? ""
+          : `${PageName} | ${siteLevelSchema.siteName}`,
     SocialOgDescription:
       SocialOgDescription !== undefined
         ? SocialOgDescription
         : PageDescription === undefined
-        ? ""
-        : PageDescription,
+          ? ""
+          : PageDescription,
     SocialOgSiteName:
       SocialOgSiteName !== undefined
         ? SocialOgSiteName
         : PageName === undefined
-        ? ""
-        : `${PageName} | ${siteLevelSchema.siteName}`,
+          ? ""
+          : `${PageName} | ${siteLevelSchema.siteName}`,
     SocialOgType: SocialOgType !== undefined ? SocialOgType : t("Website"),
     SocialOgURL: SocialOgURL !== undefined ? SocialOgURL : PageURL === undefined ? "" : PageURL,
     SocialOgLocale: SocialOgLocale !== undefined ? SocialOgLocale : t("en_US"),

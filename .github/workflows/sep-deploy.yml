@@ -10,8 +10,8 @@ jobs:
   authoring-ui:
     name: authoring-ui
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: write
+      id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -37,6 +37,28 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          # cache: 'npm'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm i --legacy-peer-deps
+
+      # Setup Nx Cloud
+      # - name: Setup Nx Cloud
+      #   uses: nrwl/nx-set-shas@v3
+      # Setup Nx Cloud
+      - name: Setup Nx Cloud
+        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+
+      # Record Nx Cloud actions and execute Nx commands
+      - name: Record Nx Cloud Actions and Execute Nx Commands
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -91,13 +113,13 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s
 
   user-experience-ui:
     name: user-experience-ui
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: write
+      id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -115,7 +137,28 @@ jobs:
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          #cache: "npm"
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm i --legacy-peer-deps
+
+      # Setup Nx Cloud
+      # - name: Setup Nx Cloud
+      #   uses: nrwl/nx-set-shas@v3
+      # Setup Nx Cloud
+      - name: Setup Nx Cloud
+        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+
+      - name: Record Nx Cloud Actions and Execute Nx Commands
+        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -170,4 +213,4 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=180s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s

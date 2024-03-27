@@ -180,7 +180,7 @@ export const MenuListing = ({
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
-                  {`${t("page")} ${t("title")}`}
+                  {`${t("page_title")}`}
                 </Typography>
               </Grid>
               <Grid item xs={2.8} sx={{ marginRight: "2.8%" }}>

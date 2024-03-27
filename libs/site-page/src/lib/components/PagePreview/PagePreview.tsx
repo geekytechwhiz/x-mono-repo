@@ -1,9 +1,13 @@
+import createCache from "@emotion/cache";
+// import { CacheProvider } from "@emotion/react";
+import weakMemoize from "@emotion/weak-memoize";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { StylesProvider, jssPreset } from "@mui/styles";
 import { RootState } from "@platformx/authoring-state";
 import {
   ThemeConstantForPrelemThemeBasedOnSite,
@@ -11,8 +15,9 @@ import {
   getSubDomain,
 } from "@platformx/utilities";
 import { Mapping } from "@platformx/x-prelems-library";
+import { create } from "jss";
 import React, { createRef, useEffect, useRef, useState } from "react";
-import Frame from "react-frame-component";
+import Frame, { FrameContextConsumer } from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -53,6 +58,11 @@ export const PagePreview = () => {
       // setHeight(window?.parent?.innerHeight - 48);
     }
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
+    const newCache = createCache({ container, key: "css", prepend: true });
+    return newCache;
+  });
   const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
   const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}<style>
     #react-player video {
@@ -141,68 +151,88 @@ export const PagePreview = () => {
               contentDidMount={() => handleResize(iframeRef)}
               contentDidUpdate={() => handleResize(iframeRef)}
               frameBorder='0'>
-              <ThemeProvider theme={() => PrelemTheme(ThemeConstant)}>
-                <Box
-                  sx={{
-                    margin: (themeOptions) => themeOptions.prelemMargin.value,
-                  }}>
-                  {page?.prelemMetaArray?.map((arrayTuple: PrelemInstance, i) => {
-                    if (!arrayTuple.IsHidden) {
-                      const PrelemComponent = mappingDynamicInstance[arrayTuple.PrelemId];
-                      const prelemSchema = {
-                        ...arrayTuple,
-                        isAuthoring: true,
-                      };
-                      const prelemContent = { ...prelemSchema?.content };
-                      const prelemAnalytics = {
-                        pageId: page?.pageSettings?.PageName,
-                        pageTitle: page?.pageModel?.Title,
-                        pageDesc: page?.pageSettings?.PageName,
-                        pageTags: page?.pageSettings?.PageTags,
-                        prelemID: arrayTuple.PrelemId,
-                        prelemTitle: arrayTuple.PrelemName,
-                        isAuthoring: true,
-                        prelemPosition: i,
-                      };
-                      const prelemAuthoringHelper = {
-                        isAuthoring: true,
-                        isSeoEnabled: true,
-                        isAnalyticsEnabled: true,
-                        innerRef: myRefs.current[i],
-                        isModalShow: true,
-                      };
-                      const prelemBaseEndpoint = {
-                        APIEndPoint: process.env.NX_API_URI,
-                        PublishEndPoint: `${getSubDomain()}/`,
-                        buttonBaseUrl: `${getSubDomain()}/`,
-                        device: deviceType,
-                        deliveryEndPoint: process.env.NX_DELIVERY_URI,
-                        language: i18n.language,
-                      };
-                      const secondaryArgs = {
-                        prelemBaseEndpoint,
-                        gcpUrl: process.env.NX_GCP_URL,
-                        bucketName: process.env.NX_BUCKET_NAME,
-                      };
-                      return (
+              <FrameContextConsumer>
+                {({ document, window }) => {
+                  const jss = create({
+                    plugins: [...jssPreset().plugins],
+                    insertionPoint: document?.head,
+                  });
+                  return (
+                    <StylesProvider jss={jss}>
+                      {/* {({ document }: any) => {
+                  return (
+                    <CacheProvider value={memoizedCreateCacheWithContainer(document.head)}> */}
+                      <ThemeProvider theme={() => PrelemTheme(ThemeConstant)}>
                         <Box
-                          key={i}
                           sx={{
-                            paddingTop: (themeOptions) => themeOptions.prelemPaddingTop.value,
-                            paddingBottom: (themeOptions) => themeOptions.prelemPaddingBottom.value,
+                            margin: (themeOptions) => themeOptions.prelemMargin.value,
                           }}>
-                          <PrelemComponent
-                            content={prelemContent}
-                            analytics={prelemAnalytics}
-                            authoringHelper={prelemAuthoringHelper}
-                            secondaryArgs={secondaryArgs}
-                          />
+                          {page?.prelemMetaArray?.map((arrayTuple: PrelemInstance, i) => {
+                            if (!arrayTuple.IsHidden) {
+                              const PrelemComponent = mappingDynamicInstance[arrayTuple.PrelemId];
+                              const prelemSchema = {
+                                ...arrayTuple,
+                                isAuthoring: true,
+                              };
+                              const prelemContent = { ...prelemSchema?.content };
+                              const prelemAnalytics = {
+                                pageId: page?.pageSettings?.PageName,
+                                pageTitle: page?.pageModel?.Title,
+                                pageDesc: page?.pageSettings?.PageName,
+                                pageTags: page?.pageSettings?.PageTags,
+                                prelemID: arrayTuple.PrelemId,
+                                prelemTitle: arrayTuple.PrelemName,
+                                isAuthoring: true,
+                                prelemPosition: i,
+                              };
+                              const prelemAuthoringHelper = {
+                                isAuthoring: true,
+                                isSeoEnabled: true,
+                                isAnalyticsEnabled: true,
+                                innerRef: myRefs.current[i],
+                                isModalShow: true,
+                              };
+                              const prelemBaseEndpoint = {
+                                APIEndPoint: process.env.NX_API_URI,
+                                PublishEndPoint: `${getSubDomain()}/`,
+                                buttonBaseUrl: `${getSubDomain()}/`,
+                                device: deviceType,
+                                deliveryEndPoint: process.env.NX_DELIVERY_URI,
+                                language: i18n.language,
+                              };
+                              const secondaryArgs = {
+                                prelemBaseEndpoint,
+                                gcpUrl: process.env.NX_GCP_URL,
+                                bucketName: process.env.NX_BUCKET_NAME,
+                              };
+                              return (
+                                <Box
+                                  key={i}
+                                  sx={{
+                                    paddingTop: (themeOptions) =>
+                                      themeOptions.prelemPaddingTop.value,
+                                    paddingBottom: (themeOptions) =>
+                                      themeOptions.prelemPaddingBottom.value,
+                                  }}>
+                                  <PrelemComponent
+                                    content={prelemContent}
+                                    analytics={prelemAnalytics}
+                                    authoringHelper={prelemAuthoringHelper}
+                                    secondaryArgs={secondaryArgs}
+                                  />
+                                </Box>
+                              );
+                            }
+                          })}
                         </Box>
-                      );
-                    }
-                  })}
-                </Box>
-              </ThemeProvider>
+                      </ThemeProvider>
+                      {/* </CacheProvider>
+                  );
+                }} */}
+                    </StylesProvider>
+                  );
+                }}
+              </FrameContextConsumer>
             </Frame>
           )}
         </Box>

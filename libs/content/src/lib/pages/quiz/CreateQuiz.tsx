@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
@@ -8,7 +10,7 @@ import {
   useComment,
   useWorkflow,
 } from "@platformx/authoring-apis";
-import { RootState } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
@@ -25,7 +27,7 @@ import {
 import { WorkflowHistory } from "@platformx/workflow-management";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Analytics from "../../components/Analytics/Analytics";
 import ContentPageScroll from "../../components/ContentPageScroll";
@@ -33,13 +35,7 @@ import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../enums/ContentType";
 import useQuizAPI from "../../hooks/useQuizAPI/useQuizAPI";
 import { DRAFT, PUBLISHED, icons } from "../../utils/Constants";
-import {
-  getCurrentQuiz,
-  onBackButtonEvent,
-  quizResponseMapper,
-  unloadCallback,
-  updateStructureData,
-} from "../../utils/Helper";
+import { getCurrentQuiz, quizResponseMapper, updateStructureData } from "../../utils/Helper";
 import { QuizType } from "./Quiz.types";
 import ImageVideo from "./components/ImageVideo";
 import { TitleDescription } from "./components/TitleDescription";
@@ -48,6 +44,7 @@ import ChooseTags from "./components/choosetags/ChooseTags";
 import { Question } from "./components/question/Question";
 import QuestionListing from "./components/questionlisting/QuestionListing";
 import Result from "./components/result/Result";
+import Seo from "./components/seo/Seo";
 import SocialShare from "./components/socialshare/SocialShare";
 import { createInitialQuizState, createNewQuiz } from "./helper";
 
@@ -55,6 +52,8 @@ export const CreateQuiz = () => {
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t } = useTranslation();
   const params = useParams();
+  const dispatch = useDispatch();
+
   const updateTempObj = useRef<any>({});
   const { currentContent } = useSelector((state: RootState) => state.content);
   const { currentQuiz } = useSelector((state: RootState) => state.quiz);
@@ -221,7 +220,7 @@ export const CreateQuiz = () => {
     publishConfirmText: "View QUIZ",
   });
   const [pageStatus, setPageStatus] = useState(DRAFT);
-  const [editedSD] = useState("");
+  const [editedSD, setEditedSD] = useState("");
   const [workflowStatus, setWorkflowStatus] = useState(true);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState(false);
   const workflowSubmitRequest = async (workflowObj, status) => {
@@ -838,37 +837,37 @@ export const CreateQuiz = () => {
     // dispatch(previewContent({}));
   };
   const handelPreview = () => {
-    // const backgroundContent = {
-    //   objectType: "image",
-    //   Url: quizState?.imagevideoURL,
-    //   Title: "",
-    //   Thumbnail: quizState?.imagevideoURL,
-    //   Color: "",
-    // };
-    // const tempObj = {
-    //   ...quizState,
-    //   background_content: backgroundContent,
-    //   contentType: "Quiz",
-    // };
-    // dispatch(previewContent(tempObj));
-    navigate("/content-preview");
+    const backgroundContent = {
+      objectType: "image",
+      Url: quizState?.imagevideoURL,
+      Title: "",
+      Thumbnail: quizState?.imagevideoURL,
+      Color: "",
+    };
+    const tempObj = {
+      ...quizState,
+      background_content: backgroundContent,
+      contentType: "Quiz",
+    };
+    dispatch(previewContent(tempObj));
+    navigate("/content/preview");
   };
 
-  useEffect(() => {
-    if (unsavedChanges.current === true) {
-      window.history.pushState(null, "", window.location.pathname + window.location?.search);
-      window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.addEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
-      );
-    }
-    return () => {
-      window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
-      window.removeEventListener("popstate", (e) =>
-        onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
-      );
-    };
-  }, [unsavedChanges.current]);
+  // useEffect(() => {
+  //   if (unsavedChanges.current === true) {
+  //     window.history.pushState(null, "", window.location.pathname + window.location?.search);
+  //     window.addEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.addEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+  //     );
+  //   }
+  //   return () => {
+  //     window.removeEventListener("beforeunload", (e) => unloadCallback(e, unsavedChanges.current));
+  //     window.removeEventListener("popstate", (e) =>
+  //       onBackButtonEvent(e, unsavedChanges.current, setShowExitWarning, navigateTo),
+  //     );
+  //   };
+  // }, [unsavedChanges.current]);
 
   useEffect(() => {
     // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
@@ -1051,6 +1050,13 @@ export const CreateQuiz = () => {
                   setState={setQuizState}
                   unsavedChanges={unsavedChanges}
                 />
+                <Seo
+                  state={quizState}
+                  setState={setQuizState}
+                  setEditedSD={setEditedSD}
+                  quizInstance={quizInstance}
+                  unsavedChanges={unsavedChanges}
+                />
               </>
             )}
           </Box>
@@ -1062,7 +1068,7 @@ export const CreateQuiz = () => {
           closeButtonText={t("take_me_out")}
           confirmButtonText={t("done")}
           closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={saveQuiz}
+          confirmButtonHandle={() => saveQuiz(false)}
           crossButtonHandle={() => {
             setShowExitWarning(false);
           }}

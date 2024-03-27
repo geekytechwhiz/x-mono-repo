@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import FormValidate from "../../../components/CustomHook/FormValidate";
 import StringOnBlurTextBox from "../../../components/TextBox/StringTextBoxComponent/StringOnBlurTextBox";
 import prelemTypes from "../../../globalStyle";
-import "../../../utils/service/i18n";
 import { useCustomStyle } from "./SignUp.style";
 
 type signUpProps = {

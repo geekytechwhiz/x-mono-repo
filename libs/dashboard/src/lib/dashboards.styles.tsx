@@ -19,4 +19,10 @@ export const useStyles = makeStyles(() => ({
   textMargin: {
     marginBottom: "20px",
   },
+  dashtypo: {
+    display: "flex",
+    textAlign: "center",
+    justifyContent: "center",
+    paddingBottom: "15px",
+  },
 }));

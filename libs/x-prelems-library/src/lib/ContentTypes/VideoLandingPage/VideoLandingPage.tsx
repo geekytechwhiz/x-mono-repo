@@ -9,7 +9,7 @@ import "../../Style.css";
 import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
 import Share from "../../components/Share/Share";
 import VideoPlayer from "../../components/VideoPlayers/VideoPlayer";
-import "../../utils/service/i18n";
+
 import { useCustomStyle } from "./videoLandingPage.style";
 
 const BrightcovePlayer: any = React.lazy(
@@ -218,8 +218,8 @@ const VideoLandingPage = (props: any) => {
     showDate = !isAuthoring
       ? content?.PublishedDate
       : content?.lastModifiedDate
-      ? content?.lastModifiedDate
-      : new Date();
+        ? content?.lastModifiedDate
+        : new Date();
     if (!showDate) return "";
     return ` ${format(new Date(showDate), "LLL dd, yyyy | H:mm")}`;
   };
