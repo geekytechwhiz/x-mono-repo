@@ -125,7 +125,7 @@ jobs:
       - name: Deploy Configmap on qa branch
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
-          kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-qa.yaml
+          kubectl apply -f ./apps/authoring-web/configmaps/hep-authoring-ui-config-qa.yaml
 
       - name: deploy-stg-live
         if: contains('
