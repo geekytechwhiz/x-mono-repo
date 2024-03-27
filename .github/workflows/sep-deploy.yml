@@ -157,7 +157,6 @@ jobs:
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
         run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
