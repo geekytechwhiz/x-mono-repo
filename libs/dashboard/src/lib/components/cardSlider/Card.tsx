@@ -23,6 +23,7 @@ import { createPgModel } from "@platformx/authoring-apis";
 // } from '../../../../store/Actions';
 // import { PageProps } from '@platformx/authoring-state';
 // import CreatePage from '../../../createPage';
+import { CreatePage } from "@platformx/content";
 import "./Card.css";
 import { PAGE_MODEL_INSTANCE } from "./utils/constants";
 import { useDispatch } from "react-redux";
@@ -49,12 +50,13 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
   //function redirect to create page
   const [createPage, setCreatePage] = useState<boolean>(false);
   const handleCardClick = () => {
-    // const URL = `${location.origin}/${getSelectedSite()}/${getCurrentLang()}${url}`
-    // if (CTAText.toLowerCase().includes('create a page')) {
-    //   setCreatePage(!createPage);
-    // } else {
-    //   window.open(URL, '_self');
-    // }
+    debugger;
+    const URL = `${window.location.origin}/${getSelectedSite()}/${getCurrentLang()}${url}`;
+    if (CTAText.toLowerCase().includes("create a page")) {
+      setCreatePage(!createPage);
+    } else {
+      window.open(URL, "_self");
+    }
   };
   const [mutate] = useMutation(createPgModel, {
     context: {
@@ -112,12 +114,7 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
           </Box>
         </Button>
       </Box>
-      {/* <CreatePage
-        isDialogOpen={createPage}
-        isDuplicate={false}
-        confirmButtonHandle={confirmButtonHandle}
-        closeButtonHandle={() => setCreatePage(!createPage)}
-      /> */}
+      <CreatePage isDialogOpen={createPage} closeButtonHandle={() => setCreatePage(!createPage)} />
     </>
   );
 };

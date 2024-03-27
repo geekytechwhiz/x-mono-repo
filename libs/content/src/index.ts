@@ -14,6 +14,7 @@ export * from "./lib/content";
 export * from "./lib/enums/ContentType";
 export * from "./lib/utils/Constants";
 export * from "./lib/utils/Helper";
+export * from "./lib/pages/page";
 export {
   ChooseTags,
   Content,
