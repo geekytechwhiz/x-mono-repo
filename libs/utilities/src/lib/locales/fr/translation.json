@@ -1,7 +1,12 @@
 {
   "dashboard": "Mon tableau de bord",
+  "overview": "Aperçu",
   "pages": "Pages",
   "all_pages": "Toutes les pages",
+  "reports": "Rapports",
+  "report_snapshot": "Aperçu des rapports",
+  "user_engagement": "Engagement des utilisateurs",
+  "web_master": "Webmestre",
   "published": "Publié",
   "drafts": "Brouillons",
   "unpublished": "Non publié",

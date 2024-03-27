@@ -86,6 +86,7 @@ import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
+import XAnimatedLoader from "./lib/assets/gif/Common-Loader.gif";
 import LoadingTextModal from "./lib/components/LoadingTextModal";
 import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import Submit from "./lib/components/Submit/Submit";
@@ -172,6 +173,7 @@ export {
   PlateformXDialogSuccess,
   PrelemTheme,
   ProgressiveLoader,
+  XAnimatedLoader,
   REDIRECT_AUTH_URL,
   RadioControlLabel,
   RadioLabelWithSubheading,

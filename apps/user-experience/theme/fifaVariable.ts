@@ -914,6 +914,11 @@ const ThemeConstants = {
       BORDER_COLOR_HOVER: "#14142B",
     },
   },
+  ANIMATION: {
+    IMAGE: {
+      FADEINTIME: "1",
+    },
+  },
 
   FONTNAMEPRIMARY: PoppinsMedium?.style?.fontFamily,
   FONTNAMESECONDARY: PoppinsRegular?.style?.fontFamily,

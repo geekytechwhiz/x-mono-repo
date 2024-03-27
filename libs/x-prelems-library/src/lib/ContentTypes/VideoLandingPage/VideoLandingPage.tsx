@@ -218,8 +218,8 @@ const VideoLandingPage = (props: any) => {
     showDate = !isAuthoring
       ? content?.PublishedDate
       : content?.lastModifiedDate
-      ? content?.lastModifiedDate
-      : new Date();
+        ? content?.lastModifiedDate
+        : new Date();
     if (!showDate) return "";
     return ` ${format(new Date(showDate), "LLL dd, yyyy | H:mm")}`;
   };

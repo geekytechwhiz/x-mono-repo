@@ -1,8 +1,13 @@
 {
   "dashboard": "My Dashboard",
+  "overview": "Overview",
   "sitename": "Site Name",
   "pages": "Pages",
   "all_pages": "All pages",
+  "reports": "Reports",
+  "report_snapshot": "Reports Snapshot",
+  "user_engagement": "User Engagement",
+  "web_master": "Web master",
   "published": "Published",
   "drafts": "Drafts",
   "unpublished": "Unpublished",
