@@ -3,6 +3,7 @@ import { fallBackImage, formCroppedUrl } from "@platformx/utilities";
 
 import React, { useState } from "react";
 import { breakpoints, ratios } from "./ConstantData";
+import "./ImageRender.css";
 import { useCustomStyle } from "./ImageRender.style";
 
 const ImageRender = (props: any = {}) => {

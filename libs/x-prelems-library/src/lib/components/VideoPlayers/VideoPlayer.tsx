@@ -1,5 +1,6 @@
 import { PlayIcon } from "@platformx/utilities";
 import ReactPlayer from "react-player";
+import "../ImageRender.css";
 import { useCustomStyle } from "./VideoPlayer.style";
 
 const VideoPlayer = ({ playerProp }: VideoPlayerProp) => {

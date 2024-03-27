@@ -9,20 +9,12 @@ export const useCustomStyle = makeStyles(() => {
         "& .react-player__preview": {
           backgroundPosition: "top !important",
           opacity: 0,
-          animation: `$fadeInAnimation ${theme?.palette?.prelemAnimation?.IMAGE?.FADEINTIME}s ease-in forwards`,
+          animation: `fadeInAnimation ${theme?.palette?.prelemAnimation?.IMAGE?.FADEINTIME}s ease-in forwards`,
           "& .smallPlayIcon": {
             width: "44px",
             height: "44px",
           },
         },
-      },
-    },
-    "@keyframes fadeInAnimation": {
-      from: {
-        opacity: 0,
-      },
-      to: {
-        opacity: 1,
       },
     },
   };
