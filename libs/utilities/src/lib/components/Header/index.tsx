@@ -3,7 +3,7 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import usePlatformAnalytics from "platform-x-utils/dist/analytics";
+import { usePlatformAnalytics } from "@platformx/utilities";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Profile from "../../assets/images/avatar.png";

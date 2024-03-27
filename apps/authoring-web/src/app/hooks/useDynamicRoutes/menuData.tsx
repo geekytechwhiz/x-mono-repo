@@ -1,3 +1,4 @@
+import { Space } from "@platformx/community";
 import { Content } from "@platformx/content";
 import {
   ApprovalStatus,
@@ -22,7 +23,6 @@ import {
   Webmaster,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
-import { Space } from "@platformx/community";
 
 const ContentRoutes = {
   url: "",
@@ -67,11 +67,11 @@ const ContentRoutes = {
     },
     {
       MenuName: "Profile",
-      Icon: PollIcon,
-      url: "content/profile",
+      Icon: ArticleIcon,
+      url: "/content/profile",
       category: "content",
-      subCategory: "profile",
-      id: "profile",
+      subCategory: "",
+      id: "Profile",
       component: <Content></Content>,
     },
     {
