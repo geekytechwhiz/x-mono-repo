@@ -1,11 +1,13 @@
-import { CardMedia, Paper } from "@mui/material";
+import { Box, CardMedia, Paper } from "@mui/material";
 import { fallBackImage, formCroppedUrl } from "@platformx/utilities";
 
 import React, { useState } from "react";
 import { breakpoints, ratios } from "./ConstantData";
+import { useCustomStyle } from "./ImageRender.style";
 
 const ImageRender = (props: any = {}) => {
   const [error, setError] = useState(false);
+  const classes = useCustomStyle();
   const {
     originalImage = {},
     publishedImages = [],
@@ -28,7 +30,7 @@ const ImageRender = (props: any = {}) => {
   };
 
   return (
-    <>
+    <Box className={`${classes.ImageRenderPrelemWrapper} imageRenderAnimation`}>
       {error ? (
         <img
           src={fallBackImage}
@@ -110,14 +112,14 @@ const ImageRender = (props: any = {}) => {
                   width='100%'
                   height='100%'
                   style={{ objectFit: "cover", display: "flex" }}
-                  alt='prelem default image'
+                  alt='prelem default'
                 />
               </picture>
             </Paper>
           )}
         </>
       )}
-    </>
+    </Box>
   );
 };
 

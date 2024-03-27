@@ -84,7 +84,7 @@ const Charts = ({ dashboardName, heading, titleVarient }: any) => {
   return (
     <Grid container spacing={2} className='graphContainerSpacing'>
       <Typography variant={titleVarient ? titleVarient : "h4bold"} className='chartHeading'>
-        {heading}
+        {t(heading)}
       </Typography>
       <Grid container className='chartContainer'>
         {loading ? (

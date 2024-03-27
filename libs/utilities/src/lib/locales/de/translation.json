@@ -1,7 +1,12 @@
 {
   "dashboard": "Mein Armaturenbrett",
+  "overview": "Überblick",
   "pages": "Seiten",
   "all_pages": "alle Seiten",
+  "reports": "Berichte",
+  "report_snapshot": "Schnappschuss der Berichte",
+  "user_engagement": "Benutzerinteraktion",
+  "web_master": "Webmasterin",
   "published": "veröffentlicht",
   "drafts": "Entwürfe",
   "unpublished": "unveröffentlicht",

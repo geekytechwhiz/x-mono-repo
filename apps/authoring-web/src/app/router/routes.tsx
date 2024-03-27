@@ -69,7 +69,7 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='reports' subCategory=''>
         <Suspense fallback={<Typography variant='h3bold'>Loading...</Typography>}>
-          <Charts dashboardName='userEngagement' heading='User Engagement' />
+          <Charts dashboardName='userEngagement' heading='user_engagement' />
         </Suspense>
       </ProtectedRoute>
     ),
@@ -79,7 +79,7 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='reports' subCategory=''>
         <Suspense fallback={<Typography variant='h3bold'>Loading...</Typography>}>
-          <Charts dashboardName='webMaster' heading='Web Master' />
+          <Charts dashboardName='webMaster' heading='web_master' />
         </Suspense>
       </ProtectedRoute>
     ),

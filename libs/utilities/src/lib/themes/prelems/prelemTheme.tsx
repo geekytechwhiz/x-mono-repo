@@ -137,6 +137,7 @@ declare module "@mui/material/styles" {
     prelemType3?: any;
     header?: any;
     footer?: any;
+    prelemAnimation?: any;
     headerTextColor?: string;
     headerParagraphColor?: string;
     footerTextColor?: string;
@@ -166,6 +167,7 @@ declare module "@mui/material/styles" {
     prelemType3?: any;
     header?: any;
     footer?: any;
+    prelemAnimation?: any;
     headerTextColor?: string;
     headerParagraphColor?: string;
     footerTextColor?: string;
@@ -242,6 +244,7 @@ const PrelemTheme = createTheme({
     prelemType3: ThemeConstants.TERTIARY_PRELEM,
     header: ThemeConstants.HEADER,
     footer: ThemeConstants.FOOTER,
+    prelemAnimation: ThemeConstants.ANIMATION,
     headerTextColor: ThemeConstants.HEADER.VARIANT1.TITLE,
     headerParagraphColor: ThemeConstants.HEADER.VARIANT1.PARAGRAPH,
     footerTextColor: ThemeConstants.FOOTER.VARIANT1.TITLE,
