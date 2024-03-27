@@ -7,7 +7,7 @@ import German from "../../assets/images/de_flag.png";
 import English from "../../assets/images/en_flag.png";
 import French from "../../assets/images/fr_flag.png";
 import { LanguageList } from "../../utils/helperConstants";
-import { getCurrentLang, getSelectedSite } from "../../utils/helperFns";
+import { getCurrentLang, getCurrentPathName, getSelectedSite } from "../../utils/helperFns";
 import { useLanguageDropDownStyle } from "./LanguageDropDown.style";
 
 const LanguageDropDown = () => {
@@ -28,12 +28,10 @@ const LanguageDropDown = () => {
     handleClose();
     const selectedSite = getSelectedSite();
     if (val !== getCurrentLang()) {
-      // const newPath = `${
-      //   location.origin
-      // }/${selectedSite}/${val}${getCurrentPathName()}`;
-      // location.replace(
-      //   `${location.origin}/${selectedSite}/${val}${getCurrentPathName()}`
-      // );
+      const newPath = `${window.location.origin}/${selectedSite}/${val}${getCurrentPathName()}`;
+      window.location.replace(
+        `${window.location.origin}/${selectedSite}/${val}${getCurrentPathName()}`,
+      );
     }
   };
 
@@ -45,10 +43,10 @@ const LanguageDropDown = () => {
           language === "en"
             ? `${English}`
             : language === "de"
-            ? `${German}`
-            : language === "fr"
-            ? `${French}`
-            : `${English}`
+              ? `${German}`
+              : language === "fr"
+                ? `${French}`
+                : `${English}`
         }
         width={24}
         height={24}
@@ -81,10 +79,10 @@ const LanguageDropDown = () => {
                       l.id === "en"
                         ? `${English}`
                         : l.id === "de"
-                        ? `${German}`
-                        : l.id === "fr"
-                        ? `${French}`
-                        : `${English}`
+                          ? `${German}`
+                          : l.id === "fr"
+                            ? `${French}`
+                            : `${English}`
                     }
                   />
                 </Box>
