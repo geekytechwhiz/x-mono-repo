@@ -58,6 +58,8 @@ const useContentSearch = ({
     );
     if (!loading && sortedContent?.length < 20) {
       setIsLoading(false);
+    } else {
+      setIsLoading(true);
     }
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({
