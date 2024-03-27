@@ -96,7 +96,7 @@ jobs:
       - name: Deploy Configmap on develop branch
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
-          kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-develop.yaml
+          kubectl apply -f ./authoring/kubernetes/configmaps/hep-authoring-ui-config-develop.yaml
 
       - name: deploy-stg-live
         if: contains('
@@ -157,7 +157,6 @@ jobs:
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
         run: npx nx-cloud record -- npx nx affected --base=develop --target=build
 
