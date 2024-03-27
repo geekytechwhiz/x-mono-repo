@@ -1174,6 +1174,8 @@
   "administrator": "Administratorin",
   "your_site": "Deine Seite",
   "tags_categories": "Tags",
+  "cannot_delete_tag": "Sie können nicht löschen system tag",
+  "cannot_edit_tag": "Sie können nicht bearbeiten system tag",
   "remove_members": "Mitglieder entfernen",
   "invite_toast_subtitle": "Die Leute werden bald Einladungen erhalten und Sie erhalten Bestätigungs-E-Mails",
   "choose_members": "Wählen Sie Mitglieder",

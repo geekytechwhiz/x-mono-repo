@@ -362,6 +362,14 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
+    path: "/site-setting/create-tags/:docPath",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CreateTags />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/sites/site-creation",
     element: (
       <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>

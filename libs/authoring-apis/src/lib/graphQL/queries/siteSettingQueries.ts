@@ -144,15 +144,3 @@ export const FETCH_CATEGORY = gql`
     }
   }
 `;
-
-export const FETCH_TAG = gql`
-  query FETCH_TAG($searchCategory: String!, $searchString: String!) {
-    authoring_getTagItems(
-      pagination: { start: 0, rows: 1000 }
-      searchCategory: $searchCategory
-      searchString: $searchString
-    ) {
-      tags
-    }
-  }
-`;
