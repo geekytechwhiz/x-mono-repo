@@ -32,7 +32,7 @@ data:
   NX_REDIRECT_URI: https://qa.monorepo.console.hcl-x.com/en/
   NX_CHAT_GPT_PROMPT: Please write 3 paragraph article about
   NX_GCP_URL: https://storage.googleapis.com
-  NX_BUCKET_NAME: cropped_image_public
+  NX_BUCKET_NAME: cropped_image_public_x_site_qa
   NX_DEFAULT_IMAGE: machine_assets/1691655304773/public/png/Group_6705-03.png
   NX_NAV_ICON_1: https://qa.dam.hcl-x.com/server/api/core/bitstreams/f38b6de9-4fe1-4580-aa28-9a819b838465/content
   NX_NAV_ICON_2: https://qa.dam.hcl-x.com/server/api/core/bitstreams/2cd7acf8-e03c-4808-993d-96c69be3ca1b/content
