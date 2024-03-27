@@ -96,7 +96,7 @@ jobs:
       - name: Deploy Configmap on develop branch
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
-          kubectl apply -f ./apps/authoring-web/kubernetes/configmaps/hep-authoring-ui-config-develop.yaml
+          kubectl apply -f ./authoring/kubernetes/configmaps/hep-authoring-ui-config-develop.yaml
 
       - name: deploy-stg-live
         if: contains('
