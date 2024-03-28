@@ -174,7 +174,7 @@ export const Dashboard = () => {
                 <Charts
                   dashboardName='reportSnapshot'
                   titleVarient='h4bold'
-                  heading='Reports Snapshot'
+                  heading={t("report_snapshot")}
                 />
               </Box>
             </Suspense>

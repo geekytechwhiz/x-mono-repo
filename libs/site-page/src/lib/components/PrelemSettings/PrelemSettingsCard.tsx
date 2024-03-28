@@ -5,6 +5,8 @@ import {
   updateDynamicPrelemAssetInfo,
   updateLivestreamPrelemAssetInfo,
 } from "@platformx/authoring-state";
+import { useTranslation } from "react-i18next";
+import { ShowToastError } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
@@ -18,13 +20,15 @@ import PrelemTwitter from "./PrelemTwitter";
 import PrelemVideos from "./PrelemVideos";
 import PrelemAdvanced from "./prelemAdvanced";
 import PrelemAnalytics from "./prelemAnalytics";
+import { postRequest } from "@platformx/authoring-apis";
 
 const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrelemContent }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { page } = useSelector((state: RootState) => state);
   const [prelemModelData, setPrelemModelData] = useState(page.prelemMetaArray[selectedPrelemIndex]);
 
-  const handleSave = (sectionToUpdate, data, index) => {
+  const handleSave = async (sectionToUpdate, data, index) => {
     if (sectionToUpdate === "EcomHandle") {
       dispatch(
         updateDynamicPrelemAssetInfo({
@@ -76,6 +80,8 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
           index: index,
         }),
       );
+    } else if (sectionToUpdate === "Videos") {
+      await autoCrop({ data, sectionToUpdate, index });
     } else {
       dispatch(
         updateContentForCard({
@@ -86,10 +92,9 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
         }),
       );
     }
+
     if (
-      ["ImageCompound", "Videos", "TwitterHandle", "Livestream", "Testimonials"].includes(
-        sectionToUpdate,
-      )
+      ["ImageCompound", "TwitterHandle", "Livestream", "Testimonials"].includes(sectionToUpdate)
     ) {
       let updateContent: any = "";
       if (sectionToUpdate === "ImageCompound" || sectionToUpdate === "Videos") {
@@ -113,6 +118,34 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
       );
     } else {
       return;
+    }
+  };
+  const autoCrop = async ({ data, sectionToUpdate, index }) => {
+    const url = data?.Thumbnail;
+    const pattern = /\/bitstreams\/([0-9a-fA-F-]+)\/content/;
+    const bitStreamId = pattern.exec(url)?.[1];
+    const payload = {
+      url: data?.Thumbnail,
+      bitstreamId: bitStreamId,
+      visibility: "public",
+    };
+    try {
+      const response = await postRequest("api/v1/assets/image/auto-crop", payload);
+      if (response && response?.bitstream_id) {
+        const updatedData = { ...data, Thumbnail: JSON.stringify(response) };
+        dispatch(
+          updateContentForCard({
+            selectedPrelemIndex: selectedPrelemIndex,
+            sectionToUpdate: sectionToUpdate,
+            data: updatedData,
+            index: index,
+          }),
+        );
+      } else {
+        ShowToastError(`${t("auto_cropping_failed")}`);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
   };
 

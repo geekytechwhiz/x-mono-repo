@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Backdrop, Box, CircularProgress, LinearProgress } from "@mui/material";
-import { ThemeConstants } from "@platformx/utilities";
+import { ThemeConstants, XAnimatedLoader } from "@platformx/utilities";
 
 type XLoaderProps = {
-  type: "circular" | "linear";
+  type: "circular" | "linear" | "xloader";
 };
 const XLoader = ({ type }: XLoaderProps) => {
   const [progress, setProgress] = useState(0);
@@ -30,14 +30,16 @@ const XLoader = ({ type }: XLoaderProps) => {
         return (
           <CircularProgress
             style={{
-              width: "40px",
-              height: "40px",
+              width: "50px",
+              height: "50px",
               color: ThemeConstants.PRIMARY_MAIN_COLOR,
             }}
           />
         );
       case "linear":
         return <LinearProgress variant='determinate' value={progress} />;
+      case "xloader":
+        return <img src={XAnimatedLoader} alt='Loading...' />;
       default:
         return null;
     }
@@ -47,24 +49,21 @@ const XLoader = ({ type }: XLoaderProps) => {
     <Backdrop
       sx={{
         color: "#fff",
+        backgroundColor: "#fcfcfc",
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
       open>
       <Box
         sx={{
           position: "fixed",
-          top: "50%",
+          top: "45%",
           left: "50%",
           transform: "translate(-50%,-50%)",
         }}>
         <Box
           sx={{
-            width: "60px",
-            height: "60px",
-            padding: "10px",
-            borderRadius: "7px",
-            backdropFilter: "blur(10px)",
-            backgroundColor: "rgba(255, 255, 255, 0.5)",
+            width: "70px",
+            height: "70px",
           }}>
           {renderProgress()}
         </Box>

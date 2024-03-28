@@ -210,7 +210,6 @@ import HandsIcon from "./handsicon.svg";
 import UserEngagmentIcon from "../svg/UserEngagmentIcon.svg";
 import Webmaster from "../svg/Webmaster.svg";
 import NoSearchResultSvg from "../svg/NoSearchResult.svg";
-import Sitethemeicon from "./sitethemeicon.svg";
 import Sitethemenewicon from "../pngIcons/sitethemenew.png";
 import Sitethemenewnewicon from "../pngIcons/sitethemenewnew.png";
 import Sitethemeframe from "../pngIcons/sitethemeframe.png";
@@ -458,7 +457,6 @@ export {
   UserEngagmentIcon,
   Webmaster,
   NoSearchResultSvg,
-  Sitethemeicon,
   Sitethemenewicon,
   Sitethemenewnewicon,
   Sitethemeframe,

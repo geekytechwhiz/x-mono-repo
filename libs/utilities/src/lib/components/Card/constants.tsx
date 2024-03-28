@@ -55,3 +55,6 @@ export const iconsList: any = {
   profile: ArticleListIcon,
   tagscategories: TagsCatIcon,
 };
+
+export const SITE_TAGS = "SiteTags";
+export const SYSTEM_TAGS = "SystemTags";

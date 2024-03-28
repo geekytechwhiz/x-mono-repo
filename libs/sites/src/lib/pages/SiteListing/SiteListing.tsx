@@ -98,7 +98,7 @@ export const SiteListing = () => {
   };
 
   const getUrl = (site) => {
-    return `${process.env.REACT_APP_BASE_URL}/${site.site_title_url}/${getCurrentLang()}`;
+    return `${window.location.origin}/${site.site_title_url}/${getCurrentLang()}`;
   };
 
   const onDashBoardRedirect = (site) => {
@@ -200,8 +200,8 @@ export const SiteListing = () => {
                                   site?.status?.toLowerCase() === "published"
                                     ? classes.statusPublish
                                     : site?.status?.toLowerCase() === "draft"
-                                    ? classes.statusDraft
-                                    : classes.statusUnpublish
+                                      ? classes.statusDraft
+                                      : classes.statusUnpublish
                                 }>
                                 {capitalizeFirstLetter(site.status)}
                               </Box>

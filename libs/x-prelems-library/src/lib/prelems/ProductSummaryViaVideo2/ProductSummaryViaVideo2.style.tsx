@@ -67,7 +67,7 @@ export const useCustomStyle = makeStyles(() => {
             marginTop: "20px",
             marginLeft: "20px",
           },
-          "& video": {
+          "& video, .reactPlayerWrapper .react-player__preview": {
             objectFit: "cover",
             borderRadius: theme.borderRadius.value1,
           },

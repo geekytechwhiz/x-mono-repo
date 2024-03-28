@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 import { useQuery } from "@apollo/client";
-import { updateContentList } from "@platformx/authoring-state";
+import { previewContent, updateContentList } from "@platformx/authoring-state";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { SearchCourseListQueries } from "../../graphQL/queries/courseQueries";
@@ -58,6 +58,8 @@ const useContentSearch = ({
     );
     if (!loading && sortedContent?.length < 20) {
       setIsLoading(false);
+    } else {
+      setIsLoading(true);
     }
     if (sortedContent) {
       const serializableData = sortedContent.map((item) => ({
@@ -65,6 +67,7 @@ const useContentSearch = ({
       }));
 
       setContents(sortedContent);
+      dispatch(previewContent({}));
       dispatch(updateContentList(serializableData));
     }
   }, [data]);

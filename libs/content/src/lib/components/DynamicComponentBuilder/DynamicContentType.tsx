@@ -21,27 +21,33 @@ import { useCustomStyle } from "./DynamicForm.style";
 // import { CATEGORY_CONTENT } from "../../utils/constants";
 // import { capitalizeFirstLetter, handleHtmlTags, trimString } from "../../utils/helperFunctions";
 // import Gallery from "../Gallery/Gallery";
-import DynamicSectionComponent from "./DynamicSectionComponent";
-import { contentTypeSchemaApi } from "@platformx/authoring-apis";
+import { contentTypeSchemaApi, useWorkflow } from "@platformx/authoring-apis";
 import {
-  useUserSession,
-  trimString,
-  handleHtmlTags,
-  XLoader,
-  PlateformXDialog,
-  ShowToastSuccess,
-  ShowToastError,
   AUTH_INFO,
+  CATEGORY_CONTENT,
+  PlateformXDialog,
   SectionWrapper,
+  ShowToastError,
+  ShowToastSuccess,
+  XLoader,
+  capitalizeFirstLetter,
+  handleHtmlTags,
+  trimString,
+  useUserSession,
 } from "@platformx/utilities";
+import { ContentType } from "../../enums/ContentType";
 import useDynamicForm from "../../hooks/useDynamicForm/useDynamicForm";
+import { CreateHeader } from "../CreateHeader/CreateHeader";
 import { SectionProps } from "./DynamicComponent.types";
+import DynamicSectionComponent from "./DynamicSectionComponent";
 
 export const DynamicContentType = ({ contentType }: { contentType: string }) => {
   const [Template, setTemplate] = useState<any>();
   const { t, i18n } = useTranslation();
   const classes = useCustomStyle();
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
+  const [workflow, setWorkflow] = useState({});
+
   //   const [path, setPath] = useState("");
   const path = useRef("");
   const groupedFields = Template?.fields?.reduce((result, field) => {
@@ -70,8 +76,10 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   const [siteName, setSiteName] = useState("");
   const [getSession] = useUserSession();
 
-  const { userInfo } = getSession();
-  // const { getWorkflowDetails } = useWorkflow(); // TODO: need to change
+  const { userInfo, role } = getSession();
+  const login_user_id = userInfo?.user_id;
+
+  const { getWorkflowDetails } = useWorkflow();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const [isDraft, setIsDraft] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -98,7 +106,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   });
   const { register, handleSubmit, formState, clearErrors, getValues } = form;
   const { errors } = formState;
-  const [pageState] = useState("DRAFT");
+  const [pageState, setPageState] = useState("DRAFT");
   const updateQuizSettings = (pageUrl = "") => {
     const {
       full_name: title,
@@ -324,7 +332,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   useEffect(() => {
     setIsLoading(true);
     getSchema();
-    // getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter("profile")); //TODO: need to change
+    getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter("profile"));
   }, [contentType]);
 
   return (
@@ -343,8 +351,8 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
             />
           )} */}
           <Box mb={3}>
-            {/* <CreateHeader
-              createText={false ? `${t("edit")} ${t("quiz")}` : Template?.title}
+            <CreateHeader
+              createText={Template?.title} //{false ? `${t("edit")} ${t("quiz")}` : Template?.title}
               publishText={t("publish")}
               saveText={t("save_as_draft")}
               previewText={t("preview")}
@@ -353,32 +361,32 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
               category={CATEGORY_CONTENT}
               subCategory={ContentType.Quiz}
               id={""}
-              previewButton={""}
-              returnBack={() => {
+              hasPreviewButton={false}
+              handleReturn={() => {
                 navigate(`/content/${contentType}`);
               }}
-              publish={() => {
+              handlePublish={() => {
                 setPageState("PUBLISHED");
                 handleSubmit(onSubmit);
               }}
-              saveorPublish={() => {
+              handleSaveOrPublish={() => {
                 handleSubmit(onSubmit);
               }}
-              handelPreview={""}
+              // handelPreview={""}
               editText={""}
-              isQuiz={""}
-              publishButton={""}
-              saveButton={true}
+              isQuiz={false}
+              hasPublishButton={false}
+              hasSaveButton={true}
               showPreview={false}
-              className={""}
+              // className={""}
               workflow={workflow}
-              timerState={""}
-              lastmodifiedDate={""}
-              setEnableWorkflowHistory={function (boolean: any): void {
-                throw new Error("Function not implemented.");
-              }}
-              createComment={""}
-            /> */}
+              hasTimerState={false}
+              lastModifiedDate={""}
+              // setEnableWorkflowHistory={function (boolean: any): void {
+              //   throw new Error("Function not implemented.");
+              // }}
+              // createComment={""}
+            />
             <Divider></Divider>
           </Box>
 

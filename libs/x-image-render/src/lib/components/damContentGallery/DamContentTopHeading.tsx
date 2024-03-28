@@ -96,19 +96,8 @@ const DamContentTopHeading = ({
           </Grid>
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          em={3}
-          lg={3}
-          container
-          spacing={0}
-          direction='column'
-          alignItems='end'
-          justifyContent='end'
-          sx={{ margin: "0 0 1.25rem 0", display: "flex" }}>
-          <Box justifyContent='end'>
+        <Grid item xs={12} sm={12} em={3} lg={3}>
+          <Box sx={{ display: "flex", paddingTop: "5px", gap: "10px", justifyContent: "flex-end" }}>
             <Button variant='secondaryButton' onClick={() => toggleGallery(false, "cancel")}>
               {t("cancel")}
             </Button>
@@ -118,7 +107,7 @@ const DamContentTopHeading = ({
               loadingPosition='start'
               variant='primaryButton'
               disabled={!imageData.bitStreamId}>
-              Done
+              {t("done")}
             </LoadingButton>
           </Box>
         </Grid>

@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import axios from "axios";
 import { format } from "date-fns";
 import getConfig from "next/config";
@@ -14,6 +15,7 @@ import {
   countries,
   defaultImages,
 } from "./helperConstants";
+import { breakpoints } from "../components/ConstantData";
 import feyenoord from "../themes/prelems/Feyenoord/index";
 import fifa from "../themes/prelems/Fifa/index";
 import { Content, SecondaryArgs } from "./interface";
@@ -393,63 +395,116 @@ export const encodeGetParams = (params: any = {}) => {
     .join("&");
 };
 
-export const getDefaultCroppedImage = (croppedImages: any = [], defaultRatio = "landscape") => {
-  const landscapeImg = croppedImages.find(({ aspect_ratio }: any) => aspect_ratio === defaultRatio);
-  const { bucket_path: imgUrl = "", ext = "" } = landscapeImg || {};
-  //if private: url
-  //if (visibility === "public") {
-  //if public: url + extension
-  //}
-  return `url('${imgUrl}.webp'), url('${imgUrl}.${ext}')`;
+const getDefaultCroppedImage = (
+  publishedImages: [],
+  originalImage: any,
+  defaultRatio = "landscape",
+  secondaryArgs: {},
+  isBackgroundImage = true,
+  extension: string,
+) => {
+  const landscapeImg = publishedImages.find(
+    ({ aspect_ratio }: any) => aspect_ratio === defaultRatio,
+  );
+  const { folder_path: imgUrl = "" } = landscapeImg || { folder_path: "" };
+  const { gcpUrl, bucketName } = nullToObject(secondaryArgs);
+  if (isBackgroundImage) {
+    return `url('${gcpUrl}/${bucketName}/${imgUrl}.webp'), url('${gcpUrl}/${bucketName}/${imgUrl}.${originalImage.ext}')`;
+  } else {
+    if (imgUrl && extension) {
+      return `${gcpUrl}/${bucketName}/${imgUrl}.${extension}`;
+    } else {
+      return FallBackImage;
+    }
+  }
 };
 
 export const fetchCroppedUrl = (
-  theme: any,
-  // mediaQuery: any,
   Url: string,
   publishedImages: [],
-  imgOrder: any = {},
-  breakpoints: any = {},
+  imgOrder = {},
+  originalImage: any,
+  mediaQueryValues: any,
+  secondaryArgs = {},
+  isBackgroundImage: boolean,
+  extension: string,
 ) => {
   let returnUrl = "";
-  const {
-    less_than_320,
-    less_than_600,
-    less_than_768,
-    less_than_1024,
-    less_than_1280,
-    less_than_1440,
-  } = breakpoints || {};
   if (publishedImages && publishedImages.length > 0) {
+    const {
+      less_than_320,
+      less_than_600,
+      less_than_768,
+      less_than_1024,
+      less_than_1280,
+      less_than_1440,
+    } = mediaQueryValues;
     if (less_than_320) {
-      returnUrl = getDefaultCroppedImage(publishedImages, imgOrder?.["320"] || breakpoints["320"]);
+      returnUrl = getDefaultCroppedImage(
+        publishedImages,
+        originalImage,
+        imgOrder?.["320"] || breakpoints["320"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
+      );
     } else if (less_than_600) {
-      returnUrl = getDefaultCroppedImage(publishedImages, imgOrder?.["600"] || breakpoints["600"]);
+      returnUrl = getDefaultCroppedImage(
+        publishedImages,
+        originalImage,
+        imgOrder?.["600"] || breakpoints["600"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
+      );
     } else if (less_than_768) {
-      returnUrl = getDefaultCroppedImage(publishedImages, imgOrder?.["768"] || breakpoints["768"]);
+      returnUrl = getDefaultCroppedImage(
+        publishedImages,
+        originalImage,
+        imgOrder?.["768"] || breakpoints["768"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
+      );
     } else if (less_than_1024) {
       returnUrl = getDefaultCroppedImage(
         publishedImages,
+        originalImage,
         imgOrder?.["1024"] || breakpoints["1024"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
       );
     } else if (less_than_1280) {
       returnUrl = getDefaultCroppedImage(
         publishedImages,
+        originalImage,
         imgOrder?.["1280"] || breakpoints["1280"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
       );
     } else if (less_than_1440) {
       returnUrl = getDefaultCroppedImage(
         publishedImages,
+        originalImage,
         imgOrder?.["1440"] || breakpoints["1440"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
       );
     } else {
       returnUrl = getDefaultCroppedImage(
         publishedImages,
+        originalImage,
         imgOrder?.["1440"] || breakpoints["1440"],
+        secondaryArgs,
+        isBackgroundImage,
+        extension,
       );
     }
   } else {
-    if (Url.search("dspace") !== -1) {
+    if (Url?.search("dspace") !== -1) {
       //normal dspace url
       returnUrl = Url;
     }
@@ -770,16 +825,15 @@ export const getSelectedSite = () => {
 };
 
 export const getSelectedRoute = () => {
-  let site = "";
-  const selectedSite = localStorage.getItem("selectedSite");
-  const split = window?.location.pathname.split("/");
-  const [, x] = split;
-  site = x;
-  if (site === "en" || site === "fr" || site === "de") {
+  const splitPath = window?.location.pathname.split("/");
+  const [, x] = splitPath;
+  const site = x;
+
+  if (["en", "fr", "de"].includes(site)) {
     return "";
-  } else {
-    return selectedSite ?? site;
   }
+
+  return site || "";
 };
 
 export const getSubDomain = () => {
@@ -1335,4 +1389,20 @@ export const apiCallForBlogs = async (url, payload = {}, type = "put") => {
   } catch (err: any) {
     return err.response;
   }
+};
+
+export const isJSONString = (str: any) => {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+export const getThumbImages = (thumbnail: any) => {
+  if (isJSONString(thumbnail)) {
+    const thumbnailObject = JSON.parse(thumbnail);
+    return thumbnailObject && thumbnailObject?.images ? thumbnailObject?.images : [];
+  }
+  return thumbnail?.images || null;
 };
