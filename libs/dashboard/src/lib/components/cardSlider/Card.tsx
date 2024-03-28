@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import EastIcon from "@mui/icons-material/East";
 import { Box, Button } from "@mui/material";
 import { createPgModel } from "@platformx/authoring-apis";
+import { CreateNewPage } from "@platformx/content";
 import {
   capitalizeWords,
   getCurrentLang,
@@ -67,12 +68,10 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
           </Box>
         </Button>
       </Box>
-      {/* <CreatePage
+      <CreateNewPage
         isDialogOpen={createPage}
-        isDuplicate={false}
-        confirmButtonHandle={confirmButtonHandle}
         closeButtonHandle={() => setCreatePage(!createPage)}
-      /> */}
+      />
     </>
   );
 };
