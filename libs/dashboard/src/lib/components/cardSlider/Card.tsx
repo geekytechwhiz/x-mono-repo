@@ -2,30 +2,20 @@
 import { useMutation } from "@apollo/client";
 import EastIcon from "@mui/icons-material/East";
 import { Box, Button } from "@mui/material";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import Title from "../common/Title";
+import { createPgModel } from "@platformx/authoring-apis";
 import {
-  useUserSession,
+  capitalizeWords,
   getCurrentLang,
   getSelectedSite,
-  getSubDomain,
-  setDefaultPageSettings,
   usePlatformAnalytics,
-  capitalizeWords,
+  useUserSession,
 } from "@platformx/utilities";
-import { createPgModel } from "@platformx/authoring-apis";
-// import {
-//   createPageModel,
-//   updatePageSettings,
-//   updateSaveWarning,
-// } from '../../../../store/Actions';
-// import { PageProps } from '@platformx/authoring-state';
-// import CreatePage from '../../../createPage';
-import "./Card.css";
-import { PAGE_MODEL_INSTANCE } from "./utils/constants";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Title from "../common/Title";
+import "./Card.css";
 
 type CardProps = {
   ImageUrl: string;
@@ -43,18 +33,15 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   const [handleImpression] = usePlatformAnalytics();
-
-  // const [items, setItems] = useState<PageProps[]>([]);
-
   //function redirect to create page
   const [createPage, setCreatePage] = useState<boolean>(false);
   const handleCardClick = () => {
-    // const URL = `${location.origin}/${getSelectedSite()}/${getCurrentLang()}${url}`
-    // if (CTAText.toLowerCase().includes('create a page')) {
-    //   setCreatePage(!createPage);
-    // } else {
-    //   window.open(URL, '_self');
-    // }
+    const URL = `${window.location.origin}/${getSelectedSite()}/${getCurrentLang()}${url}`;
+    if (CTAText.toLowerCase().includes("create a page")) {
+      setCreatePage(!createPage);
+    } else {
+      navigate(url);
+    }
   };
   const [mutate] = useMutation(createPgModel, {
     context: {
@@ -64,38 +51,6 @@ const Card = ({ ImageUrl, BgColor, CTAText, url }: CardProps) => {
       },
     },
   });
-
-  //Function to create page
-  // const createPageByName = (pageName = '', pageUrl = '') => {
-  //   const newPageModel = JSON.parse(JSON.stringify(PAGE_MODEL_INSTANCE));
-  //   newPageModel.Page = pageUrl;
-  //   newPageModel.Title = pageName;
-  //   newPageModel.DevelopedBy = username;
-  //   newPageModel.DevelopedDate = new Date().toISOString();
-  //   newPageModel.CurrentPageURL = `/${pageUrl}`;
-  //   newPageModel.PageSettings = { PageName: pageName };
-  //   newPageModel.SiteName = userEmailId;
-  //   newPageModel.Page_LastModificationDate = new Date().toISOString();
-  //   dispatch(
-  //     createPageModel(newPageModel, mutate, navigate, handleImpression, t)
-  //   );
-  //   dispatch(
-  //     updatePageSettings(
-  //       setDefaultPageSettings(
-  //         pageName,
-  //         undefined,
-  //         undefined,
-  //         `${getSubDomain()}/${i18n.language}/${pageUrl}`
-  //       )
-  //     )
-  //   );
-  //   dispatch(updateSaveWarning(false));
-  // };
-  const confirmButtonHandle = (pageName = "", pageUrl = "") => {
-    if (pageName.trim().length > 0) {
-      // createPageByName(pageName, pageUrl);
-    }
-  };
 
   return (
     <>
