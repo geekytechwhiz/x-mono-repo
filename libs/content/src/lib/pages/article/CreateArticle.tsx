@@ -443,7 +443,10 @@ export const CreateArticle = () => {
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
               if (success) {
-                workflow_status === workflowKeys.publish.toLowerCase() && enableDialog(event_step);
+                workflow_status === workflowKeys.publish.toLowerCase() &&
+                event_step === workflowKeys.approve
+                  ? enableDialog(workflowKeys.approve)
+                  : enableDialog();
               }
             }
             pathRef.current = detailsRes.authoring_updateContent?.path.substring(
