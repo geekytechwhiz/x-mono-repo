@@ -95,9 +95,10 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     setFilterValue(filter);
   };
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsSpinning(true);
-    refetch();
+    await refetch();
+    setIsSpinning(false);
   };
 
   const handleFetchMore = async () => {
