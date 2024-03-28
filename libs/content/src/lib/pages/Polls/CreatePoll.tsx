@@ -17,6 +17,7 @@ import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
   PlateformXDialog,
+  PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
   XLoader,
@@ -1580,7 +1581,7 @@ export const CreatePoll = (): JSX.Element => {
           closeIcon={<CreateRoundedIcon />}
         />
         {showPublishConfirm || showWorkflowSubmit ? (
-          <PlateformXDialog
+          <PlateformXDialogSuccess
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
             subTitle={showPublishConfirm ? t("poll_publish_popoup") : t("requested_action")}
