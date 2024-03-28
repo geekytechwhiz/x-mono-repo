@@ -13,7 +13,7 @@ export const CategoryDetail = () => {
   const navigate = useNavigate();
   const { category } = useParams();
   const classes = useTagStyle();
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<any>([]);
 
   const [selectedItems, setSelectedItems] = useState<string[]>([]); // State to store selected items
 
@@ -32,13 +32,11 @@ export const CategoryDetail = () => {
       const { authoring_getTagItems = [] }: any = await fetchTagListing({
         searchCategory: category,
         searchString: "",
+        start: 0,
+        rows: 1000,
       });
-      if (
-        authoring_getTagItems?.length > 0 &&
-        authoring_getTagItems[0] &&
-        authoring_getTagItems[0].tags
-      ) {
-        setTags(authoring_getTagItems[0].tags);
+      if (authoring_getTagItems?.length > 0) {
+        setTags(authoring_getTagItems);
       }
     } catch (error) {
       setTags([]);
@@ -87,15 +85,15 @@ export const CategoryDetail = () => {
                 tags.map((tag) => (
                   <Box
                     className={`${classes.createbtn} ${
-                      selectedItems.includes(tag) ? classes.selected : classes.txtcolor
+                      selectedItems.includes(tag.tag_name) ? classes.selected : classes.txtcolor
                     }`}
-                    onClick={() => toggleSelection(tag)}
-                    key={tag}>
+                    onClick={() => toggleSelection(tag.tag_name)}
+                    key={tag.tag_name}>
                     <Button
                       className={classes.textTransform}
-                      endIcon={selectedItems.includes(tag) ? <DeleteIcon /> : ""}
-                      color={selectedItems.includes(tag) ? "error" : "primary"}>
-                      {tag}
+                      endIcon={selectedItems.includes(tag.tag_name) ? <DeleteIcon /> : ""}
+                      color={selectedItems.includes(tag.tag_name) ? "error" : "primary"}>
+                      {tag.tag_name}
                     </Button>
                   </Box>
                 ))}

@@ -1178,6 +1178,8 @@
   "administrator": "Administratrice",
   "your_site": "Votre site",
   "tags_categories": "Tags",
+  "cannot_delete_tag": "Vous ne pouvez pas supprimer system tag",
+  "cannot_edit_tag": "Vous ne pouvez pas modifier system tag",
   "remove_members": "Supprimer des membres",
   "invite_toast_subtitle": "Les gens commenceront bientôt à recevoir des invitations et vous commencerez à recevoir des e-mails de confirmation",
   "choose_members": "Choisir les membres",

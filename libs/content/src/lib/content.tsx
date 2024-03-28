@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab } from "@mui/material";
 import { CATEGORY_CONTENT, CONTENT_TYPES } from "@platformx/authoring-apis";
 // import { previewArticle } from "@platformx/authoring-state";
-import { capitalizeFirstLetter, useAccess } from "@platformx/utilities";
+import { capitalizeFirstLetter, useAccess, makeCreateContentPath } from "@platformx/utilities";
 // import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContListingContainer from "./components/ContentListingContainer/ContentListingContainer";
@@ -26,7 +26,8 @@ export default function Content() {
   // };
 
   const createContentNew = () => {
-    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+    const navigateTo: string = makeCreateContentPath(contentType);
+    navigate(navigateTo, {
       state: contentType?.trim()?.toLowerCase(),
     });
   };

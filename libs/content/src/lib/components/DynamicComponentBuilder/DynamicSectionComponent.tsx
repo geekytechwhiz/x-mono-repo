@@ -6,8 +6,8 @@ import {
   TitleSubTitle,
   XCheckBox,
   XDatePicker,
-  XFileUpload,
 } from "@platformx/utilities";
+import { XImageRender } from "@platformx/x-image-render";
 
 const DynamicSectionComponent = ({
   fields,
@@ -34,16 +34,15 @@ const DynamicSectionComponent = ({
       [event.target.name]: event.target.value,
     });
   };
-
-  const updateField = (updatedPartialObj) => {
-    // setState({ //TODO
-    //   ...state,
-    //   [localStorage.getItem("keyname")]: {
-    //     ...state[localStorage.getItem("keyname")],
-    //     original_image: updatedPartialObj?.original_image,
-    //     published_images: updatedPartialObj?.published_images,
-    //   },
-    // });
+  const updateField = (updatedPartialObj, name) => {
+    setState({
+      ...state,
+      [name]: {
+        ...state[name],
+        original_image: updatedPartialObj?.original_image,
+        published_images: updatedPartialObj?.published_images,
+      },
+    });
   };
 
   function builder(field: any) {
@@ -147,7 +146,16 @@ const DynamicSectionComponent = ({
               />
             </Grid>
             <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
-              <XFileUpload
+              <XImageRender
+                callBack={updateField}
+                editData={{
+                  original_image: state[field?.name]?.original_image,
+                  published_images: state[field?.name]?.published_images,
+                }}
+                isCrop={true}
+                name={field?.name}
+              />
+              {/* <XFileUpload
                 url={state[field?.name]?.Thumbnail}
                 onUploadClick={onUploadClick}
                 content={state[field?.name]}
@@ -158,7 +166,7 @@ const DynamicSectionComponent = ({
                 chooseText='Choose your image'
                 chooseType='image'
                 name={field?.name}
-              />
+              /> */}
             </Grid>
           </>
         );
@@ -353,9 +361,7 @@ const DynamicSectionComponent = ({
   return (
     <Container>
       <Grid container spacing={5} rowSpacing={2}>
-        {fields?.map((field) => (
-          <>{builder(field)}</>
-        ))}
+        {fields?.map((field) => <>{builder(field)}</>)}
       </Grid>
     </Container>
   );

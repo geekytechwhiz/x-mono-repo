@@ -206,3 +206,14 @@ export const DEFAULT_SOCIAL_IMAGE = `${gcpUrl}/${BucketName}/${defaultImage}`;
 export const DRAFT = "DRAFT";
 export const PUBLISHED = "PUBLISHED";
 export const CATEGORY_CONTENT = "content";
+
+export enum CREATE_CONTENT {
+  ARTICLE = "create-article",
+  QUIZ = "create-quiz",
+  VOD = "create-vod",
+  POLL = "create-poll",
+  EVENT = "create-event",
+  COURSE = "create-course",
+  SPACE = "create-space",
+  PROFILE = "create-profile",
+}

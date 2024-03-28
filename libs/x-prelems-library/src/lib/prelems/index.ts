@@ -24,7 +24,7 @@ import Banner3 from "./Banner3/Banner3";
 import Banner6 from "./Banner6/Banner6";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
-import ImageCarousel from "./ImageCarousel1/ImageCarousel1";
+import ImageCarousel1 from "./ImageCarousel1/ImageCarousel1";
 import FullWidthImage from "./fullWidthImage/fullWidthImage";
 import FullWidthVideo from "./fullWidthVideo/fullWidthVideo";
 // import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
@@ -125,7 +125,7 @@ export {
   Gallery2,
   ImageAndVideoGallery,
   ImageCards,
-  ImageCarousel,
+  ImageCarousel1,
   ImageVideoCarousel1,
   InfoBox,
   LeftAlignParagraphWithHeadline,

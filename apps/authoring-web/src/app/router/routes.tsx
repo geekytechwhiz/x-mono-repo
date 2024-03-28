@@ -8,6 +8,7 @@ import {
   CreateContent,
   TimeLineBlogs,
 } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import {
@@ -36,7 +37,6 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { CreateCourse } from "@platformx/course";
 
 export const routes: RouteConfig[] = [
   {
@@ -206,7 +206,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create/:contentType",
+    path: "/content/:contentType",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />
@@ -253,7 +253,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create/course",
+    path: "/content/create-course",
     element: (
       <ProtectedRoute
         name='course'
@@ -362,6 +362,14 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
+    path: "/site-setting/create-tags/:docPath",
+    element: (
+      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+        <CreateTags />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "/sites/site-creation",
     element: (
       <ProtectedRoute category='site' subCategory='Sites' isHeader={false} isSideBar={false}>
@@ -386,7 +394,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create/article",
+    path: "/content/create-article",
     element: (
       <ProtectedRoute
         name='article'
@@ -484,19 +492,6 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
         <UserListing />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/content/create/article",
-    element: (
-      <ProtectedRoute
-        name='quiz'
-        subCategory='quiz'
-        category='content'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateContent />
       </ProtectedRoute>
     ),
   },

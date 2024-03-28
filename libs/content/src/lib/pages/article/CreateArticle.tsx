@@ -443,7 +443,10 @@ export const CreateArticle = () => {
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
               if (success) {
-                workflow_status === workflowKeys.publish.toLowerCase() && enableDialog(event_step);
+                workflow_status === workflowKeys.publish.toLowerCase() &&
+                event_step === workflowKeys.approve
+                  ? enableDialog(workflowKeys.approve)
+                  : enableDialog();
               }
             }
             pathRef.current = detailsRes.authoring_updateContent?.path.substring(
@@ -572,7 +575,7 @@ export const CreateArticle = () => {
     updateImageData(obj, content, setArticleInstance, articleInstance, selectedImage);
   };
   const handelPreview = () => {
-    const { title, modificationDate: developed_date } = articleInstance.CommonFields;
+    const { title, modificationDate } = articleInstance.CommonFields;
     const pageUrl = currentArticleData.current
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
@@ -591,16 +594,14 @@ export const CreateArticle = () => {
       // description,
       tags,
       page_lastmodifiedby: username,
-      developed_date,
+      developed_date: modificationDate || new Date().toISOString(),
       banner,
       current_page_url,
       article_settings,
       sub_title,
       contentType: "Article",
     };
-
     dispatch(previewContent(articlePreview));
-
     navigate("/content/preview");
   };
   const updateStructureDataArticle = () => {

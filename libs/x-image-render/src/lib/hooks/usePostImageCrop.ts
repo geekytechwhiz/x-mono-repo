@@ -9,7 +9,7 @@ export const usePostImageCrop = () => {
   const postRequest = async (path: string, payload: any, callback: any, selectedImg: any) => {
     try {
       setIsLoading(true);
-      const res = await axios.post("https://dev.api.hcl-x.com/platform-x/" + path, payload, {
+      const res = await axios.post("https://qa.api.hcl-x.com/platform-x/" + path, payload, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",

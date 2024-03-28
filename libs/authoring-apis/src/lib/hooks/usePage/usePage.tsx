@@ -2,24 +2,24 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   ContentState,
   RootState,
+  updateContent,
   updateContentList,
   updatePageSettings,
   updateSaveWarning,
-  updateContent,
 } from "@platformx/authoring-state";
 import {
+  AUTH_INFO,
+  LanguageList,
   ShowToastError,
   ShowToastSuccess,
   capitalizeFirstLetter,
+  formatChildrenForPageDuplicate,
   getCurrentLang,
   getSelectedSite,
   getSubDomain,
+  setDefaultPageSettings,
   usePlatformAnalytics,
   useUserSession,
-  formatChildrenForPageDuplicate,
-  LanguageList,
-  setDefaultPageSettings,
-  AUTH_INFO,
 } from "@platformx/utilities";
 import { addMinutes } from "date-fns";
 import { SetStateAction, useCallback, useState } from "react";
@@ -30,8 +30,8 @@ import { PageQueries } from "../../graphQL/queries/pageQueries";
 import { FETCH_PRELEM_VALIDATION } from "../../graphQL/queries/prelemQueries";
 import contentTypeAPIs from "../../services/contentTypes/contentTypes.api";
 import { fetchPageModel } from "../../services/page/page.api";
-import { consolidatePageModel } from "./mapper";
 import { fetchContent } from "../../utils/helper";
+import { consolidatePageModel } from "./mapper";
 
 const PageModelInstanceDefault = {
   Page: "",

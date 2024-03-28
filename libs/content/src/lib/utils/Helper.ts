@@ -16,8 +16,8 @@ export const getEmbedTempData = (selectedContent: any) => {
       selectedContent?.tag_name?.toLowerCase() === ContentType.Event
         ? relativeImageURL(relativeUrl)
         : selectedContent?.thumbnail_image
-        ? selectedContent?.thumbnail_image
-        : DEFAULT_EMBED_IMAGE,
+          ? selectedContent?.thumbnail_image
+          : DEFAULT_EMBED_IMAGE,
     Author: selectedContent?.createdBy,
     lastModifiedDate: selectedContent?.creationDate,
     Page: selectedContent?.page,
@@ -44,12 +44,12 @@ export const getSocialShareData = (selectedContent: any) => {
             ? selectedContent?.settingsProperties?.socialog_image
             : DEFAULT_SOCIAL_IMAGE
           : selectedContent?.tag_name === "Poll"
-          ? selectedContent?.settingsProperties?.socialog_image
             ? selectedContent?.settingsProperties?.socialog_image
-            : DEFAULT_SOCIAL_IMAGE
-          : selectedContent?.thumbnail_image
-          ? selectedContent?.thumbnail_image
-          : "",
+              ? selectedContent?.settingsProperties?.socialog_image
+              : DEFAULT_SOCIAL_IMAGE
+            : selectedContent?.thumbnail_image
+              ? selectedContent?.thumbnail_image
+              : "",
       SocialOgDescription: selectedContent?.description,
     },
     Caption: "",
@@ -65,12 +65,12 @@ export const getSocialShareData = (selectedContent: any) => {
           ? selectedContent?.settingsProperties?.socialog_image
           : DEFAULT_SOCIAL_IMAGE
         : selectedContent?.tag_name === "Poll"
-        ? selectedContent?.settingsProperties?.socialog_image
           ? selectedContent?.settingsProperties?.socialog_image
-          : DEFAULT_SOCIAL_IMAGE
-        : selectedContent?.thumbnail_image
-        ? selectedContent?.thumbnail_image
-        : DEFAULT_SOCIAL_IMAGE,
+            ? selectedContent?.settingsProperties?.socialog_image
+            : DEFAULT_SOCIAL_IMAGE
+          : selectedContent?.thumbnail_image
+            ? selectedContent?.thumbnail_image
+            : DEFAULT_SOCIAL_IMAGE,
     CurrentPageURL: selectedContent?.current_page_url,
   };
   return socialShareData;

@@ -825,16 +825,15 @@ export const getSelectedSite = () => {
 };
 
 export const getSelectedRoute = () => {
-  let site = "";
-  const selectedSite = localStorage.getItem("selectedSite");
-  const split = window?.location.pathname.split("/");
-  const [, x] = split;
-  site = x;
-  if (site === "en" || site === "fr" || site === "de") {
+  const splitPath = window?.location.pathname.split("/");
+  const [, x] = splitPath;
+  const site = x;
+
+  if (["en", "fr", "de"].includes(site)) {
     return "";
-  } else {
-    return selectedSite ?? site;
   }
+
+  return site || "";
 };
 
 export const getSubDomain = () => {
@@ -1406,4 +1405,25 @@ export const getThumbImages = (thumbnail: any) => {
     return thumbnailObject && thumbnailObject?.images ? thumbnailObject?.images : [];
   }
   return thumbnail?.images || null;
+};
+
+export const makeCreateContentPath = (contentType: string) => {
+  switch (contentType.toLowerCase()) {
+    case "article":
+      return "/content/create-article";
+    case "quiz":
+      return "/content/create-quiz";
+    case "poll":
+      return "/content/create-poll";
+    case "vod":
+      return "/content/create-vod";
+    case "event":
+      return "/content/create-event";
+    case "profile":
+      return "/content/create-profile";
+    case "course":
+      return "/content/create-course";
+    default:
+      return "";
+  }
 };

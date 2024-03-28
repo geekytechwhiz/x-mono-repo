@@ -6,12 +6,14 @@ import {
   CardOptionDuplicateIcon,
   CardOptionUnPublishIcon,
   CardOptionDeleteIcon,
+  ErrorTooltip,
 } from "@platformx/utilities";
 import React, { memo, useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { makeStyles } from "@mui/styles";
 import { useTranslation } from "react-i18next";
+import { SITE_TAGS, SYSTEM_TAGS } from "./constant";
 
 export const useStyles = makeStyles(() => ({
   icon: {
@@ -20,7 +22,7 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const TagMenu = ({ dataList, view }) => {
+const TagMenu = ({ dataList, view, edit }) => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
@@ -95,16 +97,24 @@ const TagMenu = ({ dataList, view }) => {
           </div>
           {t("view")} {t("category")}
         </MenuItem>
-        <MenuItem
-          disableRipple
-          onClick={() => {
-            handleClose();
-          }}>
-          <div className={classes.icon}>
-            <img src={CardOptionEditIcon} alt='edit' />
-          </div>
-          {t("edit")}
-        </MenuItem>
+        <ErrorTooltip
+          component={
+            <MenuItem
+              disableRipple
+              disabled={dataList.type === SYSTEM_TAGS}
+              onClick={() => {
+                handleClose();
+                edit(dataList);
+              }}>
+              <div className={classes.icon}>
+                <img src={CardOptionEditIcon} alt='edit' />
+              </div>
+              {t("edit")}
+            </MenuItem>
+          }
+          tooltipMsg={t("cannot_edit_tag")}
+          doAccess={dataList.type === SYSTEM_TAGS}
+        />
         {dataList.status === "published" && (
           <MenuItem
             disableRipple
@@ -117,28 +127,42 @@ const TagMenu = ({ dataList, view }) => {
             {t("duplicate")}
           </MenuItem>
         )}
-        {dataList.status === "published" && (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              handleClose();
-            }}>
-            <div className={classes.icon}>
-              <img src={CardOptionUnPublishIcon} alt='unpublish' />
-            </div>
-            {t("unpublish")}
-          </MenuItem>
+        {dataList.status === "published" && dataList.type === SITE_TAGS && (
+          <ErrorTooltip
+            component={
+              <MenuItem
+                disableRipple
+                disabled={false}
+                onClick={() => {
+                  handleClose();
+                }}>
+                <div className={classes.icon}>
+                  <img src={CardOptionUnPublishIcon} alt='unpublish' />
+                </div>
+                {t("unpublish")}
+              </MenuItem>
+            }
+            doAccess={false}
+          />
         )}
-        <MenuItem
-          disableRipple
-          onClick={() => {
-            handleClose();
-          }}>
-          <div className={classes.icon}>
-            <img src={CardOptionDeleteIcon} alt='delete' />
-          </div>
-          {t("delete")}
-        </MenuItem>
+
+        <ErrorTooltip
+          component={
+            <MenuItem
+              disableRipple
+              disabled={dataList.type === SYSTEM_TAGS}
+              onClick={() => {
+                handleClose();
+              }}>
+              <div className={classes.icon}>
+                <img src={CardOptionDeleteIcon} alt='delete' />
+              </div>
+              {t("delete")}
+            </MenuItem>
+          }
+          tooltipMsg={t("cannot_delete_tag")}
+          doAccess={dataList.type === SYSTEM_TAGS}
+        />
       </Menu>
     </Box>
   );

@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CreateNewPage from "../../pages/page/CreateNewPage";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
+import { makeCreateContentPath } from "@platformx/utilities";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -85,7 +86,8 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     if (contentType?.trim()?.toLowerCase() === "sitepage") {
       setOpenCreatePage(true);
     } else {
-      navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+      const navigateTo = makeCreateContentPath(contentType);
+      navigate(navigateTo, {
         state: contentType?.trim()?.toLowerCase(),
       });
     }
@@ -95,9 +97,10 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     setFilterValue(filter);
   };
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsSpinning(true);
-    refetch();
+    await refetch();
+    setIsSpinning(false);
   };
 
   const handleFetchMore = async () => {

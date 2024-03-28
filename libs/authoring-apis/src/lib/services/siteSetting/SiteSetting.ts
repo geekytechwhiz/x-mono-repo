@@ -11,7 +11,6 @@ import {
   FETCH_HEADER_SETTING,
   FETCH_MEDIA_HANDLE,
   FETCH_MULTISITE_LISTING,
-  FETCH_TAG,
   FETCH_TAG_LISTING,
   FETCH_USER_SITE,
 } from "../../graphQL/queries/siteSettingQueries";
@@ -356,20 +355,6 @@ export const fetchCategory = async <T>(input: T): Promise<ApiResponse<T>> => {
   try {
     const { data } = await graphqlInstance.query({
       query: FETCH_CATEGORY,
-      variables: input,
-      fetchPolicy: "cache-first",
-    });
-    return data;
-  } catch (err: any) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
-    throw err;
-  }
-};
-
-export const fetchTag = async <T>(input: T): Promise<ApiResponse<T>> => {
-  try {
-    const { data } = await graphqlInstance.query({
-      query: FETCH_TAG,
       variables: input,
       fetchPolicy: "cache-first",
     });
