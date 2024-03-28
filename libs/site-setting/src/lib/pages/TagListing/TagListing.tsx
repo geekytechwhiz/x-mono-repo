@@ -12,13 +12,11 @@ export const TagListing = () => {
   const [refreshState] = useState(false);
   const navigate = useNavigate();
   const [tags, setTags] = useState<any>([]);
-  const [loading, setLoading] = useState(false);
   const [startIndex, setStartIndex] = useState<any>(0);
   const [isFetchMore, setFetchMore] = useState(true);
   const ROWS = 10;
 
   const fetchTag = async (nextIndex) => {
-    // setLoading(true);
     try {
       const { authoring_getTagItems = [] }: any = await fetchTagListing({
         searchCategory: "",
@@ -26,11 +24,8 @@ export const TagListing = () => {
         start: nextIndex,
         rows: ROWS,
       });
-      // setTags(authoring_getTagItems);
       setTags((prev) => [...prev, ...authoring_getTagItems]);
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       setTags([]);
     }
   };
@@ -44,6 +39,10 @@ export const TagListing = () => {
     navigate(`/site-setting/tags/${ctg.description}`);
   };
 
+  const editTag = (ctg) => {
+    navigate(`/site-setting/create-tags/${ctg.doc_path}`);
+  };
+
   const makeContentData = (item: any) => {
     const listItemDetails = {
       tagName: "tagscategories",
@@ -52,6 +51,8 @@ export const TagListing = () => {
       lastModifiedDate: item.lastModificationDate,
       status: item.status,
       lastModifiedBy: item.lastModifiedBy,
+      doc_path: item.doc_path,
+      type: item.type,
     };
     return listItemDetails;
   };
@@ -64,7 +65,7 @@ export const TagListing = () => {
     <Box>
       <ContentListingHeader
         handleFilter={() => {}}
-        title='Tags Categories'
+        title='tags_categories'
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
         handleAddNew={() => navigate("/site-setting/create-tags")}
@@ -91,10 +92,12 @@ export const TagListing = () => {
                         dataList={data}
                         deleteContent={viewCategory}
                         view={viewCategory}
-                        edit={viewCategory}
+                        edit={editTag}
                         siteList={[]}
                         contentType={""}
-                        CustomMenuList={<TagMenu dataList={data} view={viewCategory} />}
+                        CustomMenuList={
+                          <TagMenu dataList={data} view={viewCategory} edit={editTag} />
+                        }
                       />
                     </Box>
                   );
