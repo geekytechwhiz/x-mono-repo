@@ -231,7 +231,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
         dialogOpen={galleryState}
       />
       <Box>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <XLoader type='xloader' />}
 
         <Box
         // sx={{

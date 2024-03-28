@@ -1433,7 +1433,7 @@ export const CreatePoll = (): JSX.Element => {
         sx={{
           display: isClickedQueList || openAddQestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <XLoader type='xloader' />}
         <Box>
           <Box>
             <CreateHeader

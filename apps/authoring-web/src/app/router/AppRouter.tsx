@@ -62,7 +62,7 @@ function AppRouter() {
   }, []);
 
   if (Object.entries(userInfo || {}).length < 1) {
-    return <XLoader type='linear' />;
+    return <XLoader type='xloader' />;
   }
   return (
     <Routes>
