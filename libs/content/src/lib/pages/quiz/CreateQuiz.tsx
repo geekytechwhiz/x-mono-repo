@@ -940,7 +940,7 @@ export const CreateQuiz = () => {
         sx={{
           display: isClickedQueList || openAddQuestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <XLoader type='xloader' />}
 
         <Box>
           <Box>
