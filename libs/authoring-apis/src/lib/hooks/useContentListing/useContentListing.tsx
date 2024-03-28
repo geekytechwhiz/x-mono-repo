@@ -17,6 +17,7 @@ import {
   getSelectedSite,
   getSubDomain,
   useUserSession,
+  makeCreateContentPath,
 } from "@platformx/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams } from "react-router-dom";
@@ -187,12 +188,10 @@ const useContentListing = (filter = "ALL") => {
   const edit = (listItemDetails: { tagName: string; page: any }) => {
     dispatch(previewContent({}));
     dispatch(previewArticle({}));
-    navigate(
-      `/content/create/${listItemDetails.tagName?.toLowerCase()}?path=${listItemDetails.page}`,
-      {
-        state: listItemDetails.tagName?.toLowerCase(),
-      },
-    );
+    const navigateTo = makeCreateContentPath(listItemDetails.tagName?.toLowerCase());
+    navigate(`${navigateTo}?path=${listItemDetails.page}`, {
+      state: listItemDetails.tagName?.toLowerCase(),
+    });
   };
 
   const editPage = (listItemDetails: { path: any }) => {
