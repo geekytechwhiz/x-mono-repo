@@ -100,7 +100,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
     const { original_image = {}, published_images = [] } = updatedPartialObj || {};
     const contentNew = {
       ...content,
-      Url: original_image?.Url,
+      Url: original_image?.Thumbnail,
       MetaFields: {
         ...content?.MetaFields,
         Title: original_image.Title,
@@ -121,6 +121,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
             original_image: originalImage,
             published_images: publishedImages,
           }}
+          isCrop={true}
         />
       </Box>
       <Box className='rowBox'>

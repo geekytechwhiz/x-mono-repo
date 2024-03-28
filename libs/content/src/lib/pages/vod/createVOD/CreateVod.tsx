@@ -103,6 +103,16 @@ export const CreateVod = () => {
     }
   }, []);
 
+  const updateImageField = (updatedPartialObj) => {
+    updateTempObj.current = updatedPartialObj;
+    const modifiedVod = {
+      ...JSON.parse(JSON.stringify(vodInstance)),
+      ...updatedPartialObj,
+      lastModifiedDate: new Date(),
+    };
+    setVodInstance(modifiedVod);
+  };
+
   const updateField = (updatedPartialObj, callPreview = false) => {
     updateTempObj.current = updatedPartialObj;
     const modifiedVod = {
@@ -838,7 +848,7 @@ export const CreateVod = () => {
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
                   <XImageRender
-                    callBack={updateField}
+                    callBack={updateImageField}
                     editData={{
                       relativeUrl: vodRef.current?.Thumbnail,
                     }}

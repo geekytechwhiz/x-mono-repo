@@ -575,7 +575,7 @@ export const CreateArticle = () => {
     updateImageData(obj, content, setArticleInstance, articleInstance, selectedImage);
   };
   const handelPreview = () => {
-    const { title, modificationDate: developed_date } = articleInstance.CommonFields;
+    const { title, modificationDate } = articleInstance.CommonFields;
     const pageUrl = currentArticleData.current
       ? currentArticleData.current
       : title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
@@ -594,16 +594,14 @@ export const CreateArticle = () => {
       // description,
       tags,
       page_lastmodifiedby: username,
-      developed_date,
+      developed_date: modificationDate || new Date().toISOString(),
       banner,
       current_page_url,
       article_settings,
       sub_title,
       contentType: "Article",
     };
-
     dispatch(previewContent(articlePreview));
-
     navigate("/content/preview");
   };
   const updateStructureDataArticle = () => {
