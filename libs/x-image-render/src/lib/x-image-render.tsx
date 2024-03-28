@@ -23,7 +23,7 @@ import { usePostImageCrop } from "./hooks/usePostImageCrop";
 interface XImageRenderProps {
   callBack: (obj: any, name?: string) => void;
   editData: any;
-  isCrop: boolean;
+  isCrop?: boolean;
   name?: string;
 }
 

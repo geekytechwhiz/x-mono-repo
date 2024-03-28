@@ -103,6 +103,16 @@ export const CreateVod = () => {
     }
   }, []);
 
+  const updateImageField = (updatedPartialObj) => {
+    updateTempObj.current = updatedPartialObj;
+    const modifiedVod = {
+      ...JSON.parse(JSON.stringify(vodInstance)),
+      ...updatedPartialObj,
+      lastModifiedDate: new Date(),
+    };
+    setVodInstance(modifiedVod);
+  };
+
   const updateField = (updatedPartialObj, callPreview = false) => {
     updateTempObj.current = updatedPartialObj;
     const modifiedVod = {
@@ -842,7 +852,7 @@ export const CreateVod = () => {
                     type='Images'
                   /> */}
                   <XImageRender
-                    callBack={updateField}
+                    callBack={updateImageField}
                     editData={{
                       relativeUrl: vodRef.current?.Thumbnail,
                     }}

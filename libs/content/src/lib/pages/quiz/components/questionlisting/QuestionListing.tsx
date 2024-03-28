@@ -47,15 +47,10 @@ const QuestionListing = ({
       : "",
   );
   const [questions, setQuestions] = useState<any>([]);
-  // const [selectedIdArray, setSelectedIdArray] = React.useState<
-  //   { question: string }[]
-  // >(quizState?.questions ? quizState?.questions : []);
   const [selectedIdArray, setSelectedIdArray] = React.useState<{ current_page_url: string }[]>(
     quizState?.questions ? quizState?.questions : [],
   );
-
   const [runFetchQuestionList] = useLazyQuery(contentTypeAPIs.fetchContentTypeListAll);
-
   const rows = 20;
   const getQuestionList = (ind, search = "") => {
     // setIsLazyLoad(true);
@@ -70,11 +65,8 @@ const QuestionListing = ({
       },
     })
       .then((res) => {
-        const filtered = (res?.data?.authoring_getContentTypeItems || []).filter(
-          (val) => !val.current_page_url.startsWith("/"),
-        );
+        const filtered = res?.data?.authoring_getContentTypeItems || [];
         const newData = [...(questions || []), ...(filtered || [])];
-
         setQuestions(() => newData);
         if (res?.data?.authoring_getContentTypeItems?.length === 0) {
           setIsLazyLoad(false);
@@ -206,7 +198,6 @@ const QuestionListing = ({
           id='questionListing'>
           {isloading ? (
             <Box sx={{ width: "100%" }}>
-              {/*   <ContentListDesktopLoader/> */}
               <ContentListDesktopLoader />
             </Box>
           ) : (
@@ -226,14 +217,6 @@ const QuestionListing = ({
                     }}>
                     {t("no_results")}
                   </Typography>
-                  {/* <Typography
-                      variant="h5"
-                      sx={{
-                        color: "#c3c3c3",
-                      }}
-                    >
-                      Please try again
-                    </Typography> */}
                 </Box>
               ) : (
                 <InfiniteScroll
