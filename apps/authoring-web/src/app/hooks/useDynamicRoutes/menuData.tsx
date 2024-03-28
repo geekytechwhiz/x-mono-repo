@@ -21,6 +21,7 @@ import {
   UsersIcon,
   VODIcon,
   Webmaster,
+  TagIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
@@ -316,9 +317,8 @@ export const MenuData = [
         subCategory: "GlobalSetting",
       },
       {
-        MenuName: "Tags Categories",
-        // Icon: TagsmenuIcoon,
-        Icon: HeaderMenuUpdated,
+        MenuName: "Tags",
+        Icon: TagIcon,
         url: "/site-setting/tags",
         id: "tags_categories",
         category: "SiteSetting",
