@@ -29,7 +29,7 @@ data:
   NX_KEYCLOAK_URI: https://qa.idp.hcl-x.com
   NX_PUBLISH_URI: https://qa.hcl-x.com/
   NX_REALM: platform-x
-  NX_REDIRECT_URI: https://qa.monorepo.console.hcl-x.com/en/
+  NX_REDIRECT_URI: https://qa.monorepo.console.hcl-x.com/de/
   NX_CHAT_GPT_PROMPT: Please write 3 paragraph article about
   NX_GCP_URL: https://storage.googleapis.com
   NX_BUCKET_NAME: cropped_image_public_x_site_qa
