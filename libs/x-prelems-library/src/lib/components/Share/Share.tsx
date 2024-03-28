@@ -26,12 +26,7 @@ type Sharetype = {
 
 const Share = (props: Sharetype) => {
   const theme = useTheme();
-  const {
-    shareUrl = "",
-    domainUrl = "",
-    enablePreview,
-    showRecentArticles = true,
-  } = nullToObject(props);
+  const { shareUrl = "", domainUrl = "", enablePreview, showRecentArticles } = nullToObject(props);
   // const ShareCount = (shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>;
   /**
    * back ground color will change based on their own brand based
