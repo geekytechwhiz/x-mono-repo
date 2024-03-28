@@ -13,7 +13,7 @@ import {
   TitleSubTitle,
   XLoader,
 } from "@platformx/utilities";
-import { DamContentGallery } from "@platformx/x-image-render";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateHeader } from "../../../../components/CreateHeader/CreateHeader";
@@ -22,7 +22,6 @@ import useQuestion from "../../../../hooks/useQuestion/useQuestion";
 import { onBackButtonEvent, unloadCallback } from "../../../../utils/Helper";
 import { useCustomStyle } from "../../quiz.style";
 import AnswerContent from "./AnswerContent";
-import { XImageRender } from "@platformx/x-image-render";
 
 const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, questionId }) => {
   const { t } = useTranslation();
@@ -41,7 +40,6 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     backgroundColor: "",
   });
   const galleryType = useRef<string>("Images");
-  const [, setOperationType] = useState("");
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const [key, setKey] = useState("");
   const [answerId, setAnswerId] = useState("");
@@ -140,9 +138,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     }
   };
 
-  const onUploadClick = (type) => {
-    setOperationType(type);
-    showGallery("Images", "queBackgroundImg");
+  const onUploadClick = () => {
     setAddQuestionInfo({
       ...addQuestionInfo,
       isImg: true,
@@ -381,7 +377,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                       flexFlow: { xs: "wrap", lg: "nowrap" },
                     }}>
                     <Box
-                      onClick={() => onUploadClick("upload")}
+                      onClick={() => onUploadClick()}
                       sx={{
                         width: "27px",
                         height: "27px",
@@ -421,7 +417,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                       );
                     })}
                     <Box
-                      onClick={handleRefresh}
+                      onClick={() => handleRefresh()}
                       sx={{
                         width: "27px",
                         height: "27px",
