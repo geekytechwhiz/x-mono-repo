@@ -8,6 +8,7 @@ import {
   CreateContent,
   TimeLineBlogs,
 } from "@platformx/content";
+import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import {
@@ -36,7 +37,6 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { CreateCourse } from "@platformx/course";
 
 export const routes: RouteConfig[] = [
   {
@@ -206,7 +206,7 @@ export const routes: RouteConfig[] = [
   //   ),
   // },
   {
-    path: "/content/create/:contentType",
+    path: "/content/:contentType",
     element: (
       <ProtectedRoute name='quiz' subCategory='quiz' category='content'>
         <CreateContent />

@@ -1,19 +1,20 @@
+/* eslint-disable no-debugger */
 import { Box, Button, Dialog, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/system/Unstable_Grid/Grid";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { usePage } from "@platformx/authoring-apis";
 import {
-  ThemeConstants,
   LanguageDropDownCheckBox,
   PopupImage,
+  ThemeConstants,
   formatPageUrl,
 } from "@platformx/utilities";
-import { usePage } from "@platformx/authoring-apis";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { nameLength } from "./Constants";
 // import "../articles/DuplicateContentPopup.css";
-import { DialogList } from "./CreateNewPage.types";
 import { useStyles } from "./CreateNewPage.styles";
+import { DialogList } from "./CreateNewPage.types";
 
 const CreateNewPage = ({
   isDialogOpen,
