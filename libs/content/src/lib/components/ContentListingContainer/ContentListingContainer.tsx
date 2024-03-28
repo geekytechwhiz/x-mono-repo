@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CreateNewPage from "../../pages/page/CreateNewPage";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
-import { makeCreateContentPath } from "../../utils/Helper";
+import { makeCreateContentPath } from "@platformx/utilities";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
