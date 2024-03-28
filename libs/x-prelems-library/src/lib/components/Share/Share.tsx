@@ -21,11 +21,12 @@ type Sharetype = {
   border?: string;
   whiteIcon?: boolean;
   enablePreview?: boolean;
+  showRecentArticles?: boolean;
 };
 
 const Share = (props: Sharetype) => {
   const theme = useTheme();
-  const { shareUrl = "", domainUrl = "", enablePreview } = nullToObject(props);
+  const { shareUrl = "", domainUrl = "", enablePreview, showRecentArticles } = nullToObject(props);
   // const ShareCount = (shareCount: any) => <span className='myShareCountWrapper'>{shareCount}</span>;
   /**
    * back ground color will change based on their own brand based
@@ -178,17 +179,19 @@ const Share = (props: Sharetype) => {
         <img alt='share5' width={15} height={15} src={IconCopySvg} style={{ ...imgCommon() }} />
       </Box>
 
-      <Box
-        sx={{
-          ...styleCommon("#2d2d39"),
-          cursor: !enablePreview ? "pointer" : "default",
-          marginRight: 0,
-        }}
-        onClick={() => {
-          !enablePreview && handleEmbed();
-        }}>
-        <img alt='share6' width={15} height={15} src={IconEmbed} style={{ ...imgCommon() }} />
-      </Box>
+      {showRecentArticles && (
+        <Box
+          sx={{
+            ...styleCommon("#2d2d39"),
+            cursor: !enablePreview ? "pointer" : "default",
+            marginRight: 0,
+          }}
+          onClick={() => {
+            !enablePreview && handleEmbed();
+          }}>
+          <img alt='share6' width={15} height={15} src={IconEmbed} style={{ ...imgCommon() }} />
+        </Box>
+      )}
       {openEmbedModal ? (
         <EmbedDialog
           isDialogOpen={openEmbedModal}

@@ -92,7 +92,7 @@ export const DraggableQuestions = ({ quizState, setQuizState, onClickEditQuestio
                   </Box>
                   <Box>
                     <IconButton
-                      onClick={(e) => handleClick(e, question?.current_page_url)}
+                      onClick={(e) => handleClick(e, question?.name)}
                       sx={{ width: "32px", height: "32px" }}>
                       <img
                         src={MoreHorizIcon}

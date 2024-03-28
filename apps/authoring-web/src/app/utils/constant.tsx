@@ -2,12 +2,9 @@ import {
   AllIcon,
   ArticleIcon,
   EventsIcon,
-  MyDashboardIcon,
   PagesIcon,
   PollIcon,
-  PostsIcon,
   QuizIcon,
-  UsersIcon,
   VODIcon,
 } from "@platformx/utilities";
 

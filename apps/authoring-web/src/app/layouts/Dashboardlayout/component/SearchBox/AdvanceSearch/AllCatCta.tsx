@@ -43,7 +43,7 @@ export default function AllCatCta({ setCategory }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [selectedCategory, setSelectedCategory] = React.useState({
-    Icon: categoryData[0].icon,
+    icon: categoryData[0].icon,
     title: categoryData[0].title,
     category: categoryData[0].category,
     id: categoryData[0].id,
@@ -71,9 +71,9 @@ export default function AllCatCta({ setCategory }) {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}>
         <Box className='allcatctabox'>
-          <Box className='icon'>{selectedCategory.Icon}</Box>
+          <Box className='icon'> {selectedCategory.icon} </Box>
           <Typography variant='h6regular'>
-            {typeof selectedCategory.Icon === "function" && t(selectedCategory.id)}
+            {typeof selectedCategory.icon === "function" && t(selectedCategory.id)}
           </Typography>
         </Box>
       </Button>
