@@ -7,6 +7,7 @@ import { capitalizeFirstLetter, useAccess } from "@platformx/utilities";
 // import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContListingContainer from "./components/ContentListingContainer/ContentListingContainer";
+import { makeCreateContentPath } from "./utils/Helper";
 
 export default function Content() {
   // const dispatch = useDispatch();
@@ -26,7 +27,8 @@ export default function Content() {
   // };
 
   const createContentNew = () => {
-    navigate(`/content/create/${contentType?.trim()?.toLowerCase()}`, {
+    const navigateTo: string = makeCreateContentPath(contentType);
+    navigate(navigateTo, {
       state: contentType?.trim()?.toLowerCase(),
     });
   };

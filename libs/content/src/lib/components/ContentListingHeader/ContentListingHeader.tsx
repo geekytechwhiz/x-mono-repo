@@ -6,6 +6,23 @@ import { t } from "i18next";
 import { useState } from "react";
 import { ContentListingHeaderContainer, FormControlCustom } from "./ContentListingHeader.styles";
 import { contentTypeBasedHideFilter } from "./helperContentList";
+import { createStyles, makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    rotateIcon: {
+      animation: "$spin 5s linear infinite",
+    },
+    "@keyframes spin": {
+      "0%": {
+        transform: "rotate(360deg)",
+      },
+      "100%": {
+        transform: "rotate(0deg)",
+      },
+    },
+  }),
+);
 
 const ContentListingHeader = ({
   handleFilter,
@@ -24,6 +41,7 @@ const ContentListingHeader = ({
   handleRefresh: () => void;
   animationState: boolean;
 }) => {
+  const Class = useStyles();
   const { canAccessAction } = useAccess();
   const searchPageUrl = new URL(window.location.href);
   const [filterValue, setFilterValue] = useState(
@@ -80,8 +98,8 @@ const ContentListingHeader = ({
               verticalAlign: "middle",
               fontSize: { md: "21px" },
               cursor: "pointer",
-              animation: animationState ? "$spin 5s linear infinite" : "none",
             }}
+            className={animationState ? Class.rotateIcon : ""}
           />
         </Box>
 
