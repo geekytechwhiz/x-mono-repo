@@ -73,7 +73,8 @@ const useQuestion = (
         } else {
           ShowToastSuccess(`${t("question")} ${t("created_and_added_toast")}`);
         }
-        saveQuestionCallBack({ ...qusObj, current_page_url: path });
+        // saveQuestionCallBack({ ...qusObj, current_page_url: path });
+        saveQuestionCallBack({ ...qusObj, current_page_url: path, name: path });
       })
       .catch((error) => {
         handleErrors(error);

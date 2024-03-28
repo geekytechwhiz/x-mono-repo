@@ -27,7 +27,7 @@ const useQuizAPI = () => {
     try {
       const structureData = editedSD ? editedSD : JSON.stringify(updateStructureData(quizState));
       const newTempData = JSON.parse(JSON.stringify(quizInstance));
-      const quesArr = quizState.questions.map((value) => value.current_page_url);
+      const quesArr = quizState.questions.map((value) => value.name);
       const tempObjField = {
         questions: [...quesArr],
         background_content: {
