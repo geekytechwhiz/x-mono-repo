@@ -8,6 +8,7 @@ import Content from "./lib/content";
 import { CreateContent } from "./lib/pages/CreateContent";
 import { CreateArticle } from "./lib/pages/article/CreateArticle";
 import { TimeLineBlogs } from "./lib/pages/event";
+import CreateNewPage from "./lib/pages/page/CreateNewPage";
 import ChooseTags from "./lib/pages/quiz/components/choosetags/ChooseTags";
 
 export * from "./lib/content";
@@ -23,6 +24,7 @@ export {
   CreateArticle,
   CreateContent,
   CreateHeader,
+  CreateNewPage,
   FormControlCustom,
   QuizPollEventMenu,
   TimeLineBlogs,
