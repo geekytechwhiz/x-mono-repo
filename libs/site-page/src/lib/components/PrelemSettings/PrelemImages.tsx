@@ -121,6 +121,7 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
             original_image: originalImage,
             published_images: publishedImages,
           }}
+          isCrop={true}
         />
       </Box>
       <Box className='rowBox'>
