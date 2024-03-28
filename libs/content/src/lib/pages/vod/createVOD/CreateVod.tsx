@@ -103,6 +103,10 @@ export const CreateVod = () => {
     }
   }, []);
 
+  const updateImageField = (updatedPartialObj) => {
+    //need to do update image
+  };
+
   const updateField = (updatedPartialObj, callPreview = false) => {
     updateTempObj.current = updatedPartialObj;
     const modifiedVod = {
@@ -842,7 +846,7 @@ export const CreateVod = () => {
                     type='Images'
                   /> */}
                   <XImageRender
-                    callBack={updateField}
+                    callBack={updateImageField}
                     editData={{
                       relativeUrl: vodRef.current?.Thumbnail,
                     }}
