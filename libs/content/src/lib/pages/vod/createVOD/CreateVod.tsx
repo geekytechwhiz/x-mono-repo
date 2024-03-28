@@ -104,7 +104,13 @@ export const CreateVod = () => {
   }, []);
 
   const updateImageField = (updatedPartialObj) => {
-    //need to do update image
+    updateTempObj.current = updatedPartialObj;
+    const modifiedVod = {
+      ...JSON.parse(JSON.stringify(vodInstance)),
+      ...updatedPartialObj,
+      lastModifiedDate: new Date(),
+    };
+    setVodInstance(modifiedVod);
   };
 
   const updateField = (updatedPartialObj, callPreview = false) => {
