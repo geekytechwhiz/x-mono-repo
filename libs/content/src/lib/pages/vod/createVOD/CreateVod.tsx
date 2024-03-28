@@ -2,37 +2,38 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import { ArrowBack } from "@mui/icons-material";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
-import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import {
-  TitleSubTitle,
-  TextBox,
-  PlateformXDialog,
-  ShowToastError,
-  ShowToastSuccess,
-  AutoTextArea,
-  useUserSession,
-  workflowKeys,
-  useAccess,
-  CATEGORY_CONTENT,
-  MarkedFeatured,
-  capitalizeFirstLetter,
-  CommonBoxWithNumber,
-  SubmitButton,
-} from "@platformx/utilities";
-import {
-  useWorkflow,
   FETCH_TAG_LIST_QUERY,
   create_vod,
   fetchVodById,
   publish_vod,
   update_vod,
+  useWorkflow,
 } from "@platformx/authoring-apis";
+import { RootState, previewContent } from "@platformx/authoring-state";
+import {
+  AutoTextArea,
+  CATEGORY_CONTENT,
+  CommonBoxWithNumber,
+  MarkedFeatured,
+  PlateformXDialog,
+  ShowToastError,
+  ShowToastSuccess,
+  SubmitButton,
+  TextBox,
+  TitleSubTitle,
+  capitalizeFirstLetter,
+  useAccess,
+  useUserSession,
+  workflowKeys,
+} from "@platformx/utilities";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { ContentType } from "../../../enums/ContentType";
+import { useNavigate, useParams } from "react-router-dom";
 import ContentPageScroll from "../../../components/ContentPageScroll";
+import { ContentType } from "../../../enums/ContentType";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import TagListing from "../Components/TagListing";
 import icons, { DEF_VOD } from "./Utils/constats";
@@ -41,7 +42,6 @@ import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
 import "./createVod.css";
 import { useStyles } from "./createVod.styles";
 import { DspaceObject } from "./createVod.types";
-import { RootState, previewContent } from "@platformx/authoring-state";
 
 export const CreateVod = () => {
   const dispatch = useDispatch();
@@ -102,6 +102,16 @@ export const CreateVod = () => {
       getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ContentType.Vod));
     }
   }, []);
+
+  const updateImageField = (updatedPartialObj) => {
+    updateTempObj.current = updatedPartialObj;
+    const modifiedVod = {
+      ...JSON.parse(JSON.stringify(vodInstance)),
+      ...updatedPartialObj,
+      lastModifiedDate: new Date(),
+    };
+    setVodInstance(modifiedVod);
+  };
 
   const updateField = (updatedPartialObj, callPreview = false) => {
     updateTempObj.current = updatedPartialObj;
@@ -181,6 +191,7 @@ export const CreateVod = () => {
       StructureData: JSON.stringify(structureData),
       is_featured: isFeatured,
     };
+    delete vodToSend?.contentType;
     createVodMutate({
       variables: {
         input: { ...vodToSend, lastModifiedDate: new Date() },
@@ -375,7 +386,7 @@ export const CreateVod = () => {
   };
   //Functions to handle Draft Page modal
   const saveAsDraftViewButtonHandle = () => {
-    navigate(`/content/create-vod?path=${vodRef.current?.Page}`);
+    navigate(`/content/create/vod?path=${vodRef.current?.Page}`);
     setOpenSaveModal(false);
   };
 
@@ -841,7 +852,7 @@ export const CreateVod = () => {
                     type='Images'
                   /> */}
                   <XImageRender
-                    callBack={updateField}
+                    callBack={updateImageField}
                     editData={{
                       relativeUrl: vodRef.current?.Thumbnail,
                     }}

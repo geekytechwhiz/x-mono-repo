@@ -11,11 +11,11 @@ const MenuSitesListDropdown = () => {
   const mySite = () => {
     setIsVisible(true);
   };
-  let selectedSite = localStorage.getItem("selectedSite");
-  if (localStorage.getItem("selectedSite")?.toLowerCase() === "system") {
+  const splitPath = window?.location.pathname.split("/");
+  let [, selectedSite] = splitPath;
+
+  if (selectedSite?.toLowerCase() === "system") {
     selectedSite = "Administrator";
-  } else {
-    selectedSite = localStorage.getItem("selectedSite");
   }
   const classes = useSitesMenuStyle();
 

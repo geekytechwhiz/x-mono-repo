@@ -916,6 +916,11 @@ const ThemeConstants = {
       BORDER_COLOR_HOVER: "#14142B",
     },
   },
+  ANIMATION: {
+    IMAGE: {
+      FADEINTIME: "1",
+    },
+  },
 
   FONTFAMILYPRIMARY: HelveticaNeue,
   FONTFAMILYSECONDARY: Arial,

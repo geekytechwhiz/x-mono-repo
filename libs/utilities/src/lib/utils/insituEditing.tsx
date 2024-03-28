@@ -64,6 +64,8 @@ export const initInsituEditing = (keys, ref) => {
   const editaleItems: any[] = [];
   ref.current.style.overflowY = "auto";
   ref.current.style.height = "calc(100vh - 110px)";
+  ref.current.style.top = 0;
+  ref.current.style.position = "sticky";
   for (let i = 0; i < keys?.length; i++) {
     //handling element keys which shouldnot be ediatable hence not including them in the array
     if (keys[i].validations.undefined?.value === "true") continue;

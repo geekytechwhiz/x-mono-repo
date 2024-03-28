@@ -241,8 +241,8 @@ export const CreatePoll = (): JSX.Element => {
         objectType: pollState?.queBackgroundImg
           ? "image"
           : pollState?.queBackgroundColor
-          ? "color"
-          : "",
+            ? "color"
+            : "",
         Url: pollState?.queBackgroundImg,
         Title: "",
         Thumbnail: pollState?.queBackgroundImg,
@@ -370,9 +370,9 @@ export const CreatePoll = (): JSX.Element => {
           ? `${getSubDomain()}/${i18n.language}/poll/${currentPollData.current}`
           : currentPollData.current
         : page_state === "PUBLISHED"
-        ? `${getSubDomain()}/${i18n.language}/` +
-          `poll/${pollState?.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase()}`
-        : pollState?.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase();
+          ? `${getSubDomain()}/${i18n.language}/` +
+            `poll/${pollState?.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase()}`
+          : pollState?.title?.replace(/[^A-Z0-9]+/gi, "-")?.toLowerCase();
     return url;
   };
   const updateStructureData = (pageState = "DRAFT") => {
@@ -574,8 +574,8 @@ export const CreatePoll = (): JSX.Element => {
         objectType: pollState?.queBackgroundImg
           ? "image"
           : pollState?.queBackgroundColor
-          ? "color"
-          : "",
+            ? "color"
+            : "",
         Url: pollState?.queBackgroundImg,
         Title: "",
         Thumbnail: pollState?.queBackgroundImg,
@@ -731,8 +731,8 @@ export const CreatePoll = (): JSX.Element => {
         objectType: pollState?.queBackgroundImg
           ? "image"
           : pollState?.queBackgroundColor
-          ? "color"
-          : "",
+            ? "color"
+            : "",
         Url: pollState?.queBackgroundImg,
         Title: "",
         Thumbnail: pollState?.queBackgroundImg,
@@ -1336,8 +1336,8 @@ export const CreatePoll = (): JSX.Element => {
       objectType: pollState?.queBackgroundImg
         ? "image"
         : pollState?.queBackgroundColor
-        ? "color"
-        : "",
+          ? "color"
+          : "",
       Url: pollState?.queBackgroundImg,
       Title: "",
       Thumbnail: pollState?.queBackgroundImg,
@@ -1561,7 +1561,7 @@ export const CreatePoll = (): JSX.Element => {
           closeButtonText={t("take_me_out")}
           confirmButtonText={t("done")}
           closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={savePoll}
+          confirmButtonHandle={() => savePoll(false)}
           crossButtonHandle={() => {
             setShowExitWarning(false);
           }}

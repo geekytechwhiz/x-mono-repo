@@ -1,16 +1,17 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { previewArticle, previewContent } from "@platformx/authoring-state";
 import {
-  useUserSession,
   ShowToastError,
   ShowToastSuccess,
   capitalizeFirstLetter,
   getSubDomain,
+  useUserSession,
 } from "@platformx/utilities";
-import { DashboardTypes, Dashboard_Keys } from "../../services/utils/dashboard/Dashboard.types";
-import { previewContent, previewArticle } from "@platformx/authoring-state";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { UPDATE_TASK_STATUS } from "../../graphQL/queries/dashboardQueries";
 import fetchContentByPathAPI, {
   createContentType,
   deleteContentType,
@@ -18,6 +19,7 @@ import fetchContentByPathAPI, {
   publishContentType,
 } from "../../services/contentTypes/contentTypes.api";
 import dashboardApi from "../../services/dashboard/dashBoard.api";
+import { DashboardTypes, Dashboard_Keys } from "../../services/utils/dashboard/Dashboard.types";
 import { LanguageList } from "../../utils/constants";
 import usePage from "../usePage/usePage";
 import { CONTENT_CONSTANTS } from "../useQuizPollEvents/Utils/Constants";
@@ -27,8 +29,6 @@ import {
   mapUnPublishContent,
   pageObjectMapper,
 } from "../useQuizPollEvents/mapper";
-import { useDispatch } from "react-redux";
-import { UPDATE_TASK_STATUS } from "../../graphQL/queries/dashboardQueries";
 
 const { LANG, DRAFT, EVENT, POLL, PUBLISHED, QUESTION, QUIZ, UNPUBLISHED, PREVIEW_PATH } =
   CONTENT_CONSTANTS;
@@ -186,7 +186,7 @@ const useDashboardData = (contentType = "ALL") => {
       editPage(pageObjectMapper(obj));
     } else {
       navigate(
-        `/content/create-${listItemDetails?.ContentType?.toLowerCase()}?path=${
+        `/content/create/${listItemDetails?.ContentType?.toLowerCase()}?path=${
           listItemDetails.page
         }`,
       );

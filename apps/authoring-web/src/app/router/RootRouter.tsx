@@ -5,6 +5,7 @@ import { useAuthentication } from "../hooks/useAuthentication";
 import { MenuData } from "../hooks/useDynamicRoutes/menuData";
 import { useDynamicRoutes } from "../hooks/useDynamicRoutes/useDynamicRoutes";
 import { routes } from "./routes";
+import { ChangePassword } from "@platformx/user-management";
 
 function RootRouter() {
   const location = useLocation();
@@ -36,10 +37,11 @@ function RootRouter() {
   }, []);
 
   if (Object.entries(userInfo || {}).length < 1) {
-    return <XLoader type='linear' />;
+    return <XLoader type='xloader' />;
   }
   return (
     <Routes>
+      <Route path='/change-password' element={<ChangePassword />} />
       {generatedRoutes?.map(({ path, element }) => (
         <Route key={path} path={path} element={element} />
       ))}

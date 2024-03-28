@@ -102,6 +102,9 @@ export const useCustomStyle = makeStyles(() => {
         "& .gap": {
           marginTop: "24px",
         },
+        "& .reactPlayerWrapper .react-player__preview": {
+          borderRadius: theme.borderRadius.value1,
+        },
       },
     },
   };

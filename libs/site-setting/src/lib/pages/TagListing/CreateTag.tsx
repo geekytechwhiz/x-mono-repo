@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Box,
   Grid,
@@ -11,7 +12,7 @@ import {
 } from "@mui/material";
 import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   TitleSubTitle,
   CommonBoxWithNumber,
@@ -20,18 +21,32 @@ import {
   RadioControlLabel,
   ShowToastSuccess,
   PlateformXDialogSuccess,
+  getCurrentLang,
 } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
 import TopBar from "./TopBar";
-import { createTag, fetchCategory, fetchTag, publishTag } from "@platformx/authoring-apis";
+import { createTag, fetchCategory, fetchTagListing, publishTag } from "@platformx/authoring-apis";
+
+const MOCK_OPTION = [
+  {
+    category: "Sports",
+  },
+  {
+    category: "Age",
+  },
+  {
+    category: "Art",
+  },
+];
 
 export const CreateTags = () => {
   const classes = useTagStyle();
   const navigate = useNavigate();
+  const { docPath } = useParams();
   const [value, setValue] = useState("");
-  const [option, setOption] = useState<any>([]);
-  const [tags, setTags] = useState([]);
+  const [option, setOption] = useState<any>(MOCK_OPTION);
+  const [tags, setTags] = useState<any>([]);
   const [publishUrl, setPublishUrl] = useState("");
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
   const { t } = useTranslation();
@@ -65,21 +80,21 @@ export const CreateTags = () => {
       const payload = {
         input: {
           CommonFields: {
-            page: value,
+            page: docPath ? docPath : value,
             createdby: username,
             lastmodifiedby: username,
             lastmodifieddate: "",
           },
           ObjectFields: {
             tag_name: value,
-            tag_value: "",
+            tag_value: getCurrentLang(),
             category: category,
+            doc_state: "DRAFT",
           },
         },
       };
       const { authoring_createOrUpdateSiteSettings = "" }: any = await createTag(payload);
-      //setPublishUrl(authoring_createOrUpdateSiteSettings.name);
-      setPublishUrl(authoring_createOrUpdateSiteSettings.message.split(" ")[0]);
+      setPublishUrl(authoring_createOrUpdateSiteSettings.name);
       ShowToastSuccess(`${t("tag")} ${t("created_toast")}`);
       setIsLoading(false);
     } catch (err) {
@@ -107,19 +122,34 @@ export const CreateTags = () => {
 
   const getTag = async () => {
     try {
-      const { authoring_getTagItems = [] }: any = await fetchTag({
+      const { authoring_getTagItems = [] }: any = await fetchTagListing({
         searchCategory: category,
         searchString: "",
+        start: 0,
+        rows: 1000,
       });
-      if (
-        authoring_getTagItems?.length > 0 &&
-        authoring_getTagItems[0] &&
-        authoring_getTagItems[0].tags
-      ) {
-        setTags(authoring_getTagItems[0].tags);
+      if (authoring_getTagItems?.length > 0) {
+        setTags(authoring_getTagItems);
       }
     } catch (error) {
       setTags([]);
+    }
+  };
+
+  const getTagByPath = async () => {
+    try {
+      const { authoring_getTagItems = [] }: any = await fetchTagListing({
+        searchCategory: "",
+        searchString: docPath,
+        start: 0,
+        rows: 1,
+      });
+      if (authoring_getTagItems?.length > 0) {
+        setValue(authoring_getTagItems[0].tag_name);
+        setCategory(authoring_getTagItems[0].category);
+      }
+    } catch (error) {
+      // setTags([]);
     }
   };
 
@@ -140,7 +170,10 @@ export const CreateTags = () => {
   };
 
   useEffect(() => {
-    getCategory();
+    if (docPath) {
+      getTagByPath();
+    }
+    //getCategory();
   }, []);
 
   useEffect(() => {
@@ -252,18 +285,23 @@ export const CreateTags = () => {
                     </Box>
                   )}
                   {tags?.length > 0 &&
-                    tags.map((val) => (
-                      <Box className={`${classes.createbtn} ${classes.txtcolor}`} key={val}>
-                        <Button
-                          disableRipple
-                          disableFocusRipple
-                          disableTouchRipple
-                          color='primary'
-                          className={classes.textTransform}>
-                          {val}
-                        </Button>
-                      </Box>
-                    ))}
+                    tags.map(
+                      (val) =>
+                        val.doc_path !== docPath && (
+                          <Box
+                            className={`${classes.createbtn} ${classes.txtcolor}`}
+                            key={val.tag_name}>
+                            <Button
+                              disableRipple
+                              disableFocusRipple
+                              disableTouchRipple
+                              color='primary'
+                              className={classes.textTransform}>
+                              {val.tag_name}
+                            </Button>
+                          </Box>
+                        ),
+                    )}
                 </Box>
               </Grid>
             </Grid>

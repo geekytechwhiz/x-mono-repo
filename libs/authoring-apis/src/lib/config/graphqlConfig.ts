@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { getLocale, getSelectedSite } from "../utils/helper";
+import { i18next } from "@platformx/utilities";
+import { getSelectedSite } from "../utils/helper";
 
 const defaultOptions: any = {
   watchQuery: {
@@ -15,18 +16,24 @@ const defaultOptions: any = {
 const link = createHttpLink({
   uri: process.env.NX_GRAPHQL_URI,
   headers: {
-    language: "en",
+    language: i18next.language, //"en",
     sitename: getSelectedSite(),
   },
   credentials: "include",
 });
 const updateLanguageheader = setContext((_, { headers }) => {
-  const language = headers && headers.language ? headers.language : "en";
+  // const language = headers && headers.language ? headers.language : "en";
+  // return {
+  //   headers: {
+  //     ...headers,
+  //     language,
+  //     Locale: getLocale(language, language),
+  //   },
+  // };
   return {
     headers: {
       ...headers,
-      language,
-      Locale: getLocale(language, language),
+      language: i18next.language,
     },
   };
 });

@@ -173,6 +173,8 @@ const useContentListing = (filter = "ALL") => {
         }`,
       );
       // window.open(`${listItemDetails?.currentPageUrl}`);
+    } else if (listItemDetails.tagName.toLowerCase() === "sitepage") {
+      window.open(`${getSubDomain()}/${i18n.language}${listItemDetails?.currentPageUrl}`);
     } else {
       window.open(
         `${getSubDomain()}/${i18n.language}/${listItemDetails.tagName?.toLowerCase()}${

@@ -24,7 +24,7 @@ export type HeaderProps = {
   setEnableWorkflowHistory?: (boolean) => void;
   createComment?: () => void;
   setIsFeatured?: (val: boolean) => void;
-  isFeatured: boolean;
+  isFeatured?: boolean;
   commentInfo?: CommentType;
 };
 interface CommentType {

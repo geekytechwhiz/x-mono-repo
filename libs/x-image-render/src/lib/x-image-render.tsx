@@ -1,27 +1,33 @@
+import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Typography } from "@mui/material";
-import React, { Fragment, useEffect, useState } from "react";
-import DamContentGallery from "./components/damContentGallery/DamContentGallery";
 import {
-  UploadIcon,
-  ThemeConstants,
   ShowToastError,
-  nullToObject,
   ShowToastSuccess,
+  ThemeConstants,
+  UploadIcon,
+  nullToObject,
   relativeImageURL,
 } from "@platformx/utilities";
+import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { usePostImageCrop } from "./hooks/usePostImageCrop";
 import ImageCrop from "./components/ImageCrop";
-import CachedIcon from "@mui/icons-material/Cached";
 import ImageRender from "./components/ImageRender";
 import ShowCaseCrops from "./components/ShowCaseCrops";
+import DamContentGallery from "./components/damContentGallery/DamContentGallery";
+import { usePostImageCrop } from "./hooks/usePostImageCrop";
 
 //custom check for rerender
-const areEqual = (prevProps, nextProps) => {
-  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
-};
+// const areEqual = (prevProps, nextProps) => {
+//   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+// };
+interface XImageRenderProps {
+  callBack: (obj: any, name?: string) => void;
+  editData: any;
+  isCrop?: boolean;
+  name?: string;
+}
 
-const XImageRender = ({ callBack, editData, isCrop = true }): any => {
+const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderProps) => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
   const [processing, setProcessing] = useState(false);
@@ -63,7 +69,8 @@ const XImageRender = ({ callBack, editData, isCrop = true }): any => {
         setProcessing(false);
         setGalleryDialogOpen(false);
         ShowToastSuccess(`${t("auto_cropped_successfully")}`);
-        callBack(retdata);
+        if (name) callBack(retdata, name);
+        else callBack(retdata);
       } else {
         setProcessing(false);
         setGalleryDialogOpen(false);
@@ -86,7 +93,9 @@ const XImageRender = ({ callBack, editData, isCrop = true }): any => {
   const noCropCallBack = (data, img) => {
     const relativeUrl = `${data?.original_image_relative_path}.${data?.ext}`;
     setReturnData({ relativeUrl: relativeUrl });
-    callBack({ relativeUrl: relativeUrl, selected_img: img });
+
+    if (name) callBack({ relativeUrl: relativeUrl, selected_img: img }, name);
+    else callBack({ relativeUrl: relativeUrl, selected_img: img });
   };
 
   const noCropFunc = async (image) => {
@@ -155,7 +164,8 @@ const XImageRender = ({ callBack, editData, isCrop = true }): any => {
         selected_image: img,
       };
       setReturnData(data);
-      callBack(data);
+      if (name) callBack(data, name);
+      else callBack(data);
     }
     setManualCropShow(false);
   };
@@ -378,4 +388,4 @@ const XImageRender = ({ callBack, editData, isCrop = true }): any => {
   );
 };
 
-export default React.memo(XImageRender, areEqual);
+export default React.memo(XImageRender);
