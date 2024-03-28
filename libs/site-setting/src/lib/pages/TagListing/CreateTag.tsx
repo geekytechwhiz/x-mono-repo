@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Box,
   Grid,
@@ -28,24 +27,22 @@ import { useTagStyle } from "./Tags.style";
 import TopBar from "./TopBar";
 import { createTag, fetchCategory, fetchTagListing, publishTag } from "@platformx/authoring-apis";
 
-const MOCK_OPTION = [
-  {
-    category: "Sports",
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+    },
   },
-  {
-    category: "Age",
-  },
-  {
-    category: "Art",
-  },
-];
+};
 
 export const CreateTags = () => {
   const classes = useTagStyle();
   const navigate = useNavigate();
   const { docPath } = useParams();
   const [value, setValue] = useState("");
-  const [option, setOption] = useState<any>(MOCK_OPTION);
+  const [option, setOption] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
   const [publishUrl, setPublishUrl] = useState("");
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
@@ -108,9 +105,11 @@ export const CreateTags = () => {
       //const res =
       await publishTag({
         input: {
-          page: publishUrl,
+          page: docPath ? docPath : publishUrl,
           category: category,
           status: "publish",
+          is_schedule: false,
+          schedule_date_time: "",
         },
       });
       setIsSuccessPopup(true);
@@ -142,7 +141,7 @@ export const CreateTags = () => {
         searchCategory: "",
         searchString: docPath,
         start: 0,
-        rows: 1,
+        rows: 5,
       });
       if (authoring_getTagItems?.length > 0) {
         setValue(authoring_getTagItems[0].tag_name);
@@ -158,6 +157,8 @@ export const CreateTags = () => {
       const { authoring_getTagItems = [] }: any = await fetchCategory({
         searchCategory: "",
         searchString: "",
+        start: 0,
+        rows: 100,
       });
       setOption(authoring_getTagItems);
     } catch (error) {
@@ -173,7 +174,7 @@ export const CreateTags = () => {
     if (docPath) {
       getTagByPath();
     }
-    //getCategory();
+    getCategory();
   }, []);
 
   useEffect(() => {
@@ -221,7 +222,8 @@ export const CreateTags = () => {
                       id='demo-simple-select'
                       placeholder={t("choose_category")}
                       value={category}
-                      onChange={handleChange}>
+                      onChange={handleChange}
+                      MenuProps={MenuProps}>
                       {option?.length > 0 &&
                         option.map((obj) => (
                           <MenuItem key={obj.category} value={obj.category}>
