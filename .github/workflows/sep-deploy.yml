@@ -49,7 +49,7 @@ jobs:
           echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_AUTH_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
-          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV    
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -91,7 +91,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets[env.WORKLOAD_IDENTITY_PROVIDER] }}
           service_account: ${{ secrets.SERVICE_ACCOUNT_QA }}
-          token_format: 'access_token'
+          token_format: "access_token"
 
       # Get the GKE credentials so we can deploy to the cluster
       - name: gke-credentails-dev
@@ -106,10 +106,19 @@ jobs:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}
 
-      # Build the Docker image
-      - name: Build
+      # # Build the Docker image
+      # - name: Build
+      #   run: |-
+      #     docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+
+      - name: Build develop
+        if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
-          docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+          docker build -f Dockerfile.author.dev --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+      - name: Build qa
+        if: ${{ github.ref == 'refs/heads/qa' }}
+        run: |-
+          docker build -f Dockerfile.author.qa --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
@@ -142,7 +151,7 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=1200s
 
   user-experience-ui:
     name: user-experience-ui
@@ -181,8 +190,8 @@ jobs:
           echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_UX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
-          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV    
-      
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -222,7 +231,7 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets[env.WORKLOAD_IDENTITY_PROVIDER] }}
           service_account: ${{ secrets.SERVICE_ACCOUNT_QA }}
-          token_format: 'access_token'
+          token_format: "access_token"
 
       # Get the GKE credentials so we can deploy to the cluster
       - name: gke-credentails-dev
@@ -273,4 +282,4 @@ jobs:
           chmod u+x ./kustomize
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
-          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=300s
+          kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }}  -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=1200s

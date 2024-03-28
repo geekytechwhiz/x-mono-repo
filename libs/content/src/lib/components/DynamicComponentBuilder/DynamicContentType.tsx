@@ -382,6 +382,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
               workflow={workflow}
               hasTimerState={false}
               lastModifiedDate={""}
+              isFeatured={false}
               // setEnableWorkflowHistory={function (boolean: any): void {
               //   throw new Error("Function not implemented.");
               // }}

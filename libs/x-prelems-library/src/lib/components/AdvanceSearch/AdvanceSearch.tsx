@@ -1,16 +1,16 @@
-import * as React from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from "@mui/icons-material/Search";
+import { Box, Grid, Input, InputAdornment, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, Grid, Input, InputAdornment, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { ResultCard } from "./ResultCard";
 import { postRestApiCall } from "@platformx/utilities";
-import { useCustomStyle } from "./AdvanceSearch.style";
+import * as React from "react";
 import prelemTypes from "../../globalStyle";
 import "./AdvanceSearch.css";
+import { useCustomStyle } from "./AdvanceSearch.style";
+import { ResultCard } from "./ResultCard";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -60,7 +60,6 @@ export const AdvanceSearchPopup = ({ onClosePopup, secondaryArgs, gcpUrl, bucket
       handleEnter();
     }
   };
-
   return (
     <Box>
       <Dialog

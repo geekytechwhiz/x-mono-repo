@@ -259,6 +259,8 @@ export const CreateVod = () => {
       is_featured: isFeatured,
     };
     delete updateVodToSend.__typename;
+    delete updateVodToSend.selected_img;
+    delete updateVodToSend.relativeUrl;
     updateVodMutate({
       variables: {
         input: updateVodToSend,
@@ -368,7 +370,6 @@ export const CreateVod = () => {
       .then(() => {
         ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
-        // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);
       })
       .catch(() => {
@@ -846,11 +847,6 @@ export const CreateVod = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
-                  {/* <AddImage
-                    url={vodRef.current?.Thumbnail}
-                    onUploadClick={onUploadClick}
-                    type='Images'
-                  /> */}
                   <XImageRender
                     callBack={updateImageField}
                     editData={{

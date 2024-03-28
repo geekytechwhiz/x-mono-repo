@@ -253,7 +253,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create/course",
+    path: "/content/create-course",
     element: (
       <ProtectedRoute
         name='course'
@@ -394,7 +394,7 @@ export const routes: RouteConfig[] = [
     ),
   },
   {
-    path: "/content/create/article",
+    path: "/content/create-article",
     element: (
       <ProtectedRoute
         name='article'
@@ -492,19 +492,6 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute category='UserManagement' subCategory='users' name='UserManagement'>
         <UserListing />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: "/content/create/article",
-    element: (
-      <ProtectedRoute
-        name='quiz'
-        subCategory='quiz'
-        category='content'
-        isHeader={false}
-        isSideBar={false}>
-        <CreateContent />
       </ProtectedRoute>
     ),
   },

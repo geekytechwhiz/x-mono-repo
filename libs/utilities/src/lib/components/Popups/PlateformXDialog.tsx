@@ -113,7 +113,9 @@ export default function DeletePopup({
           }}>
           {confirmButtonText ? (
             <Button
-              variant='redbutton'
+              variant={
+                modalType === "unsavedChanges" || modalType === "draft" ? "outlined" : "redbutton"
+              }
               sx={{
                 marginRight: "12px",
                 minWidth: { xs: "120px", md: "120px" },

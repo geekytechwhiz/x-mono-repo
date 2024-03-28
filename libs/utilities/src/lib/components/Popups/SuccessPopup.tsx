@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from "../../assets/icons/righttick.svg";
+import { SuccessIcon } from "@platformx/utilities";
 
 export default function PlateformXDialogSuccess({
   isDialogOpen,
@@ -73,7 +73,7 @@ export default function PlateformXDialogSuccess({
                 height: { xs: "90px", md: "100px" },
                 margin: "auto !important",
               }}>
-              <img alt='' src={DeleteIcon} style={{ width: "100%" }} />
+              <img alt='' src={SuccessIcon} style={{ width: "100%" }} />
             </Box>
           </Box>
           {title ? (
