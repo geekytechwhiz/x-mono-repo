@@ -7,7 +7,7 @@ const Header = ({ title = "", titleVariant, linkText = "" }: any) => {
     <Box className='header'>
       <Typography variant={titleVariant}>{title}</Typography>
       {linkText && (
-        <Link to='/page-list' className='link'>
+        <Link to='/sitepage' className='link'>
           {linkText}
         </Link>
       )}

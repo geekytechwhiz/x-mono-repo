@@ -1,4 +1,5 @@
 import ApprovalStatus from "./ApprovalStatusIcon.svg";
+import TagIcon from "./tagicon.svg";
 import CardOptionApprovalStatusIcon from "./ApprovalStatusIconOptionMenu.svg";
 import ArrowUpwardIcon from "./ArrowUp.svg";
 import AssetnoIcon from "./Assetnoicon.svg";
@@ -254,6 +255,7 @@ export {
   IconVisaCardSvg,
   IconDelete1svg,
   SuccessIcon,
+  TagIcon,
   IconMasterCardSvg,
   Aboutusupdateicon,
   AccountBalanceWalletIcon,

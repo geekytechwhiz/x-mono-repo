@@ -136,6 +136,7 @@ export const CreateVod = () => {
   //     }
   //   }
   // };
+
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
   const [isEdited, setIsEdited] = useState<boolean>(false);
@@ -315,7 +316,6 @@ export const CreateVod = () => {
       updateVOD(status);
     }
   };
-
   const publishButtonHandel = () => {
     const pageURL = vodRef.current.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
 
@@ -351,6 +351,7 @@ export const CreateVod = () => {
     };
     vodInstance.Page_State = "draft";
     delete vodToSend.__typename;
+    delete vodToSend.relativeUrl;
     const requestdto = {
       page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
       parentpageurl: "/",
@@ -387,7 +388,7 @@ export const CreateVod = () => {
   };
   //Functions to handle Draft Page modal
   const saveAsDraftViewButtonHandle = () => {
-    navigate(`/content/create/vod?path=${vodRef.current?.Page}`);
+    navigate(`?path=${vodInstance?.Page}`);
     setOpenSaveModal(false);
   };
 
@@ -941,6 +942,7 @@ export const CreateVod = () => {
           dialogOpen={galleryState}
         />
       )}
+
       {showPublishConfirm && (
         <PlateformXDialog
           isDialogOpen={showPublishConfirm}

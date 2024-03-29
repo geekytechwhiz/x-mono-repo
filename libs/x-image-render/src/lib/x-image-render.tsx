@@ -7,6 +7,8 @@ import {
   UploadIcon,
   nullToObject,
   relativeImageURL,
+  Refresh,
+  Icon,
 } from "@platformx/utilities";
 import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -25,9 +27,20 @@ interface XImageRenderProps {
   editData: any;
   isCrop?: boolean;
   name?: string;
+  isColorPallete?: boolean;
+  handleRefresh?: () => void;
+  handleColorPallete?: (color: string) => void;
 }
 
-const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderProps) => {
+const XImageRender = ({
+  callBack,
+  editData,
+  isCrop = true,
+  name = "",
+  isColorPallete = false,
+  handleRefresh,
+  handleColorPallete,
+}: XImageRenderProps) => {
   const { t } = useTranslation();
   const { postRequest } = usePostImageCrop();
   const [processing, setProcessing] = useState(false);
@@ -41,6 +54,20 @@ const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderP
   const [manualCropShow, setManualCropShow] = useState(false);
   const [showCropPreview, setShowCropPreview] = useState(false);
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
+  const [isImage, setIsImage] = useState(editData.isImg || false);
+  const colorCode = [
+    "#b29a53",
+    "#ba8b78",
+    "#ae6958",
+    "#d86057",
+    "#b75c8d",
+    "#68669a",
+    "#5c98ba",
+    "#334075",
+    "#246d73",
+    "#806a71",
+    "#514146",
+  ];
 
   const autoCropCallBack = (data, img) => {
     if (data) {
@@ -133,6 +160,7 @@ const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderP
   };
 
   const onUploadClick = () => {
+    if (!isImage) setIsImage(true);
     showGallery();
   };
 
@@ -188,183 +216,276 @@ const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderP
         description: "",
         bitStreamId: editData?.original_image?.bitStreamId,
       });
+      setIsImage(editData?.isImg);
     }
   }, [editData]);
   return (
     <Fragment>
-      <Box
-        sx={{
-          backgroundColor: "#FFF",
-        }}>
-        {galleryDialogOpen && (
-          <DamContentGallery
-            handleImageSelected={handleSelectedImage}
-            toggleGallery={toggleGallery}
-            assetType={"Image"}
-            processing={processing}
-            dialogOpen={galleryDialogOpen}
-            isCrop={isCrop}
-          />
-        )}
-      </Box>
-      {returnData.published_images && returnData.published_images.length > 0 ? (
-        <Box
-          key={`published_images_length_${returnData.published_images.length}`}
-          sx={{
-            position: "relative", //height: "91%"
-            borderRadius: "15px",
-            minHeight: "206px",
-            "& picture": {
-              height: "206px",
-            },
-          }}
-          mb={2}>
-          <ImageRender
-            data={returnData}
-            selectedImage={selectedImage}
-            imgOrder={{
-              1440: "hero",
-              1280: "landscape",
-              1024: "card2",
-              768: "square",
-              600: "card2",
-              320: "card2",
-            }}
-            changeCrop={changeCrop}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "0",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#7470708a",
-              borderRadius: "15px",
-            }}>
-            <Box sx={{ display: "flex" }}>
-              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
-                <Box
-                  sx={{
-                    borderRadius: "50%",
-                    backgroundColor: "#fff",
-                    width: "25px",
-                    height: "25px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "auto",
-                  }}>
-                  <CachedIcon sx={{ color: "#626060" }} />
-                </Box>
-                <Typography
-                  mt={1}
-                  sx={{
-                    fontSize: ThemeConstants.FONTSIZE_XS,
-                    color: ThemeConstants.WHITE_COLOR,
-                    textTransform: "capitalize",
-                  }}>
-                  {t("replace")}
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      ) : returnData.relativeUrl ? (
+      {isColorPallete && editData.colorCode && !isImage ? (
         <Box
           sx={{
-            position: "relative", //height: "91%"
-            borderRadius: "15px",
-            minHeight: "206px",
-            "& picture": {
-              height: "206px",
-            },
-          }}
-          mb={2}>
-          <img
-            style={{
-              width: "100%",
-              height: "206px",
-              objectFit: "cover",
-              display: "flex",
-              borderRadius: "15px",
-            }}
-            src={relativeImageURL(returnData.relativeUrl)}
-            alt='socialshare'
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "0",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#7470708a",
-              borderRadius: "15px",
-            }}>
-            <Box sx={{ display: "flex" }}>
-              <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
-                <Box
-                  sx={{
-                    borderRadius: "50%",
-                    backgroundColor: "#fff",
-                    width: "25px",
-                    height: "25px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "auto",
-                  }}>
-                  <CachedIcon sx={{ color: "#626060" }} />
-                </Box>
-                <Typography
-                  mt={1}
-                  sx={{
-                    fontSize: ThemeConstants.FONTSIZE_XS,
-                    color: ThemeConstants.WHITE_COLOR,
-                    textTransform: "capitalize",
-                  }}>
-                  {t("replace")}
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            borderRadius: "15px",
-            cursor: "pointer",
+            width: "100%",
             height: "206px",
-            backgroundColor: "#EFF0F6",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-          onClick={() => onUploadClick()}>
+            aspectRatio: {
+              xs: "4 / 3",
+              sm: "4 / 3",
+              md: "1 / 1",
+              em: "4 / 3",
+              lg: "16 / 9",
+              xl: "3 / 1",
+            },
+            backgroundColor: editData.colorCode,
+            borderRadius: "15px",
+          }}></Box>
+      ) : (
+        <>
           <Box
             sx={{
-              width: "40px",
-              height: "40px",
+              backgroundColor: "#FFF",
+            }}>
+            {galleryDialogOpen && (
+              <DamContentGallery
+                handleImageSelected={handleSelectedImage}
+                toggleGallery={toggleGallery}
+                assetType={"Image"}
+                processing={processing}
+                dialogOpen={galleryDialogOpen}
+                isCrop={isCrop}
+              />
+            )}
+          </Box>
+          {returnData.published_images && returnData.published_images.length > 0 ? (
+            <Box
+              key={`published_images_length_${returnData.published_images.length}`}
+              sx={{
+                position: "relative", //height: "91%"
+                borderRadius: "15px",
+                minHeight: "206px",
+                "& picture": {
+                  height: "206px",
+                },
+              }}
+              mb={2}>
+              <ImageRender
+                data={returnData}
+                selectedImage={selectedImage}
+                imgOrder={{
+                  1440: "hero",
+                  1280: "landscape",
+                  1024: "card2",
+                  768: "square",
+                  600: "card2",
+                  320: "card2",
+                }}
+                changeCrop={changeCrop}
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "0",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#7470708a",
+                  borderRadius: "15px",
+                }}>
+                <Box sx={{ display: "flex" }}>
+                  <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
+                    <Box
+                      sx={{
+                        borderRadius: "50%",
+                        backgroundColor: "#fff",
+                        width: "25px",
+                        height: "25px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: "auto",
+                      }}>
+                      <CachedIcon sx={{ color: "#626060" }} />
+                    </Box>
+                    <Typography
+                      mt={1}
+                      sx={{
+                        fontSize: ThemeConstants.FONTSIZE_XS,
+                        color: ThemeConstants.WHITE_COLOR,
+                        textTransform: "capitalize",
+                      }}>
+                      {t("replace")}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          ) : returnData.relativeUrl ? (
+            <Box
+              sx={{
+                position: "relative", //height: "91%"
+                borderRadius: "15px",
+                minHeight: "206px",
+                "& picture": {
+                  height: "206px",
+                },
+              }}
+              mb={2}>
+              <img
+                style={{
+                  width: "100%",
+                  height: "206px",
+                  objectFit: "cover",
+                  display: "flex",
+                  borderRadius: "15px",
+                }}
+                src={relativeImageURL(returnData.relativeUrl)}
+                alt='socialshare'
+              />
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "0",
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#7470708a",
+                  borderRadius: "15px",
+                }}>
+                <Box sx={{ display: "flex" }}>
+                  <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick()}>
+                    <Box
+                      sx={{
+                        borderRadius: "50%",
+                        backgroundColor: "#fff",
+                        width: "25px",
+                        height: "25px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        margin: "auto",
+                      }}>
+                      <CachedIcon sx={{ color: "#626060" }} />
+                    </Box>
+                    <Typography
+                      mt={1}
+                      sx={{
+                        fontSize: ThemeConstants.FONTSIZE_XS,
+                        color: ThemeConstants.WHITE_COLOR,
+                        textTransform: "capitalize",
+                      }}>
+                      {t("replace")}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                borderRadius: "15px",
+                cursor: "pointer",
+                height: "206px",
+                backgroundColor: "#EFF0F6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+              onClick={() => onUploadClick()}>
+              <Box
+                sx={{
+                  width: "40px",
+                  height: "40px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                m={1}>
+                <img src={UploadIcon} alt='UploadIcon' />
+              </Box>
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: ThemeConstants.PRIMARY_MAIN_COLOR,
+                }}>
+                <Typography variant='h5medium'>Choose your image</Typography>
+              </Box>
+            </Box>
+          )}
+        </>
+      )}
+      {isColorPallete && (
+        <Box
+          sx={{
+            marginTop: "10px",
+            display: "flex",
+            flexDirection: "row",
+            flexFlow: { xs: "wrap", lg: "nowrap" },
+          }}>
+          <Box
+            onClick={() => onUploadClick()}
+            sx={{
+              width: "27px",
+              height: "27px",
+              flexGrow: "0",
+              borderRadius: "20px",
+              backgroundColor: "#fff",
+              margin: {
+                xs: "0px 8px 8px 0px",
+                lg: "0px 8px 8px 0px",
+              },
+              border: "solid 1px #2d2d39",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-            }}
-            m={1}>
-            <img src={UploadIcon} alt='UploadIcon' />
-          </Box>
-          <Box
-            sx={{
-              justifyContent: "center",
-              alignItems: "center",
-              color: ThemeConstants.PRIMARY_MAIN_COLOR,
+              cursor: "pointer",
             }}>
-            <Typography variant='h5medium'>Choose your image</Typography>
+            <img src={Icon} alt='Icon' />
+          </Box>
+          {colorCode.map((val, index) => {
+            return (
+              <Box
+                key={index}
+                onClick={() =>
+                  typeof handleColorPallete !== "undefined" ? handleColorPallete(val) : ""
+                }
+                sx={{
+                  width: "27px",
+                  height: "27px",
+                  flexGrow: "0",
+                  borderRadius: "20px",
+                  backgroundColor: val,
+                  margin: {
+                    xs: "0px 8px 8px 0px",
+                    lg: "0px 8px 8px 0px",
+                  },
+                  border: val === "#fff" ? "solid 1px #e6eaed" : null,
+                  cursor: "pointer",
+                }}></Box>
+            );
+          })}
+          <Box
+            onClick={() => (typeof handleRefresh !== "undefined" ? handleRefresh() : "")}
+            sx={{
+              width: "27px",
+              height: "27px",
+              flexGrow: "0",
+              borderRadius: "20px",
+              backgroundColor: "#fff",
+              border: "solid 1px #ced3d9",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              margin: {
+                xs: "0px 8px 8px 0px",
+                lg: "0px 0px 8px 0px",
+              },
+            }}>
+            <img src={Refresh} alt='Refresh' />
           </Box>
         </Box>
       )}
@@ -386,6 +507,12 @@ const XImageRender = ({ callBack, editData, isCrop = true, name }: XImageRenderP
       )}
     </Fragment>
   );
+};
+
+XImageRender.defaultProps = {
+  isCrop: true,
+  name: "",
+  isColorPallete: false,
 };
 
 export default React.memo(XImageRender);

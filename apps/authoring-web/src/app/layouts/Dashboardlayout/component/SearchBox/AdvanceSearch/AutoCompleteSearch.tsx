@@ -47,20 +47,25 @@ export default function AutoCompleteSearch({
   };
 
   const getSuggestions = async (searchTerm) => {
-    const response: any = await contentTypeAPIs.fetchContentAll({
-      contentType: selectedCategory.category,
-      pageFilter: "ALL",
-      sort: SORT_ORDER,
-      searchTerm: searchTerm,
-      isSuggestive: true,
-      pagination: { start: 0, rows: 100 },
-      tags: filters.tags,
-      author: filters.author,
-      fromDate: filters.fromDate,
-      toDate: filters.toDate,
-    });
-    const { authoring_getContentTypeItems: itemsList } = response.data;
-    setAutoCompleteData([...(itemsList || [])]);
+    try {
+      const response = await contentTypeAPIs.fetchContentAll({
+        contentType: selectedCategory.category,
+        pageFilter: "ALL",
+        sort: SORT_ORDER,
+        searchTerm: searchTerm,
+        isSuggestive: true,
+        pagination: { start: 0, rows: 100 },
+        tags: filters.tags,
+        author: filters.author,
+        fromDate: filters.fromDate,
+        toDate: filters.toDate,
+      });
+
+      const itemsList = response.data?.authoring_getContentTypeItems || [];
+      setAutoCompleteData([...itemsList]);
+    } catch (error) {
+      console.error("Error fetching content:", error);
+    }
   };
 
   const handleSuggestions = (e) => {
