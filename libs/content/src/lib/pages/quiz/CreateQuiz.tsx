@@ -118,7 +118,7 @@ export const CreateQuiz = () => {
   const updateField = (updatedPartialObj) => {
     updateTempObj.current = updatedPartialObj;
     const newTempData = JSON.parse(JSON.stringify(quizInstance));
-    const quesArr = quizState.questions.map((value) => value.current_page_url);
+    const quesArr = quizState.questions.map((value) => value.name);
     const tempObjField = {
       questions: [...quesArr],
       background_content: {
@@ -341,7 +341,7 @@ export const CreateQuiz = () => {
     setIsLoading(true);
     const structureData = editedSD ? editedSD : JSON.stringify(updateStructureData(quizState));
     const newTempData = JSON.parse(JSON.stringify(quizInstance));
-    const quesArr = quizState.questions.map((value) => value.current_page_url);
+    const quesArr = quizState.questions.map((value) => value.name);
     const tempObjField = {
       questions: [...quesArr],
       background_content: {
@@ -725,6 +725,7 @@ export const CreateQuiz = () => {
                         resp.data.authoring_getCmsContentByPath.options_compound_fields,
                       background_content:
                         resp.data.authoring_getCmsContentByPath.background_content,
+                      name: resp?.data?.authoring_getCmsContentByPath.page,
                     };
                   }
                 }),
@@ -940,7 +941,7 @@ export const CreateQuiz = () => {
         sx={{
           display: isClickedQueList || openAddQuestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <XLoader type='xloader' />}
 
         <Box>
           <Box>

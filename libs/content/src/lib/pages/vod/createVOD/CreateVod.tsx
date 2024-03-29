@@ -136,6 +136,7 @@ export const CreateVod = () => {
   //     }
   //   }
   // };
+
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
   const [isEdited, setIsEdited] = useState<boolean>(false);
@@ -259,6 +260,8 @@ export const CreateVod = () => {
       is_featured: isFeatured,
     };
     delete updateVodToSend.__typename;
+    delete updateVodToSend.selected_img;
+    delete updateVodToSend.relativeUrl;
     updateVodMutate({
       variables: {
         input: updateVodToSend,
@@ -313,7 +316,6 @@ export const CreateVod = () => {
       updateVOD(status);
     }
   };
-
   const publishButtonHandel = () => {
     const pageURL = vodRef.current.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
 
@@ -349,6 +351,7 @@ export const CreateVod = () => {
     };
     vodInstance.Page_State = "draft";
     delete vodToSend.__typename;
+    delete vodToSend.relativeUrl;
     const requestdto = {
       page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
       parentpageurl: "/",
@@ -368,7 +371,6 @@ export const CreateVod = () => {
       .then(() => {
         ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
-        // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
         setShowPublishConfirm(true);
       })
       .catch(() => {
@@ -386,7 +388,7 @@ export const CreateVod = () => {
   };
   //Functions to handle Draft Page modal
   const saveAsDraftViewButtonHandle = () => {
-    navigate(`/content/create/vod?path=${vodRef.current?.Page}`);
+    navigate(`?path=${vodInstance?.Page}`);
     setOpenSaveModal(false);
   };
 
@@ -846,11 +848,6 @@ export const CreateVod = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} lg={7} className='textFiledLast'>
-                  {/* <AddImage
-                    url={vodRef.current?.Thumbnail}
-                    onUploadClick={onUploadClick}
-                    type='Images'
-                  /> */}
                   <XImageRender
                     callBack={updateImageField}
                     editData={{
@@ -945,6 +942,7 @@ export const CreateVod = () => {
           dialogOpen={galleryState}
         />
       )}
+
       {showPublishConfirm && (
         <PlateformXDialog
           isDialogOpen={showPublishConfirm}

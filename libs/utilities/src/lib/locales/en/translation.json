@@ -1195,5 +1195,7 @@
   "choose_members": "Choose Members",
   "logo_will_look_like_this_on_footer_site": "Site Logo will look like this on Footer",
   "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
-  "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser."
+  "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
+  "event_Location": "Event Location",
+  "blogs_Timeline": "Blogs Timeline"
 }

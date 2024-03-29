@@ -2,9 +2,11 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "./Topbar.css";
+import { useParams } from "react-router-dom";
 
 const TopBar = ({ returnBack, handlePublish, onSave, category, value, publishUrl }) => {
   const { t } = useTranslation();
+  const { docPath } = useParams();
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -51,7 +53,7 @@ const TopBar = ({ returnBack, handlePublish, onSave, category, value, publishUrl
             {t("save_as_draft")}
           </Button>
           <Button
-            disabled={!publishUrl}
+            disabled={docPath ? false : !publishUrl}
             variant='primaryButton'
             className='sm'
             onClick={handlePublish}>

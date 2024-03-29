@@ -249,9 +249,9 @@ const usePage = (filter = "ALL") => {
       })
       .catch((error) => {
         if (code) {
-          ShowToastError(`${error.graphQLErrors[0].message} ${t("for")} ${code}`);
+          ShowToastError(`${error} ${t("for")} ${code}`);
         } else {
-          ShowToastError(error.graphQLErrors[0].message);
+          ShowToastError(error);
         }
       });
   };

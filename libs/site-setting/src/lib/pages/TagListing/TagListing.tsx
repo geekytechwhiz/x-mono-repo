@@ -1,19 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { CATEGORY_CONTENT, CONTENT_TYPES, fetchTagListing } from "@platformx/authoring-apis";
+import {
+  CATEGORY_CONTENT,
+  CONTENT_TYPES,
+  fetchTagListing,
+  publishTag,
+} from "@platformx/authoring-apis";
 import { ContentListingHeader } from "@platformx/content";
-import { Card, ContentListDesktopLoader, NoSearchResult } from "@platformx/utilities";
+import {
+  Card,
+  ContentListDesktopLoader,
+  NoSearchResult,
+  ShowToastError,
+  ShowToastSuccess,
+} from "@platformx/utilities";
 import TagMenu from "./TagMenu";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { t } from "i18next";
 
 export const TagListing = () => {
   const [refreshState] = useState(false);
   const navigate = useNavigate();
   const [tags, setTags] = useState<any>([]);
   const [startIndex, setStartIndex] = useState<any>(0);
-  const [isFetchMore, setFetchMore] = useState(true);
+  const [isFetchMore] = useState(true);
   const ROWS = 10;
 
   const fetchTag = async (nextIndex) => {
@@ -43,11 +54,39 @@ export const TagListing = () => {
     navigate(`/site-setting/create-tags/${ctg.doc_path}`);
   };
 
+  const handleRefresh = () => {
+    setStartIndex(() => 0);
+    setTags(() => []);
+    fetchTag(0);
+  };
+
+  const onUnpublish = async (ctg) => {
+    try {
+      //const res =
+      await publishTag({
+        input: {
+          page: ctg.doc_path,
+          category: ctg.category,
+          status: "depublish",
+          is_schedule: false,
+          schedule_date_time: "",
+        },
+      });
+      ShowToastSuccess(`${t("tag")} ${t("unpublished_toast")}`);
+      setStartIndex(() => 0);
+      setTags(() => []);
+      fetchTag(0);
+    } catch (err) {
+      ShowToastError(t("api_error_toast"));
+    }
+  };
+
   const makeContentData = (item: any) => {
     const listItemDetails = {
       tagName: "tagscategories",
       title: item.tag_name,
       description: item.category,
+      category: item.category,
       lastModifiedDate: item.lastModificationDate,
       status: item.status,
       lastModifiedBy: item.lastModifiedBy,
@@ -70,7 +109,7 @@ export const TagListing = () => {
         subCategory={CONTENT_TYPES}
         handleAddNew={() => navigate("/site-setting/create-tags")}
         animationState={refreshState}
-        handleRefresh={() => {}}
+        handleRefresh={handleRefresh}
       />
       <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
         <InfiniteScroll
@@ -96,7 +135,12 @@ export const TagListing = () => {
                         siteList={[]}
                         contentType={""}
                         CustomMenuList={
-                          <TagMenu dataList={data} view={viewCategory} edit={editTag} />
+                          <TagMenu
+                            dataList={data}
+                            view={viewCategory}
+                            edit={editTag}
+                            onUnpublish={onUnpublish}
+                          />
                         }
                       />
                     </Box>

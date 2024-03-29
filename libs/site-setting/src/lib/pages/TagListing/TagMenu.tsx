@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, IconButton } from "@mui/material";
 import {
   MoreHorizIcon,
@@ -8,7 +9,7 @@ import {
   CardOptionDeleteIcon,
   ErrorTooltip,
 } from "@platformx/utilities";
-import React, { memo, useState } from "react";
+import React, { useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { makeStyles } from "@mui/styles";
@@ -22,7 +23,7 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const TagMenu = ({ dataList, view, edit }) => {
+const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
@@ -97,7 +98,7 @@ const TagMenu = ({ dataList, view, edit }) => {
           </div>
           {t("view")} {t("category")}
         </MenuItem>
-        <ErrorTooltip
+        {/* <ErrorTooltip
           component={
             <MenuItem
               disableRipple
@@ -114,7 +115,7 @@ const TagMenu = ({ dataList, view, edit }) => {
           }
           tooltipMsg={t("cannot_edit_tag")}
           doAccess={dataList.type === SYSTEM_TAGS}
-        />
+        /> */}
         {dataList.status === "published" && (
           <MenuItem
             disableRipple
@@ -135,6 +136,7 @@ const TagMenu = ({ dataList, view, edit }) => {
                 disabled={false}
                 onClick={() => {
                   handleClose();
+                  onUnpublish(dataList);
                 }}>
                 <div className={classes.icon}>
                   <img src={CardOptionUnPublishIcon} alt='unpublish' />
@@ -145,7 +147,7 @@ const TagMenu = ({ dataList, view, edit }) => {
             doAccess={false}
           />
         )}
-
+        {/*
         <ErrorTooltip
           component={
             <MenuItem
@@ -162,10 +164,10 @@ const TagMenu = ({ dataList, view, edit }) => {
           }
           tooltipMsg={t("cannot_delete_tag")}
           doAccess={dataList.type === SYSTEM_TAGS}
-        />
+        /> */}
       </Menu>
     </Box>
   );
 };
 
-export default memo(TagMenu);
+export default TagMenu;
