@@ -112,10 +112,8 @@ export const ArticleDetails = ({
                 workflow={workflow}>
                 <Box className={classes.contentStyle}>
                   {content?.Url ? (
-                    <Box
-                      onMouseEnter={() => setOnHover(true)}
-                      className={classes.imgUploadBox}
-                      sx={{ overflow: "hidden" }}>
+                    <Box className={classes.imgUploadBox}>
+                      <Box onMouseEnter={() => setOnHover(true)} className={classes.hoverCard} />
                       <ArticleImageRender
                         content={selectedImage}
                         imgOrder={{
