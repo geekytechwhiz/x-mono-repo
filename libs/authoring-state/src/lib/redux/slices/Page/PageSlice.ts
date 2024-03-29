@@ -191,11 +191,9 @@ export const pageSlice = createSlice({
     resetPrelemContent: (state, action: PayloadAction<any>) => {
       const { contentFetched, prelemAfterReset, prelemAt } = action.payload;
       const newPrelemMetaArray: PrelemInstance[] = [...state.prelemMetaArray];
-      newPrelemMetaArray[prelemAt] = prelemAfterReset;
-      newPrelemMetaArray[prelemAt].content = contentFetched;
+      newPrelemMetaArray[prelemAt] = contentFetched;
+      newPrelemMetaArray[prelemAt].content = prelemAfterReset;
       newPrelemMetaArray[prelemAt].StructuredData =
-        state.prelemMetaArray[prelemAt].DefaultStructureDataForReset;
-      newPrelemMetaArray[prelemAt].DefaultStructureDataForReset =
         state.prelemMetaArray[prelemAt].DefaultStructureDataForReset;
       newPrelemMetaArray[prelemAt].IsModified = false;
       state.prelemMetaArray = newPrelemMetaArray;
