@@ -11,13 +11,12 @@ import DOMPurify from "isomorphic-dompurify";
 import React, { useEffect, useRef, useState } from "react";
 // import ReactDomServer from "react-dom/server";
 
-import i18next from "i18next";
 // import ContentGallery from "../ContentGallery/ContentGallery";
 // import { createChatGptRequest } from "@platformx/authoring-apis";
 import { DamContentGallery } from "@platformx/x-image-render";
 // import DescriptionContentCard from "../DescriptionContentCard";
 import { createChatGptRequest } from "@platformx/authoring-apis";
-// import { ContentGallery } from "@platformx/site-page";
+import { ContentGallery } from "@platformx/site-page";
 import ReactDomServer from "react-dom/server";
 import DescriptionContentCard from "../DescriptionContentCard";
 import MediaTray from "../MediaTray/MediaTray";
@@ -491,12 +490,11 @@ function Description({
           />
         )}
         <Dialog fullScreen open={contentGalleryState}>
-          <h3>Commented due to circular dependency</h3>
-          {/* <ContentGallery
+          <ContentGallery
             handleSelectedContent={handleSelectedContent}
             onToggleContentGallery={onToggleContentGallery}
             contentType={contentType.current}
-          /> */}
+          />
         </Dialog>
       </Box>
       <Box
