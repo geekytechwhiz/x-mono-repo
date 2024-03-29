@@ -1,22 +1,17 @@
-import CachedIcon from "@mui/icons-material/Cached";
-import { Box, Divider, Grid, RadioGroup, Typography } from "@mui/material";
+import { Box, Divider, Grid, RadioGroup } from "@mui/material";
 import {
-  ArrowUpwardIcon,
   AutoTextArea,
   CATEGORY_CONTENT,
   CommonBoxWithNumber,
   DuplicateContentPopup,
-  Icon,
   PlateformXDialog,
   RadioControlLabel,
-  Refresh,
   ShowToastSuccess,
   TextBox,
-  ThemeConstants,
   TitleSubTitle,
   XLoader,
 } from "@platformx/utilities";
-import { DamContentGallery } from "@platformx/x-image-render";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CreateHeader } from "../../../../components/CreateHeader/CreateHeader";
@@ -28,13 +23,11 @@ import AnswerContent from "./AnswerContent";
 
 const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, questionId }) => {
   const { t } = useTranslation();
-  // const [isLoading, setIsLoading] = useState(false);
   const [addImage, setAddImage] = useState<boolean>(false);
   const [answers, setAnswers] = useState<any>([
     { id: "1", option: "", image: "", status: true },
     { id: "2", option: "", image: "", status: false },
   ]);
-
   const [addQuestionInfo, setAddQuestionInfo] = useState<any>({
     questionId: "",
     questionType: "Single",
@@ -45,26 +38,12 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     backgroundColor: "",
   });
   const galleryType = useRef<string>("Images");
-  const [, setOperationType] = useState("");
   const [galleryState, setGalleryState] = useState<boolean>(false);
   const [key, setKey] = useState("");
   const [answerId, setAnswerId] = useState("");
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [exitPopUp, setExitPopUp] = useState(false);
-  const colorCode = [
-    "#b29a53",
-    "#ba8b78",
-    "#ae6958",
-    "#d86057",
-    "#b75c8d",
-    "#68669a",
-    "#5c98ba",
-    "#334075",
-    "#246d73",
-    "#806a71",
-    "#514146",
-  ];
   const { isLoading, onSaveQuestion } = useQuestion(
     setAnswers,
     setAddImage,
@@ -92,6 +71,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
       backgroundColor: "",
     });
   };
+
   const handleColorPallete = (color) => {
     qusUnsavedChanges.current = true;
     setAddQuestionInfo({
@@ -101,6 +81,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
       backgroundColor: color,
     });
   };
+
   const handleChange = (event) => {
     qusUnsavedChanges.current = true;
     setAddQuestionInfo({
@@ -140,15 +121,6 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     if (id) {
       setAnswerId(id);
     }
-  };
-
-  const onUploadClick = (type) => {
-    setOperationType(type);
-    showGallery("Images", "queBackgroundImg");
-    setAddQuestionInfo({
-      ...addQuestionInfo,
-      isImg: true,
-    });
   };
 
   const OnBackClick = () => {
@@ -219,6 +191,16 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     };
   }, [qusUnsavedChanges.current]);
 
+  const updateField = (updatedPartialObj) => {
+    setAddQuestionInfo({
+      ...addQuestionInfo,
+      queBackgroundImg: { ...updatedPartialObj },
+      isImg: true,
+      backgroundColor: "",
+    });
+    qusUnsavedChanges.current = true;
+  };
+
   const classes = useCustomStyle();
   return (
     <>
@@ -231,13 +213,8 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
         dialogOpen={galleryState}
       />
       <Box>
-        {isLoading && <XLoader type='xloader' />}
-
-        <Box
-        // sx={{
-        //   width: { xs: 'calc(100% - 0px)', lg: 'calc(100% - 250px)' },
-        // }}
-        >
+        {isLoading && <XLoader type='linear' />}
+        <Box>
           <Box>
             <CreateHeader
               hasPreviewButton
@@ -344,229 +321,18 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                   />
                 </Grid>
                 <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
-                  {addQuestionInfo.queBackgroundImg && addQuestionInfo.isImg ? (
-                    <Box
-                      sx={{
-                        position: "relative",
-                        borderRadius: "15px",
-                        minHeight: "206px",
-                        "& picture": {
-                          height: "206px",
-                        },
-                      }}
-                      mb={1}>
-                      {/* <CommonImageRender
-                        content={selectedImage}
-                        imgOrder={{
-                          1440: "hero",
-                          1280: "landscape",
-                          1024: "card2",
-                          768: "square",
-                          600: "card2",
-                          320: "card2",
-                        }}
-                        updateField={updateField}
-                        originalImage={originalImage}
-                        publishedImages={publishedImages}
-                        operationType={operationType}
-                      /> */}
-                      {/* <img
-                        style={{
-                          width: '100%',
-                          height: '206px',
-                          objectFit: 'cover',
-                          borderRadius: '4px',
-                        }}
-                        src={addQuestionInfo.queBackgroundImg}
-                        //   controls
-                      /> */}
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          top: "0",
-                          width: "100%",
-                          height: { xs: "100%", lg: "206px" },
-                          aspectRatio: {
-                            xs: "4 / 3",
-                            sm: "4 / 3",
-                            md: "1 / 1",
-                            em: "4 / 3",
-                            lg: "16 / 9",
-                            xl: "3 / 1",
-                          },
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          backgroundColor: "#7470708a",
-                          borderRadius: "15px",
-                        }}>
-                        <Box sx={{ display: "flex" }}>
-                          <Box sx={{ cursor: "pointer" }} onClick={() => onUploadClick("replace")}>
-                            <Box
-                              sx={{
-                                borderRadius: "50%",
-                                backgroundColor: "#fff",
-                                width: "25px",
-                                height: "25px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                margin: "auto",
-                              }}>
-                              <CachedIcon sx={{ color: "#626060" }} />
-                            </Box>
-                            <Typography
-                              mt={1}
-                              sx={{
-                                fontSize: ThemeConstants.FONTSIZE_XS,
-                                color: ThemeConstants.WHITE_COLOR,
-                              }}>
-                              {t("replace")}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </Box>
-                    </Box>
-                  ) : addQuestionInfo.backgroundColor && !addQuestionInfo.isImg ? (
-                    <Box
-                      sx={{
-                        width: "100%",
-                        height: "206px",
-                        aspectRatio: {
-                          xs: "4 / 3",
-                          sm: "4 / 3",
-                          md: "1 / 1",
-                          em: "4 / 3",
-                          lg: "16 / 9",
-                          xl: "3 / 1",
-                        },
-                        backgroundColor: addQuestionInfo.backgroundColor,
-                        borderRadius: "15px",
-                      }}></Box>
-                  ) : (
-                    <>
-                      <Box></Box>
-                      <Box
-                        sx={{
-                          width: "100%",
-                          borderRadius: "15px",
-                          // border: 'dashed 2px #707070',
-                          // paddingLeft: {
-                          //   xs: "30px",
-                          //   sm: "30px",
-                          //   md: "100px",
-                          // },
-                          cursor: "pointer",
-                          height: "206px",
-                          aspectRatio: {
-                            xs: "4 / 3",
-                            sm: "4 / 3",
-                            md: "1 / 1",
-                            em: "4 / 3",
-                            lg: "16 / 9",
-                            xl: "3 / 1",
-                          },
-                          backgroundColor: "#EFF0F6",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexDirection: "column",
-                        }}
-                        onClick={() => onUploadClick("upload")}>
-                        <Box
-                          sx={{
-                            width: "40px",
-                            height: "40px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                          m={1}>
-                          <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
-                        </Box>
-                        <Box
-                          sx={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                            color: ThemeConstants.PRIMARY_MAIN_COLOR,
-                          }}>
-                          <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
-                            {t("page_choose_image")}
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </>
-                  )}
-
-                  <Box
-                    sx={{
-                      marginTop: "10px",
-                      display: "flex",
-                      flexDirection: "row",
-                      flexFlow: { xs: "wrap", lg: "nowrap" },
-                    }}>
-                    <Box
-                      onClick={() => onUploadClick("upload")}
-                      sx={{
-                        width: "27px",
-                        height: "27px",
-                        flexGrow: "0",
-                        borderRadius: "20px",
-                        backgroundColor: "#fff",
-                        margin: {
-                          xs: "0px 8px 8px 0px",
-                          lg: "0px 8px 8px 0px",
-                        },
-                        border: "solid 1px #2d2d39",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                      }}>
-                      <img src={Icon} alt='Icon' />
-                    </Box>
-
-                    {colorCode.map((val, index) => {
-                      return (
-                        <Box
-                          key={index}
-                          onClick={() => handleColorPallete(val)}
-                          sx={{
-                            width: "27px",
-                            height: "27px",
-                            flexGrow: "0",
-                            borderRadius: "20px",
-                            backgroundColor: val,
-                            margin: {
-                              xs: "0px 8px 8px 0px",
-                              lg: "0px 8px 8px 0px",
-                            },
-                            border: val === "#fff" ? "solid 1px #e6eaed" : null,
-                            cursor: "pointer",
-                          }}></Box>
-                      );
-                    })}
-                    <Box
-                      onClick={handleRefresh}
-                      sx={{
-                        width: "27px",
-                        height: "27px",
-                        flexGrow: "0",
-                        borderRadius: "20px",
-                        backgroundColor: "#fff",
-                        border: "solid 1px #ced3d9",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        margin: {
-                          xs: "0px 8px 8px 0px",
-                          lg: "0px 0px 8px 0px",
-                        },
-                      }}>
-                      <img src={Refresh} alt='Refresh' />
-                    </Box>
-                  </Box>
+                  <XImageRender
+                    callBack={updateField}
+                    editData={{
+                      original_image: addQuestionInfo.queBackgroundImg.original_image,
+                      published_images: addQuestionInfo.queBackgroundImg.published_images,
+                      isImg: addQuestionInfo.isImg,
+                      colorCode: addQuestionInfo.backgroundColor,
+                    }}
+                    isColorPallete={true}
+                    handleRefresh={handleRefresh}
+                    handleColorPallete={handleColorPallete}
+                  />
                 </Grid>
               </Grid>
             </CommonBoxWithNumber>
