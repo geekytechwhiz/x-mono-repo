@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Stepper from "@mui/material/Stepper";
 import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
 import { contentTypeAPIs } from "@platformx/authoring-apis";
 import { TaskNotFound, XLoader, capitalizeFirstLetter } from "@platformx/utilities";
 import { useEffect, useState } from "react";
@@ -65,18 +65,18 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
         {stages.length === 0 && !isLoading ? (
           <TaskNotFound />
         ) : (
-          <Stepper activeStep={getStepperCount(stages)} alternativeLabel>
+          <Stepper activeStep={getStepperCount(stages)}>
             {stages.map((stage: any) => (
               <Step key={stage.label}>
                 <StepLabel>
                   {stage.state === "request_review"
                     ? lineBreak("Request", stage.user_name)
                     : stage.status === "Completed"
-                    ? lineBreak(`${capitalizeFirstLetter(stage.role)} Approved`, stage.user_name)
-                    : lineBreak(
-                        `${capitalizeFirstLetter(stage.role)} ${stage.status}`,
-                        stage.user_name,
-                      )}
+                      ? lineBreak(`${capitalizeFirstLetter(stage.role)} Approved`, stage.user_name)
+                      : lineBreak(
+                          `${capitalizeFirstLetter(stage.role)} ${stage.status}`,
+                          stage.user_name,
+                        )}
                 </StepLabel>
               </Step>
             ))}
