@@ -30,6 +30,7 @@ export const createInitialQuizState = (): QuizType => ({
   schedule_unpublish_datetime: "",
   original_image: {},
   published_images: [],
+  colorCode: "",
 });
 
 export const createNewQuiz = (username: string): NewQuizType => ({
