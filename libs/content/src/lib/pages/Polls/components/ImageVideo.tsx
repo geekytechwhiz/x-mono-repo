@@ -32,7 +32,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       <CommentWrapper elementId='2' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='02'
-          title={t("quiz_background_head")}
+          title={t("poll_background_head")}
           titleVarient='p3semibold'
           subTitleVarient='p4regular'
           subTitle={t("subhead")}>
@@ -40,7 +40,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
             <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
               <TitleSubTitle
                 title={`${t("add_image")}*`}
-                subTitle={t("quiz_image_subtitle")}
+                subTitle={t("poll_image_subtitle")}
                 titleVariant='h6medium'
                 subTitleVariant='h7regular'
               />
