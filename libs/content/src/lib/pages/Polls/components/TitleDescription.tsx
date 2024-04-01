@@ -57,7 +57,7 @@ export const TitleDescription = ({
             <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
               <TextBox
                 name='title'
-                placeHolder={t("quiz_title_placeholder")}
+                placeHolder={t("poll_title_placeholder")}
                 handleChange={handleChange}
                 maxCharLength={120}
                 state={state.title}
@@ -67,7 +67,7 @@ export const TitleDescription = ({
             <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
               <TitleSubTitle
                 title={t("short_title")}
-                subTitle={t("quiz_subtitle")}
+                subTitle={t("poll_subtitle")}
                 titleVariant='h6medium'
                 subTitleVariant='h7regular'
               />
@@ -75,7 +75,7 @@ export const TitleDescription = ({
             <Grid item xs={12} sm={7} md={7} lg={7} className='textFiled'>
               <TextBox
                 name='short_title'
-                placeHolder={t("quiz_short_placeholder")}
+                placeHolder={t("poll_short_placeholder")}
                 handleChange={handleChange}
                 maxCharLength={60}
                 state={state.short_title}
@@ -93,7 +93,7 @@ export const TitleDescription = ({
             <Grid item xs={12} sm={7} md={7} className='textFiled'>
               <AutoTextArea
                 name='short_description'
-                placeHolder={t("quiz_description_placeholder")}
+                placeHolder={t("poll_description_placeholder")}
                 handleChange={handleChange}
                 maxCharLength={400}
                 state={state.short_description}
@@ -111,7 +111,7 @@ export const TitleDescription = ({
             <Grid item xs={12} sm={7} md={7} className='textFiledLast'>
               <AutoTextArea
                 name='description'
-                placeHolder={t("quiz_description_placeholder")}
+                placeHolder={t("poll_description_placeholder")}
                 handleChange={handleChange}
                 maxCharLength={400}
                 state={state.description}

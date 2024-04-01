@@ -1,21 +1,22 @@
-import { Box, Grid, IconButton, Stack, Tooltip, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Fab, Grid, IconButton, Stack, Tooltip } from "@mui/material";
+import { fetchMultisiteListing } from "@platformx/authoring-apis";
+import { ContentListingHeader } from "@platformx/content";
+import {
+  CopyIcon,
+  NoSearchResult,
+  PencilIcon,
+  PeopleIcon,
+  SettingIcon,
+  ShowToastSuccess,
+  SitePlaceholder,
+  capitalizeFirstLetter,
+  getCurrentLang,
+} from "@platformx/utilities";
 import { t } from "i18next";
 import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router";
-import {
-  PeopleIcon,
-  CopyIcon,
-  SettingIcon,
-  PencilIcon,
-  SitePlaceholder,
-  capitalizeFirstLetter,
-  getCurrentLang,
-  NoSearchResult,
-  ShowToastSuccess,
-} from "@platformx/utilities";
-import { fetchMultisiteListing } from "@platformx/authoring-apis";
 import EmptyResult from "./EmptyResult";
 import {
   SiteDesTypo,
@@ -26,7 +27,6 @@ import {
   useSiteListingStyle,
 } from "./SiteListing.style";
 import { SiteListingLoader } from "./SiteListingLoader";
-import { ContentListingHeader } from "@platformx/content";
 
 export const SiteListing = () => {
   const navigate = useNavigate();
@@ -156,6 +156,7 @@ export const SiteListing = () => {
           handleAddNew={() => navigate("/sites/site-creation")}
           handleRefresh={handleRefresh}
           animationState={refreshState}
+          filterValue={filterValue}
         />
         {(datalist.length !== 0 || isFetchMore) && (
           <Box id='scrollableDiv' className={classes.scrollBox}>
