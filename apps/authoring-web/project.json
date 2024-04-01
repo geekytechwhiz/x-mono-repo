@@ -74,7 +74,7 @@
     },
     "serve": {
       "executor": "@nx/webpack:dev-server",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "local",
       "options": {
         "buildTarget": "authoring-web:build",
         "hmr": true,
@@ -83,6 +83,12 @@
       },
       "configurations": {
         "development": {
+          "buildTarget": "authoring-web:build:development"
+        },
+        "dev": {
+          "buildTarget": "authoring-web:build:development"
+        },
+        "local": {
           "buildTarget": "authoring-web:build:development"
         },
         "production": {
