@@ -192,6 +192,9 @@ jobs:
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
+      - name: Reset NX Cache
+        run: npx nx reset
+
       - name: Checkout
         uses: actions/checkout@v4
 
