@@ -112,7 +112,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     <>
       <ContentListingHeader
         handleFilter={handleFilter}
-        title={contentType}
+        title={contentType === "ALL" ? "Result" : contentType}
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
         handleAddNew={createContentNew}
