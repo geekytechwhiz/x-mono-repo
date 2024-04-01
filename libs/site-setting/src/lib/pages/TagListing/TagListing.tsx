@@ -2,6 +2,7 @@ import { Box } from "@mui/system";
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
+  deleteTag,
   fetchTagListing,
   publishTag,
 } from "@platformx/authoring-apis";
@@ -58,6 +59,22 @@ export const TagListing = () => {
     setStartIndex(() => 0);
     setTags(() => []);
     fetchTag(0);
+  };
+
+  const handleDelete = async (ctg) => {
+    try {
+      //const res =
+      await deleteTag({
+        tagName: ctg.doc_path,
+        category: ctg.category,
+      });
+      ShowToastSuccess(`${t("tag")} ${t("deleted_toast")}`);
+      setStartIndex(() => 0);
+      setTags(() => []);
+      fetchTag(0);
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
 
   const onUnpublish = async (ctg) => {
@@ -124,13 +141,13 @@ export const TagListing = () => {
           <Box sx={{ padding: "0 10px 0 15px" }}>
             <Box>
               {tags?.length > 0 &&
-                tags?.map((item: any, index: any) => {
+                tags?.map((item: any) => {
                   const data = makeContentData(item);
                   return (
-                    <Box key={index}>
+                    <Box key={item.title}>
                       <Card
                         dataList={data}
-                        deleteContent={viewCategory}
+                        deleteContent={handleDelete}
                         view={viewCategory}
                         edit={editTag}
                         siteList={[]}
@@ -141,6 +158,7 @@ export const TagListing = () => {
                             view={viewCategory}
                             edit={editTag}
                             onUnpublish={onUnpublish}
+                            deleteContent={handleDelete}
                           />
                         }
                       />
