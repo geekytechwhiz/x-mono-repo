@@ -41,7 +41,7 @@ ENV NODE_OPTIONS="--max-old-space-size=8192"
 RUN npm install --legacy-peer-deps
 
 # Reset nx
-# RUN npx nx reset
+RUN npx nx reset
 
 # start app
 EXPOSE 3000

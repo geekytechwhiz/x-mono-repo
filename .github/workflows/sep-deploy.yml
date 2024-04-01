@@ -77,7 +77,7 @@ jobs:
 
       # Record Nx Cloud actions and execute Nx commands
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+        run: npx nx-cloud record -- npx nx affected --base=qa --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -215,15 +215,14 @@ jobs:
       # Setup Nx Cloud
       # - name: Reset NX Cache
       #   run: npx nx reset
-
-      - name: SetbNX_REJECT_UNKNOWN_LOCAL_CACHE
+      - name: set NX_REJECT_UNKNOWN_LOCAL_CACHE
         run: echo "NX_REJECT_UNKNOWN_LOCAL_CACHE=true" >> $GITHUB_ENV
 
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+        run: npx nx build user-experience
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
