@@ -1,12 +1,12 @@
 /* eslint-disable no-debugger */
 import SyncIcon from "@mui/icons-material/Sync";
 import { Box, Button, FormControl, Menu, Radio, RadioGroup, Typography } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
 import { ErrorTooltip, FilterIcon, useAccess } from "@platformx/utilities";
 import { t } from "i18next";
 import { useState } from "react";
 import { ContentListingHeaderContainer, FormControlCustom } from "./ContentListingHeader.styles";
 import { contentTypeBasedHideFilter } from "./helperContentList";
-import { createStyles, makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,6 +32,7 @@ const ContentListingHeader = ({
   subCategory,
   handleRefresh,
   animationState,
+  filterValue,
 }: {
   title: string;
   handleFilter: (filter: string) => void;
@@ -40,15 +41,10 @@ const ContentListingHeader = ({
   subCategory: string | string[];
   handleRefresh: () => void;
   animationState: boolean;
+  filterValue?: string;
 }) => {
   const Class = useStyles();
   const { canAccessAction } = useAccess();
-  const searchPageUrl = new URL(window.location.href);
-  const [filterValue, setFilterValue] = useState(
-    searchPageUrl.searchParams.get("searchCat")
-      ? (searchPageUrl.searchParams.get("searchCat") as string)
-      : "ALL",
-  );
   const [filterMenu, setFilterMenu] = useState<null | HTMLElement>(null);
   const openFilterMenu = Boolean(filterMenu);
   const handleFilterClose = () => {
@@ -57,8 +53,6 @@ const ContentListingHeader = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedValue = () => (event.target as HTMLInputElement).value;
-
-    setFilterValue(selectedValue());
     handleFilter(selectedValue());
     handleFilterClose();
   };
