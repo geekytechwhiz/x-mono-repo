@@ -213,8 +213,10 @@ jobs:
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
-      - name: Reset NX Cache
-        run: npx nx reset
+      # - name: Reset NX Cache
+      #   run: npx nx reset
+      - name: set NX_REJECT_UNKNOWN_LOCAL_CACHE
+        run: echo "NX_REJECT_UNKNOWN_LOCAL_CACHE=true" >> $GITHUB_ENV
 
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
