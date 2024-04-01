@@ -17,12 +17,16 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
     const modifiedData = {
       ...state,
       ...updatedPartialObj,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
+      imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
     };
     setState(modifiedData);
     pollRef.current = {
       ...pollRef.current,
+      thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
+      imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
     };
     unsavedChanges.current = true;
   };
