@@ -1187,5 +1187,6 @@
   "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
   "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
   "event_Location": "Lieu de l'événement",
-  "blogs_Timeline": "Chronologie des blogs"
+  "blogs_Timeline": "Chronologie des blogs",
+  "page_title": "Titre de la page"
 }
