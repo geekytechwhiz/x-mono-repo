@@ -122,11 +122,11 @@ export const CreateQuiz = () => {
     const tempObjField = {
       questions: [...quesArr],
       background_content: {
-        objectType: "image",
+        objectType: quizState?.imagevideoURL ? "image" : quizState?.colorCode ? "color" : "",
         Url: quizState?.imagevideoURL,
         Title: "",
         Thumbnail: quizState?.imagevideoURL,
-        Color: "",
+        Color: quizState?.colorCode,
       },
       display_scores: quizState?.scoreBy,
       result_range_1: quizState?.result_range_1,
@@ -269,11 +269,15 @@ export const CreateQuiz = () => {
           setOpenPageExistModal(true);
           setPageStatus(pageState);
         } else {
-          await publishQuiz(
-            quizRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
+          const { showPublishConfirm: hasConfirm, publishUrl } = await publishQuiz(
+            resp?.data?.authoring_createContent?.path.substring(
+              resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1,
+            ),
             quizState,
             publishPopup,
           );
+          setShowPublishConfirm(hasConfirm);
+          setPublishUrl(publishUrl);
         }
       }
 
@@ -345,11 +349,11 @@ export const CreateQuiz = () => {
     const tempObjField = {
       questions: [...quesArr],
       background_content: {
-        objectType: "image",
+        objectType: quizState?.imagevideoURL ? "image" : quizState?.colorCode ? "color" : "",
         Url: quizState?.original_image.original_image_relative_path,
         Title: "",
         Thumbnail: quizState?.original_image.original_image_relative_path,
-        Color: "",
+        Color: quizState?.colorCode,
         ext: quizState?.original_image.ext,
       },
       display_scores: quizState?.scoreBy,
@@ -839,11 +843,11 @@ export const CreateQuiz = () => {
   };
   const handelPreview = () => {
     const backgroundContent = {
-      objectType: "image",
+      objectType: quizState?.imagevideoURL ? "image" : quizState?.colorCode ? "color" : "",
       Url: quizState?.imagevideoURL,
       Title: "",
       Thumbnail: quizState?.imagevideoURL,
-      Color: "",
+      Color: quizState?.colorCode,
     };
     const tempObj = {
       ...quizState,
