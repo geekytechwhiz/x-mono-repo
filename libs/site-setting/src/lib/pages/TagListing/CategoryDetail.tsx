@@ -8,22 +8,19 @@ import { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
 import { capitalizeFirstLetter } from "@platformx/utilities";
 import { fetchTagListing } from "@platformx/authoring-apis";
+import { SYSTEM_TAGS } from "./constant";
 
 export const CategoryDetail = () => {
   const navigate = useNavigate();
   const { category } = useParams();
   const classes = useTagStyle();
   const [tags, setTags] = useState<any>([]);
+  const [selectedItems, setSelectedItems] = useState<any>({});
 
-  const [selectedItems, setSelectedItems] = useState<string[]>([]); // State to store selected items
+  const toggleSelection = (item) => {
+    if (item.type === SYSTEM_TAGS) return;
 
-  const toggleSelection = (item: string) => {
-    // Store the updated state value in a variable
-    const updatedSelectedItems = selectedItems.includes(item)
-      ? selectedItems.filter((selectedItem) => selectedItem !== item) // Deselect if already selected
-      : [...selectedItems, item]; // Select if not selected
-
-    // Use the variable to set the state
+    const updatedSelectedItems = selectedItems.tag_name === item.tag_name ? {} : item;
     setSelectedItems(updatedSelectedItems);
   };
 
@@ -60,7 +57,7 @@ export const CategoryDetail = () => {
         hasPublishButton={false}
         hasPreviewButton={false}
         hasSaveButton={false}
-        saveText={t("Create New Tag")}
+        saveText={`${t("create")} ${t("tag")}`}
         handelPreview={() => {
           /* your function code */
         }}
@@ -85,14 +82,15 @@ export const CategoryDetail = () => {
                 tags.map((tag) => (
                   <Box
                     className={`${classes.createbtn} ${
-                      selectedItems.includes(tag.tag_name) ? classes.selected : classes.txtcolor
+                      selectedItems.tag_name === tag.tag_name ? classes.selected : classes.txtcolor
                     }`}
-                    onClick={() => toggleSelection(tag.tag_name)}
+                    onClick={() => toggleSelection(tag)}
                     key={tag.tag_name}>
                     <Button
+                      disabled={tag.type === SYSTEM_TAGS}
                       className={classes.textTransform}
-                      endIcon={selectedItems.includes(tag.tag_name) ? <DeleteIcon /> : ""}
-                      color={selectedItems.includes(tag.tag_name) ? "error" : "primary"}>
+                      endIcon={selectedItems.tag_name === tag.tag_name ? <DeleteIcon /> : ""}
+                      color={selectedItems.tag_name === tag.tag_name ? "error" : "primary"}>
                       {tag.tag_name}
                     </Button>
                   </Box>

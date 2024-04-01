@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, IconButton } from "@mui/material";
 import {
   MoreHorizIcon,
@@ -23,7 +22,7 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
+const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
@@ -98,7 +97,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
           </div>
           {t("view")} {t("category")}
         </MenuItem>
-        {/* <ErrorTooltip
+        <ErrorTooltip
           component={
             <MenuItem
               disableRipple
@@ -115,7 +114,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
           }
           tooltipMsg={t("cannot_edit_tag")}
           doAccess={dataList.type === SYSTEM_TAGS}
-        /> */}
+        />
         {dataList.status === "published" && (
           <MenuItem
             disableRipple
@@ -147,7 +146,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
             doAccess={false}
           />
         )}
-        {/*
+
         <ErrorTooltip
           component={
             <MenuItem
@@ -155,6 +154,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
               disabled={dataList.type === SYSTEM_TAGS}
               onClick={() => {
                 handleClose();
+                deleteContent(dataList);
               }}>
               <div className={classes.icon}>
                 <img src={CardOptionDeleteIcon} alt='delete' />
@@ -164,7 +164,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish }) => {
           }
           tooltipMsg={t("cannot_delete_tag")}
           doAccess={dataList.type === SYSTEM_TAGS}
-        /> */}
+        />
       </Menu>
     </Box>
   );
