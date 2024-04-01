@@ -110,9 +110,18 @@ jobs:
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build Docker image
-      - name: Build
+      # - name: Build
+      #   run: |-
+      #     docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+
+      - name: Build develop
+        if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
-          docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+          docker build -f Dockerfile.author.dev --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+      - name: Build qa
+        if: ${{ github.ref == 'refs/heads/qa' }}
+        run: |-
+          docker build -f Dockerfile.author.qa --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
