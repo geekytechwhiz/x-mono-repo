@@ -60,7 +60,7 @@ export default function DeletePopup({
           className='popupCloseIcon'
           edge='end'
           color='inherit'
-          onClick={confirmButtonHandle} //{closeButtonHandle}
+          onClick={closeButtonHandle}
           aria-label='close'>
           <img src={DialogCloseIcon} alt='img' />
         </IconButton>
