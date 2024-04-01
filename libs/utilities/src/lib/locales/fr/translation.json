@@ -264,6 +264,11 @@
   "poll_unpublish_subtitle": "Choisissez un jour et un temps pour déposer ce sondage",
   "poll_ss_title": "Quel est le titre du sondage? *",
   "poll_ss_description": "De quoi s'agit-il? *",
+  "poll_background_head": "Choisissez l'image d'arrière-plan",
+  "poll_image_subtitle": "Choisissez votre image pour votre fond de poll",
+  "poll_title_placeholder": "Entrez votre titre ici",
+  "poll_description_placeholder": "Écrivez votre description ici",
+  "poll_short_placeholder": "Entrez votre titre court ici",
   "event_desciption_placeholder": "Écrivez ici la description de votre événement",
   "event_image_tilte": "ajouter une image*",
   "event_image_subtitle": "Ce sera votre image de bannière",
@@ -1187,5 +1192,6 @@
   "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
   "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
   "event_Location": "Lieu de l'événement",
-  "blogs_Timeline": "Chronologie des blogs"
+  "blogs_Timeline": "Chronologie des blogs",
+  "page_title": "Titre de la page"
 }

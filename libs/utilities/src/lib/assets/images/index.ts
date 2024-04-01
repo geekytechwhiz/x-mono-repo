@@ -17,6 +17,7 @@ import upload from "./upload.png";
 import replace from "./replace.png";
 import successGif from "./success.gif";
 import congrats from "./congrats.png";
+import transicon from "../transicon.jpg";
 
 export { default as Guideline_Img1 } from "./Guideline_Img1.png";
 export { default as Guideline_Img2 } from "./Guideline_Img2.png";
@@ -44,4 +45,5 @@ export {
   replace,
   successGif,
   congrats,
+  transicon,
 };

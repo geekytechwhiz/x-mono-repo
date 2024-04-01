@@ -71,7 +71,7 @@ jobs:
       # Setup Nx Cloud
       - name: Reset NX Cache
         run: npx nx reset
-        
+
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
@@ -109,7 +109,7 @@ jobs:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}
 
-      # # Build the Docker image
+      # Build Docker image
       # - name: Build
       #   run: |-
       #     docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .

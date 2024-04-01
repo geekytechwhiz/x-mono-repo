@@ -55,13 +55,12 @@ export const Card = ({
       tagName === "poll" ||
       tagName === "event" ||
       tagName === "vod" ||
-      tagName === "article"
+      tagName === "article" ||
+      tagName === "tagscategories"
     ) {
       if (deleteContent) {
         await deleteContent(dataList);
       }
-    } else if (tagName === "tagscategories") {
-      setDelete(false); // temporary
     }
     setDelete(false);
   };

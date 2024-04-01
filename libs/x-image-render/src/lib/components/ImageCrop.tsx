@@ -34,19 +34,11 @@ const ImageCrop = (props: any = {}) => {
 
   return (
     <Dialog
+      fullScreen
       open={open}
       onClose={backTo}
       aria-labelledby='modal-modal-title'
-      aria-describedby='modal-modal-description'
-      PaperProps={{
-        sx: {
-          width: "100%",
-          maxWidth: "100%",
-          height: "calc(100% - 40px)",
-          maxHeight: "calc(100% - 40px)",
-          margin: "20px",
-        },
-      }}>
+      aria-describedby='modal-modal-description'>
       <Grid
         container
         sx={{

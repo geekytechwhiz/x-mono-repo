@@ -2,6 +2,12 @@ import { Typography } from "@mui/material";
 import React from "react";
 import { Cropper } from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
+import { transicon } from "@platformx/utilities";
+
+const cropperStyle = {
+  height: "400px",
+  background: `url(${transicon})`,
+};
 
 const SelectedImageCrop = (props: any = {}) => {
   const {
@@ -63,9 +69,10 @@ const SelectedImageCrop = (props: any = {}) => {
         }}
         defaultSize={defaultSize}
         onChange={onChange}
-        className='cropper'
+        //className='cropper'
         onReady={onReady}
         onError={onError}
+        style={cropperStyle}
       />
       <Typography
         variant='h4bold'

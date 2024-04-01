@@ -169,6 +169,7 @@ export const quizResponseMapper = (res, quizState, tempArray) => {
     short_description: res?.data?.authoring_getCmsContentByPath?.short_description,
     description: res?.data?.authoring_getCmsContentByPath?.description,
     imagevideoURL: res?.data?.authoring_getCmsContentByPath?.background_content?.Url,
+    colorCode: res?.data?.authoring_getCmsContentByPath?.background_content?.Color,
     questions: tempArray,
     // questions: res?.data?.authoring_getCmsContentByPath?.questions.length>0 ? [...quizState.questions,{current_page_url:res?.data?.authoring_getCmsContentByPath?.questions}]:quizState.questions,
     scoreBy: res?.data?.authoring_getCmsContentByPath?.display_scores,
@@ -206,6 +207,7 @@ export const getCurrentQuiz = (res) => {
     short_description: res?.data?.authoring_getCmsContentByPath?.short_description,
     description: res?.data?.authoring_getCmsContentByPath?.description,
     imagevideoURL: res?.data?.authoring_getCmsContentByPath?.background_content?.Url,
+    colorCode: res?.data?.authoring_getCmsContentByPath?.background_content?.Color,
     tags: res?.data?.authoring_getCmsContentByPath?.tags,
     titleSocialShare: res?.data?.authoring_getCmsContentByPath?.settingsProperties?.socialog_title,
     descriptionSocialShare:

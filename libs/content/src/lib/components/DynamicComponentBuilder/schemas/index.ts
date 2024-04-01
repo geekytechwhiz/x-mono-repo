@@ -650,7 +650,7 @@ export const AddQuestionData = {
     {
       type: "switch",
       name: "switch",
-      title: "Add Image In Answer*",
+      title: "Add Image In Answer",
       index: "02",
       description: "Add images in the answer",
       validations: [],

@@ -264,6 +264,11 @@
   "poll_short_subtitle": "This will be the your poll title",
   "poll_short_subdes": "Tell us about your poll",
   "poll_bg_header": "Choose Background Image/Color",
+  "poll_background_head": "Choose Background Image",
+  "poll_image_subtitle": "Choose your image for your poll background",
+  "poll_title_placeholder": "Enter your title here",
+  "poll_description_placeholder": "Write your description here",
+  "poll_short_placeholder": "Enter your short title here",
   "footer_bg_header": "footer Background Image/Color",
   "footer_bg_headers": "footer bottom Background Image/Color",
   "footer_bg_title": "Add Image/Color",
@@ -455,7 +460,7 @@
   "filter": "Filter",
   "subhead": "Fields with * are mandatory",
   "answer_content": "Answer Content",
-  "anwer_title": "Add image in answer*",
+  "anwer_title": "Add image in answer",
   "anwer_subtitle": "Add images in the answer",
   "add_image": "Add Image",
   "answers": "Answers*",
@@ -1197,5 +1202,6 @@
   "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
   "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
   "event_Location": "Event Location",
-  "blogs_Timeline": "Blogs Timeline"
+  "blogs_Timeline": "Blogs Timeline",
+  "page_title": "Page Title"
 }
