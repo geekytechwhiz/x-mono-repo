@@ -51,25 +51,25 @@ jobs:
         env:
           gh_token: ${{ secrets.gh_token }}
 
-  deploy-authoring-ui:
-    name: Deploy to GCP Engine
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # deploy-authoring-ui:
+  #   name: Deploy to GCP Engine
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Set Project ID from Secrets
-        run: echo "PROJECT_ID= ${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
+  #     - name: Set Project ID from Secrets
+  #       run: echo "PROJECT_ID= ${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.4.0
-        with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
+  #     - name: Set up Google Cloud SDK
+  #       uses: google-github-actions/setup-gcloud@v0.4.0
+  #       with:
+  #         project_id: ${{ secrets.GCP_PROJECT_ID }}
+  #         service_account_key: ${{ secrets.GCP_SA_KEY }}
+  #         export_default_credentials: true
 
-      - name: Deploy to GCP Engine
-        run: gcloud app deploy --version=1
+  #     - name: Deploy to GCP Engine
+  #       run: gcloud app deploy --version=1
 
   user-experience-ui:
     name: user-experience-ui
