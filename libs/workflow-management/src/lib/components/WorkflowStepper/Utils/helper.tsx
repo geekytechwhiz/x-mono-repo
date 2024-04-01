@@ -13,7 +13,7 @@ export const getStepperCount = (stages: any[]) => {
 export const lineBreak = (status: any, username: any) => {
   return (
     <>
-      <Typography variant='h6bold'>{status}</Typography> <br />
+      <Typography variant='h6bold'>{status}</Typography>
       <Typography variant='h6regular'>{username}</Typography>
     </>
   );

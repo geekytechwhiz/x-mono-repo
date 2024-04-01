@@ -1,7 +1,10 @@
+import { ApolloError } from "@apollo/client";
 import { setValidationForFetchPage, updateDataAfterFetch } from "@platformx/authoring-state";
-import { PageQueries } from "../../graphQL/queries/pageQueries";
-import { getSelectedSite, formatChildren } from "@platformx/utilities";
+import { formatChildren, getSelectedSite } from "@platformx/utilities";
 import { createSearchParams } from "react-router-dom";
+import graphqlInstance from "../../config/graphqlConfig";
+import { PageQueries } from "../../graphQL/queries/pageQueries";
+import { ApiResponse } from "../../utils/types";
 
 export const savePageModel = PageQueries.SAVE_PAGE_MODEL;
 export const fetchAllPageList = PageQueries.FETCH_ALL_PAGE_LIST;
@@ -144,4 +147,22 @@ export const runPageFetchValidationQuery = async (
     variables: { input: docType },
   });
   return response;
+};
+
+export const pageApi = {
+  getPageDetails: async <T>(input: any): Promise<ApiResponse<T>> => {
+    try {
+      const { data } = await graphqlInstance.query({
+        query: PageQueries.FETCH_PAGE_MODEL_DRAFT,
+        variables: input,
+        fetchPolicy: "no-cache",
+      });
+      return data;
+    } catch (err: any) {
+      if (err instanceof ApolloError) {
+        /* Apollo errors */
+      }
+      throw err;
+    }
+  },
 };

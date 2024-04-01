@@ -186,7 +186,7 @@ const useDashboardData = (contentType = "ALL") => {
       editPage(pageObjectMapper(obj));
     } else {
       navigate(
-        `/content/create/${listItemDetails?.ContentType?.toLowerCase()}?path=${
+        `/content/create-${listItemDetails?.ContentType?.toLowerCase()}?path=${
           listItemDetails.page
         }`,
       );
