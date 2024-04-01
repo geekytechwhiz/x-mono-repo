@@ -188,12 +188,14 @@ export const CreateTags = () => {
   return (
     <>
       <TopBar
+        createText={`${t("create")} ${t("tag")}`}
         returnBack={() => navigate("/site-setting/tags")}
         handlePublish={onPublish}
         onSave={onSave}
         category={category}
         value={value}
         publishUrl={publishUrl}
+        isCategoryDetail={false}
       />
       <Divider />
       {isLoading && <Loader />}
