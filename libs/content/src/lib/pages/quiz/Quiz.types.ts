@@ -27,6 +27,7 @@ export type QuizType = {
   schedule_unpublish_datetime: string;
   original_image: any;
   published_images: string[];
+  colorCode: string;
 };
 
 export type NewQuizType = {

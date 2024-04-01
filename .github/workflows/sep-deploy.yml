@@ -69,6 +69,9 @@ jobs:
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
+      - name: Reset NX Cache
+        run: npx nx reset
+        
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
@@ -210,6 +213,9 @@ jobs:
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
+      - name: Reset NX Cache
+        run: npx nx reset
+
       - name: Setup Nx Cloud
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
