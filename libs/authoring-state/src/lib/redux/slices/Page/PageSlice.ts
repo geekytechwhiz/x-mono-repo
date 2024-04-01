@@ -193,6 +193,7 @@ export const pageSlice = createSlice({
       const newPrelemMetaArray: PrelemInstance[] = [...state.prelemMetaArray];
       newPrelemMetaArray[prelemAt] = contentFetched;
       newPrelemMetaArray[prelemAt].content = prelemAfterReset;
+      newPrelemMetaArray[prelemAt].DocumentPath = prelemAfterReset.DocumentPath;
       newPrelemMetaArray[prelemAt].StructuredData =
         state.prelemMetaArray[prelemAt].DefaultStructureDataForReset;
       newPrelemMetaArray[prelemAt].IsModified = false;
