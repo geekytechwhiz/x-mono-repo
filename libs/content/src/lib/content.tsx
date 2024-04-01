@@ -2,28 +2,18 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Fab } from "@mui/material";
 import { CATEGORY_CONTENT, CONTENT_TYPES } from "@platformx/authoring-apis";
-// import { previewArticle } from "@platformx/authoring-state";
-import { capitalizeFirstLetter, useAccess, makeCreateContentPath } from "@platformx/utilities";
-// import { useDispatch } from "react-redux";
+import { capitalizeFirstLetter, makeCreateContentPath, useAccess } from "@platformx/utilities";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContListingContainer from "./components/ContentListingContainer/ContentListingContainer";
 
 export default function Content() {
-  // const dispatch = useDispatch();
   const { canAccessAction } = useAccess();
   const location = useLocation();
-
   const pathSegments = location.pathname.split("/");
   const lastSegment = pathSegments[pathSegments.length - 1];
-  const contentType: string = capitalizeFirstLetter(lastSegment);
+  let contentType: string = capitalizeFirstLetter(lastSegment);
+  contentType = contentType?.toLocaleLowerCase() === "search-results" ? "ALL" : contentType;
   const navigate = useNavigate();
-
-  // const createContent = () => {
-  //   dispatch(previewArticle({}));
-  //   navigate(`/content/create-${contentType?.toLowerCase()}`, {
-  //     state: contentType?.toLowerCase(),
-  //   });
-  // };
 
   const createContentNew = () => {
     const navigateTo: string = makeCreateContentPath(contentType);
