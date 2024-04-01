@@ -689,8 +689,8 @@ const EditPageContainer = () => {
           variables: { input: documentType, prelemId: prelemid },
         }).then((res) => {
           ShowToastSuccess(t("prelem_reset_success_toast"));
-          const prelemAfterReset = formatAddPrelem(res.data.authoring_resetContent);
-          const prelemContent = { ...resp.data.authoring_prelemById };
+          const prelemAfterReset = { ...res.data.authoring_resetContent };
+          const prelemContent = formatAddPrelem(resp.data.authoring_prelemById);
           delete prelemContent.DocumentPath;
           dispatch(
             resetPrelemContent({

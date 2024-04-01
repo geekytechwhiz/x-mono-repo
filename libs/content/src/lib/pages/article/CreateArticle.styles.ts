@@ -63,6 +63,7 @@ export const useStyles = makeStyles(() => ({
     height: "-webkit-fill-available",
     backgroundColor: "#F7F7FC",
     cursor: "pointer",
+    overflow: "hidden",
     "& picture": {
       minHeight: "48px",
     },
@@ -115,5 +116,15 @@ export const useStyles = makeStyles(() => ({
         pointerEvents: "auto",
       },
     },
+  },
+  hoverCard: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "89px",
+    height: "-webkit-fill-available",
+    backgroundColor: "transparent",
+    cursor: "pointer",
+    position: "absolute",
   },
 }));
