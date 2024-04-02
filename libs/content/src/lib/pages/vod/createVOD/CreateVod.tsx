@@ -15,13 +15,13 @@ import { RootState, previewContent } from "@platformx/authoring-state";
 import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
+import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   createVodInstance,
   isPublishVodHandle,
   updateStructureData,
   updateVodSettings,
 } from "./Utils/helper";
-import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   create_vod,
   update_vod,
