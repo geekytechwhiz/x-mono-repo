@@ -21,6 +21,8 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
   const classes = useCustomStyle();
   const router = useRouter();
   const cookiesIsAccepted = document.cookie.includes("userConsentCookiePolicy=true");
+  const informativeCountryList = data?.informative_cookie_country_list.split("|");
+  const consentCountryList = data?.consent_cookie_country_list.split("|");
 
   const cookieConsentCheck = (cookieName: string) => {
     const allCookie = document.cookie;
@@ -36,15 +38,15 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
 
     if (
       cookieConsentCheck("userInformativeCookiePolicy") &&
-      data?.informative_cookie_country_list.includes(userLocation.current)
+      informativeCountryList?.includes(userLocation.current)
     ) {
       return;
     }
 
     let panel = "consent";
     if (
-      data?.informative_cookie_country_list.includes(userLocation.current) &&
-      !data?.consent_cookie_country_list.includes(userLocation.current)
+      informativeCountryList?.includes(userLocation.current) &&
+      !consentCountryList?.includes(userLocation.current)
     ) {
       panel = "informative";
     }
@@ -313,14 +315,16 @@ const CookieComponent = ({ analyticHandle = () => {} }: any) => {
         const { data: locationData = {} } = await axios.get(
           `${publicRuntimeConfig.NEXT_GEOLOCATION_API_URL}?apiKey=${publicRuntimeConfig.NEXT_GEOLOCATION_API_KEY}`,
         );
+        // Store the location data in localStorage
+        localStorage.setItem("locationData", JSON.stringify(locationData));
         const { country_name = "" } = locationData;
         // const country_name = await "India";
         // eslint-disable-next-line require-atomic-updates
         userLocation.current = country_name;
         if (
           userLocation.current &&
-          data?.informative_cookie_country_list.includes(userLocation.current) &&
-          !data?.consent_cookie_country_list.includes(userLocation.current)
+          informativeCountryList?.includes(userLocation.current) &&
+          !consentCountryList?.includes(userLocation.current)
         ) {
           analyticApiCall();
           validateCookie();
