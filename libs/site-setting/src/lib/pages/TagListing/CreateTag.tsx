@@ -20,7 +20,6 @@ import {
   RadioControlLabel,
   ShowToastSuccess,
   PlateformXDialogSuccess,
-  getCurrentLang,
 } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
@@ -84,7 +83,7 @@ export const CreateTags = () => {
           },
           ObjectFields: {
             tag_name: value,
-            tag_value: getCurrentLang(),
+            tag_value: value,
             category: category,
             doc_state: "DRAFT",
           },
@@ -188,12 +187,14 @@ export const CreateTags = () => {
   return (
     <>
       <TopBar
+        createText={`${t("create")} ${t("tag")}`}
         returnBack={() => navigate("/site-setting/tags")}
         handlePublish={onPublish}
         onSave={onSave}
         category={category}
         value={value}
         publishUrl={publishUrl}
+        isCategoryDetail={false}
       />
       <Divider />
       {isLoading && <Loader />}
