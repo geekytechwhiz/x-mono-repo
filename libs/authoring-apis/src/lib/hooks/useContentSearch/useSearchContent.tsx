@@ -72,6 +72,10 @@ const useContentSearch = ({
     }
   }, [data]);
 
+  useEffect(() => {
+    setIsLoading(true);
+  }, [contentType]);
+
   const fetchMoreContent = async () => {
     try {
       const result = await fetchMore({
