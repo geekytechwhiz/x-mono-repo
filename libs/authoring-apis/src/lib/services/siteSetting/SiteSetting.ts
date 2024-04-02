@@ -333,7 +333,7 @@ export const fetchCategory = async <T>(input: T): Promise<ApiResponse<T>> => {
   const { data } = await graphqlInstance.query({
     query: FETCH_CATEGORY,
     variables: input,
-    fetchPolicy: "cache-first",
+    fetchPolicy: "network-only",
   });
   return data;
 };
