@@ -116,7 +116,7 @@ jobs:
       - name: Build develop
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
-          docker build -f Dockerfile.author.dev --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+          # docker build -f Dockerfile.author.dev --build-arg BRANCH=${{ github.ref_name }} --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
       - name: Build qa
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
