@@ -96,6 +96,13 @@ const CreateNewPage = ({
     }
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setPageName("");
+      setPageUrl("");
+    };
+  }, []);
+
   return (
     <Dialog
       fullWidth
