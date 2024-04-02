@@ -6,13 +6,13 @@ import {
   useContentSearch,
 } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
+import { makeCreateContentPath } from "@platformx/utilities";
 import { memo, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CreateNewPage from "../../pages/page/CreateNewPage";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
-import { makeCreateContentPath } from "@platformx/utilities";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -73,6 +73,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   );
 
   useEffect(() => {
+    setFilterValue("ALL");
     const fetchData = async () => {
       setIsSpinning(true);
       await refetch();
@@ -111,12 +112,13 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     <>
       <ContentListingHeader
         handleFilter={handleFilter}
-        title={contentType}
+        title={contentType === "ALL" ? "Result" : contentType}
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
         handleAddNew={createContentNew}
         handleRefresh={handleRefresh}
         animationState={isSpinning}
+        filterValue={filterValue}
       />
 
       <ContentListing

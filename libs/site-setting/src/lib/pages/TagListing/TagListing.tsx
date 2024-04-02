@@ -1,6 +1,4 @@
 import { Box } from "@mui/system";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
@@ -16,9 +14,11 @@ import {
   ShowToastError,
   ShowToastSuccess,
 } from "@platformx/utilities";
-import TagMenu from "./TagMenu";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { t } from "i18next";
+import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate } from "react-router";
+import TagMenu from "./TagMenu";
 
 export const TagListing = () => {
   const [refreshState] = useState(false);
@@ -127,6 +127,7 @@ export const TagListing = () => {
         handleAddNew={() => navigate("/site-setting/create-tags")}
         animationState={refreshState}
         handleRefresh={handleRefresh}
+        filterValue='ALL'
       />
       <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
         <InfiniteScroll

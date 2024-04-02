@@ -195,6 +195,7 @@ export const CreateQuiz = () => {
       scoreBy,
       imagevideoURL,
       questions,
+      colorCode,
     } = quizState;
     const shortDesc = quizState.short_description;
     if (
@@ -202,10 +203,10 @@ export const CreateQuiz = () => {
       shortTitle === "" ||
       shortDesc === "" ||
       description === "" ||
-      imagevideoURL === "" ||
       scoreBy === "" ||
       questions?.length === 0 ||
-      tagArr?.length === 0
+      tagArr?.length === 0 ||
+      (imagevideoURL === "" && colorCode === "")
     ) {
       setPreviewButton(true);
     } else {
@@ -493,6 +494,7 @@ export const CreateQuiz = () => {
       description,
       scoreBy,
       imagevideoURL,
+      colorCode,
       questions,
     } = quizState;
     const shortDesc = quizState.short_description;
@@ -504,12 +506,12 @@ export const CreateQuiz = () => {
       ShowToastError(`${t("short_description")} ${t("is_required")}`);
     } else if (description === "") {
       ShowToastError(`${t("description")} ${t("is_required")}`);
-    } else if (imagevideoURL === "") {
+    } else if (imagevideoURL === "" && colorCode === "") {
       ShowToastError(`${t("banner_image")} ${t("is_required")}`);
     } else if (questions.length <= 0) {
       ShowToastError(`${t("question")} ${t("is_required")}`);
     } else if (scoreBy === "") {
-      ShowToastError(`${t("banner_image")} ${t("is_required")}`);
+      ShowToastError(`${t("score")} ${t("is_required")}`);
     } else if (quizState.result_range_1 === "") {
       ShowToastError(`${t("range")} 0-24 ${t("is_required")}`);
     } else if (quizState.result_range_2 === "") {

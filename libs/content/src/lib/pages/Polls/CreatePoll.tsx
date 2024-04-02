@@ -392,7 +392,7 @@ export const CreatePoll = (): JSX.Element => {
   const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
   const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
   const location = useLocation();
-  const contentType = capitalizeFirstLetter(location.state);
+  const contentType = capitalizeFirstLetter(ContentType.Poll);
   // const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
   const [runFetchContentByPath] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   const taglength = useRef();

@@ -7,11 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import { contentTypeAPIs } from "@platformx/authoring-apis";
-import { TaskNotFound, XLoader, capitalizeFirstLetter } from "@platformx/utilities";
+import { contentTypeAPIs, pageApi } from "@platformx/authoring-apis";
+import { SITE_PAGE, TaskNotFound, XLoader, capitalizeFirstLetter } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getStepperCount, lineBreak } from "../WorkflowStepper/Utils/helper";
+import "./WorkflowStepper.css";
 
 type WorkflowStepperProps = {
   open: boolean;
@@ -29,12 +30,29 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
 
   const getStages = async () => {
     try {
-      const response: any = await contentTypeAPIs.fetchContent({
-        contentType: capitalizeFirstLetter(contentType),
-        path: path,
-      });
-      if (response?.authoring_getCmsContentByPath?.stages) {
-        setStages(response.authoring_getCmsContentByPath.stages);
+      if (contentType.toLowerCase() === SITE_PAGE.toLowerCase()) {
+        const arr = path?.split("/");
+        const response: any = await pageApi.getPageDetails({
+          folder: arr[6],
+          path: arr[10],
+        });
+        if (
+          response?.authoring_getCmsItemByPath?.stages &&
+          response?.authoring_getCmsItemByPath?.is_workflow_enabled
+        ) {
+          setStages(response?.authoring_getCmsItemByPath?.stages);
+        }
+      } else {
+        const response: any = await contentTypeAPIs.fetchContent({
+          contentType: capitalizeFirstLetter(contentType),
+          path: path,
+        });
+        if (
+          response?.authoring_getCmsContentByPath?.stages &&
+          response?.authoring_getCmsContentByPath?.is_workflow_enabled
+        ) {
+          setStages(response.authoring_getCmsContentByPath.stages);
+        }
       }
       setIsLoading(false);
     } catch (error) {
@@ -65,10 +83,10 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
         {stages.length === 0 && !isLoading ? (
           <TaskNotFound />
         ) : (
-          <Stepper activeStep={getStepperCount(stages)}>
+          <Stepper activeStep={getStepperCount(stages)} alternativeLabel className='stepperWrapper'>
             {stages.map((stage: any) => (
-              <Step key={stage.label}>
-                <StepLabel>
+              <Step key={stage.label} className='stepperStep'>
+                <StepLabel className='stepperStepLabel'>
                   {stage.state === "request_review"
                     ? lineBreak("Request", stage.user_name)
                     : stage.status === "Completed"

@@ -272,18 +272,10 @@ const DamContentGallery = (_props: DamContentGalleryProps) => {
 
   return (
     <Dialog
+      fullScreen
       open={dialogOpen}
       aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
-      PaperProps={{
-        sx: {
-          width: "100%",
-          maxWidth: "100%",
-          height: "calc(100% - 40px)",
-          maxHeight: "calc(100% - 40px)",
-          margin: "20px",
-        },
-      }}>
+      aria-describedby='alert-dialog-description'>
       <DialogContent sx={{ padding: "5px" }}>
         {open ? (
           <Grid container item xs={12} em={3} xl={2} lg={2} className={classes.parentGrid}>

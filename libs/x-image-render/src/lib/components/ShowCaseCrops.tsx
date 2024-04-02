@@ -1,8 +1,9 @@
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Button, Dialog, DialogContent, Grid, IconButton, Typography } from "@mui/material";
-import { XLoader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
+import { Loader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { RATIOS } from "../utils/constants";
+import "./Gallery.css";
 
 const ShowCaseCrops = (props: any = {}) => {
   const { open, backTo, handleEdit, data } = nullToObject(props);
@@ -37,7 +38,7 @@ const ShowCaseCrops = (props: any = {}) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: { xs: "10px 15px", md: "0px 24px" },
+          padding: { xs: "10px 15px", md: "20px 24px" },
         }}>
         <Grid xs={12} md={8}>
           <Typography variant='h4bold'>Preview Images</Typography>
@@ -65,7 +66,7 @@ const ShowCaseCrops = (props: any = {}) => {
       </Grid>
       <DialogContent sx={{ padding: "5px" }}>
         <Box className='casecropsbox'>
-          {loading && <XLoader type='circular' />}
+          {loading && <Loader />}
           <Grid container sx={{ paddingRight: "50px" }}>
             {cropped_images.map(({ folder_path = "", aspect_ratio = "" }) => {
               return (

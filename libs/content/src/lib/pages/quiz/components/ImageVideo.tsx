@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useComment } from "@platformx/authoring-apis";
 import { CommonBoxWithNumber, TitleSubTitle } from "@platformx/utilities";
@@ -10,12 +10,8 @@ import { XImageRender } from "@platformx/x-image-render";
 const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
   const { t } = useTranslation();
   const { scrollToRef } = useComment();
-  const [backgroundColor, setBackgroundColor] = useState(state.backgroundColor);
-  const [isImg, setImg] = useState(state.isImg);
 
   const updateField = (updatedPartialObj) => {
-    setBackgroundColor("");
-    setImg(true);
     const relativeUrl = `${updatedPartialObj?.original_image.original_image_relative_path}.${updatedPartialObj?.original_image.ext}`;
     const modifiedData = {
       ...JSON.parse(JSON.stringify(state)),
@@ -23,6 +19,7 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl, //when we update image socialshareimg also needs to update
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail, //for validation
+      colorCode: "",
     };
     setState(modifiedData);
     quizRef.current = {
@@ -31,19 +28,20 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl, //when we update image socialshareimg also needs to update
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail, //for validation
+      colorCode: "",
     };
     unsavedChanges.current = true;
   };
 
   const handleRefresh = () => {
-    setBackgroundColor("");
-    setImg(false);
     setState({
       ...state,
       imagevideoURL: "",
       socialShareImgURL: "",
       colorCode: "",
       thumbnailURL: "",
+      original_image: {},
+      published_images: [],
     });
     quizRef.current = {
       ...quizRef.current,
@@ -51,12 +49,12 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
       socialShareImgURL: "",
       colorCode: "",
       thumbnailURL: "",
+      original_image: {},
+      published_images: [],
     };
   };
 
   const handleColorPallete = (color) => {
-    setBackgroundColor(color);
-    setImg(false);
     setState({
       ...state,
       imagevideoURL: "",
@@ -73,13 +71,6 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
     };
     unsavedChanges.current = true;
   };
-
-  useEffect(() => {
-    if (state) {
-      setImg(state.isImg);
-      setBackgroundColor(state.backgroundColor);
-    }
-  }, [state]);
 
   const classes = useCustomStyle();
   return (
@@ -106,8 +97,8 @@ const ImageVideo = ({ state, setState, quizRef, unsavedChanges }) => {
                 editData={{
                   original_image: state.original_image,
                   published_images: state.published_images,
-                  isImg: isImg,
-                  colorCode: backgroundColor,
+                  isImg: state.colorCode ? false : true,
+                  colorCode: state.colorCode,
                 }}
                 isColorPallete={true}
                 handleRefresh={handleRefresh}

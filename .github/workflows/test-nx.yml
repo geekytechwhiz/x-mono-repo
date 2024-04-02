@@ -6,10 +6,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-# permissions:
-#   contents: write
-#   id-token: write
-#   actions: read
 
 jobs:
   authoring-ui:
@@ -24,7 +20,7 @@ jobs:
       - name: Set env vars(develop)
         if: endsWith(github.ref, '/develop')
         run: |
-          echo "PROJECT_ID=PROJECT_ID_$(echo ${{github.ref_name}} | tr '[:lower]' '[:upper]')" >> $GITHUB_ENV
+          echo "PROJECT_ID=PROJECT_ID_$(echo ${{github.ref_name}} | tr '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -32,7 +28,7 @@ jobs:
           node-version: "18.x"
       - name: Restore cached npm dependencies
         id: cache-dependencies-restore
-        uses: actions/cache/restore@v3
+        uses: actions/cache@v3
         with:
           path: |
             node_modules
@@ -47,39 +43,33 @@ jobs:
           gh_token: ${{ secrets.gh_token }}
 
       - uses: nrwl/nx-set-shas@v3
-
         with:
           main-branch-name: develop
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        # run: npx nx affected --target=build --parallel --base=origin/main --head=HEAD --apps=authoring-web
-        run: npx nx affected authoring-web --base=origin/main -t build --head=HEAD
-        # run: npx nx affected authoring-web --base=${{ github.event.pull_request.base.ref }} --head=${{ github.event.pull_request.head.ref }} -t build
-        # run: npx nx-cloud record -- npx nx affected --base=develop --head=HEAD --target=build --with-deps --clear-cache
+        run: npx nx affected --target=build --parallel --base=origin/develop --head=HEAD --apps=authoring-web
         env:
           gh_token: ${{ secrets.gh_token }}
 
-  # Add this job after your build jobs in the workflow
-  deploy-authoring-ui:
-    name: Deploy to GCP Engine
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # deploy-authoring-ui:
+  #   name: Deploy to GCP Engine
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Set Project ID from Scecrts
-        run: echo "PROJECT_ID= ${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
+  #     - name: Set Project ID from Secrets
+  #       run: echo "PROJECT_ID= ${{ secrets.GCP_PROJECT_ID }}" >> $GITHUB_ENV
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.4.0
-        with:
-          project_id: ${{secrets.GCP_PROJECT_ID}}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
+  #     - name: Set up Google Cloud SDK
+  #       uses: google-github-actions/setup-gcloud@v0.4.0
+  #       with:
+  #         project_id: ${{ secrets.GCP_PROJECT_ID }}
+  #         service_account_key: ${{ secrets.GCP_SA_KEY }}
+  #         export_default_credentials: true
 
-      - name: Deploy to GCP Engine
-        run: |
-          gcloud app deploy --version=1
+  #     - name: Deploy to GCP Engine
+  #       run: gcloud app deploy --version=1
 
   user-experience-ui:
     name: user-experience-ui
@@ -104,4 +94,4 @@ jobs:
         run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
       - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+        run: npx nx affected --base=develop --head=HEAD --target=build
