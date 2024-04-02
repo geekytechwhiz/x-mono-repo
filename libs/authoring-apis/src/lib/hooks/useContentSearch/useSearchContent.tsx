@@ -23,6 +23,7 @@ interface UseContentSearchResult {
   error: any;
   fetchMore: () => void;
   refetch: () => void;
+  contents: any;
 }
 
 const useContentSearch = ({
@@ -40,8 +41,6 @@ const useContentSearch = ({
   });
 
   const variableCourse: any = { ...variables, filter: "Course", isListing: true };
-
-  // const variableCourse: any = { filter: "Course", isListing: true };
 
   const fetchQuery =
     contentType?.toLocaleLowerCase() === "course"
@@ -70,7 +69,7 @@ const useContentSearch = ({
       dispatch(previewContent({}));
       dispatch(updateContentList(serializableData));
     }
-  }, [data]);
+  }, [data, contents, loading, contentType, locationState, filter, startIndex]);
 
   const fetchMoreContent = async () => {
     try {
@@ -100,6 +99,7 @@ const useContentSearch = ({
   return {
     loading: isLoading,
     error,
+    contents: contents,
     fetchMore: fetchMoreContent,
     refetch: refresh,
   };
