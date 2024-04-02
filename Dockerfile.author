@@ -24,7 +24,6 @@ RUN apk update && \
     libpng-dev \
     libwebp-dev
 
-ARG BRANCH
 
 # create & set working directory
 RUN mkdir -p /server
@@ -38,15 +37,21 @@ ENV NODE_OPTIONS="--max_old_space_size=8192"
 
 # install dependencies again
 RUN npm install --legacy-peer-deps
+#get branch
+ARG BRANCH
+#print branch
+RUN echo "Current branch: $BRANCH"
 
-# start app
+# build app
 RUN if [ $BRANCH == "develop" ]; then \
     nx build authoring-web --parallel=10 --configuration=dev; \
     elif [ $BRANCH == "qa" ]; then \
     nx build authoring-web --parallel=10 --configuration=qa; \
     else \
-    echo "No bra  nch match"; \
+    echo "No branch match"; \
     fi 
 
+#set port
 EXPOSE 3000
+#start app
 CMD npm run deploy:authoring
