@@ -39,6 +39,8 @@ RUN npm i -g nx
 ENV NODE_OPTIONS="--max_old_space_size=8192"
 ARG BRANCH
 RUN echo "The branch name is $BRANCH"
+ARG git_branch
+RUN echo “Building $git_branch”
 # install dependencies again
 RUN npm install --legacy-peer-deps
 
