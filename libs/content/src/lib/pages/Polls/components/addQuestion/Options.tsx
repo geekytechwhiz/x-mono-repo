@@ -1,10 +1,8 @@
 import AddIcon from "@mui/icons-material/Add";
-// import DeleteIcon from "../../assets/images/icons/deleteIcon.svg";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, Grid, TextField, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-// import { ReactComponent as Icon } from "../../assets/Icon.svg";
 import {
   Drag,
   DragAndDrop,
@@ -14,21 +12,19 @@ import {
   getRandomNumber,
   Icon,
 } from "@platformx/utilities";
-// import { getRandomNumber } from "../../utils/helperFunctions";
-// import { showToastError } from "../toastNotification/toastNotificationReactTostify";
-// import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
 
 export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsavedChanges }) => {
   const { t } = useTranslation();
   const [, setOperationType] = useState<string>("replace");
-  const [answers1, setAnswers1] = useState<any>(answers);
   const [isDeleteDisable, setIsDeleteDisable] = useState(true);
+
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
     return result;
   };
+
   const handleDragEnd = (result) => {
     const { type, source, destination } = result;
     if (!destination) return;
@@ -38,38 +34,23 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
       setAnswers(updatedAnswers as []);
     }
   };
+
   const handleChange = (event) => {
     qusUnsavedChanges.current = true;
-    setAnswers1(
-      answers1.map((answer) =>
-        answer.id === event.target.name ? { ...answer, option: event.target.value } : answer,
-      ) as [],
-    );
+    const temp = answers.map((answer) =>
+      answer.id === event.target.name ? { ...answer, option: event.target.value } : answer,
+    ) as [];
+    setAnswers(temp);
   };
-  const handleBlur = () => {
-    qusUnsavedChanges.current = true;
-    setAnswers(answers1);
-  };
+
   const onUploadClick = (type, id) => {
     qusUnsavedChanges.current = true;
     showGallery(type, "answers", id);
     setOperationType(type);
   };
-  // const handleStatusChange = (id) => {
-  //   qusUnsavedChanges.current = true;
-  //   setAnswers(
-  //     answers.map((answer) =>
-  //       answer.id === id ? { ...answer, status: !answer.status } : answer,
-  //     ) as [],
-  //   );
-  // };
 
   const onAddOption = () => {
     qusUnsavedChanges.current = true;
-    // let lastAnswerID = 1;
-    // if (answers.length > 0) {
-    //   lastAnswerID = parseInt(answers[answers.length - 1].id) + 1;
-    // }
     if (answers.length < 10) {
       setAnswers([
         ...answers,
@@ -79,9 +60,7 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
       ShowToastError(t("options_limit_toast"));
     }
   };
-  useEffect(() => {
-    setAnswers1(answers);
-  }, [answers]);
+
   useEffect(() => {
     if (answers.length <= 2) {
       setIsDeleteDisable(true);
@@ -92,15 +71,14 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
 
   const onDeleteOption = (id) => {
     qusUnsavedChanges.current = true;
-    // if (answers.length <= 2) {
-    // } else {
     setAnswers(answers.filter((item) => item.id !== id));
   };
+
   return (
     <>
       <DragAndDrop onDragEnd={handleDragEnd}>
         <Drop id='droppable' type='droppable-category'>
-          {answers1.map((answer, answerIndex) => {
+          {answers.map((answer, answerIndex) => {
             return (
               <Drag
                 className='draggable-category'
@@ -112,11 +90,10 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
                     <Grid
                       item
                       xs={2.25}
-                      // sm={1.75}
                       sm={1.5}
                       sx={{
                         display: "flex",
-                        alignItems: "center", //padding:'0px 5px 0px 5px'
+                        alignItems: "center",
                         justifyContent: "center",
                       }}>
                       {answer.image ? (
@@ -124,7 +101,6 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
                           sx={{
                             width: "48px",
                             height: "48px",
-                            // border: "solid 1px #ced3d9",
                             borderRadius: "5px",
                             display: "flex",
                             alignItems: "center",
@@ -209,7 +185,6 @@ export const Options = ({ addImage, showGallery, answers, setAnswers, qusUnsaved
                         readOnly: false,
                       }}
                       onChange={(e) => handleChange(e)}
-                      onBlur={() => handleBlur()}
                     />
                   </Grid>
                   <Grid item xs={0.75} sm={0.25} sx={{ display: "flex", alignItems: "center" }}>
