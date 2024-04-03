@@ -6,7 +6,7 @@ import {
   updateContent,
   updateContentList,
   updatePageSettings,
-  updateSaveWarning,
+  // updateSaveWarning,
 } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
@@ -265,7 +265,7 @@ const usePage = (filter = "ALL") => {
     newPageModel.Page_LastModifiedBy = username;
     newPageModel.Page_LastModificationDate = new Date();
     newPageModel.DevelopedDate = new Date().toISOString();
-    newPageModel.Page_LastModificationDate = new Date().toISOString();
+    //newPageModel.Page_LastModificationDate = new Date().toISOString();
     newPageModel.CurrentPageURL = `/${pageUrl}`;
     newPageModel.PageSettings = { PageName: pageName };
     newPageModel.SiteName = useremail;
@@ -280,7 +280,7 @@ const usePage = (filter = "ALL") => {
         ),
       ),
     );
-    dispatch(updateSaveWarning(false));
+    //dispatch(updateSaveWarning(false));
     dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
   };
 

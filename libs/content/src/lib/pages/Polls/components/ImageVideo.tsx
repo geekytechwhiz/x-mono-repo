@@ -20,6 +20,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
+      colorCode: "",
     };
     setState(modifiedData);
     pollRef.current = {
@@ -27,6 +28,46 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
+      colorCode: "",
+    };
+    unsavedChanges.current = true;
+  };
+
+  const handleRefresh = () => {
+    setState({
+      ...state,
+      imagevideoURL: "",
+      socialShareImgURL: "",
+      colorCode: "",
+      thumbnailURL: "",
+      original_image: {},
+      published_images: [],
+    });
+    pollRef.current = {
+      ...pollRef.current,
+      imagevideoURL: "",
+      socialShareImgURL: "",
+      colorCode: "",
+      thumbnailURL: "",
+      original_image: {},
+      published_images: [],
+    };
+  };
+
+  const handleColorPallete = (color) => {
+    setState({
+      ...state,
+      imagevideoURL: "",
+      thumbnailURL: "",
+      socialShareImgURL: "",
+      colorCode: color,
+    });
+    pollRef.current = {
+      ...pollRef.current,
+      imagevideoURL: "",
+      thumbnailURL: "",
+      socialShareImgURL: "",
+      colorCode: color,
     };
     unsavedChanges.current = true;
   };
@@ -55,8 +96,12 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
                 editData={{
                   original_image: state.original_image,
                   published_images: state.published_images,
+                  isImg: state.colorCode ? false : true,
+                  colorCode: state.colorCode,
                 }}
-                isCrop={true}
+                isColorPallete={true}
+                handleRefresh={handleRefresh}
+                handleColorPallete={handleColorPallete}
               />
             </Grid>
           </Grid>

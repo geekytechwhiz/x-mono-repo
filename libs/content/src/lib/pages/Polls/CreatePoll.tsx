@@ -20,7 +20,7 @@ import {
   PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
-  XLoader,
+  Loader,
   capitalizeFirstLetter,
   getCurrentLang,
   getSubDomain,
@@ -53,6 +53,7 @@ import Result from "./components/results/Result";
 import SocialShare from "./components/socialshare/SocialShare";
 
 export const CreatePoll = (): JSX.Element => {
+  const ctype = capitalizeFirstLetter(ContentType.Poll);
   const dispatch = useDispatch();
   const { getWorkflowDetails, workflowRequest } = useWorkflow();
   const { t, i18n } = useTranslation();
@@ -199,14 +200,14 @@ export const CreatePoll = (): JSX.Element => {
             Url: "",
             Title: "",
             Thumbnail: "",
-            Color: "black",
+            Color: "",
           },
           question_background_content: {
             objectType: "image",
             Url: "",
             Title: "",
             Thumbnail: "",
-            Color: "black",
+            Color: "",
             original_image: {},
             published_images: [],
           },
@@ -224,7 +225,7 @@ export const CreatePoll = (): JSX.Element => {
       setPollInstance(newPoll);
     }
     if (currentPollData.current === "") {
-      getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ContentType.Poll));
+      getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ctype));
     }
   }, []);
   const updateField = (updatedPartialObj) => {
@@ -252,7 +253,6 @@ export const CreatePoll = (): JSX.Element => {
         published_images: pollState?.question_published_images,
       },
       display_scores: pollState?.scoreBy,
-      // background_color: pollState?.queBackgroundColor,
       poll_description: pollState?.poll_description,
       poll_title: pollState?.poll_title,
       poll_question: pollState?.poll_title,
@@ -392,7 +392,6 @@ export const CreatePoll = (): JSX.Element => {
   const [updatepollmutate] = useMutation(contentTypeAPIs.updateContentType);
   const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
   const location = useLocation();
-  const contentType = capitalizeFirstLetter(ContentType.Poll);
   // const [publishpollmutate] = useMutation(contentTypeAPIs.publishContentType);
   const [runFetchContentByPath] = useLazyQuery(contentTypeAPIs.fetchContentByPath);
   const taglength = useRef();
@@ -435,18 +434,20 @@ export const CreatePoll = (): JSX.Element => {
       scoreBy,
       imagevideoURL,
       colorCode,
-    } = pollState;
+      poll_title,
+      poll_description,
+      short_description,
+    } = pollRef.current;
     const emptyAnswers = answers.filter((ans) => ans.option === "");
     const emptyImageOptions = answers.filter((ans) => ans.image === "");
-    const shortDesc = pollState.short_description;
     if (
       title === "" ||
       shortTitle === "" ||
-      shortDesc === "" ||
+      short_description === "" ||
       description === "" ||
       (colorCode === "" && imagevideoURL === "") ||
-      pollState?.poll_title === "" ||
-      pollState?.poll_description === "" ||
+      poll_title === "" ||
+      poll_description === "" ||
       scoreBy === "" ||
       emptyAnswers.length > 0 ||
       (addImage && emptyImageOptions.length > 0) ||
@@ -456,7 +457,7 @@ export const CreatePoll = (): JSX.Element => {
     } else {
       setPreviewButton(false);
     }
-  }, [pollState, answers, addImage, currentPollData.current]);
+  }, [pollState, answers, addImage, pollRef.current]);
   const dateFormat = (dataTime) => {
     return dataTime && format(new Date(dataTime), "h:mm aa, dd LLLL");
   };
@@ -479,7 +480,7 @@ export const CreatePoll = (): JSX.Element => {
     };
     publishpollmutate({
       variables: {
-        contentType: contentType,
+        contentType: ctype,
         input: pollToSend,
       },
     })
@@ -585,11 +586,9 @@ export const CreatePoll = (): JSX.Element => {
         published_images: pollState?.question_published_images,
       },
       display_scores: pollState?.scoreBy,
-      // background_color: pollState?.queBackgroundColor,
       poll_description: pollState?.poll_description,
       poll_title: pollState?.poll_title,
       poll_question: pollState?.poll_title,
-      // poll_answer_image: pollState?.queBackgroundImg,
       is_image_option: addImage,
       options_compound_fields: answers.map((ans) => {
         return {
@@ -625,7 +624,7 @@ export const CreatePoll = (): JSX.Element => {
 
     createpollmutate({
       variables: {
-        contenttype: contentType,
+        contenttype: ctype,
         input: pollToSend,
       },
     })
@@ -654,7 +653,7 @@ export const CreatePoll = (): JSX.Element => {
               description,
               path: resp?.data?.authoring_createContent?.path,
               workflow_status: workflowKeys.draft,
-              tag_name: capitalizeFirstLetter(ContentType.Poll),
+              tag_name: capitalizeFirstLetter(ctype),
               last_modifiedBy: createdBy,
             };
             setWorkflow({ ...workflow, ...workflowObj });
@@ -667,7 +666,11 @@ export const CreatePoll = (): JSX.Element => {
             setOpenPageExistModal(true);
             setPageStatus(pageState);
           } else {
-            publishPoll(pollRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase());
+            publishPoll(
+              resp?.data?.authoring_createContent?.path.substring(
+                resp?.data?.authoring_createContent?.path.lastIndexOf("/") + 1,
+              ),
+            );
           }
         }
         const pageUrl = resp?.data?.authoring_createContent?.path.substring(
@@ -742,11 +745,9 @@ export const CreatePoll = (): JSX.Element => {
         published_images: pollState?.question_published_images,
       },
       display_scores: pollState?.scoreBy,
-      // background_color: pollState?.queBackgroundColor,
       poll_description: pollState?.poll_description,
       poll_title: pollState?.poll_title,
       poll_question: pollState?.poll_title,
-      // poll_answer_image: pollState?.queBackgroundImg,
       is_image_option: addImage,
       options_compound_fields: answers.map((ans) => {
         return {
@@ -794,7 +795,7 @@ export const CreatePoll = (): JSX.Element => {
     // delete updatePollToSend.__typename;
     updatepollmutate({
       variables: {
-        contenttype: contentType,
+        contenttype: ctype,
         input: updatePollToSend,
       },
     })
@@ -888,7 +889,6 @@ export const CreatePoll = (): JSX.Element => {
     } = pollState;
     const emptyAnswers = answers.filter((ans) => ans.option === "");
     const emptyImageOptions = answers.filter((ans) => ans.image === "");
-    // const checkOptionsChars = answers.filter((ans) => ans.option.length > 50);
     const shortDesc = pollState.short_description;
     if (title === "") {
       ShowToastError(`${t("title")} ${t("is_required")}`);
@@ -1124,7 +1124,7 @@ export const CreatePoll = (): JSX.Element => {
     } else if (currentPollData.current && unsavedChanges.current !== true) {
       setIsLoading(true);
       runFetchContentByPath({
-        variables: { contentType: contentType, path: currentPollData.current },
+        variables: { contentType: ctype, path: currentPollData.current },
       })
         .then((res) => {
           if (res?.data?.authoring_getCmsContentByPath) {
@@ -1360,7 +1360,7 @@ export const CreatePoll = (): JSX.Element => {
       background_content: backgroundContent,
       options_compound_fields: optionsCompoundFields,
       question_background_content: questionBackgroundContent,
-      contentType: "Poll",
+      contentType: ctype,
     };
     dispatch(previewContent(tempObj));
     navigate("/content/preview");
@@ -1433,7 +1433,7 @@ export const CreatePoll = (): JSX.Element => {
         sx={{
           display: isClickedQueList || openAddQestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type='xloader' />}
+        {isLoading && <Loader />}
         <Box>
           <Box>
             <CreateHeader
@@ -1452,7 +1452,7 @@ export const CreatePoll = (): JSX.Element => {
               saveVariant='secondaryButton'
               handlePublish={publish}
               category={CATEGORY_CONTENT}
-              subCategory={ContentType.Poll}
+              subCategory={ctype}
               workflow={workflow}
               hasTimerState={timerState}
               lastModifiedDate={lastmodifiedDate}
@@ -1508,7 +1508,6 @@ export const CreatePoll = (): JSX.Element => {
                   setState={setPollState}
                   pollRef={pollRef}
                   unsavedChanges={unsavedChanges}
-                  // showGallery={showGallery}
                 />
                 <AddQuestion
                   // saveQuestionCallBack={saveQuestionCallBack}
