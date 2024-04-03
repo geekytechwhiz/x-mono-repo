@@ -9,6 +9,7 @@ export * from "./lib/redux/slices/Menu/MenuSlice";
 export * from "./lib/redux/slices/Page/Page.types";
 export * from "./lib/redux/slices/Page/PageSlice";
 
+export * from "./lib/redux/slices/Dashboard/DashboardSlice";
 export * from "./lib/redux/slices/Dialog/DialogSlice";
 export * from "./lib/redux/slices/Quiz/Quiz.type";
 export * from "./lib/redux/slices/Quiz/QuizSlice";
