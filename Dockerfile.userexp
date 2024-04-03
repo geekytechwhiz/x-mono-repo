@@ -31,6 +31,9 @@ WORKDIR /server
 # copy source files
 COPY . /server
 
+# install dependencies
+RUN npm i -g nx
+
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 
