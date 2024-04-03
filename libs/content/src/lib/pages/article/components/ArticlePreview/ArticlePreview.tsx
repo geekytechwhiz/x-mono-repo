@@ -42,7 +42,7 @@ const ArticlePreview = () => {
   // const { state } = useContext(Store);
   // const { article } = state;
   // const themeConstant =
-  //   process.env?.REACT_APP_COMPONENT_THEME == 'LightTheme'
+  //   process.env?.NX_COMPONENT_THEME == 'LightTheme'
   //     ? ThemeConstants
   //     : ThemeConstants;
   // const [previewObject] = useState({

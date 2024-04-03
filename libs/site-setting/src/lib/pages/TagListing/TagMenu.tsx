@@ -3,7 +3,7 @@ import {
   MoreHorizIcon,
   CardOptionViewIcon,
   CardOptionEditIcon,
-  CardOptionDuplicateIcon,
+  //CardOptionDuplicateIcon,
   CardOptionUnPublishIcon,
   CardOptionDeleteIcon,
   ErrorTooltip,
@@ -115,7 +115,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
           tooltipMsg={t("cannot_edit_tag")}
           doAccess={dataList.type === SYSTEM_TAGS}
         />
-        {dataList.status === "published" && dataList.type === SITE_TAGS && (
+        {/* {dataList.status === "published" && dataList.type === SITE_TAGS && (
           <MenuItem
             disableRipple
             onClick={() => {
@@ -126,7 +126,7 @@ const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
             </div>
             {t("duplicate")}
           </MenuItem>
-        )}
+        )} */}
         {dataList.status === "published" && dataList.type === SITE_TAGS && (
           <ErrorTooltip
             component={
