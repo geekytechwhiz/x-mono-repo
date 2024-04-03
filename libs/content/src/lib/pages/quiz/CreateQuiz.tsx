@@ -18,7 +18,7 @@ import {
   PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
-  XLoader,
+  Loader,
   capitalizeFirstLetter,
   getCurrentLang,
   useUserSession,
@@ -661,12 +661,11 @@ export const CreateQuiz = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // setIsEditMode(true);
-
         if (Object.keys(currentContent).length > 0) {
           setQuizState(currentContent);
           setTagArr(currentContent?.tagsSocialShare);
           quizRef.current = currentContent;
+          setWorkflow(currentContent.workflow);
         } else if (currentQuizData.current && !unsavedChanges.current) {
           setIsLoading(true);
 
@@ -706,12 +705,10 @@ export const CreateQuiz = () => {
               task_user_id: user_id,
               task_user_name: user_name,
             });
-
             if (!questions || questions.length === 0) {
               setIsLoading(false);
               return;
             }
-
             const tempArray = await Promise.all(
               questions
                 .filter((val) => !val.startsWith("/"))
@@ -736,11 +733,9 @@ export const CreateQuiz = () => {
                   }
                 }),
             );
-
             setQuizState(quizResponseMapper(res, quizState, tempArray));
             setQuizInstance(quizResponseMapper(res, quizState, tempArray));
             quizRef.current = getCurrentQuiz(res);
-
             setTagArr(res.data.authoring_getCmsContentByPath.tags);
           }
         }
@@ -855,6 +850,7 @@ export const CreateQuiz = () => {
       ...quizState,
       background_content: backgroundContent,
       contentType: "Quiz",
+      workflow: workflow,
     };
     dispatch(previewContent(tempObj));
     navigate("/content/preview");
@@ -947,7 +943,7 @@ export const CreateQuiz = () => {
         sx={{
           display: isClickedQueList || openAddQuestion ? "none" : "initial",
         }}>
-        {isLoading && <XLoader type='xloader' />}
+        {isLoading && <Loader />}
 
         <Box>
           <Box>
