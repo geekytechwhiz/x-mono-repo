@@ -311,3 +311,18 @@
     max-width: 68px;
   }
 }
+@media (min-width: 1024px) {
+  .listbox .rightspace {
+    padding-right: 20px;
+  }
+}
+@media (min-width: 1280px) {
+  .listbox .rightspace {
+    padding-right: 35px;
+  }
+}
+@media (min-width: 1440px) {
+  .listbox .rightspace {
+    padding-right: 65px;
+  }
+}

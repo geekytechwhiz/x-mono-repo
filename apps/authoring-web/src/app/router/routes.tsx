@@ -43,8 +43,7 @@ export const routes: RouteConfig[] = [
     path: "/",
     element: (
       <ProtectedRoute category='dashboard' subCategory='dashboard' name='dashboard'>
-        {" "}
-        <Dashboard />{" "}
+        <Dashboard />
       </ProtectedRoute>
     ),
   },
@@ -116,14 +115,14 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/page-list",
-  //   element: (
-  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-  //       <></UserListing>
-  //     </ProtectedRoute>
-  //   ),
-  // },
+  {
+    path: "/search-results",
+    element: (
+      <ProtectedRoute category='search-results' subCategory='search-results' name='search-results'>
+        <Content></Content>
+      </ProtectedRoute>
+    ),
+  },
   {
     path: "/workflow/workflow-list",
     element: (
@@ -154,57 +153,6 @@ export const routes: RouteConfig[] = [
     ),
   },
 
-  // {
-  //   path: "/prelem",
-  //   element: (
-  //     <ProtectedRoute
-  //       category='dashboard'
-  //       subCategory='dashboard'
-  //       name='dashboard'
-  //       isSideBar={false}
-  //       isHeader={false}>
-  //       <PrelemComponent />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/user-management/user-list",
-  //   element: (
-  //     <ProtectedRoute category='user-list' subCategory='user-list' name='user-list'>
-  //       {" "}
-  //       <UserListing></UserListing>
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/workflow/workflow-list",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <WorkflowManagement />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/workflow/workflow-details",
-  //   element: (
-  //     <ProtectedRoute name='article' subCategory='article' category='content'>
-  //       <WorkflowDetails />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "user-management/user-create",
-  //   element: (
-  //     <ProtectedRoute
-  //       name='user'
-  //       category='UserManagement'
-  //       subCategory=''
-  //       isHeader={false}
-  //       isSideBar={false}>
-  //       <CreateUser />
-  //     </ProtectedRoute>
-  //   ),
-  // },
   {
     path: "/content/:contentType",
     element: (
@@ -265,14 +213,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/create_asset",
-  //   element: (
-  //     <ProtectedRoute name='footer' category='Assets' subCategory=''>
-  //       <CreateAsset />
-  //     </ProtectedRoute>
-  //   ),
-  // },
   {
     path: "/asset/images",
     element: (
@@ -406,15 +346,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-
-  // {
-  //   path: "/content",
-  //   element: <ProtectedRoute category="content" subCategory="content" name="page" >  <Content></Content> </ProtectedRoute>,
-
-  // },
-  // {
-  //   path: "/dashboard",
-  //   element: <ProtectedRoute category="dashboard" subCategory="dashboard" name="dashboard" >  Dashboard </ProtectedRoute>,
   {
     path: "/content/vod",
     element: (
@@ -463,30 +394,6 @@ export const routes: RouteConfig[] = [
       </ProtectedRoute>
     ),
   },
-  // {
-  //   path: "/asset/images",
-  //   element: (
-  //     <ProtectedRoute name='footer' category='assets' subCategory=''>
-  //       <AssetListing />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/asset/videos",
-  //   element: (
-  //     <ProtectedRoute name='footer' category='assets' subCategory=''>
-  //       <AssetListing />
-  //     </ProtectedRoute>
-  //   ),
-  // },
-  // {
-  //   path: "/create_asset",
-  //   element: (
-  //     <ProtectedRoute name='footer' category='Assets' subCategory=''>
-  //       <CreateAssest />
-  //     </ProtectedRoute>
-  //   ),
-  // },
   {
     path: "/user-management/user-list",
     element: (

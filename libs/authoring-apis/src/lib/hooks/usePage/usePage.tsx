@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   ContentState,
@@ -249,9 +250,9 @@ const usePage = (filter = "ALL") => {
       })
       .catch((error) => {
         if (code) {
-          ShowToastError(`${error} ${t("for")} ${code}`);
+          ShowToastError(`${error.graphQLErrors[0].message} ${t("for")} ${code}`);
         } else {
-          ShowToastError(error);
+          ShowToastError(error.graphQLErrors[0].message);
         }
       });
   };
