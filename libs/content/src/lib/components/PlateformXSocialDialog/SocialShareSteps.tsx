@@ -269,8 +269,8 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           content_type: selectedItem?.contentType
             ? selectedItem?.contentType
             : contentType === "video"
-            ? "VOD"
-            : contentType,
+              ? "VOD"
+              : contentType,
           item_path: selectedItem?.Page,
         },
       };

@@ -31,12 +31,6 @@ const PrelemPreviewFrame = ({ children, device, prelemid }: PrelemPreviewFrameTy
       setHeight(iframe.current.contentDocument.body.scrollHeight);
     }
   };
-  // const theme = {
-  //   LightTheme,
-  // };
-
-  // const themeConstant =
-  //   process.env?.REACT_APP_COMPONENT_THEME === "XeroxTheme" ? ThemeConstants : ThemeConstants;
 
   const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}<style>
     .tweetWrapper iframe {

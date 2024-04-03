@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -78,10 +79,12 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
           <CloseIcon />
         </IconButton>
       </DialogTitle>
-      <DialogContent>
+      <DialogContent className='stepperWrapper'>
         {isLoading && <XLoader type='circular' />}
         {stages.length === 0 && !isLoading ? (
-          <TaskNotFound />
+          <Box sx={{ padding: "0px 20px 50px" }}>
+            <TaskNotFound />
+          </Box>
         ) : (
           <Stepper activeStep={getStepperCount(stages)} alternativeLabel className='stepperWrapper'>
             {stages.map((stage: any) => (
