@@ -523,6 +523,18 @@ export const uriToJSON = (jsonObj = {}) => {
   return {};
 };
 
+/**
+ * string to parse convert
+ * @param urijson
+ * @returns object
+ */
+export const uriToJSONforButtonEditWindow = (urijson) => {
+  if (urijson) {
+    return JSON.parse(urijson);
+  }
+  return {};
+};
+
 export const completeExternalUrl = (str: string) => {
   let tarea = str;
   const tarea_regex = /^(http|https)/;

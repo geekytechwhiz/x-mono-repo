@@ -74,7 +74,7 @@ const EcommercePage = (props: any) => {
         footerSettingData={footerSettingData}
         prelemBaseEndpoint={prelemBaseEndpoint}>
         <Ecommerce
-          secondaryArgs={{ prelemBaseEndpoint, ...snowplowSchemaUrl() }}
+          secondaryArgs={{ prelemBaseEndpoint, ...snowplowSchemaUrl(), sitename: site_host }}
           cartCountUpdate={cartCountUpdate}
           takeToLoginPage={takeToLoginPage}
         />

@@ -9,4 +9,6 @@ export const IMPRESSIONS = {
   NA: "NA",
   YES: "Yes",
   NO: "No",
+  ZERO: 0,
+  PLACE_ORDER: "Ecommerce_order",
 };
