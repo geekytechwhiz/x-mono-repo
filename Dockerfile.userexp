@@ -31,9 +31,6 @@ WORKDIR /server
 # copy source files
 COPY . /server
 
-# install dependencies
-RUN npm i -g nx
-
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 
@@ -47,5 +44,4 @@ RUN npx nx reset
 EXPOSE 3000
 
 # RUN nx start user-experience --parallel=10 --verbose
-
 CMD nx start user-experience --parallel=10
