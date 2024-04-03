@@ -28,21 +28,21 @@ jobs:
         with:
           node-version: "18.x"
 
-      - name: Restore cached npm dependencies
-        id: cache-dependencies-restore
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-          key: npm-dependencies-${{ hashFiles('package-lock.json') }}
+      # - name: Restore cached npm dependencies
+      #   id: cache-dependencies-restore
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       node_modules
+      #     key: npm-dependencies-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
 
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
-        env:
-          gh_token: ${{ secrets.gh_token }}
+      # - name: Setup Nx Cloud
+      #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+      #   env:
+      #     gh_token: ${{ secrets.gh_token }}
 
       # - uses: nrwl/nx-set-shas@v3
       #   with:
@@ -56,7 +56,7 @@ jobs:
         # - run: git branch --track main origin/develop
         with:
           main-branch-name: develop
-      - run: nx affected -t build --parallel=3
+      - run: npx nx affected -t build --parallel=3
 
         env:
           gh_token: ${{ secrets.gh_token }}
