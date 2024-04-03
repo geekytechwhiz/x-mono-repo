@@ -22,7 +22,8 @@ import SchedulePublishStatusIcon from "../../assets/svg/schedulePublishStatusIco
 import ScheduleUnpublishStatusIcon from "../../assets/svg/scheduleUnpublishStatusIcon.svg";
 import UnpublishedStatusIcon from "../../assets/svg/unpublishStatusIcon.svg";
 import VODListIcon from "../../assets/svg/vodListIcon.svg";
-import TagsCatIcon from "../../assets/svg/tagscat.svg";
+import BusinessTagIcon from "../../assets/svg/BusinessTagIcon.svg";
+import SystemTagIcon from "../../assets/svg/SystemTagIcon.svg";
 
 export const statusIcons: any = {
   draft: PublishedIcon, //TODO
@@ -53,7 +54,8 @@ export const iconsList: any = {
   "challenges-announcement": Challenge_community,
   Space: SpaceListIcon,
   profile: ArticleListIcon,
-  tagscategories: TagsCatIcon,
+  SiteTags: BusinessTagIcon,
+  SystemTags: SystemTagIcon,
 };
 
 export const SITE_TAGS = "SiteTags";

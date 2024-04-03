@@ -95,7 +95,7 @@ const TopBar = ({
             }}>
             <Button
               onClick={onSave}
-              disabled={!(category && value)}
+              disabled={!(category && category !== "Choose Category" && value)}
               variant='secondaryButton'
               sx={{ marginRight: "12px", marginLeft: "12px" }}
               className='sm'>
