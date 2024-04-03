@@ -43,19 +43,16 @@ jobs:
       #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
       #   env:
       #     gh_token: ${{ secrets.gh_token }}
-
       # - uses: nrwl/nx-set-shas@v3
       #   with:
       #     main-branch-name: develop
-
       # - name: Record Nx Cloud Actions and Execute Nx Commands
       #   run: npx nx affected --target=build --parallel --base=origin/develop --head=HEAD --apps=authoring-web
-
       - uses: nrwl/nx-set-shas@v3
         # This line is needed for nx affected to work when CI is running on a PR
-        # - run: git branch --track main origin/develop
-        with:
-          main-branch-name: develop
+        # with:
+        #   main-branch-name: develop
+      - run: git branch --track main origin/develop
       - run: npx nx affected -t build --parallel=3
 
         env:
