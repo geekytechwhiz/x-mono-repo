@@ -18,7 +18,6 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const location = useLocation();
   const [isSpinning, setIsSpinning] = useState(false);
   const [isDialogOpen, setOpenCreatePage] = useState(false);
-
   const [filterValue, setFilterValue] = useState("ALL");
   const { loading, refetch, fetchMore, contents } = useContentSearch({
     contentType,
@@ -108,7 +107,13 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     <>
       <ContentListingHeader
         handleFilter={handleFilter}
-        title={contentType === "ALL" ? "Result" : contentType}
+        title={
+          contentType?.toLocaleLowerCase() === "all"
+            ? "Result"
+            : contentType?.toLocaleLowerCase() === "sitepage"
+              ? "Pages"
+              : contentType
+        }
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
         handleAddNew={createContentNew}
