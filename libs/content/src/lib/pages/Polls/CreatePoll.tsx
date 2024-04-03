@@ -1121,6 +1121,7 @@ export const CreatePoll = (): JSX.Element => {
         }),
       );
       setTagArr(currentContent?.tags);
+      setWorkflow(currentContent.workflow);
     } else if (currentPollData.current && unsavedChanges.current !== true) {
       setIsLoading(true);
       runFetchContentByPath({
@@ -1361,6 +1362,7 @@ export const CreatePoll = (): JSX.Element => {
       options_compound_fields: optionsCompoundFields,
       question_background_content: questionBackgroundContent,
       contentType: ctype,
+      workflow: workflow,
     };
     dispatch(previewContent(tempObj));
     navigate("/content/preview");
