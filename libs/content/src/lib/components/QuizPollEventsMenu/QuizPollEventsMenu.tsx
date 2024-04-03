@@ -182,6 +182,8 @@ export const QuizPollEventMenu = ({
   };
   const theme = useTheme();
   const tabView = useMediaQuery(theme.breakpoints.down("em"));
+
+  const isVod = listItemDetails.tagName?.toLowerCase() === "vod";
   return (
     <div>
       {menuActions.socialShare && (
@@ -306,6 +308,7 @@ export const QuizPollEventMenu = ({
             {t("view")}
           </MenuItem>
         )}
+
         {(listItemDetails.page_state === "draft" ||
           listItemDetails.page_state === "unpublished") && (
           <MenuItem
@@ -320,6 +323,7 @@ export const QuizPollEventMenu = ({
             {t("preview")}
           </MenuItem>
         )}
+
         {tabView && (
           <ErrorTooltip
             component={
@@ -337,23 +341,26 @@ export const QuizPollEventMenu = ({
           />
         )}
 
-        <ErrorTooltip
-          component={
-            <MenuItem
-              disableRipple
-              disabled={!canAccessAction(category, subCategory, "create")}
-              onClick={() => {
-                handleClose();
-                onHandleMenuActions("duplicate");
-              }}>
-              <div className={classes.icon}>
-                <img src={CardOptionDuplicateIcon} alt='duplicate' />
-              </div>
-              {t("duplicate")}
-            </MenuItem>
-          }
-          doAccess={!canAccessAction(category, subCategory, "create")}
-        />
+        {/* hide for vod */}
+        {!isVod ? (
+          <ErrorTooltip
+            component={
+              <MenuItem
+                disableRipple
+                disabled={!canAccessAction(category, subCategory, "create")}
+                onClick={() => {
+                  handleClose();
+                  onHandleMenuActions("duplicate");
+                }}>
+                <div className={classes.icon}>
+                  <img src={CardOptionDuplicateIcon} alt='duplicate' />
+                </div>
+                {t("duplicate")}
+              </MenuItem>
+            }
+            doAccess={!canAccessAction(category, subCategory, "create")}
+          />
+        ) : null}
 
         {(listItemDetails.page_state === "published" ||
           (listItemDetails.page_state === "draft" && listItemDetails?.lastPublishedDate)) && (
@@ -369,6 +376,7 @@ export const QuizPollEventMenu = ({
             {t("copy_url")}
           </MenuItem>
         )}
+
         {listItemDetails.page_state === "published" && (
           <ErrorTooltip
             component={
@@ -389,6 +397,7 @@ export const QuizPollEventMenu = ({
           />
         )}
 
+        {/*  */}
         {tabView && (
           <ErrorTooltip
             component={
@@ -408,7 +417,6 @@ export const QuizPollEventMenu = ({
             doAccess={!canAccessAction(category, subCategory, "delete")}
           />
         )}
-
         {(listItemDetails.page_state === "published" ||
           (listItemDetails.page_state === "draft" && listItemDetails?.lastPublishedDate)) && (
           <MenuItem
@@ -423,6 +431,7 @@ export const QuizPollEventMenu = ({
             {t("social_share")}
           </MenuItem>
         )}
+
         {duplicateToSite &&
           (listItemDetails.page_state === "published" ||
             (listItemDetails.page_state === "draft" && listItemDetails?.lastPublishedDate)) && (
@@ -449,7 +458,8 @@ export const QuizPollEventMenu = ({
             />
           )}
 
-        {(listItemDetails.page_state === "published" ||
+        {/* hide vod */}
+        {((!isVod && listItemDetails.page_state === "published") ||
           (listItemDetails.page_state === "draft" && listItemDetails?.lastPublishedDate)) && (
           <MenuItem
             disableRipple
@@ -463,17 +473,20 @@ export const QuizPollEventMenu = ({
             {t("embed")}
           </MenuItem>
         )}
-        <MenuItem
-          disableRipple
-          onClick={() => {
-            handleClose();
-            onHandleMenuActions("approval_status");
-          }}>
-          <div className={classes.icon}>
-            <img src={CardOptionApprovalStatusIcon} alt='Approval' />
-          </div>
-          {t("approval_status")}
-        </MenuItem>
+
+        {!isVod ? (
+          <MenuItem
+            disableRipple
+            onClick={() => {
+              handleClose();
+              onHandleMenuActions("approval_status");
+            }}>
+            <div className={classes.icon}>
+              <img src={CardOptionApprovalStatusIcon} alt='Approval' />
+            </div>
+            {t("approval_status")}
+          </MenuItem>
+        ) : null}
       </Menu>
     </div>
   );

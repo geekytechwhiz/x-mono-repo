@@ -117,7 +117,7 @@ const ContentListingHeader = ({
                   "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(6197%) hue-rotate(110deg) brightness(97%) contrast(99%);",
               },
             }}
-            className={openFilterMenu ? "openClass" : undefined}>
+            className={openFilterMenu ? "openClass" : ""}>
             <img src={FilterIcon} alt='' width='17' height='24' />
           </Box>
         )}
