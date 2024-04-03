@@ -31,6 +31,7 @@ data:
   NEXT_LOYALTY_PORTAL_END_POINT: https://loyalty.portal.hcl-x.com/
   NEXT_LOYALTY_END_POINT: https://loyalty.backend.hcl-x.com/
   NEXT_DELIVERY_ENGINE: https://dev.delivery.hcl-x.com/platform-x/delivery-engine
+  NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS: iglu:com.hcl-x/ecommerce-schema/jsonschema/1-0-2
 kind: ConfigMap
 metadata:
   name: hep-user-experience-ui-config

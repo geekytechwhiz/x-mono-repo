@@ -1,8 +1,11 @@
 import dynamic from "next/dynamic";
 
-const VideoPrelem = dynamic(() => import("@platformx/x-prelems-library").then((mod) => mod.Video), {
-  ssr: false,
-});
+const VideoPrelem = dynamic(
+  () => import("@platformx/x-prelems-library").then((mod) => mod.VideoLandingPage),
+  {
+    ssr: false,
+  },
+);
 const VideoComponent = (props) => {
   const { pageData = {}, secondaryArgs = {} } = props;
   const analyticsProp = {

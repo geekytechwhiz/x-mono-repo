@@ -205,7 +205,7 @@ export const SiteListing = () => {
                                 alt='logo'
                                 src={
                                   site.header_logo
-                                    ? `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/${site.header_logo}`
+                                    ? `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/${site.header_logo}`
                                     : SitePlaceholder
                                 }
                               />

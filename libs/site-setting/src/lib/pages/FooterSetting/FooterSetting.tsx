@@ -313,19 +313,6 @@ export const FooterSetting = () => {
                           }}
                           isCrop={false}
                         />
-                        {/* <SiteSettingAddImage
-                          url={
-                            process.env.REACT_APP_GCP_URL +
-                            "/" +
-                            process.env.REACT_APP_BUCKET_NAME +
-                            "/" +
-                            form.site_logo
-                          }
-                          updateField={updateField}
-                          type='Images'
-                          operationType={operationType}
-                          onUploadClick={onUploadClick}
-                        /> */}
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4} className={classes.rightForm}>

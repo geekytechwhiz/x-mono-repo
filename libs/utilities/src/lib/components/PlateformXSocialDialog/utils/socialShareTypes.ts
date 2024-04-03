@@ -1,4 +1,4 @@
-import { getRequestFromDelivery } from "@platformx/authoring-apis";
+import { getRequestFromDelivery } from "../../../utils/helper";
 import { convertToLowerCase, nullToObject } from "../../../utils/helperFns";
 
 export type DialogList = {

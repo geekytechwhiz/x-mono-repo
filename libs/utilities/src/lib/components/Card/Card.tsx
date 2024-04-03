@@ -216,7 +216,14 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} alt='img' />
+                <img
+                  src={
+                    dataList.tagName === "tagscategories"
+                      ? iconsList[dataList.type]
+                      : iconsList[dataList.tagName]
+                  }
+                  alt='img'
+                />
               </Box>
 
               <Box className='rightspace'>

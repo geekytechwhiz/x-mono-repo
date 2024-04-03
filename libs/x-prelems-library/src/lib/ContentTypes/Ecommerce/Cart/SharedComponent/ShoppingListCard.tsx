@@ -105,7 +105,12 @@ function ShoppingListCard({
                 <CardActionArea className='product-list-image-container'>
                   <CardMedia
                     component='img'
-                    image={product?.attr_images?.[0] || ""}
+                    image={
+                      (Array.isArray(product?.attr_images) &&
+                        product?.attr_images.length > 0 &&
+                        product?.attr_images[0]) ||
+                      ""
+                    }
                     alt={`Thumbnail ${index}`}
                     className='list-image'
                   />

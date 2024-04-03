@@ -195,3 +195,8 @@ spec:
                 configMapKeyRef:
                   key: NEXT_DELIVERY_ENGINE
                   name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS
+                  name: hep-user-experience-ui-config
