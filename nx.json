@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "develop"
   },
   "targetDefaults": {
     "build": {
@@ -142,5 +142,6 @@
     "enabled": true,
     "maxMemory": 8192,
     "maxAge": 3600000
-  }
+  },
+  "nxCloudAccessToken": "YzE1MWY4Y2EtMTY5NC00Y2EwLWI5MmUtMGQ2NDQ2NTQwZDZlfHJlYWQtd3JpdGU="
 }
