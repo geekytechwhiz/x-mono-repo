@@ -47,5 +47,4 @@ RUN npx nx reset
 EXPOSE 3000
 
 # RUN nx start user-experience --parallel=10 --verbose
-
 CMD nx start user-experience --parallel=10
