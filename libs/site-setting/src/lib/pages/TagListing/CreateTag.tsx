@@ -191,7 +191,7 @@ export const CreateTags = () => {
   return (
     <>
       <TopBar
-        createText={`${t("create")} ${t("tag")}`}
+        createText={`${t(docPath ? "update" : "create")} ${t("tag")}`}
         returnBack={() => navigate("/site-setting/tags")}
         handlePublish={onPublish}
         onSave={onSave}
