@@ -1,9 +1,9 @@
-const hideFilterArray = ["Community"];
+const hideFilterArray = ["Community", "tags_categories"];
 /**
  * pass contentType
  * if u want hide in filter in content type add in into array
  * @param type
  */
 export const contentTypeBasedHideFilter = (type = "") => {
-  return hideFilterArray.some((ele) => ele !== type);
+  return !hideFilterArray.some((ele) => ele === type);
 };
