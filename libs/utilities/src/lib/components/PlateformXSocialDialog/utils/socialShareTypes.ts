@@ -52,9 +52,9 @@ export const getSHareDetailsBasedOnContentType = async (ele: any = {}) => {
   const { ContentType = "" } = ele;
   const uri = `api/v1/web/en/delivery/${getEndPathBasedContentType(ele)}`; //api url making
   const response = await getRequestFromDelivery(uri);
-  const gcpUrl = process.env.REACT_APP_GCP_URL;
-  const BucketName = process.env.REACT_APP_BUCKET_NAME;
-  const defaultImage = process.env.REACT_APP_DEFAULT_IMAGE;
+  const gcpUrl = process.env.NX_GCP_URL;
+  const BucketName = process.env.NX_BUCKET_NAME;
+  const defaultImage = process.env.NX_DEFAULT_IMAGE;
   const { data = {} } = response;
 
   if (data) {
