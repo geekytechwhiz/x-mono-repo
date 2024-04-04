@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import { SuccessIcon } from "@platformx/utilities";
+import { successGif } from "@platformx/utilities";
 
 export default function PlateformXDialogSuccess({
   isDialogOpen,
@@ -50,17 +50,6 @@ export default function PlateformXDialogSuccess({
             },
             textAlign: "center",
           }}>
-          {/* <Box
-                    sx={{ textAlign: 'right', cursor: 'pointer' }}
-                    mt={1}
-                    mr={3}
-                    onClick={
-
-                        closeButtonHandle
-                    }
-                >
-                    <CloseIcon />
-                </Box> */}
           <Box
             sx={{
               textAlign: "center",
@@ -73,7 +62,7 @@ export default function PlateformXDialogSuccess({
                 height: { xs: "90px", md: "100px" },
                 margin: "auto !important",
               }}>
-              <img alt='' src={SuccessIcon} style={{ width: "100%" }} />
+              <img alt='' src={successGif} style={{ width: "100%" }} />
             </Box>
           </Box>
           {title ? (
