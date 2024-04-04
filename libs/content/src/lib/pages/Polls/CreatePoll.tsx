@@ -16,11 +16,11 @@ import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
+  Loader,
   PlateformXDialog,
   PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
-  Loader,
   capitalizeFirstLetter,
   getCurrentLang,
   getSubDomain,
@@ -1454,7 +1454,7 @@ export const CreatePoll = (): JSX.Element => {
               saveVariant='secondaryButton'
               handlePublish={publish}
               category={CATEGORY_CONTENT}
-              subCategory={ctype}
+              subCategory={ContentType.Poll}
               workflow={workflow}
               hasTimerState={timerState}
               lastModifiedDate={lastmodifiedDate}
