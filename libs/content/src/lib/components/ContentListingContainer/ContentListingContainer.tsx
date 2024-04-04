@@ -2,17 +2,15 @@
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
-  useContentListing,
+  useContentActions,
   useContentSearch,
 } from "@platformx/authoring-apis";
-import { RootState } from "@platformx/authoring-state";
+import { makeCreateContentPath } from "@platformx/utilities";
 import { memo, useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CreateNewPage from "../../pages/page/CreateNewPage";
 import ContentListing from "../ContentListing/ContentListing";
 import ContentListingHeader from "../ContentListingHeader/ContentListingHeader";
-import { makeCreateContentPath } from "@platformx/utilities";
 
 const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const navigate = useNavigate();
@@ -20,17 +18,14 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const location = useLocation();
   const [isSpinning, setIsSpinning] = useState(false);
   const [isDialogOpen, setOpenCreatePage] = useState(false);
-
   const [filterValue, setFilterValue] = useState("ALL");
-  const { contentArray } = useSelector((state: RootState) => state.content);
-  const { loading, refetch, fetchMore } = useContentSearch({
+  const { loading, refetch, fetchMore, contents } = useContentSearch({
     contentType,
-    locationState: location,
+    locationState: location?.state,
     filter: filterValue,
     startIndex,
     reloadContent: false,
   });
-
   const closeButtonHandle = () => {
     setOpenCreatePage(false);
   };
@@ -45,7 +40,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     editPage,
     fetchContentDetails,
     duplicateToSite,
-  } = useContentListing("ALL");
+  } = useContentActions("ALL");
 
   const memoizedMethods = useMemo(
     () => ({
@@ -73,6 +68,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   );
 
   useEffect(() => {
+    setFilterValue("ALL");
     const fetchData = async () => {
       setIsSpinning(true);
       await refetch();
@@ -111,19 +107,26 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     <>
       <ContentListingHeader
         handleFilter={handleFilter}
-        title={contentType}
+        title={
+          contentType?.toLocaleLowerCase() === "all"
+            ? "Result"
+            : contentType?.toLocaleLowerCase() === "sitepage"
+              ? "Pages"
+              : contentType
+        }
         category={CATEGORY_CONTENT}
         subCategory={CONTENT_TYPES}
         handleAddNew={createContentNew}
         handleRefresh={handleRefresh}
         animationState={isSpinning}
+        filterValue={filterValue}
       />
 
       <ContentListing
         content={contentType}
-        contentList={contentArray}
+        contentList={contents}
         deleteContent={memoizedMethods.deleteContent}
-        dataList={contentArray}
+        dataList={contents}
         fetchMore={handleFetchMore}
         preview={memoizedMethods.preview}
         unPublish={memoizedMethods.unPublish}

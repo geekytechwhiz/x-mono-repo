@@ -20,8 +20,8 @@ import {
   useAccess,
 } from "@platformx/utilities";
 import { WorkflowStepper } from "@platformx/workflow-management";
-import { useStyles } from "./PageMenu.styles";
 import CreateNewPage from "../../pages/page/CreateNewPage";
+import { useStyles } from "./PageMenu.styles";
 
 const PageMenu = (props) => {
   const classes = useStyles();
@@ -221,7 +221,7 @@ const PageMenu = (props) => {
         <WorkflowStepper
           open={menuActions.approvalStatus}
           setOpen={handleClose}
-          path={listItemDetails?.currentPageUrl}
+          path={listItemDetails?.path}
           contentType={capitalizeFirstLetter(listItemDetails?.tagName?.toLowerCase())}
         />
       )}

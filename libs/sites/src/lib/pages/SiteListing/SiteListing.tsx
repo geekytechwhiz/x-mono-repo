@@ -1,21 +1,28 @@
-import { Box, Grid, IconButton, Stack, Tooltip, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { Box, Fab, Grid, IconButton, Stack, Tooltip } from "@mui/material";
+import {
+  fetchMultisiteListing,
+  multiSiteApi,
+  getGlobalDataWithHeader,
+} from "@platformx/authoring-apis";
+import { ContentListingHeader } from "@platformx/content";
+import {
+  CopyIcon,
+  NoSearchResult,
+  PencilIcon,
+  PeopleIcon,
+  SettingIcon,
+  ShowToastSuccess,
+  SitePlaceholder,
+  capitalizeFirstLetter,
+  // getCurrentLang,
+  useUserSession,
+  Loader,
+} from "@platformx/utilities";
 import { t } from "i18next";
 import { Fragment, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router";
-import {
-  PeopleIcon,
-  CopyIcon,
-  SettingIcon,
-  PencilIcon,
-  SitePlaceholder,
-  capitalizeFirstLetter,
-  getCurrentLang,
-  NoSearchResult,
-  ShowToastSuccess,
-} from "@platformx/utilities";
-import { fetchMultisiteListing } from "@platformx/authoring-apis";
 import EmptyResult from "./EmptyResult";
 import {
   SiteDesTypo,
@@ -26,15 +33,19 @@ import {
   useSiteListingStyle,
 } from "./SiteListing.style";
 import { SiteListingLoader } from "./SiteListingLoader";
-import { ContentListingHeader } from "@platformx/content";
 
 export const SiteListing = () => {
   const navigate = useNavigate();
   const [datalist, setDatalist] = useState<any>([]);
+  const sessions = localStorage.getItem("userSession") || "";
+  const [getSession, updateSession] = useUserSession();
+  const storedSession = JSON.parse(sessions);
+  const accessible_sites = storedSession?.userInfo?.accessible_sites;
   const [startIndex, setStartIndex] = useState<any>(0);
   const [isFetchMore, setFetchMore] = useState(true);
   const [refreshState, setRefreshState] = useState(false);
   const [filterValue, setFilterValue] = useState("ALL");
+  const [isLoading, setIsLoading] = useState(false);
   const ROWS = 20;
   const [viewMoreList, setViewMoreList] = useState(datalist.map(() => ({ isViewMore: false })));
   const viewMoreChange = (index) => {
@@ -97,14 +108,9 @@ export const SiteListing = () => {
     fetchMultiSiteListing(0, true, true);
   };
 
-  const getUrl = (site) => {
-    return `${window.location.origin}/${site.site_title_url}/${getCurrentLang()}`;
-  };
-
   const onDashBoardRedirect = (site) => {
-    const dashboardUrl = `${getUrl(site)}/dashboard`;
     if (site?.status?.toLowerCase() === "published") {
-      window.open(dashboardUrl, "_self");
+      handleSiteChange(site, "dashboard");
     }
     return;
   };
@@ -115,32 +121,43 @@ export const SiteListing = () => {
     setFetchMore(true);
   };
 
+  const handleSiteChange = async (sitetitle, pathname) => {
+    try {
+      if (!accessible_sites.includes(sitetitle.site_title_url)) {
+        return;
+      }
+      setIsLoading(true);
+      const res = await multiSiteApi.getPermissions(sitetitle.site_title_url);
+
+      await getGlobalDataWithHeader(sitetitle.site_title_url);
+
+      localStorage.setItem("selectedSite", sitetitle.site_title_url);
+      updateSession({
+        ...getSession(),
+        permissions: res.data?.data?.permissions,
+        userInfo: res.data?.data,
+        role: res.data?.data?.roles?.find(
+          (obj) => obj.site?.toLowerCase() === res.data?.data?.selected_site?.toLowerCase(),
+        )?.name,
+      });
+
+      const redirectUrl = `${sitetitle.site_title_url}/en/${pathname}`;
+
+      window.location.replace(`${window.location.origin}/${redirectUrl}`);
+    } catch (error) {
+      setIsLoading(false);
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchMultiSiteListing(0, true);
   }, [filterValue]);
 
   return (
     <Box>
-      {/* <Box>
-        <SiteCreationHeader />
-      </Box> */}
-
       <Box className={classes.container}>
-        {/* <Box className={classes.contentHeader}>
-          <Box className={classes.headerBox}>
-            <SiteTypo>{t('Sites')}</SiteTypo>
-          </Box>
-          <Box>
-            <AddNewButton onClick={() => navigate('/sites/site-creation')}>
-              <Box component='span' className={classes.createNewTypo}>
-                {t('create_new')}
-              </Box>
-              <Box component='span' className={classes.plusIcon}>
-                <Plus height={25} width={25} />
-              </Box>
-            </AddNewButton>
-          </Box>
-        </Box> */}
         <Box className={classes.plusBox}>
           <Box className={classes.plusMargin} onClick={() => navigate("/sites/site-creation")}>
             <Fab size='large' color='primary' aria-label='add'>
@@ -156,7 +173,9 @@ export const SiteListing = () => {
           handleAddNew={() => navigate("/sites/site-creation")}
           handleRefresh={handleRefresh}
           animationState={refreshState}
+          filterValue={filterValue}
         />
+        {isLoading && <Loader />}
         {(datalist.length !== 0 || isFetchMore) && (
           <Box id='scrollableDiv' className={classes.scrollBox}>
             <InfiniteScroll
@@ -186,7 +205,7 @@ export const SiteListing = () => {
                                 alt='logo'
                                 src={
                                   site.header_logo
-                                    ? `${process.env.REACT_APP_GCP_URL}/${process.env.REACT_APP_BUCKET_NAME}/${site.header_logo}`
+                                    ? `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/${site.header_logo}`
                                     : SitePlaceholder
                                 }
                               />
@@ -273,10 +292,7 @@ export const SiteListing = () => {
                                 enterTouchDelay={0}>
                                 <IconButton
                                   onClick={() =>
-                                    window.open(
-                                      `${getUrl(site)}/user-management/user-list`,
-                                      "_self",
-                                    )
+                                    handleSiteChange(site, "user-management/user-list")
                                   }
                                   disabled={isNotPublished}
                                   className={isNotPublished ? classes.opacity : ""}>
@@ -286,10 +302,7 @@ export const SiteListing = () => {
                               <Tooltip title={t("Settings")} placement='top' enterTouchDelay={0}>
                                 <IconButton
                                   onClick={() =>
-                                    window.open(
-                                      `${getUrl(site)}/site-setting/global-setting`,
-                                      "_self",
-                                    )
+                                    handleSiteChange(site, "site-setting/global-setting")
                                   }
                                   disabled={isNotPublished}
                                   className={isNotPublished ? classes.opacity : ""}>

@@ -2,10 +2,35 @@ import { ArrowBack } from "@mui/icons-material";
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "./Topbar.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const TopBar = ({ returnBack, handlePublish, onSave, category, value, publishUrl }) => {
+type TopBarProp = {
+  createText: string;
+  returnBack: () => void;
+  handlePublish?: () => void;
+  onSave?: () => void;
+  category?: string;
+  value?: string;
+  publishUrl?: string;
+  isCategoryDetail: boolean;
+  selectedItems?: any;
+  deleteHandle?: () => void;
+};
+
+const TopBar = ({
+  createText,
+  returnBack,
+  handlePublish,
+  onSave,
+  category,
+  value,
+  publishUrl,
+  isCategoryDetail,
+  selectedItems,
+  deleteHandle,
+}: TopBarProp) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { docPath } = useParams();
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
@@ -23,43 +48,68 @@ const TopBar = ({ returnBack, handlePublish, onSave, category, value, publishUrl
             "&:hover": { backgroundColor: "transparent" },
           }}
           onClick={returnBack}>
-          {!noWeb && (
-            <Typography variant='h4bold'>
-              {t("create")} {t("tag")}
-            </Typography>
-          )}
+          {!noWeb && <Typography variant='h4bold'>{createText}</Typography>}
         </Button>
       </Grid>
       <Box>
-        <Grid
-          item
-          xs={12}
-          md={12}
-          sm={12}
-          container
-          alignItems='flex-end'
-          direction='row'
-          sx={{
-            display: { xs: "none", em: "flex" },
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-          <Button
-            onClick={onSave}
-            disabled={!(category && value)}
-            variant='secondaryButton'
-            sx={{ marginRight: "12px", marginLeft: "12px" }}
-            className='sm'>
-            {t("save_as_draft")}
-          </Button>
-          <Button
-            disabled={docPath ? false : !publishUrl}
-            variant='primaryButton'
-            className='sm'
-            onClick={handlePublish}>
-            {t("publish")}
-          </Button>
-        </Grid>
+        {isCategoryDetail ? (
+          <Grid
+            item
+            xs={12}
+            md={12}
+            sm={12}
+            container
+            alignItems='flex-end'
+            direction='row'
+            sx={{
+              display: { xs: "none", em: "flex" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            {selectedItems.doc_path ? (
+              <Button variant='primaryButton' className='sm' onClick={deleteHandle}>
+                {t("done")}
+              </Button>
+            ) : (
+              <Button
+                variant='primaryButton'
+                className='sm'
+                onClick={() => navigate("/site-setting/create-tags")}>
+                {t("create")} {t("tag")}
+              </Button>
+            )}
+          </Grid>
+        ) : (
+          <Grid
+            item
+            xs={12}
+            md={12}
+            sm={12}
+            container
+            alignItems='flex-end'
+            direction='row'
+            sx={{
+              display: { xs: "none", em: "flex" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            <Button
+              onClick={onSave}
+              disabled={!(category && category !== "Choose Category" && value)}
+              variant='secondaryButton'
+              sx={{ marginRight: "12px", marginLeft: "12px" }}
+              className='sm'>
+              {t("save_as_draft")}
+            </Button>
+            <Button
+              disabled={docPath ? false : !publishUrl}
+              variant='primaryButton'
+              className='sm'
+              onClick={handlePublish}>
+              {t("publish")}
+            </Button>
+          </Grid>
+        )}
       </Box>
     </Box>
   );

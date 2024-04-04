@@ -12,7 +12,9 @@ const TaskNotFound = () => {
         <Box className='imgboxWp'>
           <img src={TaskNotFoundIcon} alt='Task Not Found' />
         </Box>
-        <Typography variant='p2regular'>{t("task_not_found")}</Typography>
+        <Box className={classes.typo}>
+          <Typography variant='p2regular'>{t("task_not_found")}</Typography>
+        </Box>
       </Box>
     </Box>
   );

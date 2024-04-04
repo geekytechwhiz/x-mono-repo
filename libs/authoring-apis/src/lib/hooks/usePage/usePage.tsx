@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   ContentState,
@@ -5,7 +6,7 @@ import {
   updateContent,
   updateContentList,
   updatePageSettings,
-  updateSaveWarning,
+  // updateSaveWarning,
 } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
@@ -249,9 +250,9 @@ const usePage = (filter = "ALL") => {
       })
       .catch((error) => {
         if (code) {
-          ShowToastError(`${error} ${t("for")} ${code}`);
+          ShowToastError(`${error.graphQLErrors[0].message} ${t("for")} ${code}`);
         } else {
-          ShowToastError(error);
+          ShowToastError(error.graphQLErrors[0].message);
         }
       });
   };
@@ -264,7 +265,7 @@ const usePage = (filter = "ALL") => {
     newPageModel.Page_LastModifiedBy = username;
     newPageModel.Page_LastModificationDate = new Date();
     newPageModel.DevelopedDate = new Date().toISOString();
-    newPageModel.Page_LastModificationDate = new Date().toISOString();
+    //newPageModel.Page_LastModificationDate = new Date().toISOString();
     newPageModel.CurrentPageURL = `/${pageUrl}`;
     newPageModel.PageSettings = { PageName: pageName };
     newPageModel.SiteName = useremail;
@@ -279,7 +280,7 @@ const usePage = (filter = "ALL") => {
         ),
       ),
     );
-    dispatch(updateSaveWarning(false));
+    //dispatch(updateSaveWarning(false));
     dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
   };
 

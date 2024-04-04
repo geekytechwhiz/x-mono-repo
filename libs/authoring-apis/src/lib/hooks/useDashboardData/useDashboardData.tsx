@@ -1,5 +1,5 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { previewArticle, previewContent } from "@platformx/authoring-state";
+import { previewArticle, previewContent, updateDashboardData } from "@platformx/authoring-state";
 import {
   ShowToastError,
   ShowToastSuccess,
@@ -98,6 +98,7 @@ const useDashboardData = (contentType = "ALL") => {
           coursesList: coursesList,
         };
         setDashBoardData(dt);
+        dispatch(updateDashboardData(dt));
       } else {
         //ShowToastError(t('api_error_toast'));
       }
@@ -186,7 +187,7 @@ const useDashboardData = (contentType = "ALL") => {
       editPage(pageObjectMapper(obj));
     } else {
       navigate(
-        `/content/create/${listItemDetails?.ContentType?.toLowerCase()}?path=${
+        `/content/create-${listItemDetails?.ContentType?.toLowerCase()}?path=${
           listItemDetails.page
         }`,
       );

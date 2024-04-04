@@ -278,8 +278,6 @@ const Prelem = ({
     editState: prelemEditState,
     currentPageURL: page?.pageModel?.Page,
     multiSlot: { onToggleContentGallery, eComContentGalleryHandle },
-    // gcpUrl: process.env.REACT_APP_GCP_URL,
-    // bucketName: process.env.REACT_APP_BUCKET_NAME
     bucketName: AUTH_INFO.gcpBucketName,
     gcpUrl: AUTH_INFO.gcpUri,
     sitename: getSelectedSite(),

@@ -11,7 +11,7 @@ import { UserManagementQueries } from "./lib/graphQL/queries/userManagementQueri
 import { FETCH_VOD_BY_ID, FETCH_VOD_LIST_ALL } from "./lib/graphQL/queries/vodQueries";
 import { WorkflowQueries } from "./lib/graphQL/queries/workflowQueries";
 import { snowplowTrackingHook } from "./lib/hooks/customHook/snowplowTrackingHook";
-import useContentListing from "./lib/hooks/useContentListing/useContentListing";
+import useContentActions from "./lib/hooks/useContentActions/useContentActions";
 import useContentSearch from "./lib/hooks/useContentSearch/useSearchContent";
 import useDashboardData from "./lib/hooks/useDashboardData/useDashboardData";
 import { useDialog } from "./lib/hooks/useDialog/useDialog";
@@ -19,6 +19,7 @@ import usePage from "./lib/hooks/usePage/usePage";
 import articleApi from "./lib/services/article/article";
 import assetsApi from "./lib/services/assetsApi/assets.api";
 import authAPI from "./lib/services/auth/auth.api";
+import { createChatGptRequest } from "./lib/services/chatGpt/chatGpt.api";
 import commentsApi from "./lib/services/comments/comments.api";
 import contentTypeSchemaApi from "./lib/services/contentTypeSchema/contentTypeSchema.api";
 import contentTypeAPIs, { eventAPIS } from "./lib/services/contentTypes/contentTypes.api";
@@ -42,7 +43,6 @@ import {
   publish_vod,
   update_vod,
 } from "./lib/services/vod/vod.api";
-import { createChatGptRequest } from "./lib/services/chatGpt/chatGpt.api";
 import workflowApi from "./lib/services/workflow/workflow.api";
 
 export * from "./lib/config/request";
@@ -55,9 +55,9 @@ export * from "./lib/hooks";
 export * from "./lib/hooks/useComment/useComment";
 export * from "./lib/hooks/usePoll/usePollApi";
 export * from "./lib/services/SiteCreation/SiteCreation.api";
-export * from "./lib/services/contentTypes/contentTypes.api";
 export * from "./lib/services/common/tags.api";
 export * from "./lib/services/contentGallery/contentGallery.api";
+export * from "./lib/services/contentTypes/contentTypes.api";
 export * from "./lib/services/navTree/navTree.api";
 export * from "./lib/services/page/page.api";
 export * from "./lib/services/prelems/prelems.api";
@@ -100,7 +100,7 @@ export {
   scheduleSocialShare,
   snowplowTrackingHook,
   update_vod,
-  useContentListing,
+  useContentActions,
   useContentSearch,
   useDashboardData,
   useDialog,

@@ -50,7 +50,6 @@ jobs:
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -69,15 +68,15 @@ jobs:
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
-      - name: Reset NX Cache
-        run: npx nx reset
+      # - name: Reset NX Cache
+      #   run: npx nx reset
 
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+      # - name: Setup Nx Cloud
+      #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      # Record Nx Cloud actions and execute Nx commands
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+      # # Record Nx Cloud actions and execute Nx commands
+      # - name: Record Nx Cloud Actions and Execute Nx Commands
+      #   run: npx nx-cloud record -- npx nx affected --base=qa --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -110,25 +109,15 @@ jobs:
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build Docker image
-      # - name: Build
-      #   run: |-
-      #     docker build -f Dockerfile.author --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
-
-      - name: Build develop
-        if: ${{ github.ref == 'refs/heads/develop' }}
+      - name: Build
         run: |-
-          docker build -f Dockerfile.author.dev --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
-      - name: Build qa
-        if: ${{ github.ref == 'refs/heads/qa' }}
-        run: |-
-          docker build -f Dockerfile.author.qa --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
+          docker build -f Dockerfile.author --build-arg BRANCH=${{ github.ref_name }} --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
           gcloud auth configure-docker --quiet
           docker push "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"
-
       # Deploy Configmap
       - name: Deploy Configmap on develop branch
         if: ${{ github.ref == 'refs/heads/develop' }}
@@ -138,7 +127,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
           kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-qa.yaml
-
       - name: deploy-stg-live
         if: contains('
           refs/heads/x_site_live
@@ -155,7 +143,6 @@ jobs:
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER
           ./kustomize build . | kubectl apply -f - -n ${{ secrets[env.NAMESPACE_NAME] }}
           kubectl rollout status deployment ${{ secrets[env.DEPLOYMENT_NAME] }} -n ${{ secrets[env.NAMESPACE_NAME] }} --timeout=1200s
-
   user-experience-ui:
     name: user-experience-ui
     permissions:
@@ -194,7 +181,6 @@ jobs:
           echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
           echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -213,14 +199,16 @@ jobs:
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
-      - name: Reset NX Cache
-        run: npx nx reset
+      # - name: Reset NX Cache
+      #   run: npx nx reset
+      # - name: set NX_REJECT_UNKNOWN_LOCAL_CACHE
+      #   run: echo "NX_REJECT_UNKNOWN_LOCAL_CACHE=true" >> $GITHUB_ENV
 
-      - name: Setup Nx Cloud
-        run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
+      # - name: Setup Nx Cloud
+      #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
 
-      - name: Record Nx Cloud Actions and Execute Nx Commands
-        run: npx nx-cloud record -- npx nx affected --base=develop --target=build
+      # - name: Record Nx Cloud Actions and Execute Nx Commands
+      #   run: npx nx build user-experience
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
@@ -256,13 +244,11 @@ jobs:
       - name: Build
         run: |-
           docker build -f Dockerfile.userexp --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
-
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
           gcloud auth configure-docker --quiet
           docker push "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"
-
       # Deploy Configmap
       - name: Deploy Configmap on develop branch
         if: ${{ github.ref == 'refs/heads/develop' }}
@@ -272,7 +258,6 @@ jobs:
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
           kubectl apply -f ./kubernetes/configmaps/hep-user-experience-ui-config-qa.yaml
-
       - name: deploy-stg-live
         if: contains('
           refs/heads/x_site_live

@@ -1,4 +1,4 @@
-// import { getRequestFromDelivery } from '../../../services/config/request';
+import { getRequestFromDelivery } from "../../../utils/helper";
 import { convertToLowerCase, nullToObject } from "../../../utils/helperFns";
 
 export type DialogList = {
@@ -48,15 +48,15 @@ const getEndPathBasedContentType = (ele: any = "") => {
   }
   return `page-model?pagePath=${id}`;
 };
-export const getSHareDetailsBasedOnContentType = (ele: any = {}) => {
+export const getSHareDetailsBasedOnContentType = async (ele: any = {}) => {
   const { ContentType = "" } = ele;
   const uri = `api/v1/web/en/delivery/${getEndPathBasedContentType(ele)}`; //api url making
-  // const response = await getRequestFromDelivery(uri); // TODO: need to check
+  const response = await getRequestFromDelivery(uri);
   const gcpUrl = process.env.NX_GCP_URL;
   const BucketName = process.env.NX_BUCKET_NAME;
   const defaultImage = process.env.NX_DEFAULT_IMAGE;
-  const response: any = { data: {} };
   const { data = {} } = response;
+
   if (data) {
     if (convertToLowerCase(ContentType) === "article") {
       const {

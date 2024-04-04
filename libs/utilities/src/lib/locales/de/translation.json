@@ -263,6 +263,11 @@
   "poll_unpublish_subtitle": "Wählen Sie einen Tag und eine Zeit, um diese Umfrage zu unveröffentlicht",
   "poll_ss_title": "Wie lautet der Titel der Umfrage?*",
   "poll_ss_description": "Worum geht es in dieser Umfrage?*",
+  "poll_background_head": "Hintergrundbild wählen",
+  "poll_image_subtitle": "Wählen Sie Ihr Bild für Ihren Pollhintergrund",
+  "poll_description_placeholder": "Schreiben Sie Ihre Beschreibung hier",
+  "poll_short_placeholder": "Geben Sie hier Ihren kurzen Titel ein",
+  "poll_title_placeholder": "Geben Sie hier Ihren Titel ein",
   "event_desciption_placeholder": "Skriv din begivenhedsbeskrivelse her",
   "event_image_tilte": "Bild hinzufügen*",
   "event_image_subtitle": "Dies wird Ihr Bannerbild sein",
@@ -1188,5 +1193,7 @@
   "logo_will_look_like_this_on_footer_sub": "About US Text will look like this on Footer",
   "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
   "event_Location": "Veranstaltungsort",
-  "blogs_Timeline": "Blogs-Zeitachse"
+  "blogs_Timeline": "Blogs-Zeitachse",
+  "page_title": "Seitentitel",
+  "no_more_data": "Es müssen keine Daten mehr geladen werden"
 }

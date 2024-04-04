@@ -32,7 +32,6 @@ const SocialShareStep3 = ({
   loading,
 }: any) => {
   const { CurrentPageURL = "" } = nullToObject(selectedItems);
-
   let isInSelected = false;
   const { t, i18n } = useTranslation();
   if (!selectedNetwork.fb && selectedNetwork.in) {

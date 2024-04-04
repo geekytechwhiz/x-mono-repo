@@ -1,8 +1,10 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useDashboardData } from "@platformx/authoring-apis";
+import { RootState } from "@platformx/authoring-state";
 import { useUserSession } from "@platformx/utilities";
 import React, { Suspense } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import CardSlider from "./components/cardSlider/CardSlider";
 import Title from "./components/common/Title";
 import FifaDashboard from "./components/fifaDashboard/index";
@@ -23,7 +25,7 @@ export const Dashboard = () => {
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const {
-    dashBoard,
+    // dashBoard,
     deleteContent,
     duplicate,
     edit,
@@ -34,6 +36,7 @@ export const Dashboard = () => {
     fetchContentDetails,
     changeStatus,
   } = useDashboardData();
+  const { dashBoard } = useSelector((state: RootState) => state.dashboard);
   const { boostContent } = dashBoard || {};
   const Charts = React.lazy(() =>
     import("./components/charts/Charts").then((module) => ({
@@ -43,8 +46,8 @@ export const Dashboard = () => {
   const taskLength = dashBoard?.taskPages?.length || 0;
   const overDueTaskLength = () => {
     let duetaskCount = 0;
-    dashBoard?.taskPages?.forEach((val) => {
-      if (new Date() > new Date(val.due_date)) {
+    dashBoard?.taskPages?.forEach((val: any) => {
+      if (new Date() > new Date(val?.due_date)) {
         duetaskCount = duetaskCount + 1;
       }
     });

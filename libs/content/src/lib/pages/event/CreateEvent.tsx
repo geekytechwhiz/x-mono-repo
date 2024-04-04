@@ -14,7 +14,7 @@ import {
   AUTH_INFO,
   Loader,
   PlateformXDialog,
-  PlateformXDialogSuccess,
+  CommonPlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
   capitalizeFirstLetter,
@@ -921,7 +921,7 @@ const CreateEvent = () => {
         closeIcon={<CreateRoundedIcon />}
       />
 
-      <PlateformXDialogSuccess
+      <CommonPlateformXDialog
         isDialogOpen={showPublishConfirm || showWorkflowSubmit}
         title={t(publishPopup.current.publishTitle)}
         subTitle={

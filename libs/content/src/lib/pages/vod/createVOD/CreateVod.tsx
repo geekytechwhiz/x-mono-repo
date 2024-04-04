@@ -1,82 +1,76 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { ArrowBack } from "@mui/icons-material";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
-import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import {
-  FETCH_TAG_LIST_QUERY,
-  create_vod,
-  fetchVodById,
-  publish_vod,
-  update_vod,
-  useWorkflow,
-} from "@platformx/authoring-apis";
-import { RootState, previewContent } from "@platformx/authoring-state";
-import {
-  AutoTextArea,
-  CATEGORY_CONTENT,
-  CommonBoxWithNumber,
-  MarkedFeatured,
-  PlateformXDialog,
-  ShowToastError,
-  ShowToastSuccess,
-  SubmitButton,
-  TextBox,
-  TitleSubTitle,
-  capitalizeFirstLetter,
-  useAccess,
-  useUserSession,
-  workflowKeys,
-} from "@platformx/utilities";
-import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import ContentPageScroll from "../../../components/ContentPageScroll";
-import { ContentType } from "../../../enums/ContentType";
-import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
-import TagListing from "../Components/TagListing";
-import icons, { DEF_VOD } from "./Utils/constats";
-import { createVodInstance, updateStructureData, updateVodSettings } from "./Utils/helper";
-import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
 import "./createVod.css";
+import { ArrowBack } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 import { useStyles } from "./createVod.styles";
 import { DspaceObject } from "./createVod.types";
+import TagListing from "../Components/TagListing";
+import icons, { DEF_VOD } from "./Utils/constats";
+import { useDispatch, useSelector } from "react-redux";
+import { ContentType } from "../../../enums/ContentType";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import ContentPageScroll from "../../../components/ContentPageScroll";
+import { RootState, previewContent } from "@platformx/authoring-state";
+import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
+import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  createVodInstance,
+  isPublishVodHandle,
+  updateStructureData,
+  updateVodSettings,
+} from "./Utils/helper";
+import {
+  create_vod,
+  update_vod,
+  publish_vod,
+  useWorkflow,
+  fetchVodById,
+  FETCH_TAG_LIST_QUERY,
+} from "@platformx/authoring-apis";
+import {
+  TextBox,
+  useAccess,
+  workflowKeys,
+  AutoTextArea,
+  TitleSubTitle,
+  useUserSession,
+  ShowToastError,
+  MarkedFeatured,
+  PlateformXDialog,
+  ShowToastSuccess,
+  CATEGORY_CONTENT,
+  CommonBoxWithNumber,
+  capitalizeFirstLetter,
+  PlateformXDialogSuccess,
+} from "@platformx/utilities";
 
 export const CreateVod = () => {
   const dispatch = useDispatch();
-  const { getWorkflowDetails, workflowRequest } = useWorkflow();
-  // const [workflowStatus, setWorkflowStatus] = useState(true);
-  const [, setShowWorkflowSubmit] = useState(false);
-  const [isFeatured, setIsFeatured] = useState(false);
-  const workflowSubmitRequest = async (workflowObj, status) => {
-    const { success, workflow_status } = await workflowRequest(workflowObj, status);
-    if (success) {
-      workflow_status === workflowKeys.publish.toLowerCase() && status === workflowKeys.approve
-        ? setShowPublishConfirm(true)
-        : setShowWorkflowSubmit(true);
-    }
-  };
   const classes = useStyles();
   const { t, i18n } = useTranslation();
   const { canAccessAction } = useAccess();
   const navigate = useNavigate();
   const params = useParams();
   const updateTempObj = useRef<any>({});
-  // const { state, dispatch } = useContext(Store);
-  // const { vod } = state;
   const { currentContent } = useSelector((state: RootState) => state.content);
-  //   const { currentVod} = useSelector((state: RootState) => state.vod);
   const [getSession] = useUserSession();
   const { userInfo, role } = getSession();
   const login_user_id = userInfo?.user_id;
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const vodPageUrl = new URL(window.location.href);
+  const { getWorkflowDetails, workflowRequest } = useWorkflow();
+  const galleryType = useRef<string>("Video");
+  const disableSave = useRef<boolean>(false);
+  // const [workflowStatus, setWorkflowStatus] = useState(true);
+  const [, setShowWorkflowSubmit] = useState(false);
+  const [isFeatured, setIsFeatured] = useState(false);
+
   const [isDraft, setIsDraft] = useState<boolean>(true);
+  const [stateManage, setStateManage] = useState<any>({});
   const [draftPageURL, setDraftPageURL] = useState<string>("");
-  const [isVodCreated, setVodCreated] = useState<boolean>(
-    vodPageUrl.searchParams.get("path") ? true : false,
-  );
   const [runFetchVodById] = useLazyQuery(fetchVodById);
   const [parentToolTip] = useState("");
   // const [scrollToView, setScrollToView] = useState("");
@@ -87,30 +81,27 @@ export const CreateVod = () => {
   );
   const [createVodMutate] = useMutation(create_vod);
   const [updateVodMutate] = useMutation(update_vod);
-  const [openSaveModal, setOpenSaveModal] = useState<boolean>(false);
   const [openPageExistModal, setOpenPageExistModal] = useState<boolean>(false);
   const [tagData, setTagData] = useState<any>({});
   const [selectedTag, setSelectedTag] = useState<any>([]);
   const [vodInstance, setVodInstance] = useState<any>({});
   const [workflow, setWorkflow] = useState({});
+  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
+  const [showExitWarning, setShowExitWarning] = useState(false);
+  const [isEdited, setIsEdited] = useState<boolean>(false);
+  const unsavedChanges = useRef<boolean>(currentContent.isUnsavedVod);
+  const [galleryState, setGalleryState] = useState<boolean>(false);
+  const vodRef = useRef<any>(currentContent ? currentContent : DEF_VOD);
+  const tagRef = useRef<any>([]);
+  const [isDraftDisabled, setDraftDisabled] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (Object.keys(vodInstance).length === 0 && !params.id) {
-      setVodInstance(createVodInstance(username));
+  const workflowSubmitRequest = async (workflowObj, status) => {
+    const { success, workflow_status } = await workflowRequest(workflowObj, status);
+    if (success) {
+      workflow_status === workflowKeys.publish.toLowerCase() && status === workflowKeys.approve
+        ? setShowPublishConfirm(true)
+        : setShowWorkflowSubmit(true);
     }
-    if (currentVodData.current === "") {
-      getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ContentType.Vod));
-    }
-  }, []);
-
-  const updateImageField = (updatedPartialObj) => {
-    updateTempObj.current = updatedPartialObj;
-    const modifiedVod = {
-      ...JSON.parse(JSON.stringify(vodInstance)),
-      ...updatedPartialObj,
-      lastModifiedDate: new Date(),
-    };
-    setVodInstance(modifiedVod);
   };
 
   const updateField = (updatedPartialObj, callPreview = false) => {
@@ -126,38 +117,30 @@ export const CreateVod = () => {
       navigate("/content/preview");
     }
   };
-  // const scrollHandler = () => {
-  //   if (isInViewport(seo, true)) {
-  //     setParentToolTip(SEO);
-  //   } else {
-  //     const active = icons.find((i) => isInViewport(i.id, false));
-  //     if (active && active.tooltip !== parentToolTip) {
-  //       setParentToolTip(active.tooltip);
-  //     }
-  //   }
-  // };
 
-  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
-  const [showExitWarning, setShowExitWarning] = useState(false);
-  const [isEdited, setIsEdited] = useState<boolean>(false);
-  const unsavedChanges = useRef<boolean>(currentContent.isUnsavedVod);
-  const [galleryState, setGalleryState] = useState<boolean>(false);
-  const galleryType = useRef<string>("Video");
-  const disableSave = useRef<boolean>(false);
-  //   const vodRef = useRef<any>(state.vod.currentVod ? state.vod.currentVod : DEF_VOD);
-  const vodRef = useRef<any>(currentContent ? currentContent : DEF_VOD);
-  const tagRef = useRef<any>([]);
-  const [isPublishDisabled, setPublishDisabled] = useState<boolean>(true);
-  const [isDraftDisabled, setDraftDisabled] = useState<boolean>(true);
+  /**
+   * thumbnail update
+   */
+  const updateImageField = (updatedPartialObj) => {
+    setStateManage({ ...stateManage, Thumbnail: updatedPartialObj?.selected_img?.Thumbnail });
+    vodRef.current.Thumbnail = updatedPartialObj?.selected_img?.Thumbnail;
+    // updateTempObj.current = updatedPartialObj;
+    const modifiedVod = {
+      ...JSON.parse(JSON.stringify(vodInstance)),
+      Thumbnail: updatedPartialObj?.selected_img?.Thumbnail,
+      lastModifiedDate: new Date(),
+    };
+    setVodInstance(modifiedVod);
+  };
 
   const updateCurrentInstance = (pageURL, callPreview = false) => {
     const updatedObj = {
-      Page: pageURL ? pageURL : vodRef.current.Page,
-      Title: vodRef.current.Title,
-      Description: vodRef.current.Description,
-      Thumbnail: vodRef.current.Thumbnail,
-      DsapceVideoUrl: vodRef.current.DsapceVideoUrl,
-      Tags: vodRef?.current?.Tags ? vodRef.current.Tags : tagRef.current,
+      Page: pageURL ? pageURL : vodRef?.current?.Page,
+      Title: vodRef?.current?.Title,
+      Description: vodRef?.current?.Description,
+      Thumbnail: vodRef?.current?.Thumbnail,
+      DsapceVideoUrl: vodRef?.current?.DsapceVideoUrl,
+      Tags: vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current,
       CurrentPageURL: `/${pageURL}`,
       PageSettings: {
         ...updateVodSettings(vodRef, currentVodData, i18n.language),
@@ -169,11 +152,13 @@ export const CreateVod = () => {
 
   const handelPreview = () => {
     if (!currentVodData.current) {
-      updateCurrentInstance(vodRef.current.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(), true);
+      updateCurrentInstance(
+        vodRef?.current?.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
+        true,
+      );
     } else {
       updateCurrentInstance(currentVodData.current, true);
     }
-    // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
   };
 
   const exitWithoutSave = () => {
@@ -203,7 +188,6 @@ export const CreateVod = () => {
           setOpenPageExistModal(true);
         } else {
           const { Page_CreatedBy, Title, Description } = vodToSend;
-          // const { Title, Description} = updateTempObj.current;
           const workflowObj = {
             createdBy: Page_CreatedBy,
             title: Title,
@@ -214,30 +198,15 @@ export const CreateVod = () => {
             last_modifiedBy: Page_CreatedBy,
           };
           setWorkflow({ ...workflow, ...workflowObj });
-          if (isWorkflow) {
-            // workflowSubmitRequest(workflowObj, workflowKeys.approve);
-          }
           unsavedChanges.current = false;
-          // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
           setOpenPageExistModal(false);
           setIsDraft(false);
           ShowToastSuccess(`${t("vod")} ${t("created_toast")}`);
-          setOpenSaveModal(true);
-          // setOpenPageExistModal(false);
           const pageUrl = resp?.data?.authoring_createVod?.path.substring(
             resp?.data?.authoring_createVod?.path.lastIndexOf("/") + 1,
           );
           vodRef.current.Page = pageUrl;
           setDraftPageURL(pageUrl);
-          setVodCreated(true);
-          const tagArrTemp = { ...vodRef.current };
-          delete tagArrTemp.Description;
-          const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
-          if (res && Object.keys(tagArrTemp).length > 0 && tagArrTemp.Tags.length > 0) {
-            setPublishDisabled(false);
-          } else {
-            setPublishDisabled(true);
-          }
         }
       })
       .catch((error) => {
@@ -268,14 +237,6 @@ export const CreateVod = () => {
       },
     })
       .then((resp) => {
-        const tagArrTemp = { ...vodRef.current };
-        delete tagArrTemp.Description;
-        const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
-        if (res && Object.keys(tagArrTemp).length > 0 && tagArrTemp.Tags.length > 0) {
-          setPublishDisabled(false);
-        } else {
-          setPublishDisabled(true);
-        }
         const { Page_CreatedBy, Title, Description } = updateVodToSend;
         const workflowObj = {
           createdBy: Page_CreatedBy,
@@ -309,23 +270,26 @@ export const CreateVod = () => {
       setIsEdited(false);
     }
     if (!currentVodData.current && isDraft) {
-      const pageURL = vodRef.current.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
+      const pageURL = vodRef?.current?.Title?.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
       updateCurrentInstance(pageURL);
       createVod("DRAFT", false);
     } else {
       updateVOD(status);
     }
   };
+
   const publishButtonHandel = () => {
-    const pageURL = vodRef.current.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
+    const pageURL = vodRef?.current?.Title
+      ? vodRef?.current?.Title?.replace(/[^A-Z0-9]+/gi, "-").toLowerCase()
+      : "";
 
     const updatedObj = {
       Page: pageURL,
-      Title: vodRef.current.Title,
-      Description: vodRef.current.Description,
-      Thumbnail: vodRef.current.Thumbnail,
-      DsapceVideoUrl: vodRef.current.DsapceVideoUrl,
-      Tags: vodRef?.current?.Tags ? vodRef.current.Tags : tagRef.current,
+      Title: vodRef?.current?.Title,
+      Description: vodRef?.current?.Description,
+      Thumbnail: vodRef?.current?.Thumbnail,
+      DsapceVideoUrl: vodRef?.current?.DsapceVideoUrl,
+      Tags: vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current,
       CurrentPageURL: `/${pageURL}`,
       PageSettings: {
         ...updateVodSettings(vodRef, currentVodData, i18n.language),
@@ -377,6 +341,7 @@ export const CreateVod = () => {
         ShowToastError(t("api_error_toast"));
       });
   };
+
   //Functions to handle Page Exist modal
   const pageExistNoButtonHandle = () => {
     setOpenPageExistModal(false);
@@ -385,17 +350,6 @@ export const CreateVod = () => {
   const pageExistYesButtonHandle = () => {
     setOpenPageExistModal(false);
     createVod("DRAFT", true);
-  };
-  //Functions to handle Draft Page modal
-  const saveAsDraftViewButtonHandle = () => {
-    navigate(`?path=${vodInstance?.Page}`);
-    setOpenSaveModal(false);
-  };
-
-  const saveAsDraftCrossButtonHandle = (event, reason) => {
-    if (reason && (reason === "backdropClick" || "escapeKeyDown")) return;
-    setOpenSaveModal(false);
-    navigate(`?path=${vodInstance?.Page}`);
   };
 
   const [errors, setErrors] = useState<DspaceObject>({
@@ -406,11 +360,24 @@ export const CreateVod = () => {
     Tags: "",
   });
 
+  const updateThumbnailPicture = (imageObj: any = {}) => {
+    const newObj = {
+      Thumbnail: imageObj?.Thumbnail,
+    };
+    setStateManage(newObj);
+  };
+
   const handleSelectedImage = (image) => {
     vodRef.current = { ...vodRef.current, Thumbnail: image?.Thumbnail };
+    updateThumbnailPicture(image); //thumbImage update
     unsavedChanges.current = true;
     setIsEdited(true);
   };
+
+  /**
+   * update video
+   * @param video object
+   */
   const handleSelectedVideo = (video) => {
     vodRef.current = {
       ...vodRef.current,
@@ -419,24 +386,28 @@ export const CreateVod = () => {
       Title: video?.Title,
       Description: video?.Description,
     };
+    updateThumbnailPicture(video); //thumbImage update
     unsavedChanges.current = true;
     setIsEdited(true);
     disableSave.current = true;
     setDraftDisabled(false);
   };
+
   const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
   };
+
   const showGallery = (gType) => {
     window.scrollTo(0, 0);
     galleryType.current = gType;
     setGalleryState(true);
   };
+
   const handleTagOnChange = (event) => {
-    let tagsArray: any = vodRef?.current?.Tags ? [...vodRef.current.Tags] : [...tagRef.current];
+    let tagsArray: any = vodRef?.current?.Tags ? [...vodRef?.current?.Tags] : [...tagRef.current];
 
     if (event.target.checked) {
-      tagsArray = [...tagsArray, event.target.value];
+      tagsArray = [...tagsArray, event?.target?.value];
       if (tagsArray?.length > 100) {
         ShowToastError("You cannot select more than 100 tags.");
         return false;
@@ -460,27 +431,22 @@ export const CreateVod = () => {
     setVodInstance({ ...vodInstance, Tags: tagsArray });
     unsavedChanges.current = true;
     setIsEdited(true);
-    // const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
-    if (isVodCreated && Object.keys(tagArrTemp).length > 0 && tagArrTemp.Tags.length > 0) {
-      setPublishDisabled(false);
-    } else {
-      setPublishDisabled(true);
-    }
   };
+
   const handleChange = (event) => {
     const { name } = event.target;
-    vodRef.current = { ...vodRef.current, [name]: event.target.value };
+    vodRef.current = { ...vodRef.current, [name]: event?.target?.value };
     unsavedChanges.current = true;
     setIsEdited(true);
     if (event.target.value !== "") setErrors({ ...errors, [name]: "" });
     const clone = { ...errors };
-    if (name === "DsapceVideoUrl" && vodRef.current.DsapceVideoUrl !== event.target.value) {
+    if (name === "DsapceVideoUrl" && vodRef?.current?.DsapceVideoUrl !== event?.target?.value) {
       clone.DsapceVideoUrl = "";
     }
-    if (name === "Thumbnail" && vodRef.current.Thumbnail === event.target.value) {
+    if (name === "Thumbnail" && vodRef?.current?.Thumbnail === event?.target?.value) {
       clone.Thumbnail = "";
     }
-    if (name === "Title" && vodRef.current.Title === event.target.value) {
+    if (name === "Title" && vodRef?.current?.Title === event?.target?.value) {
       clone.Title = "";
     }
     if (event.target.value !== "") {
@@ -502,6 +468,7 @@ export const CreateVod = () => {
       setShowExitWarning(true);
     } else navigate("/content/vod");
   };
+
   const unloadCallback = (event) => {
     event.preventDefault();
     if (unsavedChanges.current === true) {
@@ -511,6 +478,7 @@ export const CreateVod = () => {
       navigate("/content/vod");
     }
   };
+
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     if (unsavedChanges.current) {
@@ -521,12 +489,27 @@ export const CreateVod = () => {
       backToVodList();
     }
   };
+
   const pageExistCrossButtonHandle = () => {
     setOpenPageExistModal(false);
     // eslint-disable-next-line no-restricted-globals
     window.history.pushState(null, "", window.location.pathname + location?.search);
     window.addEventListener("popstate", onBackButtonEvent);
   };
+
+  const onUploadClick = (type) => {
+    showGallery(type);
+  };
+
+  useEffect(() => {
+    if (Object.keys(vodInstance).length === 0 && !params.id) {
+      setVodInstance(createVodInstance(username));
+    }
+    if (currentVodData.current === "") {
+      getWorkflowDetails(role, login_user_id, setWorkflow, capitalizeFirstLetter(ContentType.Vod));
+    }
+  }, []);
+
   useEffect(() => {
     if (isEdited) {
       // eslint-disable-next-line no-restricted-globals
@@ -558,25 +541,6 @@ export const CreateVod = () => {
     [tagData, selectedTag, vodInstance?.Tags],
   );
 
-  useEffect(() => {
-    const tagArrTemp = { ...vodRef.current };
-    delete tagArrTemp.Description;
-    // const res = Object.keys(tagArrTemp).every((key) => tagArrTemp[key]);
-    if (isVodCreated && Object.keys(tagArrTemp).length > 0 && tagArrTemp?.Tags?.length > 0) {
-      setPublishDisabled(false);
-    } else {
-      setPublishDisabled(true);
-    }
-    if (vodRef.current.Title) {
-      setDraftDisabled(false);
-    } else {
-      setDraftDisabled(true);
-    }
-  }, [vodRef.current, errors]);
-
-  const onUploadClick = (type) => {
-    showGallery(type);
-  };
   useEffect(() => {
     if (
       (Object.keys(
@@ -622,6 +586,7 @@ export const CreateVod = () => {
           if (res?.data?.authoring_getCmsVodByPath) {
             vodRef.current = {
               // ...vodRef.current,
+              Page: res?.data?.authoring_getCmsVodByPath?.Page || "",
               DsapceVideoUrl: res?.data?.authoring_getCmsVodByPath?.DsapceVideoUrl,
               Thumbnail: res?.data?.authoring_getCmsVodByPath?.Thumbnail,
               Title: res?.data?.authoring_getCmsVodByPath?.Title,
@@ -629,6 +594,8 @@ export const CreateVod = () => {
               Tags: res?.data?.authoring_getCmsVodByPath?.Tags,
               is_featured: isFeatured,
             };
+            updateThumbnailPicture(res?.data?.authoring_getCmsVodByPath); //update
+            // setStateManage({Thumbnail:})
             updateField(res?.data?.authoring_getCmsVodByPath);
             updateTempObj.current = res?.data?.authoring_getCmsVodByPath;
             delete updateTempObj.current.__typename;
@@ -697,6 +664,16 @@ export const CreateVod = () => {
     }
   }, [tagData?.length > 0]);
 
+  useEffect(() => {
+    const tagArrTemp = { ...vodRef.current };
+    delete tagArrTemp.Description;
+    if (vodRef?.current?.Title) {
+      setDraftDisabled(false);
+    } else {
+      setDraftDisabled(true);
+    }
+  }, [vodRef.current, errors]);
+
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -753,20 +730,17 @@ export const CreateVod = () => {
                 />
               </Box>
               {/* publish button */}
-              {/* <HeadButton
+              <HeadButton
                 variant='primaryButton'
-                icon={TelegramIcon}
+                // icon={TelegramIcon}
                 onclickHandler={publishButtonHandel}
-                canAccess={canAccessAction(
-                  CATEGORY_CONTENT,
-                  ContentType.Vod,
-                  'publish'
-                )}
-                isDisabled={isPublishDisabled}
-                text={t('publish')}
-                iconType={'publish'}
-              /> */}
-              <SubmitButton
+                // canAccess={true}
+                canAccess={canAccessAction(CATEGORY_CONTENT, ContentType.Vod, "publish")}
+                isDisabled={isPublishVodHandle(vodRef.current)}
+                text={t("publish")}
+                iconType={"publish"}
+              />
+              {/* <SubmitButton
                 category={CATEGORY_CONTENT}
                 subCategory={ContentType.Vod}
                 workflow={workflow}
@@ -774,7 +748,7 @@ export const CreateVod = () => {
                 handleSave={saveVod}
                 createComment={() => {}}
                 prelemEditState={isPublishDisabled}
-              />
+              /> */}
             </Grid>
           </Grid>
           {/* Top Section End */}
@@ -851,7 +825,7 @@ export const CreateVod = () => {
                   <XImageRender
                     callBack={updateImageField}
                     editData={{
-                      relativeUrl: vodRef.current?.Thumbnail,
+                      relativeUrl: stateManage.Thumbnail,
                     }}
                     isCrop={false}
                   />
@@ -860,6 +834,7 @@ export const CreateVod = () => {
             </CommonBoxWithNumber>
           </Box>
           {/* Thumbnail End */}
+
           {/* Title Desc start */}
           <Box id='titleDescription' className={classes.mainStyleWrapper}>
             <CommonBoxWithNumber
@@ -906,6 +881,7 @@ export const CreateVod = () => {
               </Grid>
             </CommonBoxWithNumber>
           </Box>
+
           {/* Title Desc End */}
           {/* Tag Start */}
           <Box id='tags' className={classes.mainStyleWrapper}>
@@ -933,26 +909,31 @@ export const CreateVod = () => {
           {/* Tag End */}
         </Box>
       </Box>
+
+      {/* video update */}
       {galleryState && (
         <DamContentGallery
-          handleImageSelected={handleSelectedImage}
-          toggleGallery={toggleGallery}
           assetType={"Video"}
-          handleSelectedVideo={handleSelectedVideo}
           dialogOpen={galleryState}
+          toggleGallery={toggleGallery}
+          handleImageSelected={handleSelectedImage}
+          handleSelectedVideo={handleSelectedVideo}
         />
       )}
 
+      {/* after publish dialog will show */}
       {showPublishConfirm && (
-        <PlateformXDialog
+        <PlateformXDialogSuccess
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={t("publish_process_vod")}
           confirmButtonText={t("go_to_listing")}
           confirmButtonHandle={() => navigate("/content/vod")}
+          closeButtonHandle={() => navigate("/content/vod")}
           modalType='publish'
         />
       )}
+
       {showExitWarning && (
         <PlateformXDialog
           disableConfirmButton={isDraftDisabled}
@@ -969,6 +950,7 @@ export const CreateVod = () => {
           modalType='unsavedChanges'
         />
       )}
+
       {openPageExistModal && (
         <PlateformXDialog
           isDialogOpen={openPageExistModal}
@@ -980,20 +962,6 @@ export const CreateVod = () => {
           confirmButtonHandle={pageExistYesButtonHandle}
           crossButtonHandle={pageExistCrossButtonHandle}
           modalType=''
-        />
-      )}
-      {openSaveModal && (
-        <PlateformXDialog
-          isDialogOpen={openSaveModal}
-          title={t("save_as_draft")}
-          subTitle={t("save_draft_des")}
-          closeButtonText={t("edit")}
-          confirmButtonText={t("go_to_listing")}
-          closeButtonHandle={saveAsDraftViewButtonHandle}
-          confirmButtonHandle={() => navigate("/content/vod")}
-          crossButtonHandle={saveAsDraftCrossButtonHandle}
-          modalType='draft'
-          closeIcon={<CreateRoundedIcon />}
         />
       )}
     </>

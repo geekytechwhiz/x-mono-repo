@@ -16,8 +16,8 @@ import {
   getCurrentLang,
   getSelectedSite,
   getSubDomain,
-  useUserSession,
   makeCreateContentPath,
+  useUserSession,
 } from "@platformx/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams } from "react-router-dom";
@@ -44,7 +44,7 @@ const {
   PREVIEW_PATH,
   ARTICLE,
 } = CONTENT_CONSTANTS;
-const useContentListing = (filter = "ALL") => {
+const useContentActions = (filter = "ALL") => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { duplicateVod } = useVod();
@@ -389,4 +389,4 @@ const useContentListing = (filter = "ALL") => {
   };
 };
 
-export default useContentListing;
+export default useContentActions;

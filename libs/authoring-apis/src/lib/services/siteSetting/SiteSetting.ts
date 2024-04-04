@@ -16,6 +16,7 @@ import {
 } from "../../graphQL/queries/siteSettingQueries";
 import {
   CREATE_TAG,
+  DELETE_TAG,
   PUBLISH_COOKIE_SETTING,
   PUBLISH_FOOTER_SETTING,
   PUBLISH_GLOBAL_SETTING,
@@ -297,26 +298,8 @@ export const fetchUserSitePermissionList = async <T>(input: T): Promise<ApiRespo
   }
 };
 
-export const fetchGlobalSettingData = async () => {
-  try {
-    const { authoring_getSitedetails = {} } = await fetchGlobalSetting({
-      page: "global-item",
-    });
-
-    const imageUuid = authoring_getSitedetails?.image?.slice(-1)?.[0]?.ScopeId;
-    const videoUuid = authoring_getSitedetails?.video?.slice(-1)?.[0]?.ScopeId;
-    imageUuid && localStorage.setItem("imageUuid", imageUuid);
-    videoUuid && localStorage.setItem("videoUuid", videoUuid);
-    return {};
-  } catch (error) {
-    return {};
-  }
-};
-
 export const getGlobalDataWithHeader = async (sitename: any) => {
   try {
-    // eslint-disable-next-line no-debugger
-
     const { authoring_getSitedetails = {} } = await fetchGlobalSettingWithHeader(
       {
         page: "global-item",
@@ -338,55 +321,43 @@ export const getGlobalDataWithHeader = async (sitename: any) => {
 };
 
 export const fetchTagListing = async <T>(input: T): Promise<ApiResponse<T>> => {
-  try {
-    const { data } = await graphqlInstance.query({
-      query: FETCH_TAG_LISTING,
-      variables: input,
-      fetchPolicy: "network-only",
-    });
-    return data;
-  } catch (err: any) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
-    throw err;
-  }
+  const { data } = await graphqlInstance.query({
+    query: FETCH_TAG_LISTING,
+    variables: input,
+    fetchPolicy: "network-only",
+  });
+  return data;
 };
 
 export const fetchCategory = async <T>(input: T): Promise<ApiResponse<T>> => {
-  try {
-    const { data } = await graphqlInstance.query({
-      query: FETCH_CATEGORY,
-      variables: input,
-      fetchPolicy: "cache-first",
-    });
-    return data;
-  } catch (err: any) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
-    throw err;
-  }
+  const { data } = await graphqlInstance.query({
+    query: FETCH_CATEGORY,
+    variables: input,
+    fetchPolicy: "network-only",
+  });
+  return data;
 };
 
 export const createTag = async <T>(input: T): Promise<ApiResponse<T>> => {
-  try {
-    const { data } = await graphqlInstance.mutate({
-      mutation: CREATE_TAG,
-      variables: input,
-    });
-    return data;
-  } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
-    throw err;
-  }
+  const { data } = await graphqlInstance.mutate({
+    mutation: CREATE_TAG,
+    variables: input,
+  });
+  return data;
 };
 
 export const publishTag = async <T>(input: T): Promise<ApiResponse<T>> => {
-  try {
-    const { data } = await graphqlInstance.mutate({
-      mutation: PUBLISH_TAG,
-      variables: input,
-    });
-    return data;
-  } catch (err) {
-    if (err instanceof ApolloError) console.log(err.graphQLErrors);
-    throw err;
-  }
+  const { data } = await graphqlInstance.mutate({
+    mutation: PUBLISH_TAG,
+    variables: input,
+  });
+  return data;
+};
+
+export const deleteTag = async <T>(input: T): Promise<ApiResponse<T>> => {
+  const { data } = await graphqlInstance.mutate({
+    mutation: DELETE_TAG,
+    variables: input,
+  });
+  return data;
 };

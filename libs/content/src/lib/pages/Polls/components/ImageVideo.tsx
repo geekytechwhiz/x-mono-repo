@@ -20,6 +20,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
+      colorCode: "",
     };
     setState(modifiedData);
     pollRef.current = {
@@ -27,6 +28,46 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: updatedPartialObj?.original_image?.Thumbnail,
       socialShareImgURL: relativeUrl,
       imagevideoURL: updatedPartialObj?.original_image?.Thumbnail,
+      colorCode: "",
+    };
+    unsavedChanges.current = true;
+  };
+
+  const handleRefresh = () => {
+    setState({
+      ...state,
+      imagevideoURL: "",
+      socialShareImgURL: "",
+      colorCode: "",
+      thumbnailURL: "",
+      original_image: {},
+      published_images: [],
+    });
+    pollRef.current = {
+      ...pollRef.current,
+      imagevideoURL: "",
+      socialShareImgURL: "",
+      colorCode: "",
+      thumbnailURL: "",
+      original_image: {},
+      published_images: [],
+    };
+  };
+
+  const handleColorPallete = (color) => {
+    setState({
+      ...state,
+      imagevideoURL: "",
+      thumbnailURL: "",
+      socialShareImgURL: "",
+      colorCode: color,
+    });
+    pollRef.current = {
+      ...pollRef.current,
+      imagevideoURL: "",
+      thumbnailURL: "",
+      socialShareImgURL: "",
+      colorCode: color,
     };
     unsavedChanges.current = true;
   };
@@ -36,7 +77,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       <CommentWrapper elementId='2' scrollRef={scrollToRef}>
         <CommonBoxWithNumber
           number='02'
-          title={t("quiz_background_head")}
+          title={t("poll_background_head")}
           titleVarient='p3semibold'
           subTitleVarient='p4regular'
           subTitle={t("subhead")}>
@@ -44,7 +85,7 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
             <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
               <TitleSubTitle
                 title={`${t("add_image")}*`}
-                subTitle={t("quiz_image_subtitle")}
+                subTitle={t("poll_image_subtitle")}
                 titleVariant='h6medium'
                 subTitleVariant='h7regular'
               />
@@ -55,8 +96,12 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
                 editData={{
                   original_image: state.original_image,
                   published_images: state.published_images,
+                  isImg: state.colorCode ? false : true,
+                  colorCode: state.colorCode,
                 }}
-                isCrop={true}
+                isColorPallete={true}
+                handleRefresh={handleRefresh}
+                handleColorPallete={handleColorPallete}
               />
             </Grid>
           </Grid>

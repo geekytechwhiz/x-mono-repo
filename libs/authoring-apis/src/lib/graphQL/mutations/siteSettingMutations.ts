@@ -118,3 +118,12 @@ export const PUBLISH_TAG = gql`
     }
   }
 `;
+
+export const DELETE_TAG = gql`
+  mutation deleteSiteTags($tagName: String!, $category: String!) {
+    authoring_deleteSiteTags(category: $category, tagName: $tagName) {
+      path
+      message
+    }
+  }
+`;
