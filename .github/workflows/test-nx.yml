@@ -23,10 +23,10 @@ jobs:
         run: |
           echo "PROJECT_ID=PROJECT_ID_$(echo ${{github.ref_name}} | tr '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "18.x"
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
 
       # - name: Restore cached npm dependencies
       #   id: cache-dependencies-restore
