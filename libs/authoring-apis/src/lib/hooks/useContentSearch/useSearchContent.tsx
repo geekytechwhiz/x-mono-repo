@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { SearchCourseListQueries } from "../../graphQL/queries/courseQueries";
 import { SearchContentListQueries } from "../../graphQL/queries/searchQueries";
 import { sortedData } from "../../utils/helper";
-import { mapFetchALL } from "../useContentListing/mapper";
+import { mapFetchALL } from "../useContentActions/mapper";
 
 const ROW_SIZE = 20;
 
@@ -69,8 +69,8 @@ const useContentSearch = ({
       dispatch(previewContent({}));
       dispatch(updateContentList(serializableData));
     }
-  }, [data, contents, loading, contentType, locationState, filter, startIndex]);
-
+  }, [data]);
+  // contents, contentType, locationState, filter, startIndex
   useEffect(() => {
     setIsLoading(true);
   }, [contentType]);
@@ -89,7 +89,7 @@ const useContentSearch = ({
 
       const fetchMoreData = result.data?.authoring_getContentTypeItems || [];
       const combinedData: any = [...contents, ...fetchMoreData];
-      dispatch(updateContentList(combinedData));
+
       if (fetchMoreData?.length < 20) setIsLoading(false);
       setContents(combinedData);
       // eslint-disable-next-line no-shadow

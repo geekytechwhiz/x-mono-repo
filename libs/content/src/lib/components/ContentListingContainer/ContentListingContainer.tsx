@@ -2,7 +2,7 @@
 import {
   CATEGORY_CONTENT,
   CONTENT_TYPES,
-  useContentListing,
+  useContentActions,
   useContentSearch,
 } from "@platformx/authoring-apis";
 import { makeCreateContentPath } from "@platformx/utilities";
@@ -40,7 +40,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     editPage,
     fetchContentDetails,
     duplicateToSite,
-  } = useContentListing("ALL");
+  } = useContentActions("ALL");
 
   const memoizedMethods = useMemo(
     () => ({
