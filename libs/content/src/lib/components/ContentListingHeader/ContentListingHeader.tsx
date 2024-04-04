@@ -71,147 +71,149 @@ const ContentListingHeader = ({
           {t(`${title.toLocaleLowerCase()}`)}
         </Typography>
       </Box>
-      <Box style={{ display: "flex" }}>
-        <Box
-          onClick={handleRefresh}
-          sx={{
-            backgroundColor: "white",
-            padding: { xs: "8px", md: "10px" },
-            borderRadius: "4px",
-            marginRight: "10px",
-            border: "1px solid #14142B",
-            height: { xs: "42px", md: "46px" },
-            width: "42px",
-            alignItem: "center",
-            cursor: "pointer",
-            justifyContent: "center",
-          }}>
-          <SyncIcon
-            sx={{
-              color: "#2d2d39",
-              verticalAlign: "middle",
-              fontSize: { md: "21px" },
-              cursor: "pointer",
-            }}
-            className={animationState ? Class.rotateIcon : ""}
-          />
-        </Box>
-
-        {/* based on condition filter button will enable  */}
-        {hideFilter && (
+      {title.toLocaleLowerCase() !== "result" && (
+        <Box style={{ display: "flex" }}>
           <Box
-            onClick={handleFilterClick}
+            onClick={handleRefresh}
             sx={{
-              backgroundColor: openFilterMenu ? "#2d2d39" : "white",
+              backgroundColor: "white",
               padding: { xs: "8px", md: "10px" },
               borderRadius: "4px",
+              marginRight: "10px",
               border: "1px solid #14142B",
-              display: "flex",
               height: { xs: "42px", md: "46px" },
               width: "42px",
-              alignItems: "center",
+              alignItem: "center",
               cursor: "pointer",
               justifyContent: "center",
-              "&.openClass img": {
-                filter:
-                  "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(6197%) hue-rotate(110deg) brightness(97%) contrast(99%);",
-              },
-            }}
-            className={openFilterMenu ? "openClass" : ""}>
-            <img src={FilterIcon} alt='' width='17' height='24' />
+            }}>
+            <SyncIcon
+              sx={{
+                color: "#2d2d39",
+                verticalAlign: "middle",
+                fontSize: { md: "21px" },
+                cursor: "pointer",
+              }}
+              className={animationState ? Class.rotateIcon : ""}
+            />
           </Box>
-        )}
 
-        <Menu
-          elevation={0}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          anchorEl={filterMenu}
-          open={openFilterMenu}
-          onClose={handleFilterClose}
-          sx={{
-            ".Platform-x-Menu-paper": {
-              boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
-              borderRadius: "7px",
-              marginTop: "5px",
-            },
-            ".Platform-x-Menu-list": {
-              borderRadius: "4px",
-              boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
-              border: "solid 1px rgba(112, 112, 112, 0.1)",
-              padding: "10px 18px",
-            },
-          }}>
-          <FormControl>
-            <RadioGroup
-              value={filterValue}
-              onChange={handleChange}
-              sx={{ textTransform: "capitalize" }}>
-              <FormControlCustom
-                className='listView'
-                value='ALL'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("all")}
-              />
-              <FormControlCustom
-                className='listView'
-                value='PUBLISHED'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("published")}
-              />
-              <FormControlCustom
-                className='listView'
-                value='DRAFT'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("draft")}
-              />
-              <FormControlCustom
-                className='listView'
-                value='UNPUBLISHED'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("unpublished")}
-              />
-              {title.toLowerCase() === "event" && (
+          {/* based on condition filter button will enable  */}
+          {hideFilter && (
+            <Box
+              onClick={handleFilterClick}
+              sx={{
+                backgroundColor: openFilterMenu ? "#2d2d39" : "white",
+                padding: { xs: "8px", md: "10px" },
+                borderRadius: "4px",
+                border: "1px solid #14142B",
+                display: "flex",
+                height: { xs: "42px", md: "46px" },
+                width: "42px",
+                alignItems: "center",
+                cursor: "pointer",
+                justifyContent: "center",
+                "&.openClass img": {
+                  filter:
+                    "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(6197%) hue-rotate(110deg) brightness(97%) contrast(99%);",
+                },
+              }}
+              className={openFilterMenu ? "openClass" : ""}>
+              <img src={FilterIcon} alt='' width='17' height='24' />
+            </Box>
+          )}
+
+          <Menu
+            elevation={0}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            anchorEl={filterMenu}
+            open={openFilterMenu}
+            onClose={handleFilterClose}
+            sx={{
+              ".Platform-x-Menu-paper": {
+                boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+                borderRadius: "7px",
+                marginTop: "5px",
+              },
+              ".Platform-x-Menu-list": {
+                borderRadius: "4px",
+                boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
+                border: "solid 1px rgba(112, 112, 112, 0.1)",
+                padding: "10px 18px",
+              },
+            }}>
+            <FormControl>
+              <RadioGroup
+                value={filterValue}
+                onChange={handleChange}
+                sx={{ textTransform: "capitalize" }}>
                 <FormControlCustom
                   className='listView'
-                  value='LIVE'
+                  value='ALL'
                   control={<Radio sx={{ display: "none" }} />}
-                  label={t("live")}
+                  label={t("all")}
                 />
-              )}
-            </RadioGroup>
-          </FormControl>
-        </Menu>
+                <FormControlCustom
+                  className='listView'
+                  value='PUBLISHED'
+                  control={<Radio sx={{ display: "none" }} />}
+                  label={t("published")}
+                />
+                <FormControlCustom
+                  className='listView'
+                  value='DRAFT'
+                  control={<Radio sx={{ display: "none" }} />}
+                  label={t("draft")}
+                />
+                <FormControlCustom
+                  className='listView'
+                  value='UNPUBLISHED'
+                  control={<Radio sx={{ display: "none" }} />}
+                  label={t("unpublished")}
+                />
+                {title.toLowerCase() === "event" && (
+                  <FormControlCustom
+                    className='listView'
+                    value='LIVE'
+                    control={<Radio sx={{ display: "none" }} />}
+                    label={t("live")}
+                  />
+                )}
+              </RadioGroup>
+            </FormControl>
+          </Menu>
 
-        <ErrorTooltip
-          component={
-            <Button
-              className='addnewpage'
-              variant='primaryButton'
-              disabled={
-                !canAccessAction(category, subCategory, "Create")
-                //   || title === 'Course'
-              }
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                marginLeft: "12px",
-              }}
-              onClick={handleAddNew}>
-              {t("create_new")}
-            </Button>
-          }
-          doAccess={
-            !canAccessAction(category, subCategory, "Create")
-            //||title === 'Course'
-          }
-        />
-      </Box>
+          <ErrorTooltip
+            component={
+              <Button
+                className='addnewpage'
+                variant='primaryButton'
+                disabled={
+                  !canAccessAction(category, subCategory, "Create")
+                  //   || title === 'Course'
+                }
+                sx={{
+                  display: { xs: "none", sm: "flex" },
+                  marginLeft: "12px",
+                }}
+                onClick={handleAddNew}>
+                {t("create_new")}
+              </Button>
+            }
+            doAccess={
+              !canAccessAction(category, subCategory, "Create")
+              //||title === 'Course'
+            }
+          />
+        </Box>
+      )}
     </ContentListingHeaderContainer>
   );
 };
