@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { fetchUserSitePermissionList, usePage } from "@platformx/authoring-apis";
 import {
   Card,
@@ -13,6 +13,7 @@ import {
   useUserSession,
 } from "@platformx/utilities";
 import { Key, memo, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ContentListingProps, ListItem } from "../../utils/List.types";
 import ContentTypeMenuList from "../MenuList/ContentTypeMenuList";
@@ -37,6 +38,7 @@ const ContentListing = ({
   const pageUrl = new URL(window.location.href);
   const path = pageUrl.pathname.split("/")?.pop();
   const { handlePageDelete } = usePage();
+  const { t } = useTranslation();
 
   const fetchUserSite = async () => {
     try {
@@ -148,6 +150,13 @@ const ContentListing = ({
         dataLength={contentList?.length}
         next={fetchMore}
         hasMore={loading}
+        endMessage={
+          contentList?.length > 20 ? (
+            <Typography sx={{ textAlign: "center" }}> {t("no_more_data")}</Typography>
+          ) : (
+            ""
+          )
+        }
         loader={<ContentListDesktopLoader />}
         scrollableTarget='scrollableDiv'
         style={{ overflowX: "hidden" }}>

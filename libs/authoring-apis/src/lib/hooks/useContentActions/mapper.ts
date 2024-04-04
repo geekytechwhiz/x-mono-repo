@@ -165,31 +165,31 @@ export const mapDuplicateContent = (
           result_range_4: updatedSelectedContent?.result_range_4,
         }
       : contentType === "Article"
-      ? {
-          banner: updatedSelectedContent?.banner,
-          sub_title: updatedSelectedContent?.sub_title,
-        }
-      : contentType === "Event"
-      ? {
-          banner_image: updatedSelectedContent?.banner_image,
-          thumbnail_image: updatedSelectedContent?.thumbnail_image,
-          actual_address: updatedSelectedContent?.actual_address,
-          event_end_date: updatedSelectedContent?.event_end_date,
-          event_start_date: updatedSelectedContent?.event_start_date,
-          virtual_address: updatedSelectedContent?.virtual_address,
-          google_api_address: updatedSelectedContent?.google_api_address,
-        }
-      : {
-          ...commonFields,
-          question_background_content: updatedSelectedContent?.question_background_content,
-          poll_description: updatedSelectedContent?.description,
-          poll_question: updatedSelectedContent?.poll_question,
-          poll_result: updatedSelectedContent?.poll_result,
-          poll_title: updatedSelectedContent?.page,
-          options_compound_fields: updatedSelectedContent?.options_compound_fields,
-          start_date: new Date(),
-          end_date: updatedSelectedContent?.end_date,
-        };
+        ? {
+            banner: updatedSelectedContent?.banner,
+            sub_title: updatedSelectedContent?.sub_title,
+          }
+        : contentType === "Event"
+          ? {
+              banner_image: updatedSelectedContent?.banner_image,
+              thumbnail_image: updatedSelectedContent?.thumbnail_image,
+              actual_address: updatedSelectedContent?.actual_address,
+              event_end_date: updatedSelectedContent?.event_end_date,
+              event_start_date: updatedSelectedContent?.event_start_date,
+              virtual_address: updatedSelectedContent?.virtual_address,
+              google_api_address: updatedSelectedContent?.google_api_address,
+            }
+          : {
+              ...commonFields,
+              question_background_content: updatedSelectedContent?.question_background_content,
+              poll_description: updatedSelectedContent?.description,
+              poll_question: updatedSelectedContent?.poll_question,
+              poll_result: updatedSelectedContent?.poll_result,
+              poll_title: updatedSelectedContent?.page,
+              options_compound_fields: updatedSelectedContent?.options_compound_fields,
+              start_date: new Date(),
+              end_date: updatedSelectedContent?.end_date,
+            };
   const contentToSend = {
     CommonFields: {
       analytics: "",

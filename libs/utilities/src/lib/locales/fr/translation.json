@@ -1193,5 +1193,6 @@
   "logo_will_look_like_this_on_header_sub": "This logo will appear on the tab of the browser.",
   "event_Location": "Lieu de l'événement",
   "blogs_Timeline": "Chronologie des blogs",
-  "page_title": "Titre de la page"
+  "page_title": "Titre de la page",
+  "no_more_data": "Plus de données à charger"
 }
