@@ -29,7 +29,6 @@ export const contentSlice = createSlice({
       content.apiState = true;
     },
     previewContent: (state, action: PayloadAction<any>) => {
-      state.contentArray = [...state.contentArray];
       state.currentContent = action.payload;
     },
     previewArticle: (state, action: PayloadAction<any>) => {

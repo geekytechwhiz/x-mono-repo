@@ -247,6 +247,8 @@ import Closexicon from "./Closexicon.svg";
 import Checkicon from "./Checkicon.svg";
 import Doticon from "./doticon.svg";
 import Crossnewicons from "./Crossnewicon.svg";
+import SystemTagIcon from "./SystemTagIcon.svg";
+import BusinessTagIcon from "./BusinessTagIcon.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -255,6 +257,8 @@ export {
   IconVisaCardSvg,
   IconDelete1svg,
   SuccessIcon,
+  SystemTagIcon,
+  BusinessTagIcon,
   TagIcon,
   IconMasterCardSvg,
   Aboutusupdateicon,

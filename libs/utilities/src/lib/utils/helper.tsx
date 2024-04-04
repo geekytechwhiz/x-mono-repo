@@ -1,5 +1,13 @@
 /* eslint-disable no-console */
-import { getRestApiCall, nullToObject, postRestApiCall } from "./helperFns";
+import axios from "axios";
+import {
+  getRestApiCall,
+  getSelectedSite,
+  getSubDomain,
+  nullToObject,
+  postRestApiCall,
+} from "./helperFns";
+import { LOGOUT_URL } from "../constants/AuthConstant";
 
 export const hasOwnProp = (obj: object, key: string): boolean => {
   return Object.prototype.hasOwnProperty.call(obj, key);
@@ -134,4 +142,34 @@ export const formatAddPrelem = (item) => {
     IsModified: false,
     StructuredData: "",
   };
+};
+
+const handleLogout = () => {
+  const keycloakURL = LOGOUT_URL;
+  localStorage.removeItem("userSession");
+  localStorage.removeItem("selectedSite");
+  localStorage.removeItem("imageUuid");
+  localStorage.removeItem("videoUuid");
+  window.location.replace(keycloakURL);
+};
+
+export const getRequestFromDelivery = async (url) => {
+  try {
+    const res = await axios.get(process.env.NX_DELIVERY_URI + url, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "no-cache",
+        sitename: getSelectedSite(),
+        site_host: getSubDomain(),
+      },
+      withCredentials: true,
+    });
+    return res?.data?.result ? res?.data?.result : res?.data;
+  } catch (err: any) {
+    if (err?.response?.data?.code === 401 && !url.includes("verify")) {
+      handleLogout();
+    }
+    return err;
+  }
 };

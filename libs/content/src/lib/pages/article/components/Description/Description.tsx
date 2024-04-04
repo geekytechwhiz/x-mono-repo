@@ -458,9 +458,7 @@ function Description({
 
   const chatGPT = () => {
     setIsLoading(true);
-    const chatGptPrompt = process.env.REACT_APP_CHAT_GPT_PROMPT
-      ? process.env.REACT_APP_CHAT_GPT_PROMPT
-      : "Please write 3 paragraph article about";
+    const chatGptPrompt = "Please write 3 paragraph article about";
 
     chatGptResponse(`${chatGptPrompt} ${title} in ${LanguageNameMapping["en"]}`);
   };

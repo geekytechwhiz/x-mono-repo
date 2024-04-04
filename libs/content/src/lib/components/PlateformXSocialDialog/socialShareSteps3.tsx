@@ -121,12 +121,12 @@ const SocialShareStep3 = ({
 
     setSharedContentDetailsLoader(true); //loader off
     const response = await getSHareDetailsBasedOnContentType(newObj);
+    setSharedContentDetailsLoader(false); //loader off
     if (response) {
       setSharedContentDetails(response);
     } else {
       setSharedContentDetails({});
     }
-    setSharedContentDetailsLoader(false); //loader off
   };
 
   React.useEffect(() => {

@@ -1,6 +1,13 @@
+.stepperWrapper {
+  padding: 25px 20px;
+}
 .stepperWrapper .stepperStep .stepperStepLabel {
   display: block;
   text-align: center;
+}
+.stepperWrapper .stepperStep .stepperStepLabel .Platform-x-StepLabel-iconContainer {
+  padding-right: 0px;
+  padding-bottom: 20px;
 }
 .stepperWrapper .stepperStep .stepperStepLabel h6 {
   min-height: 30px;
