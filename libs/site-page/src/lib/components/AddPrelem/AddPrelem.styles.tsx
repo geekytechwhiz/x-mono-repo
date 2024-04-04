@@ -73,4 +73,15 @@ export const useStyles = makeStyles(() => ({
       margin: 0,
     },
   },
+  previewPagePrelem: {
+    "& $prelemButtonsWp": {
+      display: "none",
+    },
+    "& $topaddCtaWp": {
+      display: "none !important",
+    },
+    "& $bottomaddCtaWp": {
+      display: "none !important",
+    },
+  },
 }));

@@ -155,4 +155,7 @@ export const useStyles = makeStyles((theme: any) => ({
     position: "relative",
     height: "100vh",
   },
+  previewPage: {
+    height: "100vh !important",
+  },
 }));

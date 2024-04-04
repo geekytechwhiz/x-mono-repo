@@ -1461,7 +1461,7 @@ const EditPageContainer = () => {
                   </Box>
                 ) : page?.prelemMetaArray.length > 0 ? (
                   <Box
-                    className={classes.addEditPrelemBox}
+                    className={`${classes.addEditPrelemBox} ${isPreviewPage && classes.previewPage}`}
                     sx={{
                       overflowY: selectedPrelemEditState ? "hidden" : "scroll",
                     }}>
@@ -1515,6 +1515,7 @@ const EditPageContainer = () => {
                               prelemDataReset={prelemResetIndex === i ? prelemDataReset : false}
                               showAddSection={showAddSection}
                               addSectionTouchPointClick={addSectionTouchPointClick}
+                              isPreviewPage={isPreviewPage}
                             />
                           );
                         })}
