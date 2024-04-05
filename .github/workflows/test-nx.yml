@@ -2,6 +2,7 @@ name: test-nx
 on:
   push:
     branches:
+      - develop
       - dev_nx-cloud
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -61,7 +62,7 @@ jobs:
       #DEPLOY START
 
       - name: develop-cluster-auth
-        if: endsWith(github.ref, '/dev_nx-cloud')
+        if: endsWith(github.ref, '/develop')
         uses: google-github-actions/auth@v2
         with:
           workload_identity_provider: ${{ secrets[env.WORKLOAD_IDENTITY_PROVIDER] }}
@@ -75,7 +76,7 @@ jobs:
           refs/heads/marvels_dev
           refs/heads/mavericks_dev
           refs/heads/qa
-          refs/heads/dev_nx-cloud', github.ref)
+          refs/heads/develop', github.ref)
         uses: google-github-actions/get-gke-credentials@v0.4.0
         with:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
@@ -92,7 +93,7 @@ jobs:
           docker push "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"
       # Deploy Configmap
       - name: Deploy Configmap on develop branch
-        if: ${{ github.ref == 'refs/heads/dev_nx-cloud' }}
+        if: ${{ github.ref == 'refs/heads/develop' }}
         run: |-
           kubectl apply -f ./kubernetes/configmaps/hep-user-experience-ui-config-develop.yaml
       - name: Deploy Configmap on qa branch
