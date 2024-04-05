@@ -11,9 +11,9 @@ concurrency:
 jobs:
   user-experience-ui:
     name: user-experience-ui
-    permissions:
-      contents: write
-      id-token: write
+    # permissions:
+    #   contents: write
+    #   id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -64,7 +64,7 @@ jobs:
         if: endsWith(github.ref, '/develop')
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets[env.WORKLOAD_IDENTITY_PROVIDER] }}
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT_DEVELOP }}
           token_format: "access_token"
 
