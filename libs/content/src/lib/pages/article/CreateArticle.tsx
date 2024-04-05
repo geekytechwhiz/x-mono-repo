@@ -7,12 +7,12 @@ import {
   Loader,
   ShowToastError,
   ShowToastSuccess,
+  SuccessIcon,
   ThemeConstants,
   WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
   nullToObject,
-  successGif,
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
@@ -401,7 +401,7 @@ export const CreateArticle = () => {
   };
   const enableDialog = (type = "") => {
     const dialogContent = {
-      imageIcon: successGif,
+      imageIcon: SuccessIcon, //successGif,
       isOpen: true,
       title: t("congratulations"),
       subTitle: type === workflowKeys.approve ? t("article_publish_popoup") : t("requested_action"),
