@@ -7,6 +7,8 @@ import {
   CreateArticle,
   CreateContent,
   TimeLineBlogs,
+  CommonPreview,
+  CommonContentRender,
 } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
@@ -37,6 +39,22 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import { useSelector } from "react-redux";
+import { RootState } from "@platformx/authoring-state";
+
+const CommonContentRenderComp: React.FC = () => {
+  const { currentContent } = useSelector((state: RootState) => state.content);
+  return (
+    <ProtectedRoute
+      name='content'
+      category='content'
+      subCategory='content-preview'
+      isSideBar={false}
+      isHeader={false}>
+      <CommonContentRender />
+    </ProtectedRoute>
+  );
+};
 
 export const routes: RouteConfig[] = [
   {
@@ -196,9 +214,14 @@ export const routes: RouteConfig[] = [
         subCategory='content-preview'
         isSideBar={false}
         isHeader={false}>
-        <ContentPreview />
+        <CommonPreview />
+        {/* <CommonContentRender /> */}
       </ProtectedRoute>
     ),
+  },
+  {
+    path: "/content/common/preview",
+    element: <CommonContentRenderComp />,
   },
   {
     path: "/content/create-course",
