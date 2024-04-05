@@ -5,6 +5,10 @@ import "./Description/Description.css";
 
 function DescriptionContentCard({ content }) {
   const { i18n } = useTranslation();
+  const imageURL =
+    content?.ContentType === "VOD"
+      ? content?.Thumbnail?.Url
+      : `${AUTH_INFO.gcpUri}/${AUTH_INFO.gcpBucketName}/${content?.Thumbnail?.Url}.${content?.Thumbnail?.ext}`;
   return (
     <Box>
       <div>
@@ -19,9 +23,9 @@ function DescriptionContentCard({ content }) {
             }}>
             {content.Thumbnail.Url !== "" ? (
               <img
-                src={`${AUTH_INFO.gcpUri}/${AUTH_INFO.gcpBucketName}/${content?.Thumbnail?.Url}.${content?.Thumbnail?.ext}`}
+                src={imageURL}
                 style={{ width: "100%", objectFit: "cover", height: "100%" }}
-                alt='img'
+                alt={content?.Thumbnail?.AltText ? content?.Thumbnail?.AltText : ""}
               />
             ) : (
               <div
