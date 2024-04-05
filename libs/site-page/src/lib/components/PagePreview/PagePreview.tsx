@@ -1,27 +1,17 @@
 import createCache from "@emotion/cache";
-// import { CacheProvider } from "@emotion/react";
 import weakMemoize from "@emotion/weak-memoize";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
-import { StylesProvider, jssPreset } from "@mui/styles";
 import { RootState } from "@platformx/authoring-state";
-import {
-  ThemeConstantForPrelemThemeBasedOnSite,
-  ThemeConstants,
-  getSubDomain,
-} from "@platformx/utilities";
+import { ThemeConstants } from "@platformx/utilities";
 import { Mapping } from "@platformx/x-prelems-library";
-import { create } from "jss";
 import React, { createRef, useEffect, useRef, useState } from "react";
-import Frame, { FrameContextConsumer } from "react-frame-component";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import PrelemTheme from "../../theme/prelemTheme";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { PrelemInstance } from "../utils/prelemTypes";
 import { useStyles } from "./PagePreview.styles";
 
@@ -37,11 +27,11 @@ Object.keys(Mapping).map((item) => {
 
 export const PagePreview = () => {
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
+  const { state: stateObj } = useLocation();
+  const { t } = useTranslation();
   const { device = "" } = useParams();
   const [deviceType, setDeviceType] = useState<string>("");
   // const [height, setHeight] = useState(400);
-  const iframeRef = React.useRef<any>();
   const { page } = useSelector((state: RootState) => state);
   const myRefs = useRef([]);
   const tabs = [
@@ -53,29 +43,12 @@ export const PagePreview = () => {
   myRefs.current = page?.prelemMetaArray?.map(
     (arrayTuple: PrelemInstance, i) => myRefs.current[i] ?? createRef(),
   );
-  const handleResize = (iframe: any) => {
-    if (iframe?.current?.contentDocument?.body?.scrollHeight > 100) {
-      // setHeight(window?.parent?.innerHeight - 48);
-    }
-  };
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
     const newCache = createCache({ container, key: "css", prepend: true });
     return newCache;
   });
-  const ThemeConstant = ThemeConstantForPrelemThemeBasedOnSite();
-  const initialContent = `<!DOCTYPE html><html><head>${document.head.innerHTML}<style>
-    #react-player video {
-      object-fit: fill !important;
-    }
-    .tweetWrapper iframe {
-      visibility: visible !important;
-      position: relative !important;
-    }
-    body {
-      overflow-x: hidden;
-    }
-    </style></head><body><div></div></body></html>`;
 
   useEffect(() => {
     if (device !== "") {
@@ -142,98 +115,13 @@ export const PagePreview = () => {
             overflow: "hidden",
           }}>
           {page && page?.prelemMetaArray && page?.prelemMetaArray.length && (
-            <Frame
-              width={deviceType === "window" ? "100%" : deviceType === "tablet" ? "100%" : "100%"}
-              height={window?.parent?.innerHeight}
-              initialContent={initialContent}
-              id='site-frame'
-              ref={iframeRef}
-              contentDidMount={() => handleResize(iframeRef)}
-              contentDidUpdate={() => handleResize(iframeRef)}
-              frameBorder='0'>
-              <FrameContextConsumer>
-                {({ document, window }) => {
-                  const jss = create({
-                    plugins: [...jssPreset().plugins],
-                    insertionPoint: document?.head,
-                  });
-                  return (
-                    <StylesProvider jss={jss}>
-                      {/* {({ document }: any) => {
-                  return (
-                    <CacheProvider value={memoizedCreateCacheWithContainer(document.head)}> */}
-                      <ThemeProvider theme={() => PrelemTheme(ThemeConstant)}>
-                        <Box
-                          sx={{
-                            margin: (themeOptions) => themeOptions.prelemMargin.value,
-                          }}>
-                          {page?.prelemMetaArray?.map((arrayTuple: PrelemInstance, i) => {
-                            if (!arrayTuple.IsHidden) {
-                              const PrelemComponent = mappingDynamicInstance[arrayTuple.PrelemId];
-                              const prelemSchema = {
-                                ...arrayTuple,
-                                isAuthoring: true,
-                              };
-                              const prelemContent = { ...prelemSchema?.content };
-                              const prelemAnalytics = {
-                                pageId: page?.pageSettings?.PageName,
-                                pageTitle: page?.pageModel?.Title,
-                                pageDesc: page?.pageSettings?.PageName,
-                                pageTags: page?.pageSettings?.PageTags,
-                                prelemID: arrayTuple.PrelemId,
-                                prelemTitle: arrayTuple.PrelemName,
-                                isAuthoring: true,
-                                prelemPosition: i,
-                              };
-                              const prelemAuthoringHelper = {
-                                isAuthoring: true,
-                                isSeoEnabled: true,
-                                isAnalyticsEnabled: true,
-                                innerRef: myRefs.current[i],
-                                isModalShow: true,
-                              };
-                              const prelemBaseEndpoint = {
-                                APIEndPoint: process.env.NX_API_URI,
-                                PublishEndPoint: `${getSubDomain()}/`,
-                                buttonBaseUrl: `${getSubDomain()}/`,
-                                device: deviceType,
-                                deliveryEndPoint: process.env.NX_DELIVERY_URI,
-                                language: i18n.language,
-                              };
-                              const secondaryArgs = {
-                                prelemBaseEndpoint,
-                                gcpUrl: process.env.NX_GCP_URL,
-                                bucketName: process.env.NX_BUCKET_NAME,
-                              };
-                              return (
-                                <Box
-                                  key={i}
-                                  sx={{
-                                    paddingTop: (themeOptions) =>
-                                      themeOptions.prelemPaddingTop.value,
-                                    paddingBottom: (themeOptions) =>
-                                      themeOptions.prelemPaddingBottom.value,
-                                  }}>
-                                  <PrelemComponent
-                                    content={prelemContent}
-                                    analytics={prelemAnalytics}
-                                    authoringHelper={prelemAuthoringHelper}
-                                    secondaryArgs={secondaryArgs}
-                                  />
-                                </Box>
-                              );
-                            }
-                          })}
-                        </Box>
-                      </ThemeProvider>
-                      {/* </CacheProvider>
-                  );
-                }} */}
-                    </StylesProvider>
-                  );
-                }}
-              </FrameContextConsumer>
-            </Frame>
+            <iframe
+              className='prelemResponsivePreview'
+              title='page preview'
+              width='100%'
+              style={{ height: `calc(100vh - 170px)` }}
+              frameBorder='0'
+              src={`${stateObj?.prevPageUrl}&preview=true`}></iframe>
           )}
         </Box>
       </Box>

@@ -280,7 +280,7 @@ const Quiz = ({
         );
       }
     } else {
-      if (Url.search("dspace") !== -1) {
+      if (Url?.search("dspace") !== -1) {
         //normal dspace url
         returnUrl = Url;
       }

@@ -11,7 +11,7 @@ data:
   NEXT_CLIENT_ID: nextpublish
   NEXT_GRANT_TYPE: authorization_code
   NEXT_REALM: platform-x-publish
-  NEXT_LOGOUT: https://qa.api.hcl-x.com/platform-x-publish/auth/logout
+  NEXT_LOGOUT: https://qa.api.hcl-x.com/platform-x/auth/logout
   NEXT_AUTH: https://qa.idp.hcl-x.com/auth/realms/platform-x-publish/protocol/openid-connect/auth?client_id=nextpublish&response_type=code&redirect_uri=
   NEXT_SESSION_VERIFY: https://qa.api-publish.hcl-x.com/platform-x-publish/auth/verify-session
   NEXT_SESSION: https://qa.api-publish.hcl-x.com/platform-x-publish/auth/session

@@ -140,3 +140,10 @@ export const isPublishVodHandle = (vodRef) => {
   }
   return true;
 };
+
+export const removeVODDuplicateTag = (videoTags) => {
+  if (videoTags) {
+    return [...new Set(videoTags)];
+  }
+  return [];
+};
