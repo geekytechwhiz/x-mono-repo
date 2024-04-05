@@ -682,6 +682,7 @@ export const snowplowSchemaUrl = () => {
     clickImpressionSchema: publicRuntimeConfig?.NEXT_SNOWPLOW_CLICK_IMPRESSIONS,
     userRegisterImpressionSchema: publicRuntimeConfig?.NEXT_SNOWPLOW_REGISTER_USER_IMPRESSIONS,
     environment: publicRuntimeConfig?.NEXT_ELASTIC_APM_ENVIRONMENT,
+    placeOrderImpressionSchema: publicRuntimeConfig?.NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS,
   };
 };
 

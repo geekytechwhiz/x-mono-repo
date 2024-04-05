@@ -35,6 +35,7 @@ const Header = ({
   gifPlaying,
   createComment,
   setEnableWorkflowHistory,
+  iconDisabled,
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -63,7 +64,12 @@ const Header = ({
           <ArrowBack />
         </Button>
       </Box>
-      <PreviewTabsButton handleChange={handleChange} value={value} previewStatus={previewStatus} />
+      <PreviewTabsButton
+        iconDisabled={iconDisabled}
+        handleChange={handleChange}
+        value={value}
+        previewStatus={previewStatus}
+      />
 
       <Box className={classes.rightwp}>
         {comments?.length > 0 ? (

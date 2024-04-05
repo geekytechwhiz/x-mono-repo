@@ -51,6 +51,7 @@ const Prelem = ({
   showIconsState,
   eComContentGalleryHandle,
   onOpenContentType,
+  isPreviewPage,
 }: any) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -695,7 +696,7 @@ const Prelem = ({
         position: "relative",
       }}>
       <Box
-        className={classes.editPageComonBox}
+        className={`${classes.editPageComonBox} ${isPreviewPage && classes.previewPagePrelem}`}
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseLeave}>
         <CssBaseline />

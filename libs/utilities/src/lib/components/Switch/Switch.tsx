@@ -77,6 +77,7 @@ interface BasicSwitchProps {
   disabled?: any;
   onChange?: any;
   checked?: any;
+  basicSwitchRootClassName?: string;
 }
 function BasicSwitch(props: BasicSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
@@ -86,9 +87,11 @@ function BasicSwitch(props: BasicSwitchProps) {
     "Switch-disabled": disabled,
     "Switch-focusVisible": focusVisible,
   };
-
   return (
-    <BasicSwitchRoot className={clsx(stateClasses)} color={props.color} bgcolor={props.bgcolor}>
+    <BasicSwitchRoot
+      className={`${clsx(stateClasses)} ${props.basicSwitchRootClassName}`}
+      color={props.color}
+      bgcolor={props.bgcolor}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
       <BasicSwitchInput {...getInputProps()} aria-label='Demo switch' />
     </BasicSwitchRoot>

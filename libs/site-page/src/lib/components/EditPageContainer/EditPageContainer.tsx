@@ -1,6 +1,6 @@
 /* eslint-disable require-await */
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { Box, CircularProgress, Tab, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, CircularProgress, Tab, Typography, useMediaQuery } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import {
   FETCH_PRELEM_VALIDATION,
@@ -174,7 +174,7 @@ const EditPageContainer = () => {
   const [openPublishModal, setOpenPublishModal] = useState<boolean>(false);
   const [showWorkflowSubmit, setShowWorkflowSubmit] = useState<boolean>(false);
   const { canAccessAction } = useAccess();
-
+  const isPreviewPage = searchParams.get("preview") || false;
   const handleChangeTab = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -627,7 +627,9 @@ const EditPageContainer = () => {
     };
     handleImpression(previewObj.eventType, previewObj);
     setPreviewType(device);
-    navigate(`/preview-page/${device}`);
+    navigate(`/preview-page/${device}`, {
+      state: { prevPageUrl: window?.location?.href },
+    });
   };
 
   const addSectionTouchPointClick = (prelemPosition: string, position: string) => {
@@ -1060,10 +1062,10 @@ const EditPageContainer = () => {
     callFnsCase("PUBLISH");
   };
 
-  const theme = useTheme();
+  // const theme = useTheme();
   const mobileHeader = useMediaQuery(`@media(max-width:${ThemeConstants.EM - 1}px)`);
   const webHeader = useMediaQuery(`@media(min-width:${ThemeConstants.EM - 1}px)`);
-  const RightBoxWeb = useMediaQuery(theme.breakpoints.up("sm"));
+  // const RightBoxWeb = useMediaQuery(theme.breakpoints.up("sm"));
   const arr = searchParams?.get("page")?.split("/") || [];
   const pathnm = `${arr[arr.length - 1]}`; //`${arr[6]}/${arr[7]}`;
   //create comment
@@ -1085,7 +1087,7 @@ const EditPageContainer = () => {
   let count = 0;
   return (
     <>
-      {mobileHeader && (
+      {mobileHeader && !isPreviewPage && (
         <HeaderMobile
           lastmodifiedDate={page?.pageModel.Page_LastModificationDate}
           value={previewType}
@@ -1196,376 +1198,378 @@ const EditPageContainer = () => {
                   contentType={data[currentPrelemIndx]?.content?.PrelemContentType}
                 />
               ))}
+            {!isPreviewPage && (
+              <LeftBox>
+                <Box className={classes.pageSettingBox}>
+                  {/* Page Settings */}
+                  {pageId === PageSettingListData[0].id && <PageInfo setPageId={setPageId} />}
+                  {pageId === PageSettingListData[1].id && <SEOBasics setPageId={setPageId} />}
+                  {pageId === PageSettingListData[2].id && <SocialShare setPageId={setPageId} />}
+                  {pageId === PageSettingListData[3].id && <Analytics setPageId={setPageId} />}
+                  {pageId === PageSettingListData[4].id && <Schedule setPageId={setPageId} />}
 
-            <LeftBox>
-              <Box className={classes.pageSettingBox}>
-                {/* Page Settings */}
-                {pageId === PageSettingListData[0].id && <PageInfo setPageId={setPageId} />}
-                {pageId === PageSettingListData[1].id && <SEOBasics setPageId={setPageId} />}
-                {pageId === PageSettingListData[2].id && <SocialShare setPageId={setPageId} />}
-                {pageId === PageSettingListData[3].id && <Analytics setPageId={setPageId} />}
-                {pageId === PageSettingListData[4].id && <Schedule setPageId={setPageId} />}
+                  {/* Prelem Settings */}
+                  {PrelemSettingCardList.includes(pageId) && (
+                    <PrelemSettingsCard
+                      selectedPrelemIndex={prelemIndex}
+                      pageId={pageId}
+                      setPageId={setPageId}
+                      updatePrelemContent={updatePrelemContent}
+                    />
+                  )}
+                </Box>
 
-                {/* Prelem Settings */}
-                {PrelemSettingCardList.includes(pageId) && (
-                  <PrelemSettingsCard
-                    selectedPrelemIndex={prelemIndex}
-                    pageId={pageId}
-                    setPageId={setPageId}
-                    updatePrelemContent={updatePrelemContent}
-                  />
-                )}
-              </Box>
-
-              {pageId === "pageSetting" && (
-                <Box className={classes.PageSettingMenuTabs}>
-                  <TabContext value={value}>
-                    <Box
-                      className={classes.tabButtonsBottom}
-                      sx={{ borderBottom: 1, borderColor: "divider" }}>
-                      {DesignWeb && (
-                        <TabList
-                          TabIndicatorProps={{
-                            style: { display: "none" },
-                          }}
-                          className={classes.TabButtons}
-                          onChange={handleChangeTab}
-                          aria-label='lab API tabs example'>
-                          (
-                          <Tab
-                            icon={<img src={EditIcon} alt='icon' />}
-                            iconPosition='start'
-                            label='Design'
-                            value='Page_Design'
-                          />
-                          )
-                          {DesignWeb && (
+                {pageId === "pageSetting" && (
+                  <Box className={classes.PageSettingMenuTabs}>
+                    <TabContext value={value}>
+                      <Box
+                        className={classes.tabButtonsBottom}
+                        sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        {DesignWeb && (
+                          <TabList
+                            TabIndicatorProps={{
+                              style: { display: "none" },
+                            }}
+                            className={classes.TabButtons}
+                            onChange={handleChangeTab}
+                            aria-label='lab API tabs example'>
+                            (
                             <Tab
-                              icon={<img src={SettingIcon} alt='icon' />}
+                              icon={<img src={EditIcon} alt='icon' />}
                               iconPosition='start'
-                              label='Page Setting'
-                              value='Page_Setting'
+                              label='Design'
+                              value='Page_Design'
                             />
-                          )}
-                        </TabList>
-                      )}
+                            )
+                            {DesignWeb && (
+                              <Tab
+                                icon={<img src={SettingIcon} alt='icon' />}
+                                iconPosition='start'
+                                label='Page Setting'
+                                value='Page_Setting'
+                              />
+                            )}
+                          </TabList>
+                        )}
 
-                      {!DesignWeb && <Typography variant='p3semibold'>Page Setting</Typography>}
-                    </Box>
-                    {DesignTab && (
-                      <TabPanel
-                        sx={{ padding: 0 }}
-                        className={classes.tabPanelSettingPage}
-                        value='Page_Design'>
-                        {loader ? (
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              minHeight: "calc(100vh - 250px)",
-                              width: "100%",
-                            }}>
-                            <CircularProgress sx={{ color: ThemeConstants.PRIMARY_MAIN_COLOR }} />
-                          </Box>
-                        ) : page?.prelemMetaArray.length > 0 ? (
-                          <Box
-                            className={classes.addEditPrelemBox}
-                            sx={{
-                              overflowY: selectedPrelemEditState
-                                ? { xs: "auto", em: "hidden" }
-                                : "auto",
-                            }}>
-                            <ThemeProvider theme={LightTheme}>
-                              <Box className={classes.innerBoxWeb}>
-                                {page?.prelemMetaArray?.map((prelemData: PrelemInstance, i) => {
-                                  const showIconsState = {
-                                    showCreate: true,
-                                    showVisible: prelemData.IsHidden,
-                                    showCopy: true,
-                                    showUp: i === 0 ? false : true,
-                                    showDown: i === page?.prelemMetaArray.length - 1 ? false : true,
-                                    showReset: prelemData.IsModified,
-                                    showDelete: true,
-                                    showSettings: true,
-                                  };
-                                  const showAddSection = {
-                                    showAtTop: true,
-                                    showAtBottom:
-                                      i === page?.prelemMetaArray.length - 1 ? true : false,
-                                  };
-                                  return (
-                                    <Prelem
-                                      onOpenContentType={onOpenContentType}
-                                      count={count++}
-                                      key={`card${i}`}
-                                      prelemEditState={
-                                        selectedPrelemEditMode === i
-                                          ? selectedPrelemEditState
-                                          : false
-                                      }
-                                      showIconsState={showIconsState}
-                                      prelemData={prelemData}
-                                      index={i}
-                                      handleOperationClick={handleOperations}
-                                      setPageId={setPageId}
-                                      onToggleContentGallery={onToggleContentGallery}
-                                      contentGalleryStatus={contentGalleryStatus}
-                                      eComContentGalleryHandle={eComContentGalleryHandle}
-                                      handlePrelemEditSubmit={(
-                                        schemaArray,
-                                        prelemRef,
-                                        index,
-                                        buttonsKeysPopulatedObj,
-                                      ) =>
-                                        handleSetSelectedPrelemEditState(
+                        {!DesignWeb && <Typography variant='p3semibold'>Page Setting</Typography>}
+                      </Box>
+                      {DesignTab && (
+                        <TabPanel
+                          sx={{ padding: 0 }}
+                          className={classes.tabPanelSettingPage}
+                          value='Page_Design'>
+                          {loader ? (
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                minHeight: "calc(100vh - 250px)",
+                                width: "100%",
+                              }}>
+                              <CircularProgress sx={{ color: ThemeConstants.PRIMARY_MAIN_COLOR }} />
+                            </Box>
+                          ) : page?.prelemMetaArray.length > 0 ? (
+                            <Box
+                              className={classes.addEditPrelemBox}
+                              sx={{
+                                overflowY: selectedPrelemEditState
+                                  ? { xs: "auto", em: "hidden" }
+                                  : "auto",
+                              }}>
+                              <ThemeProvider theme={LightTheme}>
+                                <Box className={classes.innerBoxWeb}>
+                                  {page?.prelemMetaArray?.map((prelemData: PrelemInstance, i) => {
+                                    const showIconsState = {
+                                      showCreate: true,
+                                      showVisible: prelemData.IsHidden,
+                                      showCopy: true,
+                                      showUp: i === 0 ? false : true,
+                                      showDown:
+                                        i === page?.prelemMetaArray.length - 1 ? false : true,
+                                      showReset: prelemData.IsModified,
+                                      showDelete: true,
+                                      showSettings: true,
+                                    };
+                                    const showAddSection = {
+                                      showAtTop: true,
+                                      showAtBottom:
+                                        i === page?.prelemMetaArray.length - 1 ? true : false,
+                                    };
+                                    return (
+                                      <Prelem
+                                        onOpenContentType={onOpenContentType}
+                                        count={count++}
+                                        key={`card${i}`}
+                                        prelemEditState={
+                                          selectedPrelemEditMode === i
+                                            ? selectedPrelemEditState
+                                            : false
+                                        }
+                                        showIconsState={showIconsState}
+                                        prelemData={prelemData}
+                                        index={i}
+                                        handleOperationClick={handleOperations}
+                                        setPageId={setPageId}
+                                        onToggleContentGallery={onToggleContentGallery}
+                                        contentGalleryStatus={contentGalleryStatus}
+                                        eComContentGalleryHandle={eComContentGalleryHandle}
+                                        handlePrelemEditSubmit={(
                                           schemaArray,
                                           prelemRef,
                                           index,
                                           buttonsKeysPopulatedObj,
-                                        )
-                                      }
-                                      selectedContentForButton={
-                                        selectedContentEditorialPath.current
-                                      }
-                                      prelemDataReset={
-                                        prelemResetIndex === i ? prelemDataReset : false
-                                      }
-                                      showAddSection={showAddSection}
-                                      addSectionTouchPointClick={addSectionTouchPointClick}
-                                    />
-                                  );
-                                })}
-                              </Box>
-                            </ThemeProvider>
-                          </Box>
-                        ) : (
-                          <Box
-                            component='div'
-                            sx={{
-                              width: "100%",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              minHeight: {
-                                xs: "320px",
-                                sm: "320px",
-                                md: "320px",
-                                lg: "512px",
-                              },
-                              backgroundColor: "#ffffff",
-                              position: "relative",
-                            }}>
-                            <Box className={classes.emptWpBoxInner}>
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  justifyContent: "center",
-                                }}>
-                                <EditPageIcons
-                                  styleObject={{
-                                    color: "#4B9EF9",
-                                    display: "block",
-                                    padding: 0,
-                                    maxHeight: "50px",
-                                    maxWidth: "50px",
-                                    "& svg": {
-                                      fontSize: "50px",
-                                    },
-                                  }}
-                                  nameIcon='add'
-                                  enable
-                                  listIndx='top'
-                                  handleClick={() => routeChange()}
-                                />
-                              </Box>
-                              <Typography variant='p3regular' mb='10px' mt='10px'>
-                                {t("create_first_section_now")}
-                              </Typography>
-                              <Typography
-                                sx={{ color: "#4B9EF9", cursor: "pointer" }}
-                                onClick={() => routeChange()}>
-                                {t("add_prelem")}
-                              </Typography>
+                                        ) =>
+                                          handleSetSelectedPrelemEditState(
+                                            schemaArray,
+                                            prelemRef,
+                                            index,
+                                            buttonsKeysPopulatedObj,
+                                          )
+                                        }
+                                        selectedContentForButton={
+                                          selectedContentEditorialPath.current
+                                        }
+                                        prelemDataReset={
+                                          prelemResetIndex === i ? prelemDataReset : false
+                                        }
+                                        showAddSection={showAddSection}
+                                        addSectionTouchPointClick={addSectionTouchPointClick}
+                                      />
+                                    );
+                                  })}
+                                </Box>
+                              </ThemeProvider>
                             </Box>
-                          </Box>
-                        )}
+                          ) : (
+                            <Box
+                              component='div'
+                              sx={{
+                                width: "100%",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                minHeight: {
+                                  xs: "320px",
+                                  sm: "320px",
+                                  md: "320px",
+                                  lg: "512px",
+                                },
+                                backgroundColor: "#ffffff",
+                                position: "relative",
+                              }}>
+                              <Box className={classes.emptWpBoxInner}>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                  }}>
+                                  <EditPageIcons
+                                    styleObject={{
+                                      color: "#4B9EF9",
+                                      display: "block",
+                                      padding: 0,
+                                      maxHeight: "50px",
+                                      maxWidth: "50px",
+                                      "& svg": {
+                                        fontSize: "50px",
+                                      },
+                                    }}
+                                    nameIcon='add'
+                                    enable
+                                    listIndx='top'
+                                    handleClick={() => routeChange()}
+                                  />
+                                </Box>
+                                <Typography variant='p3regular' mb='10px' mt='10px'>
+                                  {t("create_first_section_now")}
+                                </Typography>
+                                <Typography
+                                  sx={{ color: "#4B9EF9", cursor: "pointer" }}
+                                  onClick={() => routeChange()}>
+                                  {t("add_prelem")}
+                                </Typography>
+                              </Box>
+                            </Box>
+                          )}
+                        </TabPanel>
+                      )}
+                      <TabPanel
+                        sx={{ padding: 0 }}
+                        className={classes.tabPanelSettingPage}
+                        value='Page_Setting'>
+                        <PageSettingList setPageId={setPageId} />
                       </TabPanel>
-                    )}
-                    <TabPanel
-                      sx={{ padding: 0 }}
-                      className={classes.tabPanelSettingPage}
-                      value='Page_Setting'>
-                      <PageSettingList setPageId={setPageId} />
-                    </TabPanel>
-                  </TabContext>
-                </Box>
-              )}
-              {pageId === "prelemSetting" && (
-                <PrelemSettingMenu setPageId={setPageId} selectedPrelemIndex={prelemIndex} />
-              )}
-              {pageId === "prelemInfo" && prelemIndex !== -1 && (
-                <PrelemInfo setPageId={setPageId} selectedPrelemIndex={prelemIndex} />
-              )}
-            </LeftBox>
-            {RightBoxWeb && (
-              <RightBox>
-                {webHeader && (
-                  <Header
-                    lastmodifiedDate={page?.pageModel.Page_LastModificationDate}
-                    gifPlaying={gifPlaying}
-                    value={previewType}
-                    handleChange={handleChange}
-                    handleBack={handleBack}
-                    isSaveButtonEnabled={
-                      canAccessAction(CATEGORY_PAGE, "", "Create") ? isSaveButtonEnabled : false
-                    }
-                    isPublishButtonEnabled={
-                      canAccessAction(CATEGORY_PAGE, "", "publish")
-                        ? Object.values(page?.prelemMetaArray).every((v: any) => v.IsHidden)
-                          ? false
-                          : true
-                        : false
-                    }
-                    previewStatus={
-                      Object.values(page?.prelemMetaArray).every((v: any) => v.IsHidden) ||
-                      page?.prelemMetaArray.length === 0
+                    </TabContext>
+                  </Box>
+                )}
+                {pageId === "prelemSetting" && (
+                  <PrelemSettingMenu setPageId={setPageId} selectedPrelemIndex={prelemIndex} />
+                )}
+                {pageId === "prelemInfo" && prelemIndex !== -1 && (
+                  <PrelemInfo setPageId={setPageId} selectedPrelemIndex={prelemIndex} />
+                )}
+              </LeftBox>
+            )}
+            <RightBox>
+              {webHeader && !isPreviewPage && (
+                <Header
+                  lastmodifiedDate={page?.pageModel.Page_LastModificationDate}
+                  gifPlaying={gifPlaying}
+                  value={previewType}
+                  handleChange={handleChange}
+                  handleBack={handleBack}
+                  isSaveButtonEnabled={
+                    canAccessAction(CATEGORY_PAGE, "", "Create") ? isSaveButtonEnabled : false
+                  }
+                  iconDisabled={!saveStatus.current}
+                  isPublishButtonEnabled={
+                    canAccessAction(CATEGORY_PAGE, "", "publish")
+                      ? Object.values(page?.prelemMetaArray).every((v: any) => v.IsHidden)
                         ? false
                         : true
-                    }
-                    handleSaveClick={savePage}
-                    handlePublishClick={() => onPublishClick()}
-                    workflow={workflow}
-                    timerState={timerState}
-                    prelemEditState={selectedPrelemEditState}
-                    setEnableWorkflowHistory={setEnableWorkflowHistory}
-                    createComment={createComment}
-                  />
-                )}
+                      : false
+                  }
+                  previewStatus={
+                    Object.values(page?.prelemMetaArray).every((v: any) => v.IsHidden) ||
+                    page?.prelemMetaArray.length === 0
+                      ? false
+                      : true
+                  }
+                  handleSaveClick={savePage}
+                  handlePublishClick={() => onPublishClick()}
+                  workflow={workflow}
+                  timerState={timerState}
+                  prelemEditState={selectedPrelemEditState}
+                  setEnableWorkflowHistory={setEnableWorkflowHistory}
+                  createComment={createComment}
+                />
+              )}
 
-                {loader ? (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      minHeight: "calc(100vh - 250px)",
-                      width: "100%",
-                    }}>
-                    <CircularProgress sx={{ color: ThemeConstants.PRIMARY_MAIN_COLOR }} />
-                  </Box>
-                ) : page?.prelemMetaArray.length > 0 ? (
-                  <Box
-                    className={classes.addEditPrelemBox}
-                    sx={{
-                      overflowY: selectedPrelemEditState ? "hidden" : "scroll",
-                    }}>
-                    <ThemeProvider theme={LightTheme}>
-                      <Box className={classes.innerBoxWeb}>
-                        {page?.prelemMetaArray?.map((prelemData: PrelemInstance, i) => {
-                          const showIconsState = {
-                            showCreate: true,
-                            showVisible: prelemData.IsHidden,
-                            showCopy: true,
-                            showUp: i === 0 ? false : true,
-                            showDown: i === page?.prelemMetaArray.length - 1 ? false : true,
-                            showReset: prelemData.IsModified,
-                            showDelete: true,
-                            showSettings: true,
-                          };
-                          const showAddSection = {
-                            showAtTop: true,
-                            showAtBottom: i === page?.prelemMetaArray.length - 1 ? true : false,
-                          };
-                          return (
-                            <Prelem
-                              onOpenContentType={onOpenContentType}
-                              count={count++}
-                              key={`card${i}`}
-                              prelemEditState={
-                                selectedPrelemEditMode === i ? selectedPrelemEditState : false
-                              }
-                              showIconsState={showIconsState}
-                              prelemData={prelemData}
-                              index={i}
-                              handleOperationClick={handleOperations}
-                              setPageId={setPageId}
-                              onToggleContentGallery={onToggleContentGallery}
-                              contentGalleryStatus={contentGalleryStatus}
-                              eComContentGalleryHandle={eComContentGalleryHandle}
-                              handlePrelemEditSubmit={(
+              {loader ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minHeight: "calc(100vh - 250px)",
+                    width: "100%",
+                  }}>
+                  <CircularProgress sx={{ color: ThemeConstants.PRIMARY_MAIN_COLOR }} />
+                </Box>
+              ) : page?.prelemMetaArray.length > 0 ? (
+                <Box
+                  className={`${classes.addEditPrelemBox} ${isPreviewPage && classes.previewPage}`}
+                  sx={{
+                    overflowY: selectedPrelemEditState ? "hidden" : "scroll",
+                  }}>
+                  <ThemeProvider theme={LightTheme}>
+                    <Box className={classes.innerBoxWeb}>
+                      {page?.prelemMetaArray?.map((prelemData: PrelemInstance, i) => {
+                        const showIconsState = {
+                          showCreate: true,
+                          showVisible: prelemData.IsHidden,
+                          showCopy: true,
+                          showUp: i === 0 ? false : true,
+                          showDown: i === page?.prelemMetaArray.length - 1 ? false : true,
+                          showReset: prelemData.IsModified,
+                          showDelete: true,
+                          showSettings: true,
+                        };
+                        const showAddSection = {
+                          showAtTop: true,
+                          showAtBottom: i === page?.prelemMetaArray.length - 1 ? true : false,
+                        };
+                        return (
+                          <Prelem
+                            onOpenContentType={onOpenContentType}
+                            count={count++}
+                            key={`card${i}`}
+                            prelemEditState={
+                              selectedPrelemEditMode === i ? selectedPrelemEditState : false
+                            }
+                            showIconsState={showIconsState}
+                            prelemData={prelemData}
+                            index={i}
+                            handleOperationClick={handleOperations}
+                            setPageId={setPageId}
+                            onToggleContentGallery={onToggleContentGallery}
+                            contentGalleryStatus={contentGalleryStatus}
+                            eComContentGalleryHandle={eComContentGalleryHandle}
+                            handlePrelemEditSubmit={(
+                              schemaArray,
+                              prelemRef,
+                              index,
+                              buttonsKeysPopulatedObj,
+                            ) =>
+                              handleSetSelectedPrelemEditState(
                                 schemaArray,
                                 prelemRef,
                                 index,
                                 buttonsKeysPopulatedObj,
-                              ) =>
-                                handleSetSelectedPrelemEditState(
-                                  schemaArray,
-                                  prelemRef,
-                                  index,
-                                  buttonsKeysPopulatedObj,
-                                )
-                              }
-                              selectedContentForButton={selectedContentEditorialPath.current}
-                              prelemDataReset={prelemResetIndex === i ? prelemDataReset : false}
-                              showAddSection={showAddSection}
-                              addSectionTouchPointClick={addSectionTouchPointClick}
-                            />
-                          );
-                        })}
-                      </Box>
-                    </ThemeProvider>
-                  </Box>
-                ) : (
-                  <Box
-                    component='div'
-                    sx={{
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      minHeight: {
-                        xs: "320px",
-                        sm: "320px",
-                        md: "320px",
-                        lg: "512px",
-                      },
-                      backgroundColor: "#ffffff",
-                      position: "relative",
-                    }}>
-                    <Box className={classes.emptWpBoxInner}>
-                      <Box sx={{ display: "flex", justifyContent: "center" }}>
-                        <EditPageIcons
-                          styleObject={{
-                            color: "#4B9EF9",
-                            display: "block",
-                            padding: 0,
-                            maxHeight: "50px",
-                            maxWidth: "50px",
-                            "& svg": {
-                              fontSize: "50px",
-                            },
-                          }}
-                          nameIcon='add'
-                          enable
-                          listIndx='top'
-                          handleClick={() => routeChange()}
-                        />
-                      </Box>
-                      <Typography variant='p3regular' mb='10px' mt='10px'>
-                        {t("create_first_section_now")}
-                      </Typography>
-                      <Typography
-                        variant='p3regular'
-                        sx={{ color: "#4B9EF9", cursor: "pointer" }}
-                        onClick={() => routeChange()}>
-                        {t("add_prelem")}
-                      </Typography>
+                              )
+                            }
+                            selectedContentForButton={selectedContentEditorialPath.current}
+                            prelemDataReset={prelemResetIndex === i ? prelemDataReset : false}
+                            showAddSection={showAddSection}
+                            addSectionTouchPointClick={addSectionTouchPointClick}
+                            isPreviewPage={isPreviewPage}
+                          />
+                        );
+                      })}
                     </Box>
+                  </ThemeProvider>
+                </Box>
+              ) : (
+                <Box
+                  component='div'
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minHeight: {
+                      xs: "320px",
+                      sm: "320px",
+                      md: "320px",
+                      lg: "512px",
+                    },
+                    backgroundColor: "#ffffff",
+                    position: "relative",
+                  }}>
+                  <Box className={classes.emptWpBoxInner}>
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                      <EditPageIcons
+                        styleObject={{
+                          color: "#4B9EF9",
+                          display: "block",
+                          padding: 0,
+                          maxHeight: "50px",
+                          maxWidth: "50px",
+                          "& svg": {
+                            fontSize: "50px",
+                          },
+                        }}
+                        nameIcon='add'
+                        enable
+                        listIndx='top'
+                        handleClick={() => routeChange()}
+                      />
+                    </Box>
+                    <Typography variant='p3regular' mb='10px' mt='10px'>
+                      {t("create_first_section_now")}
+                    </Typography>
+                    <Typography
+                      variant='p3regular'
+                      sx={{ color: "#4B9EF9", cursor: "pointer" }}
+                      onClick={() => routeChange()}>
+                      {t("add_prelem")}
+                    </Typography>
                   </Box>
-                )}
-              </RightBox>
-            )}
+                </Box>
+              )}
+            </RightBox>
           </PageLayout>
         </Box>
       )}

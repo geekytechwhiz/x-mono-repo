@@ -12,7 +12,7 @@ data:
   NEXT_GRANT_TYPE: authorization_code
   NEXT_REALM: platform-x-publish
   NEXT_LOGOUT: https://qa.api.hcl-x.com/platform-x/auth/logout
-  NEXT_AUTH: https://qa.idp.hcl-x.com/auth/realms/platform-x/protocol/openid-connect/auth?client_id=react&response_type=code&redirect_uri=
+  NEXT_AUTH: https://qa.idp.hcl-x.com/auth/realms/platform-x-publish/protocol/openid-connect/auth?client_id=nextpublish&response_type=code&redirect_uri=
   NEXT_SESSION_VERIFY: https://qa.api-publish.hcl-x.com/platform-x-publish/auth/verify-session
   NEXT_SESSION: https://qa.api-publish.hcl-x.com/platform-x-publish/auth/session
   NEXT_GEOLOCATION_API_URL: https://api.ipgeolocation.io/ipgeo/
@@ -31,6 +31,7 @@ data:
   NEXT_LOYALTY_PORTAL_END_POINT: https://loyalty.portal.hcl-x.com/
   NEXT_LOYALTY_END_POINT: https://loyalty.backend.hcl-x.com/
   NEXT_DELIVERY_ENGINE: https://qa.delivery.hcl-x.com/platform-x/delivery-engine
+  NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS: iglu:com.hcl-x/ecommerce-schema/jsonschema/1-0-2
 kind: ConfigMap
 metadata:
   name: hep-user-experience-ui-config

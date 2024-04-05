@@ -26,6 +26,8 @@ import {
   placeOrder,
   addPaymentMethod,
   proceedToBillingAddress,
+  IMPRESSIONS,
+  stringifyLineItem,
 } from "../helperEcommerce";
 import Confirmation from "../Common/Confirmation/Confirmation";
 import ProductLoader from "../ProductListing/ProductLoader";
@@ -41,6 +43,7 @@ import RadioGroupItems from "../../../components/RadioButton/RadioGroupItems";
 // import AddessPreview from "../ShippingDetails/AddessPreview/AddessPreview";
 import ToastContainerHandle from "../../../components/ToastContainer/ToastContainerHandle";
 import ToastService from "../../../components/ToastContainer/ToastService";
+import { usePlaceOrderImpression } from "../../../components/ImpressionHooks/PlaceOrderImpressionHook";
 
 type PaymentDetailProps = {
   secondaryArgs: any;
@@ -67,7 +70,7 @@ const PaymentDetail = ({
   const rewardPoint = useRef("");
   const { t, i18n } = useTranslation();
   const userId = localStorage.getItem("userId");
-
+  const { placeOrderImpression } = usePlaceOrderImpression();
   const arrBilling = [
     {
       name: t("same_as_shipping_address"),
@@ -210,7 +213,11 @@ const PaymentDetail = ({
         setLoading(false);
 
         if (statusCode === 200) {
-          const { total_price = "" } = nullToObject(addedCartDetails);
+          const {
+            total_price = "",
+            currency_code = IMPRESSIONS.NA,
+            line_item = [],
+          } = nullToObject(addedCartDetails);
           const responseForPaymentMethod = await placeOrder({
             secondaryArgs,
             cartId,
@@ -233,6 +240,29 @@ const PaymentDetail = ({
             rewardPoint.current = reward_data?.LoyaltydPoints || "";
             orderId.current = order_number;
             setConfirm(true);
+            const {
+              city = IMPRESSIONS.NA,
+              email = IMPRESSIONS.NA,
+              lastName = IMPRESSIONS.NA,
+              country = IMPRESSIONS.NA,
+              firstName = IMPRESSIONS.NA,
+              state = IMPRESSIONS.NA,
+            } = details;
+            const placeOrderSnowplowObj = {
+              orderNumber: +order_number,
+              customerEmail: email,
+              totalGross: +total_price || IMPRESSIONS.ZERO,
+              firstName,
+              lastName,
+              city,
+              state,
+              country,
+              currencyCode: currency_code,
+              centAmount: +total_price || IMPRESSIONS.ZERO,
+              lineItems: stringifyLineItem(line_item),
+              campaignId: IMPRESSIONS.NA,
+            };
+            placeOrderImpression(secondaryArgs, placeOrderSnowplowObj);
             localStorage.removeItem("ecommerceCartId");
             cartCountUpdate(null); //cart count item empty
           } else {

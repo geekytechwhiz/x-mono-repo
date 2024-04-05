@@ -191,41 +191,7 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
         setLoading(false);
       });
   };
-  //Check Article status before calling Social Share Schedule API
-  const getArticleStatus = async (articleName: any, scheduleInput: any, sharetype: any) => {
-    setLoading(true);
-    if (articleName) {
-      await runFetchArticleModel({
-        variables: { folder: "article", path: articleName },
-      })
-        .then((resp) => {
-          if (resp?.data?.authoring_getCmsArticleByPath) {
-            const articleObj = resp?.data?.authoring_getCmsArticleByPath;
-            if (articleObj?.Page_State === "PUBLISH" || articleObj?.Page_State === "DRAFT") {
-              socialSchedule(scheduleInput, sharetype);
-            } else {
-              ShowToastError("Cannot share a non-published item. Please publish it and try again.");
-              onDoneClick();
-              setLoading(false);
-            }
-          } else {
-            ShowToastError("Cannot share a non-published item. Please publish it and try again.");
-            onDoneClick();
-            setLoading(false);
-          }
-        })
-        .catch((err) => {
-          //console.log("runFetchErr ", JSON.stringify(err, null, 2));
-          ShowToastError(t("api_error_toast"));
-          onDoneClick();
-          setLoading(false);
-        });
-    } else {
-      ShowToastError(t("api_error_toast"));
-      onDoneClick();
-      setLoading(false);
-    }
-  };
+
   //Check Poll, Quiz and Event status before calling Social Share Schedule API
   const getContentStatus = (type: any, contentPath: any, scheduleInput: any, sharetype: any) => {
     setLoading(true);
@@ -353,8 +319,8 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
           content_type: selectedItem?.contentType
             ? selectedItem?.contentType
             : contentType === "video"
-            ? "VOD"
-            : contentType,
+              ? "VOD"
+              : contentType,
           item_path: selectedItem?.Page,
         },
       };
@@ -369,8 +335,6 @@ const SocialShareSteps = ({ selectedItem, contentType, onClickingDone, onDoneCli
       } else {
         if (contentType === "video") {
           getVodStatus(selectedItem?.Page, scheduleInput, sharetype);
-        } else if (contentType === "article") {
-          getArticleStatus(selectedItem?.Page, scheduleInput, sharetype);
         } else {
           getContentStatus(contentType, selectedItem?.Page, scheduleInput, sharetype);
         }

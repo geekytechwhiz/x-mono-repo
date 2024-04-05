@@ -54,7 +54,12 @@ const Header = ({ handleChange, value }) => {
           {ifTab && t("back")}
         </Button>
       </Box>
-      <PreviewTabsButton handleChange={handleChange} value={value} previewStatus={true} />
+      <PreviewTabsButton
+        handleChange={handleChange}
+        value={value}
+        previewStatus={true}
+        iconDisabled={false}
+      />
       {getBreakPoint() && (
         <Box className={classes.rightBox}>
           <Button variant='contained' sx={{ whiteSpace: "nowrap" }} onClick={onClickAddPrelem}>

@@ -369,3 +369,19 @@ export const lineItemsOutOfStockCheck = (lineItems: any) => {
   });
   return inStock;
 };
+
+export const IMPRESSIONS = {
+  NA: "NA",
+  ZERO: 0,
+};
+
+export const stringifyLineItem = (arr: any = []) => {
+  const modifiedArray = arr.map((item: any) => {
+    return {
+      name: item?.ecomx_name,
+      quantity: item?.ecomx_quantity,
+      price: item?.ecomx_list_price,
+    };
+  });
+  return JSON.stringify(modifiedArray);
+};

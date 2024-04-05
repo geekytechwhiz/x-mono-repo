@@ -8,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import {
   ThemeConstants,
   capitalizeFirstLetter,
-  uriToJSON,
+  uriToJSONforButtonEditWindow,
   nullToArray,
   nullToObject,
   upload,
@@ -120,7 +120,7 @@ export const ButtonEditWindow = ({
     if (contentUrl && typeof contentUrl === "string") {
       if (contentUrl.includes("ContentEnCodeParse")) {
         //for convert parse condition check manual
-        setContentTypeData(uriToJSON(contentUrl));
+        setContentTypeData(uriToJSONforButtonEditWindow(contentUrl));
       } else {
         setContentTypeData({});
       }
@@ -130,7 +130,7 @@ export const ButtonEditWindow = ({
 
     if (contentUrl && typeof contentUrl === "string") {
       if (contentUrl.includes("ecomEnCodeParse")) {
-        setEcomTypeData(uriToJSON(contentUrl));
+        setEcomTypeData(uriToJSONforButtonEditWindow(contentUrl));
       } else {
         setEcomTypeData({});
       }

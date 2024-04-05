@@ -21,7 +21,7 @@ import {
   ShowToastSuccess,
   PlateformXDialogSuccess,
 } from "@platformx/utilities";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
 import TopBar from "./TopBar";
 import { createTag, fetchCategory, fetchTagListing, publishTag } from "@platformx/authoring-apis";
@@ -46,7 +46,7 @@ export const CreateTags = () => {
   const [publishUrl, setPublishUrl] = useState("");
   const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
   const { t } = useTranslation();
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Choose Category");
   const [radio, setRadio] = useState("choose_category");
   const [isLoading, setIsLoading] = useState(false);
   const [getSession] = useUserSession();
@@ -66,7 +66,11 @@ export const CreateTags = () => {
     }
   };
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory("");
+    if (event.target.value === "choose_category") {
+      setCategory("Choose Category");
+    } else {
+      setCategory("");
+    }
     setRadio(event.target.value);
   };
 
@@ -177,7 +181,7 @@ export const CreateTags = () => {
   }, []);
 
   useEffect(() => {
-    if (radio === "choose_category" && category.trim()) {
+    if (radio === "choose_category" && category !== "Choose Category" && category.trim()) {
       getTag();
     } else {
       setTags([]);
@@ -187,7 +191,7 @@ export const CreateTags = () => {
   return (
     <>
       <TopBar
-        createText={`${t("create")} ${t("tag")}`}
+        createText={`${t(docPath ? "update" : "create")} ${t("tag")}`}
         returnBack={() => navigate("/site-setting/tags")}
         handlePublish={onPublish}
         onSave={onSave}
@@ -224,7 +228,13 @@ export const CreateTags = () => {
                       placeholder={t("choose_category")}
                       value={category}
                       onChange={handleChange}
-                      MenuProps={MenuProps}>
+                      MenuProps={MenuProps}
+                      sx={{
+                        color: category === "Choose Category" ? "#ced3d9" : "#2d2d39",
+                      }}>
+                      <MenuItem value='Choose Category' disabled>
+                        {t("choose_category")}
+                      </MenuItem>
                       {option?.length > 0 &&
                         option.map((obj) => (
                           <MenuItem key={obj.category} value={obj.category}>

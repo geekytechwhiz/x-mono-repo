@@ -16,11 +16,11 @@ import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
+  Loader,
   PlateformXDialog,
   PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
-  Loader,
   capitalizeFirstLetter,
   getCurrentLang,
   getSubDomain,
@@ -1121,6 +1121,7 @@ export const CreatePoll = (): JSX.Element => {
         }),
       );
       setTagArr(currentContent?.tags);
+      setWorkflow(currentContent.workflow);
     } else if (currentPollData.current && unsavedChanges.current !== true) {
       setIsLoading(true);
       runFetchContentByPath({
@@ -1361,6 +1362,7 @@ export const CreatePoll = (): JSX.Element => {
       options_compound_fields: optionsCompoundFields,
       question_background_content: questionBackgroundContent,
       contentType: ctype,
+      workflow: workflow,
     };
     dispatch(previewContent(tempObj));
     navigate("/content/preview");
@@ -1452,7 +1454,7 @@ export const CreatePoll = (): JSX.Element => {
               saveVariant='secondaryButton'
               handlePublish={publish}
               category={CATEGORY_CONTENT}
-              subCategory={ctype}
+              subCategory={ContentType.Poll}
               workflow={workflow}
               hasTimerState={timerState}
               lastModifiedDate={lastmodifiedDate}

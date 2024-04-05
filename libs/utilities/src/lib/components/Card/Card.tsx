@@ -21,13 +21,13 @@ import PlateformXDialog from "../Popups/PlateformXDialog";
 // import { CourseMenu } from '../CourseMenu/CourseMenu';
 // import CardMenu from '../CardMenu/CardMenu';
 // import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
+import { useNavigate } from "react-router";
+import { RedBlinkingDot } from "../../assets/svg";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
-import { useNavigate } from "react-router";
-import { RedBlinkingDot } from "../../assets/svg";
 
 export const Card = ({
   CustomMenuList,
@@ -71,7 +71,7 @@ export const Card = ({
         return (
           <PlateformXDialog
             isDialogOpen
-            title={t("page_delete_title")}
+            title={t("delete_title")}
             subTitle={subTitle}
             closeButtonText={t("no")}
             confirmButtonText={t("yes")}
@@ -179,14 +179,15 @@ export const Card = ({
   const handleDeleteButton = () => {
     switch (tagName) {
       case "sitepage":
-        setSubTitle(t("page_delete_subtitle"));
+        setSubTitle(`${t("delete_confirm")} ${t("page")}? ${t("process_undone")}`);
+
         break;
       case "vod":
       case "quiz":
       case "poll":
       case "event":
       case "article":
-        setSubTitle(`${t("delete_confirm")} ${t(tagName)}?. ${t("process_undone")}`);
+        setSubTitle(`${t("delete_confirm")} ${t(tagName)}? ${t("process_undone")}`);
         break;
       case "tagscategories":
         break;
@@ -215,7 +216,14 @@ export const Card = ({
             <Box className='d-flex align-items-center' onClick={handleCardClick}>
               {/* content type icon */}
               <Box className='img'>
-                <img src={iconsList[dataList.tagName]} alt='img' />
+                <img
+                  src={
+                    dataList.tagName === "tagscategories"
+                      ? iconsList[dataList.type]
+                      : iconsList[dataList.tagName]
+                  }
+                  alt='img'
+                />
               </Box>
 
               <Box className='rightspace'>
