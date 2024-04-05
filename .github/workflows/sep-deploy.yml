@@ -11,6 +11,9 @@ concurrency:
 jobs:
   user-experience-ui:
     name: user-experience-ui
+    permissions:
+      contents: write
+      id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
