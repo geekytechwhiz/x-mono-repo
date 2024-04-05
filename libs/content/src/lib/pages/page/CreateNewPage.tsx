@@ -38,7 +38,6 @@ const CreateNewPage = ({
     duplicatePage(isDuplicate, pgName, pgUrl, language);
     closeButtonHandle();
   };
-
   const handleConfirm = () => {
     const pgName = pageName.trim();
     const pgUrl = pageUrl.trim();

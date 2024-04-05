@@ -6,7 +6,6 @@ import {
   updateContent,
   updateContentList,
   updatePageSettings,
-  // updateSaveWarning,
 } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
@@ -15,7 +14,6 @@ import {
   ShowToastSuccess,
   capitalizeFirstLetter,
   formatChildrenForPageDuplicate,
-  getCurrentLang,
   getSelectedSite,
   getSubDomain,
   setDefaultPageSettings,
@@ -31,7 +29,7 @@ import { PageQueries } from "../../graphQL/queries/pageQueries";
 import { FETCH_PRELEM_VALIDATION } from "../../graphQL/queries/prelemQueries";
 import contentTypeAPIs from "../../services/contentTypes/contentTypes.api";
 import { fetchPageModel } from "../../services/page/page.api";
-import { fetchContent } from "../../utils/helper";
+import { fetchContent, getCurrentLang } from "../../utils/helper";
 import { consolidatePageModel } from "./mapper";
 
 const PageModelInstanceDefault = {
