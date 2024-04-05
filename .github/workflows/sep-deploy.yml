@@ -2,7 +2,7 @@ name: platformx-workflow-with-nx
 on:
   push:
     branches:
-      - develop_X
+      - develop
       - qa_X
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -65,6 +65,12 @@ jobs:
         run: npm i --legacy-peer-deps
 
       # Setup Nx Cloud
+      - uses: nrwl/nx-set-shas@v3
+        # This line is needed for nx affected to work when CI is running on a PR
+        # with:
+        #   main-branch-name: develop
+      - run: git branch --track main origin/develop
+      - run: npx nx affected -t build --parallel=3
       # - name: Setup Nx Cloud
       #   uses: nrwl/nx-set-shas@v3
       # Setup Nx Cloud
