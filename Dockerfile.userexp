@@ -32,16 +32,16 @@ WORKDIR /server
 COPY . /server
 
 # install dependencies
-RUN npm i -g nx
+# RUN npm i -g nx
 
 # Set higher memory limit for Node.js
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 
 # install dependencies again
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
 
 # Reset nx
-RUN npx nx reset
+# RUN npx nx reset
 
 # start app
 EXPOSE 3000

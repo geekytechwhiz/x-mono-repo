@@ -2,8 +2,8 @@ name: platformx-workflow-with-nx
 on:
   push:
     branches:
-      - develop
-      - qa
+      - develop_X
+      - qa_X
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
