@@ -2,7 +2,7 @@ name: test-nx
 on:
   push:
     branches:
-      - develop
+      - develop_x
       - dev_nx-cloud
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -43,15 +43,6 @@ jobs:
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
 
-      # - name: Setup Nx Cloud
-      #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
-      #   env:
-      #     gh_token: ${{ secrets.gh_token }}
-      # - uses: nrwl/nx-set-shas@v3
-      #   with:
-      #     main-branch-name: develop
-      # - name: Record Nx Cloud Actions and Execute Nx Commands
-      #   run: npx nx affected --target=build --parallel --base=origin/develop --head=HEAD --apps=authoring-web
       - uses: nrwl/nx-set-shas@v3
         # This line is needed for nx affected to work when CI is running on a PR
         # with:
