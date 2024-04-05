@@ -20,6 +20,7 @@ import { PageSeoInformation } from "../utils/editTypes";
 import BackButton from "../BackButton/BackButton";
 import "./PageSettings.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useCustomStyle } from "./SEOBasics.style";
 
 const SEOBasics = ({ setPageId }) => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ const SEOBasics = ({ setPageId }) => {
   });
   const [seoInfo, setSeoInfo] = useState<PageSeoInformation>(initialSeoInfo.current);
   const [handleImpression] = usePlatformAnalytics();
-
+  const classes = useCustomStyle();
   useEffect(() => {
     if (page?.pageSettings) {
       initialSeoInfo.current = {
@@ -198,12 +199,13 @@ const SEOBasics = ({ setPageId }) => {
         />
       </Box>
       <Box className='rowBox'>
-        <Typography className='switchbox' variant='p4regular'>
+        <Typography className={`${classes.switchBoxContainer} switchbox`} variant='p4regular'>
           {t("page_search_seokey")}
           <BasicSwitch
             color={ThemeConstants.BLACK_COLOR}
             onChange={(e: any) => handleControlsChange(e)}
             checked={seoInfo.SeoBlockIndexing}
+            basicSwitchRootClassName='switchRootClass'
           />
         </Typography>
       </Box>
