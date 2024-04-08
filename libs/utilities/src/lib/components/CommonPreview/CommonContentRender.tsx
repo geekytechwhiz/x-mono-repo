@@ -3,10 +3,16 @@ import { Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { AUTH_INFO, PrelemTheme } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
-import { Mapping } from "../../utils/Mapper";
 import { useStyles } from "./CommonPrivew.style";
 
 const mappingDynamicInstance = {};
+export const Mapping = {
+  Article: "Article",
+  Poll: "Poll",
+  Quiz: "Quiz",
+  Event: "EventLandingPage",
+  Vod: "VideoLandingPage",
+};
 Object.keys(Mapping).map((item) => {
   mappingDynamicInstance[item] = React.lazy(() =>
     import(`@platformx/x-prelems-library`).then((module) => ({

@@ -1,14 +1,13 @@
 import { Typography } from "@mui/material";
 import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
+import { Content, CreateArticle, CreateContent, TimeLineBlogs } from "@platformx/content";
 import {
-  Content,
-  CreateArticle,
-  CreateContent,
-  TimeLineBlogs,
   CommonPreview,
   CommonContentRender,
-} from "@platformx/content";
+  getCurrentLang,
+  getSelectedSite,
+} from "@platformx/utilities";
 import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
@@ -38,7 +37,6 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { getCurrentLang, getSelectedSite } from "@platformx/utilities";
 
 const iframedurl = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
 export const routes: RouteConfig[] = [

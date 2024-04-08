@@ -5,7 +5,6 @@ import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
-import { RootState } from "@platformx/authoring-state";
 import { ThemeConstants, XLoader } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -24,7 +23,7 @@ const CommonPreview = ({ iframeUrl }) => {
   const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
   const classes = useStyles();
-  const { currentContent } = useSelector((state: RootState) => state.content);
+  const { currentContent } = useSelector((state: any) => state.content);
   const handleReturn = () => {
     window.history.back();
   };
