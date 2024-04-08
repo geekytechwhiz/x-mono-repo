@@ -2,7 +2,7 @@ name: platform-x-deploy
 on:
   push:
     branches:
-      - develop
+      - develop_x
       - qa
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

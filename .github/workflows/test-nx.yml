@@ -2,7 +2,7 @@ name: test-nx
 on:
   push:
     branches:
-      - develop_x
+      - develop
       - dev_nx-cloud
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
