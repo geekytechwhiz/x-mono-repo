@@ -311,24 +311,40 @@ export const CreateVod = () => {
       ...updateTempObj.current,
       Page_State: "draft",
       Page_PublishedBy: username,
-      Page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
+      Page: draftPageURL
+        ? draftPageURL
+        : currentVodData.current
+          ? currentVodData.current
+          : vodRef?.current?.Page,
       CurrentPageURL: `/${
-        draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL
+        draftPageURL
+          ? draftPageURL
+          : currentVodData.current
+            ? currentVodData.current
+            : vodRef?.current?.Page
       }`,
       StructureData: JSON.stringify(structureData),
       is_featured: isFeatured,
     };
     vodInstance.Page_State = "draft";
     const { __typename, relativeUrl, contentType, ...restOpt } = vodToSend;
+
     const requestdto = {
-      page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
+      page: draftPageURL
+        ? draftPageURL
+        : currentVodData.current
+          ? currentVodData.current
+          : vodRef?.current?.Page,
       parentpageurl: "/",
       currentpageurl: `/${
-        draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL
+        draftPageURL
+          ? draftPageURL
+          : currentVodData.current
+            ? currentVodData.current
+            : vodRef?.current?.Page
       }`,
     };
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-
     mutatePublish({
       variables: {
         input: requestdto,

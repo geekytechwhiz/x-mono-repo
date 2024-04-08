@@ -36,12 +36,19 @@ export const mapUnPublishContent = (contentType: string, page: string) => {
 
 export const mapDeleteContent = (
   contentType: string,
-  selectedContent: { page: any; current_page_url: any; parent_page_url: any },
+  selectedContent: {
+    Page?: any;
+    CurrentPageURL?: any;
+    ParentPageURL?: any;
+    page: any;
+    current_page_url: any;
+    parent_page_url: any;
+  },
 ) => {
   const contentInfo = {
-    page: selectedContent?.page,
-    current_page_url: selectedContent?.current_page_url,
-    parent_page_url: selectedContent?.parent_page_url,
+    page: selectedContent?.page || selectedContent?.Page,
+    current_page_url: selectedContent?.current_page_url || selectedContent?.CurrentPageURL,
+    parent_page_url: selectedContent?.parent_page_url || selectedContent?.ParentPageURL,
   };
   return {
     contentInfo: contentInfo,
