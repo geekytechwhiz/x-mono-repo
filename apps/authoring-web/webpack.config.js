@@ -8,7 +8,7 @@ module.exports = composePlugins(
   withReact({
     // Uncomment this line if you don't want to use SVGR
     // See: https://react-svgr.com/
-    // svgr: false
+    svgr: false,
   }),
 
   (config) => {

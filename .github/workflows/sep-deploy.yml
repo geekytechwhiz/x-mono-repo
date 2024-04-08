@@ -2,7 +2,7 @@ name: platformx-workflow-with-nx
 on:
   push:
     branches:
-      - develop
+      - develop_x
       - qa
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
