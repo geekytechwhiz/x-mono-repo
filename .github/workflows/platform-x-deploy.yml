@@ -147,7 +147,7 @@ jobs:
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build Docker image
-      - name: Build
+      - name: Preparing docker image
         run: |-
           docker build -f Dockerfile.author --build-arg BRANCH=${{ github.ref_name }} --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
@@ -262,7 +262,7 @@ jobs:
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build the Docker image
-      - name: Build
+      - name: Preparing docker image
         run: |-
           docker build -f Dockerfile.userexp --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
       # Push the Docker image to Google Container Registry
