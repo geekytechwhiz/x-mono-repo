@@ -1538,35 +1538,37 @@ const EditPageContainer = () => {
                     backgroundColor: "#ffffff",
                     position: "relative",
                   }}>
-                  <Box className={classes.emptWpBoxInner}>
-                    <Box sx={{ display: "flex", justifyContent: "center" }}>
-                      <EditPageIcons
-                        styleObject={{
-                          color: "#4B9EF9",
-                          display: "block",
-                          padding: 0,
-                          maxHeight: "50px",
-                          maxWidth: "50px",
-                          "& svg": {
-                            fontSize: "50px",
-                          },
-                        }}
-                        nameIcon='add'
-                        enable
-                        listIndx='top'
-                        handleClick={() => routeChange()}
-                      />
+                  {!isPreviewPage && (
+                    <Box className={classes.emptWpBoxInner}>
+                      <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <EditPageIcons
+                          styleObject={{
+                            color: "#4B9EF9",
+                            display: "block",
+                            padding: 0,
+                            maxHeight: "50px",
+                            maxWidth: "50px",
+                            "& svg": {
+                              fontSize: "50px",
+                            },
+                          }}
+                          nameIcon='add'
+                          enable
+                          listIndx='top'
+                          handleClick={() => routeChange()}
+                        />
+                      </Box>
+                      <Typography variant='p3regular' mb='10px' mt='10px'>
+                        {t("create_first_section_now")}
+                      </Typography>
+                      <Typography
+                        variant='p3regular'
+                        sx={{ color: "#4B9EF9", cursor: "pointer" }}
+                        onClick={() => routeChange()}>
+                        {t("add_prelem")}
+                      </Typography>
                     </Box>
-                    <Typography variant='p3regular' mb='10px' mt='10px'>
-                      {t("create_first_section_now")}
-                    </Typography>
-                    <Typography
-                      variant='p3regular'
-                      sx={{ color: "#4B9EF9", cursor: "pointer" }}
-                      onClick={() => routeChange()}>
-                      {t("add_prelem")}
-                    </Typography>
-                  </Box>
+                  )}
                 </Box>
               )}
             </RightBox>
