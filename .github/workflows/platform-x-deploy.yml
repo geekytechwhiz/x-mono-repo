@@ -50,7 +50,7 @@ jobs:
 
       - name: Restore cached npm dependencies
         id: cache-dependencies-restore
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             node_modules
