@@ -58,7 +58,9 @@ jobs:
 
       # Install dependencies
       - name: Install Dependencies
-        run: npm i --legacy-peer-deps
+        run: |
+          npm pkg delete scripts.prepare
+          npm i --legacy-peer-deps
 
       - uses: nrwl/nx-set-shas@v3
       - name: Set dev as main branch
@@ -68,7 +70,8 @@ jobs:
         if: endsWith(github.ref, '/qa')
         run: git branch --track main origin/qa
 
-      - run: npx nx affected -t build --parallel=3
+      # - run: npx nx affected -t build --parallel=3
+      - run: npx nx affected --target=build --parallel=true --maxParallel=5
 
   authoring-ui:
     name: authoring-ui
