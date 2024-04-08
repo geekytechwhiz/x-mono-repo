@@ -385,11 +385,13 @@ export const CreateVod = () => {
   const handleSelectedVideo = (video) => {
     vodRef.current = {
       ...vodRef.current,
+      Page: "",
       DsapceVideoUrl: video?.Url,
       Thumbnail: video?.Thumbnail,
       Title: video?.Title,
       Description: video?.Description,
     };
+    setIsDraft(true);
     updateThumbnailPicture(video); //thumbImage update
     unsavedChanges.current = true;
     setIsEdited(true);
