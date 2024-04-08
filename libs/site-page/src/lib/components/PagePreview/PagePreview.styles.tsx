@@ -4,7 +4,7 @@ import { ThemeConstants } from "@platformx/utilities";
 export const useStyles = makeStyles(() => ({
   container: {
     [`@media(min-width:${ThemeConstants.XS}px)`]: {
-      display: "none",
+      display: "flex",
     },
     [`@media(min-width:${ThemeConstants.SM}px)`]: {
       display: "flex",

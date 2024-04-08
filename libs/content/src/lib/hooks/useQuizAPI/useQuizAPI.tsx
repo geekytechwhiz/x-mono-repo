@@ -31,12 +31,12 @@ const useQuizAPI = () => {
       const tempObjField = {
         questions: [...quesArr],
         background_content: {
-          objectType: "image",
-          Url: quizState?.original_image.original_image_relative_path,
-          Title: "",
-          Thumbnail: quizState?.original_image.original_image_relative_path,
-          Color: "",
           ext: quizState?.original_image.ext,
+          objectType: quizState?.imagevideoURL ? "image" : quizState?.colorCode ? "color" : "",
+          Url: quizState?.imagevideoURL,
+          Title: "",
+          Thumbnail: quizState?.imagevideoURL,
+          Color: quizState?.colorCode,
         },
         display_scores: quizState?.scoreBy,
         result_range_1: quizState?.result_range_1,

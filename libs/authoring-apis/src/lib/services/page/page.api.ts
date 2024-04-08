@@ -1,6 +1,6 @@
 import { ApolloError } from "@apollo/client";
 import { setValidationForFetchPage, updateDataAfterFetch } from "@platformx/authoring-state";
-import { formatChildren, getSelectedSite } from "@platformx/utilities";
+import { formatChildren, getCurrentLang, getSelectedSite } from "@platformx/utilities";
 import { createSearchParams } from "react-router-dom";
 import graphqlInstance from "../../config/graphqlConfig";
 import { PageQueries } from "../../graphQL/queries/pageQueries";
@@ -104,19 +104,26 @@ export const fetchPageModel = (
         );
         if (navigate) {
           localStorage.setItem("path", path);
-          navigate(
-            {
-              pathname: actionType ? `/preview-page/${deviceType}` : "/edit-page",
-              search: `?${createSearchParams({
-                page: path.toString(),
-                editoption: editOption ? editOption.toString() : "",
-                searchCat: searchCatURL ? searchCatURL.toString() : "",
-                searchTerm: searchTermURL ? searchTermURL.toString() : "",
-                sortBy: sortByURL ? sortByURL.toString() : "",
-              })}`,
-            },
-            { state: "old" },
-          );
+          const url = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/edit-page?page=${path?.toString()}`;
+          if (actionType) {
+            navigate(`/preview-page/${deviceType}`, {
+              state: { prevPageUrl: url },
+            });
+          } else {
+            navigate(
+              {
+                pathname: "/edit-page",
+                search: `?${createSearchParams({
+                  page: path.toString(),
+                  editoption: editOption ? editOption.toString() : "",
+                  searchCat: searchCatURL ? searchCatURL.toString() : "",
+                  searchTerm: searchTermURL ? searchTermURL.toString() : "",
+                  sortBy: sortByURL ? sortByURL.toString() : "",
+                })}`,
+              },
+              { state: "old" },
+            );
+          }
         }
       })
       .catch((err: any) => {
