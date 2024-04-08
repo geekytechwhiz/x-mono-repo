@@ -9,11 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   platform-x-cloud:
-    #cloud build
     name: platform-x-cloud
-    # permissions:
-    #   contents: write
-    #   id-token: write
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
@@ -52,22 +48,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Install Node.js
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 20
-      #cache: "npm"
-
       # Install dependencies
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
 
-      # Setup Nx Cloud - Needs more work
+      # Setup Nx Cloud - Needs more work - Add condition for environments.
       - uses: nrwl/nx-set-shas@v3
-      # This line is needed for nx affected to work when CI is running on a PR
-      # with:
-      #   main-branch-name: develop
       - run: git branch --track main origin/develop
       - run: npx nx affected -t build --parallel=3
 
@@ -116,31 +102,6 @@ jobs:
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
-
-      # Install Node.js
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "18.x"
-      # cache: 'npm'
-
-      # Install dependencies
-      # - name: Install Dependencies
-      #   run: npm i --legacy-peer-deps
-
-      # Setup Nx Cloud
-      # - name: Setup Nx Cloud
-      #   uses: nrwl/nx-set-shas@v3
-      # Setup Nx Cloud
-      # - name: Reset NX Cache
-      #   run: npx nx reset
-
-      # - name: Setup Nx Cloud
-      #   run: npx nx connect --organization=hcl-x --token ${{ secrets.NX_CLOUD_TOKEN }}
-
-      # # Record Nx Cloud actions and execute Nx commands
-      # - name: Record Nx Cloud Actions and Execute Nx Commands
-      #   run: npx nx-cloud record -- npx nx affected --base=qa --target=build
 
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
