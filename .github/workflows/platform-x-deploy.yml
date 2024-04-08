@@ -84,6 +84,46 @@ jobs:
     runs-on: ubuntu-16core-64GB
     timeout-minutes: 60
     steps:
+      - name: Set env vars (develop)
+        if: endsWith(github.ref, '/develop')
+        run: |
+          echo "NX_BRANCH=echo ${{ github.event.number }}"
+          echo "NX_RUN_GROUP=echo ${{ github.run_id }}"
+          echo "NX_CI_EXECUTION_ID=${{ steps.generate_id.outputs.NX_CI_EXECUTION_ID }}"
+          echo "CLUSTER_NAME=GKE_CLUSTER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "IMAGE_NAME=IMAGE_NAME_USEREX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "PROJECT_ID=PROJECT_ID_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "GKE_ZONE=GKE_ZONE_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_UX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_DEVELOP_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+      - name: Set env vars (qa)
+        if: endsWith(github.ref, '/qa')
+        run: |
+          echo "NX_BRANCH=echo ${{ github.event.number }}"
+          echo "NX_RUN_GROUP=echo ${{ github.run_id }}"
+          echo "NX_CI_EXECUTION_ID=${{ steps.generate_id.outputs.NX_CI_EXECUTION_ID }}"
+          echo "CLUSTER_NAME=GKE_CLUSTER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "IMAGE_NAME=IMAGE_NAME_USEREX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "PROJECT_ID=PROJECT_ID_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "GKE_ZONE=GKE_ZONE_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "DEPLOYMENT_NAME=DEPLOYMENT_NAME_UX_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "WORKLOAD_IDENTITY_PROVIDER=WORKLOAD_IDENTITY_PROVIDER_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+          echo "SERVICE_ACCOUNT=SERVICE_ACCOUNT_QA_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV  
+          echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+        #cache: "npm"
+
       # Setup gcloud CLI For Dev_QA
       - name: develop-cluster-auth
         if: endsWith(github.ref, '/develop')
