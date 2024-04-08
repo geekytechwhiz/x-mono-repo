@@ -1,6 +1,11 @@
 import { Box } from "@mui/material";
 import { userManagementAPI } from "@platformx/authoring-apis";
-import { ContentListDesktopLoader, ContentGridLoader, capitalizeWords } from "@platformx/utilities";
+import {
+  ContentGridLoader,
+  ContentListDesktopLoader,
+  NoSearchResult,
+  capitalizeWords,
+} from "@platformx/utilities";
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../UserManagement.css";
@@ -23,7 +28,7 @@ const UserListing = () => {
   };
 
   const getUsers = useCallback(async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       const response: any = await userManagementAPI.fetchUsers({
         start: 0,
@@ -41,7 +46,7 @@ const UserListing = () => {
         setUsers(sortedUserList);
       }
       setIsLazyLoad(false);
-      setLoading(false);
+      // setLoading(false);
     } catch (err: any) {
       setIsLazyLoad(false);
       setLoading(false);
@@ -60,6 +65,7 @@ const UserListing = () => {
         ),
       );
       setUsers(filteredUsers);
+      setLoading(false);
     },
     [baseUsers],
   );
@@ -71,6 +77,7 @@ const UserListing = () => {
           handleSearch={handleSearch}
           filterValue={filterValue}
           setFilterValue={setFilterValue}
+          setLoading={setLoading}
         />
       </Box>
       <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
@@ -84,7 +91,9 @@ const UserListing = () => {
             loader={gridListViewLoaderDesktop("List")}
             scrollableTarget='scrollableDiv'
             style={{ overflowX: "hidden" }}>
-            {users?.length > 0 && (
+            {!isLazyLoad && users?.length === 0 ? (
+              <NoSearchResult />
+            ) : (
               <Box sx={{ padding: { xs: "10px", md: "20px 20px 0 20px" } }}>
                 <Box>
                   {users?.map((item: any) => {
