@@ -102,6 +102,8 @@ import i18next from "./lib/i18next";
 import { ArticleMapper } from "./lib/mappers/articleMapper";
 import prelemTypes from "./lib/themes/prelems/globalStyle";
 import { doneInsituEditing, initInsituEditing } from "./lib/utils/insituEditing";
+import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
+import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 
 const InterRegular = require("./lib/fonts/Inter/Inter-Regular.woff2") as string;
 
@@ -222,4 +224,6 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  CommonPreview,
+  CommonContentRender,
 };

@@ -2,8 +2,6 @@ import ContentListingHeader from "./lib/components/ContentListingHeader/ContentL
 import { FormControlCustom } from "./lib/components/ContentListingHeader/ContentListingHeader.styles";
 import ContentPageScroll from "./lib/components/ContentPageScroll";
 import ContentPreview from "./lib/components/ContentPreview/ContentPreview";
-import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
-import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 import { CreateHeader } from "./lib/components/CreateHeader/CreateHeader";
 import { QuizPollEventMenu } from "./lib/components/QuizPollEventsMenu/QuizPollEventsMenu";
 import Content from "./lib/content";
@@ -31,6 +29,4 @@ export {
   FormControlCustom,
   QuizPollEventMenu,
   TimeLineBlogs,
-  CommonPreview,
-  CommonContentRender,
 };
