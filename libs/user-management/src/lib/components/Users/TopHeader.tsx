@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import "../Users/User.css";
 import { USERTYPES } from "./Utils/constant";
 
-const TopHeader = ({ handleSearch, filterValue, setFilterValue }: any) => {
+const TopHeader = ({ handleSearch, filterValue, setFilterValue, setLoading }: any) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [filterMenu, setFilterMenu] = useState<null | HTMLElement>(null);
@@ -53,7 +53,7 @@ const TopHeader = ({ handleSearch, filterValue, setFilterValue }: any) => {
           position: "relative",
         }}>
         <Box>
-          <SearchBox handleSearch={handleSearch} />
+          <SearchBox handleSearch={handleSearch} setLoading={setLoading} />
         </Box>
         <Box className='d-flex'>
           <Box
