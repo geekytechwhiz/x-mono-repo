@@ -152,7 +152,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
           kubectl apply -f ./kubernetes/configmaps/hep-authoring-ui-config-qa.yaml
-      - name: deploy-stg-live
+      - name: Creating Pods
         if: contains('
           refs/heads/x_site_live
           refs/heads/develop
@@ -266,7 +266,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/qa' }}
         run: |-
           kubectl apply -f ./kubernetes/configmaps/hep-user-experience-ui-config-qa.yaml
-      - name: deploy-stg-live
+      - name: Creating Pods
         if: contains('
           refs/heads/x_site_live
           refs/heads/develop
