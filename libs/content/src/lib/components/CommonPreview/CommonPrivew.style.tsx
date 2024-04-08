@@ -10,6 +10,13 @@ export const useStyles = makeStyles((theme: any) => ({
       "& .eventPageContent .eventsummaryWrapper": {
         height: "100vh !important",
       },
+      "& .xloader": {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: 1,
+      },
     },
   },
 }));

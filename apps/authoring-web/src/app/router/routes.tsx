@@ -201,7 +201,6 @@ export const routes: RouteConfig[] = [
         isSideBar={false}
         isHeader={false}>
         <CommonPreview iframeUrl={iframedurl} />
-        {/* <CommonContentRender /> */}
       </ProtectedRoute>
     ),
   },

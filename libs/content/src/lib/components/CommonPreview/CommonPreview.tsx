@@ -6,11 +6,12 @@ import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box, Divider, Typography } from "@mui/material";
 import { RootState } from "@platformx/authoring-state";
-import { ThemeConstants } from "@platformx/utilities";
+import { ThemeConstants, XLoader } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { useStyles } from "./CommonPrivew.style";
 
 const tabs = [
   { type: "desktop", icon: ComputerRoundedIcon },
@@ -22,10 +23,33 @@ const CommonPreview = ({ iframeUrl }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
+  const classes = useStyles();
   const { currentContent } = useSelector((state: RootState) => state.content);
   const handleReturn = () => {
     window.history.back();
   };
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoad = () => {
+    setLoaded(true);
+  };
+  useEffect(() => {
+    const extractDeviceType = () => {
+      const currentUrl = window.location.href;
+      const match = currentUrl.match(/\/preview-page\/([^/]+)\/?$/);
+      if (match) {
+        const device = match[1].toLowerCase();
+        if (device.includes("mobile")) {
+          setDeviceType("mobile");
+        } else if (device.includes("tablet")) {
+          setDeviceType("tablet");
+        } else {
+          setDeviceType("desktop");
+        }
+      }
+    };
+    extractDeviceType();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("preview", JSON.stringify(currentContent));
@@ -119,12 +143,21 @@ const CommonPreview = ({ iframeUrl }) => {
             borderRadius: "30px",
             overflow: "hidden",
           }}>
+          {!loaded && (
+            <Box className='xloader'>
+              <XLoader type='xloader' />
+            </Box>
+          )}
           <iframe
             className='prelemResponsivePreview'
+            onLoad={handleLoad}
             title='page preview'
             width='100%'
-            style={{ height: `calc(100vh - 170px)` }}
             frameBorder='0'
+            style={{
+              width: "100%",
+              height: `calc(100vh - 170px)`,
+            }}
             src={iframeUrl}></iframe>
         </Box>
       </Box>
