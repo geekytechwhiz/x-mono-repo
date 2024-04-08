@@ -141,7 +141,7 @@ jobs:
           refs/heads/mavericks_dev
           refs/heads/qa
           refs/heads/develop', github.ref)
-        uses: google-github-actions/get-gke-credentials@v0.4.0
+        uses: "google-github-actions/get-gke-credentials@v2"
         with:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}
@@ -256,7 +256,7 @@ jobs:
           refs/heads/mavericks_dev
           refs/heads/qa
           refs/heads/develop', github.ref)
-        uses: google-github-actions/get-gke-credentials@v0.4.0
+        uses: "google-github-actions/get-gke-credentials@v2"
         with:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}

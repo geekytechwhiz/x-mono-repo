@@ -24,7 +24,7 @@ FROM node:alpine
 #     libpng-dev \
 #     libwebp-dev
 
-# RUN apk add install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+#Fix for canvas
 RUN apk add --no-cache \
     build-base \
     g++ \
@@ -46,7 +46,9 @@ COPY . /server
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 
 # install dependencies again
-RUN npm install --legacy-peer-deps
+# RUN npm install --legacy-peer-deps
+RUN npm pkg delete scripts.prepare
+RUN npm ci --omit=dev
 
 # Reset nx
 # RUN npx nx reset
