@@ -22,7 +22,7 @@ const TopBar = ({
           <Box className='backarrow' onClick={returnBack}>
             <ArrowBackIcon />
           </Box>
-          <Box className='d-flex' onClick={() => navigate("/dashboard")}>
+          <Box className='d-flex' onClick={() => navigate("/dashboard")} sx={{ cursor: "pointer" }}>
             <img src={PlatXLogo} height='30' alt='' />
           </Box>
         </Box>
