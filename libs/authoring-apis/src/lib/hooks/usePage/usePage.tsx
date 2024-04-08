@@ -6,7 +6,6 @@ import {
   updateContent,
   updateContentList,
   updatePageSettings,
-  // updateSaveWarning,
 } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
