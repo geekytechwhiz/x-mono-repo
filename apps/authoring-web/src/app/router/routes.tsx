@@ -3,7 +3,6 @@ import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
 import {
   Content,
-  // ContentPreview,
   CreateArticle,
   CreateContent,
   TimeLineBlogs,
@@ -41,7 +40,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 import { getCurrentLang, getSelectedSite } from "@platformx/utilities";
 
-const iframedurl = `${window.location.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
+const iframedurl = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
 export const routes: RouteConfig[] = [
   {
     path: "/",

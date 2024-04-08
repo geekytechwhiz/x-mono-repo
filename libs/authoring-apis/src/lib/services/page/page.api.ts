@@ -104,7 +104,7 @@ export const fetchPageModel = (
         );
         if (navigate) {
           localStorage.setItem("path", path);
-          const url = `${window.location.origin}/${getSelectedSite()}/${getCurrentLang()}/edit-page?page=${path?.toString()}`;
+          const url = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/edit-page?page=${path?.toString()}`;
           if (actionType) {
             navigate(`/preview-page/${deviceType}`, {
               state: { prevPageUrl: url },
