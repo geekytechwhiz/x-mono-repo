@@ -3,7 +3,7 @@ import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
 import {
   Content,
-  ContentPreview,
+  // ContentPreview,
   CreateArticle,
   CreateContent,
   TimeLineBlogs,
@@ -39,23 +39,9 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
+import { getCurrentLang, getSelectedSite } from "@platformx/utilities";
 
-const CommonContentRenderComp: React.FC = () => {
-  const { currentContent } = useSelector((state: RootState) => state.content);
-  return (
-    <ProtectedRoute
-      name='content'
-      category='content'
-      subCategory='content-preview'
-      isSideBar={false}
-      isHeader={false}>
-      <CommonContentRender />
-    </ProtectedRoute>
-  );
-};
-
+const iframedurl = `${window.location.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
 export const routes: RouteConfig[] = [
   {
     path: "/",
@@ -214,14 +200,23 @@ export const routes: RouteConfig[] = [
         subCategory='content-preview'
         isSideBar={false}
         isHeader={false}>
-        <CommonPreview />
+        <CommonPreview iframeUrl={iframedurl} />
         {/* <CommonContentRender /> */}
       </ProtectedRoute>
     ),
   },
   {
     path: "/content/common/preview",
-    element: <CommonContentRenderComp />,
+    element: (
+      <ProtectedRoute
+        name='content'
+        category='content'
+        subCategory='content-preview'
+        isSideBar={false}
+        isHeader={false}>
+        <CommonContentRender />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/content/create-course",

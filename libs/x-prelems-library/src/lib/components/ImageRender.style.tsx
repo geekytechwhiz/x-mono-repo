@@ -7,6 +7,7 @@ export const useCustomStyle = makeStyles(() => {
   return {
     ImageRenderPrelemWrapper: {
       "&.imageRenderAnimation": {
+        width: "100%",
         "& img": {
           opacity: 0,
           animation: `fadeInAnimation ${theme?.palette?.prelemAnimation?.IMAGE?.FADEINTIME}s ease-in forwards`,

@@ -18,7 +18,7 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 
-const CommonPreview = () => {
+const CommonPreview = ({ iframeUrl }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
@@ -26,8 +26,8 @@ const CommonPreview = () => {
   const handleReturn = () => {
     window.history.back();
   };
+
   useEffect(() => {
-    // console.log("yesss currentContent", currentContent);
     localStorage.setItem("preview", JSON.stringify(currentContent));
     return () => localStorage.removeItem("preview");
   }, []);
@@ -101,10 +101,14 @@ const CommonPreview = () => {
           border: "1px solid #ced3d9",
           borderRadius: "45px",
           padding: "20px",
+          minWidth: {
+            sm: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "98%" : "375px",
+            md: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "768px" : "375px",
+            lg: deviceType === "desktop" ? "1092px" : deviceType === "tablet" ? "909px" : "375px",
+          },
           width: {
-            sm: deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "100%" : "402px",
-            md: deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "768px" : "402px",
-            lg: deviceType === "desktop" ? "1092px" : deviceType === "tablet" ? "909px" : "402px",
+            md: deviceType === "desktop" ? "768px" : deviceType === "tablet" ? "768px" : "375px",
+            lg: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "909px" : "375px",
           },
           margin: "auto",
           transition: "width 0.50s",
@@ -121,7 +125,7 @@ const CommonPreview = () => {
             width='100%'
             style={{ height: `calc(100vh - 170px)` }}
             frameBorder='0'
-            src='http://localhost:3000/monorepo/en/content/common/preview'></iframe>
+            src={iframeUrl}></iframe>
         </Box>
       </Box>
     </>

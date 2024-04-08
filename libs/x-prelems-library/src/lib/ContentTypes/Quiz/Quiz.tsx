@@ -196,7 +196,7 @@ const Quiz = ({
   };
 
   useEffect(() => {
-    if (content.questions.length > 0) {
+    if (content.questions?.length > 0) {
       const formatData = content.questions.map((question: any, key: number) => {
         return {
           question_key: key + 1,
@@ -369,7 +369,7 @@ const Quiz = ({
               sx={{
                 position: "relative",
                 backgroundImage:
-                  content.background_content.objectType === "image"
+                  content?.background_content?.objectType === "image"
                     ? // ? `url(${content.background_content.Url})`
                       fetchCroppedUrl(
                         content.background_content.Url,
@@ -386,9 +386,9 @@ const Quiz = ({
                       )
                     : "",
                 backgroundColor:
-                  content.background_content.objectType === "image"
+                  content?.background_content?.objectType === "image"
                     ? "black"
-                    : content.background_content.Color,
+                    : content.background_content?.Color,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 height: "100vh",

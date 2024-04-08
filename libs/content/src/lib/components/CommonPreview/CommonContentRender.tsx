@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AUTH_INFO, PrelemTheme } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { Mapping } from "../../utils/Mapper";
+import { useStyles } from "./CommonPrivew.style";
 
 const mappingDynamicInstance = {};
 Object.keys(Mapping).map((item) => {
@@ -16,6 +17,7 @@ Object.keys(Mapping).map((item) => {
 });
 
 const CommonContentRender = () => {
+  const classes = useStyles();
   const currentItem = localStorage.getItem("preview");
   const currentContent = currentItem && JSON.parse(currentItem);
   const ContentType = mappingDynamicInstance[currentContent?.contentType];
@@ -23,15 +25,12 @@ const CommonContentRender = () => {
     options_compound_fields: "",
     contentType: "",
   });
-  // console.log("yess called", currentContent);
-
   useEffect(() => {
     if (Object.keys(currentContent).length > 0) {
       setPreviewObject(currentContent);
     } else {
       window.history.back();
     }
-    // console.log("yesss ...", currentContent);
   }, []);
 
   const prelemAuthoringHelper = {
@@ -43,7 +42,7 @@ const CommonContentRender = () => {
   };
 
   return (
-    <Box>
+    <Box className={`${classes.commonPreviewPageRender} contentPreviewPage`}>
       <ThemeProvider theme={PrelemTheme}>
         <ContentType
           showRecentArticles={false}
