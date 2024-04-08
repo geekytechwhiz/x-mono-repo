@@ -115,7 +115,7 @@ const QuestionIndex = ({
   `;
   return (
     <>
-      {data.map((question: any, key: number) => {
+      {data?.map((question: any, key: number) => {
         return (
           <Fragment key={`question_${key}`}>
             <style>{cssStyle}</style>
