@@ -48,6 +48,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Restore cached npm dependencies
+        id: cache-dependencies-restore
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: npm-dependencies-${{ hashFiles('package-lock.json') }}
+
       # Install dependencies
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
