@@ -894,7 +894,7 @@ const CreateEvent = () => {
       </Box>
 
       {showExitWarning && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}

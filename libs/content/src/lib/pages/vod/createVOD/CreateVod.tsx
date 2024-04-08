@@ -45,7 +45,7 @@ import {
   CATEGORY_CONTENT,
   CommonBoxWithNumber,
   capitalizeFirstLetter,
-  PlateformXDialogSuccess,
+  CommonPlateformXDialog,
 } from "@platformx/utilities";
 
 export const CreateVod = () => {
@@ -944,7 +944,7 @@ export const CreateVod = () => {
 
       {/* after publish dialog will show */}
       {showPublishConfirm && (
-        <PlateformXDialogSuccess
+        <CommonPlateformXDialog
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={t("publish_process_vod")}
@@ -956,7 +956,7 @@ export const CreateVod = () => {
       )}
 
       {showExitWarning && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           disableConfirmButton={isDraftDisabled}
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
