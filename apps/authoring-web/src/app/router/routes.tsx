@@ -3,10 +3,11 @@ import { AssetListing } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
 import {
   Content,
-  ContentPreview,
   CreateArticle,
   CreateContent,
   TimeLineBlogs,
+  CommonPreview,
+  CommonContentRender,
 } from "@platformx/content";
 import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
@@ -37,7 +38,9 @@ import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
+import { getCurrentLang, getSelectedSite } from "@platformx/utilities";
 
+const iframedurl = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
 export const routes: RouteConfig[] = [
   {
     path: "/",
@@ -196,7 +199,20 @@ export const routes: RouteConfig[] = [
         subCategory='content-preview'
         isSideBar={false}
         isHeader={false}>
-        <ContentPreview />
+        <CommonPreview iframeUrl={iframedurl} />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/common/preview",
+    element: (
+      <ProtectedRoute
+        name='content'
+        category='content'
+        subCategory='content-preview'
+        isSideBar={false}
+        isHeader={false}>
+        <CommonContentRender />
       </ProtectedRoute>
     ),
   },

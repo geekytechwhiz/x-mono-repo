@@ -585,7 +585,7 @@ export const CreateQuiz = () => {
       ShowToastError(t("allowed_tags_toast"));
     } else {
       if (event.target.checked) {
-        tagsArray = [...tagArr, event.target.value];
+        if (!tagArr.includes(event.target.value)) tagsArray = [...tagArr, event.target.value];
       } else {
         tagsArray.splice(tagArr.indexOf(event.target.value), 1);
       }

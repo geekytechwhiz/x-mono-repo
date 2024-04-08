@@ -46,6 +46,7 @@ const ContentPreview = () => {
       }
     </style></head><body><div id="site-root"></div></body></html>`);
   const { currentContent } = useSelector((state: RootState) => state.content);
+
   const memoizedCreateCacheWithContainer = weakMemoize((container: any) => {
     const newCache = createCache({ container, key: "css", prepend: true });
     return newCache;
