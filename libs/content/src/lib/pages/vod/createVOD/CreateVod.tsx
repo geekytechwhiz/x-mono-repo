@@ -137,7 +137,7 @@ export const CreateVod = () => {
   const updateCurrentInstance = (pageURL, callPreview = false) => {
     const videoTags = vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current;
     const updatedObj = {
-      Page: pageURL ? pageURL : vodRef?.current?.Page,
+      Page: vodRef?.current?.Page ? vodRef?.current?.Page : "",
       Title: vodRef?.current?.Title,
       Description: vodRef?.current?.Description,
       Thumbnail: vodRef?.current?.Thumbnail,
@@ -170,10 +170,12 @@ export const CreateVod = () => {
   };
 
   const createVod = (pageState, pageExist, isWorkflow = true) => {
+    const pageURL = vodRef?.current?.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const structureData = updateStructureData(vodRef);
     const vodToSend = {
       ...JSON.parse(JSON.stringify(vodInstance)),
       ...updateTempObj.current,
+      Page: vodRef?.current?.Page ? vodRef?.current?.Page : pageURL,
       Page_State: pageState,
       IsConfirm: pageExist,
       StructureData: JSON.stringify(structureData),
