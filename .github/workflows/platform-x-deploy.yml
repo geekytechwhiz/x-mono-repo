@@ -60,9 +60,14 @@ jobs:
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
 
-      # Setup Nx Cloud - Needs more work - Add condition for environments.
       - uses: nrwl/nx-set-shas@v3
-      - run: git branch --track main origin/develop
+      - name: Set dev as main branch
+        if: endsWith(github.ref, '/develop')
+        run: git branch --track main origin/develop
+      - name: Set qa as main branch
+        if: endsWith(github.ref, '/qa')
+        run: git branch --track main origin/qa
+
       - run: npx nx affected -t build --parallel=3
 
   authoring-ui:
