@@ -2,7 +2,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Box, Button, Divider, Tooltip, Typography } from "@mui/material";
-import { Logo } from "@platformx/utilities";
+import { PlatXLogo } from "@platformx/utilities";
 import { useNavigate } from "react-router-dom";
 
 const TopBar = ({
@@ -23,7 +23,7 @@ const TopBar = ({
             <ArrowBackIcon />
           </Box>
           <Box className='d-flex' onClick={() => navigate("/dashboard")}>
-            <img src={Logo} height='30' alt='' />
+            <img src={PlatXLogo} height='30' alt='' />
           </Box>
         </Box>
         <Box className='d-flex align-items-center justify-content-space-between'>
