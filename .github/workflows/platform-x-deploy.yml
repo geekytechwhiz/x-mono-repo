@@ -2,7 +2,7 @@ name: platform-x-deploy
 on:
   push:
     branches:
-      - develop_x
+      - develop
       - qa
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -49,24 +49,26 @@ jobs:
           echo "NAMESPACE_NAME=NAMESPACE_NAME_$(echo ${{ github.ref_name }} | tr  '[:lower:]' '[:upper:]')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          #cache: "npm"
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 20
+      #cache: "npm"
 
       # Install dependencies
       - name: Install Dependencies
         run: npm i --legacy-peer-deps
 
       # Setup Nx Cloud - Needs more work
-      - run: git branch --track main origin/develop
       - uses: nrwl/nx-set-shas@v3
       # This line is needed for nx affected to work when CI is running on a PR
       # with:
       #   main-branch-name: develop
+      - run: git branch --track main origin/develop
       - run: npx nx affected -t build --parallel=3
 
   authoring-ui:
