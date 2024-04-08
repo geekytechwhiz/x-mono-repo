@@ -114,8 +114,8 @@ const Quiz = ({
         name: content.title,
         description: content.description,
         hasPart:
-          content.questions.length > 0 &&
-          content?.questions.map(({ question }: any) => {
+          content.questions?.length > 0 &&
+          content.questions?.map(({ question }: any) => {
             return {
               "@type": "Question",
               name: question,
@@ -197,7 +197,7 @@ const Quiz = ({
 
   useEffect(() => {
     if (content.questions?.length > 0) {
-      const formatData = content.questions.map((question: any, key: number) => {
+      const formatData = content.questions?.map((question: any, key: number) => {
         return {
           question_key: key + 1,
           question: question.question,
@@ -280,7 +280,7 @@ const Quiz = ({
         );
       }
     } else {
-      if (Url.search("dspace") !== -1) {
+      if (Url?.search("dspace") !== -1) {
         //normal dspace url
         returnUrl = Url;
       }
@@ -369,10 +369,10 @@ const Quiz = ({
               sx={{
                 position: "relative",
                 backgroundImage:
-                  content?.background_content?.objectType === "image"
+                  content.background_content?.objectType === "image"
                     ? // ? `url(${content.background_content.Url})`
                       fetchCroppedUrl(
-                        content.background_content.Url,
+                        content.background_content?.Url,
                         content.published_images,
                         {
                           1440: "hero",
@@ -386,7 +386,7 @@ const Quiz = ({
                       )
                     : "",
                 backgroundColor:
-                  content?.background_content?.objectType === "image"
+                  content.background_content?.objectType === "image"
                     ? "black"
                     : content.background_content?.Color,
                 backgroundRepeat: "no-repeat",

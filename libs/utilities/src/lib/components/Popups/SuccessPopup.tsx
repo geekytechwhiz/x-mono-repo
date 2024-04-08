@@ -4,8 +4,8 @@ import { Box, Button, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useNavigate } from "react-router-dom";
 import { SuccessIcon } from "@platformx/utilities";
+import { useNavigate } from "react-router-dom";
 
 export default function PlateformXDialogSuccess({
   isDialogOpen,
@@ -50,17 +50,6 @@ export default function PlateformXDialogSuccess({
             },
             textAlign: "center",
           }}>
-          {/* <Box
-                    sx={{ textAlign: 'right', cursor: 'pointer' }}
-                    mt={1}
-                    mr={3}
-                    onClick={
-
-                        closeButtonHandle
-                    }
-                >
-                    <CloseIcon />
-                </Box> */}
           <Box
             sx={{
               textAlign: "center",

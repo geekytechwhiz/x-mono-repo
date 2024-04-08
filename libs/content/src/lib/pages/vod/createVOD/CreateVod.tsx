@@ -19,6 +19,7 @@ import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from 
 import {
   createVodInstance,
   isPublishVodHandle,
+  removeVODDuplicateTag,
   updateStructureData,
   updateVodSettings,
 } from "./Utils/helper";
@@ -134,13 +135,14 @@ export const CreateVod = () => {
   };
 
   const updateCurrentInstance = (pageURL, callPreview = false) => {
+    const videoTags = vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current;
     const updatedObj = {
       Page: pageURL ? pageURL : vodRef?.current?.Page,
       Title: vodRef?.current?.Title,
       Description: vodRef?.current?.Description,
       Thumbnail: vodRef?.current?.Thumbnail,
       DsapceVideoUrl: vodRef?.current?.DsapceVideoUrl,
-      Tags: vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current,
+      Tags: removeVODDuplicateTag(videoTags),
       CurrentPageURL: `/${pageURL}`,
       PageSettings: {
         ...updateVodSettings(vodRef, currentVodData, i18n.language),
@@ -282,6 +284,7 @@ export const CreateVod = () => {
     const pageURL = vodRef?.current?.Title
       ? vodRef?.current?.Title?.replace(/[^A-Z0-9]+/gi, "-").toLowerCase()
       : "";
+    const videoTags = vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current;
 
     const updatedObj = {
       Page: pageURL,
@@ -289,7 +292,7 @@ export const CreateVod = () => {
       Description: vodRef?.current?.Description,
       Thumbnail: vodRef?.current?.Thumbnail,
       DsapceVideoUrl: vodRef?.current?.DsapceVideoUrl,
-      Tags: vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current,
+      Tags: removeVODDuplicateTag(videoTags),
       CurrentPageURL: `/${pageURL}`,
       PageSettings: {
         ...updateVodSettings(vodRef, currentVodData, i18n.language),
@@ -314,8 +317,7 @@ export const CreateVod = () => {
       is_featured: isFeatured,
     };
     vodInstance.Page_State = "draft";
-    delete vodToSend.__typename;
-    delete vodToSend.relativeUrl;
+    const { __typename, relativeUrl, contentType, ...restOpt } = vodToSend;
     const requestdto = {
       page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
       parentpageurl: "/",
@@ -328,7 +330,7 @@ export const CreateVod = () => {
     mutatePublish({
       variables: {
         input: requestdto,
-        vodRequest: vodToSend,
+        vodRequest: restOpt,
         timeZone: timeZone,
       },
     })
@@ -424,11 +426,11 @@ export const CreateVod = () => {
       disableSave.current = true;
     }
     tagRef.current = tagsArray;
-    vodRef.current = { ...vodRef.current, Tags: tagsArray };
+    vodRef.current = { ...vodRef.current, Tags: removeVODDuplicateTag(tagsArray) };
     const tagArrTemp = { ...vodRef.current };
     delete tagArrTemp.Description;
     setSelectedTag(tagsArray);
-    setVodInstance({ ...vodInstance, Tags: tagsArray });
+    setVodInstance({ ...vodInstance, Tags: removeVODDuplicateTag(tagsArray) });
     unsavedChanges.current = true;
     setIsEdited(true);
   };
@@ -591,7 +593,7 @@ export const CreateVod = () => {
               Thumbnail: res?.data?.authoring_getCmsVodByPath?.Thumbnail,
               Title: res?.data?.authoring_getCmsVodByPath?.Title,
               Description: res?.data?.authoring_getCmsVodByPath?.Description,
-              Tags: res?.data?.authoring_getCmsVodByPath?.Tags,
+              Tags: removeVODDuplicateTag(res?.data?.authoring_getCmsVodByPath?.Tags),
               is_featured: isFeatured,
             };
             updateThumbnailPicture(res?.data?.authoring_getCmsVodByPath); //update
@@ -673,7 +675,6 @@ export const CreateVod = () => {
       setDraftDisabled(true);
     }
   }, [vodRef.current, errors]);
-
   const theme = useTheme();
   const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -825,7 +826,7 @@ export const CreateVod = () => {
                   <XImageRender
                     callBack={updateImageField}
                     editData={{
-                      relativeUrl: stateManage.Thumbnail,
+                      relativeUrl: stateManage.Thumbnail || vodRef.current?.Thumbnail,
                     }}
                     isCrop={false}
                   />
