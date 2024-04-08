@@ -24,8 +24,14 @@ FROM node:alpine
 #     libpng-dev \
 #     libwebp-dev
 
-RUN apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-
+# RUN apk add install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+RUN apk add --no-cache \
+    build-base \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev
 # create & set working directory
 RUN mkdir -p /server
 WORKDIR /server
