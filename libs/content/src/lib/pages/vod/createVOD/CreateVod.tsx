@@ -137,7 +137,7 @@ export const CreateVod = () => {
   const updateCurrentInstance = (pageURL, callPreview = false) => {
     const videoTags = vodRef?.current?.Tags ? vodRef?.current?.Tags : tagRef.current;
     const updatedObj = {
-      Page: pageURL ? pageURL : vodRef?.current?.Page,
+      Page: vodRef?.current?.Page ? vodRef?.current?.Page : "",
       Title: vodRef?.current?.Title,
       Description: vodRef?.current?.Description,
       Thumbnail: vodRef?.current?.Thumbnail,
@@ -170,10 +170,12 @@ export const CreateVod = () => {
   };
 
   const createVod = (pageState, pageExist, isWorkflow = true) => {
+    const pageURL = vodRef?.current?.Title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase();
     const structureData = updateStructureData(vodRef);
     const vodToSend = {
       ...JSON.parse(JSON.stringify(vodInstance)),
       ...updateTempObj.current,
+      Page: vodRef?.current?.Page ? vodRef?.current?.Page : pageURL,
       Page_State: pageState,
       IsConfirm: pageExist,
       StructureData: JSON.stringify(structureData),
@@ -309,24 +311,40 @@ export const CreateVod = () => {
       ...updateTempObj.current,
       Page_State: "draft",
       Page_PublishedBy: username,
-      Page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
+      Page: draftPageURL
+        ? draftPageURL
+        : currentVodData.current
+          ? currentVodData.current
+          : vodRef?.current?.Page,
       CurrentPageURL: `/${
-        draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL
+        draftPageURL
+          ? draftPageURL
+          : currentVodData.current
+            ? currentVodData.current
+            : vodRef?.current?.Page
       }`,
       StructureData: JSON.stringify(structureData),
       is_featured: isFeatured,
     };
     vodInstance.Page_State = "draft";
     const { __typename, relativeUrl, contentType, ...restOpt } = vodToSend;
+
     const requestdto = {
-      page: draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL,
+      page: draftPageURL
+        ? draftPageURL
+        : currentVodData.current
+          ? currentVodData.current
+          : vodRef?.current?.Page,
       parentpageurl: "/",
       currentpageurl: `/${
-        draftPageURL ? draftPageURL : currentVodData.current ? currentVodData.current : pageURL
+        draftPageURL
+          ? draftPageURL
+          : currentVodData.current
+            ? currentVodData.current
+            : vodRef?.current?.Page
       }`,
     };
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
-
     mutatePublish({
       variables: {
         input: requestdto,
@@ -383,11 +401,13 @@ export const CreateVod = () => {
   const handleSelectedVideo = (video) => {
     vodRef.current = {
       ...vodRef.current,
+      Page: "",
       DsapceVideoUrl: video?.Url,
       Thumbnail: video?.Thumbnail,
       Title: video?.Title,
       Description: video?.Description,
     };
+    setIsDraft(true);
     updateThumbnailPicture(video); //thumbImage update
     unsavedChanges.current = true;
     setIsEdited(true);
