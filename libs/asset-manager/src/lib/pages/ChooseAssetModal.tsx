@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { useImagesStyle } from "./Images.style";
-import { Assetmodalicon, FileUploadicon, NoAssetSelected } from "@platformx/utilities";
+import { FileUploadicon, NoAssetSelected } from "@platformx/utilities";
 import AssetBreadsum from "./AssetBreadscum";
 import Progressbar from "../components/ProgressBar";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -25,55 +24,13 @@ export default function PlateformXAssetDialog({
   const classes = useImagesStyle();
   const navigate = useNavigate();
   const [files, setFiles] = useState<any>([]);
-  const [searchParams] = useSearchParams();
-  const uuid1 = searchParams.get("uuid1");
-  files.length > 0 && console.log(files, files.length, 2222);
+
   const routeChange = (event) => {
     event.preventDefault();
-    navigate("/create_asset");
+    navigate("/asset/create");
   };
 
-  const mockAssetmodalData = [
-    {
-      id: "AFG",
-      value: "Encaurzing Gen Z",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-    {
-      id: "AGO",
-      value: "image 2",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-    {
-      id: "ALB",
-      value: "image 3",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-    {
-      id: "BHS",
-      value: "image 4",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-    {
-      id: "BIH",
-      value: "image 4",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-    {
-      id: "BLZ",
-      value: "image 5",
-      text: "7.8mb . image",
-      img: Assetmodalicon,
-    },
-  ];
-
   const handleFileChange = (event) => {
-    console.log(event.target.files, 4444);
     setFiles(Array.from(event.target.files));
   };
 
@@ -95,7 +52,6 @@ export default function PlateformXAssetDialog({
 
   useEffect(() => {
     if (files.length > 0) {
-      console.log("api to be called", 2222);
       handleFileUpload();
     }
   }, [files]);
@@ -161,22 +117,6 @@ export default function PlateformXAssetDialog({
                       </Box>
                       <Divider></Divider>
                       <Box className={classes.boxover}>
-                        {/* {mockAssetmodalData.map((transaction) => (
-                          <Box key={""} className={classes.modalassetbox}>
-                            <Box key={transaction.id} className={classes.boxcloseinnercontain}>
-                              <img src={transaction.img} alt='' />
-                              <Box className={classes.modalboxtypo}>
-                                <Typography variant='h6semibold'>{transaction.value}</Typography>
-                                <Typography sx={{ color: "#6E7191" }}>
-                                  {transaction.text}
-                                </Typography>
-                              </Box>
-                              <Box className={classes.closeiconreop}>
-                                <CloseIcon />
-                              </Box>
-                            </Box>
-                          </Box>
-                        ))} */}
                         {files.map((file: any) => (
                           <Box key={file.lastModified} className={classes.modalassetbox}>
                             <Box className={classes.boxcloseinnercontain}>

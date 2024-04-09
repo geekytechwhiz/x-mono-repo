@@ -21,7 +21,7 @@ import { CreateHeader } from "@platformx/content";
 import { useTranslation } from "react-i18next";
 import PlateformXFolderDialog from "./ChooseFolderModal";
 
-export const CreateAssest = () => {
+export const CreateAsset = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isShowPreview] = useState<boolean>(false);
