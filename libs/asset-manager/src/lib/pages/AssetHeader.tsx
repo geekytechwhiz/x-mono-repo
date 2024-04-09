@@ -9,7 +9,7 @@ import { useImagesStyle } from "./Images.style";
 import PlateformXAssetDialog from "./ChooseAssetModal";
 import { FormControlCustom } from "@platformx/content";
 
-export function AssetHeader({ handleShow }) {
+export function AssetHeader({ handleShow, collectionArr }) {
   const classes = useImagesStyle();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -109,22 +109,25 @@ export function AssetHeader({ handleShow }) {
                 control={<Radio sx={{ display: "none" }} />}
                 label={t("New Folder")}
               />
-              <FormControlCustom
-                className='listView'
-                value='UPload Assets'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("Upload Assests")}
-                onClick={() => {
-                  setAssetValue(true);
-                  handleFilterClose();
-                }}
-              />
+              {collectionArr.length !== 0 && (
+                <FormControlCustom
+                  className='listView'
+                  value='UPload Assets'
+                  control={<Radio sx={{ display: "none" }} />}
+                  label={t("Upload Assests")}
+                  onClick={() => {
+                    setAssetValue(true);
+                    handleFilterClose();
+                  }}
+                />
+              )}
             </RadioGroup>
           </FormControl>
         </Menu>
         <PlateformXAssetDialog
           isDialogOpen={assetValue}
           closeButtonHandle={() => setAssetValue(false)}
+          collectionArr={collectionArr}
         />
       </Grid>
     </Grid>

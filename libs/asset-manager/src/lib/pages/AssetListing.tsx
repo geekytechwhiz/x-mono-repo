@@ -125,7 +125,7 @@ export const AssetListing = () => {
 
   return (
     <>
-      <AssetHeader handleShow={setShow} />
+      <AssetHeader handleShow={setShow} collectionArr={assetData.collections} />
       <Grid id='scrollableDiv' container className={classes.imagecontainer}>
         <InfiniteScroll
           dataLength={collectionItem.collectionItem?.length}
