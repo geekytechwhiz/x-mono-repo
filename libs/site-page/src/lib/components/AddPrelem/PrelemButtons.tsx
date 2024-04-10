@@ -13,7 +13,8 @@ const PrelemButtons = ({
     <li>
       {(Id === "up" && !showIconsState.showUp) ||
       (Id === "down" && !showIconsState.showDown) ||
-      (Id === "reset" && !showIconsState.showReset) ? (
+      (Id === "reset" && !showIconsState.showReset) ||
+      (Id === "edit" && showIconsState.showVisible) ? (
         <Tooltip title={tooltipId}>
           <IconButton disabled>
             <DisabledIcon />

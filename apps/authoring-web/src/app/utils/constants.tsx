@@ -2,7 +2,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
-  courseIcon,
+  CourseListIcon,
   EventsIcon,
   FooterMenuUpdated,
   HamburgerMenuIcon,
@@ -108,7 +108,7 @@ export const MenuData = [
       },
       {
         MenuName: "Courses",
-        Icon: courseIcon,
+        Icon: CourseListIcon,
         url: "/content/course",
         category: "content",
         subCategory: "",

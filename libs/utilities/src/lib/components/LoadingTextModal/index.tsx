@@ -4,15 +4,15 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Typography,
   IconButton,
+  Typography,
 } from "@mui/material";
-import FormatSubtitle from "../Modal/FormatSubtitle";
 import { Box } from "@mui/system";
+import { DialogCloseIcon, SuccessIcon } from "@platformx/utilities";
 import { useEffect, useState } from "react";
-import { successGif, DialogCloseIcon } from "@platformx/utilities";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import FormatSubtitle from "../Modal/FormatSubtitle";
 
 export default function LoadingTextModal({
   isDialogOpen,
@@ -82,7 +82,7 @@ export default function LoadingTextModal({
           {loadingState === "pending" ? (
             <CircularProgress color='inherit' />
           ) : (
-            <img src={successGif} alt='' />
+            <img src={SuccessIcon} alt='' />
           )}
         </Box>
         {subTitle ? (

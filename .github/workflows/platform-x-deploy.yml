@@ -50,7 +50,7 @@ jobs:
 
       - name: Restore cached npm dependencies
         id: cache-dependencies-restore
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             node_modules
@@ -58,7 +58,9 @@ jobs:
 
       # Install dependencies
       - name: Install Dependencies
-        run: npm i --legacy-peer-deps
+        run: |
+          npm pkg delete scripts.prepare
+          npm i --legacy-peer-deps
 
       - uses: nrwl/nx-set-shas@v3
       - name: Set dev as main branch
@@ -68,7 +70,8 @@ jobs:
         if: endsWith(github.ref, '/qa')
         run: git branch --track main origin/qa
 
-      - run: npx nx affected -t build --parallel=3
+      # - run: npx nx affected -t build --parallel=3
+      - run: npx nx affected --target=build --parallel=true --maxParallel=5
 
   authoring-ui:
     name: authoring-ui
@@ -141,13 +144,13 @@ jobs:
           refs/heads/mavericks_dev
           refs/heads/qa
           refs/heads/develop', github.ref)
-        uses: google-github-actions/get-gke-credentials@v0.4.0
+        uses: "google-github-actions/get-gke-credentials@v2"
         with:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build Docker image
-      - name: Build
+      - name: Preparing docker image
         run: |-
           docker build -f Dockerfile.author --build-arg BRANCH=${{ github.ref_name }} --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
 
@@ -256,13 +259,13 @@ jobs:
           refs/heads/mavericks_dev
           refs/heads/qa
           refs/heads/develop', github.ref)
-        uses: google-github-actions/get-gke-credentials@v0.4.0
+        uses: "google-github-actions/get-gke-credentials@v2"
         with:
           cluster_name: ${{ secrets[env.CLUSTER_NAME] }}
           location: ${{ secrets[env.GKE_ZONE] }}
 
       # Build the Docker image
-      - name: Build
+      - name: Preparing docker image
         run: |-
           docker build -f Dockerfile.userexp --tag "gcr.io/${{ secrets[env.PROJECT_ID] }}/${{ secrets[env.IMAGE_NAME] }}:$GITHUB_RUN_NUMBER"  .
       # Push the Docker image to Google Container Registry
