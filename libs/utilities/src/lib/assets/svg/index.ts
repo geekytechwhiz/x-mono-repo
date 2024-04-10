@@ -84,7 +84,6 @@ import CloseSearchSvg from "./closeSearch.svg";
 import CookieIcon from "./cookieIcon.svg";
 import CourseListIcon from "./course-icon.svg";
 import EmptySiteBox from "./emptysitebox.svg";
-// import CourseListIcon from "./course-icon.svg";
 import SitePlaceholder from "../site-placeholder.png";
 import PeopleIcon from "./2PeopleIcon.svg";
 import Aboutusupdateicon from "./Aboutusupdateicon.svg";
@@ -305,7 +304,6 @@ export {
   CookieIcon,
   CopyIcon,
   CopyrightUpdateIcon,
-  CourseListIcon as CourseIcon,
   CourseListIcon,
   Ctaround,
   Ctasearch,

@@ -4,7 +4,7 @@ import {
   ApprovalStatus,
   ArticleIcon,
   CookieIcon,
-  CourseIcon,
+  BookIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -86,7 +86,7 @@ const ContentRoutes = {
     },
     {
       MenuName: "Courses",
-      Icon: CourseIcon,
+      Icon: BookIcon,
       url: "/content/course",
       category: "content",
       subCategory: "",
