@@ -1,10 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { ShowToastSuccess } from "@platformx/utilities";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { ShowToastSuccess } from "@platformx/utilities";
 
 interface Props {
   index: string;
@@ -49,7 +49,7 @@ const PrelemEcom: React.FC<Props> = ({
   return (
     <Box key={`${index}_content`} className='pageSettingmainWp'>
       <Box className='rowBox'>
-        <BackButton setPageId={setPageId} Title='Data Source' backTo='prelemSetting' />
+        <BackButton setPageId={setPageId} Title={t("prelem_data_source")} backTo='prelemSetting' />
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>

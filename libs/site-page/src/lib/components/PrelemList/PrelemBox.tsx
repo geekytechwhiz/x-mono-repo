@@ -1,23 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Button, IconButton, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { ThemeConstants, createImageURL, usePlatformAnalytics } from "@platformx/utilities";
-import { useStyles } from "./PrelemList.styles";
 import { useLazyQuery } from "@apollo/client";
 import { CloseOutlined, InfoOutlined } from "@mui/icons-material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
+import {
+  addPrelemFunc,
+  fetchPrelemContent,
+  fetchPrelemValidation,
+} from "@platformx/authoring-apis";
+import { RootState } from "@platformx/authoring-state";
+import { ThemeConstants, createImageURL, usePlatformAnalytics } from "@platformx/utilities";
 import { Mapping } from "@platformx/x-prelems-library";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  fetchPrelemContent,
-  fetchPrelemValidation,
-  addPrelemFunc,
-  // runPageFetchContentQuery,
-  // runPageFetchValidationQuery,
-} from "@platformx/authoring-apis";
-import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
+import { useNavigate } from "react-router-dom";
+import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
+import { useStyles } from "./PrelemList.styles";
 // import { navigateToEditpage } from "../utils/helper";
 
 //mapping dynamic instance
@@ -111,10 +109,10 @@ const PrelemBox = ({ item, key }) => {
                   });
                 }}
                 data-testid='preview-button'>
-                Preview
+                {t("preview")}
               </Button>
               <Button variant='whitebutton' onClick={onClickAddPrelem} data-testid='add-button'>
-                Add Prelem
+                {t("add_prelem")}
               </Button>
             </Box>
           </Box>

@@ -1,18 +1,18 @@
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import SearchIcon from "@mui/icons-material/Search";
 import { Box, Button, Dialog, FormControl, Grid, Typography } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-import { useTranslation } from "react-i18next";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useEffect, useState } from "react";
-import InviteMemberPopupCard from "./InviteMemberPopupCard";
-import { useStyles } from "./InviteMemberPopup.styles";
 import {
-  NoSearchResult,
-  XCheckbox,
-  CommonPlateformXDialog as PlateformXDialog,
   Loader,
+  NoSearchResult,
+  CommonPlateformXDialog as PlateformXDialog,
+  XCheckbox,
 } from "@platformx/utilities";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useStyles } from "./InviteMemberPopup.styles";
+import InviteMemberPopupCard from "./InviteMemberPopupCard";
 
 const InviteMemberPopup = ({
   cancleButtonHandle,
@@ -95,7 +95,7 @@ const InviteMemberPopup = ({
             <TextField
               className='contentTypeCard'
               variant='outlined'
-              placeholder={t("search_m")}
+              placeholder={t("search")}
               value={search}
               onChange={searchOnChange}
               InputProps={{
