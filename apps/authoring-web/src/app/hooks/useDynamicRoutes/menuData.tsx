@@ -11,6 +11,7 @@ import {
   HamburgerMenuIcon,
   HeaderMenuUpdated,
   MediaIcon,
+  VideoNav,
   MyDashboardIcon,
   PagesIcon,
   PollIcon,
@@ -349,7 +350,7 @@ export const MenuData = [
     roles: ["admin"],
     Menu: [
       {
-        MenuName: "Images",
+        MenuName: "images",
         Icon: MediaIcon,
         url: "/asset/images",
         id: "Images",
@@ -357,8 +358,8 @@ export const MenuData = [
         subCategory: "",
       },
       {
-        MenuName: "Videos",
-        Icon: MediaIcon,
+        MenuName: "videos",
+        Icon: VideoNav,
         url: "/asset/videos",
         id: "Videos",
         category: "Assets",

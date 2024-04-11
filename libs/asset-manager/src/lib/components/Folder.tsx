@@ -34,14 +34,6 @@ export default function Folder({ data, deleteFolder }: any) {
   const handleOpen = () => {
     const pathArray = path ? path.split("|") : [];
 
-    // const uuid_ = collections.find((obj) => obj.name === data.name);
-    // uuid_
-    //   ? setSearchParams({
-    //       uuid1: data.uuid,
-    //       uuid2: uuid_.uuid,
-    //       path: [...pathArray, data.name].join("|"),
-    //     })
-    //   :
     setSearchParams({
       uuid1: data.uuid,
       path: [...pathArray, data.name].join("|"),
@@ -59,10 +51,9 @@ export default function Folder({ data, deleteFolder }: any) {
             <Typography variant='h6semibold' className={classes.marginTop}>
               {data.name}
             </Typography>
-            <Typography variant='h7medium' className={classes.marginTop}>
-              {/* {dateFormat(data.lastModified)} */}
+            {/* <Typography variant='h7medium' className={classes.marginTop}>
               feb, 9 2023 | 17:08
-            </Typography>
+            </Typography> */}
           </Box>
         </Box>
         <Box className={classes.boxassetstep}>

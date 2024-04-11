@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-import { Button, Grid, IconButton, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { Imageasset, video, Morevarwhite, PlateformXDialog, XImage } from "@platformx/utilities";
-// import { dateFormat } from "../../utils/helperFunctions";
+import { Imageasset, video, Morevarwhite, PlateformXDialog } from "@platformx/utilities";
 import AssetCardMenu from "../components/CardMenu";
 import { useImagesStyle } from "./Images.style";
 import { useTranslation } from "react-i18next";
@@ -14,8 +11,6 @@ const ImageCard = ({ data, deleteAsset }) => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  const [filterMenu, setFilterMenu] = useState<null | HTMLElement>(null);
   const [isDelete, setIsDelete] = useState(false);
 
   const handleDelete = () => {
@@ -36,7 +31,6 @@ const ImageCard = ({ data, deleteAsset }) => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
-    setFilterMenu(event.currentTarget);
   };
 
   return (

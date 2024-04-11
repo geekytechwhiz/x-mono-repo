@@ -8,6 +8,7 @@ import AssetBreadsum from "./AssetBreadscum";
 import Progressbar from "../components/ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 export type DialogList = {
@@ -23,6 +24,7 @@ export default function PlateformXAssetDialog({
 }: DialogList) {
   const classes = useImagesStyle();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [files, setFiles] = useState<any>([]);
 
   const routeChange = (event) => {
@@ -43,10 +45,10 @@ export default function PlateformXAssetDialog({
     axios
       .post(url, formData)
       .then((response) => {
-        console.log(response, 2222, "response");
+        console.log(response);
       })
       .catch((error) => {
-        console.log("Error:", error, 2222);
+        console.error(error);
       });
   };
 
@@ -151,7 +153,7 @@ export default function PlateformXAssetDialog({
                             className={`${classes.modalbtn} sm`}
                             variant='primaryButton'
                             onClick={routeChange}>
-                            Next
+                            {t("next")}
                           </Button>
                         </Box>
                       </Box>
@@ -164,10 +166,10 @@ export default function PlateformXAssetDialog({
                         <img src={NoAssetSelected} alt='No asset' />s
                       </Box>
                       <Typography className={classes.modaltypo} variant='h5bold'>
-                        There are no files here
+                        {t("there_are_no")}
                       </Typography>
                       <Typography className={classes.modaltypo} variant='h6medium'>
-                        Please Upload the files
+                        {t("please_upload")}
                       </Typography>
                     </>
                   )}

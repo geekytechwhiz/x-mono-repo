@@ -3,7 +3,6 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 import { CardOptionDeleteIcon } from "@platformx/utilities";
 import { useStyles } from "./CardMenu.styles";
-//import { MenuActions } from "libs/content/src/lib/components/CourseMenu/CardMenu.types";
 
 const AssetCardMenu = (props) => {
   const classes = useStyles();

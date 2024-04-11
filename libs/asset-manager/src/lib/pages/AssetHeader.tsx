@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { DeleteIcon, FilterIcon, backAssetIcon } from "@platformx/utilities";
+import { backAssetIcon } from "@platformx/utilities";
 import AssetBreadsum from "../pages/AssetBreadscum";
 import { useImagesStyle } from "./Images.style";
 import PlateformXAssetDialog from "./ChooseAssetModal";
@@ -60,14 +60,6 @@ export function AssetHeader({ handleShow, collectionArr }) {
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6}>
         <Box className={classes.topheader}>
-          <Box className={classes.filternewicon}>
-            <img src={FilterIcon} alt='Filter Icon' width='20' height='24' />
-          </Box>
-          <Box className={classes.deletenewicon}>
-            <Box>
-              <img src={DeleteIcon} alt='Filter Icon' width='24' height='24' />
-            </Box>
-          </Box>
           <Button onClick={handlebtnClick} variant='primaryButton'>
             {t("add_new")}
           </Button>

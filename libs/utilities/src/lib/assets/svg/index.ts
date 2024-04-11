@@ -249,12 +249,14 @@ import Crossnewicons from "./Crossnewicon.svg";
 import SystemTagIcon from "./SystemTagIcon.svg";
 import BusinessTagIcon from "./BusinessTagIcon.svg";
 import NoAssetSelected from "./NoAssetSelected.svg";
+import VideoNav from "./VideoMenuIcon.svg";
 
 export {
   RedBlinkingDot as liveIcon,
   IconFbSvg,
   IconGoogleSvg,
   IconVisaCardSvg,
+  VideoNav,
   IconDelete1svg,
   SuccessIcon,
   SystemTagIcon,
