@@ -13,7 +13,7 @@ export const CreateContent = () => {
 
   switch (contentType) {
     case CREATE_CONTENT.PROFILE:
-      return <DynamicContentType contentType={contentType}></DynamicContentType>;
+      return <DynamicContentType contentType={contentType.split("-")[1]}></DynamicContentType>;
     case CREATE_CONTENT.QUIZ:
       return <CreateQuiz></CreateQuiz>;
     case CREATE_CONTENT.VOD:
