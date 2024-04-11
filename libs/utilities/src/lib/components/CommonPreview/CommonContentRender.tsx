@@ -11,17 +11,6 @@ interface MappingDynamicInstance {
   Header?: React.ComponentType<any>;
   Footer?: React.ComponentType<any>;
 }
-// let mappingDynamicInstance: any;
-// Object.keys(MAPPING).map((item) => {
-//   mappingDynamicInstance[item] = lazy(() =>
-//     import(`@platformx/x-prelems-library`).then((module) => ({
-//       default: module[MAPPING[item]],
-//     })),
-//   );
-//   return mappingDynamicInstance;
-// });
-// console.log("mappingDynamicInstance", mappingDynamicInstance);
-
 const CommonContentRender = () => {
   const classes = useStyles();
   const currentItem = localStorage.getItem("preview");
