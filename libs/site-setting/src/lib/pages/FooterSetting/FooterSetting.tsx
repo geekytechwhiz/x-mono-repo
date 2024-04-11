@@ -1,5 +1,4 @@
 import AddIcon from "@mui/icons-material/Add";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -17,7 +16,7 @@ import {
   Loader,
   PictureIcon,
   VectorIconSvg,
-  PlateformXDialogSuccess,
+  ShowToastSuccess,
 } from "@platformx/utilities";
 
 import { CreateHeader, ContentPageScroll } from "@platformx/content";
@@ -27,7 +26,6 @@ import {
   updateSiteSetting,
 } from "@platformx/authoring-apis";
 
-// import { postRequest } from "../../../services/config/request";
 import {
   AddLinkSkeleton,
   ContactUsSkeleton,
@@ -51,7 +49,6 @@ export const FooterSetting = () => {
   const [mediaOptionList, setMediaOptionList] = useState<[]>([]);
   const scrollDebounceRef = useRef<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const originalRes = useRef<any>(null);
   const [form, setForm] = useState<any>({
     site_logo: "",
     about_us_text: "",
@@ -64,12 +61,7 @@ export const FooterSetting = () => {
     news_letter_title: "",
     news_letter_description: "",
   });
-  const [isNotificationToast, setIsNotificationToast] = useState<boolean>(false);
 
-  const toastMessage = useRef<any>(null);
-  const crossButtonHandle = () => {
-    setIsNotificationToast(false);
-  };
   const navigate = useNavigate();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -80,39 +72,45 @@ export const FooterSetting = () => {
     setForm({ ...form, [fieldName]: event.target.value });
   };
   const fetchFooterSettingData = async () => {
-    const { authoring_getFooterSettings = {} } = await fetchFooterSetting({
-      pagePath: "footer-item",
-    });
-    delete authoring_getFooterSettings.__typename;
-    originalRes.current = authoring_getFooterSettings;
-    setsrollToView("");
-    const {
-      site_logo = "",
-      about_us_text = "",
-      title_text = "",
-      address = "",
-      email_address = "",
-      contact_number = "",
-      link = [],
-      copyright_text = "",
-      news_letter_title = "",
-      news_letter_description = "",
-      mediahandle = [],
-    } = authoring_getFooterSettings;
-    setForm({
-      site_logo: site_logo || "",
-      about_us_text: about_us_text || "",
-      title_text: title_text || "",
-      address: address || "",
-      email_address: email_address || "",
-      contact_number: contact_number || "",
-      copyright_text: copyright_text || "",
-      news_letter_title: news_letter_title || "",
-      news_letter_description: news_letter_description || "",
-      footer_link: link,
-    });
-    setMediaOptionList(mediahandle.map((media) => media.media_name));
-    setMediaList(mediahandle.filter((media) => media.isSelected).map((media) => media.media_name));
+    try {
+      const { authoring_getSitedetails = {} } = await fetchFooterSetting({
+        pagePath: "footer-item",
+      });
+      delete authoring_getSitedetails.__typename;
+
+      setsrollToView("");
+      const {
+        site_logo = "",
+        about_us_text = "",
+        title_text = "",
+        address = "",
+        email_address = "",
+        contact_number = "",
+        link = [],
+        copyright_text = "",
+        news_letter_title = "",
+        news_letter_description = "",
+        mediahandle = [],
+      } = authoring_getSitedetails;
+      setForm({
+        site_logo: site_logo || "",
+        about_us_text: about_us_text || "",
+        title_text: title_text || "",
+        address: address || "",
+        email_address: email_address || "",
+        contact_number: contact_number || "",
+        copyright_text: copyright_text || "",
+        news_letter_title: news_letter_title || "",
+        news_letter_description: news_letter_description || "",
+        footer_link: link,
+      });
+      setMediaOptionList(mediahandle.map((media) => media.media_name));
+      setMediaList(
+        mediahandle.filter((media) => media.isSelected).map((media) => media.media_name),
+      );
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
   const publishfooterSetting = () => {
     const input = {
@@ -126,8 +124,7 @@ export const FooterSetting = () => {
     publishFooterSetting(input)
       .then(() => {
         setIsLoading(false);
-        toastMessage.current = "footer_settings_success";
-        setIsNotificationToast(true);
+        ShowToastSuccess(t("footer_settings_success"));
       })
       .catch((err) => {
         setIsLoading(false);
@@ -156,8 +153,6 @@ export const FooterSetting = () => {
               enable: true,
               media_name: mediaName,
             })),
-            // last_modified_by: originalRes.current.lastmodifiedby,
-            // last_modification_date: originalRes.current.lastmodificationdate,
           },
         },
       };
@@ -167,7 +162,7 @@ export const FooterSetting = () => {
         })
         .catch((err) => {
           setIsLoading(false);
-          throw err;
+          ShowToastError(t("api_error_toast"));
         });
     }
   };
@@ -734,40 +729,6 @@ export const FooterSetting = () => {
             </Box>
           </Box>
         </>
-      )}
-      {/* {galleryState && (
-        <Gallery
-          handleImageSelected={handleSelectedImage}
-          toggleGallery={toggleGallery}
-          galleryMode={galleryType.current}
-          keyName={key}
-        />
-        <DamContentGallery
-          handleImageSelected={handleSelectedImage}
-          toggleGallery={toggleGallery}
-          assetType={galleryType.current === "Images" ? "Image" : "Video"}
-          keyName={key}
-        />
-      )} */}
-      {/* {isNotificationToast &&
-        <PlateformXSnackbar
-          isDefaultOpen={isNotificationToast}
-          message={t(toastMessage.current)}
-          messageType='success'
-          onCloseButtonClick={onCloseSaveHandler}
-        />} */}
-      {isNotificationToast && (
-        <PlateformXDialogSuccess
-          isDialogOpen={isNotificationToast}
-          title={t("congratulations")}
-          subTitle={`${t("footer_settings_success")}`}
-          confirmButtonText={t("go_to_dashboard")}
-          confirmButtonHandle={() => navigate("/dashboard")}
-          modalType='publish'
-          crossButtonHandle={crossButtonHandle}
-          closeButtonHandle={crossButtonHandle}
-          closeIcon={<CreateRoundedIcon />}
-        />
       )}
     </>
   );

@@ -10,6 +10,7 @@ import {
   FooterMenuUpdated,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
+  GlobalSetting,
   MediaIcon,
   VideoNav,
   MyDashboardIcon,
@@ -303,7 +304,7 @@ export const MenuData = [
       },
       {
         MenuName: "Global Setting",
-        Icon: HeaderMenuUpdated,
+        Icon: GlobalSetting,
         url: "/site-setting/global-setting",
         id: "global_setting",
         category: "SiteSetting",

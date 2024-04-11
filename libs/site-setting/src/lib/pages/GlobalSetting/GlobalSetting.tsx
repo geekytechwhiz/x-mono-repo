@@ -1,4 +1,3 @@
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Button, Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { t } from "i18next";
@@ -18,10 +17,10 @@ import {
   useUserSession,
   GlobalImageIcon,
   GlobalVideoIcon,
+  ShowToastSuccess,
   GlobalMiscIcon,
-  PlateformXDialogSuccess,
+  Loader,
 } from "@platformx/utilities";
-import { Loader } from "../../../../../utilities/src";
 import PlateformXStoryDialog from "./StoryTagsmodal";
 import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 
@@ -67,23 +66,16 @@ export const GlobalSetting = () => {
   const imagesRef = useRef<HTMLElement>(null);
   // const videosRef = useRef<HTMLElement>(null);
   // const miscellaneousRef = useRef<HTMLElement>(null);
-  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
+
   const scrollDebounceRef = useRef<any>(null);
   const [srollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
   const [tagValue, setTagValue] = useState(false);
   const [contentValue, setContentValue] = useState(false);
-
   const [getSession] = useUserSession();
   const [isLoading, setIsLoading] = useState(false);
-
   const { userInfo } = getSession();
   const navigate = useNavigate();
-
-  const crossButtonHandle = () => {
-    setShowPublishConfirm(false);
-  };
-
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
   const fetchGlobalSettingData = async () => {
@@ -157,17 +149,10 @@ export const GlobalSetting = () => {
         schedule_date_time: "",
       },
     };
-    // localStorage.setItem(
-    //   'imageUuid',
-    //   form?.image?.[0].ScopeId?.split('|')?.pop(),
-    // )
-    // localStorage.setItem(
-    //   'videoUuid',
-    //   form?.video?.[0].ScopeId?.split('|')?.pop(),
-    // )
+
     publishGlobalSetting(input)
       .then(() => {
-        setShowPublishConfirm(true);
+        ShowToastSuccess(t(`${t("global_setting")}${"  "}${t("updated_toast")}`));
       })
       .catch((err) => {
         setIsLoading(false);
@@ -217,7 +202,7 @@ export const GlobalSetting = () => {
       })
       .catch((err) => {
         setIsLoading(false);
-        throw err;
+        ShowToastError(t("api_error_toast"));
       });
   };
   const classes = useGlobalSettingStyle();
@@ -267,7 +252,7 @@ export const GlobalSetting = () => {
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
               <Typography variant='h5medium' className={classes.containertypo}>
-                Images
+                {t("images")}
               </Typography>
               {form.image && (
                 <Grid container>
@@ -290,7 +275,7 @@ export const GlobalSetting = () => {
                   </Grid>
                 </Grid>
               )}
-              <Typography className={classes.containertypo}>Videos</Typography>
+              <Typography className={classes.containertypo}>{t("videos")}</Typography>
               {form.video && (
                 <Grid container>
                   <Grid item xs={12}>
@@ -312,7 +297,7 @@ export const GlobalSetting = () => {
                   </Grid>
                 </Grid>
               )}
-              <Typography className={classes.containertypo}>Miscellaneous</Typography>
+              <Typography className={classes.containertypo}>{t("miscellanious")}</Typography>
               {form.misc && (
                 <Grid container>
                   <Grid item xs={12}>
@@ -371,7 +356,7 @@ export const GlobalSetting = () => {
               </Grid>
 
               <Typography variant='h5medium' className={classes.containertypo}>
-                My Story Contant Type
+                My Story Content Type
               </Typography>
 
               <Grid container>
@@ -397,7 +382,7 @@ export const GlobalSetting = () => {
                         }}
                         className={classes.btnbox}
                         variant='outlined'>
-                        {t("Edit")}
+                        {t("edit")}
                       </Button>
                     </Box>
                   </Box>
@@ -421,20 +406,6 @@ export const GlobalSetting = () => {
           closeButtonHandle={() => setContentValue(false)}
           onDone={handleContentType}
           site_assigned_content_types={form.site_assigned_content_types}
-        />
-      )}
-
-      {showPublishConfirm && (
-        <PlateformXDialogSuccess
-          isDialogOpen={showPublishConfirm}
-          title={t("congratulations")}
-          subTitle={`${t("global_setting")}${"  "}${t("updated_toast")}`}
-          confirmButtonText={t("go_to_dashboard")}
-          confirmButtonHandle={() => navigate("/dashboard")}
-          modalType='publish'
-          crossButtonHandle={crossButtonHandle}
-          closeButtonHandle={crossButtonHandle}
-          closeIcon={<CreateRoundedIcon />}
         />
       )}
     </>
