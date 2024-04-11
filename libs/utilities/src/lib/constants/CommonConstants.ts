@@ -69,3 +69,14 @@ export const SNOWPLOW = {
     QUIZ: "Quiz",
   },
 };
+
+export const MAPPING = {
+  Article: "Article",
+  Poll: "Poll",
+  Quiz: "Quiz",
+  Event: "EventLandingPage",
+  Vod: "VideoLandingPage",
+  Header: "Header",
+  Footer: "Footer",
+};
+export const HIDE_HEADER_FOOTER = ["Poll", "Quiz", "Event"];

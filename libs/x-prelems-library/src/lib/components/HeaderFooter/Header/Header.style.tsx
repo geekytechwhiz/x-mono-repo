@@ -13,6 +13,7 @@ export const useCustomStyle = makeStyles(() => {
           borderBottom: `1px solid ${theme.palette.header.VARIANT1.LINE}`,
           "& nav": {
             padding: "0 8px",
+            paddingTop: "3px",
           },
           "& .logo": {
             display: "flex",

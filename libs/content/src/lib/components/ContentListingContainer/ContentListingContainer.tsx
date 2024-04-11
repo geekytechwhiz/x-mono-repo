@@ -19,7 +19,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [isDialogOpen, setOpenCreatePage] = useState(false);
   const [filterValue, setFilterValue] = useState("ALL");
-  const { loading, refetch, fetchMore, contents } = useContentSearch({
+  const { loading, refetch, fetchMore } = useContentSearch({
     contentType,
     locationState: location?.state,
     filter: filterValue,
@@ -124,9 +124,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
 
       <ContentListing
         content={contentType}
-        contentList={contents}
         deleteContent={memoizedMethods.deleteContent}
-        dataList={contents}
         fetchMore={handleFetchMore}
         preview={memoizedMethods.preview}
         unPublish={memoizedMethods.unPublish}
