@@ -60,6 +60,8 @@ import SitesIcon from "./SitesIcon.svg";
 import SpaceListIcon from "./Space.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
+import GroupUsersIcon from "./UsersIcon3.svg";
+import communitySpaceIcon from "./communities.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
 import DraftedIcon from "./WorkflowHistory/Draft.svg";
 import EditorIcon from "./WorkflowHistory/Editor.svg";
@@ -497,4 +499,6 @@ export {
   Checkicon,
   Doticon,
   Crossnewicons,
+  GroupUsersIcon,
+  communitySpaceIcon,
 };
