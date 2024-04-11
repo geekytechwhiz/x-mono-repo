@@ -669,7 +669,7 @@
   "last_name_required": "Nachname ist erforderlich",
   "email_required": "E-Mail ist erforderlich",
   "email_valid": "Geben Sie eine gültige E-Mail-Adresse ein",
-  "email_exist": "E-Mail-ID ist bereits vorhanden",
+  "email_exist": "Die E-Mail-ID ist bereits im System vorhanden.",
   "first_name_placeholder": "Geben Sie hier den Vornamen ein",
   "last_name_placeholder": "Geben Sie hier den Nachnamen ein",
   "email_placeholder": "E-Mail-Adresse hier eingeben",
