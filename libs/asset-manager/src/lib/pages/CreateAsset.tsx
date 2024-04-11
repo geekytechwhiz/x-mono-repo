@@ -20,6 +20,7 @@ import { useCreateAssestsStyle } from "./CreateAssets.style";
 import { CreateHeader } from "@platformx/content";
 import { useTranslation } from "react-i18next";
 import PlateformXFolderDialog from "./ChooseFolderModal";
+import { assetsApi } from "@platformx/authoring-apis";
 
 export const CreateAsset = () => {
   const navigate = useNavigate();
@@ -34,6 +35,25 @@ export const CreateAsset = () => {
     // setAnchor(null);
   };
 
+  const handlePublish = async () => {
+    try {
+      //const res =
+      await assetsApi.publishAsset({
+        uuid: "6316f598-7cd3-4d69-beaa-a42d6b4aac23",
+        status: "publish",
+        uploadId: 3890,
+        metadata: {
+          title: "test-deposit7",
+          description: "test deposit api",
+          type: "Image",
+          author: "Harsh",
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <CreateHeader
@@ -45,11 +65,11 @@ export const CreateAsset = () => {
         hasPublishButton={true}
         hasPreviewButton={false}
         hasSaveButton={false}
-        saveText={t("update")}
+        saveText={t("publish")}
         handelPreview={() => {
           /* your function code */
         }}
-        handleSaveOrPublish={""}
+        handleSaveOrPublish={handlePublish}
         previewText='Preview'
         showPreview={false}
         toolTipText='Unable to preview please add required details'

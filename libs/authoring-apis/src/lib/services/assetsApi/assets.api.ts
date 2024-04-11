@@ -10,6 +10,7 @@ import {
   FETCH_COLLECTION_ITEM,
   DELETE_COMMUNITY,
   DELETE_ASSET,
+  PUBLISH_ASSET,
 } from "../../graphQL/queries/assetQueries";
 import { ApolloError } from "@apollo/client";
 
@@ -134,6 +135,13 @@ const assetsApi = {
       if (err instanceof ApolloError) console.log(err.graphQLErrors);
       throw err;
     }
+  },
+  publishAsset: async <T>(input: T): Promise<any> => {
+    const { data } = await graphqlInstance.mutate({
+      mutation: PUBLISH_ASSET,
+      variables: input,
+    });
+    return data;
   },
 };
 
