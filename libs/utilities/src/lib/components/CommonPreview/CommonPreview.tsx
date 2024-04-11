@@ -4,12 +4,13 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { ThemeConstants, XLoader } from "@platformx/utilities";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
 import { useStyles } from "./CommonPrivew.style";
 
 const tabs = [
@@ -18,20 +19,60 @@ const tabs = [
   { type: "mobile", icon: PhoneAndroidRoundedIcon },
 ];
 
-const CommonPreview = ({ iframeUrl }) => {
+const CommonPreview = ({ iframeUrl, type }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
   const classes = useStyles();
   const { currentContent } = useSelector((state: any) => state.content);
-  const handleReturn = () => {
-    window.history.back();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const getDefaultWidth = () => {
+    if (window.outerWidth > 600 && iframeRef.current) {
+      iframeRef.current.style.height = "100vh";
+    } else if (iframeRef.current) {
+      iframeRef.current.style.minHeight = `calc(100vh - 60px)`;
+      iframeRef.current.style.height = `calc(100vh - 60px)`;
+    }
   };
   const [loaded, setLoaded] = useState(false);
-
-  const handleLoad = () => {
-    setLoaded(true);
+  const adjustIframeHeight = () => {
+    if (
+      iframeRef.current &&
+      iframeRef.current.contentWindow &&
+      !HIDE_HEADER_FOOTER.includes(currentContent?.contentType)
+    ) {
+      const iframeDocument = iframeRef.current.contentWindow.document;
+      if (type !== "page") {
+        const height = iframeDocument.body.scrollHeight;
+        iframeRef.current.style.height = height + 30 + "px";
+      } else {
+        getDefaultWidth();
+      }
+    } else if (iframeRef.current) {
+      getDefaultWidth();
+    }
   };
+
+  useEffect(() => {
+    const handleResize = (event) => {
+      if (event.data === "contentLoaded") {
+        adjustIframeHeight();
+        setLoaded(true);
+      }
+    };
+    setTimeout(() => {
+      adjustIframeHeight();
+      type === "page" && setLoaded(true);
+    }, 1000);
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("message", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("message", handleResize);
+    };
+  }, [deviceType]);
+
   useEffect(() => {
     const extractDeviceType = () => {
       const currentUrl = window.location.href;
@@ -56,111 +97,84 @@ const CommonPreview = ({ iframeUrl }) => {
   }, []);
 
   return (
-    <>
-      <Box
-        sx={{ display: { xs: "flex", sm: "none" }, alignItems: "center" }}
-        onClick={handleReturn}>
-        <ArrowBackIosIcon
-          sx={{
-            fontSize: ThemeConstants.FONTSIZE_H6,
-            margin: "18px 4px 18px 16px",
-          }}
-        />
-        <Typography variant='h3medium'>{t("resend_text_left_button")}</Typography>
-      </Box>
-      <Box
-        sx={{
-          display: { xs: "none", sm: "flex" },
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: "10px 0",
-        }}>
-        <Box pl={2} onClick={() => navigate(-1)} sx={{ cursor: "pointer" }}>
-          <ArrowBackIcon />
+    <Box className={`${classes.commonPreviewWrapper} commonPreviewWrapper`}>
+      {!loaded && (
+        <Box className='xloader'>
+          <XLoader type='xloader' />
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            border: "1px solid #ced3d9",
-            borderRadius: "24px",
-          }}>
-          {tabs.map((tab, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "flex",
-                backgroundColor:
-                  deviceType === tab.type
-                    ? ThemeConstants.PRIMARY_MAIN_COLOR
-                    : ThemeConstants.WHITE_COLOR,
-                transition: "all 0.50s",
-                padding: "12px 27px",
-                borderRadius: "24px",
-                cursor: deviceType === tab.type ? "pointer" : "default",
+      )}
+      <Box className='leftPannelAndIframeWrapper'>
+        {loaded && (
+          <Box className='leftMenuPanel'>
+            <Box className='backArrow' onClick={() => navigate(-1)} sx={{ cursor: "pointer" }}>
+              <ArrowBackIcon />
+            </Box>
+            <Box className='tabsItemsWrapper'>
+              {tabs.map((tab, index) => (
+                <Box
+                  key={index}
+                  className='tabsItemIcons'
+                  sx={{
+                    display: "flex",
+                    backgroundColor:
+                      deviceType === tab.type
+                        ? ThemeConstants.SECONDRY_COLOR["600"]
+                        : ThemeConstants.WHITE_COLOR,
+                    transition: "all 0.50s",
+
+                    cursor: deviceType === tab.type ? "pointer" : "default",
+                  }}
+                  onClick={() => {
+                    setDeviceType(tab.type);
+                  }}>
+                  <tab.icon
+                    sx={{
+                      fontSize: ThemeConstants.FONTSIZE_H2,
+                      color:
+                        deviceType === tab.type
+                          ? ThemeConstants.WHITE_COLOR
+                          : ThemeConstants.PRIMARY_MAIN_COLOR,
+                      cursor: "pointer",
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        )}
+        <Box className='rightIframePanelWrapper'>
+          <Box
+            className='rightIframePanel'
+            sx={{
+              width: {
+                xs:
+                  deviceType === "desktop" ? "1280px" : deviceType === "tablet" ? "700px" : "100%",
+                sm: deviceType === "desktop" ? "1280px" : deviceType === "tablet" ? "700px" : "98%",
+                md:
+                  deviceType === "desktop" ? "1280px" : deviceType === "tablet" ? "700px" : "375px",
+                lg: deviceType === "desktop" ? "100%" : deviceType === "tablet" ? "700px" : "375px",
+              },
+              margin: "auto",
+              transition: "width 0.50s",
+            }}>
+            <iframe
+              className='prelemResponsivePreview'
+              ref={iframeRef}
+              title='page preview'
+              width='100%'
+              frameBorder='0'
+              style={{
+                width: "100%",
+                minHeight: "100vh",
+                border: deviceType !== "desktop" ? "solid 1px #ccc" : "none",
+                borderRadius: deviceType !== "desktop" ? "30px" : 0,
+                pointerEvents: type !== "page" ? "none" : "auto",
               }}
-              onClick={() => {
-                setDeviceType(tab.type);
-              }}>
-              <tab.icon
-                sx={{
-                  fontSize: ThemeConstants.FONTSIZE_H2,
-                  color:
-                    deviceType === tab.type
-                      ? ThemeConstants.WHITE_COLOR
-                      : ThemeConstants.PRIMARY_MAIN_COLOR,
-                  cursor: "pointer",
-                }}
-              />
-            </Box>
-          ))}
-        </Box>
-        <Box>{}</Box>
-      </Box>
-      <Divider sx={{ mb: { sm: "31px" } }} />
-      <Box
-        sx={{
-          border: "1px solid #ced3d9",
-          borderRadius: "45px",
-          padding: "20px",
-          minWidth: {
-            sm: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "98%" : "375px",
-            md: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "768px" : "375px",
-            lg: deviceType === "desktop" ? "1092px" : deviceType === "tablet" ? "909px" : "375px",
-          },
-          width: {
-            md: deviceType === "desktop" ? "768px" : deviceType === "tablet" ? "768px" : "375px",
-            lg: deviceType === "desktop" ? "96%" : deviceType === "tablet" ? "909px" : "375px",
-          },
-          margin: "auto",
-          transition: "width 0.50s",
-        }}>
-        <Box
-          sx={{
-            border: "1px solid #ced3d9",
-            borderRadius: "30px",
-            overflow: "hidden",
-          }}>
-          {!loaded && (
-            <Box className='xloader'>
-              <XLoader type='xloader' />
-            </Box>
-          )}
-          <iframe
-            className='prelemResponsivePreview'
-            onLoad={handleLoad}
-            title='page preview'
-            width='100%'
-            frameBorder='0'
-            style={{
-              width: "100%",
-              height: `calc(100vh - 170px)`,
-            }}
-            src={iframeUrl}></iframe>
+              src={iframeUrl}></iframe>
+          </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 export default CommonPreview;
