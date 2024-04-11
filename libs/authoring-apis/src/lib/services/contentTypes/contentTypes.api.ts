@@ -77,17 +77,7 @@ const contentTypeAPIs = {
       fetchPolicy: "no-cache",
     });
     const sortedContent = sortedData(data?.authoring_getContentTypeItems || []);
-
     return sortedContent;
-    // return {
-    //   type: 'UPDATE_CONTENT',
-    //   content: reloadContent
-    //     ? [...JSON.parse(JSON.stringify(sortedContent))]
-    //     : [...contentList, ...JSON.parse(JSON.stringify(sortedContent))],
-    //   loading: false,
-    //   newDataSize: [...JSON.parse(JSON.stringify(sortedContent))].length,
-    //   contentType: contentType,
-    // };
   },
 
   fetchContentTypeList: async (input: any) => {
