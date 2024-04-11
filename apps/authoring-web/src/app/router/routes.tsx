@@ -1,13 +1,13 @@
 import { Typography } from "@mui/material";
 import { AssetListing, CreateAsset } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
+import { Content, CreateArticle, CreateContent, TimeLineBlogs } from "@platformx/content";
 import {
-  Content,
-  ContentPreview,
-  CreateArticle,
-  CreateContent,
-  TimeLineBlogs,
-} from "@platformx/content";
+  CommonPreview,
+  CommonContentRender,
+  getCurrentLang,
+  getSelectedSite,
+} from "@platformx/utilities";
 import { CreateCourse } from "@platformx/course";
 import { Dashboard } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
@@ -38,6 +38,7 @@ import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
 
+const iframedurl = `${window?.location?.origin}/${getSelectedSite()}/${getCurrentLang()}/content/common/preview`;
 export const routes: RouteConfig[] = [
   {
     path: "/",
@@ -196,7 +197,20 @@ export const routes: RouteConfig[] = [
         subCategory='content-preview'
         isSideBar={false}
         isHeader={false}>
-        <ContentPreview />
+        <CommonPreview iframeUrl={iframedurl} type='content' />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/content/common/preview",
+    element: (
+      <ProtectedRoute
+        name='content'
+        category='content'
+        subCategory='content-preview'
+        isSideBar={false}
+        isHeader={false}>
+        <CommonContentRender />
       </ProtectedRoute>
     ),
   },

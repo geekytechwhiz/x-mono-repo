@@ -1,7 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { i18next } from "@platformx/utilities";
-import { getSelectedSite } from "../utils/helper";
+import { getCurrentLang, getSelectedSite } from "../utils/helper";
 
 const defaultOptions: any = {
   watchQuery: {
@@ -10,13 +9,13 @@ const defaultOptions: any = {
   },
   query: {
     fetchPolicy: "no-cache",
-    errorPolicy: "all",
+    // errorPolicy: "all",
   },
 };
 const link = createHttpLink({
   uri: process.env.NX_GRAPHQL_URI,
   headers: {
-    language: i18next.language, //"en",
+    language: getCurrentLang(),
     sitename: getSelectedSite(),
   },
   credentials: "include",
@@ -33,7 +32,7 @@ const updateLanguageheader = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      language: i18next.language,
+      // language: i18next.language,
     },
   };
 });

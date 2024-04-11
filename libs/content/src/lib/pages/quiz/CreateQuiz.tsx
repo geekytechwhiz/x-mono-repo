@@ -23,6 +23,7 @@ import {
   getCurrentLang,
   useUserSession,
   workflowKeys,
+  CommonPlateformXDialog,
 } from "@platformx/utilities";
 import { WorkflowHistory } from "@platformx/workflow-management";
 import { useEffect, useRef, useState } from "react";
@@ -277,6 +278,7 @@ export const CreateQuiz = () => {
             quizState,
             publishPopup,
           );
+          setIsLoading(false);
           setShowPublishConfirm(hasConfirm);
           setPublishUrl(publishUrl);
         }
@@ -417,6 +419,7 @@ export const CreateQuiz = () => {
             quizState,
             publishPopup,
           );
+          setIsLoading(false);
           setShowPublishConfirm(hasConfirm);
           setPublishUrl(publishUrl);
         }
@@ -585,7 +588,7 @@ export const CreateQuiz = () => {
       ShowToastError(t("allowed_tags_toast"));
     } else {
       if (event.target.checked) {
-        tagsArray = [...tagArr, event.target.value];
+        if (!tagArr.includes(event.target.value)) tagsArray = [...tagArr, event.target.value];
       } else {
         tagsArray.splice(tagArr.indexOf(event.target.value), 1);
       }
@@ -1064,7 +1067,7 @@ export const CreateQuiz = () => {
             )}
           </Box>
         </Box>
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
@@ -1090,7 +1093,7 @@ export const CreateQuiz = () => {
           closeIcon={<CreateRoundedIcon />}
         />
         {showPublishConfirm || showWorkflowSubmit ? (
-          <PlateformXDialogSuccess
+          <CommonPlateformXDialog
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
             subTitle={showPublishConfirm ? t("quiz_publish_popoup") : t("requested_action")}

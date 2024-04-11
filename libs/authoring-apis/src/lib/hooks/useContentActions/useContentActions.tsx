@@ -30,6 +30,7 @@ import { LanguageList } from "../../utils/constants";
 import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
+import { fetchVodByIdAPI } from "../../services/vod/vod.api";
 
 const {
   LANG,
@@ -67,29 +68,39 @@ const useContentActions = (filter = "ALL") => {
   const location = useLocation();
 
   const fetchContentDetails = async (listItemDetails: {
+    pageName?: string;
     tagName: string | undefined;
     page: any;
   }) => {
-    try {
-      const response: any = await contentTypeAPIs.fetchContent({
-        contentType:
-          listItemDetails.tagName === "VOD"
-            ? "Vod"
-            : capitalizeFirstLetter(listItemDetails.tagName),
-        path: listItemDetails?.page,
+    if (capitalizeFirstLetter(listItemDetails.tagName) === VOD) {
+      const response: any = await fetchVodByIdAPI({
+        folder: "vodcontent",
+        path: listItemDetails?.pageName,
       });
-      if (response.authoring_getCmsContentByPath) {
-        const { authoring_getCmsContentByPath: content } = response;
-        return content;
+      return response?.authoring_getCmsVodByPath;
+    } else {
+      try {
+        const response: any = await contentTypeAPIs.fetchContent({
+          contentType:
+            listItemDetails.tagName === "VOD"
+              ? "Vod"
+              : capitalizeFirstLetter(listItemDetails.tagName),
+          path: listItemDetails?.page,
+        });
+        if (response.authoring_getCmsContentByPath) {
+          const { authoring_getCmsContentByPath: content } = response;
+          return content;
+        }
+      } catch (err) {
+        ShowToastError(t("api_error_toast"));
       }
-    } catch (err) {
-      ShowToastError(t("api_error_toast"));
     }
   };
+
   const deleteContent = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
-      if (selectedItem.page_state === PUBLISHED) {
+      if (selectedItem.page_state === PUBLISHED || selectedItem.Page_State) {
         await unPublish(listItemDetails);
       }
       try {
@@ -129,13 +140,14 @@ const useContentActions = (filter = "ALL") => {
 
   const unPublish = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
+
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
         const contentToSend = mapUnPublishContent(
           listItemDetails.tagName === "VOD"
             ? "Vod"
             : capitalizeFirstLetter(listItemDetails.tagName),
-          selectedItem.page,
+          selectedItem.page || selectedItem?.Page,
         );
         const unPublishResponse = await unPublishMutate({
           variables: {
@@ -203,12 +215,18 @@ const useContentActions = (filter = "ALL") => {
       })}`,
     });
   };
+
   const preview = async (listItemDetails: any) => {
     const selectedItem = await fetchContentDetails(listItemDetails);
     const type = capitalizeFirstLetter(listItemDetails?.tagName);
     if (selectedItem && Object.keys(selectedItem).length > 0) {
       try {
-        if (selectedItem?.page_state === DRAFT || selectedItem?.page_state === UNPUBLISHED) {
+        if (
+          selectedItem?.page_state === DRAFT ||
+          selectedItem?.page_state === UNPUBLISHED ||
+          selectedItem?.Page_State === DRAFT ||
+          selectedItem?.Page_State === UNPUBLISHED
+        ) {
           if (
             selectedItem?.questions?.length &&
             capitalizeFirstLetter(listItemDetails.tagName) === QUIZ
@@ -266,6 +284,7 @@ const useContentActions = (filter = "ALL") => {
       }
     }
   };
+
   const duplicate = async (
     IsDuplicate,
     title: any,

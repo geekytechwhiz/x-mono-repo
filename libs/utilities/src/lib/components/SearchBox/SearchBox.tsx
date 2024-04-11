@@ -1,18 +1,20 @@
 import { Box, FormControl, IconButton, InputAdornment, InputBase } from "@mui/material";
 
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { SearchIcon } from "../../assets/svg/index";
 import { useEffect, useState } from "react";
+import { SearchIcon } from "../../assets/svg/index";
 import "./Search.css";
 
-export default function SearchBox({ handleSearch }: any) {
+export default function SearchBox({ handleSearch, setLoading = () => {} }: any) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleOnChange = (event: any) => {
+    setLoading(true);
     setSearchQuery(event.target.value);
   };
   const resetSearch = () => {
-    handleSearch("");
+    setLoading(true);
+    // handleSearch("");
     setSearchQuery("");
   };
 

@@ -30,8 +30,6 @@ const useQuestion = (
 ) => {
   const { t } = useTranslation();
 
-  const [originalImage, setOriginalImage] = useState({});
-  const [publishedImages, setPublishedImages] = useState([]);
   const [questionData, setQuestionData] = useState({
     createdBy: "",
     creationDate: "",
@@ -83,8 +81,16 @@ const useQuestion = (
 
   const createQuestion = async (IsDuplicate) => {
     try {
-      const { question, questionType, queBackgroundImg, shortDesc, isImg, backgroundColor } =
-        addQuestionInfo;
+      const {
+        question,
+        questionType,
+        queBackgroundImg,
+        shortDesc,
+        isImg,
+        backgroundColor,
+        original_image,
+        published_images,
+      } = addQuestionInfo;
 
       const questionToSend = {
         CommonFields: {
@@ -119,8 +125,8 @@ const useQuestion = (
           },
           question: question,
           question_type: questionType,
-          original_image: originalImage,
-          published_images: publishedImages,
+          original_image: original_image,
+          published_images: published_images,
         },
       };
 
@@ -154,8 +160,16 @@ const useQuestion = (
   };
 
   const updateQuestion = () => {
-    const { question, questionType, queBackgroundImg, shortDesc, isImg, backgroundColor } =
-      addQuestionInfo;
+    const {
+      question,
+      questionType,
+      queBackgroundImg,
+      shortDesc,
+      isImg,
+      backgroundColor,
+      original_image,
+      published_images,
+    } = addQuestionInfo;
     const { createdBy, creationDate } = questionData;
     const questionToSend = {
       CommonFields: {
@@ -190,8 +204,8 @@ const useQuestion = (
         },
         question: question,
         question_type: questionType,
-        original_image: originalImage,
-        published_images: publishedImages,
+        original_image: original_image,
+        published_images: published_images,
       },
     };
     updatemutate({
@@ -278,8 +292,6 @@ const useQuestion = (
           published_images,
         } = contentObj;
         const { Url, IsImage, ColorCode } = backgroundContent;
-        setOriginalImage(original_image);
-        setPublishedImages(published_images);
         setAddQuestionInfo({
           questionId: page,
           questionType: questionType,
@@ -288,6 +300,8 @@ const useQuestion = (
           shortDesc: shortDescription,
           isImg: IsImage,
           backgroundColor: IsImage ? "" : ColorCode,
+          original_image,
+          published_images,
         });
         setAddImage(isImgOpt === "true");
         const temp = options.map((x) => {
