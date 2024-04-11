@@ -194,7 +194,9 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
   const updateField = (updatedPartialObj) => {
     setAddQuestionInfo({
       ...addQuestionInfo,
-      queBackgroundImg: { ...updatedPartialObj },
+      original_image: updatedPartialObj?.original_image,
+      published_images: updatedPartialObj?.published_images,
+      queBackgroundImg: updatedPartialObj?.original_image?.Thumbnail,
       isImg: true,
       backgroundColor: "",
     });
@@ -324,8 +326,8 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
                   <XImageRender
                     callBack={updateField}
                     editData={{
-                      original_image: addQuestionInfo.queBackgroundImg.original_image,
-                      published_images: addQuestionInfo.queBackgroundImg.published_images,
+                      original_image: addQuestionInfo.original_image,
+                      published_images: addQuestionInfo.published_images,
                       isImg: addQuestionInfo.isImg,
                       colorCode: addQuestionInfo.backgroundColor,
                     }}
