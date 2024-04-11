@@ -4,12 +4,13 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { ThemeConstants, XLoader } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
 import { useStyles } from "./CommonPrivew.style";
 
 const tabs = [
@@ -24,7 +25,6 @@ const CommonPreview = ({ iframeUrl, type }) => {
   const [deviceType, setDeviceType] = useState("desktop");
   const classes = useStyles();
   const { currentContent } = useSelector((state: any) => state.content);
-  const noReuiredScroll = ["Poll", "Quiz", "Event"];
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const getDefaultWidth = () => {
     if (window.outerWidth > 600 && iframeRef.current) {
@@ -39,7 +39,7 @@ const CommonPreview = ({ iframeUrl, type }) => {
     if (
       iframeRef.current &&
       iframeRef.current.contentWindow &&
-      !noReuiredScroll.includes(currentContent?.contentType)
+      !HIDE_HEADER_FOOTER.includes(currentContent?.contentType)
     ) {
       const iframeDocument = iframeRef.current.contentWindow.document;
       if (type !== "page") {

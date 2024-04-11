@@ -1,43 +1,54 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { AUTH_INFO, PrelemTheme, getCurrentLang } from "@platformx/utilities";
-import React, { useEffect, useState } from "react";
+import { AUTH_INFO, PrelemTheme, XLoader, getCurrentLang } from "@platformx/utilities";
+import React, { Suspense, lazy, useEffect, useState } from "react";
+import { MAPPING, HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
 import { useStyles } from "./CommonPrivew.style";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 
-const mappingDynamicInstance = {};
-export const Mapping = {
-  Article: "Article",
-  Poll: "Poll",
-  Quiz: "Quiz",
-  Event: "EventLandingPage",
-  Vod: "VideoLandingPage",
-  Header: "Header",
-  Footer: "Footer",
-};
-const hideHeaderFooter = ["Poll", "Quiz", "Event"];
-Object.keys(Mapping).map((item) => {
-  mappingDynamicInstance[item] = React.lazy(() =>
-    import(`@platformx/x-prelems-library`).then((module) => ({
-      default: module[Mapping[item]],
-    })),
-  );
-  return mappingDynamicInstance;
-});
+interface MappingDynamicInstance {
+  Header?: React.ComponentType<any>;
+  Footer?: React.ComponentType<any>;
+}
+// let mappingDynamicInstance: any;
+// Object.keys(MAPPING).map((item) => {
+//   mappingDynamicInstance[item] = lazy(() =>
+//     import(`@platformx/x-prelems-library`).then((module) => ({
+//       default: module[MAPPING[item]],
+//     })),
+//   );
+//   return mappingDynamicInstance;
+// });
+// console.log("mappingDynamicInstance", mappingDynamicInstance);
 
 const CommonContentRender = () => {
   const classes = useStyles();
   const currentItem = localStorage.getItem("preview");
   const currentContent = currentItem && JSON.parse(currentItem);
-
+  const ContentType = lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module?.[currentContent?.contentType],
+    })),
+  );
+  const Header = lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module?.Header,
+    })),
+  );
+  const Footer = lazy(() =>
+    import(`@platformx/x-prelems-library`).then((module) => ({
+      default: module?.Footer,
+    })),
+  );
   if (!currentItem || JSON.stringify(currentItem) === JSON.stringify("{}")) {
     window.history.back();
   }
-  const ContentType = mappingDynamicInstance[currentContent?.contentType];
-  const Header = mappingDynamicInstance[Mapping.Header];
-  const Footer = mappingDynamicInstance[Mapping.Footer];
+  // const ContentType = mappingDynamicInstance[currentContent?.contentType];
+  // const Header = mappingDynamicInstance[MAPPING.Header];
+  // const Footer = mappingDynamicInstance[MAPPING.Footer];
+  // const { [currentContent?.contentType]: ContentType, Header, Footer } = mappingDynamicInstance;
+
   const [ishide, setIsHide] = useState(false);
   const [previewObject, setPreviewObject] = useState({
     options_compound_fields: "",
@@ -54,14 +65,14 @@ const CommonContentRender = () => {
     }
   }, []);
   useEffect(() => {
-    if (hideHeaderFooter.includes(currentContent?.contentType)) {
+    if (HIDE_HEADER_FOOTER.includes(currentContent?.contentType)) {
       setIsHide(true);
     } else {
       setIsHide(false);
     }
   }, [currentContent]);
   useEffect(() => {
-    const hostName = "monorepo.hcl-x.com";
+    const hostName = process.env.NX_SITE_HOST;
     const fetchFooterData = async () => {
       try {
         const response = await axios.get(
@@ -97,37 +108,40 @@ const CommonContentRender = () => {
   return (
     <Box className={`${classes.commonPreviewPageRender} contentPreviewPage`}>
       <ThemeProvider theme={PrelemTheme}>
-        {!ishide && (
-          <Box>
-            <Header
-              data={menuData}
-              homePageUrl=''
-              langCode={getCurrentLang()}
-              secondaryArgs={secondaryArgs}
-              bucketName={secondaryArgs?.bucketName}
-              gcpUrl={secondaryArgs?.gcpUrl}
-            />
-          </Box>
-        )}
-        <ContentType
-          showRecentArticles={false}
-          content={previewObject}
-          showLoading={false}
-          results={previewObject.options_compound_fields}
-          enablePreview
-          authoringHelper={prelemAuthoringHelper}
-          secondaryArgs={secondaryArgs}
-        />
-        {!ishide && (
-          <Box>
-            <Footer
-              data={footerData}
-              langCode={getCurrentLang()}
-              bucketName={secondaryArgs?.bucketName}
-              gcpUrl={secondaryArgs?.gcpUrl}
-            />
-          </Box>
-        )}
+        <Suspense fallback={<XLoader type='xloader' />}>
+          {!ishide && (
+            <Box>
+              <Header
+                data={menuData}
+                homePageUrl=''
+                langCode={getCurrentLang()}
+                secondaryArgs={secondaryArgs}
+                bucketName={secondaryArgs?.bucketName}
+                gcpUrl={secondaryArgs?.gcpUrl}
+              />
+            </Box>
+          )}
+
+          <ContentType
+            showRecentArticles={false}
+            content={previewObject}
+            showLoading={false}
+            results={previewObject.options_compound_fields}
+            enablePreview
+            authoringHelper={prelemAuthoringHelper}
+            secondaryArgs={secondaryArgs}
+          />
+          {!ishide && (
+            <Box>
+              <Footer
+                data={footerData}
+                langCode={getCurrentLang()}
+                bucketName={secondaryArgs?.bucketName}
+                gcpUrl={secondaryArgs?.gcpUrl}
+              />
+            </Box>
+          )}
+        </Suspense>
       </ThemeProvider>
     </Box>
   );

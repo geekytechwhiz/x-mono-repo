@@ -67,6 +67,12 @@ export const useStyles = makeStyles((theme: any) => ({
         display: "flex",
         margin: " 0 auto",
         transition: "width 0.3s",
+        "& .prelemResponsivePreview": {
+          color: "red",
+          [`@media(max-width:${ThemeConstants.EM}px)`]: {
+            borderRadius: "0 !important",
+          },
+        },
       },
     },
   },
