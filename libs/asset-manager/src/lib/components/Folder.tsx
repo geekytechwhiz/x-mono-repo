@@ -1,7 +1,7 @@
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { MorehorAsset, AssetfoldernewIcon, PlateformXDialog } from "@platformx/utilities";
+import { MorehorAsset, AssetfoldernewIcon, CommonPlateformXDialog } from "@platformx/utilities";
 import AssetCardMenu from "./CardMenu";
 import { useImagesStyle } from "../pages/Images.style";
 import { useTranslation } from "react-i18next";
@@ -77,14 +77,15 @@ export default function Folder({ data, deleteFolder }: any) {
         />
       </Box>
       {isDelete && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")}`}
+          subTitle={t("delete_confirm")}
           closeButtonText={t("no_keep_it")}
-          confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={deleteCloseButtonHandle}
+          confirmButtonText={t("yes_delete_it")}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       )}
     </Grid>

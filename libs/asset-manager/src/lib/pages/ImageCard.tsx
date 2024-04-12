@@ -1,7 +1,7 @@
 import { Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { Imageasset, video, Morevarwhite, PlateformXDialog } from "@platformx/utilities";
+import { Imageasset, video, Morevarwhite, CommonPlateformXDialog } from "@platformx/utilities";
 import AssetCardMenu from "../components/CardMenu";
 import { useImagesStyle } from "./Images.style";
 import { useTranslation } from "react-i18next";
@@ -79,14 +79,15 @@ const ImageCard = ({ data, deleteAsset }) => {
         </Box>
       </Box>
       {isDelete && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")}`}
+          subTitle={t("delete_confirm")}
           closeButtonText={t("no_keep_it")}
-          confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={deleteCloseButtonHandle}
+          confirmButtonText={t("yes_delete_it")}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       )}
     </Grid>
