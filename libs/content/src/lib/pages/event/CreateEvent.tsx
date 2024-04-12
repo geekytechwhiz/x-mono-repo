@@ -804,7 +804,7 @@ const CreateEvent = () => {
                 }}>
                 <ContentPageScroll
                   icons={icons}
-                  srollToView={scrollToView}
+                  scrollToView={scrollToView}
                   parentToolTip={parentToolTip}
                 />
               </Box>

@@ -67,7 +67,7 @@ export const CreatePoll = (): JSX.Element => {
   const currentPollData = useRef(
     pollPageUrl.searchParams.get("path") ? (pollPageUrl.searchParams.get("path") as string) : "",
   );
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setscrollToView] = useState<any>();
   const [pollInstance, setPollInstance] = useState<any>({});
   const [onSavedModal, setOnSavedModal] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
@@ -1251,7 +1251,7 @@ export const CreatePoll = (): JSX.Element => {
         .then((res) => {
           if (res?.data?.authoring_getTagsList) {
             setTagData(res?.data?.authoring_getTagsList);
-            setsrollToView(
+            setscrollToView(
               pollPageUrl.searchParams.get("open")
                 ? (pollPageUrl.searchParams.get("open") as string)
                 : "",
@@ -1486,7 +1486,7 @@ export const CreatePoll = (): JSX.Element => {
                 <ContentPageScroll
                   icons={icons}
                   parentToolTip={parentToolTip}
-                  srollToView={srollToView}
+                  scrollToView={scrollToView}
                 />
               </Box>
             )}

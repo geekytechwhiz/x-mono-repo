@@ -10,10 +10,9 @@ import {
   useUserSession,
   Loader,
   PictureIcon,
-  PlateformXDialogSuccess,
+  ShowToastError,
 } from "@platformx/utilities";
 import { CreateHeader } from "@platformx/content";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { fetchMediaHandle, publishMediaHanle, updateMediaHanle } from "@platformx/authoring-apis";
 import { Divider } from "@mui/material";
 import { userMediaHanleStyle } from "./MediaHandle.style";
@@ -21,7 +20,6 @@ import { DamContentGallery, usePostImageCrop } from "@platformx/x-image-render";
 import CustomTextBox from "../../components/CustomTextBox";
 
 export const MediaHandle: React.FC = () => {
-  const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
   const { postRequest } = usePostImageCrop();
   const currentMediaHandleIndex = useRef<number | null>(null);
   const [galleryState, setGalleryState] = useState<boolean>(false);
@@ -66,16 +64,12 @@ export const MediaHandle: React.FC = () => {
 
       await postRequest("api/v1/assets/image/no-crop", payload, noCropCallBack, image);
     } catch (error) {
-      // showToastError(t("api_error_toast"));
+      ShowToastError(t("api_error_toast"));
     }
   };
 
   const toggleGallery = (toggleState: boolean) => {
     setGalleryState(toggleState);
-  };
-
-  const crossButtonHandle = () => {
-    setIsSuccessPopup(false);
   };
 
   const navigate = useNavigate();
@@ -95,13 +89,13 @@ export const MediaHandle: React.FC = () => {
 
   const fetchMediaHandleData = async () => {
     try {
-      const { authoring_getMediaHandle: { mediahandle = [] } = {} } = await fetchMediaHandle({
+      const { authoring_getSitedetails: { mediahandle = [] } = {} } = await fetchMediaHandle({
         pagePath: "social-media-item",
       });
       const formData = initForm(mediahandle || []);
       setForm(formData);
     } catch (error) {
-      // Handle errors
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -117,7 +111,7 @@ export const MediaHandle: React.FC = () => {
     publishMediaHanle(input)
       .then(() => {
         toastMessage.current = "media_settings_success";
-        setIsSuccessPopup(true);
+        ShowToastSuccess(t("media_settings_success"));
       })
       .catch((err) => {
         throw err;
@@ -151,9 +145,9 @@ export const MediaHandle: React.FC = () => {
         setIsLoading(false);
         publishmediaHandle();
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
-        throw err;
+        ShowToastError(t("api_error_toast"));
       });
   };
 
@@ -263,19 +257,6 @@ export const MediaHandle: React.FC = () => {
                 </Grid>
               </Fragment>
             ))}
-            {isSuccessPopup && (
-              <PlateformXDialogSuccess
-                isDialogOpen={isSuccessPopup}
-                title={t("congratulations")}
-                subTitle={`${t("media_settings_success")}`}
-                confirmButtonText={t("go_to_dashboard")}
-                confirmButtonHandle={() => navigate("/dashboard")}
-                modalType='publish'
-                crossButtonHandle={crossButtonHandle}
-                closeButtonHandle={crossButtonHandle}
-                closeIcon={<CreateRoundedIcon />}
-              />
-            )}
           </Grid>
         </Box>
       )}

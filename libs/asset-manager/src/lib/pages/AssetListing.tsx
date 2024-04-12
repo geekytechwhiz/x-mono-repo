@@ -105,8 +105,7 @@ export const AssetListing = () => {
 
   const deleteAsset = async (communityId) => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const data = await assetsApi.deleteAsset({
+      await assetsApi.deleteAsset({
         uuid: communityId,
       });
 
@@ -125,7 +124,7 @@ export const AssetListing = () => {
 
   return (
     <>
-      <AssetHeader handleShow={setShow} />
+      <AssetHeader handleShow={setShow} collectionArr={assetData.collections} />
       <Grid id='scrollableDiv' container className={classes.imagecontainer}>
         <InfiniteScroll
           dataLength={collectionItem.collectionItem?.length}
@@ -140,7 +139,7 @@ export const AssetListing = () => {
                   <img className={classes.foldericon} src={NewfolderIcon} alt='folder' />
                   <Box className={classes.typeoexisttest}>
                     <Typography variant='inherit' className={classes.createfol}>
-                      Create new folder
+                      {t("create_new_folder")}
                     </Typography>
                   </Box>
                 </Box>
@@ -153,7 +152,7 @@ export const AssetListing = () => {
                     <TextField
                       inputProps={{ style: { textAlign: "center" } }}
                       className={classes.textcen}
-                      placeholder='Enter Folder Name'
+                      placeholder={t("enter_folder_name")}
                       id='standard-basic'
                       variant='standard'
                       autoComplete='off'

@@ -739,7 +739,7 @@ export const CreateVod = () => {
             <ContentPageScroll
               icons={icons}
               parentToolTip={parentToolTip}
-              srollToView={undefined} // srollToView={srollToView}
+              scrollToView={undefined} // scrollToView={scrollToView}
             />
           </Box>
           {/* Video Start */}

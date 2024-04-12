@@ -160,7 +160,12 @@
   display: none;
 }
 .listViewradionone {
-  margin: 5px 0 !important;
+  margin: 0 !important;
+  padding: 5px;
+}
+.listViewradionone.selected {
+  background: #f2fafe;
+  cursor: default;
 }
 @media (min-width: 1024px) {
   .user-list-actions {

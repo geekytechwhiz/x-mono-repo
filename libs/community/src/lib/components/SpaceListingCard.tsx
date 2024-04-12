@@ -8,7 +8,7 @@ import DeleteMenuIcon from "@mui/icons-material/Delete";
 import EditMenuIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import GroupIcon from "@mui/icons-material/Group";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
 import {
   DeleteIcon,
@@ -503,7 +503,7 @@ const SpaceListingCard = ({
                         handleClose();
                         onHandleMenuActions("inviteuser");
                       }}>
-                      <GroupIcon /> {t("invite_members")}
+                      <GroupAddIcon /> {t("invite_members")}
                     </MenuItem>
                     <MenuItem
                       disableRipple

@@ -4,7 +4,6 @@ import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import * as React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useImagesStyle } from "./Images.style";
 
@@ -18,14 +17,7 @@ export default function AssetBreadsum() {
     <Stack spacing={2}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' className={classes.breadcrumbsFont}>
         {pathArray?.[0] && (
-          <Link
-            className={classes.breadcum}
-            underline='none'
-            key='2'
-            color='#14142B'
-            // href='/material-ui/getting-started/installation/'
-            // onClick={handleClick}
-          >
+          <Link className={classes.breadcum} underline='none' key='2' color='#14142B'>
             <FolderOutlinedIcon className={classes.folderouticon} />
             <Typography className={classes.breadcumtypo}>{pathArray[0]}</Typography>
           </Link>

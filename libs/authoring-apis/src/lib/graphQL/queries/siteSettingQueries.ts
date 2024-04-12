@@ -2,69 +2,19 @@ import { gql } from "@apollo/client";
 
 export const FETCH_FOOTER_SETTING = gql`
   query FETCH_FOOTER_SETTING($pagePath: String!) {
-    authoring_getFooterSettings(pagePath: $pagePath) {
-      about_us_text
-      address
-      contact_number
-      copyright_text
-      email_address
-      news_letter_description
-      news_letter_title
-      site_logo
-      title_text
-      lastmodifiedby
-      lastmodificationdate
-      createdby
-      header_logo
-      fav_icon
-      link
-      mediahandle
-    }
+    authoring_getSitedetails(siteConfig: SiteFooter, page: $pagePath)
   }
 `;
 
 export const FETCH_MEDIA_HANDLE = gql`
   query FETCH_SITE_SETTING($pagePath: String!) {
-    authoring_getMediaHandle(pagePath: $pagePath) {
-      tagname
-      lastmodificationdate
-      createdby
-      lastmodifiedby
-      mediahandle
-    }
+    authoring_getSitedetails(page: $pagePath, siteConfig: SiteMediaHandle)
   }
 `;
 
 export const FETCH_COOKIE_POLICY = gql`
   query FETCH_COOKIE_POLICY($pagePath: String!) {
-    authoring_getCookiePolicy(pagePath: $pagePath) {
-      cookie_policy_cta_link
-      lastmodifiedby
-      non_essential_cookie_description
-      cookie_manage_setting_consent_button
-      cookie_button_text
-      non_essential_cookie_title
-      manage_save_setting_consent_button
-      essential_cookie_description
-      consent_cookie_button
-      manage_setting_description
-      consent_cookie_title
-      manage_setting_cookie_button
-      cookie_description
-      lastmodificationdate
-      cookie_manage_setting_title
-      essential_cookie_title
-      consent_cookie_description
-      createdby
-      cookie_policy_cta_text
-      cookie_title
-      consent_cookie_policy_link
-      informative_cookie_policy_link
-      consent_cookie_country_list
-      informative_cookie_country_list
-      cookie_consent_expiry_time
-      cookie_informative_expiry_time
-    }
+    authoring_getSitedetails(page: $pagePath, siteConfig: SiteCookiePolicy)
   }
 `;
 

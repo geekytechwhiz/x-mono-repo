@@ -3,13 +3,13 @@ import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { DeleteIcon, FilterIcon, backAssetIcon } from "@platformx/utilities";
+import { backAssetIcon } from "@platformx/utilities";
 import AssetBreadsum from "../pages/AssetBreadscum";
 import { useImagesStyle } from "./Images.style";
 import PlateformXAssetDialog from "./ChooseAssetModal";
 import { FormControlCustom } from "@platformx/content";
 
-export function AssetHeader({ handleShow }) {
+export function AssetHeader({ handleShow, collectionArr }) {
   const classes = useImagesStyle();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -39,10 +39,7 @@ export function AssetHeader({ handleShow }) {
     <Grid container className={classes.container}>
       <Grid item xs={12} sm={12} md={6} lg={6}>
         {path ? (
-          <Box
-            className={classes.backicon}
-            //onClick={() => navigate(`/asset/${assetType}`)}
-          >
+          <Box className={classes.backicon}>
             <img
               src={backAssetIcon}
               alt='backarrow'
@@ -60,14 +57,6 @@ export function AssetHeader({ handleShow }) {
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={6}>
         <Box className={classes.topheader}>
-          <Box className={classes.filternewicon}>
-            <img src={FilterIcon} alt='Filter Icon' width='20' height='24' />
-          </Box>
-          <Box className={classes.deletenewicon}>
-            <Box>
-              <img src={DeleteIcon} alt='Filter Icon' width='24' height='24' />
-            </Box>
-          </Box>
           <Button onClick={handlebtnClick} variant='primaryButton'>
             {t("add_new")}
           </Button>
@@ -107,24 +96,27 @@ export function AssetHeader({ handleShow }) {
                 value='New Folder'
                 onClick={() => handleShow(true)}
                 control={<Radio sx={{ display: "none" }} />}
-                label={t("New Folder")}
+                label={t("new_folder")}
               />
-              <FormControlCustom
-                className='listView'
-                value='UPload Assets'
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("Upload Assests")}
-                onClick={() => {
-                  setAssetValue(true);
-                  handleFilterClose();
-                }}
-              />
+              {collectionArr?.length !== 0 && (
+                <FormControlCustom
+                  className='listView'
+                  value='Upload Asset'
+                  control={<Radio sx={{ display: "none" }} />}
+                  label={t("upload_asset")}
+                  onClick={() => {
+                    setAssetValue(true);
+                    handleFilterClose();
+                  }}
+                />
+              )}
             </RadioGroup>
           </FormControl>
         </Menu>
         <PlateformXAssetDialog
           isDialogOpen={assetValue}
           closeButtonHandle={() => setAssetValue(false)}
+          collectionArr={collectionArr}
         />
       </Grid>
     </Grid>
