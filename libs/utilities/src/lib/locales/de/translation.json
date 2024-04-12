@@ -1220,5 +1220,6 @@
   "subtotal": "Zwischensumme",
   "checkout": "Kasse",
   "view_cart": "Warenkorb ansehen",
-  "event_Link": "Ereignislink"
+  "event_Link": "Ereignislink",
+  "publish_popup_message": "wurde zur Veröffentlichung gesendet und wird in Kürze online gehen."
 }

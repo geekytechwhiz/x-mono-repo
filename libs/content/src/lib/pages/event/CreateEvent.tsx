@@ -1,4 +1,3 @@
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import { addMinutes } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,9 +11,8 @@ import ContentPageScroll from "../../components/ContentPageScroll";
 import { eventAPIS, useWorkflow } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
-  Loader,
-  PlateformXDialog,
   CommonPlateformXDialog,
+  Loader,
   ShowToastError,
   ShowToastSuccess,
   capitalizeFirstLetter,
@@ -306,7 +304,7 @@ const CreateEvent = () => {
         setShowExitWarning(false);
         setIsEdited(true);
       } else {
-        ShowToastSuccess(`${t("event")} ${t("published_toast")}`);
+        // ShowToastSuccess(`${t("event")} ${t("published_toast")}`);
         setShowPublishConfirm(true);
         publishEvent(draftPageURL ? draftPageURL : currentEventData.current);
       }
@@ -442,11 +440,6 @@ const CreateEvent = () => {
         updateEvent(PUBLISHED, false);
       }
     }
-  };
-
-  const handleCloseDialog = () => {
-    setShowPublishConfirm(false);
-    setShowWorkflowSubmit(false);
   };
 
   // const handleSelectedImage = async (image, keyName, id?: any) => {
@@ -898,17 +891,16 @@ const CreateEvent = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
-          closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={() => saveEvent(false)}
-          crossButtonHandle={() => {
+          closeButtonText={t("stay_here")}
+          confirmButtonText={t("take_me_out")}
+          closeButtonHandle={() => {
             setShowExitWarning(false);
           }}
+          confirmButtonHandle={closeButtonHandle}
           modalType='unsavedChanges'
         />
       )}
-      <PlateformXDialog
+      <CommonPlateformXDialog
         isDialogOpen={onSavedModal}
         title={t(SAVE_AS_DRAFT_POP_UP.saveAsDraftTitle)}
         subTitle={t(SAVE_AS_DRAFT_POP_UP.saveAsDraftDescription)}
@@ -916,24 +908,23 @@ const CreateEvent = () => {
         confirmButtonText={t(SAVE_AS_DRAFT_POP_UP.saveAsDraftConfirmText)}
         confirmButtonHandle={() => navigate("/content/event")}
         closeButtonHandle={crossButtonHandle}
-        crossButtonHandle={crossButtonHandle}
         modalType='draft'
-        closeIcon={<CreateRoundedIcon />}
       />
 
       <CommonPlateformXDialog
         isDialogOpen={showPublishConfirm || showWorkflowSubmit}
         title={t(publishPopup.current.publishTitle)}
         subTitle={
-          showPublishConfirm ? t(publishPopup.current.publishDescription) : t("requested_action")
+          showPublishConfirm
+            ? `${t("your")} ${t("event")} ${t(publishPopup.current.publishDescription)}`
+            : t("requested_action")
         }
-        confirmButtonText={t(publishPopup.current.publishCloseText)}
+        confirmButtonText={t(publishPopup.current.publishConfirmText)}
         confirmButtonHandle={() => navigate("/content/event")}
         modalType='publish'
-        closeButtonHandle={handleCloseDialog}
       />
       {openPageExistModal && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={openPageExistModal}
           title={t(PAGE_EXIST_POP_UP.saveAsDraftTitle)}
           subTitle={t(PAGE_EXIST_POP_UP.saveAsDraftDescription)}

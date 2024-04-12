@@ -17,7 +17,6 @@ import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants
 // import CommunityOption from '../CommunityOption';
 import "./List.css";
 // import { PublishInformation } from '../PublishInformation/PublishInformation';
-import PlateformXDialog from "../Popups/PlateformXDialog";
 // import { CourseMenu } from '../CourseMenu/CourseMenu';
 // import CardMenu from '../CardMenu/CardMenu';
 // import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
@@ -120,16 +119,17 @@ export const Card = ({
         );
       case "tagscategories":
         return (
-          <PlateformXDialog
+          <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
-            subTitle={`${t("delete_confirm")} ${t("tag")}?. ${t("process_undone")}`}
+            subTitle={`${t("delete_confirm")} ${t("tag")}? ${t("process_undone")}`}
             closeButtonText={t("no_keep_it")}
             confirmButtonText={t("yes_delete_it")}
             closeButtonHandle={() => {
               setDelete(false);
             }}
             confirmButtonHandle={handleConfirmation}
+            modalType='delete'
           />
         );
       default:

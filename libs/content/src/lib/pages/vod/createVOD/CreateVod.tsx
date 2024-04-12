@@ -891,7 +891,7 @@ export const CreateVod = () => {
         <CommonPlateformXDialog
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
-          subTitle={t("publish_process_vod")}
+          subTitle={`${t("your")} ${t("vod")} ${t("publish_popup_message")}`}
           confirmButtonText={t("go_to_listing")}
           confirmButtonHandle={() => navigate("/content/vod")}
           closeButtonHandle={() => navigate("/content/vod")}
@@ -905,7 +905,7 @@ export const CreateVod = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("Stay Here")}
+          closeButtonText={t("stay_here")}
           confirmButtonText={t("take_me_out")}
           closeButtonHandle={() => {
             setShowExitWarning(false);

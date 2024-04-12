@@ -415,7 +415,10 @@ export const CreateArticle = () => {
       ...dialogContent,
       isOpen: true,
       title: t("congratulations"),
-      subTitle: type === workflowKeys.approve ? t("article_publish_popoup") : t("requested_action"),
+      subTitle:
+        type === workflowKeys.approve
+          ? `${t("your")} ${t("article")} ${t("publish_popup_message")}`
+          : t("requested_action"),
       confirmButtonText: t("go_to_listing"),
     };
     setDialogContent(contentTosend);
@@ -426,7 +429,7 @@ export const CreateArticle = () => {
       isOpen: true,
       title: t("save_warn_title"),
       subTitle: t("save_warn_subtitle"),
-      closeButtonText: t("Stay Here"),
+      closeButtonText: t("stay_here"),
       confirmButtonText: t("take_me_out"),
       modal: "warning",
     };
