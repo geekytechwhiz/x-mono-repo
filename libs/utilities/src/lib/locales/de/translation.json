@@ -1210,5 +1210,15 @@
   "error": "Fehler",
   "warning": "Warnung",
   "info": "die Info",
-  "last_edit": "Zuletzt bearbeitet"
+  "last_edit": "Zuletzt bearbeitet",
+  "shipping": "Versand",
+  "free_shipping_in_city": "Kostenloser Versand in der Stadt",
+  "pickup": "Abholen",
+  "courier_charges": "Kurier-Gebühren",
+  "cart": "Wagen",
+  "total": "Gesamt",
+  "subtotal": "Zwischensumme",
+  "checkout": "Kasse",
+  "view_cart": "Warenkorb ansehen",
+  "event_Link": "Ereignislink"
 }
