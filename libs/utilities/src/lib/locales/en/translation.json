@@ -1218,5 +1218,15 @@
   "error": "Error",
   "warning": "Warning",
   "info": "Info",
-  "last_edit": "Last edited"
+  "last_edit": "Last edited",
+  "shipping": "Shipping",
+  "free_shipping_in_city": "Free Shipping in City",
+  "pickup": "Pickup",
+  "courier_charges": "Courier Charges",
+  "cart": "Cart",
+  "total": "Total",
+  "subtotal": "Subtotal",
+  "checkout": "Checkout",
+  "view_cart": "View Cart",
+  "event_Link": "Event Link"
 }

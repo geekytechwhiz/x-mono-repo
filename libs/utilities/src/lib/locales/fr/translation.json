@@ -1209,5 +1209,15 @@
   "error": "Fehler",
   "warning": "Avertissement",
   "info": "Info",
-  "last_edit": "Dernière modification"
+  "last_edit": "Dernière modification",
+  "shipping": "Expédition",
+  "free_shipping_in_city": "Livraison gratuite en ville",
+  "pickup": "Ramasser",
+  "courier_charges": "Taxes postales",
+  "cart": "Chariot",
+  "total": "Total",
+  "subtotal": "Sous total",
+  "checkout": "Vérifier",
+  "view_cart": "Voir le panier",
+  "event_Link": "Lien de l'événement"
 }
