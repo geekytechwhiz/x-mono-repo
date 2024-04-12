@@ -33,6 +33,9 @@ export const useCustomStyle = makeStyles(() => {
         [theme.breakpoints.down("md")]: {
           marginBottom: "30px",
         },
+        "& .noMarginRight": {
+          marginRight: 0,
+        },
       },
 
       "& .leftFiledLast": {

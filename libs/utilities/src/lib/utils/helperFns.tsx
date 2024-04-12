@@ -1439,3 +1439,18 @@ export const makeCreateContentPath = (contentType: string) => {
       return "";
   }
 };
+
+export const compareTwoArraysIgnoringOrder = (a = [], b: string[] = []) => {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  let isEqual = true;
+  a.forEach((element) => {
+    if (!b.includes(element)) {
+      isEqual = false;
+    }
+  });
+
+  return isEqual;
+};

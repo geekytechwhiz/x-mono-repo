@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
   FETCH_TAG_LIST_QUERY,
@@ -14,16 +13,14 @@ import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
-  PlateformXDialog,
-  PlateformXDialogSuccess,
+  CommonPlateformXDialog,
+  Loader,
   ShowToastError,
   ShowToastSuccess,
-  Loader,
   capitalizeFirstLetter,
   getCurrentLang,
   useUserSession,
   workflowKeys,
-  CommonPlateformXDialog,
 } from "@platformx/utilities";
 import { WorkflowHistory } from "@platformx/workflow-management";
 import { useEffect, useRef, useState } from "react";
@@ -67,7 +64,7 @@ export const CreateQuiz = () => {
   const currentQuizData = useRef(
     quizPageUrl.searchParams.get("path") ? (quizPageUrl.searchParams.get("path") as string) : "",
   );
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setscrollToView] = useState<any>();
   const [quizInstance, setQuizInstance] = useState<any>({});
   const [onSavedModal, setOnSavedModal] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
@@ -758,7 +755,7 @@ export const CreateQuiz = () => {
         .then((res) => {
           if (res?.data?.authoring_getTagsList) {
             setTagData(res?.data?.authoring_getTagsList);
-            setsrollToView(
+            setscrollToView(
               quizPageUrl.searchParams.get("open")
                 ? (quizPageUrl.searchParams.get("open") as string)
                 : "",
@@ -1000,7 +997,7 @@ export const CreateQuiz = () => {
                 <ContentPageScroll
                   icons={icons}
                   parentToolTip={parentToolTip}
-                  srollToView={srollToView}
+                  scrollToView={scrollToView}
                 />
               </Box>
             )}
@@ -1071,16 +1068,16 @@ export const CreateQuiz = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
-          closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={() => saveQuiz(false)}
-          crossButtonHandle={() => {
+          closeButtonText={t("Stay Here")}
+          confirmButtonText={t("take_me_out")}
+          closeButtonHandle={() => {
             setShowExitWarning(false);
           }}
+          confirmButtonHandle={closeButtonHandle}
           modalType='unsavedChanges'
         />
-        <PlateformXDialog
+
+        {/* <PlateformXDialog
           isDialogOpen={onSavedModal}
           title={t("save_as_draft")}
           subTitle={t("quiz_save_popup")}
@@ -1091,7 +1088,7 @@ export const CreateQuiz = () => {
           crossButtonHandle={crossButtonHandle}
           modalType='draft'
           closeIcon={<CreateRoundedIcon />}
-        />
+        /> */}
         {showPublishConfirm || showWorkflowSubmit ? (
           <CommonPlateformXDialog
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
@@ -1104,7 +1101,7 @@ export const CreateQuiz = () => {
           />
         ) : null}
         {openPageExistModal ? (
-          <PlateformXDialog
+          <CommonPlateformXDialog
             isDialogOpen={openPageExistModal}
             title={`${t("quiz")} ${t("already_exists")}`}
             subTitle={t("conformation")}

@@ -67,7 +67,7 @@ export const HeaderSetting = () => {
   const [galleryState] = useState<boolean>(false);
   // const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setscrollToView] = useState<any>();
   const [languageOptionList, setlanguageOptionList] = useState([]);
   const [parentToolTip, setParentToolTip] = useState("");
 
@@ -98,7 +98,7 @@ export const HeaderSetting = () => {
       });
       delete authoring_getSitedetails.__typename;
       originalRes.current = authoring_getSitedetails;
-      setsrollToView("");
+      setscrollToView("");
       const {
         header_logo = "",
         header_favicon = "",
@@ -263,7 +263,7 @@ export const HeaderSetting = () => {
             <ContentPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
-              srollToView={srollToView}
+              scrollToView={scrollToView}
             />
           </Box>
 

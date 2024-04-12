@@ -10,21 +10,21 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { RootState, updatePageTitle, updatePageSettings } from "@platformx/authoring-state";
+import { RootState, updatePageSettings, updatePageTitle } from "@platformx/authoring-state";
 import {
-  ThemeConstants,
-  getSubDomain,
   BasicSwitch,
   ShowToastSuccess,
+  ThemeConstants,
+  getSubDomain,
   usePlatformAnalytics,
 } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import BackButton from "../BackButton/BackButton";
 import { descriptionLength, nameLength } from "../utils/constants";
 import { PageInformation } from "../utils/editTypes";
-import BackButton from "../BackButton/BackButton";
 import "./PageSettings.css";
-import { useDispatch, useSelector } from "react-redux";
 
 const PageInfo = ({ setPageId }) => {
   const { t, i18n } = useTranslation();
@@ -92,7 +92,7 @@ const PageInfo = ({ setPageId }) => {
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='Page Info' />
+      <BackButton setPageId={setPageId} Title={t("page_info")} />
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
           {t("page_info_title")}

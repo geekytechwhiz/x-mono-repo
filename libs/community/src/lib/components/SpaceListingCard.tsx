@@ -8,7 +8,7 @@ import DeleteMenuIcon from "@mui/icons-material/Delete";
 import EditMenuIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import GroupIcon from "@mui/icons-material/Group";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
 import {
   DeleteIcon,
@@ -32,6 +32,7 @@ import {
   getSpaceMembersList,
 } from "../utils/SpacesHelper";
 import InviteMemberPopup from "./Invitememberspopup/InviteMemberPopup";
+import { useStyles } from "./SpaceListingCard.styles";
 
 const SpaceListingCard = ({
   dataList,
@@ -59,7 +60,7 @@ const SpaceListingCard = ({
   const [invitedMembers, setInvitedMembers] = useState<any>([]);
   const [membersYetToInvite, setMembersYetToInvite] = useState<any>([]);
   const [membersofSpace, setMembersofSpace] = useState<any>([]);
-
+  const classes = useStyles();
   const getAllExoMembersandDivideMembersofSpace = async (
     invitedMembersOfSpace,
     defaultMembersOfSpace,
@@ -461,6 +462,7 @@ const SpaceListingCard = ({
                       <VisibilityIcon /> {t("view")}
                     </MenuItem>
                     <MenuItem
+                      className={`${classes["space-lising-card-menu"]} menu-item-tab`}
                       disableRipple
                       onClick={() => {
                         handleClose();
@@ -468,7 +470,10 @@ const SpaceListingCard = ({
                       }}>
                       <DeleteMenuIcon /> {t("delete")}
                     </MenuItem>
-                    <MenuItem disableRipple onClick={handleEdit}>
+                    <MenuItem
+                      disableRipple
+                      onClick={handleEdit}
+                      className={`${classes["space-lising-card-menu"]} menu-item-tab`}>
                       <EditMenuIcon /> {t("edit")}
                     </MenuItem>
                     {dataList?.is_member && (
@@ -498,7 +503,7 @@ const SpaceListingCard = ({
                         handleClose();
                         onHandleMenuActions("inviteuser");
                       }}>
-                      <GroupIcon /> {t("invite_members")}
+                      <GroupAddIcon /> {t("invite_members")}
                     </MenuItem>
                     <MenuItem
                       disableRipple

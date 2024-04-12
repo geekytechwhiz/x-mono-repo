@@ -1,13 +1,14 @@
 import { Box } from "@mui/material/";
+import { postRequest } from "@platformx/authoring-apis";
 import {
   RootState,
   updateContentForCard,
   updateDynamicPrelemAssetInfo,
   updateLivestreamPrelemAssetInfo,
 } from "@platformx/authoring-state";
-import { useTranslation } from "react-i18next";
 import { ShowToastError } from "@platformx/utilities";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import { PrelemSettingList } from "../utils/constants";
@@ -20,7 +21,6 @@ import PrelemTwitter from "./PrelemTwitter";
 import PrelemVideos from "./PrelemVideos";
 import PrelemAdvanced from "./prelemAdvanced";
 import PrelemAnalytics from "./prelemAnalytics";
-import { postRequest } from "@platformx/authoring-apis";
 
 const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrelemContent }) => {
   const dispatch = useDispatch();
@@ -184,7 +184,7 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
       {prelemModelData?.content?.ImageCompound !== undefined &&
         pageId === PrelemSettingList[3].id && (
           <Box className='pageSettingmainWp'>
-            <BackButton setPageId={setPageId} Title='Images' backTo='prelemSetting' />
+            <BackButton setPageId={setPageId} Title={t("prelem_images")} backTo='prelemSetting' />
             {Object.entries(prelemModelData.content.ImageCompound).map(([key, value], index) => {
               return (
                 <PrelemImages

@@ -68,7 +68,7 @@ export const GlobalSetting = () => {
   // const miscellaneousRef = useRef<HTMLElement>(null);
 
   const scrollDebounceRef = useRef<any>(null);
-  const [srollToView] = useState<any>();
+  const [scrollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
   const [tagValue, setTagValue] = useState(false);
   const [contentValue, setContentValue] = useState(false);
@@ -236,7 +236,7 @@ export const GlobalSetting = () => {
         <ContentPageScroll
           icons={iconImages}
           parentToolTip={parentToolTip}
-          srollToView={srollToView}
+          scrollToView={scrollToView}
         />
       </Box>
 

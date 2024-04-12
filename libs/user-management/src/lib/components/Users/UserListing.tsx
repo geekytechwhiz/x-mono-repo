@@ -28,7 +28,7 @@ const UserListing = () => {
   };
 
   const getUsers = useCallback(async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const response: any = await userManagementAPI.fetchUsers({
         start: 0,
@@ -46,7 +46,7 @@ const UserListing = () => {
         setUsers(sortedUserList);
       }
       setIsLazyLoad(false);
-      // setLoading(false);
+      setLoading(false);
     } catch (err: any) {
       setIsLazyLoad(false);
       setLoading(false);

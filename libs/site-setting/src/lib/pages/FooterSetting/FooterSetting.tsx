@@ -3,29 +3,30 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { t } from "i18next";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
-  MultiSelect,
-  TitleSubTitle,
-  ShowToastError,
-  TextBox,
-  useUserSession,
   CommonBoxWithNumber,
   Loader,
+  MultiSelect,
   PictureIcon,
+  ShowToastError,
+  TextBox,
+  TitleSubTitle,
   VectorIconSvg,
+  useUserSession,
   ShowToastSuccess,
 } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { CreateHeader, ContentPageScroll } from "@platformx/content";
 import {
   fetchFooterSetting,
   publishFooterSetting,
   updateSiteSetting,
 } from "@platformx/authoring-apis";
-
+import { ContentPageScroll, CreateHeader } from "@platformx/content";
+import { Divider } from "@mui/material";
+import { XImageRender } from "@platformx/x-image-render";
+import { useTranslation } from "react-i18next";
 import {
   AddLinkSkeleton,
   ContactUsSkeleton,
@@ -34,18 +35,17 @@ import {
   NewsLetterSkeleton,
   SiteLogoSkeleton,
 } from "../../components/CookieSettingConstant";
-import { useFooterSettingStyle } from "./FooterSetting.style";
-import { Divider } from "@mui/material";
-import iconImages from "./FooterConstansts";
-import { XImageRender } from "@platformx/x-image-render";
 import CustomTextBox from "../../components/CustomTextBox";
+import iconImages from "./FooterConstansts";
+import { useFooterSettingStyle } from "./FooterSetting.style";
 import "./footersetting.css";
 
 export const FooterSetting = () => {
+  const { t } = useTranslation();
   const [mediaList, setMediaList] = useState<any>([]);
   const [galleryState] = useState<boolean>(false);
   const [parentToolTip, setParentToolTip] = useState("");
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setScrollToView] = useState<any>();
   const [mediaOptionList, setMediaOptionList] = useState<[]>([]);
   const scrollDebounceRef = useRef<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +78,7 @@ export const FooterSetting = () => {
       });
       delete authoring_getSitedetails.__typename;
 
-      setsrollToView("");
+      setScrollToView("");
       const {
         site_logo = "",
         about_us_text = "",
@@ -276,7 +276,7 @@ export const FooterSetting = () => {
             <ContentPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
-              srollToView={srollToView}
+              scrollToView={scrollToView}
             />
           </Box>
 

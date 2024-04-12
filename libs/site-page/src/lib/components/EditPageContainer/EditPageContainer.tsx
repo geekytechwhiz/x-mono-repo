@@ -1,5 +1,6 @@
 /* eslint-disable require-await */
 import { useLazyQuery, useMutation } from "@apollo/client";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, CircularProgress, Tab, Typography, useMediaQuery } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -52,17 +53,14 @@ import {
   initInsituEditing,
   uriToJSON,
   useAccess,
+  usePlatformAnalytics,
   useUserSession,
   workflowKeys,
-  usePlatformAnalytics,
 } from "@platformx/utilities";
 import { addMinutes, format } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
-import EditPageIcons from "../utils/EditPageIcons";
-import { consolidatePageModel } from "../utils/helper";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
 import ContentGallery from "../../components/ContentGallery/ContentGallery";
 import DynamicContentGallery from "../../components/ContentGallery/DynamicContentGallery";
 import EcommerceAuthoring from "../../components/EcommerceAuthoring/EcommerceAuthoring";
@@ -80,16 +78,18 @@ import SocialShare from "../PageSettings/SocialShare";
 import PrelemSettingMenu from "../PrelemSettingMenu/PrelemSettingMenu";
 import PrelemInfo from "../PrelemSettings/PrelemInfo";
 import PrelemSettingsCard from "../PrelemSettings/PrelemSettingsCard";
+import EditPageIcons from "../utils/EditPageIcons";
 import {
   DYNAMIC_PRELEM_LIST,
   ECOM_PRELEM_LIST,
   PageSettingListData,
   PrelemActions,
   PrelemSettingCardList,
-  isGalleryContentTypeCheck,
   StatusKey,
+  isGalleryContentTypeCheck,
 } from "../utils/constants";
 import { PrelemInstance } from "../utils/editTypes";
+import { consolidatePageModel } from "../utils/helper";
 import { useStyles } from "./EditPageContainer.styles";
 //import WorkflowHistory from "../../../../components/WorkflowHistory/WorkflowHistory";
 import { useDispatch, useSelector } from "react-redux";
@@ -1237,7 +1237,7 @@ const EditPageContainer = () => {
                             <Tab
                               icon={<img src={EditIcon} alt='icon' />}
                               iconPosition='start'
-                              label='Design'
+                              label={t("design")}
                               value='Page_Design'
                             />
                             )
@@ -1245,14 +1245,16 @@ const EditPageContainer = () => {
                               <Tab
                                 icon={<img src={SettingIcon} alt='icon' />}
                                 iconPosition='start'
-                                label='Page Setting'
+                                label={t("page_setting")}
                                 value='Page_Setting'
                               />
                             )}
                           </TabList>
                         )}
 
-                        {!DesignWeb && <Typography variant='p3semibold'>Page Setting</Typography>}
+                        {!DesignWeb && (
+                          <Typography variant='p3semibold'>{t("page_setting")}</Typography>
+                        )}
                       </Box>
                       {DesignTab && (
                         <TabPanel

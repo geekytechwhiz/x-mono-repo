@@ -60,6 +60,8 @@ import SitesIcon from "./SitesIcon.svg";
 import SpaceListIcon from "./Space.svg";
 import CardOptionUnPublishIcon from "./UnPublishIconOptionMenu.svg";
 import UsersIcon from "./UsersIcons.svg";
+import GroupUsersIcon from "./UsersIcon3.svg";
+import communitySpaceIcon from "./communities.svg";
 import CardOptionViewIcon from "./ViewIconOptionMenu.svg";
 import DraftedIcon from "./WorkflowHistory/Draft.svg";
 import EditorIcon from "./WorkflowHistory/Editor.svg";
@@ -251,6 +253,7 @@ import BusinessTagIcon from "./BusinessTagIcon.svg";
 import NoAssetSelected from "./NoAssetSelected.svg";
 import VideoNav from "./VideoMenuIcon.svg";
 import GlobalSetting from "./GlobalSetting.svg";
+import UploadThumbnail from "./UploadThumbnail.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -503,4 +506,7 @@ export {
   Checkicon,
   Doticon,
   Crossnewicons,
+  UploadThumbnail,
+  GroupUsersIcon,
+  communitySpaceIcon,
 };
