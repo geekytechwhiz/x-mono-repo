@@ -3,7 +3,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import XImageRender from "./x-image-render";
-import { ThemeConstants, ArrowUpwardIcon } from "@platformx/utilities";
+import { ThemeConstants, UploadThumbnail } from "@platformx/utilities";
 
 interface ImageProps {
   url?: any;
@@ -29,7 +29,6 @@ const AddImage = ({
   publishedImages,
   isShowCrop = false,
   direction = "column",
-  diffIcon = true,
 }: ImageProps) => {
   const { t } = useTranslation();
   return (
@@ -143,11 +142,7 @@ const AddImage = ({
                 justifyContent: "center",
               }}
               m={1}>
-              {diffIcon ? (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
-              ) : (
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
-              )}
+              <img src={UploadThumbnail} alt='ArrowUpwardIcon' />
             </Box>
             <Box
               sx={{

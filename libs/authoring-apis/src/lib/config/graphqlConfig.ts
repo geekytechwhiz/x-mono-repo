@@ -9,7 +9,7 @@ const defaultOptions: any = {
   },
   query: {
     fetchPolicy: "no-cache",
-    errorPolicy: "all",
+    // errorPolicy: "all",
   },
 };
 const link = createHttpLink({

@@ -8,6 +8,7 @@ import {
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
+  GroupUsersIcon,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
   MediaIcon,
@@ -22,6 +23,7 @@ import {
   UsersIcon,
   VODIcon,
   Webmaster,
+  communitySpaceIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
@@ -177,7 +179,7 @@ export const MenuData = [
     Menu: [
       {
         MenuName: "Community",
-        Icon: SitesIcon,
+        Icon: communitySpaceIcon,
         url: "/community/space",
         id: "community_space",
         category: "Community",
@@ -187,7 +189,7 @@ export const MenuData = [
       },
       {
         MenuName: "User groups",
-        Icon: SitesIcon,
+        Icon: GroupUsersIcon,
         url: "/community/user-groups",
         id: "User Groups",
         category: "Community",

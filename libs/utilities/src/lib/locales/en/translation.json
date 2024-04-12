@@ -735,7 +735,7 @@
   "last_name_required": "Last Name is required",
   "email_required": "Email is required",
   "email_valid": "Enter a valid email",
-  "email_exist": "Email id is already exist",
+  "email_exist": "Email ID already exists in the system.",
   "first_name_placeholder": "Enter first name here",
   "last_name_placeholder": "Enter last name here",
   "email_placeholder": "Enter email address here",

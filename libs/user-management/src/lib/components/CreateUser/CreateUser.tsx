@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 import { useMutation } from "@apollo/client";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { Box } from "@mui/material";
 import {
   UserManagementQueries,
@@ -8,6 +7,7 @@ import {
   userManagementAPI,
 } from "@platformx/authoring-apis";
 import {
+  CommonPlateformXDialog,
   Loader,
   PlateformXDialog,
   ShowToastError,
@@ -472,11 +472,7 @@ const CreateUser = () => {
       window.removeEventListener(POPSTATE, returnBack);
     };
   }, [isEdited]);
-  const crossButtonHandle = () => {
-    setShowExitWarning(false);
-    setOnSavedModal(false);
-    navigate(0);
-  };
+
   useEffect(() => {
     const {
       first_name: firstName,
@@ -655,7 +651,7 @@ const CreateUser = () => {
         }}
         modalType='unsavedChanges'
       />
-      <PlateformXDialog
+      {/* <PlateformXDialog
         isDialogOpen={onSavedModal}
         title={savePopUpContent.title}
         subTitle={savePopUpContent.subtitle}
@@ -668,7 +664,18 @@ const CreateUser = () => {
         modalType={isEditMode.current ? PUBLISH : DRAFT}
         closeIcon={!isEditMode.current && <FormatListBulletedIcon />}
         isCreateUser={!isEditMode.current && true}
-      />
+      /> */}
+      {onSavedModal ? (
+        <CommonPlateformXDialog
+          isDialogOpen={onSavedModal}
+          title={savePopUpContent.title}
+          subTitle={savePopUpContent.subtitle}
+          closeButtonHandle={() => navigate("/user-management/user-list")}
+          confirmButtonText={t("go_to_listing")}
+          confirmButtonHandle={() => navigate("/user-management/user-list")}
+          modalType={isEditMode.current ? PUBLISH : DRAFT}
+        />
+      ) : null}
     </Box>
   );
 };

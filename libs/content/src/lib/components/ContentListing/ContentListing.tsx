@@ -17,10 +17,11 @@ import { useTranslation } from "react-i18next";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ContentListingProps, ListItem } from "../../utils/List.types";
 import ContentTypeMenuList from "../MenuList/ContentTypeMenuList";
+import { RootState } from "@platformx/authoring-state";
+import { useSelector } from "react-redux";
 
 const ContentListing = ({
   content,
-  contentList,
   loading,
   fetchMore,
   deleteContent,
@@ -32,6 +33,7 @@ const ContentListing = ({
   editPage,
   fetchContentDetails,
 }: ContentListingProps) => {
+  const { contentArray } = useSelector((state: RootState) => state.content);
   const [sitelist, setSiteList] = useState([]);
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
@@ -147,11 +149,11 @@ const ContentListing = ({
   return (
     <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
       <InfiniteScroll
-        dataLength={contentList?.length}
+        dataLength={contentArray?.length}
         next={fetchMore}
         hasMore={loading}
         endMessage={
-          contentList?.length > 20 ? (
+          contentArray?.length > 20 ? (
             <Typography sx={{ textAlign: "center" }}> {t("no_more_data")}</Typography>
           ) : (
             ""
@@ -162,10 +164,10 @@ const ContentListing = ({
         style={{ overflowX: "hidden" }}>
         <Box sx={{ padding: "0 10px 0 15px" }}>
           <Box>
-            {!loading && !contentList?.length ? (
+            {!loading && !contentArray?.length ? (
               <NoSearchResult />
             ) : (
-              contentList?.map((item: any, index: Key | null | undefined) => {
+              contentArray?.map((item: any, index: Key | null | undefined) => {
                 return (
                   <Box key={index}>
                     <Card

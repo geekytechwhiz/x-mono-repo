@@ -200,3 +200,29 @@ spec:
                 configMapKeyRef:
                   key: NEXT_SNOWPLOW_PLACE_ORDER_IMPRESSIONS
                   name: hep-user-experience-ui-config
+            - name: NEXT_PAGE_IMPRESSIONS_SCHEMA
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_PAGE_IMPRESSIONS_SCHEMA
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_PRELEM_IMPRESSIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_SNOWPLOW_PRELEM_IMPRESSIONS
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_CLICK_IMPRESSIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_SNOWPLOW_CLICK_IMPRESSIONS
+                  name: hep-user-experience-ui-config
+            - name: NEXT_SNOWPLOW_REGISTER_USER_IMPRESSIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_SNOWPLOW_REGISTER_USER_IMPRESSIONS
+                  name: hep-user-experience-ui-config
+            - name: NEXT_ELASTIC_APM_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  key: NEXT_ELASTIC_APM_ENVIRONMENT
+                  name: hep-user-experience-ui-config
+            

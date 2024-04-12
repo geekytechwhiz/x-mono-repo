@@ -88,7 +88,7 @@ export const createClickImpression = (
   if (storedDetail !== null) {
     gender = JSON.parse(storedDetail)?.data?.gender || IMPRESSIONS.NA;
   } else {
-    gender = {};
+    gender = IMPRESSIONS.NA;
   }
 
   if (type === IMPRESSIONS.Button) {
@@ -166,8 +166,8 @@ export const createClickImpression = (
       type === IMPRESSIONS.Button
         ? IMPRESSIONS.BUTTON_CLICK
         : type === IMPRESSIONS.Card
-        ? IMPRESSIONS.CARD_CLICK
-        : IMPRESSIONS.NA,
+          ? IMPRESSIONS.CARD_CLICK
+          : IMPRESSIONS.NA,
     prelemSlotNumber,
     isRegistered,
     age,
