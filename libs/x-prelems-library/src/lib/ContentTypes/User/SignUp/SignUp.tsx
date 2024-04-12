@@ -171,7 +171,7 @@ const SignUp = ({ userDetailsPass = () => {}, redirectToLoginPage = () => {} }: 
                 <Typography variant='p3regular'>
                   {t("already_account")}
                   <Link onClick={redirectToLoginPage} variant='p3regular' className='link'>
-                    Log in
+                    {t("log_in")}
                   </Link>
                 </Typography>
               </Grid>
