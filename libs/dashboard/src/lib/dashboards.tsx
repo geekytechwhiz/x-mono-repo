@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useDashboardData } from "@platformx/authoring-apis";
 import { RootState } from "@platformx/authoring-state";
-import { useUserSession } from "@platformx/utilities";
+import { useUserSession, ContentListDesktopLoader, NoSearchResult } from "@platformx/utilities";
 import React, { Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -35,6 +35,7 @@ export const Dashboard = () => {
     fetchDashBoardData,
     fetchContentDetails,
     changeStatus,
+    loading,
   } = useDashboardData();
   const { dashBoard } = useSelector((state: RootState) => state.dashboard);
   const { boostContent } = dashBoard || {};
@@ -81,17 +82,25 @@ export const Dashboard = () => {
             <Box className={classes.sectionMargin}>
               <Grid container>
                 <Grid item xs={12} md={12} em={12} lg={12} sx={{ paddingRight: { xs: 0, lg: 0 } }}>
-                  <TaskCard title={t("tasks")} titleVariant='h5bold' linkText={t("actions")}>
+                  <TaskCard
+                    title={t("tasks")}
+                    titleVariant='h5bold'
+                    refetch
+                    refetchFunction={fetchDashBoardData}>
                     <Box>
-                      {taskLength > 0 ? (
+                      {loading ? (
+                        <ContentListDesktopLoader />
+                      ) : dashBoard?.taskPages?.length > 0 ? (
                         <TaskPages
                           taskPages={dashBoard?.taskPages}
                           fetchDashBoardData={fetchDashBoardData}
                           changeStatus={changeStatus}
                           edit={edit}
                         />
-                      ) : (
+                      ) : dashBoard?.taskPages?.length === 0 ? (
                         <TaskNotFound />
+                      ) : (
+                        <ContentListDesktopLoader />
                       )}
                     </Box>
                   </TaskCard>
@@ -111,8 +120,12 @@ export const Dashboard = () => {
                     title={t("recent_pages")}
                     titleVariant='h5bold'
                     linkText={t("view_more")}>
-                    {(dashBoard?.recentPages?.length || 0) > 0 && (
+                    {dashBoard?.recentPages?.length > 0 ? (
                       <RecentPages recentPages={dashBoard?.recentPages || []} />
+                    ) : dashBoard?.recentPages?.length === 0 ? (
+                      <NoSearchResult />
+                    ) : (
+                      <ContentListDesktopLoader />
                     )}
                   </RecentCard>
                 </Grid>
@@ -124,7 +137,7 @@ export const Dashboard = () => {
                   lg={4}
                   sx={{ marginTop: { xs: "20px", lg: "0" } }}>
                   <RecentCard title={t("recent_content")} titleVariant='h5bold'>
-                    {(dashBoard?.recentContent?.length || 0) > 0 && (
+                    {dashBoard?.recentContent?.length > 0 ? (
                       <RecentContent
                         deleteContent={deleteContent}
                         duplicate={duplicate}
@@ -135,6 +148,10 @@ export const Dashboard = () => {
                         recentContent={dashBoard?.recentContent || []}
                         fetchContentDetails={fetchContentDetails}
                       />
+                    ) : dashBoard?.recentContent?.length === 0 ? (
+                      <NoSearchResult />
+                    ) : (
+                      <ContentListDesktopLoader />
                     )}
                   </RecentCard>
                 </Grid>

@@ -75,7 +75,7 @@ const Tasks = ({
           display: "flex",
           alignItems: { xs: "flex-start", em: "center" },
         }}>
-        <Grid xs={12} md={12} lg={7}>
+        <Grid xs={12} md={12} lg={6}>
           <Box
             sx={{
               display: { xs: "flex", em: "none" },
@@ -217,7 +217,7 @@ const Tasks = ({
             </Box>
           </Box>
         </Grid>
-        <Grid xs={12} md={12} lg={5}>
+        <Grid xs={12} md={12} lg={6}>
           <Box
             sx={{
               display: "flex",
