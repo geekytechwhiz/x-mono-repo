@@ -39,10 +39,7 @@ export function AssetHeader({ handleShow, collectionArr }) {
     <Grid container className={classes.container}>
       <Grid item xs={12} sm={12} md={6} lg={6}>
         {path ? (
-          <Box
-            className={classes.backicon}
-            //onClick={() => navigate(`/asset/${assetType}`)}
-          >
+          <Box className={classes.backicon}>
             <img
               src={backAssetIcon}
               alt='backarrow'
@@ -99,14 +96,14 @@ export function AssetHeader({ handleShow, collectionArr }) {
                 value='New Folder'
                 onClick={() => handleShow(true)}
                 control={<Radio sx={{ display: "none" }} />}
-                label={t("New Folder")}
+                label={t("new_folder")}
               />
-              {collectionArr.length !== 0 && (
+              {collectionArr?.length !== 0 && (
                 <FormControlCustom
                   className='listView'
-                  value='UPload Assets'
+                  value='Upload Asset'
                   control={<Radio sx={{ display: "none" }} />}
-                  label={t("Upload Assests")}
+                  label={t("upload_asset")}
                   onClick={() => {
                     setAssetValue(true);
                     handleFilterClose();

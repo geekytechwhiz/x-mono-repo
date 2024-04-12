@@ -57,7 +57,7 @@ export const CreateAsset = () => {
   return (
     <>
       <CreateHeader
-        createText={t("Create Assets")}
+        createText={t("create_asset")}
         handleReturn={() => {
           navigate("/dashboard");
         }}
@@ -70,12 +70,12 @@ export const CreateAsset = () => {
           /* your function code */
         }}
         handleSaveOrPublish={handlePublish}
-        previewText='Preview'
+        previewText={t("preview")}
         showPreview={false}
-        toolTipText='Unable to preview please add required details'
+        toolTipText={t("preview_tooltip")}
         saveVariant='contained'
-        category={"content"}
-        subCategory={"quiz"}
+        category='content'
+        subCategory='quiz'
         isFeatured={false}
       />
       <Divider></Divider>
@@ -120,7 +120,7 @@ export const CreateAsset = () => {
                 variant='primaryButton'
                 sx={{ position: "absolute" }}
                 className={classes.wrapperbutton}>
-                View all
+                {t("view_more")}
               </Button>
             </Box>
           </Box>

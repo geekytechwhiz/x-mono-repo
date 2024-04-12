@@ -56,10 +56,11 @@ export const CookieSetting = () => {
       ]);
       const { authoring_getSitedetails: apiResult = {} } = cookiePolicyForm;
       const countries = countryList?.authoring_getTagsList[0]?.tags;
-      const cloneForm = form;
-      cloneForm.forEach((control) => {
-        control.value = apiResult[control.name];
-      });
+      // const cloneForm = form;
+      // cloneForm.forEach((control) => {
+      //   control.value = apiResult[control.name];
+      // });
+      const cloneForm = form.map((control) => ({ ...control, value: apiResult[control.name] }));
 
       setCoutryList(countries);
       setConsentList(

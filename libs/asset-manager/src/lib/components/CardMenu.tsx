@@ -10,11 +10,12 @@ const AssetCardMenu = (props) => {
   const { anchorEl, open, handleMenuClose, handleDelete } = props;
 
   const onHandleMenuActions = (action) => {
-    // eslint-disable-next-line default-case
     switch (action) {
       case "delete":
         handleDelete();
         break;
+      default:
+        return;
     }
     handleMenuClose();
   };

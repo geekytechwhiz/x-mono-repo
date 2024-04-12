@@ -64,7 +64,7 @@ export default function Folder({ data, deleteFolder }: any) {
             aria-expanded={open ? "true" : undefined}
             aria-haspopup='true'
             onClick={handleClick}>
-            <img src={MorehorAsset} alt='' />
+            <img src={MorehorAsset} alt='icon' />
           </IconButton>
         </Box>
         <AssetCardMenu

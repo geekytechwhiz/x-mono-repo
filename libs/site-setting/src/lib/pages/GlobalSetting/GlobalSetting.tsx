@@ -152,7 +152,7 @@ export const GlobalSetting = () => {
 
     publishGlobalSetting(input)
       .then(() => {
-        ShowToastSuccess(t(`${t("global_setting")}${"  "}${t("updated_toast")}`));
+        ShowToastSuccess(`${t("global_setting")} ${t("updated_toast")}`);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -322,12 +322,12 @@ export const GlobalSetting = () => {
             </CommonBoxWithNumber>
             <CommonBoxWithNumber
               number='02'
-              title={t("My Story Tags")}
+              title={t("my_story_tags")}
               subTitle={t("subhead")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
               <Typography variant='h5medium' className={classes.containertypo}>
-                My Story Tags
+                {t("my_story_tags")}
               </Typography>
 
               <Grid container>
@@ -348,7 +348,7 @@ export const GlobalSetting = () => {
                         }}
                         className={classes.btnbox}
                         variant='outlined'>
-                        {t("Edit")}
+                        {t("edit")}
                       </Button>
                     </Box>
                   </Box>
@@ -356,7 +356,7 @@ export const GlobalSetting = () => {
               </Grid>
 
               <Typography variant='h5medium' className={classes.containertypo}>
-                My Story Content Type
+                {t("my_story_content_type")}
               </Typography>
 
               <Grid container>
