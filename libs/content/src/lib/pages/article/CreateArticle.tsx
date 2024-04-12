@@ -1,15 +1,14 @@
 /* eslint-disable require-atomic-updates */
 import { Box } from "@mui/material";
 import { articleApi, commentsApi, useComment, useWorkflow } from "@platformx/authoring-apis";
-import { RootState, handleDialog, previewContent } from "@platformx/authoring-state";
+import { RootState, previewContent } from "@platformx/authoring-state";
 import {
   AUTH_INFO,
+  CommonPlateformXDialog,
   Loader,
   ShowToastError,
   ShowToastSuccess,
-  SuccessIcon,
   ThemeConstants,
-  WarningIcon,
   capitalizeFirstLetter,
   getCurrentLang,
   nullToObject,
@@ -47,8 +46,8 @@ export const CreateArticle = () => {
   const [content, setContent] = useState<any>({});
   const [tagData, setTagData] = useState<any>({});
   const [isFeatured, setIsFeatured] = useState(false);
-  const [tagArr, setTagArr] = useState<any>([]);
-  const tagArrRef = useRef({ tags: [] });
+  const [tagArr, setTagArr] = useState<any>(["Articles"]);
+  const tagArrRef = useRef({ tags: ["Articles"] });
   const [socialOgTags, setSocialOgTags] = useState({ tagsSocialShare: [] });
   const [articleInstance, setArticleInstance] = useState<any>(ArticleInitialState);
   const [getSession] = useUserSession();
@@ -399,28 +398,43 @@ export const CreateArticle = () => {
     //clearComment();
     // dispatch(previewContent({}));
   };
+
+  const [dialogContent, setDialogContent] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+    confirmButtonText: "",
+    closeButtonText: "",
+    modal: "",
+  });
+  const handleCloseModal = () => {
+    setDialogContent({ ...dialogContent, isOpen: false });
+  };
   const enableDialog = (type = "") => {
-    const dialogContent = {
-      imageIcon: SuccessIcon, //successGif,
+    const contentTosend = {
+      ...dialogContent,
       isOpen: true,
       title: t("congratulations"),
-      subTitle: type === workflowKeys.approve ? t("article_publish_popoup") : t("requested_action"),
-      rightButtonText: t("go_to_listing"),
-      handleCallback: navigateTo,
+      subTitle:
+        type === workflowKeys.approve
+          ? `${t("your")} ${t("article")} ${t("publish_popup_message")}`
+          : t("requested_action"),
+      confirmButtonText: t("go_to_listing"),
     };
-    dispatch(handleDialog(dialogContent));
+    setDialogContent(contentTosend);
+    // dispatch(handleDialog(dialogContent));
   };
   const exitWarnDialog = (type) => {
-    const dialogContent = {
-      imageIcon: WarningIcon,
+    const contentTosend = {
       isOpen: true,
       title: t("save_warn_title"),
       subTitle: t("save_warn_subtitle"),
-      leftButtonText: t("Stay Here"),
-      rightButtonText: t("take_me_out"),
-      handleCallback: navigateTo,
+      closeButtonText: t("stay_here"),
+      confirmButtonText: t("take_me_out"),
+      modal: "warning",
     };
-    dispatch(handleDialog(dialogContent));
+    setDialogContent(contentTosend);
+    // dispatch(handleDialog(dialogContent));
   };
   const onSave = async (isWorkflow = true, props = {}, event_step = "") => {
     if (!validateArticleDetails()) {
@@ -795,6 +809,27 @@ export const CreateArticle = () => {
         onSave={onSave}
         createComment={createComment}
       />
+      {dialogContent.isOpen ? (
+        <CommonPlateformXDialog
+          isDialogOpen={dialogContent.isOpen}
+          title={dialogContent.title}
+          subTitle={dialogContent.subTitle}
+          confirmButtonText={dialogContent.confirmButtonText}
+          confirmButtonHandle={navigateTo}
+          modalType='publish'
+        />
+      ) : null}
+      {dialogContent.isOpen && dialogContent.modal === "warning" ? (
+        <CommonPlateformXDialog
+          isDialogOpen={dialogContent.isOpen}
+          title={dialogContent.title}
+          subTitle={dialogContent.subTitle}
+          confirmButtonText={dialogContent.confirmButtonText}
+          closeButtonText={dialogContent.closeButtonText}
+          closeButtonHandle={handleCloseModal}
+          confirmButtonHandle={navigateTo}
+        />
+      ) : null}
     </Box>
   );
 };

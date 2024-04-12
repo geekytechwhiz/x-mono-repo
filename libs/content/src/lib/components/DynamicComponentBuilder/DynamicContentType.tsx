@@ -25,11 +25,11 @@ import { contentTypeSchemaApi, useWorkflow } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
   CATEGORY_CONTENT,
-  PlateformXDialog,
+  CommonPlateformXDialog,
+  Loader,
   SectionWrapper,
   ShowToastError,
   ShowToastSuccess,
-  XLoader,
   capitalizeFirstLetter,
   handleHtmlTags,
   trimString,
@@ -338,18 +338,9 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   return (
     <>
       {isLoading ? (
-        <XLoader type={"circular"} />
+        <Loader />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
-          {/* {galleryState && (
-            <Gallery
-              handleImageSelected={handleSelectedImage}
-              toggleGallery={toggleGallery}
-              galleryMode={galleryType.current}
-              keyName={key}
-              id={answerId}
-            />
-          )} */}
           <Box mb={3}>
             <CreateHeader
               createText={Template?.title} //{false ? `${t("edit")} ${t("quiz")}` : Template?.title}
@@ -419,12 +410,12 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
         </form>
       )}
       {showPublishConfirm ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
           subTitle={
             showPublishConfirm
-              ? `Your ${contentType} has been sent for publishing & will be published in a few seconds`
+              ? `${t("your")} ${contentType} ${t("publish_popup_message")}`
               : t("requested_action")
           }
           closeButtonHandle={handleCloseDialog}

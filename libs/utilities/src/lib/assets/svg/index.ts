@@ -250,12 +250,18 @@ import Doticon from "./doticon.svg";
 import Crossnewicons from "./Crossnewicon.svg";
 import SystemTagIcon from "./SystemTagIcon.svg";
 import BusinessTagIcon from "./BusinessTagIcon.svg";
+import NoAssetSelected from "./NoAssetSelected.svg";
+import VideoNav from "./VideoMenuIcon.svg";
+import GlobalSetting from "./GlobalSetting.svg";
+import UploadThumbnail from "./UploadThumbnail.svg";
 
 export {
   RedBlinkingDot as liveIcon,
   IconFbSvg,
+  GlobalSetting,
   IconGoogleSvg,
   IconVisaCardSvg,
+  VideoNav,
   IconDelete1svg,
   SuccessIcon,
   SystemTagIcon,
@@ -263,6 +269,7 @@ export {
   TagIcon,
   IconMasterCardSvg,
   Aboutusupdateicon,
+  NoAssetSelected,
   AccountBalanceWalletIcon,
   Addlinkupdateicon,
   AiSvg,
@@ -499,6 +506,7 @@ export {
   Checkicon,
   Doticon,
   Crossnewicons,
+  UploadThumbnail,
   GroupUsersIcon,
   communitySpaceIcon,
 };

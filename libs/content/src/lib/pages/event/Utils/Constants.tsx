@@ -67,10 +67,9 @@ export const SAVE_AS_DRAFT_POP_UP = {
 
 export const PUBLISH_POP_UP = {
   publishTitle: "congratulations",
-  publishDescription:
-    "your_Event_has_been_sent_for_publishing_&_will_be_published_in_a_few_seconds",
-  publishCloseText: "go_to_listing",
-  publishConfirmText: "view_event",
+  publishDescription: "publish_popup_message",
+  // publishCloseText: t("go_to_listing"),
+  publishConfirmText: "go_to_listing",
 };
 
 export const PATH = "path";

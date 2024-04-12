@@ -38,10 +38,9 @@ import {
 } from "@platformx/authoring-state";
 import {
   CATEGORY_PAGE,
+  CommonPlateformXDialog,
   EditIcon,
   LightTheme,
-  LoadingTextModal,
-  PlateformXDialog,
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
@@ -1038,10 +1037,10 @@ const EditPageContainer = () => {
     }
   };
 
-  const onCloseSaveWarningHandler = () => {
-    savePage();
-    setShowSaveWarning(false);
-  };
+  // const onCloseSaveWarningHandler = () => {
+  //   savePage();
+  //   setShowSaveWarning(false);
+  // };
 
   const unsavedChangesCrossButtonHandle = () => {
     setShowSaveWarning(false);
@@ -1053,9 +1052,9 @@ const EditPageContainer = () => {
     setShowWorkflowSubmit(false);
   };
 
-  const changePublishDialogState = () => {
-    setOpenPublishModal(false);
-  };
+  // const changePublishDialogState = () => {
+  //   setOpenPublishModal(false);
+  // };
 
   const onPublishClick = () => {
     setPublishLoading(true);
@@ -1129,7 +1128,7 @@ const EditPageContainer = () => {
           {publishLoading && <PrelemLoader />}
           <PageLayout>
             {isResetPopop ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={isResetPopop}
                 title={t("prelem_reset")}
                 subTitle={t("prelem_reset_title")}
@@ -1140,17 +1139,19 @@ const EditPageContainer = () => {
               />
             ) : null}
             {isDeletePopop ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={isDeletePopop}
-                title={t("prelem_delete")}
-                subTitle={`${t("prelem_delete_title")} ${t("prelem")}`}
-                closeButtonText={t("no")}
-                confirmButtonText={t("yes")}
+                title={t("delete_title")}
+                subTitle={`${t("delete_confirm")} ${t("prelem")}? ${t("process_undone")}`}
+                closeButtonText={t("no_keep_it")}
+                confirmButtonText={t("yes_delete_it")}
                 closeButtonHandle={deleteCloseButtonHandle}
                 confirmButtonHandle={deleteConfirmButtonHandle}
+                modalType='delete'
               />
             ) : null}
-            {openPublishModal || showWorkflowSubmit ? (
+
+            {/* {openPublishModal || showWorkflowSubmit ? (
               <LoadingTextModal
                 isDialogOpen={openPublishModal || showWorkflowSubmit}
                 closeButtonHandle={closeButtonHandle}
@@ -1160,19 +1161,36 @@ const EditPageContainer = () => {
                 successText={openPublishModal ? t("page_success_text") : t("requested_action")}
                 changeDialogState={changePublishDialogState}
               />
+            ) : null} */}
+            {openPublishModal || showWorkflowSubmit ? (
+              <CommonPlateformXDialog
+                isDialogOpen={openPublishModal || showWorkflowSubmit}
+                title={t("congratulations")}
+                subTitle={
+                  openPublishModal
+                    ? `${t("your")} ${t("page")} ${t("publish_popup_message")}`
+                    : t("requested_action")
+                }
+                closeButtonHandle={closeButtonHandle}
+                confirmButtonText={t("go_to_listing")}
+                confirmButtonHandle={() => navigate("/sitepage")}
+                modalType='publish'
+              />
             ) : null}
             {showSaveWarning ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={showSaveWarning}
                 title={t("save_warn_title")}
                 subTitle={t("save_warn_subtitle")}
                 closeButtonText={
-                  triggerCase === "PUBLISH" ? t("publish_anyways") : t("take_me_out")
+                  t("stay_here")
+                  //triggerCase === "PUBLISH" ? t("publish_anyways") : t("stay_here")
                 }
-                confirmButtonText={t("done")}
-                closeButtonHandle={() => callFnsCase(triggerCase)}
-                confirmButtonHandle={onCloseSaveWarningHandler}
-                crossButtonHandle={unsavedChangesCrossButtonHandle}
+                confirmButtonText={t("take_me_out")}
+                closeButtonHandle={unsavedChangesCrossButtonHandle}
+                // closeButtonHandle={() => callFnsCase(triggerCase)}
+                confirmButtonHandle={() => callFnsCase(triggerCase)}
+                // crossButtonHandle={unsavedChangesCrossButtonHandle}
                 modalType='unsavedChanges'
               />
             ) : null}
