@@ -3,8 +3,8 @@ import { Content } from "@platformx/content";
 import {
   ApprovalStatus,
   ArticleIcon,
-  CookieIcon,
   BookIcon,
+  CookieIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
@@ -17,11 +17,11 @@ import {
   PostIconMenu,
   QuizIcon,
   SitesIcon,
+  TagIcon,
   UserEngagmentIcon,
   UsersIcon,
   VODIcon,
   Webmaster,
-  TagIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
@@ -352,7 +352,7 @@ export const MenuData = [
         MenuName: "Images",
         Icon: MediaIcon,
         url: "/asset/images",
-        id: "Images",
+        id: "images",
         category: "Assets",
         subCategory: "",
       },
@@ -360,7 +360,7 @@ export const MenuData = [
         MenuName: "Videos",
         Icon: MediaIcon,
         url: "/asset/videos",
-        id: "Videos",
+        id: "videos",
         category: "Assets",
         subCategory: "",
       },
