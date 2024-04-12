@@ -12,10 +12,10 @@ import { UserManagementQueries } from "@platformx/authoring-apis";
 import {
   BasicSwitch,
   BlueDot,
+  CommonPlateformXDialog,
   EditIcon,
   GreenDot,
   Loader,
-  PlateformXDialog,
   RedDot,
   ShowToastError,
   ShowToastSuccess,
@@ -62,10 +62,10 @@ const ListView = ({
     adminAction === ADMIN_ACTIONS.PENDING
       ? "Pending approval"
       : adminAction === ADMIN_ACTIONS.REJECTED
-      ? "Rejected"
-      : adminAction === ADMIN_ACTIONS.APPROVED
-      ? "Approved"
-      : "";
+        ? "Rejected"
+        : adminAction === ADMIN_ACTIONS.APPROVED
+          ? "Approved"
+          : "";
   // const handleDialogClose = () => {
   //   setOpenDialog(false);
   // };
@@ -178,6 +178,9 @@ const ListView = ({
 
   const handleEditUser = (event: any, userId: any) => {
     navigate(`/user-management/user-create?path=${userId}&usertype=${filterValue.toLowerCase()}`);
+  };
+  const handleCloseDialog = () => {
+    setIsResend(false);
   };
 
   return (
@@ -398,7 +401,7 @@ const ListView = ({
             </Box>
           </Grid>
         </Grid>
-        <PlateformXDialog
+        {/* <PlateformXDialog
           isDialogOpen={isResend}
           title={t("resend_invite")}
           subTitle={`${t("resend_subtitle_pre")}
@@ -411,7 +414,20 @@ const ListView = ({
             setIsResend(false);
           }}
           modalType='unsavedChanges'
-        />
+        /> */}
+        {isResend ? (
+          <CommonPlateformXDialog
+            isDialogOpen={isResend}
+            title={t("resend_invite")}
+            subTitle={`${t("resend_subtitle_pre")}
+            ${email}`}
+            closeButtonText={t("back")}
+            closeButtonHandle={handleCloseDialog}
+            confirmButtonText={t("resend_invite")}
+            confirmButtonHandle={handleconfirmResend}
+            modalType='unsavedChanges'
+          />
+        ) : null}
       </Box>
     </>
   );
