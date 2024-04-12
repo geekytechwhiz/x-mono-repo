@@ -1204,7 +1204,7 @@
   "master_control": "Master Control",
   "administrator": "Administratrice",
   "your_site": "Votre site",
-  "tags_categories": "Tags",
+  "tags_categories": "Mots clés",
   "cannot_delete_tag": "Vous ne pouvez pas supprimer system tag",
   "cannot_edit_tag": "Vous ne pouvez pas modifier system tag",
   "remove_members": "Supprimer des membres",
@@ -1241,5 +1241,10 @@
   "subtotal": "Sous total",
   "checkout": "Vérifier",
   "view_cart": "Voir le panier",
-  "event_Link": "Lien de l'événement"
+  "event_Link": "Lien de l'événement",
+  "change_password": "Changer le mot de passe",
+  "logout": "Se déconnecter",
+  "search_your_sites": "Recherchez vos sites",
+  "crop_your_image": "Recadrez votre image",
+  "preview_images": "Aperçu des images"
 }

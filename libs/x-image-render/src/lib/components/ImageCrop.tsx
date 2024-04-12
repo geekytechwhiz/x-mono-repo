@@ -1,18 +1,11 @@
 import LoadingButton from "@mui/lab/LoadingButton";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Dialog,
-  DialogContent,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, Grid, Typography } from "@mui/material";
+import { Loader, nullToObject } from "@platformx/utilities";
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import useImageCrop from "../hooks/useImageCrop";
 import { BREAKPOINTS } from "../utils/constants";
 import SelectedImageCrop from "./SelectedImageCrop";
-import { nullToObject } from "@platformx/utilities";
-import useImageCrop from "../hooks/useImageCrop";
 
 const ImageCrop = (props: any = {}) => {
   const {
@@ -22,7 +15,7 @@ const ImageCrop = (props: any = {}) => {
     doneCropCompleted,
   } = useMemo(() => nullToObject(props), [props]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const { t } = useTranslation();
   const {
     doneLoader,
     isLoading: doneCropLoading,
@@ -31,7 +24,6 @@ const ImageCrop = (props: any = {}) => {
   } = useImageCrop(originalImage, doneCropCompleted);
 
   const { Thumbnail } = originalImage || {};
-
   return (
     <Dialog
       fullScreen
@@ -49,7 +41,7 @@ const ImageCrop = (props: any = {}) => {
           padding: { xs: "10px 15px", md: "0px 24px" },
         }}>
         <Grid xs={12} md={8}>
-          <Typography variant='h4bold'>Crop your Image</Typography>
+          <Typography variant='h4bold'>{t("crop_your_image")}</Typography>
         </Grid>
         <Grid
           xs={12}
@@ -59,7 +51,7 @@ const ImageCrop = (props: any = {}) => {
             padding: { xs: "10px 0", md: "8px" },
           }}>
           <Button variant='secondaryButton' onClick={() => backTo()} sx={{ marginRight: "12px" }}>
-            Back
+            {t("back")}
           </Button>
           <LoadingButton
             onClick={() => handleDone()}
@@ -67,7 +59,7 @@ const ImageCrop = (props: any = {}) => {
             loadingPosition='start'
             variant='primaryButton'
             disabled={doneCropLoading}>
-            Done
+            {t("done")}
           </LoadingButton>
         </Grid>
       </Grid>
@@ -78,26 +70,7 @@ const ImageCrop = (props: any = {}) => {
             background: { xs: "#f7f7f7", sm: "#fff" },
             padding: { xs: "11px", sm: "0px" },
           }}>
-          {isLoading && (
-            <Box
-              sx={{
-                marginTop: "350px",
-                marginBottom: "100px",
-                textAlign: "center",
-                position: "absolute",
-                zIndex: "99",
-                left: "0",
-                right: "0",
-              }}>
-              <CircularProgress
-                style={{
-                  width: "80px",
-                  height: "80px",
-                  color: "#2d2d39",
-                }}
-              />
-            </Box>
-          )}
+          {isLoading && <Loader />}
 
           <Grid container spacing={1}>
             {BREAKPOINTS.map(({ aspectRatio, ratioName, aspectRatioName }, key) => (

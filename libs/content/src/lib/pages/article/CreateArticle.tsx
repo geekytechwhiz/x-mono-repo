@@ -46,8 +46,8 @@ export const CreateArticle = () => {
   const [content, setContent] = useState<any>({});
   const [tagData, setTagData] = useState<any>({});
   const [isFeatured, setIsFeatured] = useState(false);
-  const [tagArr, setTagArr] = useState<any>([]);
-  const tagArrRef = useRef({ tags: [] });
+  const [tagArr, setTagArr] = useState<any>(["Articles"]);
+  const tagArrRef = useRef({ tags: ["Articles"] });
   const [socialOgTags, setSocialOgTags] = useState({ tagsSocialShare: [] });
   const [articleInstance, setArticleInstance] = useState<any>(ArticleInitialState);
   const [getSession] = useUserSession();

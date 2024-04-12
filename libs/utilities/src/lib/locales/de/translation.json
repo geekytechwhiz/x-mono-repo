@@ -1205,7 +1205,7 @@
   "master_control": "Master Control",
   "administrator": "Administratorin",
   "your_site": "Deine Seite",
-  "tags_categories": "Tags",
+  "tags_categories": "Stichworte",
   "cannot_delete_tag": "Sie können nicht löschen system tag",
   "cannot_edit_tag": "Sie können nicht bearbeiten system tag",
   "remove_members": "Mitglieder entfernen",
@@ -1242,5 +1242,10 @@
   "subtotal": "Zwischensumme",
   "checkout": "Kasse",
   "view_cart": "Warenkorb ansehen",
-  "event_Link": "Ereignislink"
+  "event_Link": "Ereignislink",
+  "change_password": "Kennwort ändern",
+  "logout": "Ausloggen",
+  "search_your_sites": "Durchsuchen Sie Ihre Websites",
+  "crop_your_image": "Beschneiden Sie Ihr Bild",
+  "preview_images": "Vorschaubilder"
 }

@@ -1251,5 +1251,10 @@
   "subtotal": "Subtotal",
   "checkout": "Checkout",
   "view_cart": "View Cart",
-  "event_Link": "Event Link"
+  "event_Link": "Event Link",
+  "change_password": "Change Password",
+  "logout": "Logout",
+  "search_your_sites": "Search your sites",
+  "crop_your_image": "Crop your image",
+  "preview_images": "Preview Images"
 }

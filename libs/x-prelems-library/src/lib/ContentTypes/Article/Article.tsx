@@ -314,6 +314,7 @@ const Article = ({
                   embedData={embedData}
                   whiteIcon={false}
                   border={`solid 1px ${theme.palette.prelemType1.LINE}`}
+                  showRecentArticles={showRecentArticles}
                 />
               </Box>
             </Box>
