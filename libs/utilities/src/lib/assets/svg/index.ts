@@ -250,6 +250,7 @@ import Doticon from "./doticon.svg";
 import Crossnewicons from "./Crossnewicon.svg";
 import SystemTagIcon from "./SystemTagIcon.svg";
 import BusinessTagIcon from "./BusinessTagIcon.svg";
+import UploadThumbnail from "./UploadThumbnail.svg";
 
 export {
   RedBlinkingDot as liveIcon,
@@ -499,6 +500,7 @@ export {
   Checkicon,
   Doticon,
   Crossnewicons,
+  UploadThumbnail,
   GroupUsersIcon,
   communitySpaceIcon,
 };

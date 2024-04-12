@@ -62,7 +62,6 @@ const UserDetails = ({
   const [isPhone, setIsPhone] = useState(false);
 
   const [usdTime, setUsdTime] = useState<any[]>([]);
-  const [flag, setFlag] = useState("en");
   const LanguageList = [
     { id: "en", label: "English (UK)" },
     { id: "fr", label: "French" },
@@ -87,7 +86,6 @@ const UserDetails = ({
       ...state,
       default_language: newValue.id,
     });
-    setFlag(newValue?.id);
   };
   const handleChange = () => {
     setState({
@@ -115,6 +113,14 @@ const UserDetails = ({
         timezone: defaultTimeZone,
       });
   }, []);
+
+  const getFlagByCode = (code) => {
+    if (code === "en") {
+      return "gb";
+    } else {
+      return code;
+    }
+  };
   const classess = useCustomStyle();
   return (
     <Box className={classess.mainStyleWrapper} id='user'>
@@ -412,15 +418,14 @@ const UserDetails = ({
                     startAdornment: (
                       <InputAdornment position='start'>
                         <img
-                          // src={require(`../../../assets/${flag}_flag.png`)}
-                          // src={require(`../../../../../utilities/src/lib/assets/${flag}_flag.png`)}
-                          src={require(`../../../../../utilities/src/lib/assets/pngIcons/${flag}_flag.png`)}
+                          src={`https://flagcdn.com/w80/${getFlagByCode(state.default_language)}.png`}
                           alt='icon'
                           style={{
                             objectFit: "cover",
                             width: "24px",
                             height: "24px",
                             marginRight: "16px",
+                            borderRadius: "50%",
                           }}
                         />
                       </InputAdornment>

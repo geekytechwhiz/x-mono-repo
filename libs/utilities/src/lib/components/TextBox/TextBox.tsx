@@ -86,7 +86,7 @@ const TextBox = ({
     }
   };
   return (
-    <Box mr={2}>
+    <Box mr={2} className='noMarginRight'>
       <TextField
         variant='outlined'
         size='small'

@@ -146,7 +146,7 @@ const ContentListingHeader = ({
                 borderRadius: "4px",
                 boxShadow: "0 0 2px 0 rgba(115, 114, 114, 0.14)",
                 border: "solid 1px rgba(112, 112, 112, 0.1)",
-                padding: "10px 18px",
+                padding: "10px",
               },
             }}>
             <FormControl>
