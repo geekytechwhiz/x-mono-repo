@@ -27,6 +27,7 @@ export async function getServerSideProps(context) {
     locale || "en",
     host,
   );
+
   if (Object.keys(nullToObject(contentResponse?.fetchQuizContent)).length === 0)
     return navigateToHome(locale);
 

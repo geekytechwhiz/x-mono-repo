@@ -3,21 +3,21 @@ import { Edit } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Box, Button, Typography } from "@mui/material";
+import { RootState } from "@platformx/authoring-state";
+import {
+  BasicSwitch,
+  ShowToastSuccess,
+  ThemeConstants,
+  usePlatformAnalytics,
+} from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import JSONInput from "react-json-editor-ajrm";
 import locale from "react-json-editor-ajrm/locale/en";
-import {
-  ShowToastSuccess,
-  ThemeConstants,
-  BasicSwitch,
-  usePlatformAnalytics,
-} from "@platformx/utilities";
-import { PrelemSeoProps, SeoInfo } from "../utils/editTypes";
+import { useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { useSelector } from "react-redux";
-import { RootState } from "@platformx/authoring-state";
+import { PrelemSeoProps, SeoInfo } from "../utils/editTypes";
 
 const PrelemSEO: React.FC<PrelemSeoProps> = ({ setPageId, selectedPrelemIndex, handleSave }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const PrelemSEO: React.FC<PrelemSeoProps> = ({ setPageId, selectedPrelemIndex, h
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='SEO' backTo='prelemSetting' />
+      <BackButton setPageId={setPageId} Title={t("prelem_seo")} backTo='prelemSetting' />
       <Box className='rowBox'>
         <Typography className='switchbox' variant='p4regular'>
           {t("page_prelem_find")}

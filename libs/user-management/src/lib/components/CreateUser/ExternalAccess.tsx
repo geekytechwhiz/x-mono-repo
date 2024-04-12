@@ -26,7 +26,7 @@ export default function ExternalAccess({ t, state, setState }: any) {
           <Box className={className.contentStyle}>
             <TitleSubTitle
               title={t("community_user")}
-              subTitle={t("Select if the user is community user")}
+              subTitle={t("external_access_sub")}
               titleVariant='h6medium'
               subTitleVariant='h7regular'
             />

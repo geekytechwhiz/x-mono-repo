@@ -2,12 +2,13 @@ import { Box, FormControl, IconButton, InputAdornment, InputBase } from "@mui/ma
 
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SearchIcon } from "../../assets/svg/index";
 import "./Search.css";
 
 export default function SearchBox({ handleSearch, setLoading = () => {} }: any) {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const { t } = useTranslation();
   const handleOnChange = (event: any) => {
     setLoading(true);
     setSearchQuery(event.target.value);
@@ -67,7 +68,7 @@ export default function SearchBox({ handleSearch, setLoading = () => {} }: any) 
             )}
           </InputAdornment>
         }
-        placeholder='Search...'
+        placeholder={`${t("search")}...`}
       />
     </FormControl>
   );

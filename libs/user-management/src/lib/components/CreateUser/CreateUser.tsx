@@ -299,8 +299,8 @@ const CreateUser = () => {
       const default__site = userDetails.default_site_checked
         ? getSelectedSite()
         : userDetails?.default_site
-        ? userDetails.default_site
-        : getSelectedSite();
+          ? userDetails.default_site
+          : getSelectedSite();
       const url = getSubDomain()?.replace("https://", "");
       // try {
       //   const { authoring_getSitedetails = {} } = await fetchSites({
@@ -391,7 +391,7 @@ const CreateUser = () => {
   const setImageToDefault = () => {
     setUserDetails({
       ...userDetails,
-      ["image"]: userDetails?.image,
+      image: userDetails?.image,
     });
   };
   const toggleGallery = (toggleState, type) => {
@@ -647,7 +647,7 @@ const CreateUser = () => {
         title={t("save_warn_title")}
         subTitle={t("save_warn_subtitle")}
         closeButtonText={t("take_me_out")}
-        confirmButtonText='Stay Here'
+        confirmButtonText={t("stay_here")}
         closeButtonHandle={handleConfirm}
         confirmButtonHandle={() => setShowExitWarning(false)}
         crossButtonHandle={() => {

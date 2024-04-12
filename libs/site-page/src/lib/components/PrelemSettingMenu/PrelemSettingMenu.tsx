@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
+import { RootState } from "@platformx/authoring-state";
 import { useEffect, useState } from "react";
-import { PrelemSettingList } from "../utils/constants";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import PageSettingMenu from "../PageSettingList/PageSettingMenu";
 import "../PageSettings/PageSettings.css";
+import { PrelemSettingList } from "../utils/constants";
 import { useStyles } from "./PrelemSetting.styles";
-import { RootState } from "@platformx/authoring-state";
-import { useSelector } from "react-redux";
 
 interface PageSettingProps {
   setPageId?: any;
@@ -18,6 +19,7 @@ const PrelemSettingMenu = ({ setPageId, setPrelemId, selectedPrelemIndex }: Page
   const { page } = useSelector((state: RootState) => state);
   const classes = useStyles();
   const [prelemModelData, setPrelemModelData] = useState(page.prelemMetaArray[selectedPrelemIndex]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setPrelemModelData(page.prelemMetaArray[selectedPrelemIndex]);
@@ -58,15 +60,15 @@ const PrelemSettingMenu = ({ setPageId, setPrelemId, selectedPrelemIndex }: Page
 
   return (
     <Box className={classes.PrelemSettingBox}>
-      <BackButton setPageId={setPageId} Title='Prelem Setting' />
+      <BackButton setPageId={setPageId} Title={t("page_prelem_setting")} />
       {PrelemSettingList.map((val, key) => {
-        const { imgUrl, title, id } = val;
+        const { imgUrl, id } = val;
         return (
           handleShowMenuItems(id) && (
             <PageSettingMenu
               key={key}
               imgUrl={imgUrl}
-              title={title}
+              title={t(id)}
               setPageId={setPageId}
               id={id}
             />

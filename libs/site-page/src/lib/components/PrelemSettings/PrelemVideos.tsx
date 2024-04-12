@@ -1,13 +1,13 @@
 import { ArrowUpward, Cached } from "@mui/icons-material";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { BasicSwitch, ShowToastSuccess, ThemeConstants } from "@platformx/utilities";
+import { DamContentGallery } from "@platformx/x-image-render";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ShowToastSuccess, ThemeConstants, BasicSwitch } from "@platformx/utilities";
-import { PrelemVideoProps } from "../utils/editTypes";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
+import { PrelemVideoProps } from "../utils/editTypes";
 import { useStyles } from "./PrelemSettings.styles";
-import { DamContentGallery } from "@platformx/x-image-render";
 
 const PrelemVideos: React.FC<PrelemVideoProps> = ({
   index,
@@ -72,7 +72,7 @@ const PrelemVideos: React.FC<PrelemVideoProps> = ({
   return (
     <>
       <Box className='pageSettingmainWp' key={`${index}_video`}>
-        <BackButton setPageId={setPageId} Title='Videos' backTo='prelemSetting' />
+        <BackButton setPageId={setPageId} Title={t("prelem_video")} backTo='prelemSetting' />
         <Box className='rowBox'>
           {playerFlow === "dspace" ? (
             content.Url ? (

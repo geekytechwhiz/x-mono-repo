@@ -1,10 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { ShowToastSuccess } from "@platformx/utilities";
 import React, { useState } from "react";
-import { TwitterProps } from "../utils/editTypes";
+import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { ShowToastSuccess } from "@platformx/utilities";
-import { useTranslation } from "react-i18next";
+import { TwitterProps } from "../utils/editTypes";
 
 const PrelemTwitter: React.FC<TwitterProps> = ({
   index,
@@ -18,11 +18,11 @@ const PrelemTwitter: React.FC<TwitterProps> = ({
   return (
     <Box key={`${index}_content`} className='pageSettingmainWp'>
       <Box className='rowBox'>
-        <BackButton setPageId={setPageId} Title='Images' backTo='prelemSetting' />
+        <BackButton setPageId={setPageId} Title={t("prelem_images")} backTo='prelemSetting' />
       </Box>
       <Box className='rowBox'>
         <Typography className='switchbox' variant='p4regular'>
-          Please enter twitter handle to fetch tweets
+          {t("twitter_tweets")}
         </Typography>
         <TextField
           multiline
@@ -44,7 +44,7 @@ const PrelemTwitter: React.FC<TwitterProps> = ({
             handleSave(sectionToUpdate, handle, index);
             ShowToastSuccess(`${t("prelem_twitter_info_toast")} ${t("saved_toast")}`);
           }}>
-          Done
+          {t("done")}
         </Button>
       </Box>
     </Box>

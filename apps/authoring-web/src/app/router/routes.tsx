@@ -197,7 +197,7 @@ export const routes: RouteConfig[] = [
         subCategory='content-preview'
         isSideBar={false}
         isHeader={false}>
-        <CommonPreview iframeUrl={iframedurl} />
+        <CommonPreview iframeUrl={iframedurl} type='content' />
       </ProtectedRoute>
     ),
   },

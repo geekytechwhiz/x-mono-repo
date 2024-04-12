@@ -46,19 +46,30 @@ const CreateSpace = () => {
   const [showExitWarning, setShowExitWarning] = useState(false);
   const unsavedChanges = useRef<boolean>(false);
   const loading = false;
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const getSpaceDetailsById = async (idOfSpace = "") => {
-    const res = await getSpacesDetailsBasedId(idOfSpace);
-    const { authoring_getExoContentList = {} } = nullToObject(res);
-    if (nullToObject(Object.keys(authoring_getExoContentList)).length > 0) {
-      const spaceDetails = dataToReceiveMapper(authoring_getExoContentList);
-      setStateSpace((prevState) => {
-        return {
-          ...prevState,
-          ...spaceDetails,
-        };
-      });
+    try {
+      setIsLoading(true);
+      const res = await getSpacesDetailsBasedId(idOfSpace);
+      const { authoring_getExoContentList = {} } = nullToObject(res);
+      if (nullToObject(Object.keys(authoring_getExoContentList)).length > 0) {
+        const spaceDetails = dataToReceiveMapper(authoring_getExoContentList);
+        setStateSpace((prevState) => {
+          return {
+            ...prevState,
+            ...spaceDetails,
+          };
+        });
+      }
+    } catch (error: any) {
+      if (error?.graphQLErrors[0]) {
+        showToastError(error?.graphQLErrors[0].message);
+      } else {
+        showToastError(t("api_error_toast"));
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +80,7 @@ const CreateSpace = () => {
     }
     if (type === Types?.EDIT) {
       try {
+        setIsLoading(true);
         const res = await updateSpace({
           variables: {
             input: dataToSendMapper(stateSpace),
@@ -77,6 +89,7 @@ const CreateSpace = () => {
           },
         });
         if (res?.data?.authoring_updateSpace) {
+          unsavedChanges.current = false;
           setShowPublishConfirm(true);
         }
       } catch (error: any) {
@@ -85,9 +98,12 @@ const CreateSpace = () => {
         } else {
           showToastError(t("api_error_toast"));
         }
+      } finally {
+        setIsLoading(false);
       }
     } else {
       try {
+        setIsLoading(true);
         const res = await createSpace({
           variables: {
             input: dataToSendMapper(stateSpace),
@@ -95,6 +111,7 @@ const CreateSpace = () => {
           },
         });
         if (res?.data?.authoring_createSpace) {
+          unsavedChanges.current = false;
           setShowPublishConfirm(true);
         }
       } catch (error: any) {
@@ -103,6 +120,8 @@ const CreateSpace = () => {
         } else {
           showToastError(t("api_error_toast"));
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -127,7 +146,7 @@ const CreateSpace = () => {
     } else {
       unsavedChanges.current = true;
     }
-  }, [stateSpace, t, type]);
+  }, [stateSpace, type]);
 
   useEffect(() => {
     if ([Types?.EDIT, Types?.VIEW].includes(type) && spaceId !== null) {
@@ -208,6 +227,7 @@ const CreateSpace = () => {
           confirmButtonText={t("go_to_listing")}
           confirmButtonHandle={() => navigate("/community/space")}
           modalType='publish'
+          closeButtonHandle={() => setShowPublishConfirm(false)}
         />
       ) : null}
     </Box>

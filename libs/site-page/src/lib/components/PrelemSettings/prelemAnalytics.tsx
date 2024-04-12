@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import { RootState, savePrelemAnalytics } from "@platformx/authoring-state";
+import { BasicSwitch, ShowToastSuccess, ThemeConstants } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { RootState, savePrelemAnalytics } from "@platformx/authoring-state";
-import { ThemeConstants, BasicSwitch, ShowToastSuccess } from "@platformx/utilities";
+import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { useDispatch, useSelector } from "react-redux";
 
 const PrelemAnalytics = ({ setPageId, selectedPrelemIndex }) => {
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ const PrelemAnalytics = ({ setPageId, selectedPrelemIndex }) => {
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='Analytics' backTo='prelemSetting' />
+      <BackButton setPageId={setPageId} Title={t("page_analytics")} backTo='prelemSetting' />
       <Box className='rowBox'>
         <Typography className='switchbox' variant='p4regular'>
           {t("prelem_analytics")}
