@@ -2,20 +2,20 @@ import { ExpandMore } from "@mui/icons-material";
 import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { RootState, updatePageSettings } from "@platformx/authoring-state";
 import { ShowToastSuccess, siteLevelSchema, usePlatformAnalytics } from "@platformx/utilities";
+import { XImageRender } from "@platformx/x-image-render";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../BackButton/BackButton";
 import { PageSocialShareInformation } from "../utils/editTypes";
+import {
+  socialShareDescriptionLength,
+  socialShareNameLength,
+  socialSharePreviewDescriptionLength,
+  socialSharePreviewNameLength,
+} from "../utils/prelemTypes";
 import "./PageSettings.css";
 import TwitterSettings from "./TwitterSettings";
-import { XImageRender } from "@platformx/x-image-render";
-import {
-  socialShareNameLength,
-  socialShareDescriptionLength,
-  socialSharePreviewNameLength,
-  socialSharePreviewDescriptionLength,
-} from "../utils/prelemTypes";
 
 interface socialShareinsting {
   setPageId?: any;
@@ -89,7 +89,7 @@ const SocialShare = ({ setPageId }: socialShareinsting) => {
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='Social Share' />
+      <BackButton setPageId={setPageId} Title={t("page_social_share")} />
       <Box className='rowBox' sx={{ border: "1px solid #EFF0F6", borderRadius: "5px" }}>
         <XImageRender
           callBack={updateField}

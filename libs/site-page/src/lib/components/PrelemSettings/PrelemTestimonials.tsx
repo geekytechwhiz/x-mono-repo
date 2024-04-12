@@ -8,12 +8,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { ShowToastSuccess, ThemeConstants } from "@platformx/utilities";
 import React, { memo, useState } from "react";
-import { ThemeConstants, ShowToastSuccess } from "@platformx/utilities";
-import { TestimonialProps } from "../utils/editTypes";
+import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { useTranslation } from "react-i18next";
+import { TestimonialProps } from "../utils/editTypes";
 
 const PrelemTestimonials: React.FC<TestimonialProps> = ({
   data,
@@ -69,7 +69,7 @@ const PrelemTestimonials: React.FC<TestimonialProps> = ({
   return (
     <Box className='pageSettingmainWp'>
       <Box className='rowBox'>
-        <BackButton setPageId={setPageId} Title='Testimonials' backTo='prelemSetting' />
+        <BackButton setPageId={setPageId} Title={t("prelem_testimonials")} backTo='prelemSetting' />
       </Box>
       {Object.entries(content).map(([key, value]) => {
         return (

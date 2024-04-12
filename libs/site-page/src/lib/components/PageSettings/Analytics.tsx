@@ -1,17 +1,17 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { updateContentForCard, updateAnalyticsEnable, RootState } from "@platformx/authoring-state";
+import { RootState, updateAnalyticsEnable, updateContentForCard } from "@platformx/authoring-state";
 import {
-  ThemeConstants,
-  ShowToastSuccess,
   BasicSwitch,
+  ShowToastSuccess,
+  ThemeConstants,
   usePlatformAnalytics,
 } from "@platformx/utilities";
-import { AnalyticsInfo } from "../utils/editTypes";
-import BackButton from "../BackButton/BackButton";
-import "./PageSettings.css";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import BackButton from "../BackButton/BackButton";
+import { AnalyticsInfo } from "../utils/editTypes";
+import "./PageSettings.css";
 
 const Analytics = ({ setPageId }) => {
   const { t } = useTranslation();
@@ -56,7 +56,7 @@ const Analytics = ({ setPageId }) => {
   return (
     <Box className='pageSettingmainWp'>
       <Box className='rowBox'>
-        <BackButton setPageId={setPageId} Title='Analytics' />
+        <BackButton setPageId={setPageId} Title={t("page_analytics")} />
       </Box>
       <Box className='rowBox'>
         <Typography className='switchbox' variant='p4regular'>
