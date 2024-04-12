@@ -4,11 +4,24 @@ import Header from "../../../components/header/Header";
 import { useStyles } from "./TaskCard.style";
 import { TaskCardProps } from "./TaskCard.types";
 
-const TaskCard = ({ title, titleVariant, linkText, children }: TaskCardProps) => {
+const TaskCard = ({
+  title,
+  titleVariant,
+  linkText,
+  children,
+  refetch,
+  refetchFunction,
+}: TaskCardProps) => {
   const classes = useStyles();
   return (
     <Box className={classes.head}>
-      <Header title={title} titleVariant={titleVariant} linkText={linkText} />
+      <Header
+        title={title}
+        titleVariant={titleVariant}
+        linkText={linkText}
+        refetch={refetch}
+        refetchFunction={refetchFunction}
+      />
       <Box className={classes.body}>{children}</Box>
     </Box>
   );
