@@ -6,14 +6,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
+import { Errorpopicon } from "@platformx/utilities";
 import { useNavigate } from "react-router-dom";
-import DialogCloseIcon from "../../assets/svg/DialogCloseIcon.svg";
 import Success from "../../assets/svg/successIcon.svg";
 import WarningIcon from "../../assets/svg/warningIcon.svg";
 import FormatSubtitle from "./FormatSubtitle";
 import { DialogList } from "./uitls/dialogTypes";
 
-export default function PlateformXDialog({
+export default function CommonPlateformXDialog({
   disableConfirmButton = false,
   isDialogOpen,
   title,
@@ -97,14 +97,14 @@ export default function PlateformXDialog({
         ) : (
           ''
         )} */}
-        <IconButton
+        {/* <IconButton
           className='popupCloseIcon'
           edge='end'
           color='inherit'
           onClick={modalType === "unsavedChanges" ? crossButtonHandle : closeButtonHandle}
           aria-label='close'>
           <img src={DialogCloseIcon} alt='Dialog Close Icon' />
-        </IconButton>
+        </IconButton> */}
         <Box
           sx={{
             textAlign: "center",
@@ -113,8 +113,20 @@ export default function PlateformXDialog({
             height: "120px",
           }}>
           <img
-            src={modalType === "publish" || modalType === "draft" ? Success : WarningIcon}
-            alt={modalType === "publish" || modalType === "draft" ? "Success Icon" : "Warning Icon"}
+            src={
+              modalType === "publish" || modalType === "draft"
+                ? Success
+                : modalType === "delete"
+                  ? Errorpopicon
+                  : WarningIcon
+            }
+            alt={
+              modalType === "publish" || modalType === "draft"
+                ? "Success Icon"
+                : modalType === "delete"
+                  ? "Errorpopicon"
+                  : "Warning Icon"
+            }
           />
         </Box>
         {title ? (

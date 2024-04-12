@@ -1,21 +1,40 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import "./createVod.css";
 import { ArrowBack } from "@mui/icons-material";
+import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  FETCH_TAG_LIST_QUERY,
+  create_vod,
+  fetchVodById,
+  publish_vod,
+  update_vod,
+  useWorkflow,
+} from "@platformx/authoring-apis";
+import { RootState, previewContent } from "@platformx/authoring-state";
+import {
+  AutoTextArea,
+  CATEGORY_CONTENT,
+  CommonBoxWithNumber,
+  CommonPlateformXDialog,
+  MarkedFeatured,
+  ShowToastError,
+  ShowToastSuccess,
+  TextBox,
+  TitleSubTitle,
+  capitalizeFirstLetter,
+  useAccess,
+  useUserSession,
+  workflowKeys,
+} from "@platformx/utilities";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useStyles } from "./createVod.styles";
-import { DspaceObject } from "./createVod.types";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import ContentPageScroll from "../../../components/ContentPageScroll";
+import { ContentType } from "../../../enums/ContentType";
+import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
 import TagListing from "../Components/TagListing";
 import icons, { DEF_VOD } from "./Utils/constats";
-import { useDispatch, useSelector } from "react-redux";
-import { ContentType } from "../../../enums/ContentType";
-import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
-import ContentPageScroll from "../../../components/ContentPageScroll";
-import { RootState, previewContent } from "@platformx/authoring-state";
-import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
-import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
-import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
-import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   createVodInstance,
   isPublishVodHandle,
@@ -23,30 +42,10 @@ import {
   updateStructureData,
   updateVodSettings,
 } from "./Utils/helper";
-import {
-  create_vod,
-  update_vod,
-  publish_vod,
-  useWorkflow,
-  fetchVodById,
-  FETCH_TAG_LIST_QUERY,
-} from "@platformx/authoring-apis";
-import {
-  TextBox,
-  useAccess,
-  workflowKeys,
-  AutoTextArea,
-  TitleSubTitle,
-  useUserSession,
-  ShowToastError,
-  MarkedFeatured,
-  PlateformXDialog,
-  ShowToastSuccess,
-  CATEGORY_CONTENT,
-  CommonBoxWithNumber,
-  capitalizeFirstLetter,
-  CommonPlateformXDialog,
-} from "@platformx/utilities";
+import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
+import "./createVod.css";
+import { useStyles } from "./createVod.styles";
+import { DspaceObject } from "./createVod.types";
 
 export const CreateVod = () => {
   const dispatch = useDispatch();
@@ -353,7 +352,7 @@ export const CreateVod = () => {
       },
     })
       .then(() => {
-        ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
+        // ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         setShowPublishConfirm(true);
       })
@@ -961,19 +960,18 @@ export const CreateVod = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
-          closeButtonHandle={exitWithoutSave}
-          confirmButtonHandle={saveVod}
-          crossButtonHandle={() => {
+          closeButtonText={t("Stay Here")}
+          confirmButtonText={t("take_me_out")}
+          closeButtonHandle={() => {
             setShowExitWarning(false);
           }}
+          confirmButtonHandle={exitWithoutSave}
           modalType='unsavedChanges'
         />
       )}
 
       {openPageExistModal && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={openPageExistModal}
           title={`${t("vod")} ${t("duplicate_exists")}`}
           subTitle={t("conformation")}
