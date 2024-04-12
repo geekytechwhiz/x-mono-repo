@@ -1068,7 +1068,7 @@ export const CreateQuiz = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("Stay Here")}
+          closeButtonText={t("stay_here")}
           confirmButtonText={t("take_me_out")}
           closeButtonHandle={() => {
             setShowExitWarning(false);
@@ -1093,7 +1093,11 @@ export const CreateQuiz = () => {
           <CommonPlateformXDialog
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
-            subTitle={showPublishConfirm ? t("quiz_publish_popoup") : t("requested_action")}
+            subTitle={
+              showPublishConfirm
+                ? `${t("your")} ${t("quiz")} ${t("publish_popup_message")}`
+                : t("requested_action")
+            }
             closeButtonHandle={handleCloseDialog}
             confirmButtonText={t("go_to_listing")}
             confirmButtonHandle={() => navigate("/content/quiz")}

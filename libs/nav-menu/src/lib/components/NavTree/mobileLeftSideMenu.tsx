@@ -13,6 +13,7 @@ import { delete_menu, fetch_menu_list, publish_menu, update_menu } from "@platfo
 import { RootState, updateInitialState } from "@platformx/authoring-state";
 import { Category, ContentAction } from "@platformx/content";
 import {
+  CommonPlateformXDialog,
   ErrorTooltip,
   SettingIcon,
   ShowToastError,
@@ -25,7 +26,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import DeleteDialog from "./MobileViewPages/DeleteDialog";
 import NavMenuDialog from "./MobileViewPages/NavMenuDialog";
 import RenameDialog from "./MobileViewPages/RenameDialog";
 import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
@@ -177,6 +177,7 @@ export default function MobileLeftSideMenu({
       createdBy,
       menu_content: itemToDelete,
     };
+    setIsDeleteOpen(false);
 
     mutateDeleteMenu({
       variables: {
@@ -653,13 +654,28 @@ export default function MobileLeftSideMenu({
             menuCount={menuCount}
           />
         )}
-        {isDeleteOpen && (
+        {/* {isDeleteOpen && (
           <DeleteDialog
             isDeleteOpen={isDeleteOpen}
             setIsDeleteOpen={setIsDeleteOpen}
             name={name}
             setIsOpen={setIsOpen}
             handleDeleteMenu={handleDeleteMenu}
+          />
+        )} */}
+        {isDeleteOpen && (
+          <CommonPlateformXDialog
+            isDialogOpen={isDeleteOpen}
+            title={t("delete_title")}
+            subTitle={`${t("delete_confirm")} ${t("menu_item")}? ${t("process_undone")}`}
+            closeButtonText={t("no_keep_it")}
+            closeButtonHandle={() => {
+              setIsOpen(true);
+              setIsDeleteOpen(false);
+            }}
+            confirmButtonText={t("yes_delete_it")}
+            confirmButtonHandle={handleDeleteMenu}
+            modalType='delete'
           />
         )}
         {isRenameOpen && (

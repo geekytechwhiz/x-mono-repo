@@ -3,7 +3,6 @@
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider } from "@mui/material";
 import {
   FETCH_TAG_LIST_QUERY,
@@ -16,9 +15,8 @@ import { RootState, previewContent } from "@platformx/authoring-state";
 import { CommentListPanel } from "@platformx/comment-review";
 import {
   CATEGORY_CONTENT,
+  CommonPlateformXDialog,
   Loader,
-  PlateformXDialog,
-  PlateformXDialogSuccess,
   ShowToastError,
   ShowToastSuccess,
   capitalizeFirstLetter,
@@ -1556,20 +1554,19 @@ export const CreatePoll = (): JSX.Element => {
             )}
           </Box>
         </Box>
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
-          closeButtonHandle={closeButtonHandle}
-          confirmButtonHandle={() => savePoll(false)}
-          crossButtonHandle={() => {
+          closeButtonText={t("stay_here")}
+          confirmButtonText={t("take_me_out")}
+          closeButtonHandle={() => {
             setShowExitWarning(false);
           }}
+          confirmButtonHandle={closeButtonHandle}
           modalType='unsavedChanges'
         />
-        <PlateformXDialog
+        {/* <PlateformXDialog
           isDialogOpen={onSavedModal}
           title={t("save_as_draft")}
           subTitle={t("poll_draft_subtitle")}
@@ -1580,12 +1577,16 @@ export const CreatePoll = (): JSX.Element => {
           crossButtonHandle={crossButtonHandle}
           modalType='draft'
           closeIcon={<CreateRoundedIcon />}
-        />
+        /> */}
         {showPublishConfirm || showWorkflowSubmit ? (
-          <PlateformXDialogSuccess
+          <CommonPlateformXDialog
             isDialogOpen={showPublishConfirm || showWorkflowSubmit}
             title={t("congratulations")}
-            subTitle={showPublishConfirm ? t("poll_publish_popoup") : t("requested_action")}
+            subTitle={
+              showPublishConfirm
+                ? `${t("your")} ${t("poll")} ${t("publish_popup_message")}`
+                : t("requested_action")
+            }
             closeButtonHandle={handleCloseDialog}
             confirmButtonText={t("go_to_listing")}
             confirmButtonHandle={() => navigate("/content/poll")}
@@ -1593,7 +1594,7 @@ export const CreatePoll = (): JSX.Element => {
           />
         ) : null}
         {openPageExistModal ? (
-          <PlateformXDialog
+          <CommonPlateformXDialog
             isDialogOpen={openPageExistModal}
             title={`${t("poll")} ${t("already_exists")}`}
             subTitle={t("conformation")}
@@ -1601,7 +1602,6 @@ export const CreatePoll = (): JSX.Element => {
             confirmButtonText={t("yes")}
             closeButtonHandle={pageExistCloseHandle}
             confirmButtonHandle={pageExistYesButtonHandle}
-            crossButtonHandle={pageExistCloseHandle}
             modalType=''
           />
         ) : null}

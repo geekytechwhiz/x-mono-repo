@@ -127,6 +127,7 @@ export default function CommonPlateformXDialog({
                   ? "Errorpopicon"
                   : "Warning Icon"
             }
+            style={{ height: "100px", width: "100px" }}
           />
         </Box>
         {title ? (
