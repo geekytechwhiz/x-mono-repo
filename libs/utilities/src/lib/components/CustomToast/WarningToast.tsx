@@ -1,7 +1,9 @@
 import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const WarningToast = ({ title = "title", description = "description" }) => {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -20,7 +22,7 @@ const WarningToast = ({ title = "title", description = "description" }) => {
           marginLeft: "10px",
         }}>
         <Typography variant='h7bold' sx={{ color: "#E2AB30" }}>
-          {title}
+          {t(title)}
         </Typography>
         <Typography variant='h7regular' sx={{ color: "black", fontWeight: 400 }}>
           {description}

@@ -91,7 +91,7 @@ const Schedule = ({ setPageId }) => {
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='Schedule' />
+      <BackButton setPageId={setPageId} Title={t("page_schedule")} />
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <FormGroup>
           <Box className='rowBox'>

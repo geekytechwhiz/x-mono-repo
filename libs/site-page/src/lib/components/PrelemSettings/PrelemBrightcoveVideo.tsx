@@ -1,11 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { ShowToastSuccess } from "@platformx/utilities";
 import React, { useState } from "react";
-import { BrightCoveProps } from "../utils/editTypes";
+import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton/BackButton";
 import "../PageSettings/PageSettings.css";
-import { ShowToastSuccess } from "@platformx/utilities";
-import { useTranslation } from "react-i18next";
+import { BrightCoveProps } from "../utils/editTypes";
 
 const PrelemBrightcoveVideo: React.FC<BrightCoveProps> = ({
   index,
@@ -29,7 +29,7 @@ const PrelemBrightcoveVideo: React.FC<BrightCoveProps> = ({
   return (
     <Box className='pageSettingmainWp' key={`${index}_content`}>
       <Box className='rowBox'>
-        <BackButton setPageId={setPageId} Title='Images' backTo='prelemSetting' />
+        <BackButton setPageId={setPageId} Title={t("prelem_images")} backTo='prelemSetting' />
       </Box>
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>

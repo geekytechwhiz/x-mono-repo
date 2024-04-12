@@ -391,7 +391,7 @@ const CreateUser = () => {
   const setImageToDefault = () => {
     setUserDetails({
       ...userDetails,
-      ["image"]: userDetails?.image,
+      image: userDetails?.image,
     });
   };
   const toggleGallery = (toggleState, type) => {
@@ -643,7 +643,7 @@ const CreateUser = () => {
         title={t("save_warn_title")}
         subTitle={t("save_warn_subtitle")}
         closeButtonText={t("take_me_out")}
-        confirmButtonText='Stay Here'
+        confirmButtonText={t("stay_here")}
         closeButtonHandle={handleConfirm}
         confirmButtonHandle={() => setShowExitWarning(false)}
         crossButtonHandle={() => {

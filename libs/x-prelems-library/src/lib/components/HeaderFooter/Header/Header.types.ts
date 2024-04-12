@@ -41,7 +41,7 @@ export interface HeaderProps {
   navigateToCartPage?: any;
   gcpUrl?: string;
   bucketName?: string;
-  onLogin: () => void;
+  onLogin?: () => void;
   handleChangePassword?: () => void;
   handleMyProfile?: () => void;
   isLoginEnabled?: boolean;

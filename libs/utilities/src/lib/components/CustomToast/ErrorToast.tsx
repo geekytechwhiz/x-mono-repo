@@ -1,7 +1,9 @@
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const ErrorToast = ({ title = "title", description = "description" }) => {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -20,7 +22,7 @@ const ErrorToast = ({ title = "title", description = "description" }) => {
           marginLeft: "10px",
         }}>
         <Typography variant='h7bold' sx={{ color: "#D32F2F" }}>
-          {title}
+          {t(title)}
         </Typography>
         <Typography variant='h7regular' sx={{ color: "black", fontWeight: 400 }}>
           {description}

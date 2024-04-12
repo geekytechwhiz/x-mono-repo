@@ -1,7 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Autocomplete, Box, Button, Chip, TextField, Typography } from "@mui/material";
-import { useRef, useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import {
   RootState,
   updateContentForCard,
@@ -9,17 +7,19 @@ import {
   updateSeoEnable,
 } from "@platformx/authoring-state";
 import {
-  ThemeConstants,
   BasicSwitch,
   ShowToastSuccess,
+  ThemeConstants,
   siteLevelSchema,
   usePlatformAnalytics,
 } from "@platformx/utilities";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import BackButton from "../BackButton/BackButton";
 import { descriptionLength, nameLength, previewNameLength } from "../utils/constants";
 import { PageSeoInformation } from "../utils/editTypes";
-import BackButton from "../BackButton/BackButton";
 import "./PageSettings.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useCustomStyle } from "./SEOBasics.style";
 
 const SEOBasics = ({ setPageId }) => {
@@ -99,7 +99,7 @@ const SEOBasics = ({ setPageId }) => {
 
   return (
     <Box className='pageSettingmainWp'>
-      <BackButton setPageId={setPageId} Title='Basics SEO' />
+      <BackButton setPageId={setPageId} Title={t("page_seo_basic")} />
       <Box className='rowBox'>
         <Typography className='labelbox' variant='p4regular'>
           {t("page_search_preview")}
