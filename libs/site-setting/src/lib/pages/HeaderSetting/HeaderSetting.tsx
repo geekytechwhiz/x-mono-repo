@@ -1,10 +1,8 @@
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup } from "@mui/material";
 import { Box } from "@mui/system";
 import { t } from "i18next";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Loader, PlateformXDialogSuccess } from "../../../../../utilities/src";
 import {
   fetchHeaderSetting,
   publishHeaderSetting,
@@ -22,6 +20,9 @@ import {
   TextBox,
   MultiSelect,
   TitleSubTitle,
+  ShowToastSuccess,
+  ShowToastError,
+  Loader,
 } from "@platformx/utilities";
 import {
   HeaderCtaSkeleton,
@@ -63,15 +64,12 @@ const iconImages = [
 
 export const HeaderSetting = () => {
   const [languageList, setlanguageList] = useState<any>([]);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [galleryState] = useState<boolean>(false);
   // const [isShowPreview, setIsShowPreview] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setscrollToView] = useState<any>();
   const [languageOptionList, setlanguageOptionList] = useState([]);
   const [parentToolTip, setParentToolTip] = useState("");
-
-  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
 
   const scrollDebounceRef = useRef<any>(null);
   const originalRes = useRef<any>(null);
@@ -84,55 +82,48 @@ export const HeaderSetting = () => {
     cta_url: "",
     vendor_language: "",
   });
-  // const [isNotificationToast, setIsNotificationToast] =
-  //   useState<boolean>(false);
-  // const toastMessage = useRef(null);
-  // const onCloseSaveHandler = () => {
-  //   setIsNotificationToast(false);
-  // };
+
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const navigate = useNavigate();
 
-  const crossButtonHandle = () => {
-    setShowPublishConfirm(false);
-  };
-  // const crossButtonHandle={() => {
-  //   setShowPublishConfirm(false);
-  // }}
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
   const handleTextChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
   const fetchHeaderSettingData = async () => {
-    const { authoring_getSitedetails = {} } = await fetchHeaderSetting({
-      page: "header-item",
-    });
-    delete authoring_getSitedetails.__typename;
-    originalRes.current = authoring_getSitedetails;
-    setsrollToView("");
-    const {
-      header_logo = "",
-      header_favicon = "",
-      search,
-      cta_title = "",
-      cta_url = "",
-      language = "",
-      language_list = [],
-    } = authoring_getSitedetails;
-    languagelistref.current = language_list;
-    setForm({
-      header_logo: header_logo || "",
-      header_favicon: header_favicon || "",
-      search: search,
-      cta_title: cta_title || "",
-      cta_url: cta_url || "",
-    });
-    const x = language_list.reduce((acc, obj) => {
-      return { ...acc, [obj.lang_code]: obj.lang };
-    }, {});
-    setlanguageOptionList(language_list.map((languag) => languag.lang));
-    setlanguageList(language.split("|").map((lang) => x[lang]));
+    try {
+      const { authoring_getSitedetails = {} } = await fetchHeaderSetting({
+        page: "header-item",
+      });
+      delete authoring_getSitedetails.__typename;
+      originalRes.current = authoring_getSitedetails;
+      setscrollToView("");
+      const {
+        header_logo = "",
+        header_favicon = "",
+        search,
+        cta_title = "",
+        cta_url = "",
+        language = "",
+        language_list = [],
+      } = authoring_getSitedetails;
+      languagelistref.current = language_list;
+      setForm({
+        header_logo: header_logo || "",
+        header_favicon: header_favicon || "",
+        search: search,
+        cta_title: cta_title || "",
+        cta_url: cta_url || "",
+      });
+      const x = language_list.reduce((acc, obj) => {
+        return { ...acc, [obj.lang_code]: obj.lang };
+      }, {});
+      setlanguageOptionList(language_list.map((languag) => languag.lang));
+      setlanguageList(language.split("|").map((lang) => x[lang]));
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
 
   const getLanguage = () => {
@@ -153,9 +144,7 @@ export const HeaderSetting = () => {
     };
     publishHeaderSetting(input)
       .then(() => {
-        //toastMessage.current = 'publish_settings_success';
-        //setIsNotificationToast(true);
-        setShowPublishConfirm(true);
+        ShowToastSuccess(t("header_settings_success"));
       })
       .catch((err) => {
         setIsLoading(false);
@@ -181,17 +170,13 @@ export const HeaderSetting = () => {
     updateHeaderSetting(requestParam)
       .then(() => {
         setIsLoading(false);
-        //toastMessage.current = 'header_settings_success';
         publisheaderSetting();
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
-        throw err;
+        ShowToastError(t("api_error_toast"));
       });
   };
-
-  // const updateField = (updatedPartialObj) => {
-  // };
 
   const isInViewport = (element) => {
     const mainElement = document.querySelector(`#${element}`);
@@ -278,7 +263,7 @@ export const HeaderSetting = () => {
             <ContentPageScroll
               icons={iconImages}
               parentToolTip={parentToolTip}
-              srollToView={srollToView}
+              scrollToView={scrollToView}
             />
           </Box>
 
@@ -505,28 +490,6 @@ export const HeaderSetting = () => {
             </Box>
           </Box>
         </>
-      )}
-      {/* {galleryState && (
-        <DamContentGallery
-          handleImageSelected={handleSelectedImage}
-          toggleGallery={toggleGallery}
-          assetType={galleryType.current === "Images" ? "Image" : "Video"}
-          keyName={key}
-        />
-      )} */}
-
-      {showPublishConfirm && (
-        <PlateformXDialogSuccess
-          isDialogOpen={showPublishConfirm}
-          title={t("congratulations")}
-          subTitle={`${t("header")}${"  "}${t("update_settings_success")}`}
-          confirmButtonText={t("go_to_dashboard")}
-          confirmButtonHandle={() => navigate("/dashboard")}
-          modalType='publish'
-          crossButtonHandle={crossButtonHandle}
-          closeButtonHandle={crossButtonHandle}
-          closeIcon={<CreateRoundedIcon />}
-        />
       )}
     </>
   );

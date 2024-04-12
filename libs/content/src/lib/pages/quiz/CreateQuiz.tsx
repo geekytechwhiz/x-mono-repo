@@ -64,7 +64,7 @@ export const CreateQuiz = () => {
   const currentQuizData = useRef(
     quizPageUrl.searchParams.get("path") ? (quizPageUrl.searchParams.get("path") as string) : "",
   );
-  const [srollToView, setsrollToView] = useState<any>();
+  const [scrollToView, setscrollToView] = useState<any>();
   const [quizInstance, setQuizInstance] = useState<any>({});
   const [onSavedModal, setOnSavedModal] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
@@ -755,7 +755,7 @@ export const CreateQuiz = () => {
         .then((res) => {
           if (res?.data?.authoring_getTagsList) {
             setTagData(res?.data?.authoring_getTagsList);
-            setsrollToView(
+            setscrollToView(
               quizPageUrl.searchParams.get("open")
                 ? (quizPageUrl.searchParams.get("open") as string)
                 : "",
@@ -997,7 +997,7 @@ export const CreateQuiz = () => {
                 <ContentPageScroll
                   icons={icons}
                   parentToolTip={parentToolTip}
-                  srollToView={srollToView}
+                  scrollToView={scrollToView}
                 />
               </Box>
             )}

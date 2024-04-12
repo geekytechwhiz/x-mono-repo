@@ -10,7 +10,9 @@ import {
   FooterMenuUpdated,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
+  GlobalSetting,
   MediaIcon,
+  VideoNav,
   MyDashboardIcon,
   PagesIcon,
   PollIcon,
@@ -304,7 +306,7 @@ export const MenuData = [
       },
       {
         MenuName: "Global Setting",
-        Icon: HeaderMenuUpdated,
+        Icon: GlobalSetting,
         url: "/site-setting/global-setting",
         id: "global_setting",
         category: "SiteSetting",
@@ -351,7 +353,7 @@ export const MenuData = [
     roles: ["admin"],
     Menu: [
       {
-        MenuName: "Images",
+        MenuName: "images",
         Icon: MediaIcon,
         url: "/asset/images",
         id: "Images",
@@ -359,8 +361,8 @@ export const MenuData = [
         subCategory: "",
       },
       {
-        MenuName: "Videos",
-        Icon: MediaIcon,
+        MenuName: "videos",
+        Icon: VideoNav,
         url: "/asset/videos",
         id: "Videos",
         category: "Assets",

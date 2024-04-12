@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { AssetListing } from "@platformx/asset-manager";
+import { AssetListing, CreateAsset } from "@platformx/asset-manager";
 import { CreateSpace } from "@platformx/community";
 import { Content, CreateArticle, CreateContent, TimeLineBlogs } from "@platformx/content";
 import {
@@ -240,6 +240,14 @@ export const routes: RouteConfig[] = [
     element: (
       <ProtectedRoute name='footer' category='Assets' subCategory=''>
         <AssetListing />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/asset/create",
+    element: (
+      <ProtectedRoute category='Assets' subCategory=''>
+        <CreateAsset />
       </ProtectedRoute>
     ),
   },
