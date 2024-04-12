@@ -2,10 +2,10 @@ import { ButtonGroup, IconButton, Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const PageScroll = ({ icons, parentToolTip, srollToView }) => {
+const PageScroll = ({ icons, parentToolTip, scrollToView }) => {
   const { t } = useTranslation();
   const [activeScoll, setActiveScroll] = useState("");
-  const scrollToView = (id, toolTip) => {
+  const scrollToViewFn = (id, toolTip) => {
     setActiveScroll(toolTip);
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
@@ -20,13 +20,13 @@ const PageScroll = ({ icons, parentToolTip, srollToView }) => {
   }, [activeScoll, parentToolTip]);
 
   useEffect(() => {
-    if (srollToView !== "") {
+    if (scrollToView !== "") {
       setActiveScroll("socialShare");
-      scrollToView(srollToView, "socialShare");
+      scrollToViewFn(scrollToView, "socialShare");
     } else {
       setActiveScroll(icons[0].tooltip);
     }
-  }, [icons, srollToView]);
+  }, [icons, scrollToView]);
   return (
     <ButtonGroup
       sx={{
@@ -62,7 +62,7 @@ const PageScroll = ({ icons, parentToolTip, srollToView }) => {
                 },
               }}>
               <IconButton
-                onClick={() => scrollToView(icon.id, icon.tooltip)}
+                onClick={() => scrollToViewFn(icon.id, icon.tooltip)}
                 sx={{
                   borderRadius: "0",
                   backgroundColor: activeScoll === icon.tooltip ? "#D7ECFD" : "transparent",
