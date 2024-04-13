@@ -1199,9 +1199,9 @@
   "loading": "Chargement...",
   "feature_flag_setting": "Indicateur de fonctionnalité",
   "personalisation": "Personalisation",
-  "google_analytics_tracking": "Google Analytics Tracking",
-  "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master Control",
+  "google_analytics_tracking": "Suivi Google Analytics",
+  "snowplow_tracking": "Suivi des chasse-neige",
+  "master_control": "Contrôle principal",
   "administrator": "Administratrice",
   "your_site": "Votre site",
   "tags_categories": "Mots clés",
@@ -1270,5 +1270,7 @@
   "will_unpublish_on": "Ne sera pas publié le",
   "my_profile": "Mon profil",
   "logout_text": "Se déconnecter",
-  "is_mandatory": "est obligatoire"
+  "is_mandatory": "est obligatoire",
+  "assets_picker_images": "Images du sélecteur d’actifs",
+  "you_have_selected": "Vous avez sélectionné"
 }

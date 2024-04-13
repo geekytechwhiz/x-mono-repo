@@ -1199,10 +1199,10 @@
   "toolTip_message": "Aktivieren Sie es, wenn Sie diesen Inhalt für eine bessere Sichtbarkeit hervorheben möchten.",
   "loading": "Wird geladen...",
   "feature_flag_setting": "Feature-Flag",
-  "personalisation": "Personalisation",
-  "google_analytics_tracking": "Google Analytics Tracking",
-  "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master Control",
+  "personalisation": "Personalisierung",
+  "google_analytics_tracking": "Google Analytics-Tracking",
+  "snowplow_tracking": "Schneepflugverfolgung",
+  "master_control": "Hauptschaltraum",
   "administrator": "Administratorin",
   "your_site": "Deine Seite",
   "tags_categories": "Stichworte",
@@ -1271,5 +1271,7 @@
   "will_unpublish_on": "Wird die Veröffentlichung aufheben",
   "my_profile": "Mein Profil",
   "logout_text": "Ausloggen",
-  "is_mandatory": "ist obligatorisch"
+  "is_mandatory": "ist obligatorisch",
+  "assets_picker_images": "Bilder zur Asset-Auswahl",
+  "you_have_selected": "Du hast ausgewählt"
 }
