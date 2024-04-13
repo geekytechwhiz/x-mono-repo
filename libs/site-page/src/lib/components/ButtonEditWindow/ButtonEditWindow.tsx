@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import Radio from "@mui/material/Radio";

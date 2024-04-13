@@ -117,7 +117,7 @@ const Prelem = ({
 
   const [spaceKey, setSpaceKey] = useState(false);
   //get Structured data
-  const getStructuredData = (strDataOld, dataIndex, isPrelemDataReset) => {
+  const getStructuredData = (strDataOld, dataIndex) => {
     dispatch(
       updateContentForCard({
         selectedPrelemIndex: dataIndex,
@@ -299,7 +299,7 @@ const Prelem = ({
   prelemAuthoringHelperProp = {
     innerRef: prelemRef,
     sendStructureDataToAuthoringCB: (strDataNew = PrelemId) => {
-      getStructuredData(strDataNew, index, false);
+      getStructuredData(strDataNew, index);
     },
     openButtonEditWindowInAuthoringCB: (button, e) => {
       handleEditLinkButtonRef(button, e);
