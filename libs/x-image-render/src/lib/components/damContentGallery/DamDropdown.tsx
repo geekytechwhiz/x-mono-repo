@@ -9,6 +9,8 @@ import "./DamDropdown.css";
 import { t } from "i18next";
 import { capitalizeFirstLetter } from "@platformx/utilities";
 
+const ITEM_HEIGHT = 48;
+
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -80,6 +82,12 @@ export default function DamDropdown({ setAuthor, label }) {
             id='demo-customized-menu'
             MenuListProps={{
               "aria-labelledby": "demo-customized-button",
+            }}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: "15ch",
+              },
             }}
             anchorEl={anchorEl}
             open={open}
