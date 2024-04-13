@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Typography } from "@mui/material";
 import {
@@ -515,5 +514,8 @@ XImageRender.defaultProps = {
   name: "",
   isColorPallete: false,
 };
-
+XImageRender.defaultProps = {
+  handleColorPallete: () => {},
+  handleRefresh: () => {},
+};
 export default React.memo(XImageRender);
