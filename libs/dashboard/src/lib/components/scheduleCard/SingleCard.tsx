@@ -1,6 +1,7 @@
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { Box, Typography } from "@mui/material";
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
 import "./SingleCard.css";
 import { dateFormat } from "./utils/helper";
 
@@ -11,6 +12,7 @@ const SingleCard = ({
   schduled_unPublish_trigger_datetime: unPublish,
 }: any) => {
   const { date_time, date, month } = dateFormat(publish ?? unPublish) || {};
+  const { t } = useTranslation();
   return (
     <Box className='schedulecard'>
       <Box>
@@ -27,7 +29,7 @@ const SingleCard = ({
         </Box>
         <Box sx={{ margin: 0, display: "block" }}>
           <Typography variant='h7regular' className='boticontext'>
-            Pages
+            {t("pages")}
           </Typography>
         </Box>
         <Typography component='div' variant='h3medium' className='title'>
@@ -37,7 +39,7 @@ const SingleCard = ({
           {published_by}
         </Typography>
         <Typography component='div' variant='h7medium' className='datetime'>
-          {publish ? "Will publish on" : "Will Unpublish on"} : {date_time}
+          {publish ? t("will_publish_on") : t("will_unpublish_on")} : {date_time}
         </Typography>
       </Box>
     </Box>

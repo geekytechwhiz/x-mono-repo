@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: platformx-authoring-nx
-  name: platformx-authoring-nx
+    app: hep-authoring-ui-hclx
+  name: hep-authoring-ui-hclx
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: platformx-authoring-nx
+      app: hep-authoring-ui-hclx
   template:
     metadata:
       labels:
-        app: platformx-authoring-nx
+        app: hep-authoring-ui-hclx
     spec:
       containers:
-        - name: platformx-authoring-nx
+        - name: hep-authoring-ui-hclx
           image: gcr.io/PROJECT_ID/IMAGE:TAG
           resources:
             limits:

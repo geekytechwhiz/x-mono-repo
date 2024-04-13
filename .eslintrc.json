@@ -168,7 +168,7 @@
     "camelcase": [0],
     "no-underscore-dangle": [0, "always"],
     "no-var": [2],
-    "no-unused-vars": 0,
+    "no-unused-vars": 2,
     "react/jsx-key": 2,
     "no-useless-escape": 1,
     "no-duplicate-imports": 2,
