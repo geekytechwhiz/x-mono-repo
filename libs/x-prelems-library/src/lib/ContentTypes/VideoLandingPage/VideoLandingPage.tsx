@@ -274,7 +274,7 @@ const VideoLandingPage = (props: any) => {
                   sx={{
                     position: "absolute",
                     bottom: { xs: "15px", sm: "25px" },
-                    margin: { xs: "0 4%", sm: "0" },
+                    margin: { xs: "0 4%", em: "0" },
                     width: { sm: "100%" },
                   }}>
                   <Typography sx={{ margin: { sm: "0 auto" }, width: { sm: "700px" } }}>

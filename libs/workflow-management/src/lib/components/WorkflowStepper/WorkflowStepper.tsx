@@ -9,7 +9,7 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import { contentTypeAPIs, pageApi } from "@platformx/authoring-apis";
-import { SITE_PAGE, TaskNotFound, XLoader, capitalizeFirstLetter } from "@platformx/utilities";
+import { Loader, SITE_PAGE, TaskNotFound, capitalizeFirstLetter } from "@platformx/utilities";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getStepperCount, lineBreak } from "../WorkflowStepper/Utils/helper";
@@ -80,7 +80,7 @@ const WorkflowStepper = ({ open, setOpen, path, contentType }: WorkflowStepperPr
         </IconButton>
       </DialogTitle>
       <DialogContent className='stepperWrapper'>
-        {isLoading && <XLoader type='circular' />}
+        {isLoading && <Loader />}
         {stages.length === 0 && !isLoading ? (
           <Box sx={{ padding: "0px 20px 50px" }}>
             <TaskNotFound />

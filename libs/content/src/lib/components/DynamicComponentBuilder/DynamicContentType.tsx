@@ -25,11 +25,11 @@ import { contentTypeSchemaApi, useWorkflow } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
   CATEGORY_CONTENT,
+  Loader,
   PlateformXDialog,
   SectionWrapper,
   ShowToastError,
   ShowToastSuccess,
-  XLoader,
   capitalizeFirstLetter,
   handleHtmlTags,
   trimString,
@@ -338,7 +338,7 @@ export const DynamicContentType = ({ contentType }: { contentType: string }) => 
   return (
     <>
       {isLoading ? (
-        <XLoader type={"circular"} />
+        <Loader />
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* {galleryState && (

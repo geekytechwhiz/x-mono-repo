@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ComputerRoundedIcon from "@mui/icons-material/ComputerRounded";
 import PhoneAndroidRoundedIcon from "@mui/icons-material/PhoneAndroidRounded";
 import TabletAndroidRoundedIcon from "@mui/icons-material/TabletAndroidRounded";
 import { Box } from "@mui/material";
-import { ThemeConstants, XLoader } from "@platformx/utilities";
+import { Loader, ThemeConstants } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
@@ -21,7 +19,6 @@ const tabs = [
 
 const CommonPreview = ({ iframeUrl, type }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const [deviceType, setDeviceType] = useState("desktop");
   const classes = useStyles();
   const { currentContent } = useSelector((state: any) => state.content);
@@ -44,7 +41,7 @@ const CommonPreview = ({ iframeUrl, type }) => {
       const iframeDocument = iframeRef.current.contentWindow.document;
       if (type !== "page") {
         const height = iframeDocument.body.scrollHeight;
-        iframeRef.current.style.height = height + 30 + "px";
+        iframeRef.current.style.height = height + 50 + "px";
       } else {
         getDefaultWidth();
       }
@@ -100,7 +97,7 @@ const CommonPreview = ({ iframeUrl, type }) => {
     <Box className={`${classes.commonPreviewWrapper} commonPreviewWrapper`}>
       {!loaded && (
         <Box className='xloader'>
-          <XLoader type='xloader' />
+          <Loader />
         </Box>
       )}
       <Box className='leftPannelAndIframeWrapper'>

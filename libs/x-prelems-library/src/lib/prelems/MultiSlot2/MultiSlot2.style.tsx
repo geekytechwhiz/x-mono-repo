@@ -22,9 +22,6 @@ export const useCustomStyle = makeStyles(() => {
             height: "350px",
             width: "250px",
           },
-          [theme.breakpoints.up("sm")]: {
-            width: "unset",
-          },
           [theme.breakpoints.up("lg")]: {
             height: "455px",
           },

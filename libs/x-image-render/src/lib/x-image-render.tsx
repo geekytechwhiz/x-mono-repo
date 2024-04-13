@@ -6,7 +6,7 @@ import {
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
-  UploadIcon,
+  UploadThumbnail,
   nullToObject,
   relativeImageURL,
 } from "@platformx/utilities";
@@ -403,7 +403,7 @@ const XImageRender = ({
                   justifyContent: "center",
                 }}
                 m={1}>
-                <img src={UploadIcon} alt='UploadIcon' />
+                <img src={UploadThumbnail} alt='UploadIcon' />
               </Box>
               <Box
                 sx={{

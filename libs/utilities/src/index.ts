@@ -1,4 +1,3 @@
-import AddImage from "./lib/components/AddImage/AddImage";
 import AutoCompleteMultiSelect from "./lib/components/AutoCompleteMultiSelect/AutoCompleteMultiSelect";
 import AutoTextArea from "./lib/components/AutoTextArea/AutoTextArea";
 import { CommonBoxWithNumber } from "./lib/components/CommonBoxWithNumber/CommonBoxWithNumber";
@@ -34,7 +33,6 @@ import {
   ShowToastError,
   ShowToastSuccess,
 } from "./lib/components/ToastNotification/ToastNotification";
-import XLoader from "./lib/components/XLoader/XLoader";
 import ErrorBoundary from "./lib/components/ErrorBoundary";
 import {
   AUTH_INFO,
@@ -86,7 +84,7 @@ import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
-import XAnimatedLoader from "./lib/assets/gif/Common-Loader.gif";
+import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
 import LoadingTextModal from "./lib/components/LoadingTextModal";
 import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import Submit from "./lib/components/Submit/Submit";
@@ -131,7 +129,6 @@ export * from "./lib/utils/interface";
 export {
   AUTH_INFO,
   AUTH_URL,
-  AddImage,
   Answers,
   ArticleListMobileLoader,
   ArticleMapper,
@@ -199,7 +196,6 @@ export {
   XDatePicker,
   XDialog,
   XFileUpload,
-  XLoader,
   XSwitch,
   XTable,
   XTextArea,

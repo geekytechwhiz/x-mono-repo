@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { AUTH_INFO, PrelemTheme, XLoader, getCurrentLang } from "@platformx/utilities";
+import { AUTH_INFO, Loader, PrelemTheme, getCurrentLang } from "@platformx/utilities";
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { MAPPING, HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
 import { useStyles } from "./CommonPrivew.style";
@@ -15,9 +15,10 @@ const CommonContentRender = () => {
   const classes = useStyles();
   const currentItem = localStorage.getItem("preview");
   const currentContent = currentItem && JSON.parse(currentItem);
+  const selectedContentType = MAPPING[currentContent?.contentType];
   const ContentType = lazy(() =>
     import(`@platformx/x-prelems-library`).then((module) => ({
-      default: module?.[currentContent?.contentType],
+      default: module?.[selectedContentType],
     })),
   );
   const Header = lazy(() =>
@@ -33,11 +34,6 @@ const CommonContentRender = () => {
   if (!currentItem || JSON.stringify(currentItem) === JSON.stringify("{}")) {
     window.history.back();
   }
-  // const ContentType = mappingDynamicInstance[currentContent?.contentType];
-  // const Header = mappingDynamicInstance[MAPPING.Header];
-  // const Footer = mappingDynamicInstance[MAPPING.Footer];
-  // const { [currentContent?.contentType]: ContentType, Header, Footer } = mappingDynamicInstance;
-
   const [ishide, setIsHide] = useState(false);
   const [previewObject, setPreviewObject] = useState({
     options_compound_fields: "",
@@ -97,7 +93,7 @@ const CommonContentRender = () => {
   return (
     <Box className={`${classes.commonPreviewPageRender} contentPreviewPage`}>
       <ThemeProvider theme={PrelemTheme}>
-        <Suspense fallback={<XLoader type='xloader' />}>
+        <Suspense fallback={<Loader />}>
           {!ishide && (
             <Box>
               <Header

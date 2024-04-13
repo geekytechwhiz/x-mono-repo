@@ -33,11 +33,11 @@ import DynamicComponent from "./DynamicComponent";
 import { Template } from "./schemas/index";
 import {
   AUTH_INFO,
+  Loader,
   PlateformXDialog,
   SectionWrapper,
   ShowToastError,
   ShowToastSuccess,
-  XLoader,
   handleHtmlTags,
   trimString,
   useUserSession,
@@ -326,7 +326,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
 
   return (
     <>
-      {isLoading && <XLoader type='circular' />}
+      {isLoading && <Loader />}
       {/* {addQuestion && (
         <AddQuestion
           toggleAddQuestion={toggleAddQuestion}
