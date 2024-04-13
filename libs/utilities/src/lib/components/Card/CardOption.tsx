@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { SYSTEM_TAGS } from "./constants";
 
 const CardOption = (props: any) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation();
 
   const {
