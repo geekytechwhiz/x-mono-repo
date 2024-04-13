@@ -185,7 +185,7 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
         pageId === PrelemSettingList[3].id && (
           <Box className='pageSettingmainWp'>
             <BackButton setPageId={setPageId} Title={t("prelem_images")} backTo='prelemSetting' />
-            {Object.entries(prelemModelData.content.ImageCompound).map(([key, value], index) => {
+            {Object.entries(prelemModelData.content.ImageCompound).map((key, index) => {
               return (
                 <PrelemImages
                   key={`ImageCompound_${index + 1}`}
