@@ -1,7 +1,6 @@
 import CourseListIcon from "../../assets/svg/course-icon.svg";
 import DraftIcon from "../../assets/svg/draftIcon.svg";
 import EventsListIcon from "../../assets/svg/event-fill.svg";
-
 import PublishedIcon from "../../assets/svg/PublishedIcon.svg";
 import UnpublishedIcon from "../../assets/svg/UnpublishedIcon.svg";
 import PollListIcon from "../../assets/svg/polls-fill.svg";
@@ -26,7 +25,7 @@ import BusinessTagIcon from "../../assets/svg/BusinessTagIcon.svg";
 import SystemTagIcon from "../../assets/svg/SystemTagIcon.svg";
 
 export const statusIcons: any = {
-  draft: PublishedIcon, //TODO
+  draft: DraftIcon,
   published: PublishedIcon,
   unpublished: UnpublishedIcon,
   schedulePublish: SchedulePublishIcon,
