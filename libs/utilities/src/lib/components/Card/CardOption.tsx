@@ -1,7 +1,6 @@
 import { Box, IconButton, MenuItem } from "@mui/material";
 import DeleteIcon from "../../assets/svg//deleteIcon.svg";
 import EditIcon from "../../assets/svg//editIcon.svg";
-import { useState } from "react";
 import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_TAGS } from "./constants";
