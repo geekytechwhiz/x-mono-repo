@@ -28,7 +28,9 @@ interface XImageRenderProps {
   isCrop?: boolean;
   name?: string;
   isColorPallete?: boolean;
+  // eslint-disable-next-line react/require-default-props
   handleRefresh?: () => void;
+  // eslint-disable-next-line react/require-default-props
   handleColorPallete?: (color: string) => void;
 }
 

@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useStyles = makeStyles((theme: any) => ({
+export const useStyles = makeStyles(() => ({
   commonPreviewPageRender: {
     "&.contentPreviewPage": {
       "& .eventPageContent .eventsParent": {

@@ -157,7 +157,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     qusUnsavedChanges.current = false;
   };
 
-  const toggleGallery = (toggleState, type) => {
+  const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
   };
 

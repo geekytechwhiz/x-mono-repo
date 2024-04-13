@@ -7,10 +7,6 @@ import { MAPPING, HIDE_HEADER_FOOTER } from "../../constants/CommonConstants";
 import { useStyles } from "./CommonPrivew.style";
 import axios from "axios";
 
-interface MappingDynamicInstance {
-  Header?: React.ComponentType<any>;
-  Footer?: React.ComponentType<any>;
-}
 const CommonContentRender = () => {
   const classes = useStyles();
   const currentItem = localStorage.getItem("preview");
