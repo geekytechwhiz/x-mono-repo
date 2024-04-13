@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: platformx-userexp-nx
-  name: platformx-userexp-nx
+    app: hep-user-experience-ui
+  name: hep-user-experience-ui
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: platformx-userexp-nx
+      app: hep-user-experience-ui
   template:
     metadata:
       labels:
-        app: platformx-userexp-nx
+        app: hep-user-experience-ui
     spec:
       containers:
-        - name: platformx-userexp-nx
+        - name: hep-user-experience-ui
           image: gcr.io/PROJECT_ID/IMAGE:TAG
           resources:
             limits:
@@ -225,4 +225,3 @@ spec:
                 configMapKeyRef:
                   key: NEXT_ELASTIC_APM_ENVIRONMENT
                   name: hep-user-experience-ui-config
-            
