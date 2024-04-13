@@ -42,6 +42,11 @@ import {
   REDIRECT_AUTH_URL,
 } from "./lib/constants/AuthConstant";
 
+import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
+import DeleteGif from "./lib/assets/gif/delete.gif";
+import loadergif from "./lib/assets/gif/holi-loader.gif";
+import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
+import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
@@ -69,11 +74,6 @@ import {
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
-import DeleteGif from "./lib/assets/gif/delete.gif";
-import loadergif from "./lib/assets/gif/holi-loader.gif";
-import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
-import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
-import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
 import LoadingTextModal from "./lib/components/LoadingTextModal";
 import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import Submit from "./lib/components/Submit/Submit";
