@@ -1,14 +1,20 @@
 import { makeStyles } from "@mui/styles";
 import { ThemeConstants } from "@platformx/utilities";
 
-export const useStyles = makeStyles((theme: any) => ({
+export const useStyles = makeStyles(() => ({
   commonPreviewPageRender: {
     "&.contentPreviewPage": {
       "& .eventPageContent .eventsParent": {
-        height: "100vh !important",
+        [`@media(min-width:${ThemeConstants.EM}px)`]: {
+          height: "600px",
+          maxHeight: "100vh",
+        },
       },
       "& .eventPageContent .eventsummaryWrapper": {
-        height: "100vh !important",
+        [`@media(min-width:${ThemeConstants.EM}px)`]: {
+          height: "600px",
+          maxHeight: "100vh",
+        },
       },
       "& .xloader": {
         position: "absolute",

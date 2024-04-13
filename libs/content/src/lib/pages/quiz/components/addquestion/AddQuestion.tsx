@@ -4,12 +4,12 @@ import {
   CATEGORY_CONTENT,
   CommonBoxWithNumber,
   DuplicateContentPopup,
+  Loader,
   PlateformXDialog,
   RadioControlLabel,
   ShowToastSuccess,
   TextBox,
   TitleSubTitle,
-  XLoader,
 } from "@platformx/utilities";
 import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
 import { useEffect, useRef, useState } from "react";
@@ -157,7 +157,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
     qusUnsavedChanges.current = false;
   };
 
-  const toggleGallery = (toggleState, type) => {
+  const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
   };
 
@@ -215,7 +215,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
         dialogOpen={galleryState}
       />
       <Box>
-        {isLoading && <XLoader type='linear' />}
+        {isLoading && <Loader />}
         <Box>
           <Box>
             <CreateHeader

@@ -1,6 +1,5 @@
 import { Backdrop, Box } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
-import ThemeConstants from "../themes/authoring/lightTheme/lightThemeVariable";
+import { XAnimatedLoader } from "@platformx/utilities";
 
 export const Loader = () => {
   return (
@@ -26,17 +25,9 @@ export const Loader = () => {
             backdropFilter: "blur(10px)",
             backgroundColor: "rgba(255, 255, 255, 0.5)",
           }}>
-          <CircularProgress
-            style={{
-              width: "40px",
-              height: "40px",
-              color: ThemeConstants.PRIMARY_MAIN_COLOR,
-            }}
-          />
+          <img src={XAnimatedLoader} alt='Loading...' style={{ width: "40px" }} />
         </Box>
       </Box>
     </Backdrop>
   );
 };
-
-// export default Loader;
