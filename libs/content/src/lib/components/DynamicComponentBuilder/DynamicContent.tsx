@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-debugger */
 /* eslint-disable no-empty */
 import { useMutation } from "@apollo/client";
@@ -178,7 +179,6 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
       });
   };
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const createQuiz = (data, pageState = "DRAFT") => {
     setIsLoading(true);
     const {
@@ -274,7 +274,6 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
         }
       });
   };
-  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const getTags = async () => {
     try {
@@ -293,7 +292,9 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
   useEffect(() => {
     getTags();
   }, []);
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    // console.log("val", values);
+  };
   const toggleAddQuestion = () => {
     setAddQuestion(!addQuestion);
   };
@@ -302,7 +303,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
     setQuestionListing(!questionListing);
   };
 
-  const toggleGallery = (toggleState) => {
+  const toggleGallery = (toggleState, type) => {
     setGalleryState(toggleState);
   };
 
@@ -316,7 +317,7 @@ const DynamicContent = ({ contentType }: { contentType: string }) => {
       setAnswerId(id);
     }
   };
-  const onUploadClick = () => {
+  const onUploadClick = (type) => {
     showGallery("Images", "socialShareImage");
   };
   const handleCloseDialog = () => {
