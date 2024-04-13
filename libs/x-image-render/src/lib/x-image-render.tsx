@@ -23,13 +23,13 @@ import { usePostImageCrop } from "./hooks/usePostImageCrop";
 //   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 // };
 interface XImageRenderProps {
-  callBack: (obj: any, name?: string) => void;
+  callBack: (obj?: any, name?: string) => void;
   editData: any;
   isCrop?: boolean;
   name?: string;
   isColorPallete?: boolean;
-  handleRefresh?: () => void;
-  handleColorPallete?: (color: string) => void;
+  handleRefresh: () => void;
+  handleColorPallete: (color: string) => void;
 }
 
 const XImageRender = ({
@@ -517,5 +517,6 @@ XImageRender.defaultProps = {
 XImageRender.defaultProps = {
   handleColorPallete: () => {},
   handleRefresh: () => {},
+  callBack: () => {},
 };
 export default React.memo(XImageRender);
