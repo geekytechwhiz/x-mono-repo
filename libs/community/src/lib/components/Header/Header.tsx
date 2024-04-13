@@ -2,6 +2,7 @@ import { ArrowBack } from "@mui/icons-material";
 import SaveAsRoundedIcon from "@mui/icons-material/SaveAsRounded";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { Button, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useStyles } from "./Header.styles";
 
 export default function Header({
@@ -10,6 +11,7 @@ export default function Header({
   returnBack = () => {},
   disableButton = false,
 }) {
+  const { t } = useTranslation();
   // const navigate = useNavigate();
   const classes = useStyles();
 
@@ -41,7 +43,7 @@ export default function Header({
           size='small'
           className='desktopsaveButton'
           onClick={createUpdateHandler}>
-          Submit
+          {t("submit_text")}
         </Button>
       </Grid>
       <Grid
