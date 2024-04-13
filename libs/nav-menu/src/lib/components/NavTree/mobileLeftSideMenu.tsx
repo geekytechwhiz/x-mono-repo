@@ -37,7 +37,6 @@ export default function MobileLeftSideMenu({
   handleSelectedType,
   setOpenGuideline,
   setOpenFirstPage,
-  openFirstPage,
   setEditData,
   clickConfirm,
 }) {
@@ -126,7 +125,7 @@ export default function MobileLeftSideMenu({
           ?.sort((prev: any, cur: any) => prev.Score - cur.Score);
       dispatch(updateInitialState(filteredMenus));
     };
-    fetchMenuList().catch((err) => {
+    fetchMenuList().catch(() => {
       // console.log(JSON.stringify(err, null, 2));
     });
   }, [row, name, menuParentId, clickConfirm]);
@@ -300,7 +299,7 @@ export default function MobileLeftSideMenu({
           ?.sort((pre: any, cur: any) => pre.Score - cur.Score);
       setLeftSideContent(filteredMenus);
     };
-    fetchMenuList().catch((err) => {
+    fetchMenuList().catch(() => {
       // console.log(JSON.stringify(err, null, 2));
     });
   }, []);
@@ -368,7 +367,7 @@ export default function MobileLeftSideMenu({
           input: menuToUpdate,
         },
       })
-        .then((resp) => {
+        .then(() => {
           setName("");
           ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
         })
@@ -402,7 +401,7 @@ export default function MobileLeftSideMenu({
         input: menuToUpdate,
       },
     })
-      .then((resp) => {
+      .then(() => {
         setMenuParentId(!menuParentId);
         ShowToastSuccess(`${t("menu")} ${t("updated_toast")}`);
       })
@@ -721,7 +720,7 @@ export default function MobileLeftSideMenu({
               <DialogTitle sx={{ marginLeft: "13px" }}>Select main menu item</DialogTitle>
               <Divider />
               {leftSideBarContent.map(
-                (val, index) =>
+                (val) =>
                   val.ParentId === "0" &&
                   val.Menu_Id !== selectedMenu?.Menu_Id &&
                   val.Menu_Id !== selectedMenu?.ParentId && (

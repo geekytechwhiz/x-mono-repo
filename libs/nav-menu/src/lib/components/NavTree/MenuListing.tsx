@@ -12,12 +12,9 @@ import { ItemlistProps } from "./utils/types";
 
 export const MenuListing = ({
   setPageName1,
-  isDisable,
   currentButton,
   setCurrentButton,
-  isDisableDone,
   setisIsDisableDone,
-  isPageListCall,
   setUrl,
   editData,
   isedit,
@@ -39,7 +36,7 @@ export const MenuListing = ({
   );
   const [items, setItem] = useState<ItemlistProps[]>();
 
-  const arr = items?.filter((item, i) => {
+  const arr = items?.filter((item) => {
     if (item.Status === "published") return item;
     return item;
   });
@@ -63,7 +60,7 @@ export const MenuListing = ({
           setIsLazyLoad(false);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setItem([]);
       });
   };
@@ -95,7 +92,7 @@ export const MenuListing = ({
           setIsLazyLoad(true);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // console.log(JSON.stringify(err, null, 2));
       });
   }, []);
@@ -241,10 +238,10 @@ export const MenuListing = ({
                       article={item}
                       index={index}
                       setPageName1={setPageName1}
-                      isDisable={isDisable}
+                      // isDisable={isDisable}
                       currentButton={currentButton}
                       setCurrentButton={setCurrentButton}
-                      isDisableDone={isDisableDone}
+                      // isDisableDone={isDisableDone}
                       setisIsDisableDone={setisIsDisableDone}
                       setUrl={setUrl}
                       editData={editData}

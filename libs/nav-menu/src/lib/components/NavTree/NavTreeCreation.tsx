@@ -23,7 +23,7 @@ import NavTree from "./NavTree";
 
 export default function NavTreeCreation() {
   const { t } = useTranslation();
-  const handleSelectedType = async (selectedType) => {
+  const handleSelectedType = async () => {
     // await searchPageUrl.searchParams.set('searchCat', selectedType.name);
     // await window.history.pushState({}, '', searchPageUrl);
     // await setStartIndex(0);
@@ -51,7 +51,7 @@ export default function NavTreeCreation() {
     setIsOpen(true);
     setIsCreate(false);
   };
-  const onClose = (value) => {
+  const onClose = () => {
     setIsOpen(false);
     setIsCreate(true);
   };
@@ -79,7 +79,7 @@ export default function NavTreeCreation() {
           dispatch(updateInitialState(resp?.data?.authoring_getNavigation?.menu_content));
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // console.log(JSON.stringify(err, null, 2));
       });
   }, [isCall]);

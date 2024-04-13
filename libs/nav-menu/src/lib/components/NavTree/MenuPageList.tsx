@@ -10,10 +10,9 @@ const MenuPageList = ({
   index,
   // setPageName,
   setPageName1,
-  isDisable,
+
   currentButton,
   setCurrentButton,
-  isDisableDone,
   setisIsDisableDone,
   setUrl,
   editData,

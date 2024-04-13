@@ -539,7 +539,7 @@ const CreateUser = () => {
       tooltip: "rolepermission",
     },
   ];
-  const isInViewport = (element: any, isSeo: any) => {
+  const isInViewport = (element: any) => {
     const mainElement = document.querySelector(`#${element}`);
     if (mainElement) {
       const rect = mainElement.getBoundingClientRect();
@@ -553,7 +553,7 @@ const CreateUser = () => {
     return false;
   };
   const scrollHandler = () => {
-    const active: any = icons.find((i) => isInViewport(i.id, false));
+    const active: any = icons.find((i) => isInViewport(i.id));
 
     setParentToolTip(active?.tooltip);
   };
