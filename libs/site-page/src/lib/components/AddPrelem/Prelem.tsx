@@ -255,12 +255,13 @@ const Prelem = ({
   };
 
   useEffect(() => {
-    if (selectedContentForButton)
+    if (selectedContentForButton) {
       updateCurrentButtonObject(
         selectedContentForButton,
         lastEditedButton.current,
         "RedirectURL_Content",
       );
+    }
   }, [selectedContentForButton]);
 
   // Assigning prelem prop data

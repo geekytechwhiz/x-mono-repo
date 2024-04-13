@@ -24,6 +24,7 @@ import { iconReplaceBasedCondition } from "./helperButtonEditWindow";
 import "./ButtonEditWindow.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@platformx/authoring-state";
+import { ECOM_PRELEM_LIST } from "../utils/constants";
 
 interface ButtonEditWindowProps {
   prelemData?: any;
@@ -74,7 +75,7 @@ export const ButtonEditWindow = ({
   handleJsValueChange,
 }: ButtonEditWindowProps) => {
   const { PrelemId = "" } = nullToObject(prelemData);
-  const isEcom = ["Prelem_073", "Prelem_074", "Prelem_075", "Prelem_072"].includes(PrelemId);
+  const isEcom = ECOM_PRELEM_LIST.includes(PrelemId);
 
   const { t } = useTranslation();
   const { page } = useSelector((state: RootState) => state);

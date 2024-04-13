@@ -532,7 +532,7 @@ const EditPageContainer = () => {
         }),
       );
     } else {
-      selectedContentEditorialPath.current = data;
+      selectedContentEditorialPath.current = data2;
     }
   };
 

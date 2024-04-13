@@ -212,7 +212,7 @@ export const DYNAMIC_PRELEM_LIST = [
   "Prelem_068",
 ];
 
-export const ECOM_PRELEM_LIST = ["Prelem_073", "Prelem_074", "Prelem_075"];
+export const ECOM_PRELEM_LIST = ["Prelem_072", "Prelem_073", "Prelem_074", "Prelem_098"];
 
 // eslint-disable-next-line no-shadow
 export const enum StatusKey {

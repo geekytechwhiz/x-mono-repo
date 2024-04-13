@@ -129,9 +129,7 @@ export default function EcomSearchBox({
           marginRight: "13px",
         }}
         onClick={() => setShowSearch(true)}>
-        <SearchBlackSvg
-        // style={{ verticalAlign: "middle", cursor: "pointer" }}
-        />
+        <img src={SearchBlackSvg} alt='search' />
       </Box>
       <Autocomplete
         id='asynchronousSearch'

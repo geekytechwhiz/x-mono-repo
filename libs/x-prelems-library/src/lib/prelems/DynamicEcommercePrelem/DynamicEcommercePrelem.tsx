@@ -176,7 +176,7 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [queryParamfordata]);
 
   useEffect(() => {
     setQueryParamfordata(content?.QueryParam);
