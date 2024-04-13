@@ -56,7 +56,7 @@ export default function DamDropdown({ setAuthor, label }) {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event, lbl) => {
+  const handleClose = (lbl) => {
     setAuthor(lbl);
     setAnchorEl(null);
   };
@@ -93,10 +93,10 @@ export default function DamDropdown({ setAuthor, label }) {
             open={open}
             onClose={() => setAnchorEl(null)}>
             {label[val] &&
-              label[val]?.map((obj, i) => (
+              label[val]?.map((obj) => (
                 <MenuItem
                   key={obj.label}
-                  onClick={(e) => handleClose(e, obj.label)}
+                  onClick={() => handleClose(obj.label)}
                   disableRipple
                   defaultValue={obj.label}>
                   {capitalizeFirstLetter(obj.label?.toLowerCase())}
