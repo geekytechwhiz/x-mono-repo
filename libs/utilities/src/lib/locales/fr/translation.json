@@ -1265,5 +1265,8 @@
   "confirm_password": "Confirmez le mot de passe",
   "changepassword_quote": "Ne t'inquiète pas",
   "changepassword_quote_message": "Nous sommes là pour vous aider",
-  "log_in": "Se connecter"
+  "log_in": "Se connecter",
+  "my_profile": "Mon profil",
+  "logout_text": "Se déconnecter",
+  "is_mandatory": "est obligatoire"
 }

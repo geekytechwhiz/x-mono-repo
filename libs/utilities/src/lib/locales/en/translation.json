@@ -1273,5 +1273,8 @@
   "confirm_password": "Confirm Password",
   "changepassword_quote": "Don’t worry",
   "changepassword_quote_message": "We are here to help you",
-  "log_in": "log In"
+  "log_in": "Log In",
+  "my_profile": "My Profile",
+  "logout_text": "Logout",
+  "is_mandatory": "is Mandatory"
 }
