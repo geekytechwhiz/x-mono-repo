@@ -9,10 +9,7 @@ import { SYSTEM_TAGS } from "./constants";
 const CardOption = (props: any) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation();
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+
   const {
     getContentCategory,
     getContentSubCategory,

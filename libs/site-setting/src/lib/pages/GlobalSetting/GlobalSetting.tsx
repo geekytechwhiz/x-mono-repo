@@ -191,7 +191,7 @@ export const GlobalSetting = () => {
         setIsLoading(false);
         publisglobalSetting();
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
         ShowToastError(t("api_error_toast"));
       });
