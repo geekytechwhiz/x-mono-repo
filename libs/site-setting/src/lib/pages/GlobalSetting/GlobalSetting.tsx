@@ -19,6 +19,7 @@ import {
   GlobalVideoIcon,
   ShowToastSuccess,
   GlobalMiscIcon,
+  HashTag,
   Loader,
 } from "@platformx/utilities";
 import PlateformXStoryDialog from "./StoryTagsmodal";
@@ -26,19 +27,14 @@ import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 
 const iconImages = [
   {
-    id: "images",
+    id: "assets_picker_setting",
     iconName: GlobalImageIcon,
-    tooltip: "images",
+    tooltip: "assets_picker_setting",
   },
   {
-    id: "videos",
-    iconName: GlobalVideoIcon,
-    tooltip: "videos",
-  },
-  {
-    id: "miscellanious",
-    iconName: GlobalMiscIcon,
-    tooltip: "miscellanious",
+    id: "my_story_tags",
+    iconName: HashTag,
+    tooltip: "my_story_tags",
   },
 ];
 
@@ -63,10 +59,6 @@ export const GlobalSetting = () => {
     ? form?.site_assigned_tags?.map((obj) => obj.name)
     : [];
 
-  const imagesRef = useRef<HTMLElement>(null);
-  // const videosRef = useRef<HTMLElement>(null);
-  // const miscellaneousRef = useRef<HTMLElement>(null);
-
   const scrollDebounceRef = useRef<any>(null);
   const [scrollToView] = useState<any>();
   const [parentToolTip, setParentToolTip] = useState("");
@@ -79,7 +71,6 @@ export const GlobalSetting = () => {
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
   const fetchGlobalSettingData = async () => {
-    //  setsrollToView('')
     try {
       const { authoring_getSitedetails = {} } = await fetchGlobalSetting({
         page: "global-item",
@@ -242,13 +233,12 @@ export const GlobalSetting = () => {
 
       <Box className={classes.pageContainer} id='scrollableDiv'>
         <Box className={classes.contentContainer}>
-          <Box id='images' ref={imagesRef}>
+          <Box id='assets_picker_setting'>
             {isLoading && <Loader />}
 
             <CommonBoxWithNumber
               number='01'
-              title={t("Assets Picker Images")}
-              subTitle={t("subhead")}
+              title={t("assets_picker_setting")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
               <Typography variant='h5medium' className={classes.containertypo}>
@@ -260,7 +250,7 @@ export const GlobalSetting = () => {
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
                         <Box className={classes.globalimg}>
-                          <img src={GlobalImageIcon} alt='Globalimageicon' />
+                          <img src={GlobalImageIcon} alt='icon' />
                         </Box>
                         <Box className={classes.globalbread}>
                           <GlobalHeaderbreadscum value={form.image} />
@@ -282,7 +272,7 @@ export const GlobalSetting = () => {
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
                         <Box sx={{ padding: "14px" }} className={classes.globalimg}>
-                          <img src={GlobalVideoIcon} alt='Globalimageicon' />
+                          <img src={GlobalVideoIcon} alt='icon' />
                         </Box>
                         <Box className={classes.globalbread}>
                           <GlobalHeaderbreadscum value={form.video} />
@@ -304,7 +294,7 @@ export const GlobalSetting = () => {
                     <Box className={classes.globalContainer}>
                       <Box className={classes.btnboxnew}>
                         <Box className={classes.globalimg}>
-                          <img src={GlobalMiscIcon} alt='Globalimageicon' />
+                          <img src={GlobalMiscIcon} alt='icon' />
                         </Box>
                         <Box className={classes.globalbread}>
                           <GlobalHeaderbreadscum value={form.misc} />
@@ -320,10 +310,11 @@ export const GlobalSetting = () => {
                 </Grid>
               )}
             </CommonBoxWithNumber>
+          </Box>
+          <Box id='my_story_tags'>
             <CommonBoxWithNumber
               number='02'
               title={t("my_story_tags")}
-              subTitle={t("subhead")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
               <Typography variant='h5medium' className={classes.containertypo}>
@@ -335,10 +326,12 @@ export const GlobalSetting = () => {
                   <Box className={classes.globalContainer}>
                     <Box className={classes.btnboxnew}>
                       <Box className={classes.globalimg}>
-                        <img src={GlobalImageIcon} alt='Globalimageicon' />
+                        <img src={HashTag} alt='icon' />
                       </Box>
                       <Box className={classes.globalbread}>
-                        <Typography>You have selected {tags.join()}</Typography>
+                        <Typography>
+                          {t("you_have_selected")} {tags.join()}
+                        </Typography>
                       </Box>
                     </Box>
                     <Box>
@@ -364,11 +357,11 @@ export const GlobalSetting = () => {
                   <Box className={classes.globalContainer}>
                     <Box className={classes.btnboxnew}>
                       <Box sx={{ padding: "14px" }} className={classes.globalimg}>
-                        <img src={GlobalVideoIcon} alt='Globalimageicon' />
+                        <img src={HashTag} alt='icon' />
                       </Box>
                       <Box className={classes.globalbread}>
                         <Typography>
-                          You have selected{" "}
+                          {`${t("you_have_selected")} `}
                           {Array.isArray(form.site_assigned_content_types)
                             ? form.site_assigned_content_types.join()
                             : ""}

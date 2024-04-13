@@ -230,7 +230,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/asset/images",
     element: (
-      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+      <ProtectedRoute category='Assets' subCategory=''>
         <AssetListing />
       </ProtectedRoute>
     ),
@@ -238,7 +238,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/asset/videos",
     element: (
-      <ProtectedRoute name='footer' category='Assets' subCategory=''>
+      <ProtectedRoute category='Assets' subCategory=''>
         <AssetListing />
       </ProtectedRoute>
     ),
@@ -254,7 +254,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/site-setting/media-handle",
     element: (
-      <ProtectedRoute name='medis=a' category='SiteSetting' subCategory='MediaHandle'>
+      <ProtectedRoute category='SiteSetting' subCategory='MediaHandle'>
         <MediaHandle />
       </ProtectedRoute>
     ),
@@ -302,7 +302,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/site-setting/tags",
     element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+      <ProtectedRoute category='SiteSetting' subCategory='Tag'>
         <TagListing />
       </ProtectedRoute>
     ),
@@ -310,7 +310,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/site-setting/tags/:category",
     element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+      <ProtectedRoute category='SiteSetting' subCategory='Tag'>
         <CategoryDetail />
       </ProtectedRoute>
     ),
@@ -318,7 +318,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/site-setting/create-tags",
     element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+      <ProtectedRoute category='SiteSetting' subCategory='Tag'>
         <CreateTags />
       </ProtectedRoute>
     ),
@@ -326,7 +326,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/site-setting/create-tags/:docPath",
     element: (
-      <ProtectedRoute category='SiteSetting' subCategory='GlobalSetting'>
+      <ProtectedRoute category='SiteSetting' subCategory='Tag'>
         <CreateTags />
       </ProtectedRoute>
     ),

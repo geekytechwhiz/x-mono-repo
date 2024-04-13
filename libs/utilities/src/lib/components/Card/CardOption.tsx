@@ -23,6 +23,14 @@ const CardOption = (props: any) => {
     handleDeleteButton = () => {},
   } = props;
 
+  const getTagAction = (action) => {
+    if (dataList.type === SYSTEM_TAGS) {
+      return true;
+    } else {
+      return !canAccessAction("SiteSetting", "tag", action);
+    }
+  };
+
   return (
     <Box
       color='#89909A'
@@ -41,7 +49,7 @@ const CardOption = (props: any) => {
                 onClick={handleEdit}
                 disabled={
                   tagName === "tagscategories"
-                    ? dataList.type === SYSTEM_TAGS
+                    ? getTagAction("Update")
                     : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
                       tagName === "courses"
                 }>
@@ -54,7 +62,7 @@ const CardOption = (props: any) => {
             tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_edit_tag") : ""}
             doAccess={
               tagName === "tagscategories"
-                ? dataList.type === SYSTEM_TAGS
+                ? getTagAction("Update")
                 : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
                   tagName === "courses"
             }
@@ -70,7 +78,7 @@ const CardOption = (props: any) => {
               onClick={handleDeleteButton}
               disabled={
                 tagName === "tagscategories"
-                  ? dataList.type === SYSTEM_TAGS
+                  ? getTagAction("Delete")
                   : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
                     tagName === "courses"
               }>
@@ -82,7 +90,7 @@ const CardOption = (props: any) => {
           tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_delete_tag") : ""}
           doAccess={
             tagName === "tagscategories"
-              ? dataList.type === SYSTEM_TAGS
+              ? getTagAction("Delete")
               : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
                 tagName === "courses"
           }
