@@ -63,7 +63,7 @@ const CreateUserGroup = () => {
   };
 
   const returnBack = () => {
-    if (unsavedChanges.current === true) {
+    if (unsavedChanges.current) {
       setShowExitWarning(true);
     } else {
       localStorage.removeItem("groupDetails");

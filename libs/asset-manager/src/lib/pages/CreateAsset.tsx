@@ -20,8 +20,9 @@ import { useCreateAssestsStyle } from "./CreateAssets.style";
 import { CreateHeader } from "@platformx/content";
 import { useTranslation } from "react-i18next";
 import PlateformXFolderDialog from "./ChooseFolderModal";
+import { assetsApi } from "@platformx/authoring-apis";
 
-export const CreateAssest = () => {
+export const CreateAsset = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isShowPreview] = useState<boolean>(false);
@@ -34,10 +35,29 @@ export const CreateAssest = () => {
     // setAnchor(null);
   };
 
+  const handlePublish = async () => {
+    try {
+      //const res =
+      await assetsApi.publishAsset({
+        uuid: "6316f598-7cd3-4d69-beaa-a42d6b4aac23",
+        status: "publish",
+        uploadId: 3890,
+        metadata: {
+          title: "test-deposit7",
+          description: "test deposit api",
+          type: "Image",
+          author: "Harsh",
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <CreateHeader
-        createText={t("Create Assets")}
+        createText={t("create_asset")}
         handleReturn={() => {
           navigate("/dashboard");
         }}
@@ -45,17 +65,17 @@ export const CreateAssest = () => {
         hasPublishButton={true}
         hasPreviewButton={false}
         hasSaveButton={false}
-        saveText={t("update")}
+        saveText={t("publish")}
         handelPreview={() => {
           /* your function code */
         }}
-        handleSaveOrPublish={""}
-        previewText='Preview'
+        handleSaveOrPublish={handlePublish}
+        previewText={t("preview")}
         showPreview={false}
-        toolTipText='Unable to preview please add required details'
+        toolTipText={t("preview_tooltip")}
         saveVariant='contained'
-        category={"content"}
-        subCategory={"quiz"}
+        category='content'
+        subCategory='quiz'
         isFeatured={false}
       />
       <Divider></Divider>
@@ -100,7 +120,7 @@ export const CreateAssest = () => {
                 variant='primaryButton'
                 sx={{ position: "absolute" }}
                 className={classes.wrapperbutton}>
-                View all
+                {t("view_more")}
               </Button>
             </Box>
           </Box>

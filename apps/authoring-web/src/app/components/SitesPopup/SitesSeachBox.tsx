@@ -1,12 +1,13 @@
-import { FormControl, IconButton, TextField } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { FormControl, IconButton, TextField } from "@mui/material";
 import { SearchIcon } from "@platformx/utilities";
-import usePopupStyle from "./SitesPopup.style";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import usePopupStyle from "./SitesPopup.style";
 
 export default function SitesSearchBox({ handleSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const { t } = useTranslation();
   const handleOnChange = (event) => {
     setSearchQuery(event.target.value);
     handleSearch(event.target.value?.toLowerCase());
@@ -20,7 +21,7 @@ export default function SitesSearchBox({ handleSearch }) {
     <FormControl className={classes.contentcontrol}>
       <TextField
         variant='outlined'
-        placeholder='Search your sites'
+        placeholder={t("search_your_sites")}
         value={searchQuery}
         onChange={handleOnChange}
         InputProps={{

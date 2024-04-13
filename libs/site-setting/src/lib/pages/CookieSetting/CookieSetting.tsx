@@ -1,9 +1,7 @@
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import { t } from "i18next";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { tagInlineCss } from '../../../components/Common/tags/TagCommonCss';
 import {
   fetchCookiePolicy,
   fetchCountries,
@@ -23,7 +21,8 @@ import {
   TitleSubTitle,
   MultiSelect,
   useUserSession,
-  PlateformXDialogSuccess,
+  ShowToastSuccess,
+  ShowToastError,
 } from "@platformx/utilities";
 import { CreateHeader } from "@platformx/content";
 
@@ -35,47 +34,50 @@ export const CookieSetting = () => {
   const informativeFormRef = useRef<HTMLElement>(null);
   const consentFormRef = useRef<HTMLElement>(null);
   const [isLoading, setIsLoading] = useState(false);
-  //   const [runFetchContentByPath, { loading }] = useLazyQuery(fetchContentByPath);
   const classes = useStyles();
   const originalApiResult = useRef<any>(null);
-  const [isNotificationToast, setIsNotificationToast] = useState<boolean>(false);
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-  const crossButtonHandle = () => {
-    setIsNotificationToast(false);
-  };
+
   const navigate = useNavigate();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
 
   const fetchAndUpdateData = async () => {
-    const [cookiePolicyForm, countryList] = await Promise.all([
-      fetchCookiePolicy({
-        pagePath: "cookie-item",
-      }),
-      fetchCountries({
-        start: 0,
-        rows: 1000,
-        searchCategory: "country",
-      }),
-    ]);
-    const { authoring_getCookiePolicy: apiResult = {} } = cookiePolicyForm;
-    const countries = countryList?.authoring_getTagsList[0]?.tags;
-    const cloneForm = form;
-    cloneForm.forEach((control) => {
-      control.value = apiResult[control.name];
-    });
+    try {
+      const [cookiePolicyForm, countryList] = await Promise.all([
+        fetchCookiePolicy({
+          pagePath: "cookie-item",
+        }),
+        fetchCountries({
+          start: 0,
+          rows: 1000,
+          searchCategory: "country",
+        }),
+      ]);
+      const { authoring_getSitedetails: apiResult = {} } = cookiePolicyForm;
+      const countries = countryList?.authoring_getTagsList[0]?.tags;
+      // const cloneForm = form;
+      // cloneForm.forEach((control) => {
+      //   control.value = apiResult[control.name];
+      // });
+      const cloneForm = form.map((control) => ({ ...control, value: apiResult[control.name] }));
 
-    setCoutryList(countries);
-    setConsentList(
-      apiResult.consent_cookie_country_list ? apiResult.consent_cookie_country_list.split("|") : [],
-    );
-    setInformativeList(
-      apiResult.informative_cookie_country_list
-        ? apiResult.informative_cookie_country_list.split("|")
-        : [],
-    );
-    originalApiResult.current = apiResult;
-    setForm([...cloneForm]);
+      setCoutryList(countries);
+      setConsentList(
+        apiResult.consent_cookie_country_list
+          ? apiResult.consent_cookie_country_list.split("|")
+          : [],
+      );
+      setInformativeList(
+        apiResult.informative_cookie_country_list
+          ? apiResult.informative_cookie_country_list.split("|")
+          : [],
+      );
+      originalApiResult.current = apiResult;
+      setForm([...cloneForm]);
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
 
   useEffect(() => {
@@ -153,8 +155,8 @@ export const CookieSetting = () => {
       },
     };
     publishCookiePolicy(input)
-      .then((response) => {
-        setIsNotificationToast(true);
+      .then(() => {
+        ShowToastSuccess(t("cookie_settings_success"));
       })
       .catch((err) => {
         throw err;
@@ -187,7 +189,7 @@ export const CookieSetting = () => {
       })
       .catch((err) => {
         setIsLoading(false);
-        throw err;
+        ShowToastError(t("api_error_toast"));
       });
   };
 
@@ -353,19 +355,6 @@ export const CookieSetting = () => {
           </Box>
         </Box>
       </Box>
-      {isNotificationToast && (
-        <PlateformXDialogSuccess
-          isDialogOpen={isNotificationToast}
-          title={t("congratulations")}
-          subTitle={`${t("cookie_settings_success")}`}
-          confirmButtonText={t("go_to_dashboard")}
-          confirmButtonHandle={() => navigate("/dashboard")}
-          modalType='publish'
-          crossButtonHandle={crossButtonHandle}
-          closeButtonHandle={crossButtonHandle}
-          closeIcon={<CreateRoundedIcon />}
-        />
-      )}
     </>
   );
 };

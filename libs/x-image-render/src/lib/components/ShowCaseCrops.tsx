@@ -1,7 +1,8 @@
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Button, Dialog, DialogContent, Grid, IconButton, Typography } from "@mui/material";
-import { Loader, formCroppedUrlInCrop, nullToObject, DialogCloseIcon } from "@platformx/utilities";
+import { DialogCloseIcon, Loader, formCroppedUrlInCrop, nullToObject } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { RATIOS } from "../utils/constants";
 import "./Gallery.css";
 
@@ -9,7 +10,7 @@ const ShowCaseCrops = (props: any = {}) => {
   const { open, backTo, handleEdit, data } = nullToObject(props);
   const { published_images: cropped_images = [], original_image = {} } = data || {};
   const { ext } = original_image || {};
-
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -18,19 +19,11 @@ const ShowCaseCrops = (props: any = {}) => {
   }, []);
   return (
     <Dialog
+      fullScreen
       open={open}
       onClose={backTo}
       aria-labelledby='alert-dialog-title'
-      aria-describedby='alert-dialog-description'
-      PaperProps={{
-        sx: {
-          width: "100%",
-          maxWidth: "100%",
-          height: "calc(100% - 40px)",
-          maxHeight: "calc(100% - 40px)",
-          margin: "20px",
-        },
-      }}>
+      aria-describedby='alert-dialog-description'>
       <Grid
         container
         sx={{
@@ -41,7 +34,7 @@ const ShowCaseCrops = (props: any = {}) => {
           padding: { xs: "10px 15px", md: "20px 24px" },
         }}>
         <Grid xs={12} md={8}>
-          <Typography variant='h4bold'>Preview Images</Typography>
+          <Typography variant='h4bold'>{t("preview_images")}</Typography>
         </Grid>
         <Grid
           xs={12}
@@ -66,21 +59,24 @@ const ShowCaseCrops = (props: any = {}) => {
       </Grid>
       <DialogContent sx={{ padding: "5px" }}>
         <Box className='casecropsbox'>
-          {loading && <Loader />}
-          <Grid container sx={{ paddingRight: "50px" }}>
-            {cropped_images.map(({ folder_path = "", aspect_ratio = "" }) => {
-              return (
-                <Box className='boxwp' key={aspect_ratio}>
-                  <Box className='imgbox'>
-                    <img alt='cropped-img' src={formCroppedUrlInCrop(folder_path, ext)} />
-                    <Typography variant='h6regular' component='h6'>
-                      {RATIOS[aspect_ratio]}
-                    </Typography>
+          {loading ? (
+            <Loader />
+          ) : (
+            <Grid container sx={{ paddingRight: "50px" }}>
+              {cropped_images.map(({ folder_path = "", aspect_ratio = "" }) => {
+                return (
+                  <Box className='boxwp' key={aspect_ratio}>
+                    <Box className='imgbox'>
+                      <img alt='cropped-img' src={formCroppedUrlInCrop(folder_path, ext)} />
+                      <Typography variant='h6regular' component='h6'>
+                        {RATIOS[aspect_ratio]}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              );
-            })}
-          </Grid>
+                );
+              })}
+            </Grid>
+          )}
         </Box>
       </DialogContent>
     </Dialog>

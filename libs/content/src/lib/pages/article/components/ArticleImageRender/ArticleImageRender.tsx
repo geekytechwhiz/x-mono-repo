@@ -3,12 +3,10 @@ import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import { CircularProgress, Paper } from "@mui/material";
 import { styled } from "@mui/system";
 import { Loader, ShowToastError, ShowToastSuccess, nullToObject } from "@platformx/utilities";
-import { usePostImageCrop } from "@platformx/x-image-render";
+import { ImageCrop, ShowCaseCrops, usePostImageCrop } from "@platformx/x-image-render";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ImageCrop from "./Components/ImageCrop";
 import PictureComponent from "./Components/PictureComponent";
-import ShowCaseCrops from "./Components/ShowCaseCrops";
 import { ratios } from "./Utils/Constants";
 
 const ArticleImageRender = (props: any = {}) => {
@@ -74,6 +72,7 @@ const ArticleImageRender = (props: any = {}) => {
             auto: true,
             ext: ext,
             visibility,
+            Thumbnail,
           },
         });
       } else {
@@ -112,7 +111,14 @@ const ArticleImageRender = (props: any = {}) => {
     if (showCropPreview) setShowCropPreview(false);
   };
 
-  const doneCropCompleted = (cropImages = [], ext, original_image_relative_path, visibility) => {
+  const doneCropCompleted = (
+    cropImages = [],
+    ext,
+    original_image_relative_path,
+    visibility,
+    bitstream_id = "",
+    img: any = {},
+  ) => {
     if (cropImages.length > 0) {
       setAutoCropDone(false);
       setManualCropDone(true);
@@ -121,10 +127,11 @@ const ArticleImageRender = (props: any = {}) => {
         published_images: cropImages,
         original_image: {
           original_image_relative_path,
-          bitStreamId,
+          bitStreamId: bitstream_id,
           auto: true,
           ext: ext,
           visibility,
+          Thumbnail: img?.Thumbnail,
         },
       });
     }
@@ -227,7 +234,7 @@ const ArticleImageRender = (props: any = {}) => {
           open={manualCropShow}
           backTo={backTo}
           doneCropCompleted={doneCropCompleted}
-          cropImages={Object.keys(selectedContent).length !== 0 ? selectedContent : content}
+          originalImage={Object.keys(selectedContent).length !== 0 ? selectedContent : content}
         />
       )}
       {showCropPreview && (
@@ -235,8 +242,10 @@ const ArticleImageRender = (props: any = {}) => {
           open={showCropPreview}
           backTo={backTo}
           handleEdit={handleEdit}
-          Images={manualCropDone ? manualCroppedImages : autoCroppedImages}
-          extension={imageExtension}
+          data={{
+            published_images: manualCropDone ? manualCroppedImages : autoCroppedImages,
+            original_image: { ext: imageExtension },
+          }}
         />
       )}
     </>

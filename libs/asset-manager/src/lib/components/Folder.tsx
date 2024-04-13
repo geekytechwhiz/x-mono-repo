@@ -1,7 +1,7 @@
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { MorehorAsset, AssetfoldernewIcon, PlateformXDialog } from "@platformx/utilities";
+import { MorehorAsset, AssetfoldernewIcon, CommonPlateformXDialog } from "@platformx/utilities";
 import AssetCardMenu from "./CardMenu";
 import { useImagesStyle } from "../pages/Images.style";
 import { useTranslation } from "react-i18next";
@@ -34,14 +34,6 @@ export default function Folder({ data, deleteFolder }: any) {
   const handleOpen = () => {
     const pathArray = path ? path.split("|") : [];
 
-    // const uuid_ = collections.find((obj) => obj.name === data.name);
-    // uuid_
-    //   ? setSearchParams({
-    //       uuid1: data.uuid,
-    //       uuid2: uuid_.uuid,
-    //       path: [...pathArray, data.name].join("|"),
-    //     })
-    //   :
     setSearchParams({
       uuid1: data.uuid,
       path: [...pathArray, data.name].join("|"),
@@ -59,10 +51,9 @@ export default function Folder({ data, deleteFolder }: any) {
             <Typography variant='h6semibold' className={classes.marginTop}>
               {data.name}
             </Typography>
-            <Typography variant='h7medium' className={classes.marginTop}>
-              {/* {dateFormat(data.lastModified)} */}
+            {/* <Typography variant='h7medium' className={classes.marginTop}>
               feb, 9 2023 | 17:08
-            </Typography>
+            </Typography> */}
           </Box>
         </Box>
         <Box className={classes.boxassetstep}>
@@ -73,7 +64,7 @@ export default function Folder({ data, deleteFolder }: any) {
             aria-expanded={open ? "true" : undefined}
             aria-haspopup='true'
             onClick={handleClick}>
-            <img src={MorehorAsset} alt='' />
+            <img src={MorehorAsset} alt='icon' />
           </IconButton>
         </Box>
         <AssetCardMenu
@@ -86,14 +77,15 @@ export default function Folder({ data, deleteFolder }: any) {
         />
       </Box>
       {isDelete && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")}`}
+          subTitle={t("delete_confirm")}
           closeButtonText={t("no_keep_it")}
-          confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={deleteCloseButtonHandle}
+          confirmButtonText={t("yes_delete_it")}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       )}
     </Grid>
