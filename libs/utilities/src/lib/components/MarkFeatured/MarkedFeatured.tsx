@@ -9,7 +9,7 @@ import ToolTipMessage from "./ToolTipMessage";
 export default function MarkFeatured({ setIsFeatured, isFeatured }) {
   const classes = useStyles();
   return (
-    <Box sx={{ padding: "0px 8px" }} onClick={() => setIsFeatured((prev) => !prev)}>
+    <Box sx={{ padding: "0px 4px" }} onClick={() => setIsFeatured((prev) => !prev)}>
       {isFeatured ? (
         <Box className={classes.BoxImage} sx={{ border: "1px solid #4B9EF9" }}>
           <XImage src={StarFeaturedSelected} alt='' width={24} height={24} />

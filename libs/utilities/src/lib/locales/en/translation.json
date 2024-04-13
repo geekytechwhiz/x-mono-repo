@@ -1212,7 +1212,7 @@
   "personalisation": "Personalisation",
   "google_analytics_tracking": "Google Analytics Tracking",
   "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master",
+  "master_control": "Master control",
   "administrator": "Administrator",
   "your_site": "Your Site",
   "tags_categories": "Tags",
@@ -1278,5 +1278,7 @@
   "log_in": "Log In",
   "my_profile": "My Profile",
   "logout_text": "Logout",
-  "is_mandatory": "is Mandatory"
+  "is_mandatory": "is Mandatory",
+  "assets_picker_images": "Assets Picker Images",
+  "you_have_selected": "You have selected"
 }
