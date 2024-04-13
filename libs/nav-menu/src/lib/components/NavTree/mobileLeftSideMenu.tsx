@@ -4,7 +4,6 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import CheckIcon from "@mui/icons-material/Check";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InfoIcon from "@mui/icons-material/Info";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Box, Divider, Fab, Typography } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -15,6 +14,7 @@ import { Category, ContentAction } from "@platformx/content";
 import {
   CommonPlateformXDialog,
   ErrorTooltip,
+  Loader,
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
@@ -70,7 +70,7 @@ export default function MobileLeftSideMenu({
   const [selectedMenu, setSelectedMenu] = useState<MenulistProps>();
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
-  const [, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { canAccessAction } = useAccess();
   const [menus, setMenus] = useState<any>();
   const reorderMenu: any = JSON.parse(JSON.stringify(leftSideBarContent));
@@ -415,21 +415,23 @@ export default function MobileLeftSideMenu({
       });
   };
   return (
-    <Box
-      sx={{
-        display: {
-          xs: "block",
-          sm: "none",
-          flexDirection: "column",
-          position: "relative",
-        },
-      }}>
+    <>
+      {isLoaded && <Loader />}
       <Box
         sx={{
-          display: { xs: "block", sm: "none" },
-          overflow: "hidden",
+          display: {
+            xs: "block",
+            sm: "none",
+            flexDirection: "column",
+            position: "relative",
+          },
         }}>
-        {/* <Slide direction="right" in={isSideMenuOpen} timeout={300}>
+        <Box
+          sx={{
+            display: { xs: "block", sm: "none" },
+            overflow: "hidden",
+          }}>
+          {/* <Slide direction="right" in={isSideMenuOpen} timeout={300}>
             <Box
               sx={{
                 backgroundColor: '#fff',
@@ -446,215 +448,223 @@ export default function MobileLeftSideMenu({
               />
             </Box>
           </Slide> */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            // margin: '0px 40% 0px 0%',
-            padding: "15px",
-          }}>
-          <ArrowBackIosIcon
-            sx={{ width: "20px", height: "20px" }}
-            onClick={() => {
-              navigate("/page-list");
-            }}
-          />
-          <Typography
-            variant='h4medium'
-            sx={{
-              ml: "10px",
-            }}>
-            Navigation
-          </Typography>
           <Box
             sx={{
-              // position: 'absolute',
-              // right: '8%',
               display: "flex",
               alignItems: "center",
-              ml: "10px",
+              // margin: '0px 40% 0px 0%',
+              padding: "15px",
             }}>
-            <InfoIcon
-              // sx={{ margin: '0px 0 0px 15px' }}
-              onClick={() => setOpenGuideline(true)}
+            <ArrowBackIosIcon
+              sx={{ width: "20px", height: "20px" }}
+              onClick={() => {
+                navigate("/page-list");
+              }}
             />
+            <Typography
+              variant='h4medium'
+              sx={{
+                ml: "10px",
+              }}>
+              Navigation
+            </Typography>
+            <Box
+              sx={{
+                // position: 'absolute',
+                // right: '8%',
+                display: "flex",
+                alignItems: "center",
+                ml: "10px",
+              }}>
+              <InfoIcon
+                // sx={{ margin: '0px 0 0px 15px' }}
+                onClick={() => setOpenGuideline(true)}
+              />
+            </Box>
           </Box>
-        </Box>
-        <Divider />
-        <Box className='navTreeMenuBox' sx={{ overflowY: "auto", height: "calc(100vh - 210px)" }}>
-          <DragAndDrop onDragEnd={handleDragEnd}>
-            <Drop id='droppable' type='droppable-category'>
-              {leftSideBarContent?.length > 0 &&
-                leftSideBarContent?.map((item, index) => {
-                  return (
-                    <>
-                      {item.ParentId === "0" && (
-                        <Drag
-                          className='draggable-category'
-                          key={item.Menu_Id + item.Score}
-                          id={item.Menu_Id + item.Score}
-                          index={index}>
-                          <div className='category-container'>
-                            <Box
-                              sx={{
-                                boxShadow: "none",
-                                display: "flex",
-                                alignItems: "center",
-                                flexDirection: "row",
-                                position: "relative",
-                              }}>
-                              <Typography variant='h6regular'>{item.Label}</Typography>
-                              <Box className='NavTreeHomeIcon'>
-                                {item.HomePage === true ? (
-                                  <HomeOutlinedIcon
-                                    sx={{
-                                      color: ThemeConstants.BLUE_COLOR,
-                                      fontSize: ThemeConstants.FONTSIZE_H3,
-                                    }}
-                                  />
-                                ) : (
-                                  ""
-                                )}
-                              </Box>
+          <Divider />
+          <Box className='navTreeMenuBox' sx={{ overflowY: "auto", height: "calc(100vh - 210px)" }}>
+            <DragAndDrop onDragEnd={handleDragEnd}>
+              <Drop id='droppable' type='droppable-category'>
+                {leftSideBarContent?.length > 0 &&
+                  leftSideBarContent?.map((item, index) => {
+                    return (
+                      <>
+                        {item.ParentId === "0" && (
+                          <Drag
+                            className='draggable-category'
+                            key={item.Menu_Id + item.Score}
+                            id={item.Menu_Id + item.Score}
+                            index={index}>
+                            <div className='category-container'>
                               <Box
-                                id={String(index)}
-                                onClick={(event) => handleListClick(event, item)}
-                                className='NavTreeSettingIcon'>
-                                <img
-                                  src={SettingIcon}
-                                  alt='Setting Icon'
-                                  onClick={() => onButtonClicked(index, item.Label)}
-                                />
+                                sx={{
+                                  boxShadow: "none",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  flexDirection: "row",
+                                  position: "relative",
+                                }}>
+                                <Typography variant='h6regular'>{item.Label}</Typography>
+                                <Box className='NavTreeHomeIcon'>
+                                  {item.HomePage === true ? (
+                                    <HomeOutlinedIcon
+                                      sx={{
+                                        color: ThemeConstants.BLUE_COLOR,
+                                        fontSize: ThemeConstants.FONTSIZE_H3,
+                                      }}
+                                    />
+                                  ) : (
+                                    ""
+                                  )}
+                                </Box>
+                                <Box
+                                  id={String(index)}
+                                  onClick={(event) => handleListClick(event, item)}
+                                  className='NavTreeSettingIcon'>
+                                  <img
+                                    src={SettingIcon}
+                                    alt='Setting Icon'
+                                    onClick={() => onButtonClicked(index, item.Label)}
+                                  />
+                                </Box>
                               </Box>
-                            </Box>
-                            <Drop
-                              key={index.toString()}
-                              id={index.toString()}
-                              type='droppable-item'>
-                              {leftSideBarContent?.length > 0 &&
-                                leftSideBarContent?.map((item1, index1) => {
-                                  return (
-                                    <>
-                                      {item1.ParentId === item.Menu_Id && (
-                                        <Drag
-                                          className='draggable'
-                                          key={item1.Label + item1.Menu_Id}
-                                          id={item1.Label + item1.Menu_Id}
-                                          index={index1}>
-                                          <Box
-                                            sx={{
-                                              display: "flex",
-                                              alignItems: "center",
-                                              cursor: "pointer",
-                                              position: "relative",
-                                              width: "100%",
-                                              flexDirection: "row",
-                                            }}
-                                            onClick={() => handlePagesType(item)}>
-                                            <Typography
-                                              variant='subtitle2'
+                              <Drop
+                                key={index.toString()}
+                                id={index.toString()}
+                                type='droppable-item'>
+                                {leftSideBarContent?.length > 0 &&
+                                  leftSideBarContent?.map((item1, index1) => {
+                                    return (
+                                      <>
+                                        {item1.ParentId === item.Menu_Id && (
+                                          <Drag
+                                            className='draggable'
+                                            key={item1.Label + item1.Menu_Id}
+                                            id={item1.Label + item1.Menu_Id}
+                                            index={index1}>
+                                            <Box
                                               sx={{
                                                 display: "flex",
                                                 alignItems: "center",
-                                              }}>
-                                              {item1.Label}
-                                            </Typography>
-                                            <Box
-                                              id={String(index)}
-                                              onClick={(event) => handleListClick(event, item1)}
-                                              sx={{
-                                                width: "21.2px",
-                                                height: "20px",
-                                                right: 0,
-                                                position: "absolute",
                                                 cursor: "pointer",
-                                                color:
-                                                  currentButton === index ? "#fd0c0d" : "#2d2d39",
-                                              }}>
-                                              <MoreHorizIcon
+                                                position: "relative",
+                                                width: "100%",
+                                                flexDirection: "row",
+                                                marginRight: "-5px",
+                                              }}
+                                              onClick={() => handlePagesType(item)}>
+                                              <Typography
+                                                variant='subtitle2'
+                                                sx={{
+                                                  display: "flex",
+                                                  alignItems: "center",
+                                                }}>
+                                                {item1.Label}
+                                              </Typography>
+                                              <Box
+                                                id={String(index)}
+                                                onClick={(event) => handleListClick(event, item1)}
+                                                sx={{
+                                                  width: "21.2px",
+                                                  height: "20px",
+                                                  right: 0,
+                                                  position: "absolute",
+                                                  cursor: "pointer",
+                                                  color:
+                                                    currentButton === index ? "#fd0c0d" : "#2d2d39",
+                                                }}>
+                                                <img
+                                                  src={SettingIcon}
+                                                  alt='Setting Icon'
+                                                  onClick={() =>
+                                                    onButtonClicked(index, item1.Label)
+                                                  }
+                                                />
+                                                {/* <MoreHorizIcon
                                                 onClick={() => onButtonClicked(index, item1.Label)}
-                                              />
+                                              /> */}
+                                              </Box>
                                             </Box>
-                                          </Box>
-                                          {/* </Box> */}
-                                        </Drag>
-                                      )}
-                                    </>
-                                  );
-                                })}
-                            </Drop>
-                          </div>
-                        </Drag>
-                      )}
-                      {/* {item.ParentId == '0' && <Divider />} */}
-                    </>
-                  );
-                })}
-            </Drop>
-          </DragAndDrop>
+                                            {/* </Box> */}
+                                          </Drag>
+                                        )}
+                                      </>
+                                    );
+                                  })}
+                              </Drop>
+                            </div>
+                          </Drag>
+                        )}
+                        {/* {item.ParentId == '0' && <Divider />} */}
+                      </>
+                    );
+                  })}
+              </Drop>
+            </DragAndDrop>
 
-          <Box
-            sx={{
-              display: { xs: "block", md: "none", lg: "none", sm: " none" },
-            }}>
-            <ErrorTooltip
-              component={
-                <Fab
-                  sx={{
-                    position: "fixed",
-                    bottom: "13%",
-                    right: "4%",
-                    zIndex: 99,
-                    backgroundColor: "transparent",
-                    border: "1.5px solid #2d2d39",
-                    boxShadow: "none",
-                    color: "#000",
-                  }}
-                  size='medium'
-                  aria-label='add'
-                  disabled={!canAccessAction(Category.Menu, "", ContentAction.Publish)}
-                  onClick={publishMenu}>
-                  <CheckIcon />
-                </Fab>
-              }
-              doAccess={!canAccessAction(Category.Menu, "", ContentAction.Publish)}
-            />
-            <ErrorTooltip
-              component={
-                <Fab
-                  sx={{
-                    position: "fixed",
-                    bottom: "4%",
-                    right: "4%",
-                    zIndex: 99,
-                    boxShadow: "none",
-                  }}
-                  size='medium'
-                  color='primary'
-                  aria-label='add'
-                  disabled={!canAccessAction(Category.Menu, "", ContentAction.Create)}>
-                  <AddIcon onClick={onAddHandle} />{" "}
-                </Fab>
-              }
-              doAccess={!canAccessAction(Category.Menu, "", ContentAction.Create)}
-            />
+            <Box
+              sx={{
+                display: { xs: "block", md: "none", lg: "none", sm: " none" },
+              }}>
+              <ErrorTooltip
+                component={
+                  <Fab
+                    sx={{
+                      position: "fixed",
+                      bottom: "13%",
+                      right: "4%",
+                      zIndex: 99,
+                      backgroundColor: "transparent",
+                      border: "1.5px solid #2d2d39",
+                      boxShadow: "none",
+                      color: "#000",
+                    }}
+                    size='medium'
+                    aria-label='add'
+                    disabled={!canAccessAction(Category.Menu, "", ContentAction.Publish)}
+                    onClick={publishMenu}>
+                    <CheckIcon />
+                  </Fab>
+                }
+                doAccess={!canAccessAction(Category.Menu, "", ContentAction.Publish)}
+              />
+              <ErrorTooltip
+                component={
+                  <Fab
+                    sx={{
+                      position: "fixed",
+                      bottom: "4%",
+                      right: "4%",
+                      zIndex: 99,
+                      boxShadow: "none",
+                    }}
+                    size='medium'
+                    color='primary'
+                    aria-label='add'
+                    disabled={!canAccessAction(Category.Menu, "", ContentAction.Create)}>
+                    <AddIcon onClick={onAddHandle} />{" "}
+                  </Fab>
+                }
+                doAccess={!canAccessAction(Category.Menu, "", ContentAction.Create)}
+              />
+            </Box>
           </Box>
-        </Box>
-        {isOpen && (
-          <NavMenuDialog
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            name={name}
-            setIsDeleteOpen={setIsDeleteOpen}
-            setIsRenameOpen={setIsRenameOpen}
-            setIsSubMenu={setIsSubMenu}
-            setOpenFirstPage={setOpenFirstPage}
-            selectedMenu={selectedMenu}
-            setEditData={setEditData}
-            menuCount={menuCount}
-          />
-        )}
-        {/* {isDeleteOpen && (
+          {isOpen && (
+            <NavMenuDialog
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              name={name}
+              setIsDeleteOpen={setIsDeleteOpen}
+              setIsRenameOpen={setIsRenameOpen}
+              setIsSubMenu={setIsSubMenu}
+              setOpenFirstPage={setOpenFirstPage}
+              selectedMenu={selectedMenu}
+              setEditData={setEditData}
+              menuCount={menuCount}
+            />
+          )}
+          {/* {isDeleteOpen && (
           <DeleteDialog
             isDeleteOpen={isDeleteOpen}
             setIsDeleteOpen={setIsDeleteOpen}
@@ -663,72 +673,73 @@ export default function MobileLeftSideMenu({
             handleDeleteMenu={handleDeleteMenu}
           />
         )} */}
-        {isDeleteOpen && (
-          <CommonPlateformXDialog
-            isDialogOpen={isDeleteOpen}
-            title={t("delete_title")}
-            subTitle={`${t("delete_confirm")} ${t("menu_item")}? ${t("process_undone")}`}
-            closeButtonText={t("no_keep_it")}
-            closeButtonHandle={() => {
-              setIsOpen(true);
-              setIsDeleteOpen(false);
-            }}
-            confirmButtonText={t("yes_delete_it")}
-            confirmButtonHandle={handleDeleteMenu}
-            modalType='delete'
-          />
-        )}
-        {isRenameOpen && (
-          <RenameDialog
-            isRenameOpen={isRenameOpen}
-            setIsRenameOpen={setIsRenameOpen}
-            name={name}
-            setIsOpen={setIsOpen}
-            onRename={onRename}
-          />
-        )}
+          {isDeleteOpen && (
+            <CommonPlateformXDialog
+              isDialogOpen={isDeleteOpen}
+              title={t("delete_title")}
+              subTitle={`${t("delete_confirm")} ${t("menu_item")}? ${t("process_undone")}`}
+              closeButtonText={t("no_keep_it")}
+              closeButtonHandle={() => {
+                setIsOpen(true);
+                setIsDeleteOpen(false);
+              }}
+              confirmButtonText={t("yes_delete_it")}
+              confirmButtonHandle={handleDeleteMenu}
+              modalType='delete'
+            />
+          )}
+          {isRenameOpen && (
+            <RenameDialog
+              isRenameOpen={isRenameOpen}
+              setIsRenameOpen={setIsRenameOpen}
+              name={name}
+              setIsOpen={setIsOpen}
+              onRename={onRename}
+            />
+          )}
 
-        {isSubMenu && (
-          <Dialog
-            sx={{
-              display: { sm: "none" },
-              ".Platform-x-Dialog-paper": {
-                boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
-                borderRadius: "10px 10px 0 0",
-                width: "100%",
-                margin: 0,
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-              },
-            }}
-            open={isSubMenu}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={handleCloseMenu}
-            aria-describedby='alert-dialog-slide-description'>
-            <DialogTitle sx={{ marginLeft: "13px" }}>Select main menu item</DialogTitle>
-            <Divider />
-            {leftSideBarContent.map(
-              (val, index) =>
-                val.ParentId === "0" &&
-                val.Menu_Id !== selectedMenu?.Menu_Id &&
-                val.Menu_Id !== selectedMenu?.ParentId && (
-                  <Box
-                    key={val.Menu_Id}
-                    onClick={() => {
-                      onSetSubMenu(val.Menu_Id);
-                      handleCloseMenu();
-                    }}
-                    sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
-                    <Box sx={{ fontSize: "16px" }}>{val.Label}</Box>
-                  </Box>
-                ),
-            )}
-          </Dialog>
-        )}
+          {isSubMenu && (
+            <Dialog
+              sx={{
+                display: { sm: "none" },
+                ".Platform-x-Dialog-paper": {
+                  boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+                  borderRadius: "10px 10px 0 0",
+                  width: "100%",
+                  margin: 0,
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                },
+              }}
+              open={isSubMenu}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleCloseMenu}
+              aria-describedby='alert-dialog-slide-description'>
+              <DialogTitle sx={{ marginLeft: "13px" }}>Select main menu item</DialogTitle>
+              <Divider />
+              {leftSideBarContent.map(
+                (val, index) =>
+                  val.ParentId === "0" &&
+                  val.Menu_Id !== selectedMenu?.Menu_Id &&
+                  val.Menu_Id !== selectedMenu?.ParentId && (
+                    <Box
+                      key={val.Menu_Id}
+                      onClick={() => {
+                        onSetSubMenu(val.Menu_Id);
+                        handleCloseMenu();
+                      }}
+                      sx={{ display: "flex", marginLeft: "23px", p: "15px" }}>
+                      <Box sx={{ fontSize: "16px" }}>{val.Label}</Box>
+                    </Box>
+                  ),
+              )}
+            </Dialog>
+          )}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }

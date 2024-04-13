@@ -1,7 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { PagesListIcon, ThemeConstants, dateFormat, handleHtmlTags } from "@platformx/utilities";
+import { PagesListIcon, ThemeConstants, dateFormat } from "@platformx/utilities";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -68,9 +68,9 @@ const MenuPageList = ({
         }}>
         <Grid
           item
-          xs={2.4}
+          xs={4}
           sx={{
-            marginRight: "2%",
+            // marginRight: "2%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -104,7 +104,7 @@ const MenuPageList = ({
             {article.Title}
           </Typography>
         </Grid>
-        <Grid item xs={2.8} sx={{ marginRight: "2.8%" }}>
+        {/* <Grid item xs={2.8} sx={{ marginRight: "2.8%" }}>
           <Typography
             variant='h6regular'
             sx={{
@@ -118,8 +118,13 @@ const MenuPageList = ({
             }}>
             {handleHtmlTags(article.Description)}
           </Typography>
-        </Grid>
-        <Grid item xs={1} md={1.5} sx={{ marginRight: "3.2%" }}>
+        </Grid> */}
+        <Grid
+          item
+          xs={1}
+          md={3}
+          // sx={{ marginRight: "3.2%" }}
+        >
           <Typography
             sx={{
               overflow: "hidden",
@@ -133,10 +138,22 @@ const MenuPageList = ({
             {article.LastModifiedBy}
           </Typography>
         </Grid>
-        <Grid item xs={2.6} sx={{ marginRight: "3%" }}>
+        <Grid
+          item
+          xs={3}
+          // sx={{ marginRight: "3%" }}
+        >
           <Typography variant='h6regular'>{dateFormat(article.LastModificationDate)}</Typography>
         </Grid>
-        <Grid item xs={1} md={1} sx={{ marginRight: "3.1%" }}>
+        <Grid
+          item
+          xs={1}
+          md={2}
+          sx={{
+            // marginRight: "3.1%",
+            display: "flex",
+            alignItems: "center",
+          }}>
           {/* {btnText!=='Select' ?<Button onClick={()=>onClickSelect(article)}
            variant='contained'sx={{ textTransform: 'capitalize',margin: '1px 0 1px 0px',
           width: '124.8px', height: '40px' }}>{btnText}</Button>: */}
@@ -161,7 +178,7 @@ const MenuPageList = ({
           </Button>
           {/* // } */}
         </Grid>
-        <Grid item xs={0.5}></Grid>
+        {/* <Grid item xs={0.5}></Grid> */}
       </Grid>
     </Box>
   );
