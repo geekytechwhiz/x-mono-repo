@@ -1,26 +1,26 @@
 import { Button, Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { t } from "i18next";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   fetchGlobalSetting,
   publishGlobalSetting,
   updateGlobalSetting,
 } from "@platformx/authoring-apis";
-import { CreateHeader, ContentPageScroll } from "@platformx/content";
-import GlobalHeaderbreadscum from "../../components/GlobalHeaderbreadscum";
-import { useGlobalSettingStyle } from "./GlobalSetting.style";
+import { ContentPageScroll, CreateHeader } from "@platformx/content";
 import {
   CommonBoxWithNumber,
-  ShowToastError,
-  useUserSession,
   GlobalImageIcon,
-  GlobalVideoIcon,
-  ShowToastSuccess,
   GlobalMiscIcon,
+  GlobalVideoIcon,
   Loader,
+  ShowToastError,
+  ShowToastSuccess,
+  useUserSession,
 } from "@platformx/utilities";
+import { t } from "i18next";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import GlobalHeaderbreadscum from "../../components/GlobalHeaderbreadscum";
+import { useGlobalSettingStyle } from "./GlobalSetting.style";
 import PlateformXStoryDialog from "./StoryTagsmodal";
 import PlateformXStoryContentDialog from "./StorytagsContentmodal";
 
@@ -247,7 +247,7 @@ export const GlobalSetting = () => {
 
             <CommonBoxWithNumber
               number='01'
-              title={t("Assets Picker Images")}
+              title={t("assets_picker_images")}
               subTitle={t("subhead")}
               titleVarient='p3semibold'
               subTitleVarient='p4regular'>
@@ -338,7 +338,9 @@ export const GlobalSetting = () => {
                         <img src={GlobalImageIcon} alt='Globalimageicon' />
                       </Box>
                       <Box className={classes.globalbread}>
-                        <Typography>You have selected {tags.join()}</Typography>
+                        <Typography>
+                          {t("you_have_selected")} {tags.join()}
+                        </Typography>
                       </Box>
                     </Box>
                     <Box>
@@ -368,7 +370,7 @@ export const GlobalSetting = () => {
                       </Box>
                       <Box className={classes.globalbread}>
                         <Typography>
-                          You have selected{" "}
+                          {t("you_have_selected")}{" "}
                           {Array.isArray(form.site_assigned_content_types)
                             ? form.site_assigned_content_types.join()
                             : ""}

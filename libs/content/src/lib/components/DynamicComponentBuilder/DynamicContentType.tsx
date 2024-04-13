@@ -25,8 +25,8 @@ import { contentTypeSchemaApi, useWorkflow } from "@platformx/authoring-apis";
 import {
   AUTH_INFO,
   CATEGORY_CONTENT,
-  CommonPlateformXDialog,
   Loader,
+  CommonPlateformXDialog,
   SectionWrapper,
   ShowToastError,
   ShowToastSuccess,

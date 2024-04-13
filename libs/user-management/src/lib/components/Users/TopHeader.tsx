@@ -110,19 +110,19 @@ const TopHeader = ({ handleSearch, filterValue, setFilterValue, setLoading }: an
                 onChange={handleChange}
                 sx={{ textTransform: "capitalize", color: filterValue }}>
                 <FormControlLabel
-                  className={`listViewradionone ${filterValue === USERTYPES.AUTHORINGUSER && "selected"}`}
+                  className='listViewradionone'
                   value={USERTYPES.AUTHORINGUSER}
                   control={<Radio />}
                   label={t("authoring_user")}
                 />
                 <FormControlLabel
-                  className={`listViewradionone ${filterValue === USERTYPES.ENDUSER && "selected"}`}
+                  className='listViewradionone'
                   value={USERTYPES.ENDUSER}
                   control={<Radio />}
                   label={t("end_user")}
                 />
                 <FormControlLabel
-                  className={`listViewradionone ${filterValue === USERTYPES.COMMUNITYUSER && "selected"}`}
+                  className='listViewradionone'
                   value={USERTYPES.COMMUNITYUSER}
                   control={<Radio />}
                   label={t("community_user")}

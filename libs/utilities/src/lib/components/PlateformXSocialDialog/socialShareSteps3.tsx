@@ -12,13 +12,13 @@ import dayjs, { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import avtarImg from "../../assets/images/avatar.png";
+import { Loader } from "@platformx/utilities";
 import {
   convertToLowerCase,
   getSubDomain,
   nullToObject,
   relativeImageURL,
 } from "../../utils/helperFns";
-import XLoader from "../XLoader/XLoader";
 import { getSHareDetailsBasedOnContentType } from "./utils/socialShareTypes";
 
 const SocialShareStep3 = ({
@@ -138,7 +138,7 @@ const SocialShareStep3 = ({
     <Box>
       <style>{inlineCss}</style>
       <Grid>
-        {(loading || sharedContentDetailsLoader) && <XLoader type='circular' />}
+        {(loading || sharedContentDetailsLoader) && <Loader />}
         {/* <Grid item xs={6}></Grid> */}
         <Grid item xs={12} md={12}>
           <Box
