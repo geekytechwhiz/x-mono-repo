@@ -14,11 +14,11 @@ import { getSHareDetailsBasedOnContentType } from "./utils/socialShareTypes";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import {
   avtarImg,
-  XLoader,
   convertToLowerCase,
   getSubDomain,
   nullToObject,
   relativeImageURL,
+  Loader,
 } from "@platformx/utilities";
 
 const SocialShareStep3 = ({
@@ -139,7 +139,7 @@ const SocialShareStep3 = ({
     <Box>
       <style>{inlineCss}</style>
       <Grid>
-        {(loading || sharedContentDetailsLoader) && <XLoader type='circular' />}
+        {(loading || sharedContentDetailsLoader) && <Loader />}
         {/* <Grid item xs={6}></Grid> */}
         <Grid item xs={12} md={12}>
           <Box

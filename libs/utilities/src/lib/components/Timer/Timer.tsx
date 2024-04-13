@@ -6,9 +6,9 @@ import TimerIcon from "../../assets/svg/timerIcon.svg";
 const Timer = ({ lastmodifiedDate }) => {
   const { t } = useTranslation();
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }} mr={2}>
+    <Box sx={{ display: "flex", alignItems: "center" }} mr={"4px"}>
       <img src={TimerIcon} alt='' />
-      <Typography variant='p4regular' ml={1}>
+      <Typography variant='p4regular' ml={"2px"}>
         {t("last_edit")}: {lastmodifiedDate ? format(new Date(lastmodifiedDate), "hh:mm a") : null}
       </Typography>
     </Box>

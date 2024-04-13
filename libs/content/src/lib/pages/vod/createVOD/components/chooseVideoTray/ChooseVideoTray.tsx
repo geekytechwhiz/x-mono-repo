@@ -1,4 +1,4 @@
-import { ArrowUpwardIcon, ErrorTooltip, useAccess } from "@platformx/utilities";
+import { ErrorTooltip, UploadThumbnail, useAccess } from "@platformx/utilities";
 import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
@@ -43,7 +43,7 @@ export const ChooseVideoTray: FC<ChooseVideoTrayProps> = ({ ifVideoUrl, onUpload
           ) : (
             <Box className={classes.chooseTray} onClick={() => onUploadClick("Videos")}>
               <Box className={classes.arrowUpContainer} mr={1}>
-                <img src={ArrowUpwardIcon} alt='ArrowUpwardIcon' />
+                <img src={UploadThumbnail} alt='UploadThumbnail' />
               </Box>
               <Box className={classes.chooseTextContainer}>
                 <Typography variant='h5medium'>{t("video_subtitle")}</Typography>

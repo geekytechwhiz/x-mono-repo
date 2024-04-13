@@ -1,6 +1,5 @@
 import General_community from "./lib/assets/svg/General_community.svg";
 import News_community from "./lib/assets/svg/News_community.svg";
-import AddImage from "./lib/components/AddImage/AddImage";
 import AutoCompleteMultiSelect from "./lib/components/AutoCompleteMultiSelect/AutoCompleteMultiSelect";
 import AutoTextArea from "./lib/components/AutoTextArea/AutoTextArea";
 import { CommonBoxWithNumber } from "./lib/components/CommonBoxWithNumber/CommonBoxWithNumber";
@@ -8,7 +7,6 @@ import ContentGridLoader from "./lib/components/ContentGridLoader";
 import DatePicker from "./lib/components/DatePicker/DatePicker";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 import Error from "./lib/components/Error/Error";
-import ErrorBoundary from "./lib/components/ErrorBoundary";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
 import { MiniHeader } from "./lib/components/Header/MiniHeader";
 import Icons from "./lib/components/Icons";
@@ -35,7 +33,7 @@ import {
   ShowToastError,
   ShowToastSuccess,
 } from "./lib/components/ToastNotification/ToastNotification";
-import XLoader from "./lib/components/XLoader/XLoader";
+import ErrorBoundary from "./lib/components/ErrorBoundary";
 import {
   AUTH_INFO,
   AUTH_URL,
@@ -44,7 +42,7 @@ import {
   REDIRECT_AUTH_URL,
 } from "./lib/constants/AuthConstant";
 
-import XAnimatedLoader from "./lib/assets/gif/Common-Loader.gif";
+import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
@@ -52,10 +50,8 @@ import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
-import LoadingTextModal from "./lib/components/LoadingTextModal";
 import CommonPlateformXDialog from "./lib/components/Modal/CommonPlateformXDialog";
 import NoResultsFound from "./lib/components/NoResultsFound";
-import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import {
   Answers,
   ColorPallet,
@@ -76,8 +72,11 @@ import {
   workflowKeys,
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
-import Submit from "./lib/components/Submit/Submit";
+
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
+import LoadingTextModal from "./lib/components/LoadingTextModal";
+import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
+import Submit from "./lib/components/Submit/Submit";
 import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
@@ -131,7 +130,6 @@ export * from "./lib/utils/interface";
 export {
   AUTH_INFO,
   AUTH_URL,
-  AddImage,
   Answers,
   ArticleListMobileLoader,
   ArticleMapper,
@@ -201,7 +199,6 @@ export {
   XDatePicker,
   XDialog,
   XFileUpload,
-  XLoader,
   XSwitch,
   XTable,
   XTextArea,
