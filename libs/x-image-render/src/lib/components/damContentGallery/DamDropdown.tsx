@@ -85,7 +85,7 @@ export default function DamDropdown({ setAuthor, label }) {
             open={open}
             onClose={() => setAnchorEl(null)}>
             {label[val] &&
-              label[val]?.map((obj, i) => (
+              label[val]?.map((obj) => (
                 <MenuItem
                   key={obj.label}
                   onClick={(e) => handleClose(e, obj.label)}
