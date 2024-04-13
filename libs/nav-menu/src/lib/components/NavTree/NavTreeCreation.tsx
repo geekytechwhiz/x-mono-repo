@@ -23,7 +23,7 @@ import NavTree from "./NavTree";
 
 export default function NavTreeCreation() {
   const { t } = useTranslation();
-  const handleSelectedType = async (selectedType) => {
+  const handleSelectedType = async () => {
     // await searchPageUrl.searchParams.set('searchCat', selectedType.name);
     // await window.history.pushState({}, '', searchPageUrl);
     // await setStartIndex(0);
@@ -51,7 +51,7 @@ export default function NavTreeCreation() {
     setIsOpen(true);
     setIsCreate(false);
   };
-  const onClose = (value) => {
+  const onClose = () => {
     setIsOpen(false);
     setIsCreate(true);
   };
@@ -79,7 +79,7 @@ export default function NavTreeCreation() {
           dispatch(updateInitialState(resp?.data?.authoring_getNavigation?.menu_content));
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // console.log(JSON.stringify(err, null, 2));
       });
   }, [isCall]);
@@ -311,14 +311,12 @@ export default function NavTreeCreation() {
                     height: { xs: "40px", md: "50px" },
                     margin: { xs: "0 15px", lg: "0 20px" },
                     padding: { xs: "10px 20px", lg: "10px 35px" },
+                    cursor: "default",
                     "&:hover": {
                       backgroundColor: ThemeConstants.BLACK_COLOR,
                       color: ThemeConstants.WHITE_COLOR,
                     },
-                  }}
-                  // onClick = {generateArticle}
-                  //  onClick={() => onDuplicatePage(false, undefined)}
-                >
+                  }}>
                   <AddIcon sx={{ width: "16px", height: "16px", margin: 0.5 }} />{" "}
                   {t("menu_create_button")}
                 </Button>

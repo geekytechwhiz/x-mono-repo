@@ -6,7 +6,7 @@ import {
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
-  UploadIcon,
+  UploadThumbnail,
   nullToObject,
   relativeImageURL,
 } from "@platformx/utilities";
@@ -23,13 +23,15 @@ import { usePostImageCrop } from "./hooks/usePostImageCrop";
 //   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 // };
 interface XImageRenderProps {
-  callBack: (obj: any, name?: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  callBack: (obj?: any, name?: string) => void;
   editData: any;
   isCrop?: boolean;
   name?: string;
   isColorPallete?: boolean;
-  handleRefresh?: () => void;
-  handleColorPallete?: (color: string) => void;
+  handleRefresh: () => void;
+  // eslint-disable-next-line no-unused-vars
+  handleColorPallete: (color: string) => void;
 }
 
 const XImageRender = ({
@@ -403,7 +405,7 @@ const XImageRender = ({
                   justifyContent: "center",
                 }}
                 m={1}>
-                <img src={UploadIcon} alt='UploadIcon' />
+                <img src={UploadThumbnail} alt='UploadIcon' />
               </Box>
               <Box
                 sx={{
@@ -513,6 +515,8 @@ XImageRender.defaultProps = {
   isCrop: true,
   name: "",
   isColorPallete: false,
+  handleColorPallete: () => {},
+  handleRefresh: () => {},
+  callBack: () => {},
 };
-
 export default React.memo(XImageRender);

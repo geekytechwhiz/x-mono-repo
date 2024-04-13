@@ -607,7 +607,7 @@
   "keywords_title": "Social media keywords*",
   "confirm": "Confirm",
   "continue": "Continue",
-  "published_time": "Published Time",
+  "published_date": "Published Date",
   "please_try_again": "Please try again",
   "api_error_toast": "We have not been able to complete the requested action. Please try again.",
   "api_error_ntoast": "Fields cannot be left empty!!!",
@@ -1216,7 +1216,7 @@
   "personalisation": "Personalisation",
   "google_analytics_tracking": "Google Analytics Tracking",
   "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master",
+  "master_control": "Master control",
   "administrator": "Administrator",
   "your_site": "Your Site",
   "tags_categories": "Tags",
@@ -1277,5 +1277,10 @@
   "confirm_password": "Confirm Password",
   "changepassword_quote": "Don’t worry",
   "changepassword_quote_message": "We are here to help you",
-  "log_in": "log In"
+  "will_publish_on": "Will Publish On",
+  "will_unpublish_on": "Will Unpublish On",
+  "log_in": "Log In",
+  "my_profile": "My Profile",
+  "logout_text": "Logout",
+  "is_mandatory": "is Mandatory"
 }

@@ -537,7 +537,7 @@
   "keywords_title": "Mots-clés des médias sociaux *",
   "confirm": "Confirmer",
   "continue": "Continuer",
-  "published_time": "heure publiée",
+  "published_date": "Date de publication",
   "please_try_again": "Veuillez réessayer",
   "api_error_toast": "Nous n'avons pas été en mesure de terminer l'action demandée. Veuillez réessayer.",
   "deleted_toast": "a été supprimé avec succès",
@@ -1203,9 +1203,9 @@
   "loading": "Chargement...",
   "feature_flag_setting": "Indicateur de fonctionnalité",
   "personalisation": "Personalisation",
-  "google_analytics_tracking": "Google Analytics Tracking",
-  "snowplow_tracking": "Snowplow Tracking",
-  "master_control": "Master Control",
+  "google_analytics_tracking": "Suivi Google Analytics",
+  "snowplow_tracking": "Suivi des chasse-neige",
+  "master_control": "Contrôle principal",
   "administrator": "Administratrice",
   "your_site": "Votre site",
   "tags_categories": "Mots clés",
@@ -1269,5 +1269,10 @@
   "confirm_password": "Confirmez le mot de passe",
   "changepassword_quote": "Ne t'inquiète pas",
   "changepassword_quote_message": "Nous sommes là pour vous aider",
-  "log_in": "Se connecter"
+  "log_in": "Se connecter",
+  "will_publish_on": "Publiera le",
+  "will_unpublish_on": "Ne sera pas publié le",
+  "my_profile": "Mon profil",
+  "logout_text": "Se déconnecter",
+  "is_mandatory": "est obligatoire"
 }

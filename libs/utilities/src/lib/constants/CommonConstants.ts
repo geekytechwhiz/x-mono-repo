@@ -79,4 +79,4 @@ export const MAPPING = {
   Header: "Header",
   Footer: "Footer",
 };
-export const HIDE_HEADER_FOOTER = ["Poll", "Quiz", "Event"];
+export const HIDE_HEADER_FOOTER = ["Poll", "Quiz"];

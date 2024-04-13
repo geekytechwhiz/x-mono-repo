@@ -1,4 +1,4 @@
-import { XLoader, useUserSession } from "@platformx/utilities";
+import { Loader, useUserSession } from "@platformx/utilities";
 import { memo, useEffect } from "react";
 import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import { useAuthentication } from "../hooks/useAuthentication";
@@ -37,7 +37,7 @@ function RootRouter() {
   }, []);
 
   if (Object.entries(userInfo || {}).length < 1) {
-    return <XLoader type='xloader' />;
+    return <Loader />;
   }
   return (
     <Routes>

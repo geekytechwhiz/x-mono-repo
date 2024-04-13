@@ -23,7 +23,6 @@ export const useStyles = makeStyles(() => ({
     alignSelf: "center",
     alignItems: "center",
     borderRadius: "3px",
-    cursor: "pointer",
     color: "#4b9ef9",
   },
   Doticon: {
@@ -54,6 +53,7 @@ export const useStyles = makeStyles(() => ({
     borderRadius: "5px",
   },
   Title: {
+    cursor: "pointer",
     overflow: "hidden",
     textOverflow: "ellipses",
     display: "-webkit-box",

@@ -212,7 +212,7 @@ const useDashboardData = (contentType = "ALL") => {
                     qusArry.push(qusObj);
                   }
                 })
-                .catch((err) => {
+                .catch(() => {
                   //error
                 });
             });
@@ -301,8 +301,8 @@ const useDashboardData = (contentType = "ALL") => {
   };
 
   const changeStatus = async (data: any) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const responseAccept = await taskMutate({
         variables: {
           input: {
@@ -311,16 +311,16 @@ const useDashboardData = (contentType = "ALL") => {
             title: data.title,
           },
         },
-        onCompleted: (res) => {
+        onCompleted: () => {
           fetchDashBoardData();
         },
       });
-      setLoading(false);
       ShowToastSuccess(responseAccept.data.authoring_updateTask.message);
     } catch (err: any) {
       ShowToastError(
         err.graphQLErrors.length > 0 ? err.graphQLErrors[0].message : t("api_error_toast"),
       );
+    } finally {
       setLoading(false);
     }
   };
