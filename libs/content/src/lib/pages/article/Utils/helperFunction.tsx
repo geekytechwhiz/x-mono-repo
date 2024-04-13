@@ -142,7 +142,7 @@ export const articleInitialObj = (username) => {
 export const updateImageData = (imgObj, content, setState, state, selectedImage) => {
   const { published_images, original_image } = imgObj || {};
   const banner = original_image?.bitStreamId;
-  const sub_title = original_image?.Title;
+  const sub_title = content?.Title;
   const relativeUrl = `${original_image?.original_image_relative_path}.${original_image?.ext}`;
   setState({
     ...state,

@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 import "./List.css";
-import PlateformXDialog from "../Popups/PlateformXDialog";
-import { useNavigate } from "react-router";
+import { CommonPlateformXDialog } from "@platformx/utilities";
 import { RedBlinkingDot } from "../../assets/svg";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { PublishInformation } from "../PublishInformation";
@@ -25,7 +24,6 @@ export const Card = ({
   handlePageDelete,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
-  const navigate = useNavigate();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
   const [subTitle, setSubTitle] = useState("");
   const { t } = useTranslation();
@@ -34,15 +32,9 @@ export const Card = ({
   const handleConfirmation = async () => {
     if (tagName === "sitepage") {
       await handlePageDelete(dataList);
-    } else if (
-      tagName === "quiz" ||
-      tagName === "poll" ||
-      tagName === "event" ||
-      tagName === "vod" ||
-      tagName === "article" ||
-      tagName === "tagscategories"
-    ) {
+    } else if (["quiz", "poll", "event", "vod", "article", "tagscategories"].includes(tagName)) {
       if (deleteContent) {
+        setDelete(false);
         await deleteContent(dataList);
       }
     }
@@ -53,16 +45,28 @@ export const Card = ({
     switch (tagName) {
       case "sitepage":
         return (
-          <PlateformXDialog
+          // <PlateformXDialog
+          //   isDialogOpen
+          //   title={t("delete_title")}
+          //   subTitle={subTitle}
+          //   closeButtonText={t("no")}
+          //   confirmButtonText={t("yes")}
+          //   closeButtonHandle={() => {
+          //     setDelete(false);
+          //   }}
+          //   confirmButtonHandle={handleConfirmation}
+          // />
+          <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
             subTitle={subTitle}
-            closeButtonText={t("no")}
-            confirmButtonText={t("yes")}
+            closeButtonText={t("no_keep_it")}
             closeButtonHandle={() => {
               setDelete(false);
             }}
+            confirmButtonText={t("yes_delete_it")}
             confirmButtonHandle={handleConfirmation}
+            modalType='delete'
           />
         );
       case "vod":
@@ -71,30 +75,43 @@ export const Card = ({
       case "event":
       case "article":
         return (
-          <PlateformXDialog
+          // <PlateformXDialog
+          //   isDialogOpen
+          //   title={t("delete_title")}
+          //   subTitle={subTitle}
+          //   closeButtonText={t("no_keep_it")}
+          //   confirmButtonText={t("yes_delete_it")}
+          //   closeButtonHandle={() => {
+          //     setDelete(false);
+          //   }}
+          //   confirmButtonHandle={handleConfirmation}
+          // />
+          <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
             subTitle={subTitle}
             closeButtonText={t("no_keep_it")}
-            confirmButtonText={t("yes_delete_it")}
             closeButtonHandle={() => {
               setDelete(false);
             }}
+            confirmButtonText={t("yes_delete_it")}
             confirmButtonHandle={handleConfirmation}
+            modalType='delete'
           />
         );
       case "tagscategories":
         return (
-          <PlateformXDialog
+          <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
-            subTitle={`${t("delete_confirm")} ${t("tag")}?. ${t("process_undone")}`}
+            subTitle={`${t("delete_confirm")} ${t("tag")}? ${t("process_undone")}`}
             closeButtonText={t("no_keep_it")}
             confirmButtonText={t("yes_delete_it")}
             closeButtonHandle={() => {
               setDelete(false);
             }}
             confirmButtonHandle={handleConfirmation}
+            modalType='delete'
           />
         );
       default:

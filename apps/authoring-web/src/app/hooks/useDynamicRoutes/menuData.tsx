@@ -3,25 +3,29 @@ import { Content } from "@platformx/content";
 import {
   ApprovalStatus,
   ArticleIcon,
-  CookieIcon,
   BookIcon,
+  CookieIcon,
   EventsIcon,
   FeatureStarIcon,
   FooterMenuUpdated,
+  GroupUsersIcon,
   HamburgerMenuIcon,
   HeaderMenuUpdated,
+  GlobalSetting,
   MediaIcon,
+  VideoNav,
   MyDashboardIcon,
   PagesIcon,
   PollIcon,
   PostIconMenu,
   QuizIcon,
   SitesIcon,
+  TagIcon,
   UserEngagmentIcon,
   UsersIcon,
   VODIcon,
   Webmaster,
-  TagIcon,
+  communitySpaceIcon,
 } from "@platformx/utilities";
 import { WorkflowManagement } from "@platformx/workflow-management";
 
@@ -177,7 +181,7 @@ export const MenuData = [
     Menu: [
       {
         MenuName: "Community",
-        Icon: SitesIcon,
+        Icon: communitySpaceIcon,
         url: "/community/space",
         id: "community_space",
         category: "Community",
@@ -187,7 +191,7 @@ export const MenuData = [
       },
       {
         MenuName: "User groups",
-        Icon: SitesIcon,
+        Icon: GroupUsersIcon,
         url: "/community/user-groups",
         id: "User Groups",
         category: "Community",
@@ -302,7 +306,7 @@ export const MenuData = [
       },
       {
         MenuName: "Global Setting",
-        Icon: HeaderMenuUpdated,
+        Icon: GlobalSetting,
         url: "/site-setting/global-setting",
         id: "global_setting",
         category: "SiteSetting",
@@ -349,18 +353,18 @@ export const MenuData = [
     roles: ["admin"],
     Menu: [
       {
-        MenuName: "Images",
+        MenuName: "images",
         Icon: MediaIcon,
         url: "/asset/images",
-        id: "Images",
+        id: "images",
         category: "Assets",
         subCategory: "",
       },
       {
-        MenuName: "Videos",
-        Icon: MediaIcon,
+        MenuName: "videos",
+        Icon: VideoNav,
         url: "/asset/videos",
-        id: "Videos",
+        id: "videos",
         category: "Assets",
         subCategory: "",
       },

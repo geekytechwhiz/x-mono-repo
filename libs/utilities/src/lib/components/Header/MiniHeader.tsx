@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import ProfileImageData from "../../assets/images/avatar.png";
 // import { Store } from '../../store/ContextStore';
@@ -9,17 +9,17 @@ import ProfileImageData from "../../assets/images/avatar.png";
 // import { logoutUrl } from '../../utils/authConstants';
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-import usePlatformAnalytics from "../../hooks/usePlatformAnalytics/usePlatformAnalytics";
 import { useTranslation } from "react-i18next";
+import usePlatformAnalytics from "../../hooks/usePlatformAnalytics/usePlatformAnalytics";
 import useUserSession from "../../hooks/useUserSession/useUserSession";
 // import { callSaveandResetWarning } from '../../store/Actions';
 // import { capitalizeFirstLetter } from '../../utils/helperFunctions';
 // import PlateformXDialog from '../Modal';
-import { Users } from "./Header.types";
-import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
-import PlateformXDialog from "../Popups/PlateformXDialog";
+import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { capitalizeFirstLetter } from "../../utils/helperFns";
+import PlateformXDialog from "../Popups/PlateformXDialog";
+import { Users } from "./Header.types";
 
 const saveWarningMessage = {
   saveWarnTitle: "Unsaved Changes",
@@ -203,7 +203,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
                 backgroundColor: ThemeConstants.OFF_WHITE_COLOR,
               },
             }}>
-            Change Password
+            {t("change_password")}
           </MenuItem>
           <MenuItem
             disableRipple
@@ -214,7 +214,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
                 backgroundColor: ThemeConstants.OFF_WHITE_COLOR,
               },
             }}>
-            Logout
+            {t("logout")}
           </MenuItem>
         </Menu>
       </Box>

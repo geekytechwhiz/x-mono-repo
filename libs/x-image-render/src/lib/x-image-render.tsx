@@ -1,14 +1,14 @@
 import CachedIcon from "@mui/icons-material/Cached";
 import { Box, Typography } from "@mui/material";
 import {
+  Icon,
+  Refresh,
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
   UploadIcon,
   nullToObject,
   relativeImageURL,
-  Refresh,
-  Icon,
 } from "@platformx/utilities";
 import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -411,7 +411,7 @@ const XImageRender = ({
                   alignItems: "center",
                   color: ThemeConstants.PRIMARY_MAIN_COLOR,
                 }}>
-                <Typography variant='h5medium'>Choose your image</Typography>
+                <Typography variant='h5medium'>{t("choose_your_image")}</Typography>
               </Box>
             </Box>
           )}

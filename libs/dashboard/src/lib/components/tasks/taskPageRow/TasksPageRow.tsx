@@ -75,7 +75,7 @@ const Tasks = ({
           display: "flex",
           alignItems: { xs: "flex-start", em: "center" },
         }}>
-        <Grid xs={12} md={12} lg={7}>
+        <Grid xs={12} md={12} lg={6}>
           <Box
             sx={{
               display: { xs: "flex", em: "none" },
@@ -85,7 +85,7 @@ const Tasks = ({
             }}>
             <Box className={classes.BoxReview}>
               <Typography variant='h7medium' sx={{ padding: "3px 4px", whiteSpace: "nowrap" }}>
-                Ready for review
+                {t("ready_for_review")}
               </Typography>
             </Box>
           </Box>
@@ -182,7 +182,7 @@ const Tasks = ({
                     cursor: "pointer",
                   }}>
                   <Button variant='contained' onClick={handleEdit} className={classes.reviewButton}>
-                    Review
+                    {t("review")}
                   </Button>
                 </Box>
               ) : (
@@ -201,7 +201,7 @@ const Tasks = ({
                         minWidth: "79px !important",
                         borderRadius: "5px",
                       }}>
-                      Accept
+                      {t("accept")}
                     </Button>
                   </Box>
                   <Box
@@ -217,7 +217,7 @@ const Tasks = ({
             </Box>
           </Box>
         </Grid>
-        <Grid xs={12} md={12} lg={5}>
+        <Grid xs={12} md={12} lg={6}>
           <Box
             sx={{
               display: "flex",
@@ -245,7 +245,7 @@ const Tasks = ({
               }}>
               <Box className={classes.BoxReview}>
                 <Typography variant='h7regular' sx={{ padding: "3px 12px", whiteSpace: "nowrap" }}>
-                  Ready for review
+                  {t("ready_for_review")}
                 </Typography>
               </Box>
             </Box>
@@ -294,7 +294,7 @@ const Tasks = ({
                     cursor: "pointer",
                   }}>
                   <Button variant='contained' onClick={handleEdit} className={classes.reviewButton}>
-                    Review
+                    {t("review")}
                   </Button>
                 </Box>
               ) : (
@@ -312,7 +312,7 @@ const Tasks = ({
                         minWidth: "79px !important",
                         borderRadius: "5px",
                       }}>
-                      Accept
+                      {t("accept")}
                     </Button>
                   </Box>
                   <Box
@@ -338,7 +338,7 @@ const Tasks = ({
             }}>
             {task_status === "Accepted" ? (
               <Button variant='contained' onClick={handleEdit} className={classes.reviewButton}>
-                Review
+                {t("review")}
               </Button>
             ) : (
               <>
@@ -350,7 +350,7 @@ const Tasks = ({
                     minWidth: "79px !important",
                     borderRadius: "5px",
                   }}>
-                  Accept
+                  {t("accept")}
                 </Button>
                 <Button
                   variant='outlined'
@@ -359,7 +359,7 @@ const Tasks = ({
                     minWidth: "79px !important",
                     borderRadius: "5px",
                   }}>
-                  Reject
+                  {t("reject")}
                 </Button>
               </>
             )}

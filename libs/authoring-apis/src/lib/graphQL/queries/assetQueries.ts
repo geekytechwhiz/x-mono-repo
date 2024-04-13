@@ -148,3 +148,19 @@ export const DELETE_ASSET = gql`
     }
   }
 `;
+
+export const PUBLISH_ASSET = gql`
+  mutation PUBLISH_ASSET(
+    $uuid: String!
+    $status: String!
+    $uploadId: String!
+    $metadata: authoring_JSON!
+  ) {
+    authoring_depositAssetItem(
+      workspaceId: [{ id: $uploadId }]
+      metadata: $metadata
+      status: $status
+      collectionId: $uuid
+    )
+  }
+`;

@@ -1,21 +1,37 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
-import "./createVod.css";
-import { ArrowBack } from "@mui/icons-material";
+import { Box, Divider, Grid } from "@mui/material";
+import {
+  FETCH_TAG_LIST_QUERY,
+  create_vod,
+  fetchVodById,
+  publish_vod,
+  update_vod,
+  useWorkflow,
+} from "@platformx/authoring-apis";
+import { RootState, previewContent } from "@platformx/authoring-state";
+import {
+  AutoTextArea,
+  CATEGORY_CONTENT,
+  CommonBoxWithNumber,
+  CommonPlateformXDialog,
+  ShowToastError,
+  ShowToastSuccess,
+  TextBox,
+  TitleSubTitle,
+  capitalizeFirstLetter,
+  useUserSession,
+  workflowKeys,
+} from "@platformx/utilities";
+import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useStyles } from "./createVod.styles";
-import { DspaceObject } from "./createVod.types";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import ContentPageScroll from "../../../components/ContentPageScroll";
+import { CreateHeader } from "../../../components/CreateHeader/CreateHeader";
+import { ContentType } from "../../../enums/ContentType";
 import TagListing from "../Components/TagListing";
 import icons, { DEF_VOD } from "./Utils/constats";
-import { useDispatch, useSelector } from "react-redux";
-import { ContentType } from "../../../enums/ContentType";
-import { useNavigate, useParams } from "react-router-dom";
-import React, { useEffect, useRef, useState } from "react";
-import ContentPageScroll from "../../../components/ContentPageScroll";
-import { RootState, previewContent } from "@platformx/authoring-state";
-import { HeadButton } from "../Components/CreateHeaderButtons/HeadButton";
-import { DamContentGallery, XImageRender } from "@platformx/x-image-render";
-import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
-import { Box, Button, Divider, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import {
   createVodInstance,
   isPublishVodHandle,
@@ -23,36 +39,15 @@ import {
   updateStructureData,
   updateVodSettings,
 } from "./Utils/helper";
-import {
-  create_vod,
-  update_vod,
-  publish_vod,
-  useWorkflow,
-  fetchVodById,
-  FETCH_TAG_LIST_QUERY,
-} from "@platformx/authoring-apis";
-import {
-  TextBox,
-  useAccess,
-  workflowKeys,
-  AutoTextArea,
-  TitleSubTitle,
-  useUserSession,
-  ShowToastError,
-  MarkedFeatured,
-  PlateformXDialog,
-  ShowToastSuccess,
-  CATEGORY_CONTENT,
-  CommonBoxWithNumber,
-  capitalizeFirstLetter,
-  CommonPlateformXDialog,
-} from "@platformx/utilities";
+import { ChooseVideoTray } from "./components/chooseVideoTray/ChooseVideoTray";
+import "./createVod.css";
+import { useStyles } from "./createVod.styles";
+import { DspaceObject } from "./createVod.types";
 
 export const CreateVod = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { t, i18n } = useTranslation();
-  const { canAccessAction } = useAccess();
   const navigate = useNavigate();
   const params = useParams();
   const updateTempObj = useRef<any>({});
@@ -68,7 +63,6 @@ export const CreateVod = () => {
   // const [workflowStatus, setWorkflowStatus] = useState(true);
   const [, setShowWorkflowSubmit] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
-
   const [isDraft, setIsDraft] = useState<boolean>(true);
   const [stateManage, setStateManage] = useState<any>({});
   const [draftPageURL, setDraftPageURL] = useState<string>("");
@@ -353,7 +347,7 @@ export const CreateVod = () => {
       },
     })
       .then(() => {
-        ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
+        // ShowToastSuccess(`${t("vod")} ${t("published_toast")}`);
         unsavedChanges.current = false;
         setShowPublishConfirm(true);
       })
@@ -695,83 +689,33 @@ export const CreateVod = () => {
       setDraftDisabled(true);
     }
   }, [vodRef.current, errors]);
-  const theme = useTheme();
-  const noWeb = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
       <Box>
         <Box>
           {/* Top Section start */}
-          <Grid container className={classes.createHeader}>
-            <Grid item xs={2} md={5} em={4} sm={12} sx={{ display: "flex", alignItems: "center" }}>
-              <Button
-                variant='text'
-                startIcon={<ArrowBack />}
-                sx={{
-                  minWidth: "0px",
-                  textTransform: "capitalize",
-                  "&:hover": { backgroundColor: "transparent" },
-                }}
-                onClick={backToVodList}>
-                {!noWeb && (
-                  <Typography variant='h4bold'>
-                    {currentVodData.current ? `${t("edit")} ${t("vod")}` : t("create_vod")}
-                  </Typography>
-                )}
-              </Button>
-            </Grid>
-            <Grid
-              item
-              xs={10}
-              md={7}
-              em={8}
-              sm={12}
-              display='flex'
-              justifyContent='flex-end'
-              alignItems='flex-end'>
-              <MarkedFeatured setIsFeatured={setIsFeatured} isFeatured={isFeatured} />
-              <HeadButton
-                variant='secondaryButton'
-                // icon={VisibilityRoundedIcon}
-                onclickHandler={handelPreview}
-                canAccess={true}
-                isDisabled={isDraftDisabled}
-                text={t("preview")}
-                iconType={"preview"}
-              />
-              <Box sx={{ margin: { xs: "0 5px", md: "0 10px" } }}>
-                <HeadButton
-                  variant='secondaryButton'
-                  // icon={SaveAsRoundedIcon}
-                  onclickHandler={saveVod}
-                  canAccess={canAccessAction(CATEGORY_CONTENT, ContentType.Vod, "Create")}
-                  isDisabled={isDraftDisabled}
-                  text={t("save_as_draft")}
-                  iconType={"save"}
-                />
-              </Box>
-              {/* publish button */}
-              <HeadButton
-                variant='primaryButton'
-                // icon={TelegramIcon}
-                onclickHandler={publishButtonHandel}
-                // canAccess={true}
-                canAccess={canAccessAction(CATEGORY_CONTENT, ContentType.Vod, "publish")}
-                isDisabled={isPublishVodHandle(vodRef.current)}
-                text={t("publish")}
-                iconType={"publish"}
-              />
-              {/* <SubmitButton
-                category={CATEGORY_CONTENT}
-                subCategory={ContentType.Vod}
-                workflow={workflow}
-                handlePublish={publishButtonHandel}
-                handleSave={saveVod}
-                createComment={() => {}}
-                prelemEditState={isPublishDisabled}
-              /> */}
-            </Grid>
-          </Grid>
+          <CreateHeader
+            hasPreviewButton={isDraftDisabled}
+            handelPreview={handelPreview}
+            createText={currentVodData.current ? `${t("edit")} ${t("vod")}` : t("create_vod")}
+            handleReturn={backToVodList}
+            hasPublishButton={isPublishVodHandle(vodRef.current)}
+            hasSaveButton={isDraftDisabled}
+            handleSaveOrPublish={saveVod}
+            publishText={t("publish")}
+            saveText={t("save_as_draft")}
+            previewText={t("preview")}
+            toolTipText={t("preview_tooltip")}
+            saveVariant='secondaryButton'
+            handlePublish={publishButtonHandel}
+            category={CATEGORY_CONTENT}
+            subCategory={ContentType.Vod}
+            workflow={{ enable: false }}
+            createComment={() => {}}
+            setIsFeatured={setIsFeatured}
+            isFeatured={isFeatured}
+          />
           {/* Top Section End */}
           <Divider></Divider>
         </Box>
@@ -795,7 +739,7 @@ export const CreateVod = () => {
             <ContentPageScroll
               icons={icons}
               parentToolTip={parentToolTip}
-              srollToView={undefined} // srollToView={srollToView}
+              scrollToView={undefined} // scrollToView={scrollToView}
             />
           </Box>
           {/* Video Start */}
@@ -947,7 +891,7 @@ export const CreateVod = () => {
         <CommonPlateformXDialog
           isDialogOpen={showPublishConfirm}
           title={t("congratulations")}
-          subTitle={t("publish_process_vod")}
+          subTitle={`${t("your")} ${t("vod")} ${t("publish_popup_message")}`}
           confirmButtonText={t("go_to_listing")}
           confirmButtonHandle={() => navigate("/content/vod")}
           closeButtonHandle={() => navigate("/content/vod")}
@@ -961,19 +905,18 @@ export const CreateVod = () => {
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
-          closeButtonHandle={exitWithoutSave}
-          confirmButtonHandle={saveVod}
-          crossButtonHandle={() => {
+          closeButtonText={t("stay_here")}
+          confirmButtonText={t("take_me_out")}
+          closeButtonHandle={() => {
             setShowExitWarning(false);
           }}
+          confirmButtonHandle={exitWithoutSave}
           modalType='unsavedChanges'
         />
       )}
 
       {openPageExistModal && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={openPageExistModal}
           title={`${t("vod")} ${t("duplicate_exists")}`}
           subTitle={t("conformation")}

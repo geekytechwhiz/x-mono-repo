@@ -124,6 +124,7 @@ export const CreateHeader = ({
             handlePublish={handlePublish}
             handleSave={handleSaveOrPublish}
             createComment={createComment}
+            prelemEditState={hasPublishButton}
           />
         )}
         <ErrorTooltip
@@ -199,7 +200,7 @@ export const CreateHeader = ({
           )
         }
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
-        {showPreview && (
+        {workflow?.enable && (
           <WorkflowHistoryIcon
             enableWorkflowHistory={setEnableWorkflowHistory}
             workflow_status={workflow?.workflow_status}
@@ -260,7 +261,7 @@ export const CreateHeader = ({
           </span>
         </Tooltip>
         {hasTimerState && <Timer lastmodifiedDate={lastModifiedDate} />}
-        {showPreview && (
+        {workflow?.enable && (
           <WorkflowHistoryIcon
             enableWorkflowHistory={setEnableWorkflowHistory}
             workflow_status={workflow?.workflow_status}

@@ -1,7 +1,8 @@
+import { Box } from "@mui/material";
 import Step from "@mui/material/Step";
+import { StepIconProps } from "@mui/material/StepIcon";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import { StepIconProps } from "@mui/material/StepIcon";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { CompletedIcon } from "@platformx/utilities";
@@ -40,25 +41,36 @@ export default function WorkflowStages({ stages }: WorkflowStagesProps) {
   }, [stages]);
 
   return (
-    <Stepper
-      alternativeLabel={getBreakPoint() ? true : false}
-      activeStep={getStepperCount(steps)}
-      connector={<StyledConnector />}
-      orientation={getBreakPoint() ? "horizontal" : "vertical"}>
-      {steps.map((step, index) => (
-        <Step key={step.role}>
-          <StepLabel
-            className={classes.labelContainer}
-            StepIconComponent={(stepIconProps) => GetStepIcon(stepIconProps, step.state)}>
-            <StepperLabel
-              index={index + 1}
-              role={step.role}
-              status={step.status}
-              user_name={step.user_name}
-            />
-          </StepLabel>
-        </Step>
-      ))}
-    </Stepper>
+    <Box className={classes.container}>
+      <Stepper
+        alternativeLabel={getBreakPoint() ? true : false}
+        activeStep={getStepperCount(steps)}
+        connector={
+          <StyledConnector
+            sx={{
+              top: "25px",
+              left: "calc(-50% + 45px)",
+              right: "calc(50% + 45px)",
+              "& .Platform-x-StepConnector-line": { borderTopWidth: 4 },
+            }}
+          />
+        }
+        orientation={getBreakPoint() ? "horizontal" : "vertical"}>
+        {steps.map((step, index) => (
+          <Step key={step.role}>
+            <StepLabel
+              className={classes.labelContainer}
+              StepIconComponent={(stepIconProps) => GetStepIcon(stepIconProps, step.state)}>
+              <StepperLabel
+                index={index + 1}
+                role={step.role}
+                status={step.status}
+                user_name={step.user_name}
+              />
+            </StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+    </Box>
   );
 }

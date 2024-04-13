@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { RootState } from "@platformx/authoring-state";
 import {
+  CommonPlateformXDialog,
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
@@ -22,7 +23,6 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import DeleteDialog from "./DeleteDialog";
 import "./Header.css";
 import { Drag, DragAndDrop, Drop } from "./drag-and-drop";
 import { updateMainMenuScoreAndReorder } from "./helper";
@@ -412,6 +412,7 @@ export default function NavTree({
       createdBy,
       menu_content: itemToDelete,
     };
+    setisdeleteDialog(false);
 
     // mutateDeleteMenu({
     //   variables: {
@@ -971,14 +972,28 @@ export default function NavTree({
           </Box>
         </MenuItem>
       </Menu>
-      {isDeleteDialog && (
+      {/* {isDeleteDialog && (
         <DeleteDialog
           handleListClose={handleListClose}
           handleDeleteMenu={handleDeleteMenu}
           isDeleteDialog={isDeleteDialog}
           setisdeleteDialog={setisdeleteDialog}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")} ${t("menu_item")}?. ${t("process_undone")}`}
+          subTitle={`${t("delete_confirm")} ${t("menu_item")}? ${t("process_undone")}`}
+        />
+      )} */}
+      {isDeleteDialog && (
+        <CommonPlateformXDialog
+          isDialogOpen={isDeleteDialog}
+          title={t("delete_title")}
+          subTitle={`${t("delete_confirm")} ${t("menu_item")}? ${t("process_undone")}`}
+          closeButtonText={t("no_keep_it")}
+          closeButtonHandle={() => {
+            setisdeleteDialog(false);
+          }}
+          confirmButtonText={t("yes_delete_it")}
+          confirmButtonHandle={handleDeleteMenu}
+          modalType='delete'
         />
       )}
     </>

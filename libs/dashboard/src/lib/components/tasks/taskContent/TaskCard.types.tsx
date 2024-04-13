@@ -4,4 +4,6 @@ export type TaskCardProps = {
   linkText?: string;
   children: any;
   isEmptyResult?: boolean;
+  refetch?: boolean;
+  refetchFunction?: () => {};
 };

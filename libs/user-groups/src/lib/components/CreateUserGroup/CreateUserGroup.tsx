@@ -8,8 +8,10 @@ import {
   SuccessIcon,
   TextBox,
   TitleSubTitle,
+  compareTwoArraysIgnoringOrder,
+  CommonPlateformXDialog,
 } from "@platformx/utilities";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -27,6 +29,13 @@ const CreateUserGroup = () => {
   const [locationObj] = useState(JSON.parse(localStorage.getItem("groupDetails") || "{}"));
   const dispatch = useDispatch();
   const { createUserGroup, updateUserGroup } = useUserGroups();
+  const [showExitWarning, setShowExitWarning] = useState(false);
+  const savedUserGroupData = useRef<userGroupsProps>({
+    name: "",
+    description: "",
+    tags: [],
+  });
+  const unsavedChanges = useRef<boolean>(false);
   const [userGroup, setUserGroup] = useState<userGroupsProps>({
     name: "",
     description: "",
@@ -54,13 +63,18 @@ const CreateUserGroup = () => {
   };
 
   const returnBack = () => {
-    localStorage.removeItem("groupDetails");
-    navigate("/community/user-groups");
+    if (unsavedChanges.current) {
+      setShowExitWarning(true);
+    } else {
+      localStorage.removeItem("groupDetails");
+      navigate("/community/user-groups");
+    }
   };
 
   const updateGroup = async () => {
     const response: any = await updateUserGroup(userGroupUpdateMapper(userGroup, locationObj));
     if (response?.success) {
+      unsavedChanges.current = false;
       localStorage.setItem(
         "groupDetails",
         JSON.stringify(userGroupUpdateMapper(userGroup, locationObj)),
@@ -72,6 +86,7 @@ const CreateUserGroup = () => {
   const createGroup = async () => {
     const response: any = await createUserGroup(userGroupCreateMapper(userGroup));
     if (response?.success) {
+      unsavedChanges.current = false;
       const dialogContent = {
         imageIcon: SuccessIcon,
         isOpen: true,
@@ -85,6 +100,7 @@ const CreateUserGroup = () => {
   };
 
   const handleCreateUserGroup = () => {
+    setShowExitWarning(false);
     if (handleValidation()) {
       code && locationObj ? updateGroup() : createGroup();
     }
@@ -103,6 +119,11 @@ const CreateUserGroup = () => {
         updateErrorState("tags", false);
       }
       setUserGroup({ ...userGroup, tags: val });
+      if (!compareTwoArraysIgnoringOrder(val, savedUserGroupData.current.tags)) {
+        unsavedChanges.current = true;
+      } else {
+        unsavedChanges.current = false;
+      }
     } else {
       setUserGroup({ ...userGroup, [event.target.name]: event.target.value });
       if (event.target.value === "") {
@@ -111,9 +132,20 @@ const CreateUserGroup = () => {
     }
   };
 
+  const closeButtonHandle = () => {
+    setShowExitWarning(false);
+    unsavedChanges.current = false;
+    navigate("/community/user-groups");
+  };
+
   const handleChangeCallback = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.value !== "") {
       updateErrorState(event.target.name, false);
+    }
+    if (savedUserGroupData.current[event.target.name] !== event.target.value) {
+      unsavedChanges.current = true;
+    } else {
+      unsavedChanges.current = false;
     }
   };
 
@@ -121,11 +153,27 @@ const CreateUserGroup = () => {
     if (code && Object.keys(locationObj)?.length) {
       const { label = "", description = "", tags = [] } = locationObj;
       setUserGroup({ name: label, description, tags });
+      savedUserGroupData.current = { name: label, description, tags };
     }
   }, [code, locationObj]);
 
   return (
     <>
+      {showExitWarning && (
+        <CommonPlateformXDialog
+          isDialogOpen={showExitWarning}
+          title={t("save_warn_title")}
+          subTitle={t("save_warn_subtitle")}
+          closeButtonText={t("take_me_out")}
+          confirmButtonText={t("done")}
+          closeButtonHandle={closeButtonHandle}
+          confirmButtonHandle={handleCreateUserGroup}
+          crossButtonHandle={() => {
+            setShowExitWarning(false);
+          }}
+          modalType='unsavedChanges'
+        />
+      )}
       <GroupHeader
         arrowText={code ? "Update Group" : "Create Group"}
         buttonText={code ? "Update" : "Create"}

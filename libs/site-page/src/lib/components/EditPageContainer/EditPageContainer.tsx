@@ -1,5 +1,6 @@
 /* eslint-disable require-await */
 import { useLazyQuery, useMutation } from "@apollo/client";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, CircularProgress, Tab, Typography, useMediaQuery } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -37,10 +38,9 @@ import {
 } from "@platformx/authoring-state";
 import {
   CATEGORY_PAGE,
+  CommonPlateformXDialog,
   EditIcon,
   LightTheme,
-  LoadingTextModal,
-  PlateformXDialog,
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
@@ -52,17 +52,14 @@ import {
   initInsituEditing,
   uriToJSON,
   useAccess,
+  usePlatformAnalytics,
   useUserSession,
   workflowKeys,
-  usePlatformAnalytics,
 } from "@platformx/utilities";
 import { addMinutes, format } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
-import EditPageIcons from "../utils/EditPageIcons";
-import { consolidatePageModel } from "../utils/helper";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
 import ContentGallery from "../../components/ContentGallery/ContentGallery";
 import DynamicContentGallery from "../../components/ContentGallery/DynamicContentGallery";
 import EcommerceAuthoring from "../../components/EcommerceAuthoring/EcommerceAuthoring";
@@ -80,16 +77,18 @@ import SocialShare from "../PageSettings/SocialShare";
 import PrelemSettingMenu from "../PrelemSettingMenu/PrelemSettingMenu";
 import PrelemInfo from "../PrelemSettings/PrelemInfo";
 import PrelemSettingsCard from "../PrelemSettings/PrelemSettingsCard";
+import EditPageIcons from "../utils/EditPageIcons";
 import {
   DYNAMIC_PRELEM_LIST,
   ECOM_PRELEM_LIST,
   PageSettingListData,
   PrelemActions,
   PrelemSettingCardList,
-  isGalleryContentTypeCheck,
   StatusKey,
+  isGalleryContentTypeCheck,
 } from "../utils/constants";
 import { PrelemInstance } from "../utils/editTypes";
+import { consolidatePageModel } from "../utils/helper";
 import { useStyles } from "./EditPageContainer.styles";
 //import WorkflowHistory from "../../../../components/WorkflowHistory/WorkflowHistory";
 import { useDispatch, useSelector } from "react-redux";
@@ -1038,10 +1037,10 @@ const EditPageContainer = () => {
     }
   };
 
-  const onCloseSaveWarningHandler = () => {
-    savePage();
-    setShowSaveWarning(false);
-  };
+  // const onCloseSaveWarningHandler = () => {
+  //   savePage();
+  //   setShowSaveWarning(false);
+  // };
 
   const unsavedChangesCrossButtonHandle = () => {
     setShowSaveWarning(false);
@@ -1053,9 +1052,9 @@ const EditPageContainer = () => {
     setShowWorkflowSubmit(false);
   };
 
-  const changePublishDialogState = () => {
-    setOpenPublishModal(false);
-  };
+  // const changePublishDialogState = () => {
+  //   setOpenPublishModal(false);
+  // };
 
   const onPublishClick = () => {
     setPublishLoading(true);
@@ -1129,7 +1128,7 @@ const EditPageContainer = () => {
           {publishLoading && <PrelemLoader />}
           <PageLayout>
             {isResetPopop ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={isResetPopop}
                 title={t("prelem_reset")}
                 subTitle={t("prelem_reset_title")}
@@ -1140,17 +1139,19 @@ const EditPageContainer = () => {
               />
             ) : null}
             {isDeletePopop ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={isDeletePopop}
-                title={t("prelem_delete")}
-                subTitle={`${t("prelem_delete_title")} ${t("prelem")}`}
-                closeButtonText={t("no")}
-                confirmButtonText={t("yes")}
+                title={t("delete_title")}
+                subTitle={`${t("delete_confirm")} ${t("prelem")}? ${t("process_undone")}`}
+                closeButtonText={t("no_keep_it")}
+                confirmButtonText={t("yes_delete_it")}
                 closeButtonHandle={deleteCloseButtonHandle}
                 confirmButtonHandle={deleteConfirmButtonHandle}
+                modalType='delete'
               />
             ) : null}
-            {openPublishModal || showWorkflowSubmit ? (
+
+            {/* {openPublishModal || showWorkflowSubmit ? (
               <LoadingTextModal
                 isDialogOpen={openPublishModal || showWorkflowSubmit}
                 closeButtonHandle={closeButtonHandle}
@@ -1160,19 +1161,36 @@ const EditPageContainer = () => {
                 successText={openPublishModal ? t("page_success_text") : t("requested_action")}
                 changeDialogState={changePublishDialogState}
               />
+            ) : null} */}
+            {openPublishModal || showWorkflowSubmit ? (
+              <CommonPlateformXDialog
+                isDialogOpen={openPublishModal || showWorkflowSubmit}
+                title={t("congratulations")}
+                subTitle={
+                  openPublishModal
+                    ? `${t("your")} ${t("page")} ${t("publish_popup_message")}`
+                    : t("requested_action")
+                }
+                closeButtonHandle={closeButtonHandle}
+                confirmButtonText={t("go_to_listing")}
+                confirmButtonHandle={() => navigate("/sitepage")}
+                modalType='publish'
+              />
             ) : null}
             {showSaveWarning ? (
-              <PlateformXDialog
+              <CommonPlateformXDialog
                 isDialogOpen={showSaveWarning}
                 title={t("save_warn_title")}
                 subTitle={t("save_warn_subtitle")}
                 closeButtonText={
-                  triggerCase === "PUBLISH" ? t("publish_anyways") : t("take_me_out")
+                  t("stay_here")
+                  //triggerCase === "PUBLISH" ? t("publish_anyways") : t("stay_here")
                 }
-                confirmButtonText={t("done")}
-                closeButtonHandle={() => callFnsCase(triggerCase)}
-                confirmButtonHandle={onCloseSaveWarningHandler}
-                crossButtonHandle={unsavedChangesCrossButtonHandle}
+                confirmButtonText={t("take_me_out")}
+                closeButtonHandle={unsavedChangesCrossButtonHandle}
+                // closeButtonHandle={() => callFnsCase(triggerCase)}
+                confirmButtonHandle={() => callFnsCase(triggerCase)}
+                // crossButtonHandle={unsavedChangesCrossButtonHandle}
                 modalType='unsavedChanges'
               />
             ) : null}
@@ -1237,7 +1255,7 @@ const EditPageContainer = () => {
                             <Tab
                               icon={<img src={EditIcon} alt='icon' />}
                               iconPosition='start'
-                              label='Design'
+                              label={t("design")}
                               value='Page_Design'
                             />
                             )
@@ -1245,14 +1263,16 @@ const EditPageContainer = () => {
                               <Tab
                                 icon={<img src={SettingIcon} alt='icon' />}
                                 iconPosition='start'
-                                label='Page Setting'
+                                label={t("page_setting")}
                                 value='Page_Setting'
                               />
                             )}
                           </TabList>
                         )}
 
-                        {!DesignWeb && <Typography variant='p3semibold'>Page Setting</Typography>}
+                        {!DesignWeb && (
+                          <Typography variant='p3semibold'>{t("page_setting")}</Typography>
+                        )}
                       </Box>
                       {DesignTab && (
                         <TabPanel
