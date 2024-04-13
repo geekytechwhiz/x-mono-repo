@@ -537,7 +537,7 @@
   "keywords_title": "Mots-clés des médias sociaux *",
   "confirm": "Confirmer",
   "continue": "Continuer",
-  "published_time": "heure publiée",
+  "published_date": "Date de publication",
   "please_try_again": "Veuillez réessayer",
   "api_error_toast": "Nous n'avons pas été en mesure de terminer l'action demandée. Veuillez réessayer.",
   "deleted_toast": "a été supprimé avec succès",

@@ -604,7 +604,7 @@
   "keywords_title": "Social media keywords*",
   "confirm": "Confirm",
   "continue": "Continue",
-  "published_time": "Published Time",
+  "published_date": "Published Date",
   "please_try_again": "Please try again",
   "api_error_toast": "We have not been able to complete the requested action. Please try again.",
   "api_error_ntoast": "Fields cannot be left empty!!!",
