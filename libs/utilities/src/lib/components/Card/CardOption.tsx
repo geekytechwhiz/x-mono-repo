@@ -1,18 +1,13 @@
 import { Box, IconButton, MenuItem } from "@mui/material";
 import DeleteIcon from "../../assets/svg//deleteIcon.svg";
 import EditIcon from "../../assets/svg//editIcon.svg";
-import { useState } from "react";
 import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_TAGS } from "./constants";
 
 const CardOption = (props: any) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { t } = useTranslation();
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+
   const {
     getContentCategory,
     getContentSubCategory,
@@ -22,6 +17,14 @@ const CardOption = (props: any) => {
     canAccessAction,
     handleDeleteButton = () => {},
   } = props;
+
+  const getTagAction = (action) => {
+    if (dataList.type === SYSTEM_TAGS) {
+      return true;
+    } else {
+      return !canAccessAction("SiteSetting", "tag", action);
+    }
+  };
 
   return (
     <Box
@@ -41,7 +44,7 @@ const CardOption = (props: any) => {
                 onClick={handleEdit}
                 disabled={
                   tagName === "tagscategories"
-                    ? dataList.type === SYSTEM_TAGS
+                    ? getTagAction("Update")
                     : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
                       tagName === "courses"
                 }>
@@ -54,7 +57,7 @@ const CardOption = (props: any) => {
             tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_edit_tag") : ""}
             doAccess={
               tagName === "tagscategories"
-                ? dataList.type === SYSTEM_TAGS
+                ? getTagAction("Update")
                 : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
                   tagName === "courses"
             }
@@ -70,7 +73,7 @@ const CardOption = (props: any) => {
               onClick={handleDeleteButton}
               disabled={
                 tagName === "tagscategories"
-                  ? dataList.type === SYSTEM_TAGS
+                  ? getTagAction("Delete")
                   : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
                     tagName === "courses"
               }>
@@ -82,7 +85,7 @@ const CardOption = (props: any) => {
           tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_delete_tag") : ""}
           doAccess={
             tagName === "tagscategories"
-              ? dataList.type === SYSTEM_TAGS
+              ? getTagAction("Delete")
               : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
                 tagName === "courses"
           }

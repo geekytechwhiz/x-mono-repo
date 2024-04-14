@@ -1,13 +1,13 @@
-import { Button, FormControl, Grid, Menu, Radio, RadioGroup, Typography } from "@mui/material";
+import { Button, Grid, Menu, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import MenuItem from "@mui/material/MenuItem";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { backAssetIcon } from "@platformx/utilities";
 import AssetBreadsum from "../pages/AssetBreadscum";
 import { useImagesStyle } from "./Images.style";
 import PlateformXAssetDialog from "./ChooseAssetModal";
-import { FormControlCustom } from "@platformx/content";
 
 export function AssetHeader({ handleShow, collectionArr }) {
   const classes = useImagesStyle();
@@ -22,11 +22,6 @@ export function AssetHeader({ handleShow, collectionArr }) {
   const [assetValue, setAssetValue] = useState(false);
   const openFilterMenuForBtn = Boolean(anchor);
   const handleFilterClose = () => {
-    setAnchor(null);
-  };
-  const [filterValue] = useState();
-
-  const handleChange = () => {
     setAnchor(null);
   };
 
@@ -86,32 +81,24 @@ export function AssetHeader({ handleShow, collectionArr }) {
               padding: "10px 18px",
             },
           }}>
-          <FormControl>
-            <RadioGroup
-              value={filterValue}
-              onChange={handleChange}
-              sx={{ textTransform: "capitalize" }}>
-              <FormControlCustom
-                className='listView'
-                value='New Folder'
-                onClick={() => handleShow(true)}
-                control={<Radio sx={{ display: "none" }} />}
-                label={t("new_folder")}
-              />
-              {collectionArr?.length !== 0 && (
-                <FormControlCustom
-                  className='listView'
-                  value='Upload Asset'
-                  control={<Radio sx={{ display: "none" }} />}
-                  label={t("upload_asset")}
-                  onClick={() => {
-                    setAssetValue(true);
-                    handleFilterClose();
-                  }}
-                />
-              )}
-            </RadioGroup>
-          </FormControl>
+          <MenuItem
+            disableRipple
+            onClick={() => {
+              handleFilterClose();
+              handleShow(true);
+            }}>
+            {t("new_folder")}
+          </MenuItem>
+          {collectionArr?.length !== 0 && (
+            <MenuItem
+              disableRipple
+              onClick={() => {
+                handleFilterClose();
+                setAssetValue(true);
+              }}>
+              {t("upload_asset")}
+            </MenuItem>
+          )}
         </Menu>
         <PlateformXAssetDialog
           isDialogOpen={assetValue}

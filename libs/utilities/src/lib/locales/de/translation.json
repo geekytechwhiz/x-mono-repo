@@ -794,8 +794,12 @@
   "sitesetting_ss_sub": "Dies wird der Text Ihrer E-Mail-Adresse sein",
   "sitesetting_contact": "Dies ist Ihre Kontaktnummer",
   "sitesetting_contact_number": "Kontaktnummer",
+  "mystory_info": "Wählen Sie Schlüsselwörter für Kategorien aus und organisieren Sie Informationen für eine einfache Suche und Navigation",
   "site_logo": "Site-Logo",
+  "assets_picker_setting": "Einstellung für die Asset-Auswahl",
+  "you_have_selected": "Du hast ausgewählt",
   "sitesetting_copyright": "Copyright-Text",
+  "image_size_info": "Die Bildgröße muss 16 x 16 Pixel betragen, maximal 200 KB sind nur JPG und PNG zulässig",
   "sitesetting_copyright_sub": "Dies wird ein Copyright-Text im Feld sein",
   "sitesetting_copy_subhead": "Felder mit * sind Pflichtfelder",
   "sitesetting_enter_copy": "Copyright-Text eingeben",
@@ -1271,7 +1275,5 @@
   "will_unpublish_on": "Wird die Veröffentlichung aufheben",
   "my_profile": "Mein Profil",
   "logout_text": "Ausloggen",
-  "is_mandatory": "ist obligatorisch",
-  "assets_picker_images": "Bilder zur Asset-Auswahl",
-  "you_have_selected": "Du hast ausgewählt"
+  "is_mandatory": "ist obligatorisch"
 }

@@ -6,7 +6,7 @@ import TitleSubTitle from "../SchemaComponents/TitleSubtitle/TitleSubTitle";
 interface CommonBoxWithNumberProp {
   number: string;
   title: string;
-  subTitle: string;
+  subTitle?: string;
   titleVarient: string;
   subTitleVarient: string;
   panelStyle?: any;
