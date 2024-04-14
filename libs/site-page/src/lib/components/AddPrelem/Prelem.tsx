@@ -117,7 +117,7 @@ const Prelem = ({
 
   const [spaceKey, setSpaceKey] = useState(false);
   //get Structured data
-  const getStructuredData = (strDataOld, dataIndex, isPrelemDataReset) => {
+  const getStructuredData = (strDataOld, dataIndex) => {
     dispatch(
       updateContentForCard({
         selectedPrelemIndex: dataIndex,
@@ -255,12 +255,13 @@ const Prelem = ({
   };
 
   useEffect(() => {
-    if (selectedContentForButton)
+    if (selectedContentForButton) {
       updateCurrentButtonObject(
         selectedContentForButton,
         lastEditedButton.current,
         "RedirectURL_Content",
       );
+    }
   }, [selectedContentForButton]);
 
   // Assigning prelem prop data
@@ -298,7 +299,7 @@ const Prelem = ({
   prelemAuthoringHelperProp = {
     innerRef: prelemRef,
     sendStructureDataToAuthoringCB: (strDataNew = PrelemId) => {
-      getStructuredData(strDataNew, index, false);
+      getStructuredData(strDataNew, index);
     },
     openButtonEditWindowInAuthoringCB: (button, e) => {
       handleEditLinkButtonRef(button, e);

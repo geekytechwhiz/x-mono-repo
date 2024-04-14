@@ -254,11 +254,13 @@ import NoAssetSelected from "./NoAssetSelected.svg";
 import VideoNav from "./VideoMenuIcon.svg";
 import GlobalSetting from "./GlobalSetting.svg";
 import UploadThumbnail from "./UploadThumbnail.svg";
+import HashTag from "./Hashtag.svg";
 
 export {
   RedBlinkingDot as liveIcon,
   IconFbSvg,
   GlobalSetting,
+  HashTag,
   IconGoogleSvg,
   IconVisaCardSvg,
   VideoNav,

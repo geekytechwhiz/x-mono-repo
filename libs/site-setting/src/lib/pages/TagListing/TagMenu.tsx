@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, useMediaQuery, useTheme } from "@mui/material";
 import {
   MoreHorizIcon,
   CardOptionViewIcon,
@@ -22,17 +22,28 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
+const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent, canAccessAction }) => {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const tabView = useMediaQuery(theme.breakpoints.down("em"));
   const classes = useStyles();
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const getTagAction = (action) => {
+    if (dataList.type === SYSTEM_TAGS) {
+      return true;
+    } else {
+      return !canAccessAction("SiteSetting", "tag", action);
+    }
+  };
+
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Box
@@ -97,42 +108,33 @@ const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
           </div>
           {t("view")} {t("category")}
         </MenuItem>
-        <ErrorTooltip
-          component={
-            <MenuItem
-              disableRipple
-              disabled={dataList.type === SYSTEM_TAGS}
-              onClick={() => {
-                handleClose();
-                edit(dataList);
-              }}>
-              <div className={classes.icon}>
-                <img src={CardOptionEditIcon} alt='edit' />
-              </div>
-              {t("edit")}
-            </MenuItem>
-          }
-          tooltipMsg={t("cannot_edit_tag")}
-          doAccess={dataList.type === SYSTEM_TAGS}
-        />
-        {/* {dataList.status === "published" && dataList.type === SITE_TAGS && (
-          <MenuItem
-            disableRipple
-            onClick={() => {
-              handleClose();
-            }}>
-            <div className={classes.icon}>
-              <img src={CardOptionDuplicateIcon} alt='duplicate' />
-            </div>
-            {t("duplicate")}
-          </MenuItem>
-        )} */}
+        {tabView && (
+          <ErrorTooltip
+            component={
+              <MenuItem
+                disableRipple
+                disabled={getTagAction("Update")}
+                onClick={() => {
+                  handleClose();
+                  edit(dataList);
+                }}>
+                <div className={classes.icon}>
+                  <img src={CardOptionEditIcon} alt='edit' />
+                </div>
+                {t("edit")}
+              </MenuItem>
+            }
+            tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_edit_tag") : ""}
+            doAccess={getTagAction("Update")}
+          />
+        )}
+
         {dataList.status === "published" && dataList.type === SITE_TAGS && (
           <ErrorTooltip
             component={
               <MenuItem
                 disableRipple
-                disabled={false}
+                disabled={getTagAction("UnPublish")}
                 onClick={() => {
                   handleClose();
                   onUnpublish(dataList);
@@ -143,28 +145,30 @@ const TagMenu = ({ dataList, view, edit, onUnpublish, deleteContent }) => {
                 {t("unpublish")}
               </MenuItem>
             }
-            doAccess={false}
+            doAccess={getTagAction("UnPublish")}
           />
         )}
 
-        <ErrorTooltip
-          component={
-            <MenuItem
-              disableRipple
-              disabled={dataList.type === SYSTEM_TAGS}
-              onClick={() => {
-                handleClose();
-                deleteContent(dataList);
-              }}>
-              <div className={classes.icon}>
-                <img src={CardOptionDeleteIcon} alt='delete' />
-              </div>
-              {t("delete")}
-            </MenuItem>
-          }
-          tooltipMsg={t("cannot_delete_tag")}
-          doAccess={dataList.type === SYSTEM_TAGS}
-        />
+        {tabView && (
+          <ErrorTooltip
+            component={
+              <MenuItem
+                disableRipple
+                disabled={getTagAction("Delete")}
+                onClick={() => {
+                  handleClose();
+                  deleteContent(dataList);
+                }}>
+                <div className={classes.icon}>
+                  <img src={CardOptionDeleteIcon} alt='delete' />
+                </div>
+                {t("delete")}
+              </MenuItem>
+            }
+            tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_edit_tag") : ""}
+            doAccess={getTagAction("Delete")}
+          />
+        )}
       </Menu>
     </Box>
   );

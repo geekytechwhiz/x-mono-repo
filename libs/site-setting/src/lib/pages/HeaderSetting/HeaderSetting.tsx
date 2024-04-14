@@ -334,9 +334,7 @@ export const HeaderSetting = () => {
                             isCrop={false}
                           />
                         </Box>
-                        <Box className={classes.skeletonTitle}>
-                          Image Size must be 16x16px, Max 200KB JPG & PNG are allowed only
-                        </Box>
+                        <Box className={classes.skeletonTitle}>{t("image_size_info")}</Box>
                       </Box>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4} className={classes.rightForm}>
