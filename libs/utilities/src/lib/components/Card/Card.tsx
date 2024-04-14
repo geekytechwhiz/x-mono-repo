@@ -3,25 +3,8 @@ import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
-
-// import { DASHBOARD_KEYS } from '../../../pages/Dashboard/utils/constant';
-// import CardMenu from '../../../pages/PageList/Components/CardMenu/CardMenu';
-// import { CourseMenu } from '../../../pages/QuizPollEvents/Components/QuizPollEventsMenu/CourseMenu';
-// import { QuizPollEventMenu } from '../../../pages/QuizPollEvents/Components/QuizPollEventsMenu/QuizPollEventsMenu';
-// import {
-//   default as PlateformXDialog,
-//   default as PlateformXDialogDelete,
-// } from '../../../pages/articles/deletePopup';
-
-// import CardOption from '../CardOption/CardOption';
-// import CommunityOption from '../CommunityOption';
 import "./List.css";
-// import { PublishInformation } from '../PublishInformation/PublishInformation';
-// import { CourseMenu } from '../CourseMenu/CourseMenu';
-// import CardMenu from '../CardMenu/CardMenu';
-// import { QuizPollEventMenu } from '../QuizPollEventsMenu/QuizPollEventsMenu';
 import { CommonPlateformXDialog } from "@platformx/utilities";
-import { useNavigate } from "react-router";
 import { RedBlinkingDot } from "../../assets/svg";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { PublishInformation } from "../PublishInformation";
@@ -41,7 +24,6 @@ export const Card = ({
   handlePageDelete,
 }: CardProps) => {
   const { canAccessAction } = useAccess();
-  const navigate = useNavigate();
   const tagName = dataList?.tagName?.toLowerCase() || dataList?.tags?.toLowerCase();
   const [subTitle, setSubTitle] = useState("");
   const { t } = useTranslation();

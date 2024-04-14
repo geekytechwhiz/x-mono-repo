@@ -11,7 +11,7 @@ const TitleSubTitleInput: any = Template.bind({});
 
 TitleSubTitleInput.args = {
   title: "Short Title*",
-  subTitle: "This will be the your quiz subtitle",
+  subTitle: "This will be your quiz subtitle",
   titleVariant: "h6medium",
   subTitleVariant: "h7regular",
 };
@@ -55,7 +55,7 @@ export const XTitleSubTitle = {
   },
   args: {
     title: "Short Title*",
-    subTitle: "This will be the your quiz subtitle",
+    subTitle: "This will be your quiz subtitle",
     titleVariant: "h6medium",
     subTitleVariant: "h7regular",
   },
