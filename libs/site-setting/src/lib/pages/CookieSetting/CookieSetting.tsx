@@ -187,7 +187,7 @@ export const CookieSetting = () => {
         setIsLoading(false);
         publisheaderSetting();
       })
-      .catch((err) => {
+      .catch(() => {
         setIsLoading(false);
         ShowToastError(t("api_error_toast"));
       });

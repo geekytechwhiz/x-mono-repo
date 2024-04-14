@@ -9,7 +9,7 @@ import {
   getSelectedSite,
 } from "@platformx/utilities";
 import { CreateCourse } from "@platformx/course";
-import { Dashboard } from "@platformx/dashboard";
+import { Dashboard, Charts } from "@platformx/dashboard";
 import NavTreeCreation from "@platformx/nav-menu";
 import {
   EditPage,
@@ -33,7 +33,6 @@ import { AddSite, SiteListing } from "@platformx/sites";
 import { CreateUserGroup, UserGroupListing } from "@platformx/user-groups";
 import { CreateUser, UserListing } from "@platformx/user-management";
 import { WorkflowDetails, WorkflowManagement } from "@platformx/workflow-management";
-import Charts from "libs/dashboard/src/lib/components/charts/Charts";
 import { Suspense } from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { RouteConfig } from "./routes.type";
