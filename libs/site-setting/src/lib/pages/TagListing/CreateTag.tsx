@@ -9,7 +9,6 @@ import {
   Button,
   RadioGroup,
 } from "@mui/material";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -19,7 +18,7 @@ import {
   useUserSession,
   RadioControlLabel,
   ShowToastSuccess,
-  PlateformXDialogSuccess,
+  ShowToastError,
 } from "@platformx/utilities";
 import React, { useEffect, useState } from "react";
 import { useTagStyle } from "./Tags.style";
@@ -43,8 +42,7 @@ export const CreateTags = () => {
   const [value, setValue] = useState("");
   const [option, setOption] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
-  const [publishUrl, setPublishUrl] = useState("");
-  const [isSuccessPopup, setIsSuccessPopup] = useState<boolean>(false);
+  const [publishUrl, setPublishUrl] = useState(docPath || "");
   const { t } = useTranslation();
   const [category, setCategory] = useState("Choose Category");
   const [radio, setRadio] = useState("choose_category");
@@ -52,7 +50,6 @@ export const CreateTags = () => {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
-
   const handleChange = (e) => {
     const str = e.target.value.trimStart().replace("  ", " ");
     if (str.length < 20) {
@@ -93,12 +90,13 @@ export const CreateTags = () => {
           },
         },
       };
-      const { authoring_createOrUpdateSiteSettings = "" }: any = await createTag(payload);
+      const { authoring_createOrUpdateSiteSettings }: any = await createTag(payload);
       setPublishUrl(authoring_createOrUpdateSiteSettings.name);
-      ShowToastSuccess(`${t("tag")} ${t("created_toast")}`);
+      ShowToastSuccess(`${t("tag")} ${t(docPath ? "updated_toast" : "created_toast")}`);
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -115,10 +113,11 @@ export const CreateTags = () => {
           schedule_date_time: "",
         },
       });
-      setIsSuccessPopup(true);
       setIsLoading(false);
+      ShowToastSuccess(`${t("tag")} ${t("published_toast")}`);
     } catch (err) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -135,6 +134,7 @@ export const CreateTags = () => {
       }
     } catch (error) {
       setTags([]);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -151,7 +151,7 @@ export const CreateTags = () => {
         setCategory(authoring_getTagItems[0].category);
       }
     } catch (error) {
-      // setTags([]);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -163,14 +163,16 @@ export const CreateTags = () => {
         start: 0,
         rows: 100,
       });
-      setOption(authoring_getTagItems);
+      // removing duplicate categories from response
+      setOption(
+        authoring_getTagItems.filter((obj, index) => {
+          return index === authoring_getTagItems.findIndex((o) => obj.category === o.category);
+        }),
+      );
     } catch (error) {
       setOption([]);
+      ShowToastError(t("api_error_toast"));
     }
-  };
-
-  const crossButtonHandle = () => {
-    setIsSuccessPopup(false);
   };
 
   useEffect(() => {
@@ -228,6 +230,7 @@ export const CreateTags = () => {
                       placeholder={t("choose_category")}
                       value={category}
                       onChange={handleChange}
+                      disabled={!!publishUrl}
                       MenuProps={MenuProps}
                       sx={{
                         color: category === "Choose Category" ? "#ced3d9" : "#2d2d39",
@@ -256,8 +259,16 @@ export const CreateTags = () => {
                   value={radio}
                   onChange={handleRadioChange}
                   row>
-                  <RadioControlLabel value='choose_category' label={t("choose_category")} />
-                  <RadioControlLabel value='create_category' label={t("create_category")} />
+                  <RadioControlLabel
+                    value='choose_category'
+                    disabled={!!publishUrl}
+                    label={t("choose_category")}
+                  />
+                  <RadioControlLabel
+                    value='create_category'
+                    disabled={!!publishUrl}
+                    label={t("create_category")}
+                  />
                 </RadioGroup>
               </Grid>
             </Grid>
@@ -321,19 +332,6 @@ export const CreateTags = () => {
           </CommonBoxWithNumber>
         </Box>
       </Box>
-      {isSuccessPopup && (
-        <PlateformXDialogSuccess
-          isDialogOpen={isSuccessPopup}
-          title={t("congratulations")}
-          subTitle={`${t("tag")} ${t("published_toast")}`}
-          confirmButtonText={t("go_to_listing")}
-          confirmButtonHandle={() => navigate("/site-setting/tags")}
-          modalType='publish'
-          crossButtonHandle={crossButtonHandle}
-          closeButtonHandle={crossButtonHandle}
-          closeIcon={<CreateRoundedIcon />}
-        />
-      )}
     </>
   );
 };

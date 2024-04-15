@@ -13,6 +13,7 @@ import {
   NoSearchResult,
   ShowToastError,
   ShowToastSuccess,
+  useAccess,
 } from "@platformx/utilities";
 import { t } from "i18next";
 import { useEffect, useState } from "react";
@@ -26,6 +27,7 @@ export const TagListing = () => {
   const [tags, setTags] = useState<any>([]);
   const [startIndex, setStartIndex] = useState<any>(0);
   const [isFetchMore] = useState(true);
+  const { canAccessAction } = useAccess();
   const ROWS = 10;
 
   const fetchTag = async (nextIndex) => {
@@ -159,6 +161,7 @@ export const TagListing = () => {
                             edit={editTag}
                             onUnpublish={onUnpublish}
                             deleteContent={handleDelete}
+                            canAccessAction={canAccessAction}
                           />
                         }
                       />

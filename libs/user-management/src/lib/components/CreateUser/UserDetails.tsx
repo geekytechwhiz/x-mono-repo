@@ -1,6 +1,5 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { withStyles } from "@mui/styles";
-
 import {
   Autocomplete,
   Box,
@@ -30,7 +29,7 @@ import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 import { Constants } from "./Constants";
 import { useCustomStyle } from "./RolePermissions.style";
 
-const styles = (theme: any) => ({
+const styles = () => ({
   notchedOutline: {
     borderWidth: "1px",
     borderColor: "rgb(211,47,47) !important",

@@ -160,7 +160,7 @@ export const FooterSetting = () => {
         .then(() => {
           publishfooterSetting();
         })
-        .catch((err) => {
+        .catch(() => {
           setIsLoading(false);
           ShowToastError(t("api_error_toast"));
         });

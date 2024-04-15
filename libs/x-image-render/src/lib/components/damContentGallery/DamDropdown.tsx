@@ -9,6 +9,8 @@ import "./DamDropdown.css";
 import { t } from "i18next";
 import { capitalizeFirstLetter } from "@platformx/utilities";
 
+const ITEM_HEIGHT = 48;
+
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -54,7 +56,7 @@ export default function DamDropdown({ setAuthor, label }) {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event, lbl) => {
+  const handleClose = (lbl) => {
     setAuthor(lbl);
     setAnchorEl(null);
   };
@@ -81,6 +83,12 @@ export default function DamDropdown({ setAuthor, label }) {
             MenuListProps={{
               "aria-labelledby": "demo-customized-button",
             }}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: "15ch",
+              },
+            }}
             anchorEl={anchorEl}
             open={open}
             onClose={() => setAnchorEl(null)}>
@@ -88,7 +96,7 @@ export default function DamDropdown({ setAuthor, label }) {
               label[val]?.map((obj) => (
                 <MenuItem
                   key={obj.label}
-                  onClick={(e) => handleClose(e, obj.label)}
+                  onClick={() => handleClose(obj.label)}
                   disableRipple
                   defaultValue={obj.label}>
                   {capitalizeFirstLetter(obj.label?.toLowerCase())}

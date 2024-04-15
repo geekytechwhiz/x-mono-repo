@@ -20,7 +20,7 @@ export default function NavMenuView({ handleSelectedType }) {
         handleSelectedType={handleSelectedType}
         setOpenGuideline={setOpenGuideline}
         setOpenFirstPage={setOpenFirstPage}
-        openFirstPage={openFirstPage}
+        // openFirstPage={openFirstPage}
         setEditData={setEditData}
         clickConfirm={clickConfirm}
       />

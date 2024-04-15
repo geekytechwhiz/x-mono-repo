@@ -5,6 +5,7 @@ import { useStoryStyle } from "./Storytags.style";
 import { ChooseTags } from "@platformx/content";
 import { useEffect, useState } from "react";
 import { articleApi } from "@platformx/authoring-apis";
+import { t } from "i18next";
 
 export type DialogList = {
   isDialogOpen: boolean;
@@ -60,21 +61,20 @@ export default function PlateformXStoryDialog({
         <Box className={classes.dialogboxin}>
           <Box className={classes.modalboxone}>
             <Box>
-              <Typography variant='h5bold'>My Story Tags</Typography>
+              <Typography variant='h5bold'>{t("my_story_tags")}</Typography>
             </Box>
             <Grid container>
               <Grid item xs={8} md={6} lg={6}>
                 <Box>
                   <Typography variant='h7regular' className={classes.textupload}>
-                    choosing keywords to categories and organize information for easy retrival and
-                    nevigation.
+                    {t("mystory_info")}
                   </Typography>
                 </Box>
               </Grid>
               <Grid item xs={4} md={6} lg={6}>
                 <Box className={classes.boxbtn}>
                   <Button className={classes.btn} onClick={closeButtonHandle} variant='outlined'>
-                    cancel
+                    {t("cancel")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -82,7 +82,7 @@ export default function PlateformXStoryDialog({
                       onDone(tagArr);
                     }}
                     variant='primaryButton'>
-                    save
+                    {t("save")}
                   </Button>
                 </Box>
                 <Box className={classes.closeicon}>

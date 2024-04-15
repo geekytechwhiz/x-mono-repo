@@ -1,8 +1,10 @@
 import { Box, Button } from "@mui/material";
 import { ToolTip, WorkflowIcon } from "@platformx/utilities";
+import { useTranslation } from "react-i18next";
 import { useStyles } from "./WorkflowHistoryIcon.styles";
 
 const WorkflowHistoryIcon = ({ workflow_status, enableWorkflowHistory }) => {
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <ToolTip
@@ -28,7 +30,7 @@ const WorkflowHistoryIcon = ({ workflow_status, enableWorkflowHistory }) => {
           </Button>
         </Box>
       }
-      Title={workflow_status === "draft" ? "No Workflow history" : "View Workflow history"}
+      Title={workflow_status === "draft" ? t("no_workflow_history") : t("view_workflow_history")}
       position='bottom'
     />
   );

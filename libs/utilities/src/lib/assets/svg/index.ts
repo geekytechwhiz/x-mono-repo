@@ -17,7 +17,6 @@ import EventsIcon from "./Event.svg";
 import EyeIcon from "./Eye.svg";
 import FilterIcon from "./FilterIcon.svg";
 import { default as VODIcon } from "./VODIcon.svg";
-// import  DraftIcon from './draftIcon.svg';
 import AssetManagerIcon from "./DashBoardBoostContent/AssetManager.svg";
 import EcommerceIcon from "./DashBoardBoostContent/Ecommerce.svg";
 import LoyalityIcon from "./DashBoardBoostContent/Loyality.svg";
@@ -254,11 +253,13 @@ import NoAssetSelected from "./NoAssetSelected.svg";
 import VideoNav from "./VideoMenuIcon.svg";
 import GlobalSetting from "./GlobalSetting.svg";
 import UploadThumbnail from "./UploadThumbnail.svg";
+import HashTag from "./Hashtag.svg";
 
 export {
   RedBlinkingDot as liveIcon,
   IconFbSvg,
   GlobalSetting,
+  HashTag,
   IconGoogleSvg,
   IconVisaCardSvg,
   VideoNav,
