@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { Box, Divider, Grid } from "@mui/material";
 import {
@@ -67,7 +68,7 @@ export const CreateVod = () => {
   const [stateManage, setStateManage] = useState<any>({});
   const [draftPageURL, setDraftPageURL] = useState<string>("");
   const [runFetchVodById] = useLazyQuery(fetchVodById);
-  const [parentToolTip] = useState("");
+  const [parentToolTip, setParentToolTip] = useState("");
   // const [scrollToView, setScrollToView] = useState("");
   const [runFetchTagList] = useLazyQuery(FETCH_TAG_LIST_QUERY);
   const [mutatePublish] = useMutation(publish_vod);
@@ -89,7 +90,7 @@ export const CreateVod = () => {
   const vodRef = useRef<any>(currentContent ? currentContent : DEF_VOD);
   const tagRef = useRef<any>([]);
   const [isDraftDisabled, setDraftDisabled] = useState<boolean>(true);
-
+  const scrollDebounceRef = useRef<any>(null);
   const workflowSubmitRequest = async (workflowObj, status) => {
     const { success, workflow_status } = await workflowRequest(workflowObj, status);
     if (success) {
@@ -690,6 +691,36 @@ export const CreateVod = () => {
     }
   }, [vodRef.current, errors]);
 
+  const isInViewport = (element) => {
+    const mainElement = document.querySelector(`#${element}`);
+    if (mainElement) {
+      const rect = mainElement.getBoundingClientRect();
+      return rect.top <= window.pageYOffset + window.innerHeight && rect.top >= window.pageYOffset;
+    }
+    return false;
+  };
+
+  const scrollHandler = () => {
+    if (scrollDebounceRef.current) {
+      clearTimeout(scrollDebounceRef.current);
+    }
+    const timeOutId = setTimeout(() => {
+      const active = icons.find((i) => isInViewport(i.id));
+      if (active && active.tooltip !== parentToolTip) {
+        setParentToolTip(active.tooltip);
+      }
+    }, 100);
+    scrollDebounceRef.current = timeOutId;
+  };
+
+  useEffect(() => {
+    const dataHolder = document.getElementById("scrollableDiv");
+    dataHolder?.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
+
   return (
     <>
       <Box>
@@ -728,7 +759,8 @@ export const CreateVod = () => {
             },
             overflowY: "scroll",
             overflowX: "hidden",
-          }}>
+          }}
+          id='scrollableDiv'>
           <Box
             sx={{
               position: "fixed",
@@ -739,7 +771,7 @@ export const CreateVod = () => {
             <ContentPageScroll
               icons={icons}
               parentToolTip={parentToolTip}
-              scrollToView={undefined} // scrollToView={scrollToView}
+              scrollToView={""} // scrollToView={scrollToView}
             />
           </Box>
           {/* Video Start */}
@@ -901,7 +933,6 @@ export const CreateVod = () => {
 
       {showExitWarning && (
         <CommonPlateformXDialog
-          disableConfirmButton={isDraftDisabled}
           isDialogOpen={showExitWarning}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
