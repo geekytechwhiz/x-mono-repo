@@ -94,28 +94,33 @@ const CreateUser = () => {
       default_site_checked,
       is_Authoring_User,
       is_Rendering_User,
+      is_Community_User,
       enabled,
     } = userDetails || {};
     const sites = [...(accessible_sites || []), getSelectedSite()].filter(
       (val, index, arr) => arr.indexOf(val) === index,
     );
-    //const temp = default_site_checked ? sites : accessible_sites || sites;
-    const isRoleExist = prevRoles.find((obj: any) => obj?.site === getSelectedSite());
-    const roleid = prevRoles.map((obj: any) => {
-      if (obj?.site === getSelectedSite()) {
-        return roleSelected;
-      } else {
-        return obj._id;
-      }
-    });
+    let isRoleExist, roleid;
+    if (!is_Rendering_User) {
+      isRoleExist = prevRoles.find((obj: any) => {
+        return obj?.site === getSelectedSite();
+      });
+      roleid = prevRoles.map((obj: any) => {
+        if (obj?.site === getSelectedSite()) {
+          return roleSelected;
+        } else {
+          return obj._id;
+        }
+      });
 
-    !isRoleExist && roleSelected && roleid.push(roleSelected);
+      !isRoleExist && roleSelected && roleid.push(roleSelected);
+    }
 
     const updateRequest = {
       first_name: formik.values.first_name,
       last_name: formik.values.last_name,
       timezone: timezone,
-      role_id: roleid,
+      role_id: roleid ? roleid : null,
       image: image,
       phone: `${isd}-${phone}`,
       id: isEditMode.current,
@@ -133,6 +138,7 @@ const CreateUser = () => {
       gender: formik.values.gender,
       is_Authoring_User: is_Authoring_User,
       is_Rendering_User: is_Rendering_User,
+      is_Community_User: is_Community_User,
       ...(is_Rendering_User && { enabled }),
     };
 
