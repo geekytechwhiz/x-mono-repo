@@ -197,6 +197,29 @@ export const useCustomStyle = makeStyles(() => {
             height: "50px",
           },
         },
+        "& .noProductWrapper": {
+          minHeight: "255px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "center",
+          textAlign: "center",
+          margin: "0px auto",
+          [theme.breakpoints.up("md")]: {
+            minHeight: "290px",
+          },
+          [theme.breakpoints.up("em")]: {
+            minHeight: "400px",
+          },
+          "& svg": {
+            fill: theme.palette.prelemType1.PARAGRAPH,
+            opacity: 0.6,
+          },
+        },
+        "& .iconSize": {
+          fontSize: "50px",
+        },
       },
     },
   };
