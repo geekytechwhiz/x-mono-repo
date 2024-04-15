@@ -23,12 +23,14 @@ import { usePostImageCrop } from "./hooks/usePostImageCrop";
 //   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 // };
 interface XImageRenderProps {
+  // eslint-disable-next-line no-unused-vars
   callBack: (obj?: any, name?: string) => void;
   editData: any;
   isCrop?: boolean;
   name?: string;
   isColorPallete?: boolean;
   handleRefresh: () => void;
+  // eslint-disable-next-line no-unused-vars
   handleColorPallete: (color: string) => void;
 }
 
@@ -513,8 +515,6 @@ XImageRender.defaultProps = {
   isCrop: true,
   name: "",
   isColorPallete: false,
-};
-XImageRender.defaultProps = {
   handleColorPallete: () => {},
   handleRefresh: () => {},
   callBack: () => {},

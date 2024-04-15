@@ -1273,6 +1273,8 @@
   "confirm_password": "Confirm Password",
   "changepassword_quote": "Don’t worry",
   "changepassword_quote_message": "We are here to help you",
+  "will_publish_on": "Will Publish On",
+  "will_unpublish_on": "Will Unpublish On",
   "log_in": "Log In",
   "my_profile": "My Profile",
   "logout_text": "Logout",

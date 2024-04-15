@@ -1266,6 +1266,8 @@
   "changepassword_quote": "Ne t'inquiète pas",
   "changepassword_quote_message": "Nous sommes là pour vous aider",
   "log_in": "Se connecter",
+  "will_publish_on": "Publiera le",
+  "will_unpublish_on": "Ne sera pas publié le",
   "my_profile": "Mon profil",
   "logout_text": "Se déconnecter",
   "is_mandatory": "est obligatoire"

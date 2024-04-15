@@ -1,7 +1,7 @@
-import { makeStyles, withStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 import StepConnector from "@mui/material/StepConnector";
 import { styled } from "@mui/material/styles";
+import { makeStyles, withStyles } from "@mui/styles";
 import { ThemeConstants } from "@platformx/utilities";
 
 export const StyledConnector = withStyles((theme) => ({
@@ -62,9 +62,17 @@ export const StyledStepIcon = styled("div")<{
 }));
 
 export const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    paddingTop: "25px",
+  },
   labelContainer: {
+    flexDirection: "column",
     [theme.breakpoints.down(ThemeConstants.SM)]: {
       alignItems: "flex-start",
+      flexDirection: "row",
+    },
+    "& .Platform-x-StepLabel-iconContainer": {
+      padding: "0px",
     },
   },
 }));

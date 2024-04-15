@@ -27,12 +27,15 @@ const ArticleComponent = (props) => {
   };
 
   return (
-    <ArticlePrelem
-      content={prelemContentProp}
-      analytics={prelemAnalyticsProp}
-      authoringHelper={prelemAuthoringHelper}
-      secondaryArgs={secondaryArgs}
-    />
+    <>
+      <p>from monorepo</p>
+      <ArticlePrelem
+        content={prelemContentProp}
+        analytics={prelemAnalyticsProp}
+        authoringHelper={prelemAuthoringHelper}
+        secondaryArgs={secondaryArgs}
+      />
+    </>
   );
 };
 

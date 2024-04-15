@@ -33,7 +33,7 @@ const CreateSpace = () => {
   const [createSpace] = useMutation(CREATE_SPACE);
   const [updateSpace] = useMutation(UPDATE_SPACE);
   const [readOnly, setReadOnly] = useState(false);
-  const [spaceType, setSpaceType] = useState("Create");
+  const [spaceType, setSpaceType] = useState("create");
   const [stateSpace, setStateSpace] = useState({
     displayName: "",
     description: "",
@@ -170,7 +170,7 @@ const CreateSpace = () => {
         <Box>
           <Header
             returnBack={returnBack}
-            type={`${spaceType} space`}
+            type={`${t(spaceType)} ${t("space")}`}
             createUpdateHandler={createUpdateHandler}
             disableButton={readOnly}
           />
