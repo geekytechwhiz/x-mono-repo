@@ -45,17 +45,6 @@ export const Card = ({
     switch (tagName) {
       case "sitepage":
         return (
-          // <PlateformXDialog
-          //   isDialogOpen
-          //   title={t("delete_title")}
-          //   subTitle={subTitle}
-          //   closeButtonText={t("no")}
-          //   confirmButtonText={t("yes")}
-          //   closeButtonHandle={() => {
-          //     setDelete(false);
-          //   }}
-          //   confirmButtonHandle={handleConfirmation}
-          // />
           <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
@@ -75,17 +64,6 @@ export const Card = ({
       case "event":
       case "article":
         return (
-          // <PlateformXDialog
-          //   isDialogOpen
-          //   title={t("delete_title")}
-          //   subTitle={subTitle}
-          //   closeButtonText={t("no_keep_it")}
-          //   confirmButtonText={t("yes_delete_it")}
-          //   closeButtonHandle={() => {
-          //     setDelete(false);
-          //   }}
-          //   confirmButtonHandle={handleConfirmation}
-          // />
           <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}

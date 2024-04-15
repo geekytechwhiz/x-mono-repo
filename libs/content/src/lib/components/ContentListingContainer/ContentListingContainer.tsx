@@ -40,6 +40,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     editPage,
     fetchContentDetails,
     duplicateToSite,
+    loading: deleteLoading,
   } = useContentActions("ALL");
 
   const memoizedMethods = useMemo(
@@ -132,6 +133,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         edit={memoizedMethods.edit}
         editPage={memoizedMethods.editPage}
         loading={loading}
+        deleteContentLoading={deleteLoading}
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}
