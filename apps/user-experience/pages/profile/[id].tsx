@@ -65,7 +65,7 @@ const Profile = (props: any) => {
     query: route?.query,
   };
 
-  usePageImpression(pageData, inView, instances, SNOWPLOW.CONTENT_TYPE.ARTICLE, route, site_host);
+  usePageImpression(pageData, inView, instances, SNOWPLOW.CONTENT_TYPE.PROFILE, route, site_host);
 
   return (
     <Box ref={ref}>
