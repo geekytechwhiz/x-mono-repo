@@ -56,9 +56,11 @@ import {
   useUserSession,
   workflowKeys,
 } from "@platformx/utilities";
+import { WorkflowHistory } from "@platformx/workflow-management";
 import { addMinutes, format } from "date-fns";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import ContentGallery from "../../components/ContentGallery/ContentGallery";
 import DynamicContentGallery from "../../components/ContentGallery/DynamicContentGallery";
@@ -69,11 +71,13 @@ import HeaderMobile from "../EditPageHeader/HeaderMobile";
 import LeftBox from "../PageContainer/LeftBox";
 import PageLayout from "../PageContainer/PageContainer";
 import RightBox from "../PageContainer/RightBox";
+import PageSettingList from "../PageSettingList/PageSettingList";
 import Analytics from "../PageSettings/Analytics";
 import PageInfo from "../PageSettings/PageInfo";
 import SEOBasics from "../PageSettings/SEOBasics";
 import Schedule from "../PageSettings/Schedule";
 import SocialShare from "../PageSettings/SocialShare";
+import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
 import PrelemSettingMenu from "../PrelemSettingMenu/PrelemSettingMenu";
 import PrelemInfo from "../PrelemSettings/PrelemInfo";
 import PrelemSettingsCard from "../PrelemSettings/PrelemSettingsCard";
@@ -89,12 +93,8 @@ import {
 } from "../utils/constants";
 import { PrelemInstance } from "../utils/editTypes";
 import { consolidatePageModel } from "../utils/helper";
-import { useStyles } from "./EditPageContainer.styles";
-//import WorkflowHistory from "../../../../components/WorkflowHistory/WorkflowHistory";
-import { useDispatch, useSelector } from "react-redux";
-import PageSettingList from "../PageSettingList/PageSettingList";
-import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
 import { Dashboard_Keys } from "../utils/types";
+import { useStyles } from "./EditPageContainer.styles";
 
 const EditPageContainer = () => {
   const dispatch = useDispatch();
@@ -1118,10 +1118,10 @@ const EditPageContainer = () => {
       )}
       {enableWorkflowHistory ? (
         <Box className={classes.workflowPage}>
-          {/* <WorkflowHistory
+          <WorkflowHistory
             workflow={workflow}
             setEnableWorkflowHistory={setEnableWorkflowHistory}
-          /> */}
+          />
         </Box>
       ) : (
         <Box>

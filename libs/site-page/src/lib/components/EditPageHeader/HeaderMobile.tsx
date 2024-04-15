@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { KeyboardBackspace, SaveOutlined } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
@@ -7,10 +8,10 @@ import {
   ErrorTooltip,
   Submit,
   Timer,
-  WorkflowHistoryIcon,
   enableReferBack,
   useAccess,
 } from "@platformx/utilities";
+import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./Header.styles";

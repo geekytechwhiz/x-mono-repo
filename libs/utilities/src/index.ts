@@ -7,6 +7,7 @@ import ContentGridLoader from "./lib/components/ContentGridLoader";
 import DatePicker from "./lib/components/DatePicker/DatePicker";
 import DuplicateContentPopup from "./lib/components/DuplicateContentPopup/DuplicateContentPopup";
 import Error from "./lib/components/Error/Error";
+import ErrorBoundary from "./lib/components/ErrorBoundary";
 import { ErrorTooltip } from "./lib/components/ErrorTooltip/ErrorTooltip";
 import { MiniHeader } from "./lib/components/Header/MiniHeader";
 import Icons from "./lib/components/Icons";
@@ -33,7 +34,6 @@ import {
   ShowToastError,
   ShowToastSuccess,
 } from "./lib/components/ToastNotification/ToastNotification";
-import ErrorBoundary from "./lib/components/ErrorBoundary";
 import {
   AUTH_INFO,
   AUTH_URL,
@@ -73,11 +73,10 @@ import {
 } from "./lib/components/SchemaComponents";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
 
-import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 import LoadingTextModal from "./lib/components/LoadingTextModal";
 import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import Submit from "./lib/components/Submit/Submit";
-import WorkflowHistoryIcon from "./lib/components/WorkflowHistoryIcon/WorkflowHistoryIcon";
+import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 import XDialog from "./lib/components/XDialog/XDialog";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
 import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
@@ -192,7 +191,6 @@ export {
   ToastContainerHandle,
   ToolTip,
   USERNAME_EMAIL_EXIST,
-  WorkflowHistoryIcon,
   XAnimatedLoader,
   XButton,
   XCheckBox,

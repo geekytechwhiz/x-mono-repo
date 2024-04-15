@@ -1282,5 +1282,8 @@
   "log_in": "Log In",
   "my_profile": "My Profile",
   "logout_text": "Logout",
-  "is_mandatory": "is Mandatory"
+  "is_mandatory": "is Mandatory",
+  "assets_picker_images": "Assets Picker Images",
+  "no_workflow_history": "No workflow history",
+  "view_workflow_history": "View Workflow History"
 }

@@ -147,12 +147,12 @@ const XImageRender = ({
   const toggleGallery = (toggleState: boolean, type: string) => {
     setGalleryDialogOpen(toggleState);
     if (type === "cancel") {
-      setSelectedImage({
-        title: "",
-        Thumbnail: "",
-        description: "",
-        bitStreamId: "",
-      });
+      // setSelectedImage({
+      //   title: "",
+      //   Thumbnail: "",
+      //   description: "",
+      //   bitStreamId: "",
+      // });
     }
   };
 
