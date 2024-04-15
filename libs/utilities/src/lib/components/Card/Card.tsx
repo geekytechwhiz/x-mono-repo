@@ -2,7 +2,6 @@ import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 import "./List.css";
 import { CommonPlateformXDialog } from "@platformx/utilities";
 import { RedBlinkingDot } from "../../assets/svg";
@@ -198,16 +197,6 @@ export const Card = ({
     setDelete(true);
   };
 
-  const getContentCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
-      ? CATEGORY_PAGE
-      : CATEGORY_CONTENT;
-  };
-
-  const getContentSubCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
-  };
-
   return (
     <>
       {isDelete && renderConfirmation()}
@@ -333,8 +322,6 @@ export const Card = ({
                 handleEdit={handleEdit}
                 canAccessAction={canAccessAction}
                 handleDeleteButton={handleDeleteButton}
-                getContentCategory={getContentCategory}
-                getContentSubCategory={getContentSubCategory}
               />
               {CustomMenuList}
             </Box>
