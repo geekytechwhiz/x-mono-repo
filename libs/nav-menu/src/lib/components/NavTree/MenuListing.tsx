@@ -12,12 +12,9 @@ import { ItemlistProps } from "./utils/types";
 
 export const MenuListing = ({
   setPageName1,
-  isDisable,
   currentButton,
   setCurrentButton,
-  isDisableDone,
   setisIsDisableDone,
-  isPageListCall,
   setUrl,
   editData,
   isedit,
@@ -39,7 +36,7 @@ export const MenuListing = ({
   );
   const [items, setItem] = useState<ItemlistProps[]>();
 
-  const arr = items?.filter((item, i) => {
+  const arr = items?.filter((item) => {
     if (item.Status === "published") return item;
     return item;
   });
@@ -63,7 +60,7 @@ export const MenuListing = ({
           setIsLazyLoad(false);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setItem([]);
       });
   };
@@ -95,7 +92,7 @@ export const MenuListing = ({
           setIsLazyLoad(true);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         // console.log(JSON.stringify(err, null, 2));
       });
   }, []);
@@ -176,35 +173,48 @@ export const MenuListing = ({
                 padding: "5px 25px",
                 marginBottom: "14px",
               }}>
-              <Grid item xs={2.4} sx={{ marginRight: "2%" }}>
+              <Grid
+                item
+                xs={4}
+                //  sx={{ marginRight: "2%" }}
+              >
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
                   {`${t("page_title")}`}
                 </Typography>
               </Grid>
-              <Grid item xs={2.8} sx={{ marginRight: "2.8%" }}>
+              {/* <Grid item xs={2.8} sx={{ marginRight: "2.8%" }}>
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
                   {t("description")}
                 </Typography>
-              </Grid>
-              <Grid item xs={1} md={1.5} sx={{ marginRight: "3.2%" }}>
+              </Grid> */}
+              <Grid
+                item
+                xs={1}
+                md={3}
+                // sx={{ marginRight: "3.2%" }}
+              >
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
                   {t("author")}
                 </Typography>
               </Grid>
-              <Grid item xs={2.6} sx={{ marginRight: "3%" }}>
+              <Grid
+                item
+                xs={3.25}
+                //    sx={{ marginRight: "3%" }}
+              >
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
-                  {t("published_time")}
+                  {t("published_date")}
                 </Typography>
               </Grid>
-              <Grid item xs={0.5} md={1}>
+              <Grid item xs={3} md={1.75}>
                 <Typography
                   variant='h6regular'
                   sx={{ color: "#b3b3b3", textTransform: "capitalize" }}>
@@ -228,10 +238,10 @@ export const MenuListing = ({
                       article={item}
                       index={index}
                       setPageName1={setPageName1}
-                      isDisable={isDisable}
+                      // isDisable={isDisable}
                       currentButton={currentButton}
                       setCurrentButton={setCurrentButton}
-                      isDisableDone={isDisableDone}
+                      // isDisableDone={isDisableDone}
                       setisIsDisableDone={setisIsDisableDone}
                       setUrl={setUrl}
                       editData={editData}

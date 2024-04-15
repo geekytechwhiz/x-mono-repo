@@ -91,7 +91,7 @@ export const CreateHeader = ({
               minHeight: "62px",
             }
       }>
-      <Grid item xs={2} md={5} em={4} sm={12} sx={{ display: "flex", alignItems: "center" }}>
+      <Grid item xs={2} em={publishText ? 3 : 4} sx={{ display: "flex", alignItems: "center" }}>
         <Button
           variant='text'
           disableRipple
@@ -101,6 +101,7 @@ export const CreateHeader = ({
             minWidth: "0px",
             textTransform: "capitalize",
             "&:hover": { backgroundColor: "transparent" },
+            padding: "0px",
           }}
           onClick={handleReturn}>
           {!noWeb && <Typography variant='h4bold'>{id ? editText : createText}</Typography>}
@@ -108,10 +109,7 @@ export const CreateHeader = ({
       </Grid>
       <Grid
         item
-        xs={6}
-        md={7}
-        em={8}
-        sm={12}
+        em={publishText ? 9 : 8}
         sx={{ display: { xs: "none", em: "flex" }, alignItems: "center" }}
         direction='row-reverse'
         container
@@ -134,7 +132,7 @@ export const CreateHeader = ({
               variant='secondaryButton'
               disabled={!canAccessAction(category, subCategory, "Create") || hasSaveButton}
               className='sm'
-              sx={{ marginRight: "12px", marginLeft: "12px" }}
+              sx={{ marginRight: "12px", marginLeft: "6px" }}
               onClick={() => handleSaveOrPublish(false)}>
               {saveText}
             </Button>
@@ -211,9 +209,6 @@ export const CreateHeader = ({
       <Grid
         item
         xs={10}
-        md={7}
-        em={8}
-        sm={7}
         sx={{ display: { xs: "flex", em: "none" } }}
         direction='row-reverse'
         container

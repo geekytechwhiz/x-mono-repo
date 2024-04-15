@@ -51,7 +51,7 @@ export const Template: any = {
         name: "title",
         title: "Title",
         index: "01",
-        description: "This will be the your quiz title",
+        description: "This will be your quiz title",
         placeholder: "Enter your title here",
         validations: [
           {
@@ -71,7 +71,7 @@ export const Template: any = {
         name: "short_title",
         title: "Short Title",
         index: "01",
-        description: "This will be the your quiz short title",
+        description: "This will be your quiz short title",
         placeholder: "Enter your short title here",
         validations: [
           {
@@ -91,7 +91,7 @@ export const Template: any = {
         name: "short_description",
         title: "Short description",
         index: "01",
-        description: "This will be the your quiz short title",
+        description: "This will be your quiz short title",
         placeholder: "Enter your short title here",
         validations: [
           {
@@ -112,7 +112,7 @@ export const Template: any = {
         name: "description",
         title: "Description",
         index: "01",
-        description: "This will be the your quiz description",
+        description: "This will be your quiz description",
         placeholder: "Enter your description here",
         validations: [
           {
@@ -594,7 +594,7 @@ export const AddQuestionData = {
       name: "short_title",
       title: "Question*",
       index: "01",
-      description: "This will be the your quiz question",
+      description: "This will be your quiz question",
       placeholder: "Write your question here",
       validations: [
         {

@@ -1,17 +1,17 @@
 /* eslint-disable no-shadow */
 import { Box, Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
+  BasicSwitch,
   ShowToastSuccess,
   ThemeConstants,
-  BasicSwitch,
   usePlatformAnalytics,
 } from "@platformx/utilities";
-import { PrelemImagesProps } from "../utils/editTypes";
-import "../PageSettings/PageSettings.css";
 import { XImageRender } from "@platformx/x-image-render";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../PageSettings/PageSettings.css";
+import { PrelemImagesProps } from "../utils/editTypes";
 
 const PrelemImages: React.FC<PrelemImagesProps> = ({
   index,
@@ -24,11 +24,11 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
   const [content, setContent] = useState(original_image);
   const [handleImpression] = usePlatformAnalytics();
   const [originalImage, setOriginalImage] = useState({
-    Thumbnail: original_image?.original_image_relative_path,
-    bitStreamId: original_image?.bitStreamId,
-    auto: original_image.auto,
-    ext: original_image?.ext,
-    Visibility: original_image?.visibility,
+    Thumbnail: "",
+    bitStreamId: "",
+    auto: "",
+    ext: "",
+    Visibility: "",
   });
   const [publishedImages, setPublishedImages] = useState(published_images);
 
@@ -111,6 +111,15 @@ const PrelemImages: React.FC<PrelemImagesProps> = ({
     setOriginalImage(original_image);
     setPublishedImages(published_images);
   };
+  useEffect(() => {
+    setOriginalImage({
+      Thumbnail: original_image?.Url,
+      bitStreamId: original_image?.bitStreamId,
+      auto: original_image.auto,
+      ext: original_image?.ext,
+      Visibility: original_image?.visibility,
+    });
+  }, [original_image]);
 
   return (
     <Box className='ImageSecWp'>

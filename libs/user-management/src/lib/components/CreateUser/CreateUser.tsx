@@ -9,7 +9,6 @@ import {
 import {
   CommonPlateformXDialog,
   Loader,
-  PlateformXDialog,
   ShowToastError,
   ShowToastSuccess,
   ThemeConstants,
@@ -546,7 +545,7 @@ const CreateUser = () => {
       tooltip: "rolepermission",
     },
   ];
-  const isInViewport = (element: any, isSeo: any) => {
+  const isInViewport = (element: any) => {
     const mainElement = document.querySelector(`#${element}`);
     if (mainElement) {
       const rect = mainElement.getBoundingClientRect();
@@ -560,7 +559,7 @@ const CreateUser = () => {
     return false;
   };
   const scrollHandler = () => {
-    const active: any = icons.find((i) => isInViewport(i.id, false));
+    const active: any = icons.find((i) => isInViewport(i.id));
 
     setParentToolTip(active?.tooltip);
   };
@@ -644,17 +643,16 @@ const CreateUser = () => {
           )}
         </Box>
       </form>
-      <PlateformXDialog
+      <CommonPlateformXDialog
         isDialogOpen={showExitWarning}
         title={t("save_warn_title")}
         subTitle={t("save_warn_subtitle")}
-        closeButtonText={t("take_me_out")}
-        confirmButtonText={t("stay_here")}
-        closeButtonHandle={handleConfirm}
-        confirmButtonHandle={() => setShowExitWarning(false)}
-        crossButtonHandle={() => {
+        closeButtonText={t("stay_here")}
+        confirmButtonText={t("take_me_out")}
+        closeButtonHandle={() => {
           setShowExitWarning(false);
         }}
+        confirmButtonHandle={handleConfirm}
         modalType='unsavedChanges'
       />
       {/* <PlateformXDialog

@@ -1536,14 +1536,14 @@ function CreateMenuPage({
         <SelectPageList
           isedit={isedit}
           handleBack={handleBack}
-          activeStep={activeStep}
+          // activeStep={activeStep}
           setActiveStep={setActiveStep}
           handleNext={handleNext}
           setPageFinalPage={setPageFinalPage}
           setPageName1={setPageName1}
           setIsPageList={setIsPageList}
           setPageListOpen={setPageListOpen}
-          isPageListCall={isPageListCall}
+          // isPageListCall={isPageListCall}
           setUrl={setUrl}
           currentButton={currentButton}
           setCurrentButton={setCurrentButton}

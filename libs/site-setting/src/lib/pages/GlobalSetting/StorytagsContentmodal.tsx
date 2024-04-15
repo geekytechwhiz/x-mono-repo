@@ -4,6 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import { Tagvod, Tagevent, Tagquiz, Tagpoll, Tagarticalnew } from "@platformx/utilities";
 import { useState } from "react";
 import { useStoryStyle } from "./Storytags.style";
+import { t } from "i18next";
 
 export type DialogList = {
   isDialogOpen: boolean;
@@ -70,21 +71,20 @@ export default function PlateformXStoryContentDialog({
         <Box className={classes.dialogboxin}>
           <Box className={classes.modalboxone}>
             <Box>
-              <Typography variant='h5bold'>My Story Content Type</Typography>
+              <Typography variant='h5bold'>{t("my_story_content_type")}</Typography>
             </Box>
             <Grid container>
               <Grid item xs={8} md={6} lg={6}>
                 <Box>
                   <Typography variant='h7regular' className={classes.textupload}>
-                    choosing keywords to categories and organize information for easy retrieval and
-                    navigation.
+                    {t("mystory_info")}
                   </Typography>
                 </Box>
               </Grid>
               <Grid item xs={4} md={6} lg={6}>
                 <Box className={classes.boxbtn}>
                   <Button onClick={closeButtonHandle} className={classes.btn} variant='outlined'>
-                    cancel
+                    {t("cancel")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -92,7 +92,7 @@ export default function PlateformXStoryContentDialog({
                       onDone(selectedItems);
                     }}
                     variant='primaryButton'>
-                    save
+                    {t("save")}
                   </Button>
                 </Box>
                 <Box className={classes.closeicon}>
@@ -111,8 +111,7 @@ export default function PlateformXStoryContentDialog({
                     className={`${classes.boxin} ${
                       selectedItems.includes(transaction.contenttype) ? classes.selected : ""
                     }`}
-                    onClick={() => toggleSelection(transaction.contenttype)} // Toggle selection on click
-                  >
+                    onClick={() => toggleSelection(transaction.contenttype)}>
                     <Box
                       className={`${classes.borderbox} ${
                         selectedItems.includes(transaction.contenttype) ? classes.borderboxnew : ""

@@ -4,7 +4,6 @@ import { MenuListing } from "./MenuListing";
 
 export default function SelectPageList({
   handleBack,
-  activeStep,
   setActiveStep,
   handleNext,
   setPageFinalPage,
@@ -12,7 +11,6 @@ export default function SelectPageList({
   setIsPageList,
   setPageListOpen,
   editData,
-  isPageListCall,
   setUrl,
   currentButton,
   setCurrentButton,
@@ -22,9 +20,6 @@ export default function SelectPageList({
 }) {
   const { t } = useTranslation();
 
-  const isDisable = (value) => {
-    setisIsDisableDone(value);
-  };
   const onClickDone = () => {
     setIsPageList(false);
     handleNext();
@@ -87,12 +82,9 @@ export default function SelectPageList({
 
       <MenuListing
         setPageName1={setPageName1}
-        isDisable={isDisable}
         currentButton={currentButton}
         setCurrentButton={setCurrentButton}
-        isDisableDone={isDisableDone}
         setisIsDisableDone={setisIsDisableDone}
-        isPageListCall={isPageListCall}
         setUrl={setUrl}
         editData={editData}
         isedit={isedit}

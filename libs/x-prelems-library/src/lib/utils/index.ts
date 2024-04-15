@@ -1,3 +1,3 @@
-import { Mapping } from "./helper";
+import Mapping from "./mapping";
 
 export { Mapping };
