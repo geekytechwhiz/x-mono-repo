@@ -18,9 +18,11 @@ export const useCustomStyle = makeStyles(() => {
           textAlign: "justify",
         },
         "& .paperCard": {
+          [theme.breakpoints.down("md")]: {
+            width: "250px",
+          },
           [theme.breakpoints.up("xs")]: {
             height: "350px",
-            width: "250px",
           },
           [theme.breakpoints.up("lg")]: {
             height: "455px",
