@@ -22,7 +22,7 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
 
   const [sliderRef, setSliderRef] = useState<any>(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [slots, setSlots] = useState<any>();
+  const [slots, setSlots] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const fromBack = useRef(false);
   const { t } = useTranslation();
