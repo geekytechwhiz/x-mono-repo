@@ -329,20 +329,6 @@ export const AddSite = () => {
     return formValue;
   };
 
-  const handleToast = (response) => {
-    if (response) {
-      response
-        .then((res) => {
-          if (!res?.errors) {
-            setOpenPublishModal(true);
-          }
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
-  };
-
   const getZoneName = () => {
     const zone = adminDomainList.domainList.find(
       (control) => control.value === newSiteForm[0].value,
@@ -415,13 +401,14 @@ export const AddSite = () => {
       }
     } catch (error: any) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
   const onPublish = async () => {
     try {
       setIsLoading(true);
-      const publishRes = publishMultisiteInfo({
+      await publishMultisiteInfo({
         input: {
           page: siteName ? siteName : savedPageURL,
           status: "publish",
@@ -429,12 +416,12 @@ export const AddSite = () => {
           schedule_date_time: "",
         },
       });
-
-      await handleToast(publishRes);
+      setOpenPublishModal(true);
       setIsLoading(false);
       setIsSaved(false);
     } catch (error: any) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
