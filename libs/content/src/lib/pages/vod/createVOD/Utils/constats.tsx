@@ -1,4 +1,4 @@
-import { VODIcon, MenuIcon2, MenuIcon4, MenuIcon8 } from "@platformx/utilities";
+import { MenuIcon2, MenuIcon4, MenuIcon8, VODIcon } from "@platformx/utilities";
 
 export const DEF_VOD = {
   DsapceVideoUrl: "",
@@ -12,22 +12,22 @@ const createVodFlatIcon = [
   {
     id: "VideoAndThumbnail",
     iconName: VODIcon,
-    tooltip: "Video And Thumbnail",
+    tooltip: "video_thumbnail",
   },
   {
     id: "ImageAndThumbnail",
     iconName: MenuIcon8,
-    tooltip: "Image And Thumbnail",
+    tooltip: "image_thumbnail",
   },
   {
     id: "titleDescription",
     iconName: MenuIcon2,
-    tooltip: "Title & description",
+    tooltip: "title_description",
   },
   {
     id: "tags",
     iconName: MenuIcon4,
-    tooltip: "Choose Tags",
+    tooltip: "choose_tags",
   },
 ];
 

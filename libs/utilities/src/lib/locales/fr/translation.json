@@ -1277,5 +1277,9 @@
   "is_mandatory": "est obligatoire",
   "assets_picker_images": "Images du sélecteur d’actifs",
   "no_workflow_history": "Aucun historique de flux de travail",
-  "view_workflow_history": "Afficher l'historique du flux de travail"
+  "view_workflow_history": "Afficher l'historique du flux de travail",
+  "search_here": "Cherche ici",
+  "video_thumbnail": "Vidéo et vignette",
+  "image_thumbnail": "Image et vignette",
+  "ditle_description": "Description du titre"
 }
