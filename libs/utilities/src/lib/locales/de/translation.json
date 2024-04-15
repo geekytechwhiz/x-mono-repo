@@ -1275,5 +1275,8 @@
   "will_unpublish_on": "Wird die Veröffentlichung aufheben",
   "my_profile": "Mein Profil",
   "logout_text": "Ausloggen",
-  "is_mandatory": "ist obligatorisch"
+  "is_mandatory": "ist obligatorisch",
+  "assets_picker_images": "Bilder zur Asset-Auswahl",
+  "no_workflow_history": "Kein Workflow-Verlauf",
+  "view_workflow_history": "Workflow-Verlauf anzeigen"
 }

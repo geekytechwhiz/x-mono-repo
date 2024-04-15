@@ -1,5 +1,5 @@
 import CourseListIcon from "../../assets/svg/course-icon.svg";
-import DraftIcon from "../../assets/svg/draftIcon.svg";
+import DraftIcon from "../../assets/svg/DraftIcon.svg";
 import EventsListIcon from "../../assets/svg/event-fill.svg";
 import PublishedIcon from "../../assets/svg/PublishedIcon.svg";
 import UnpublishedIcon from "../../assets/svg/UnpublishedIcon.svg";

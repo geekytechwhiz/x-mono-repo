@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { ArrowBack } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
 import { RootState, setIsCommentPanelOpen, setIsReviewEnabled } from "@platformx/authoring-state";
@@ -9,10 +10,10 @@ import {
   SaveAnimationGif,
   Submit,
   Timer,
-  WorkflowHistoryIcon,
   enableReferBack,
   useAccess,
 } from "@platformx/utilities";
+import { WorkflowHistoryIcon } from "@platformx/workflow-management";
 import { memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";

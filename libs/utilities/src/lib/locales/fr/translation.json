@@ -1274,5 +1274,8 @@
   "will_unpublish_on": "Ne sera pas publié le",
   "my_profile": "Mon profil",
   "logout_text": "Se déconnecter",
-  "is_mandatory": "est obligatoire"
+  "is_mandatory": "est obligatoire",
+  "assets_picker_images": "Images du sélecteur d’actifs",
+  "no_workflow_history": "Aucun historique de flux de travail",
+  "view_workflow_history": "Afficher l'historique du flux de travail"
 }
