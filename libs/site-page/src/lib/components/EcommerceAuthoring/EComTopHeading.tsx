@@ -179,7 +179,7 @@ const EComTopHeading = (_props: eComTopHeadingprops) => {
                     fontSize: ThemeConstants.FONTSIZE_LG,
                   }}
                   onClick={searchToggle}>
-                  <SearchBlackSvg />
+                  <img src={SearchBlackSvg} alt='Search' />
                 </Typography>
 
                 <Typography
@@ -188,7 +188,7 @@ const EComTopHeading = (_props: eComTopHeadingprops) => {
                     fontSize: ThemeConstants.FONTSIZE_LG,
                   }}
                   onClick={toggleDrawer}>
-                  <MobileMenuIconSvg />
+                  <img src={MobileMenuIconSvg} alt='Mobile Menu' />
                 </Typography>
               </Grid>
             </>
@@ -220,7 +220,7 @@ const EComTopHeading = (_props: eComTopHeadingprops) => {
                   fontSize: ThemeConstants.FONTSIZE_LG,
                 }}
                 onClick={searchCloseToggle}>
-                <CloseSearchSvg />
+                <img src={CloseSearchSvg} alt='close search' />
               </Typography>
             </Grid>
           )}
