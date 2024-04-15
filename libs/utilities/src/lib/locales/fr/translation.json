@@ -1272,5 +1272,7 @@
   "logout_text": "Se déconnecter",
   "is_mandatory": "est obligatoire",
   "assets_picker_images": "Images du sélecteur d’actifs",
-  "you_have_selected": "Vous avez sélectionné"
+  "you_have_selected": "Vous avez sélectionné",
+  "no_workflow_history": "Aucun historique de flux de travail",
+  "view_workflow_history": "Afficher l'historique du flux de travail"
 }

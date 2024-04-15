@@ -1273,5 +1273,7 @@
   "logout_text": "Ausloggen",
   "is_mandatory": "ist obligatorisch",
   "assets_picker_images": "Bilder zur Asset-Auswahl",
-  "you_have_selected": "Du hast ausgewählt"
+  "you_have_selected": "Du hast ausgewählt",
+  "no_workflow_history": "Kein Workflow-Verlauf",
+  "view_workflow_history": "Workflow-Verlauf anzeigen"
 }

@@ -1280,5 +1280,7 @@
   "logout_text": "Logout",
   "is_mandatory": "is Mandatory",
   "assets_picker_images": "Assets Picker Images",
-  "you_have_selected": "You have selected"
+  "you_have_selected": "You have selected",
+  "no_workflow_history": "No workflow history",
+  "view_workflow_history": "View Workflow History"
 }
