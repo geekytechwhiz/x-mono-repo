@@ -212,7 +212,7 @@ const useDashboardData = (contentType = "ALL") => {
                     qusArry.push(qusObj);
                   }
                 })
-                .catch((err) => {
+                .catch(() => {
                   //error
                 });
             });
@@ -311,7 +311,7 @@ const useDashboardData = (contentType = "ALL") => {
             title: data.title,
           },
         },
-        onCompleted: (res) => {
+        onCompleted: () => {
           fetchDashBoardData();
         },
       });
