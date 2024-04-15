@@ -85,7 +85,7 @@ export const Header = (props) => {
         window.location.replace(LOGOUT_URL);
         break;
       case "PAGE_LIST":
-        navigate("/page-list");
+        navigate("/sitepage");
         break;
       default:
         navigate("/");
