@@ -17,7 +17,7 @@ import {
   statusIcons,
   MoreHorizIcon,
   Loader,
-  PlateformXDialog as PlateformXDialogDelete,
+  CommonPlateformXDialog as PlateformXDialogDelete,
   ShowToastError as showToastError,
 } from "@platformx/utilities";
 import { RegistrationConstants } from "./SpaceAccess/Constants";
@@ -257,6 +257,7 @@ const SpaceListingCard = ({
           confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={onCloseMenuActions}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       )}
       {menuActions.isLeave && (
@@ -268,6 +269,7 @@ const SpaceListingCard = ({
           confirmButtonText={t("leave")}
           closeButtonHandle={onCloseMenuActions}
           confirmButtonHandle={leaveSpaceHandlerFunction}
+          modalType='delete'
         />
       )}
       <Box className='listbox'>

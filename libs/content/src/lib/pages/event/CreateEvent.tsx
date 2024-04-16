@@ -95,7 +95,7 @@ const CreateEvent = () => {
   const [scrollToView, setScrollToView] = useState("");
   const [showExitWarning, setShowExitWarning] = useState(false);
   const navigate = useNavigate();
-  const [, setPreviewButton] = useState(true);
+  const [previewButton, setPreviewButton] = useState(true);
   // const [publishButton, setPublishButton] = useState(true);
   // const [saveButton, setSaveButton] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
@@ -698,7 +698,30 @@ const CreateEvent = () => {
     }
   }, [currentContent]);
   useEffect(() => {
-    // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
+    const {
+      title,
+      short_title: shortTitle,
+      description,
+      short_description: shortDescription,
+      address,
+      postalCode,
+      original_image,
+      published_images,
+    } = eventState;
+    if (
+      title === "" ||
+      shortTitle === "" ||
+      shortDescription === "" ||
+      description === "" ||
+      address === "" ||
+      postalCode === "" ||
+      Object.keys(original_image).length === 0 ||
+      published_images.length === 0
+    ) {
+      setPreviewButton(true);
+    } else {
+      setPreviewButton(false);
+    }
   }, [eventState]);
 
   useEffect(() => {
@@ -753,7 +776,7 @@ const CreateEvent = () => {
           <Box>
             <CreateHeader
               // className={isKeyboardOpen ? "sticky-header keyboard-open" : "sticky-header"}
-              // previewButton={previewButton}
+              hasPreviewButton={previewButton}
               showPreview={true}
               handelPreview={handelPreview}
               createText={
@@ -777,7 +800,6 @@ const CreateEvent = () => {
               setEnableWorkflowHistory={setEnableWorkflowHistory}
               setIsFeatured={setIsFeatured}
               isFeatured={isFeatured}
-              hasPreviewButton={false}
               handleReturn={returnBack}
               handleSaveOrPublish={saveEvent}
               handlePublish={publish}
