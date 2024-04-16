@@ -7,6 +7,10 @@ export const useCustomStyle = makeStyles(() => {
     videoLandingPageWrapper: {
       "&.videoLandingPage": {
         background: theme.palette.prelemType1.BACKGROUND,
+        "& .react-player__preview": {
+          opacity: 0,
+          animation: `fadeInAnimation ${theme?.palette?.prelemAnimation?.IMAGE?.FADEINTIME}s ease-in forwards`,
+        },
         "& .noMarginTop": {
           marginTop: 0,
         },
@@ -24,6 +28,10 @@ export const useCustomStyle = makeStyles(() => {
         },
         "& .gradient": {
           background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%)`,
+          "& img": {
+            opacity: 0,
+            animation: `fadeInAnimation ${theme?.palette?.prelemAnimation?.IMAGE?.FADEINTIME}s ease-in forwards`,
+          },
         },
         "& .videoPageCard": {
           background: theme.palette.prelemType1.BACKGROUND,

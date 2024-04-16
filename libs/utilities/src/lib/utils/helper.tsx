@@ -44,7 +44,7 @@ export const getLearningListApiCall = (ele: any) => {
   const {
     prelemBaseEndpoint: {
       // deliveryEndPoint = "https://dev.users.hcl-x.com/platform-x/user-service/",
-      userDeliveryEndPoint = "",
+      usersEndPoint = "",
       language = "en",
     } = {},
     sitename,
@@ -55,7 +55,7 @@ export const getLearningListApiCall = (ele: any) => {
     variables: {},
   });
 
-  return postRestApiCall(userDeliveryEndPoint, data, language, sitename);
+  return postRestApiCall(`${usersEndPoint}user-service/`, data, language, sitename);
 };
 
 /**
