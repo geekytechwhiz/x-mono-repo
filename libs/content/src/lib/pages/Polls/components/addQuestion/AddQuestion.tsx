@@ -2,13 +2,13 @@
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Grid } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { useComment } from "@platformx/authoring-apis";
 import { CommentWrapper } from "@platformx/comment-review";
-import AnswerContent from "./AnswerContent";
-import { useCustomStyle } from "../../Poll.style";
 import { AutoTextArea, CommonBoxWithNumber, TextBox, TitleSubTitle } from "@platformx/utilities";
 import { XImageRender } from "@platformx/x-image-render";
+import { useTranslation } from "react-i18next";
+import { useCustomStyle } from "../../Poll.style";
+import AnswerContent from "./AnswerContent";
 
 const AddQuestion = ({
   qusUnsavedChanges,
@@ -61,6 +61,8 @@ const AddQuestion = ({
         question_original_image: original_image,
         question_published_images: published_images,
       },
+      queBackgroundImg: original_image?.Thumbnail,
+      queBackgroundColor: "",
     };
     setState(modifiedData);
   };

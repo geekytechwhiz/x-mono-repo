@@ -19,6 +19,7 @@ import {
   makeCreateContentPath,
   useUserSession,
 } from "@platformx/utilities";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSearchParams } from "react-router-dom";
 import contentTypeAPIs, {
@@ -54,6 +55,7 @@ const useContentActions = (filter = "ALL") => {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
+  const [loading, setLoading] = useState(false);
   const [deleteMutate] = useMutation(deleteContentType);
   const [unPublishMutate] = useMutation(publishContentType);
   const [createMutate] = useMutation(createContentType, {
@@ -98,43 +100,47 @@ const useContentActions = (filter = "ALL") => {
   };
 
   const deleteContent = async (listItemDetails: any) => {
-    const selectedItem = await fetchContentDetails(listItemDetails);
-    if (selectedItem && Object.keys(selectedItem).length > 0) {
-      if (selectedItem.page_state === PUBLISHED || selectedItem.Page_State) {
-        await unPublish(listItemDetails);
-      }
-      try {
-        const contentToSend = mapDeleteContent(
-          listItemDetails.tagName === "VOD"
-            ? "Vod"
-            : capitalizeFirstLetter(listItemDetails.tagName),
-          selectedItem,
-        );
-        const response: any = await deleteMutate({
-          variables: {
-            ...contentToSend,
-          },
-        });
-        // const {
-        //   authoring_deleteContent: { message },
-        // } = response.data;
-        if (response) {
-          const searchResponse = await contentTypeAPIs.fetchSearchContent(
-            capitalizeFirstLetter(listItemDetails.tagName),
-            location,
-            filter,
-            startIndex,
-            contentList,
-            true,
-          );
-          dispatch(updateContentList(searchResponse));
-          ShowToastSuccess(
-            `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
-          );
+    setLoading(true);
+    try {
+      const selectedItem = await fetchContentDetails(listItemDetails);
+      if (selectedItem && Object.keys(selectedItem).length > 0) {
+        if (selectedItem.page_state === PUBLISHED || selectedItem.Page_State) {
+          await unPublish(listItemDetails);
         }
-      } catch (error: any) {
-        ShowToastError(t("api_error_toast"));
+        try {
+          const contentToSend = mapDeleteContent(
+            listItemDetails.tagName === "VOD"
+              ? "Vod"
+              : capitalizeFirstLetter(listItemDetails.tagName),
+            selectedItem,
+          );
+          const response: any = await deleteMutate({
+            variables: {
+              ...contentToSend,
+            },
+          });
+          if (response) {
+            const searchResponse = await contentTypeAPIs.fetchSearchContent(
+              capitalizeFirstLetter(listItemDetails.tagName),
+              location,
+              filter,
+              startIndex,
+              contentList,
+              true,
+            );
+            dispatch(updateContentList(searchResponse));
+            ShowToastSuccess(
+              `${capitalizeFirstLetter(listItemDetails.tagName)} ${t("deleted_toast")}`,
+            );
+          }
+        } catch (error: any) {
+          ShowToastError(t("api_error_toast"));
+        }
       }
+    } catch (e) {
+      console.error("error in delete content", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -405,6 +411,7 @@ const useContentActions = (filter = "ALL") => {
     editPage,
     fetchContentDetails,
     duplicateToSite,
+    loading,
   };
 };
 

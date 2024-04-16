@@ -8,7 +8,7 @@ import "../../Style.css";
 import ImageRender from "../../components/ImageRender";
 import RecentCarousel from "../../components/RecentCarousel/RecentCarousel";
 import Share from "../../components/Share/Share";
-
+import { formCroppedUrl } from "@platformx/utilities";
 import { useCustomStyle } from "../Article/Article.style";
 
 const Article = ({
@@ -18,6 +18,7 @@ const Article = ({
   secondaryArgs = {},
   showRecentArticles = true,
 }: any) => {
+  const { bucketName = "", gcpUrl = "" } = secondaryArgs;
   const classes = useCustomStyle();
   const theme = useTheme();
   const { ref } = useInView({
@@ -137,15 +138,21 @@ const Article = ({
   const landingPageURL = publishUrl + language + "/article" + content?.current_page_url;
 
   const embedData = {
-    Title: content?.title,
-    Description: content?.description,
-    Thumbnail: content?.banner,
-    Author: content?.developed_by,
-    creationDate: content?.developed_date,
     Page: embedPageURL,
+    Title: content?.title,
     LandingPage: landingPageURL,
+    Author: content?.developed_by,
+    Description: content?.description,
+    creationDate: content?.developed_date,
     ContentURL: content?.PageSettings?.SocialOgURL,
+    Thumbnail: formCroppedUrl(
+      gcpUrl,
+      bucketName,
+      content?.original_image?.original_image_relative_path,
+      content?.original_image?.ext,
+    ),
   };
+
   return (
     <div
       ref={authoringHelper?.innerRef}

@@ -1,7 +1,7 @@
+import Analytics from "analytics";
+import snowplowPlugin from "@analytics/snowplow";
 import googleAnalytics from "@analytics/google-analytics";
 import googleTagManager from "@analytics/google-tag-manager";
-import snowplowPlugin from "@analytics/snowplow";
-import Analytics from "analytics";
 import { SNOWPLOW } from "../../utils/constants";
 
 interface IdynamicList {
@@ -52,13 +52,17 @@ const plugin = async (provider: string, data: IAnalytics, i: number) => {
 };
 
 export const analyticsInstance = async (data: IAnalytics) => {
-  const analyticsProviders = data?.provider instanceof Array ? data.provider : [data.provider];
+  let analytics: Object = {};
+  let res: Array<any> = [];
+  if (data?.provider instanceof Array) {
+    data?.provider.map(async (item, i) => {
+      res = await plugin(item, data, i);
+    });
+  } else {
+    res = await plugin(data?.provider, data, 0);
+  }
 
-  // const res = await Promise.all(analyticsProviders.map(async (item, i) => {
-  //   return await plugin(item, data, i);
-  // }));
-  console.log("process.env?.NX_GA_ID", process.env?.NX_GTM_ID, process.env?.NX_GA_ID);
-  const analytics = Analytics({
+  analytics = Analytics({
     app: SNOWPLOW.APP_NAME,
     debug: true,
     plugins: [
@@ -68,6 +72,7 @@ export const analyticsInstance = async (data: IAnalytics) => {
       googleTagManager({
         containerId: process.env?.NX_GTM_ID,
       }),
+      // Minimal recommended configuration
       snowplowPlugin({
         name: SNOWPLOW.SNOWPLOW,
         collectorUrl: SNOWPLOW.COLLECTOR_URL,

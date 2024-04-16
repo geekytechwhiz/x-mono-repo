@@ -11,7 +11,7 @@ import {
 export const contentPaths = [
   {
     Title: "Pages",
-    Url: "/page-list",
+    Url: "/sitepage",
     ContentType: "Sitepage",
   },
   {
@@ -97,7 +97,7 @@ export const AutoCompleteData = [
     ContentType: "Pages",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "SitePage",
   },
   {
@@ -109,7 +109,7 @@ export const AutoCompleteData = [
     ContentType: "SitePage",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "SitePage",
   },
   {
@@ -121,7 +121,7 @@ export const AutoCompleteData = [
     ContentType: "Poll",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "Poll",
   },
   {

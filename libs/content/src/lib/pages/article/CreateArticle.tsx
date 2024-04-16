@@ -103,6 +103,7 @@ export const CreateArticle = () => {
   const toggleGallery = (toggleState, type, keyName) => {
     setGalleryState(toggleState);
     setShowMediaOption(true);
+    if (type === "cancel") setOperationType(type);
     keyName !== "social_img" && isClickedPublish && handleClickOpen();
   };
 
@@ -424,7 +425,7 @@ export const CreateArticle = () => {
     setDialogContent(contentTosend);
     // dispatch(handleDialog(dialogContent));
   };
-  const exitWarnDialog = (type) => {
+  const exitWarnDialog = () => {
     const contentTosend = {
       isOpen: true,
       title: t("save_warn_title"),
@@ -453,7 +454,9 @@ export const CreateArticle = () => {
           if (detailsRes.authoring_updateContent.message === "Successfully updated!!!") {
             if (!isWorkflow) {
               ShowToastSuccess(`${t("article")} ${t("updated_toast")}`);
-              getArticleData();
+              if (currentArticleData.current) {
+                getArticleData();
+              }
             } else {
               const { workflow_status, success } = await workflowRequest(props, event_step);
               if (success) {
@@ -648,7 +651,7 @@ export const CreateArticle = () => {
 
   const returnBack = () => {
     if (unsavedChanges.current) {
-      exitWarnDialog(true);
+      exitWarnDialog();
     } else {
       navigate("/content/article");
     }

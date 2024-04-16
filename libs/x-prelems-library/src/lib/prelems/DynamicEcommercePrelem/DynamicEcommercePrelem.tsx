@@ -2,6 +2,7 @@
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import { Box, Button, Container, Grid, Link, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -21,14 +22,13 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
 
   const [sliderRef, setSliderRef] = useState<any>(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [slots, setSlots] = useState([]);
+  const [slots, setSlots] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const fromBack = useRef(false);
   const { t } = useTranslation();
   const [queryParamfordata, setQueryParamfordata] = useState<QueryParamfordata>(
     content?.QueryParam,
   );
-
   const sliderEndCheck =
     (sliderRef?.state?.breakpoint !== 920 &&
       sliderRef?.state?.breakpoint !== 600 &&
@@ -39,20 +39,22 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
   const isNext = slots?.length < 20 && sliderEndCheck ? false : true;
   const isPrev = queryParamfordata?.pagination?.start === 0 && activeSlide === 0 ? false : true;
 
-  const getProducts = async () => {
+  const getProducts = async (data) => {
     setLoading(true);
-    const response = await getProductDetails(queryParamfordata, secondaryArgs);
+    const response = await getProductDetails(data, secondaryArgs);
     setLoading(false);
     const { data: { data: { fetchEcomProducts = [] } = {} } = {} } = response;
-    if (fetchEcomProducts.length > 0) {
+    if (fetchEcomProducts.length >= 0) {
       setSlots(fetchEcomProducts);
     } else {
-      setQueryParamfordata({
-        ...queryParamfordata,
-        pagination: {
-          ...queryParamfordata?.pagination,
-          start: queryParamfordata?.pagination?.start - 20,
-        },
+      setQueryParamfordata((prevState) => {
+        return {
+          ...prevState,
+          pagination: {
+            ...prevState?.pagination,
+            start: prevState?.pagination?.start - 20,
+          },
+        };
       });
       fromBack.current = true;
     }
@@ -175,11 +177,8 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
   }, [sliderRef]);
 
   useEffect(() => {
-    getProducts();
-  }, [queryParamfordata]);
-
-  useEffect(() => {
     setQueryParamfordata(content?.QueryParam);
+    getProducts(content?.QueryParam);
   }, [content?.QueryParam]);
 
   return (
@@ -251,7 +250,8 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
             </Link>
             <Box
               className={`transparentButton ${!isPrev ? "disablebutton" : ""}`}
-              onClick={handlePrevClick}>
+              onClick={handlePrevClick}
+              sx={{ pointerEvents: isPrev ? "auto" : "none" }}>
               <WestIcon
                 className={`extPreviousButton previousBtn ${!isPrev ? "decreaseOpacity" : ""}`}
               />
@@ -266,7 +266,7 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
           <Box
             className='overlayPosition'
             sx={{
-              margin: loading || !slots || slots.length === 0 ? "0 auto" : "8px 0px 0px",
+              margin: loading || !slots || slots?.length === 0 ? "0 auto" : "8px 0px 0px",
               position: "relative",
               // "&:hover": {
               //   ".add-content-overlay": {
@@ -275,15 +275,22 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
               // },
             }}>
             <Grid item xs={12} md={12}>
-              {loading || !slots || slots.length === 0 ? (
+              {loading ? (
                 <Box className='sliderImgWrapper'>
                   <img alt='loader' src={loadergif} width='64' height='64' className='imgProp' />
                 </Box>
-              ) : (
+              ) : !loading && slots && slots?.length === 0 ? (
+                <Box className='noProductWrapper'>
+                  <HighlightOffRoundedIcon className='iconSize' />
+                  <Typography variant='h3' color='lightDarkText'>
+                    {t("no_products")}
+                  </Typography>
+                </Box>
+              ) : slots && slots?.length > 0 ? (
                 <Slider ref={setSliderRef} {...sliderSettings}>
                   {slots &&
-                    slots.length > 0 &&
-                    slots.map((card: any, index: number) => (
+                    slots?.length > 0 &&
+                    slots?.map((card: any, index: number) => (
                       <Grid
                         item
                         key={`${card?.ecomx_name}_${index.toString()}`}
@@ -343,6 +350,10 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
                       </Grid>
                     ))}
                 </Slider>
+              ) : (
+                <Box className='sliderImgWrapper'>
+                  <img alt='loader' src={loadergif} width='64' height='64' className='imgProp' />
+                </Box>
               )}
             </Grid>
             <Box className={authoringHelper?.isEditing ? "overlay" : "hideElementClass"}>

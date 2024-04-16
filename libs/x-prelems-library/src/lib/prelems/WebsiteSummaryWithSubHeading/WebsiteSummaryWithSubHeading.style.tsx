@@ -9,6 +9,9 @@ export const useCustomStyle = makeStyles(() => {
         background: theme.palette.prelemType1.BACKGROUND,
         "& .title": {
           borderBottom: `1px solid ${theme.palette.prelemType1.LINE}`,
+          [theme.breakpoints.down("md")]: {
+            marginTop: "12px",
+          },
         },
         "& .imageWrapper": {
           paddingRight: 0,

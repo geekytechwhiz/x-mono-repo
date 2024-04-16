@@ -45,7 +45,7 @@ const EventImageAndThumbnail = ({
         <Grid container>
           <Grid item xs={12} sm={5} md={5} className='leftFiledLast'>
             <TitleSubTitle
-              title={t("event_image_tilte")}
+              title={`${t("event_image_tilte")}*`}
               subTitle={t("event_image_subtitle")}
               titleVariant='h6medium'
               subTitleVariant='h7regular'

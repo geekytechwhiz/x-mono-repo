@@ -2,52 +2,11 @@ import {
   AllIcon,
   ArticleIcon,
   EventsIcon,
-  MyDashboardIcon,
   PagesIcon,
   PollIcon,
-  PostsIcon,
   QuizIcon,
-  UsersIcon,
   VODIcon,
 } from "@platformx/utilities";
-
-export const contentPaths = [
-  {
-    Title: "Pages",
-    Url: "/page-list",
-    ContentType: "Sitepage",
-  },
-  {
-    Title: "Article",
-    Url: "/content/article",
-    ContentType: "Article",
-  },
-  {
-    Title: "Vod",
-    Url: "/content/vod",
-    ContentType: "Vod",
-  },
-  {
-    Title: "Quiz",
-    Url: "/content/quiz",
-    ContentType: "Quiz",
-  },
-  {
-    Title: "Poll",
-    Url: "/content/poll",
-    ContentType: "Poll",
-  },
-  {
-    Title: "Events",
-    Url: "/content/event",
-    ContentType: "Event",
-  },
-  {
-    Title: "All",
-    Url: "/search-results",
-    ContentType: "ALL",
-  },
-];
 
 export const tagData = [
   { title: "Fifa" },
@@ -100,7 +59,7 @@ export const AutoCompleteData = [
     ContentType: "Pages",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "SitePage",
   },
   {
@@ -112,7 +71,7 @@ export const AutoCompleteData = [
     ContentType: "SitePage",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "SitePage",
   },
   {
@@ -124,7 +83,7 @@ export const AutoCompleteData = [
     ContentType: "Poll",
   },
   {
-    Title: "Ma​rico: A pioneer in giving back to society",
+    Title: "Marico: A pioneer in giving back to society",
     ContentType: "Poll",
   },
   {

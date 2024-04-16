@@ -5,7 +5,7 @@ import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material"
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { fetchAllPrelemSearchList, prelemsApi } from "@platformx/authoring-apis";
-import { ThemeConstants, removeParamsFromURL, NoSearchResult } from "@platformx/utilities";
+import { ThemeConstants, removeParamsFromURL, NoSearchResult, Loader } from "@platformx/utilities";
 import LeftBox from "../PageContainer/LeftBox";
 import PageLayout from "../PageContainer/PageContainer";
 import RightBox from "../PageContainer/RightBox";
@@ -14,7 +14,6 @@ import PrelemList from "../PrelemList/PrelemList";
 import PrelemSearchHeader from "../PrelemSearchHeader/PrelemSearchHeader";
 import SearchBar from "../SearchBox/SearchBar";
 import { CategoryStateProps, LayoutStateProps } from "../utils/prelemTypes";
-import PrelemLoader from "./PrelemLoader/PrelemLoader";
 import { useStyles } from "./PrelemSearch.styles";
 
 const SearchPrelem = () => {
@@ -54,7 +53,7 @@ const SearchPrelem = () => {
 
   useEffect(() => {
     const IsMounted = true;
-    window.onpopstate = function (event) {
+    window.onpopstate = function () {
       if (IsMounted) {
         setCategoryState({
           categoryIndex: url.searchParams.get("categoryIndex")
@@ -320,7 +319,7 @@ const SearchPrelem = () => {
           </Box>
         </LeftBox>
         {loader ? (
-          <PrelemLoader />
+          <Loader />
         ) : (
           <>
             {searchCardList && searchCardList.length ? (
