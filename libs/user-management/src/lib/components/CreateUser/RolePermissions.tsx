@@ -44,7 +44,7 @@ const RolePermissions = ({ t, roleSelected, setRoleSelected, state, setState }: 
     <Box className={classes.mainStyleWrapper} id='rolepermission'>
       <CommonBoxWithNumber
         number='03'
-        title={t("roles_permissions")}
+        title={`${t("roles_permissions")}*`}
         titleVarient='p3semibold'
         subTitleVarient='p4regular'
         subTitle={t("subhead")}>
