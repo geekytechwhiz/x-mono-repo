@@ -89,11 +89,13 @@ export default function PublishSocialShare({
   setShow,
   updateStructureDataArticle,
 }) {
+  const { t } = useTranslation();
+
   return (
     <Box sx={{ width: "100%" }}>
       <BootstrapDialog onClose={handleClose} aria-labelledby='customized-dialog-title' open={open}>
         <BootstrapDialogTitle id='customized-dialog-title' onClose={handleClose}>
-          Settings
+          {t("settings")}
         </BootstrapDialogTitle>
         <DialogContent
           dividers

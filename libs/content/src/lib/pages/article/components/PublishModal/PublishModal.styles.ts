@@ -8,9 +8,6 @@ export const useStyles = makeStyles(() => ({
     padding: "15px",
   },
   innerBoxContent: {
-    display: "flex",
-    alignItems: "flex-start",
-    flexDirection: "column",
     order: 1,
     flexGrow: 0,
     maxWidth: "610px",
