@@ -2,8 +2,8 @@
 import { Box, IconButton } from "@mui/material";
 import { MoreHorizIcon } from "@platformx/utilities";
 import React, { memo, useState } from "react";
-import { QuizPollEventMenu } from "../QuizPollEventsMenu/QuizPollEventsMenu";
 import PageMenu from "../PageMenu/PageMenu";
+import { QuizPollEventMenu } from "../QuizPollEventsMenu/QuizPollEventsMenu";
 
 const ContentTypeMenuList = ({
   item,
@@ -28,6 +28,7 @@ const ContentTypeMenuList = ({
       <Box
         sx={{
           margin: "0px",
+          display: contentType === "profile" ? "none" : "block",
         }}
         onClick={handleClickListItem}>
         <IconButton>

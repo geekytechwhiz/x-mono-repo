@@ -13,6 +13,7 @@ interface DialogList {
   titledata: string;
   isDialogOpen: boolean;
   closeButtonHandle: () => void;
+  // eslint-disable-next-line no-unused-vars
   doneButtonHandle: (pageExist: boolean, currTitle: string) => void;
   contentType?: string;
   language?: any;
@@ -68,7 +69,7 @@ export default function DuplicateContentPopup({
               inputProps={{ maxLength: 100 }}
             />
           </Box>
-          <Box className='inputesBox'>
+          <Box className='inputesBox' sx={{ display: "none" }}>
             <Typography variant='h5regular'>
               {t("content_language_label")}
               {contentType}
