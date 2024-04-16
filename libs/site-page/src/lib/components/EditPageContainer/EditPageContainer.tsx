@@ -41,6 +41,7 @@ import {
   CommonPlateformXDialog,
   EditIcon,
   LightTheme,
+  Loader,
   SettingIcon,
   ShowToastError,
   ShowToastSuccess,
@@ -77,7 +78,6 @@ import PageInfo from "../PageSettings/PageInfo";
 import SEOBasics from "../PageSettings/SEOBasics";
 import Schedule from "../PageSettings/Schedule";
 import SocialShare from "../PageSettings/SocialShare";
-import PrelemLoader from "../PrelemSearch/PrelemLoader/PrelemLoader";
 import PrelemSettingMenu from "../PrelemSettingMenu/PrelemSettingMenu";
 import PrelemInfo from "../PrelemSettings/PrelemInfo";
 import PrelemSettingsCard from "../PrelemSettings/PrelemSettingsCard";
@@ -1125,7 +1125,7 @@ const EditPageContainer = () => {
         </Box>
       ) : (
         <Box>
-          {publishLoading && <PrelemLoader />}
+          {publishLoading && <Loader />}
           <PageLayout>
             {isResetPopop ? (
               <CommonPlateformXDialog
