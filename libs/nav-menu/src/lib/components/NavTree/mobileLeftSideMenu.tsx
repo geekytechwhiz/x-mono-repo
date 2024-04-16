@@ -457,7 +457,7 @@ export default function MobileLeftSideMenu({
             <ArrowBackIosIcon
               sx={{ width: "20px", height: "20px" }}
               onClick={() => {
-                navigate("/page-list");
+                navigate("/sitepage");
               }}
             />
             <Typography

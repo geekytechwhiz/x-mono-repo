@@ -698,8 +698,8 @@
   "phone_placeholder": "Geben Sie hier Telefon ein",
   "create_another_user": "ERSTELLEN SIE EINEN ANDEREN BENUTZER",
   "succces_user_toast": "Benutzer erfolgreich erstellt!",
-  "update_user_toast": "Benutzerdetails erfolgreich aktualisiert!",
-  "save_popup_subtitle_1": "Wir senden eine Einladungs-E-Mail an die",
+  "update_user_toast": "Benutzerdaten erfolgreich aktualisiert!",
+  "save_popup_subtitle_1": "Wir haben Ihnen eine Einladungs-E-Mail an gesendet",
   "save_popup_subtitle_2": "Nutzer müssen die Einladung annehmen, indem sie in der E-Mail-Adresse auf den Link #'Konto aktivieren'# klicken.",
   "event_analytics_subhead": "Wenn diese Option aktiviert ist, wird die Ereignisimpression ausgewählt",
   "content_type_added": "Kein Inhalt hinzugefügt!",
@@ -1293,5 +1293,9 @@
   "uploading": "Hochladen",
   "blog_pending": "Ihr Blog wird veröffentlicht. Bitte warten!",
   "write": "Schreiben",
-  "timeline": "Zeitleiste"
+  "timeline": "Zeitleiste",
+  "search_here": "Suche hier",
+  "video_thumbnail": "Video und Miniaturansicht",
+  "image_thumbnail": "Bild und Miniaturansicht",
+  "ditle_description": "Titel Beschreibung"
 }

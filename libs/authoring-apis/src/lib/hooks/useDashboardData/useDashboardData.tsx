@@ -64,7 +64,7 @@ const useDashboardData = (contentType = "ALL") => {
         unPublish: Dashboard_Keys.SCHEDULED_UNPUBLISH,
         publish: Dashboard_Keys.SCHEDULED_PUBLISH,
         contentFilter: Dashboard_Keys.ALL,
-        pagePagination: { start: 0, rows: 50 },
+        pagePagination: { start: 0, rows: 10 },
         contentPagination: { start: 0, rows: 10 },
         scheduledPagination: { start: 0, rows: 5 },
         sort: Dashboard_Keys.DESC,

@@ -77,6 +77,8 @@ export const useCustomStyle = makeStyles(() => {
           color: theme.palette.prelemType1.ACCENTS.VARIANT2.TITLE,
         },
         "& .imageContainer": {
+          position: "relative",
+          zIndex: 2,
           [theme.breakpoints.up("xs")]: {
             width: "96%",
           },

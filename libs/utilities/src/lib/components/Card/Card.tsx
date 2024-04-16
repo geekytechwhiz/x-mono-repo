@@ -2,7 +2,6 @@ import { Box, Grid, Tooltip, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 import "./List.css";
 import { CommonPlateformXDialog } from "@platformx/utilities";
 import { RedBlinkingDot } from "../../assets/svg";
@@ -45,17 +44,6 @@ export const Card = ({
     switch (tagName) {
       case "sitepage":
         return (
-          // <PlateformXDialog
-          //   isDialogOpen
-          //   title={t("delete_title")}
-          //   subTitle={subTitle}
-          //   closeButtonText={t("no")}
-          //   confirmButtonText={t("yes")}
-          //   closeButtonHandle={() => {
-          //     setDelete(false);
-          //   }}
-          //   confirmButtonHandle={handleConfirmation}
-          // />
           <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
@@ -75,17 +63,6 @@ export const Card = ({
       case "event":
       case "article":
         return (
-          // <PlateformXDialog
-          //   isDialogOpen
-          //   title={t("delete_title")}
-          //   subTitle={subTitle}
-          //   closeButtonText={t("no_keep_it")}
-          //   confirmButtonText={t("yes_delete_it")}
-          //   closeButtonHandle={() => {
-          //     setDelete(false);
-          //   }}
-          //   confirmButtonHandle={handleConfirmation}
-          // />
           <CommonPlateformXDialog
             isDialogOpen
             title={t("delete_title")}
@@ -196,16 +173,6 @@ export const Card = ({
         setSubTitle(t("page_delete_subtitle"));
     }
     setDelete(true);
-  };
-
-  const getContentCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
-      ? CATEGORY_PAGE
-      : CATEGORY_CONTENT;
-  };
-
-  const getContentSubCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (
@@ -333,8 +300,6 @@ export const Card = ({
                 handleEdit={handleEdit}
                 canAccessAction={canAccessAction}
                 handleDeleteButton={handleDeleteButton}
-                getContentCategory={getContentCategory}
-                getContentSubCategory={getContentSubCategory}
               />
               {CustomMenuList}
             </Box>

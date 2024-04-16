@@ -63,6 +63,7 @@ export type ContentListingProps = {
   handleDeleteData?: any;
   handlePageDelete?: any;
   duplicateToSite?: any;
+  deleteContentLoading?: boolean;
 };
 
 export type CardProps = {
