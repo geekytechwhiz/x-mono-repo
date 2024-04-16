@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   ContentState,
@@ -76,22 +75,17 @@ const usePage = (filter = "ALL") => {
   });
   const [mutateUnpublish] = useMutation(PageQueries.UNPUBLISH_PAGE);
   const [mutateDelete] = useMutation(PageQueries.DELETE_PAGE);
-  const [directDelete, setDirectDelete] = useState<boolean>(false);
-  // const [rescheduleDto, setRescheduledDto] = useState({});
   const [currentPublishTime, setCurrentPublishTime] = useState("");
   const [currentUnpublishTime, setCurrentUnpublishTime] = useState("");
   const [mutatePublishSchedule] = useMutation(PageQueries.RESCHEDULE_PUBLISH);
   const [mutateUnpublishSchedule] = useMutation(PageQueries.RESCHEDULE_UNPUBLISH);
-  // const [cancelTriggerType, setCancelTriggerType] = useState("");
-  const [selectedPageData, setPageData] = useState<any>({});
   const [mutateCancelPublishSchedule] = useMutation(PageQueries.CANCEL_PUBLISH);
   const [mutateCancelUnpublishSchedule] = useMutation(PageQueries.CANCEL_UNPUBLISH);
-  // const [isCancelTrigger, setIsCancelTrigger] = useState(false);
   const navigate = useNavigate();
   const [mutatePublish] = useMutation(PageQueries.PUBLISH_PAGE_MODEL);
   localStorage.setItem("lang", getCurrentLang());
   const dispatch = useDispatch();
-  // operations
+  const [loading, setLoading] = useState(false);
   const cardClickHandle = useCallback(
     (
       parameter: string,
@@ -310,40 +304,6 @@ const usePage = (filter = "ALL") => {
     }
   };
 
-  /**handle delete popup data */
-  // const handleDeleteData = (pageSelected: {
-  //   status: string;
-  //   scheduledUnPublishTriggerDateTime: null;
-  //   page: any;
-  //   currentPageUrl: any;
-  //   parentPageUrl: any;
-  //   scheduledPublishTriggerDateTime: null;
-  // }) => {
-  //   setPageData(pageSelected);
-  //   if (pageSelected.status === "published") {
-  //     setDirectDelete(true);
-  //     if (pageSelected?.scheduledUnPublishTriggerDateTime != null) {
-  //       // const requestDto = {
-  //       //   page: pageSelected.page,
-  //       //   currentpageurl: pageSelected.currentPageUrl,
-  //       //   parentpageurl: pageSelected.parentPageUrl,
-  //       // };
-  //       // setRescheduledDto(requestDto);
-  //       //setCancelTriggerType("2");
-  //     }
-  //   }
-  //   if (pageSelected.status === "draft" && pageSelected.scheduledPublishTriggerDateTime != null) {
-  //     setDirectDelete(true);
-  //     // const requestDto = {
-  //     //   page: pageSelected.page,
-  //     //   currentpageurl: pageSelected.currentPageUrl,
-  //     //   parentpageurl: pageSelected.parentPageUrl,
-  //     // };
-  //     // setRescheduledDto(requestDto);
-  //     // setCancelTriggerType("1");
-  //   }
-  // };
-
   /**remove page */
   const handleRemove = (itemsdata: { page: any; currentPageUrl: any; parentPageUrl: any }) => {
     mutateDelete({
@@ -354,17 +314,7 @@ const usePage = (filter = "ALL") => {
       },
     })
       .then(async () => {
-        // handleDeleteData;
         ShowToastSuccess(`${t("page")} ${t("deleted_toast")}`);
-        // dispatch(
-        //   await fetchContent(
-        //     state.content.contentType,
-        //     location,
-        //     filter,
-        //     state,
-        //     true
-        //   )
-        // );
         const searchResponse = await contentTypeAPIs.fetchSearchContent(
           capitalizeFirstLetter("sitepage"),
           location,
@@ -374,7 +324,6 @@ const usePage = (filter = "ALL") => {
           true,
         );
         dispatch(updateContentList(searchResponse));
-        setDirectDelete(false);
       })
       .catch(() => {
         ShowToastError(t("api_error_toast"));
@@ -382,7 +331,7 @@ const usePage = (filter = "ALL") => {
   };
 
   /**unpublish page */
-  const unPublishPage = (selectedPageDataProp: any) => {
+  const unPublishPage = (selectedPageDataProp: any, isDelete: boolean = false) => {
     const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
     mutateUnpublish({
       variables: {
@@ -393,7 +342,8 @@ const usePage = (filter = "ALL") => {
       },
     })
       .then(async () => {
-        if (selectedPageDataProp.status !== "draft") {
+        ShowToastSuccess(t("unpublish_toast"));
+        if (!isDelete) {
           const searchResponse = await contentTypeAPIs.fetchSearchContent(
             capitalizeFirstLetter("sitepage"),
             location,
@@ -403,10 +353,8 @@ const usePage = (filter = "ALL") => {
             true,
           );
           dispatch(updateContentList(searchResponse));
-          ShowToastSuccess(t("unpublish_toast"));
-        }
-        if (directDelete) {
-          handleRemove(selectedPageData);
+        } else {
+          handleRemove(selectedPageDataProp);
         }
       })
       .catch(() => {
@@ -414,25 +362,32 @@ const usePage = (filter = "ALL") => {
       });
   };
 
-  /**handle page delete conditions */
+  /**handle page delete conditions main */
   const handlePageDelete = (selectedPage) => {
-    const requestDto = {
-      page: selectedPage.page,
-      currentpageurl: selectedPage.currentPageUrl,
-      parentpageurl: selectedPage.parentPageUrl,
-    };
-    if (selectedPage?.status === "published") {
-      if (selectedPage?.scheduledUnPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("2", requestDto, selectedPage);
+    setLoading(true);
+    try {
+      const requestDto = {
+        page: selectedPage.page,
+        currentpageurl: selectedPage.currentPageUrl,
+        parentpageurl: selectedPage.parentPageUrl,
+      };
+      if (selectedPage?.status === "published") {
+        if (selectedPage?.scheduledUnPublishTriggerDateTime != null) {
+          cancelPublishUnpublishTrigger("2", requestDto, selectedPage);
+        } else {
+          unPublishPage(selectedPage, true);
+        }
       } else {
-        unPublishPage(selectedPage);
+        if (selectedPage?.scheduledPublishTriggerDateTime != null) {
+          cancelPublishUnpublishTrigger("1", requestDto, selectedPage);
+        } else {
+          handleRemove(selectedPage);
+        }
       }
-    } else {
-      if (selectedPage?.scheduledPublishTriggerDateTime != null) {
-        cancelPublishUnpublishTrigger("1", requestDto, selectedPage);
-      } else {
-        handleRemove(selectedPage);
-      }
+    } catch (e) {
+      console.error("error in handlePageDelete", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -552,16 +507,7 @@ const usePage = (filter = "ALL") => {
       },
     })
       .then(() => {
-        // dispatch(
-        //   await fetchContent(
-        //     state.content.contentType,
-        //     location,
-        //     filter,
-        //     state,
-        //     true
-        //   )
-        // );
-        // ShowToastSuccess(`${t('page')} ${t('pubished_success_toast')}`);
+        ShowToastSuccess(`${t("page")} ${t("pubished_success_toast")}`);
         const pageDataObj = {
           eventType: "Page Published",
           pagePublished: true,
@@ -662,37 +608,30 @@ const usePage = (filter = "ALL") => {
     // };
     // setRescheduledDto(requestDto);
     // setCancelTriggerType(triggerType);
-    setPageData(itemsdata);
+    //setPageData(itemsdata);
   };
 
   /**cancel publish/unpublish page */
   const cancelPublishUnpublishTrigger = (
     triggerType: string,
     requestDto: { page: any; currentpageurl: any; parentpageurl: any },
-    listItemDetails: { scheduledUnPublishTriggerDateTime: null; status: string },
+    listItemDetails: {
+      scheduledUnPublishTriggerDateTime: null;
+      status: string;
+      page: any;
+      currentPageUrl: any;
+      parentPageUrl: any;
+    },
+    isDelete: boolean = false,
   ) => {
     if (triggerType === "1") {
       mutateCancelPublishSchedule({
         variables: { requestdto: requestDto },
       })
         .then(() => {
-          // dispatch(
-          //   await fetchContent(
-          //     state.content.contentType,
-          //     location,
-          //     filter,
-          //     state,
-          //     true
-          //   )
-          // );
           ShowToastSuccess(`${t("page")} ${t("publish")} ${t("schedule_cancel_toast")}`);
-          if (
-            (directDelete &&
-              listItemDetails &&
-              listItemDetails?.scheduledUnPublishTriggerDateTime == null) ||
-            undefined
-          ) {
-            // handleRemove(listItemDetails);
+          if (isDelete) {
+            handleRemove(listItemDetails);
           }
         })
         .catch(() => {
@@ -705,29 +644,18 @@ const usePage = (filter = "ALL") => {
         listItemDetails?.scheduledUnPublishTriggerDateTime) ||
       triggerType === "2"
     ) {
-      listItemDetails?.status.toLowerCase() === "published" && publishPage();
       mutateCancelUnpublishSchedule({
         variables: { requestdto: requestDto },
       })
         .then(() => {
-          // dispatch(
-          //   await fetchContent(
-          //     state.content.contentType,
-          //     location,
-          //     filter,
-          //     state,
-          //     true
-          //   )
-          // );
           ShowToastSuccess(`${t("page")} ${t("unpublish")} ${t("schedule_cancel_toast")}`);
-          if (directDelete) {
+          if (isDelete) {
             if (listItemDetails?.status !== "published") {
-              //  handleRemove(listItemDetails);
+              handleRemove(listItemDetails);
             } else {
-              unPublishPage(listItemDetails);
+              unPublishPage(listItemDetails, true);
             }
           }
-          // setIsCancelTrigger(false);
         })
         .catch(() => {
           ShowToastError(t("api_error_toast"));
@@ -747,8 +675,8 @@ const usePage = (filter = "ALL") => {
     rescheduleUnPublishPage,
     handleCancelTriggerPopup,
     cancelPublishUnpublishTrigger,
-    //handleDeleteData,
     handlePageDelete,
+    loading,
   };
 };
 

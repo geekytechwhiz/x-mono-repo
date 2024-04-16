@@ -92,6 +92,7 @@ const useContentSearch = ({
 
       if (fetchMoreData?.length < 20) setIsLoading(false);
       setContents(combinedData);
+      dispatch(updateContentList(combinedData));
       // eslint-disable-next-line no-shadow
     } catch (error) {
       console.error(error);

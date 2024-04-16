@@ -39,10 +39,8 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { saveWarnTitle, saveWarnSubtitle, saveWarnSave, saveWarnReject } = saveWarningMessage;
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
   const [hasSaveWarning, setHasSaveWarning] = React.useState<boolean>(false);
-  const open = Boolean(anchorEl);
   const openMenu = Boolean(anchorE2);
   const [triggerCase, setTriggerCase] = useState("");
   const [backgroundStyle, setBackgroundstyle] = useState("");
@@ -54,12 +52,6 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
     };
   }, []);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   const onCloseSaveWarningHandler = () => {
     setHasSaveWarning(false);
     // dispatch(callSaveandResetWarning(true));
@@ -119,7 +111,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
         break;
       }
       case "PAGE_LIST":
-        navigate("/page-list");
+        navigate("/sitepage");
         break;
       default:
         window.location.replace(LOGOUT_URL);

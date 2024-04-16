@@ -11,6 +11,7 @@ import {
   formatContentTitle,
   handleHtmlTags,
   useUserSession,
+  Loader,
 } from "@platformx/utilities";
 import { Key, memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -32,6 +33,7 @@ const ContentListing = ({
   edit,
   editPage,
   fetchContentDetails,
+  deleteContentLoading,
 }: ContentListingProps) => {
   const { contentArray } = useSelector((state: RootState) => state.content);
   const [sitelist, setSiteList] = useState([]);
@@ -39,7 +41,7 @@ const ContentListing = ({
   const { userInfo } = getSession();
   const pageUrl = new URL(window.location.href);
   const path = pageUrl.pathname.split("/")?.pop();
-  const { handlePageDelete } = usePage();
+  const { handlePageDelete, loading: deleteLoading } = usePage();
   const { t } = useTranslation();
 
   const fetchUserSite = async () => {
@@ -148,6 +150,7 @@ const ContentListing = ({
 
   return (
     <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
+      {deleteLoading || deleteContentLoading ? <Loader /> : ""}
       <InfiniteScroll
         dataLength={contentArray?.length}
         next={fetchMore}

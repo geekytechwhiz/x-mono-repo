@@ -17,7 +17,6 @@ import {
   MyDashboardIcon,
   PagesIcon,
   PollIcon,
-  PostIconMenu,
   QuizIcon,
   SitesIcon,
   TagIcon,
@@ -138,7 +137,6 @@ export const MenuData = [
   {
     Title: "pages",
     id: "page",
-    url: "/page-list",
     Menu: [
       {
         MenuName: "Pages",
@@ -200,22 +198,22 @@ export const MenuData = [
       },
     ],
   },
-  {
-    url: "",
-    Title: "post",
-    id: "post",
+  // {
+  //   url: "",
+  //   Title: "post",
+  //   id: "post",
 
-    Menu: [
-      {
-        MenuName: "All Posts",
-        Icon: PostIconMenu,
-        url: "/post/social-share-list",
-        id: "all_posts",
-        category: "Post",
-        subCategory: "",
-      },
-    ],
-  },
+  //   Menu: [
+  //     {
+  //       MenuName: "All Posts",
+  //       Icon: PostIconMenu,
+  //       url: "/post/social-share-list",
+  //       id: "all_posts",
+  //       category: "Post",
+  //       subCategory: "",
+  //     },
+  //   ],
+  // },
   {
     url: "/user-management/user-list",
     Title: "user_management",

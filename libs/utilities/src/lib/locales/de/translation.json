@@ -1278,5 +1278,9 @@
   "is_mandatory": "ist obligatorisch",
   "assets_picker_images": "Bilder zur Asset-Auswahl",
   "no_workflow_history": "Kein Workflow-Verlauf",
-  "view_workflow_history": "Workflow-Verlauf anzeigen"
+  "view_workflow_history": "Workflow-Verlauf anzeigen",
+  "search_here": "Suche hier",
+  "video_thumbnail": "Video und Miniaturansicht",
+  "image_thumbnail": "Bild und Miniaturansicht",
+  "ditle_description": "Titel Beschreibung"
 }

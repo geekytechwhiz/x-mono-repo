@@ -71,7 +71,7 @@ export const useCustomStyle = makeStyles(() => {
               justifyContent: "center",
               width: "100%",
               height: "50px",
-              bottom: "50px",
+              bottom: "60px",
               "& .vb1mouse-down": {
                 cursor: "pointer",
                 position: "relative",

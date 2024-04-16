@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 //import "../../../components/Common/Search.css";
-import { ThemeConstants, SearchIcon } from "@platformx/utilities";
+import { SearchIcon, ThemeConstants } from "@platformx/utilities";
 
 const useStyles = makeStyles({
   option: {
@@ -43,7 +43,7 @@ export default function DamContentSearchBox({ onSearch, searchCloseToggle }: any
         autoComplete='off'
         // autoFocus
         variant='outlined'
-        placeholder={`${t("Search here")}...`}
+        placeholder={`${t("search_here")}...`}
         value={searchQuery}
         onChange={handleOnChange}
         onKeyDown={onEnter}
