@@ -611,7 +611,7 @@ const TimeLineBlogs = () => {
               variant='h5semibold'
               onClick={handleBack}
               sx={{ color: "#5c6574", cursor: "pointer" }}>
-              Back to Events
+              {t("back_to_events")}
             </Typography>
           </Box>
           <Box>

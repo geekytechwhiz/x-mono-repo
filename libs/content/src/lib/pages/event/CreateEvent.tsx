@@ -161,14 +161,13 @@ const CreateEvent = () => {
         contentType: EVENT,
         input: eventToSend,
       });
-
-      setIsLoading(false);
     } catch (error: any) {
       if (error.graphQLErrors[0]) {
         ShowToastError(error?.graphQLErrors[0].message);
       } else {
         ShowToastError(t("api_error_toast"));
       }
+    } finally {
       setIsLoading(false);
     }
   };
@@ -211,51 +210,54 @@ const CreateEvent = () => {
         contenttype: EVENT,
         input: eventToSend,
       });
-
       unsavedChanges.current = false;
       // dispatch(checkIfUnsavedChanges(unsavedChanges.current));
-      if (pageState !== PUBLISHED) {
-        setIsLoading(false);
-        if (data?.authoring_createContent?.isExist === true) {
-          setOpenPageExistModal(true);
-          setPageStatus(pageState);
-          setWorkflowStatus(isWorkflow);
-        } else {
-          if (!isWorkflow) {
-            ShowToastSuccess(`${t("event")} ${t("saved_toast")}`);
+      if (data?.authoring_createContent?.message === "Successfully created!!!") {
+        if (pageState !== PUBLISHED) {
+          setIsLoading(false);
+          if (data?.authoring_createContent?.isExist === true) {
+            setOpenPageExistModal(true);
+            setPageStatus(pageState);
+            setWorkflowStatus(isWorkflow);
+          } else {
+            if (!isWorkflow) {
+              ShowToastSuccess(`${t("event")} ${t("saved_toast")}`);
+            }
+            // setOnSavedModal(true);
+            setIsDraft(false);
+            const { createdBy, title, description } = eventToSend.CommonFields;
+            const workflowObj = {
+              createdBy,
+              title,
+              description,
+              path: data?.authoring_createContent?.path,
+              workflow_status: workflowKeys.draft,
+              tag_name: capitalizeFirstLetter(ContentType.Event),
+              last_modifiedBy: createdBy,
+            };
+            if (isWorkflow) {
+              workflowSubmitRequest(workflowObj, workflowKeys.approve);
+            }
+            setWorkflow({ ...workflow, ...workflowObj });
           }
-          // setOnSavedModal(true);
-          setIsDraft(false);
-          const { createdBy, title, description } = eventToSend.CommonFields;
-          const workflowObj = {
-            createdBy,
-            title,
-            description,
-            path: data?.authoring_createContent?.path,
-            workflow_status: workflowKeys.draft,
-            tag_name: capitalizeFirstLetter(ContentType.Event),
-            last_modifiedBy: createdBy,
-          };
-          if (isWorkflow) {
-            workflowSubmitRequest(workflowObj, workflowKeys.approve);
-          }
-          setWorkflow({ ...workflow, ...workflowObj });
-        }
-      } else {
-        if (data?.authoring_createContent?.isExist === true) {
-          setOpenPageExistModal(true);
-          setPageStatus(pageState);
         } else {
-          // ShowToastSuccess(`${t('event')} ${t('published_toast')}`);
-          setShowPublishConfirm(true);
-          publishEvent(eventWholeRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase());
+          const pageUrl = data?.authoring_createContent?.path.substring(
+            data?.authoring_createContent?.path.lastIndexOf("/") + 1,
+          );
+          eventWholeRef.current.page = pageUrl;
+          setDraftPageURL(pageUrl);
+          if (data?.authoring_createContent?.isExist === true) {
+            setOpenPageExistModal(true);
+            setPageStatus(pageState);
+          } else {
+            // ShowToastSuccess(`${t('event')} ${t('published_toast')}`);
+            await publishEvent(
+              eventWholeRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
+            );
+            setShowPublishConfirm(true);
+          }
         }
       }
-      const pageUrl = data?.authoring_createContent?.path.substring(
-        data?.authoring_createContent?.path.lastIndexOf("/") + 1,
-      );
-      eventWholeRef.current.page = pageUrl;
-      setDraftPageURL(pageUrl);
     } catch (error: any) {
       if (error?.graphQLErrors[0]) {
         ShowToastError(error.graphQLErrors[0].message);
@@ -305,8 +307,8 @@ const CreateEvent = () => {
         setIsEdited(true);
       } else {
         // ShowToastSuccess(`${t("event")} ${t("published_toast")}`);
+        await publishEvent(draftPageURL ? draftPageURL : currentEventData.current);
         setShowPublishConfirm(true);
-        publishEvent(draftPageURL ? draftPageURL : currentEventData.current);
       }
     } catch (error) {
       ShowToastError(t("api_error_toast"));

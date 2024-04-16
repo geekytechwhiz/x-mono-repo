@@ -1278,5 +1278,20 @@
   "is_mandatory": "ist obligatorisch",
   "assets_picker_images": "Bilder zur Asset-Auswahl",
   "no_workflow_history": "Kein Workflow-Verlauf",
-  "view_workflow_history": "Workflow-Verlauf anzeigen"
+  "view_workflow_history": "Workflow-Verlauf anzeigen",
+  "back_to_events": "Zurück zu Veranstaltungen",
+  "view_full_event": "Vollständige Veranstaltung anzeigen",
+  "event_start": "Veranstaltungsbeginn",
+  "event_end": "Ende der Veranstaltung",
+  "key_highlighter": "Wichtiger Textmarker",
+  "time_stamp": "Zeitstempel",
+  "highlighter_pace_holder": "Bitte geben Sie Ihren Textmarker ein",
+  "author_place_holder": "Bitte schreiben Sie den Namen des Autors",
+  "blog_title": "Blog Titel",
+  "embed_place_holder": "Bitte fügen Sie hier Ihren Einbettungscode ein",
+  "no_blogs": "Wir haben keinen Blog gefunden, den wir hier anzeigen können",
+  "uploading": "Hochladen",
+  "blog_pending": "Ihr Blog wird veröffentlicht. Bitte warten!",
+  "write": "Schreiben",
+  "timeline": "Zeitleiste"
 }
