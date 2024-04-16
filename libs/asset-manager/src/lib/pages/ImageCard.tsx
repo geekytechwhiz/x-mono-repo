@@ -1,7 +1,13 @@
 import { Grid, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
-import { Imageasset, video, Morevarwhite, CommonPlateformXDialog } from "@platformx/utilities";
+import {
+  Imageasset,
+  video,
+  Morevarwhite,
+  CommonPlateformXDialog,
+  SitePlaceholder,
+} from "@platformx/utilities";
 import AssetCardMenu from "../components/CardMenu";
 import { useImagesStyle } from "./Images.style";
 import { useTranslation } from "react-i18next";
@@ -37,7 +43,14 @@ const ImageCard = ({ data, deleteAsset }) => {
     <Grid container item md={12} xs={12} sm={12} lg={3} className={classes.floatleft}>
       <Box className={classes.folderaddstep}>
         <Box className={classes.folderlistingstep}>
-          <img className={classes.mockimg} src={data.thumbnail.content_url} alt={data.name} />
+          <img
+            className={classes.mockimg}
+            src={data.thumbnail.content_url}
+            alt={data.name}
+            onError={(event) => {
+              (event.target as HTMLImageElement).src = SitePlaceholder;
+            }}
+          />
         </Box>
         <Box className={classes.wrapperimage}>
           <Box className={classes.innerimagetext}>

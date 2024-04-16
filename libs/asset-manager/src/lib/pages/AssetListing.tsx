@@ -7,6 +7,7 @@ import {
   ShowToastError,
   ShowToastSuccess,
   AUTH_INFO,
+  Loader,
 } from "@platformx/utilities";
 import { useSearchParams } from "react-router-dom";
 import { AssetHeader } from "./AssetHeader";
@@ -24,7 +25,7 @@ export const AssetListing = () => {
   const { t } = useTranslation();
   const pathName = window.location.pathname.split("/");
   const assetType = pathName.pop() || "images";
-
+  const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [folderName, setFolderName] = useState("");
   const [searchParams] = useSearchParams();
@@ -60,6 +61,7 @@ export const AssetListing = () => {
   };
 
   const createFolder = async () => {
+    setIsLoading(true);
     try {
       const { authoring_createAssets = {} } = await assetsApi.createCommunity({
         input: {
@@ -79,13 +81,14 @@ export const AssetListing = () => {
         });
       }
       ShowToastSuccess(authoring_createAssets.message);
+      fetchCommunityCollect(true);
+      setStartIndex(0);
     } catch (error) {
       ShowToastError(t("api_error_toast"));
     } finally {
-      fetchCommunityCollect(true);
-      setStartIndex(0);
       setShow(false);
       setFolderName("");
+      setIsLoading(false);
     }
   };
 
@@ -125,6 +128,7 @@ export const AssetListing = () => {
   return (
     <>
       <AssetHeader handleShow={setShow} collectionArr={assetData.collections} />
+      {isLoading && <Loader />}
       <Grid id='scrollableDiv' container className={classes.imagecontainer}>
         <InfiniteScroll
           dataLength={collectionItem.collectionItem?.length}

@@ -18,6 +18,7 @@ import {
   // getCurrentLang,
   useUserSession,
   Loader,
+  ShowToastError,
 } from "@platformx/utilities";
 import { t } from "i18next";
 import { Fragment, useEffect, useState } from "react";
@@ -68,6 +69,7 @@ export const SiteListing = () => {
 
   const fetchMultiSiteListing = async (start, isFilterChange, refresh = false) => {
     refresh && setRefreshState(true);
+    isFilterChange && setDatalist([]);
     try {
       const inputVariable = {
         pageFilter: filterValue,
@@ -146,8 +148,7 @@ export const SiteListing = () => {
       window.location.replace(`${window.location.origin}/${redirectUrl}`);
     } catch (error) {
       setIsLoading(false);
-      // eslint-disable-next-line no-console
-      console.log(error);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
@@ -208,6 +209,9 @@ export const SiteListing = () => {
                                     ? `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/${site.header_logo}`
                                     : SitePlaceholder
                                 }
+                                onError={(event) => {
+                                  (event.target as HTMLImageElement).src = SitePlaceholder;
+                                }}
                               />
                             </Box>
                           </Grid>
