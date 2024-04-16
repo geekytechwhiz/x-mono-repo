@@ -69,7 +69,7 @@ export const FeatureFlagSetting = () => {
         isFeatured={false}
       />
       <Divider />
-      <Box className={classes.pageContainer}>
+      <Box className={classes.pageContainer} id='scrollableDiv'>
         <Box className={classes.contentContainer}>
           <Box>
             <CommonBoxWithNumber
