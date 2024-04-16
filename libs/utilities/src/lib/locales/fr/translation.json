@@ -1194,6 +1194,7 @@
   "first_name_label": "Prénom",
   "company_name": "Nom de l'entreprise",
   "email_id": "Identifiant de courrier électronique",
+  "is_not_in_valid_format": "n'est pas dans un format valide",
   "phone_number": "Numéro de téléphone",
   "message": "Message",
   "form_update_message": "Les détails du formulaire ont été mis à jour avec succès",

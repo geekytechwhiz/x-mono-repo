@@ -1195,6 +1195,7 @@
   "first_name_label": "Vorname",
   "company_name": "Name der Firma",
   "email_id": "E-Mail-ID",
+  "is_not_in_valid_format": "hat kein gültiges Format",
   "phone_number": "Telefonnummer",
   "message": "Nachricht",
   "form_update_message": "Formulardetails erfolgreich aktualisiert",
