@@ -13,8 +13,8 @@ import {
   CardOptionEditIcon,
   CardOptionUnPublishIcon,
   CardOptionViewIcon,
+  CommonPlateformXDialog,
   ErrorTooltip,
-  PlateformXDialog,
   capitalizeFirstLetter,
   getCurrentLang,
   useAccess,
@@ -174,18 +174,28 @@ const PageMenu = (props) => {
           isDuplicateValue={true}></CreateNewPage>
       )}
       {menuActions.unpublish && (
-        <PlateformXDialog
+        // <PlateformXDialog
+        //   isDialogOpen={menuActions.unpublish}
+        //   title={t("page_unpublish_title")}
+        //   subTitle={t("page_unpublish_subtitle")}
+        //   closeButtonText={t("no")}
+        //   confirmButtonText={t("yes")}
+        //   closeButtonHandle={handleClose}
+        //   confirmButtonHandle={handleUnpublishPage}
+        // />
+        <CommonPlateformXDialog
           isDialogOpen={menuActions.unpublish}
           title={t("page_unpublish_title")}
           subTitle={t("page_unpublish_subtitle")}
           closeButtonText={t("no")}
-          confirmButtonText={t("yes")}
           closeButtonHandle={handleClose}
+          confirmButtonText={t("yes")}
           confirmButtonHandle={handleUnpublishPage}
+          modalType='delete'
         />
       )}
       {menuActions.canceltrigger && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={menuActions.canceltrigger}
           title={t("cancel_schedule")}
           subTitle={t("cancel_schedule_message")}
@@ -196,7 +206,7 @@ const PageMenu = (props) => {
         />
       )}
       {menuActions.delete && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={menuActions.delete}
           title={t("page_delete_title")}
           subTitle={t("page_delete_subtitle")}
@@ -207,7 +217,7 @@ const PageMenu = (props) => {
         />
       )}
       {menuActions.pageunpublish && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={menuActions.pageunpublish}
           title={t("page_delete_title")}
           subTitle={t("page_delete_subtitle")}

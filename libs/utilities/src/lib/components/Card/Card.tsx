@@ -1,14 +1,14 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { CommonPlateformXDialog } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
-import "./List.css";
-import { CommonPlateformXDialog } from "@platformx/utilities";
 import { RedBlinkingDot } from "../../assets/svg";
+import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
+import "./List.css";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
 
@@ -144,6 +144,7 @@ export const Card = ({
       case "article":
       case "courses":
       case "vod":
+      case "profile":
         ContentAction[dataList.status](dataList);
         break;
       case "tagscategories":

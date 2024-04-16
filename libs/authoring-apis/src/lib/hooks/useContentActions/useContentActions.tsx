@@ -26,11 +26,11 @@ import contentTypeAPIs, {
   deleteContentType,
   publishContentType,
 } from "../../services/contentTypes/contentTypes.api";
+import { fetchVodByIdAPI } from "../../services/vod/vod.api";
 import { LanguageList } from "../../utils/constants";
 import useVod from "../useVod/useVod";
 import { CONTENT_CONSTANTS } from "./Uitls/Constants";
 import { mapDeleteContent, mapDuplicateContent, mapUnPublishContent } from "./mapper";
-import { fetchVodByIdAPI } from "../../services/vod/vod.api";
 
 const {
   LANG,

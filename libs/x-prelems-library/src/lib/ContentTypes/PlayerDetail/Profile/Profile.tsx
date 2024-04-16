@@ -1,16 +1,14 @@
+import { CakeOutlined, DescriptionOutlined, PublicOutlined } from "@mui/icons-material";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import React from "react";
-import prelemTypes from "../../../globalStyle";
-import { useCustomStyle } from "./Profile.style";
+import { format } from "date-fns";
 import "../../../Style.css";
 import ImageRender from "../../../components/ImageRender";
-import { CakeOutlined, DescriptionOutlined, PublicOutlined } from "@mui/icons-material";
-import { format } from "date-fns";
+import prelemTypes from "../../../globalStyle";
+import { useCustomStyle } from "./Profile.style";
 
 const Profile = ({ content, authoringHelper, secondaryArgs }: any) => {
   const classes = useCustomStyle();
   const globalClasses = prelemTypes();
-
   return (
     <div
       ref={authoringHelper?.innerRef}
