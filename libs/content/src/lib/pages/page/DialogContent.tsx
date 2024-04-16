@@ -1,8 +1,8 @@
 import { TextField, Typography } from "@mui/material";
 import DialogContent from "@mui/material/DialogContent";
 import { Box } from "@mui/system";
+import { LanguageDropDownCheckBox, ThemeConstants } from "@platformx/utilities";
 import { t } from "i18next";
-import { ThemeConstants, LanguageDropDownCheckBox } from "@platformx/utilities";
 import { nameLength } from "./Constants";
 import { DialogContentProps } from "./CreateNewPage.types";
 

@@ -50,8 +50,11 @@ import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
+import ExitModal from "./lib/components/ExitModal";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
 import CommonPlateformXDialog from "./lib/components/Modal/CommonPlateformXDialog";
+import CommonPlateformXDialogUserExp from "./lib/components/Modal/CommonPlateformXDialogUserExp";
+
 import NoResultsFound from "./lib/components/NoResultsFound";
 import {
   Answers,
@@ -141,6 +144,7 @@ export {
   CommonBoxWithNumber,
   CommonContentRender,
   CommonPlateformXDialog,
+  CommonPlateformXDialogUserExp,
   CommonPreview,
   ContentGridLoader,
   ContentListDesktopLoader,
@@ -154,6 +158,7 @@ export {
   ErrorHandleAutoTextArea,
   ErrorHandleTextBox,
   ErrorTooltip,
+  ExitModal,
   FormikField,
   General_community,
   Icons,

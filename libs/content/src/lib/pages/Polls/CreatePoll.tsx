@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
 /* eslint-disable no-debugger */
@@ -38,6 +39,7 @@ import { CreateHeader } from "../../components/CreateHeader/CreateHeader";
 import { ContentType } from "../../enums/ContentType";
 import { icons } from "../../utils/Constants";
 // import WorkflowHistory from "../WorkflowHistory/WorkflowHistory";
+import { WorkflowHistory } from "@platformx/workflow-management";
 import { DamContentGallery } from "@platformx/x-image-render";
 import { useDispatch, useSelector } from "react-redux";
 import ContentPageScroll from "../../components/ContentPageScroll";
@@ -1491,7 +1493,10 @@ export const CreatePoll = (): JSX.Element => {
               </Box>
             )}
             {enableWorkflowHistory ? (
-              <>WorkflowHistory</>
+              <WorkflowHistory
+                workflow={workflow}
+                setEnableWorkflowHistory={setEnableWorkflowHistory}
+              />
             ) : (
               <>
                 <TitleDescription

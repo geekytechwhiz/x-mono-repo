@@ -221,7 +221,7 @@ function MenuCreationFirstPage({
       setSelectedItem({
         Title: item.Title,
         Description: item.Description,
-        Image: item.Banner,
+        Image: `https://storage.googleapis.com/cropped_image_public/${item.Thumbnail.Url}.${item.Thumbnail.ext}`, //item.Banner,
         RedirectionUrl: item.CurrentPageURL,
         Internal: true,
         ContentType: item.ContentType,

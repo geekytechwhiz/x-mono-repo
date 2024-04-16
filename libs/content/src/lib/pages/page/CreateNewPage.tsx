@@ -178,7 +178,7 @@ const CreateNewPage = ({
                 )}
               </Box>
               {isDuplicate && (
-                <Box className={classes.createPagePopuprowBox}>
+                <Box className={classes.createPagePopuprowBox} sx={{ display: "none" }}>
                   <Typography variant='h5regular'>{t("page_language_label")}</Typography>
                   <LanguageDropDownCheckBox language={language} setLanguage={setLanguage} />
                 </Box>

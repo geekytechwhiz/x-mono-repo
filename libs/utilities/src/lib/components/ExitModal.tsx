@@ -3,8 +3,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import DialogCloseIcon from "../assets/svgIcon/DialogCloseIcon.svg";
-import DeleteIcon from "../assets/svgIcon/errorPopupIcon.svg";
+// import DialogCloseIcon from "../../assets/svgIcon/DialogCloseIcon.svg";
+import { DeleteIcon, DialogCloseIcon } from "../assets/svg/index";
+
+// import {DeleteIcon} from "../assets/svgIcon/errorPopupIcon.svg";
 import prelemTypes from "../themes/prelems/globalStyle";
 import { useCustomStyle } from "./ExitModal.styles";
 
