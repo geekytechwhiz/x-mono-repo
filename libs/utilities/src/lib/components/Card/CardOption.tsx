@@ -4,13 +4,12 @@ import EditIcon from "../../assets/svg//editIcon.svg";
 import { ErrorTooltip } from "../ErrorTooltip/ErrorTooltip";
 import { useTranslation } from "react-i18next";
 import { SYSTEM_TAGS } from "./constants";
+import { CATEGORY_CONTENT, CATEGORY_PAGE, SITE_SETTING } from "../../constants/CommonConstants";
 
 const CardOption = (props: any) => {
   const { t } = useTranslation();
 
   const {
-    getContentCategory,
-    getContentSubCategory,
     dataList = {},
     tagName = "",
     handleEdit = () => {},
@@ -18,11 +17,17 @@ const CardOption = (props: any) => {
     handleDeleteButton = () => {},
   } = props;
 
-  const getTagAction = (action) => {
-    if (dataList.type === SYSTEM_TAGS) {
-      return true;
-    } else {
-      return !canAccessAction("SiteSetting", "tag", action);
+  const hasAccess = (action) => {
+    switch (tagName) {
+      case "tagscategories":
+        return dataList.type === SYSTEM_TAGS ? false : canAccessAction(SITE_SETTING, "tag", action);
+      case "courses":
+        return false;
+      case "sitepage":
+        return canAccessAction(CATEGORY_PAGE, "", action);
+      default:
+        // for "article", "quiz", "poll", "event", "vod"
+        return canAccessAction(CATEGORY_CONTENT, tagName, action);
     }
   };
 
@@ -42,25 +47,14 @@ const CardOption = (props: any) => {
                 className='icons'
                 disableRipple
                 onClick={handleEdit}
-                disabled={
-                  tagName === "tagscategories"
-                    ? getTagAction("Update")
-                    : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
-                      tagName === "courses"
-                }>
+                disabled={!hasAccess("Update")}>
                 <IconButton className='hoverIcon'>
-                  {/* <img src={EditIcon} alt="" style={{ objectFit: 'cover' }} /> */}
-                  <img src={EditIcon} alt='' />
+                  <img src={EditIcon} alt='edit' />
                 </IconButton>
               </MenuItem>
             }
             tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_edit_tag") : ""}
-            doAccess={
-              tagName === "tagscategories"
-                ? getTagAction("Update")
-                : !canAccessAction(getContentCategory(), getContentSubCategory(), "Update") ||
-                  tagName === "courses"
-            }
+            doAccess={!hasAccess("Update")}
           />
         ) : null}
       </Box>
@@ -71,24 +65,14 @@ const CardOption = (props: any) => {
               className='icons'
               disableRipple
               onClick={handleDeleteButton}
-              disabled={
-                tagName === "tagscategories"
-                  ? getTagAction("Delete")
-                  : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
-                    tagName === "courses"
-              }>
+              disabled={!hasAccess("Delete")}>
               <IconButton className='hoverIcon'>
-                <img src={DeleteIcon} alt='' />
+                <img src={DeleteIcon} alt='delete' />
               </IconButton>
             </MenuItem>
           }
           tooltipMsg={dataList.type === SYSTEM_TAGS ? t("cannot_delete_tag") : ""}
-          doAccess={
-            tagName === "tagscategories"
-              ? getTagAction("Delete")
-              : !canAccessAction(getContentCategory(), getContentSubCategory(), "Delete") ||
-                tagName === "courses"
-          }
+          doAccess={!hasAccess("Delete")}
         />
       </Box>
     </Box>

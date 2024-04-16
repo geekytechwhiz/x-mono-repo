@@ -39,6 +39,7 @@ export const MENU_TAGGING = "Navigation";
 export const USERNAME_EMAIL_EXIST = "Username already exist!";
 export const CONTENT_TYPES = ["article", "quiz", "poll", "event"];
 export const SITE_PAGE = "SitePage";
+export const SITE_SETTING = "SiteSetting";
 
 export const CONTENT_TYPE_WITH_ABSOLUTEURL = ["VOD", "Course", "Product"];
 export const CONTENT_TYPE = {

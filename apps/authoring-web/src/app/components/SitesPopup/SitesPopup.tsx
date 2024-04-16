@@ -6,6 +6,8 @@ import {
   useUserSession,
   getFirstTwoletters,
   NoSearchResult,
+  ShowToastError,
+  Loader,
 } from "@platformx/utilities";
 import { useState } from "react";
 import usePopupStyle from "./SitesPopup.style";
@@ -20,6 +22,7 @@ export default function SitesPopup(props) {
     setIsVisible(false);
   };
   const classes = usePopupStyle();
+  const [isLoading, setIsLoading] = useState(false);
   const sessions = localStorage.getItem("userSession") || "";
   const [getSession, updateSession] = useUserSession();
   const storedSession = JSON.parse(sessions);
@@ -36,6 +39,7 @@ export default function SitesPopup(props) {
   };
   const handleSiteChange = async (e, sitetitle) => {
     const isSiteSystem = sitetitle?.toLowerCase() === "administrator";
+    setIsLoading(true);
 
     try {
       const res = await multiSiteApi.getPermissions(isSiteSystem ? "system" : sitetitle);
@@ -58,9 +62,10 @@ export default function SitesPopup(props) {
         : `${sitetitle}/${lang}/dashboard`;
 
       window.location.replace(`${window.location.origin}/${redirectUrl}`);
+      setIsLoading(false);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
   return (
@@ -80,17 +85,17 @@ export default function SitesPopup(props) {
                 <CloseIcon />
               </Box>
             </Box>
-
+            {isLoading && <Loader />}
             <Box className={classes.searchwrapper}>
               <SitesSearchBox handleSearch={handleSearch} />
             </Box>
             <Box className={classes.containerboxsize}>
-              {filteredSites.map((val, index) => {
+              {filteredSites.map((val) => {
                 return (
                   <Box
                     className={classes.container}
                     onClick={(event) => handleSiteChange(event, val)}
-                    key={index}>
+                    key={val}>
                     <Box className={classes.innercontainer}>
                       <Avatar className={classes.avatarbox}>{getFirstTwoletters(val)}</Avatar>
                       <Box className={classes.sitescontent}>

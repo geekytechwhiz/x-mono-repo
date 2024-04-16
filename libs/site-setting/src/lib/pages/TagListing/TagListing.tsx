@@ -1,11 +1,5 @@
 import { Box } from "@mui/system";
-import {
-  CATEGORY_CONTENT,
-  CONTENT_TYPES,
-  deleteTag,
-  fetchTagListing,
-  publishTag,
-} from "@platformx/authoring-apis";
+import { deleteTag, fetchTagListing, publishTag } from "@platformx/authoring-apis";
 import { ContentListingHeader } from "@platformx/content";
 import {
   Card,
@@ -124,8 +118,8 @@ export const TagListing = () => {
       <ContentListingHeader
         handleFilter={() => {}}
         title='tags_categories'
-        category={CATEGORY_CONTENT}
-        subCategory={CONTENT_TYPES}
+        category='SiteSetting'
+        subCategory='tag'
         handleAddNew={() => navigate("/site-setting/create-tags")}
         animationState={refreshState}
         handleRefresh={handleRefresh}
