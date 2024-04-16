@@ -18,7 +18,7 @@ import {
   inputEmptyFieldValidate,
   inputNonEmptyFieldValidate,
   nullToObject,
-  SuccessIcon,
+  PlaceOrderGIf,
   DeleteIcon,
 } from "@platformx/utilities";
 import {
@@ -560,7 +560,7 @@ const PaymentDetail = ({
           {confirm && (
             <Confirmation
               open={true}
-              img={SuccessIcon}
+              img={PlaceOrderGIf}
               handleClose={handleClose}
               text={confimationMessage}
               title={t("order_placed")}

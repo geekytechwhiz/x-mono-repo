@@ -43,6 +43,7 @@ import {
 } from "./lib/constants/AuthConstant";
 
 import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
+import PlaceOrderGIf from "./lib/assets/gif/placeOrderSuccess.gif";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
@@ -221,4 +222,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  PlaceOrderGIf,
 };

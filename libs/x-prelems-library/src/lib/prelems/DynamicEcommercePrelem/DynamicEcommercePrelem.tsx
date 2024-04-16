@@ -62,12 +62,21 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
 
   const handlePrevClick = () => {
     if (queryParamfordata?.pagination?.start !== 0 && activeSlide === 0) {
-      setQueryParamfordata({
+      getProducts({
         ...queryParamfordata,
         pagination: {
           ...queryParamfordata?.pagination,
           start: queryParamfordata?.pagination?.start - 20,
         },
+      });
+      setQueryParamfordata((prevState) => {
+        return {
+          ...prevState,
+          pagination: {
+            ...prevState?.pagination,
+            start: prevState?.pagination?.start - 20,
+          },
+        };
       });
       fromBack.current = true;
     } else {
@@ -77,12 +86,21 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
 
   const handleNextClick = () => {
     if (sliderEndCheck && sliderRef?.props.children.length === 20) {
-      setQueryParamfordata({
+      getProducts({
         ...queryParamfordata,
         pagination: {
           ...queryParamfordata?.pagination,
           start: queryParamfordata?.pagination?.start + 20,
         },
+      });
+      setQueryParamfordata((prevState) => {
+        return {
+          ...prevState,
+          pagination: {
+            ...prevState?.pagination,
+            start: prevState?.pagination?.start + 20,
+          },
+        };
       });
       fromBack.current = false;
       setActiveSlide(0);
@@ -251,7 +269,7 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
             <Box
               className={`transparentButton ${!isPrev ? "disablebutton" : ""}`}
               onClick={handlePrevClick}
-              sx={{ pointerEvents: isPrev ? "auto" : "none" }}>
+              sx={{ cursor: isPrev ? "pointer" : "default" }}>
               <WestIcon
                 className={`extPreviousButton previousBtn ${!isPrev ? "decreaseOpacity" : ""}`}
               />
@@ -367,7 +385,7 @@ const DynamicEcommercePrelem = (props: DynamicEcommercePrelemProps) => {
                 }>
                 <AutorenewIcon className='autorenewIcon' />
                 <Typography className='overLaytextgap' variant='h3regular' color='textColor'>
-                  Replace
+                  {t("replace")}
                 </Typography>
               </Box>
             </Box>
