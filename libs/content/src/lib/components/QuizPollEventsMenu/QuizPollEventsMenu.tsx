@@ -15,9 +15,9 @@ import {
   CardOptionShareIcon,
   CardOptionUnPublishIcon,
   CardOptionViewIcon,
+  CommonPlateformXDialog,
   DuplicateContentPopup,
   ErrorTooltip,
-  PlateformXDialog,
   PlateformXSocialDialog,
   ShowToastError,
   ShowToastSuccess,
@@ -83,6 +83,7 @@ export const QuizPollEventMenu = ({
     navigate(`/content/create-blog?path=${path}`);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const createContent = (IsDuplicate = false, title = "", isCalled = false) => {
     duplicate(IsDuplicate, title, language, selectedContent);
     onClose();
@@ -227,14 +228,24 @@ export const QuizPollEventMenu = ({
         />
       )}
       {menuActions.unpublish && (
-        <PlateformXDialog
+        // <PlateformXDialog
+        //   isDialogOpen={menuActions.unpublish}
+        //   title={`${t("unpublish")} ${t(contentType?.toLowerCase())}`}
+        //   subTitle={`${t("unpublish_confirm")} ${t(contentType?.toLowerCase())}`}
+        //   closeButtonText={t("no")}
+        //   confirmButtonText={t("yes")}
+        //   closeButtonHandle={onClose}
+        //   confirmButtonHandle={unPublishConfirmButtonHandle}
+        // />
+        <CommonPlateformXDialog
           isDialogOpen={menuActions.unpublish}
           title={`${t("unpublish")} ${t(contentType?.toLowerCase())}`}
-          subTitle={`${t("unpublish_confirm")} ${t(contentType?.toLowerCase())}`}
+          subTitle={`${t("unpublish_confirm")} ${t(contentType?.toLowerCase())}?`}
           closeButtonText={t("no")}
-          confirmButtonText={t("yes")}
           closeButtonHandle={onClose}
+          confirmButtonText={t("yes")}
           confirmButtonHandle={unPublishConfirmButtonHandle}
+          modalType='delete'
         />
       )}
       {menuActions.approvalStatus && (

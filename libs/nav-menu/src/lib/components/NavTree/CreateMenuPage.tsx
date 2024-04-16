@@ -158,7 +158,9 @@ function CreateMenuPage({
       setSelectedItem({
         Title: item.Title,
         Description: item.Description,
-        Image: item.Banner,
+        Image: `${process.env.NX_GCP_URL}/${process.env.NX_BUCKET_NAME}/${item.Thumbnail.Url}.${item.Thumbnail.ext}`, //item.Banner,
+
+        // Image: `https://storage.googleapis.com/cropped_image_public/${item.Thumbnail.Url}.${item.Thumbnail.ext}`,//item.Banner,
         RedirectionUrl: item.CurrentPageURL,
         Internal: true,
         ContentType: item.ContentType,
@@ -561,12 +563,24 @@ function CreateMenuPage({
     <>
       {isLoading && <Loader />}
       <style>{minCss}</style>
+
       {galleryState && (
-        <ContentGallery
-          handleSelectedContent={handleSelectedContent}
-          onToggleContentGallery={onToggleContentGallery}
-          contentType={["Article"]}
-        />
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            backgroundColor: "#fff",
+            width: "100%",
+            height: "100%",
+            zIndex: 1300,
+          }}>
+          <ContentGallery
+            handleSelectedContent={handleSelectedContent}
+            onToggleContentGallery={onToggleContentGallery}
+            contentType={["Article"]}
+          />
+        </Box>
       )}
       {!isPageList && (
         <Box

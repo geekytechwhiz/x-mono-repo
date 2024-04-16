@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { TextField, Typography } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -48,6 +49,7 @@ const XDatePicker = ({
             name={field.name}
             onKeyDown={handleDateChangeRaw}
             // onBlur={handleBlur}
+            autoComplete='off'
             sx={{
               ".Platform-x-InputBase-root.Mui-error fieldset": {
                 borderColor: isValid ? "#ced3d9 !important" : "#B71C1C",

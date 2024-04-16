@@ -163,7 +163,7 @@ export default function BlogSearchBox({ onSearch, style, selectedItem = [] }) {
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder={`${t("Search Blog")}`}
+            placeholder={`${t("search")} ${t("blog")}`}
             sx={{
               ".Platform-x-InputBase-root": {
                 height: "40px",

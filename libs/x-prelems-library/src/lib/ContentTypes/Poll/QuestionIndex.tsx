@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, Typography } from "@mui/material";
-import { Analytics, CloseIcon, loadergif } from "@platformx/utilities";
+import {
+  Analytics,
+  CloseIcon,
+  CommonPlateformXDialogUserExp,
+  loadergif,
+} from "@platformx/utilities";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ExitModal from "../../components/ExitModal";
 import { useClickImpression } from "../../components/ImpressionHooks/ClickImpressionHook";
 import ImageQuestion from "./ImageQuestion";
 import PollContext from "./PollContext";
@@ -320,14 +324,24 @@ const QuestionIndex = ({
         </Box>
       </Box>
       {open && (
-        <ExitModal
+        // <ExitModal
+        //   isDialogOpen={open}
+        //   title={t("exit_modal_quiz_title")}
+        //   subTitle={t("exit_modal_quiz_text")}
+        //   handleClose={handleClose}
+        //   handleExit={handleExit}
+        //   closeButtonText={t("exit_CTA_back")}
+        //   confirmButtonText={t("exit_CTA_yes")}
+        // />
+        <CommonPlateformXDialogUserExp
           isDialogOpen={open}
-          title={t("exit_modal_quiz_title")}
-          subTitle={t("exit_modal_quiz_text")}
-          handleClose={handleClose}
-          handleExit={handleExit}
+          title={t("exit_modal_title")}
+          subTitle={t("exit_modal_msg")}
           closeButtonText={t("exit_CTA_back")}
           confirmButtonText={t("exit_CTA_yes")}
+          closeButtonHandle={handleClose}
+          confirmButtonHandle={handleExit}
+          // modalType='unsavedChanges'
         />
       )}
     </>

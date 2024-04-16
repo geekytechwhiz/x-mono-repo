@@ -1,14 +1,13 @@
 import { Box, Grid, Tooltip, Typography } from "@mui/material";
+import { CommonPlateformXDialog } from "@platformx/utilities";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CATEGORY_CONTENT, CATEGORY_PAGE, DASHBOARD_KEYS } from "../../constants/CommonConstants";
-import "./List.css";
-import { CommonPlateformXDialog } from "@platformx/utilities";
 import { RedBlinkingDot } from "../../assets/svg";
 import useAccess from "../../hooks/useAccess/useAccess";
 import { PublishInformation } from "../PublishInformation";
 import CardOption from "./CardOption";
+import "./List.css";
 import { CardProps } from "./List.types";
 import { iconsList, statusIcons } from "./constants";
 
@@ -122,6 +121,7 @@ export const Card = ({
       case "article":
       case "courses":
       case "vod":
+      case "profile":
         ContentAction[dataList.status](dataList);
         break;
       case "tagscategories":
@@ -174,16 +174,6 @@ export const Card = ({
         setSubTitle(t("page_delete_subtitle"));
     }
     setDelete(true);
-  };
-
-  const getContentCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE?.toLowerCase()
-      ? CATEGORY_PAGE
-      : CATEGORY_CONTENT;
-  };
-
-  const getContentSubCategory = () => {
-    return tagName?.toLowerCase() === DASHBOARD_KEYS.SITE_PAGE.toLowerCase() ? "" : tagName;
   };
 
   return (
@@ -311,8 +301,6 @@ export const Card = ({
                 handleEdit={handleEdit}
                 canAccessAction={canAccessAction}
                 handleDeleteButton={handleDeleteButton}
-                getContentCategory={getContentCategory}
-                getContentSubCategory={getContentSubCategory}
               />
               {CustomMenuList}
             </Box>
