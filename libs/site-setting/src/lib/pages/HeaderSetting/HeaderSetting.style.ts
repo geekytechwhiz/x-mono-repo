@@ -17,7 +17,7 @@ export const useHeaderSettingStyle = makeStyles((theme: Theme) => ({
     maxWidth: "820px",
     margin: "auto",
     paddingBottom: "70px",
-    height: "calc(100vh - 160px)",
+    height: "calc(100vh - 190px)",
   },
   globalnewcontain: {
     [theme.breakpoints.up("sm")]: {

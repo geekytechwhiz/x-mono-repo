@@ -7,13 +7,15 @@ import {
   CommonBoxWithNumber,
   Loader,
   MultiSelect,
-  PictureIcon,
   ShowToastError,
   TextBox,
   TitleSubTitle,
   VectorIconSvg,
   useUserSession,
   ShowToastSuccess,
+  ContactPhone,
+  Address,
+  Email,
 } from "@platformx/utilities";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -395,7 +397,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <img src={PictureIcon} alt='PictureIcon' />
+                          <img src={Address} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -421,7 +423,7 @@ export const FooterSetting = () => {
 
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <img src={PictureIcon} alt='PictureIcon' />
+                          <img src={Email} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -446,7 +448,7 @@ export const FooterSetting = () => {
                       </Box>
                       <Box className={classes.pictureiconinner} marginTop={2}>
                         <Box className={classes.pictureIconContainer}>
-                          <img src={PictureIcon} alt='PictureIcon' />
+                          <img src={ContactPhone} alt='PictureIcon' />
                         </Box>
                         <Box className={classes.aboutUsTextBox}>
                           <TextBox
@@ -639,7 +641,7 @@ export const FooterSetting = () => {
                   titleVarient='p3semibold'
                   subTitleVarient='p4regular'
                   title={t("sitesetting_news_title")}
-                  subTitle={t("sitesetting_copy_subhead")}
+                  subTitle={t("subhead")}
                   panelStyle={{ marginTop: "30px" }}>
                   <Grid container>
                     <Grid item xs={12} sm={8} md={8} lg={8} className={classes.leftForm}>

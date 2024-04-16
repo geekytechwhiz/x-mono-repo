@@ -15,11 +15,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
   },
 
   pageContainer: {
+    height: "calc(100vh - 125px)",
     [theme.breakpoints.up("xs")]: {
       padding: "1px 15px 15px 15px",
     },
     [theme.breakpoints.up("sm")]: {
       padding: "0",
+      overflowY: "auto",
     },
   },
   contentContainer: {
