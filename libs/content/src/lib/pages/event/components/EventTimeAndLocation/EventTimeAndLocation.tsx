@@ -109,7 +109,7 @@ const EventTimeAndLocation = ({ state, setState, unsavedChanges }: ComponentProp
           {/* Address */}
           <Grid item xs={12} sm={5} md={5} lg={5} className='leftFiled'>
             <TitleSubTitle
-              title={t("event_address")}
+              title={`${t("event_address")}*`}
               subTitle={t("event_subaddress")}
               titleVariant='h6medium'
               subTitleVariant='h7regular'

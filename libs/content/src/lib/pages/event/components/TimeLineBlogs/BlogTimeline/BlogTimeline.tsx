@@ -178,7 +178,7 @@ const BlogTimeline = (_props: any) => {
             mb: 2,
             display: { xs: "none", lg: "block" },
           }}>
-          Blogs Timeline
+          {t("blogs_Timeline")}
         </Typography>
         <BlogSearchBox
           selectedItem={selectedItem}
@@ -205,7 +205,7 @@ const BlogTimeline = (_props: any) => {
                 sx={{
                   color: "Themeconstants.LIGHT_GREY3_COLOR",
                 }}>
-                {t("no_match_results")}{" "}
+                {t("no_match_results")}
               </Typography>
             ) : null}
 
@@ -215,7 +215,7 @@ const BlogTimeline = (_props: any) => {
                 sx={{
                   color: "Themeconstants.LIGHT_GREY3_COLOR",
                 }}>
-                {`We didn't find any Blog to show here`}.
+                {t("no_blogs")}.
               </Typography>
             ) : null}
             {selectedItem?.length > 0 && isBlogLoad ? (
@@ -228,10 +228,10 @@ const BlogTimeline = (_props: any) => {
                 <TimelineContent sx={{ py: "12px", px: 2 }}>
                   <Box sx={{ ml: 1 }}>
                     <Typography variant='h6medium' component='h6' sx={{ color: "#89909a" }}>
-                      Uploading...
+                      {t("uploading")}...
                     </Typography>
                     <Typography sx={{ color: "#5c6574", pb: 3 }} variant='h6medium' component='p'>
-                      Your blog is publishing. Please wait!
+                      {t("blog_pending")}
                     </Typography>
                   </Box>
                 </TimelineContent>
@@ -242,7 +242,7 @@ const BlogTimeline = (_props: any) => {
               dataLength={nullToArray(selectedItem)?.length}
               next={fetchMoreData}
               hasMore={isLazyLoad}
-              loader={<h4>Loading...</h4>}
+              loader={<h4>{t("loading")}</h4>}
               scrollableTarget='scrollableDiv'>
               {selectedItem &&
                 selectedItem?.map((itemData: any, index) => {
@@ -470,14 +470,14 @@ const BlogTimeline = (_props: any) => {
                                 handleEdit(presentId);
                                 handleListClose();
                               }}>
-                              <EditIcon /> Edit
+                              <EditIcon /> {t("edit")}
                             </MenuItem>
                             <MenuItem
                               disableRipple
                               onClick={() => {
                                 handleDelete();
                               }}>
-                              <DeleteIcon /> Delete
+                              <DeleteIcon /> {t("delete")}
                             </MenuItem>
                           </Menu>
                         </Box>
