@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Box, CardMedia, Typography } from "@mui/material";
 import { getImage, onClickCardUrlNavigate } from "@platformx/utilities";
 import React from "react";
@@ -24,7 +25,6 @@ const XCard5 = ({ content, secondaryArgs }: XCard5Props) => {
       onClick={(e) => onClickCard(e, content?.EditorialItemPath)}>
       <Box className='XCard5innderBox'>
         <Box className='imgWrapper'>
-          <Typography> VideoPlayer has been commented</Typography>
           <CardMedia
             component={imageUrl ? "img" : "div"}
             image={imageUrl ? imageUrl : ""}

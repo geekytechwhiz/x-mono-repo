@@ -40,4 +40,4 @@ data:
 kind: ConfigMap
 metadata:
   name: hep-user-experience-ui-config
-  namespace: qa-v2
+  namespace: default
