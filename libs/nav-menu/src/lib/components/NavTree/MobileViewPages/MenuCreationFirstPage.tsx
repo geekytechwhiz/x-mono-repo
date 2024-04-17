@@ -612,122 +612,124 @@ function MenuCreationFirstPage({
                 </Typography>
               </Box>
             </Box>
-            <Box
-              sx={{
-                marginLeft: "11px",
-                marginTop: "40px",
-                display: "flex",
-                flexDirection: "column",
-              }}>
-              <Typography variant='h6medium' sx={{ color: "#2d2d37" }}>
-                {t("menu_content")}
-              </Typography>
-              {selectedItem.Title !== "" ? (
-                <Box
-                  sx={{
-                    cursor: "pointer",
-                    height: "227px",
-                    width: { md: "356px", sm: "260px" },
-                    position: "relative",
-                    mt: "10px",
-                    mr: "10px",
-                    mb: "10px",
-                  }}
-                  onClick={() => onUploadClick()}>
-                  <img
-                    src={selectedItem.Image}
-                    alt='icon'
-                    width='100%'
-                    height='100%'
-                    style={{ borderRadius: "5px" }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: "100%",
-                      height: "100%",
-                      background: "linear-gradient(180deg, rgba(0,0,0,0.0001) 0%, #000000 100%)",
-                      mixBlendMode: "normal",
-                      opacity: "0.5",
-                      top: 0,
-                      borderRadius: "5px",
-                    }}>
-                    <RestartAltIcon
-                      style={{
-                        width: "35px",
-                        height: "40px",
-                        color: "#fff",
-                        position: "relative",
-                        left: "45%",
-                        top: "30%",
-                      }}
-                    />
-                  </div>
+            {radioSelected === "Main Menu" ? (
+              <Box
+                sx={{
+                  marginLeft: "11px",
+                  marginTop: "40px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}>
+                <Typography variant='h6medium' sx={{ color: "#2d2d37" }}>
+                  {t("menu_content")}
+                </Typography>
+                {selectedItem.Title !== "" ? (
                   <Box
                     sx={{
+                      cursor: "pointer",
+                      height: "227px",
+                      width: { md: "356px", sm: "260px" },
                       position: "relative",
-                      marginTop: "-85px",
-                      marginLeft: "21px",
-                    }}>
-                    <Typography
-                      variant='h5medium'
-                      component='div'
-                      sx={{ color: "#fff", marginBottom: "5px" }}
-                      className='singlebr'>
-                      {selectedItem.Title}
-                    </Typography>
-                    <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
-                      {selectedItem.Author}
-                    </Typography>
-                    <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
-                      {" "}
-                      {selectedItem?.CreatedDate ? dateFormat(selectedItem?.CreatedDate) : ""}
-                    </Typography>
+                      mt: "10px",
+                      mr: "10px",
+                      mb: "10px",
+                    }}
+                    onClick={() => onUploadClick()}>
+                    <img
+                      src={selectedItem.Image}
+                      alt='icon'
+                      width='100%'
+                      height='100%'
+                      style={{ borderRadius: "5px" }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        background: "linear-gradient(180deg, rgba(0,0,0,0.0001) 0%, #000000 100%)",
+                        mixBlendMode: "normal",
+                        opacity: "0.5",
+                        top: 0,
+                        borderRadius: "5px",
+                      }}>
+                      <RestartAltIcon
+                        style={{
+                          width: "35px",
+                          height: "40px",
+                          color: "#fff",
+                          position: "relative",
+                          left: "45%",
+                          top: "30%",
+                        }}
+                      />
+                    </div>
+                    <Box
+                      sx={{
+                        position: "relative",
+                        marginTop: "-85px",
+                        marginLeft: "21px",
+                      }}>
+                      <Typography
+                        variant='h5medium'
+                        component='div'
+                        sx={{ color: "#fff", marginBottom: "5px" }}
+                        className='singlebr'>
+                        {selectedItem.Title}
+                      </Typography>
+                      <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
+                        {selectedItem.Author}
+                      </Typography>
+                      <Typography variant='h7medium' component='div' sx={{ color: "#ced3d9" }}>
+                        {" "}
+                        {selectedItem?.CreatedDate ? dateFormat(selectedItem?.CreatedDate) : ""}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              ) : (
-                <Box
-                  sx={{
-                    borderRadius: "5px",
-                    border: "dashed 2px #707070",
-                    cursor: "pointer",
-                    height: "227px",
-                    backgroundColor: "#f5f6f8",
-                    display: "flex",
-                    alignItems: "center",
-                    width: { md: "356px", sm: "260px" },
-                    mt: "10px",
-                    mr: "10px",
-                    mb: "10px",
-                  }}
-                  onClick={() => onUploadClick()}>
+                ) : (
                   <Box
                     sx={{
-                      marginLeft: "24px",
-                      borderRadius: "50%",
-                      backgroundColor: "#000",
-                      width: "40px",
-                      height: "40px",
+                      borderRadius: "5px",
+                      border: "dashed 2px #707070",
+                      cursor: "pointer",
+                      height: "227px",
+                      backgroundColor: "#f5f6f8",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
+                      width: { md: "356px", sm: "260px" },
+                      mt: "10px",
+                      mr: "10px",
+                      mb: "10px",
                     }}
-                    mr={2}>
-                    <ArrowUpwardIcon style={{ color: "#fff" }} />
+                    onClick={() => onUploadClick()}>
+                    <Box
+                      sx={{
+                        marginLeft: "24px",
+                        borderRadius: "50%",
+                        backgroundColor: "#000",
+                        width: "40px",
+                        height: "40px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      mr={2}>
+                      <ArrowUpwardIcon style={{ color: "#fff" }} />
+                    </Box>
+                    <Box
+                      sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: ThemeConstants.PRIMARY_MAIN_COLOR,
+                      }}>
+                      <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
+                        {t("menu_content_placeholder")}
+                      </Typography>
+                    </Box>
                   </Box>
-                  <Box
-                    sx={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      color: ThemeConstants.PRIMARY_MAIN_COLOR,
-                    }}>
-                    <Typography variant='h5medium' component='h5' sx={{ color: "#000000" }}>
-                      {t("menu_content_placeholder")}
-                    </Typography>
-                  </Box>
-                </Box>
-              )}
-            </Box>
+                )}
+              </Box>
+            ) : null}
           </Box>
         </Box>
         {open && (
