@@ -3,7 +3,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { PlateformXDialog, PlateformXDialogSuccess } from "@platformx/utilities";
+import { CommonPlateformXDialog } from "@platformx/utilities";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import imageUrl from "../../../assets/images/testimonial.png";
@@ -208,7 +208,7 @@ const UserDetails = () => {
         </Grid>
       </Box>
       {open && (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={open}
           closeButtonHandle={handleClose}
           confirmButtonHandle={deleteConfirmButtonHandle}
@@ -216,10 +216,11 @@ const UserDetails = () => {
           subTitle={`${deletePopup.deleteDescription}`}
           closeButtonText={`${deletePopup.deleteCloseText}`}
           confirmButtonText={`${deletePopup.deleteConfirmText}`}
+          modalType='delete'
         />
       )}
       {openSuccess && (
-        <PlateformXDialogSuccess
+        <CommonPlateformXDialog
           isDialogOpen={openSuccess}
           closeButtonHandle={handleCloseSuccess}
           confirmButtonHandle={successConfirmButtonHandle}
@@ -227,6 +228,7 @@ const UserDetails = () => {
           subTitle={`${successPopup.successDescription}`}
           closeButtonText={`${successPopup.successCloseText}`}
           confirmButtonText={`${successPopup.successConfirmText}`}
+          modalType='publish'
         />
       )}
     </>
