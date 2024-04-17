@@ -11,6 +11,7 @@ const TaskCard = ({
   children,
   refetch,
   refetchFunction,
+  refetchLoading,
 }: TaskCardProps) => {
   const classes = useStyles();
   return (
@@ -21,6 +22,7 @@ const TaskCard = ({
         linkText={linkText}
         refetch={refetch}
         refetchFunction={refetchFunction}
+        refetchLoading={refetchLoading}
       />
       <Box className={classes.body}>{children}</Box>
     </Box>

@@ -6,4 +6,5 @@ export type TaskCardProps = {
   isEmptyResult?: boolean;
   refetch?: boolean;
   refetchFunction?: () => {};
+  refetchLoading?: boolean;
 };

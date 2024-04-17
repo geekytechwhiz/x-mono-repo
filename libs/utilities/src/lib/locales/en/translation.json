@@ -1359,7 +1359,6 @@
   "ie": "ie",
   "netbanking": "Netbanking",
   "out_of_stock": "Out of Stock",
-  "is_not_in_valid_format": "is not in valid format",
   "return_to_information": "Return to Information",
   "make_payment": "Make Payment",
   "please_enter_lesser_quantity": "Limited stock, Please enter lesser quantity",
@@ -1407,5 +1406,6 @@
   "your_voucher_value": "Your Voucher value is",
   "awarded_with": "You have been awarded with",
   "point": "points",
-  "token": "token"
+  "token": "token",
+  "empty_cart_msg": "Your Cart Is Currently Empty"
 }

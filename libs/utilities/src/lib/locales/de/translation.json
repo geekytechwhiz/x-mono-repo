@@ -1352,7 +1352,6 @@
   "ie": "dh",
   "netbanking": "Onlinebanking",
   "out_of_stock": "Ausverkauft",
-  "is_not_in_valid_format": "hat kein gültiges Format",
   "return_to_information": "Zurück zu Informationen",
   "make_payment": "Zahlung durchführen",
   "please_enter_lesser_quantity": "Begrenzter Lagerbestand, bitte geben Sie eine geringere Menge ein",
@@ -1402,5 +1401,6 @@
   "your_voucher_value": "Ihr Gutscheinwert beträgt",
   "awarded_with": "Sie wurden mit ausgezeichnet",
   "point": "Punkte",
-  "token": "Zeichen"
+  "token": "Zeichen",
+  "empty_cart_msg": "Ihr Warenkorb ist derzeit leer"
 }

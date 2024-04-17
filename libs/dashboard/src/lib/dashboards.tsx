@@ -86,7 +86,8 @@ export const Dashboard = () => {
                     title={t("tasks")}
                     titleVariant='h5bold'
                     refetch
-                    refetchFunction={fetchDashBoardData}>
+                    refetchFunction={fetchDashBoardData}
+                    refetchLoading={loading}>
                     <Box>
                       {loading ? (
                         <ContentListDesktopLoader />
