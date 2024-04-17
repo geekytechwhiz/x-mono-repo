@@ -251,9 +251,7 @@ const CreateEvent = () => {
             setPageStatus(pageState);
           } else {
             // ShowToastSuccess(`${t('event')} ${t('published_toast')}`);
-            await publishEvent(
-              eventWholeRef.current.title.replace(/[^A-Z0-9]+/gi, "-").toLowerCase(),
-            );
+            await publishEvent(pageUrl);
             setShowPublishConfirm(true);
           }
         }

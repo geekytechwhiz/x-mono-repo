@@ -177,15 +177,20 @@ export const getProductDetails = (
 /**
  * cartId based get full details
  */
-export const ecomCartIdBasedGetItem = (ele: any) => {
-  const { secondaryArgs = {}, cartId = "" } = nullToObject(ele);
-  const { prelemBaseEndpoint: { deliveryEndPoint = "", language = "en" } = {}, sitename = "" } =
-    nullToObject(secondaryArgs);
+export const ecomCartIdBasedGetItem = async (ele: any) => {
+  try {
+    const { secondaryArgs = {}, cartId = "" } = nullToObject(ele);
+    const { prelemBaseEndpoint: { deliveryEndPoint = "", language = "en" } = {}, sitename = "" } =
+      nullToObject(secondaryArgs);
 
-  const data = JSON.stringify({
-    query: `query { getCartItems(cartId:${JSON.stringify(cartId)}) } `,
-  });
-  return postRestApiCall(`${deliveryEndPoint}delivery-engine`, data, language, sitename);
+    const data = JSON.stringify({
+      query: `query { getCartItems(cartId:${JSON.stringify(cartId)}) } `,
+    });
+    return await postRestApiCall(`${deliveryEndPoint}delivery-engine`, data, language, sitename);
+  } catch (err) {
+    console.error(err);
+    localStorage.removeItem("ecommerceCartId");
+  }
 };
 
 /**

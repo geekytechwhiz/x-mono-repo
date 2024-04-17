@@ -43,6 +43,9 @@ export default function Tags({ handleTags }) {
           width: 0,
           minWidth: "150px",
         },
+        "& .Platform-x-Chip-deleteIcon": {
+          cursor: "pointer",
+        },
       }}
       multiple
       id='tags-filled'
