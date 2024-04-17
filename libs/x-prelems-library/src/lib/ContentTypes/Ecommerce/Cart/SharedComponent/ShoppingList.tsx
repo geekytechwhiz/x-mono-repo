@@ -47,7 +47,7 @@ const ShoppingList = (_props: ecommerceShoppingListProps) => {
                 alignItems: "center",
                 justifyContent: "center",
               }}>
-              <Typography variant='p2medium'>Your Cart Is Currently Empty!</Typography>
+              <Typography variant='p2medium'>{`${t("empty_cart_msg")}!`}</Typography>
             </Box>
           ) : (
             nullToArray(line_item).map((product: any, index: number) => (
