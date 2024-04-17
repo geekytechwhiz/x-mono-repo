@@ -4,6 +4,12 @@ import { ThemeConstants } from "@platformx/utilities";
 export const useStyles = makeStyles(() => ({
   commonPreviewPageRender: {
     "&.contentPreviewPage": {
+      "& .videoLandingPage .gradient img": {
+        minHeight: "500px !important",
+        [`@media(min-width:${ThemeConstants.SM}px)`]: {
+          minHeight: "321px !important",
+        },
+      },
       "& .eventPageContent .eventsParent": {
         [`@media(min-width:${ThemeConstants.EM}px)`]: {
           height: "600px",

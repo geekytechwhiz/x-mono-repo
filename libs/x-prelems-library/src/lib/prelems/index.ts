@@ -18,16 +18,16 @@ import WebsiteIntroduction4 from "./WebsiteIntroduction4/WebsiteIntroduction4";
 import ProductSummaryViaImage from "./productSummaryViaImage/productSummaryViaImage";
 import ProductSummaryViaImage2 from "./productSummaryViaImage2/productSummaryViaImage2";
 import Quote from "./quote/quote";
-// import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
+import DynamicPrelemWithCarousel1 from "./DynamicPrelemWithCarousel1/DynamicPrelemWithCarousel1";
 import Banner1 from "./Banner1/Banner1";
 import Banner3 from "./Banner3/Banner3";
 import Banner6 from "./Banner6/Banner6";
 import Description from "./Description/Description";
 import FullWidthText from "./FullWidthText/FullWidthText";
-import ImageCarousel1 from "./ImageCarousel1/ImageCarousel1";
+import ImageCrousel1 from "./ImageCarousel1/ImageCarousel1";
 import FullWidthImage from "./fullWidthImage/fullWidthImage";
 import FullWidthVideo from "./fullWidthVideo/fullWidthVideo";
-// import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
+import DynamicPrelemOne from "./DynamicPrelemOne/DynamicPrelemOne";
 import BlogTiles from "./BlogTiles/BlogTiles";
 import ContentDisplayWithCategories from "./ContentDisplayWithCategories/ContentDisplayWithCategories";
 import CounterNumberShowcase from "./CounterNumberShowcase/CounterNumberShowcase";
@@ -59,7 +59,7 @@ import Gallery1 from "./Gallery1/Gallery1";
 import Gallery2 from "./Gallery2/Gallery2";
 import ImageVideoCarousel1 from "./ImageVideoCarousel1/ImageVideoCarousel1";
 import LeftAlignParagraphWithHeadline from "./LeftAlignParagraphWithHeadline/LeftAlignParagraphWithHeadline";
-import LiveStreemFeed from "./LivestreamFeed/LivestreamFeed";
+import LivestreamFeed from "./LivestreamFeed/LivestreamFeed";
 import MultiSlot2 from "./MultiSlot2/MultiSlot2";
 import ParagraphWithHeadline from "./ParagraphWithHeadline/ParagraphWithHeadline";
 import ParagraphWithHeadlineAndCTA from "./ParagraphWithHeadlineAndCTA/ParagraphWithHeadlineAndCTA";
@@ -94,7 +94,7 @@ export {
   Banner3,
   Banner4,
   Banner5,
-  // DynamicPrelemOne,
+  DynamicPrelemOne,
   Banner6,
   Banner7,
   BlogTiles,
@@ -107,7 +107,7 @@ export {
   Description,
   DynamicEcommercePrelem,
   DynamicPrelem,
-  // DynamicPrelemWithCarousel1,
+  DynamicPrelemWithCarousel1,
   DynamicPrelemWithCarousel2,
   Ecommerce3Slot1,
   Ecommerce3Slot2,
@@ -125,11 +125,11 @@ export {
   Gallery2,
   ImageAndVideoGallery,
   ImageCards,
-  ImageCarousel1,
+  ImageCrousel1,
   ImageVideoCarousel1,
   InfoBox,
   LeftAlignParagraphWithHeadline,
-  LiveStreemFeed,
+  LivestreamFeed,
   MultiSlot2,
   ParagraphWithHeadline,
   ParagraphWithHeadlineAndCTA,

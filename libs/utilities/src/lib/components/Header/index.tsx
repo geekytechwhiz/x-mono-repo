@@ -8,12 +8,12 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Profile from "../../assets/images/avatar.png";
 import Logo from "../../assets/images/platform-x-logo.png";
+import CommonPlateformXDialog from "../../components/Modal/CommonPlateformXDialog";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import useUserSession from "../../hooks/useUserSession/useUserSession";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { getSelectedRoute, getSelectedSite } from "../../utils/helperFns";
 import LanguageDropDown from "../LanguageDropDown/LanguageDropDown";
-import PlateformXDialog from "../Popups/PlateformXDialog";
 
 const saveWarningMessage = {
   saveWarnTitle: "Unsaved Changes",
@@ -85,7 +85,7 @@ export const Header = (props) => {
         window.location.replace(LOGOUT_URL);
         break;
       case "PAGE_LIST":
-        navigate("/page-list");
+        navigate("/sitepage");
         break;
       default:
         navigate("/");
@@ -116,9 +116,7 @@ export const Header = (props) => {
       setTriggerCase("PAGE_LIST");
     }
   };
-  const unsavedCrossButtonHandle = () => {
-    setHasSaveWarning(false);
-  };
+
   return (location.pathname === "/change-password" ||
     location.pathname.includes("/preview-page") ||
     location.pathname.includes("/article-preview") ||
@@ -323,15 +321,14 @@ export const Header = (props) => {
         </Menu>
       </Box>
       {hasSaveWarning ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={hasSaveWarning}
           title={saveWarnTitle}
           subTitle={saveWarnSubtitle}
           closeButtonText={saveWarnReject}
           confirmButtonText={saveWarnSave}
-          confirmButtonHandle={onCloseSaveWarningHandler}
-          closeButtonHandle={() => callFnsCase(triggerCase)}
-          crossButtonHandle={unsavedCrossButtonHandle}
+          confirmButtonHandle={() => callFnsCase(triggerCase)}
+          closeButtonHandle={onCloseSaveWarningHandler}
           modalType='unsavedChanges'
         />
       ) : null}

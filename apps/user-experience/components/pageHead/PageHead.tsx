@@ -66,68 +66,69 @@ export const PageHead = (props: PageHeadProps) => {
   return (
     <>
       {seoEnabled ? (
-        <Head>
-          {/* Add the favicon link tag */}
-          <link rel='icon' type='image/x-icon' href={faviconUrl} />
-          <title>{siteTitle}</title>
-          <meta charSet='UTF-8' />
-          <meta
-            name='viewport'
-            content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
-          />
-          <meta property='keywords' content={seo_keywords} />
+        <>
+          <Head>
+            {/* Add the favicon link tag */}
+            <link rel='icon' type='image/x-icon' href={faviconUrl} />
+            <title>{siteTitle}</title>
+            <meta charSet='UTF-8' />
+            <meta
+              name='viewport'
+              content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
+            />
+            <meta property='keywords' content={seo_keywords} />
 
-          <meta
-            name='google-site-verification'
-            content={publicRuntimeConfig?.NEXT_GOOGLE_SEARCH_VERIFICATION}
-          />
+            <meta
+              name='google-site-verification'
+              content={publicRuntimeConfig?.NEXT_GOOGLE_SEARCH_VERIFICATION}
+            />
 
-          {noIndex && <meta name='robots' content='noindex' />}
+            {noIndex && <meta name='robots' content='noindex' />}
 
-          {cUrl && <link rel='canonical' href={cUrl} />}
+            {cUrl && <link rel='canonical' href={cUrl} />}
 
-          {/* Facebook Meta Tags  */}
-          <meta property='og:site_name' content={siteName} />
+            {/* Facebook Meta Tags  */}
+            <meta property='og:site_name' content={siteName} />
 
-          {/* <meta property="twitter:image:src" content={socialog_image} /> */}
-          <meta property='twitter:domain' content={socialog_url} />
-          <meta name='theme-color' content='#fff' />
+            {/* <meta property="twitter:image:src" content={socialog_image} /> */}
+            <meta property='twitter:domain' content={socialog_url} />
+            <meta name='theme-color' content='#fff' />
 
-          <meta property='og:type' content='website' />
-          <meta property='og:title' content={siteTitle} />
-          <meta property='title' content={siteTitle} />
+            <meta property='og:type' content='website' />
+            <meta property='og:title' content={siteTitle} />
+            <meta property='title' content={siteTitle} />
 
-          <meta name='description' property='og:description' content={description} />
+            <meta name='description' property='og:description' content={description} />
 
-          <meta property='og:url' content={socialog_url} />
+            <meta property='og:url' content={socialog_url} />
 
-          <meta property='og:image' content={ogImg} />
+            <meta property='og:image' content={ogImg} />
 
-          {SocialOgLocale && <meta property='og:locale' content={SocialOgLocale} />}
+            {SocialOgLocale && <meta property='og:locale' content={SocialOgLocale} />}
 
-          {socialog_twitter_title && (
-            <meta property='twitter:title' content={socialog_twitter_title} />
-          )}
+            {socialog_twitter_title && (
+              <meta property='twitter:title' content={socialog_twitter_title} />
+            )}
 
-          {socialog_twitter_description && (
-            <meta property='twitter:description' content={socialog_twitter_description} />
-          )}
+            {socialog_twitter_description && (
+              <meta property='twitter:description' content={socialog_twitter_description} />
+            )}
 
-          {socialog_twitter_url && <meta property='twitter:site' content={socialog_twitter_url} />}
-
-          {arrStructuredData &&
-            arrStructuredData?.length &&
-            arrStructuredData.map((item: any, key: number) => {
-              return (
-                <Script
-                  id={`SD${key}`}
-                  key={convertLowerCase(key + "arrStructuredData")}
-                  type='application/ld+json'
-                  dangerouslySetInnerHTML={{ __html: item }}
-                />
-              );
-            })}
-        </Head>
+            {socialog_twitter_url && (
+              <meta property='twitter:site' content={socialog_twitter_url} />
+            )}
+          </Head>
+          {arrStructuredData?.map((item: any, key: number) => {
+            return (
+              <Script
+                id={`SD${key}`}
+                type='application/ld+json'
+                dangerouslySetInnerHTML={{ __html: item }}
+                key={convertLowerCase(key + "arrStructuredData")}
+              />
+            );
+          })}
+        </>
       ) : (
         <Head>
           {/* Add the favicon link tag */}

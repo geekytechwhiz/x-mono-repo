@@ -97,7 +97,7 @@ export const Dashboard = () => {
                           changeStatus={changeStatus}
                           edit={edit}
                         />
-                      ) : dashBoard?.taskPages?.length === 0 ? (
+                      ) : dashBoard?.taskPages?.length === 0 || dashBoard?.taskPages === null ? (
                         <TaskNotFound />
                       ) : (
                         <ContentListDesktopLoader />

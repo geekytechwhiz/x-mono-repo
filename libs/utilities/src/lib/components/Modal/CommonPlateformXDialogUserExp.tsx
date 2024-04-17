@@ -6,10 +6,9 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Errorpopicon } from "@platformx/utilities";
 import Success from "../../assets/svg/successIcon.svg";
 import WarningIcon from "../../assets/svg/warningIcon.svg";
-import FormatSubtitle from "./FormatSubtitle";
 import { DialogList } from "./uitls/dialogTypes";
 
-export default function CommonPlateformXDialog({
+export default function CommonPlateformXDialogUserExp({
   disableConfirmButton = false,
   isDialogOpen,
   title,
@@ -134,7 +133,9 @@ export default function CommonPlateformXDialog({
               padding: modalType ? "0px 0px" : "16px 24px",
               paddingTop: modalType === "unsavedWarning" ? "50px" : "0px",
               textTransform: "capitalize",
-              paddingBottom: "24px",
+              marginTop: "0px !important",
+              marginBottom: "0px !important",
+              // paddingBottom: "24px",
             }}>
             {title}
           </DialogTitle>
@@ -153,8 +154,11 @@ export default function CommonPlateformXDialog({
                 "&:first-letter": {
                   textTransform: "capitalize",
                 },
+                marginTop: "0px !important",
+                marginBottom: "0px !important",
               }}>
-              <FormatSubtitle text={subTitle}></FormatSubtitle>
+              {subTitle}
+              {/* <FormatSubtitle text={subTitle}></FormatSubtitle> */}
             </Typography>
           </DialogContent>
         ) : (
@@ -203,7 +207,7 @@ export default function CommonPlateformXDialog({
           }}>
           {closeButtonText ? (
             <Button
-              variant='outlined'
+              variant='primaryButton1'
               sx={{
                 marginRight: "12px",
                 textTransform: "capitalize",
@@ -224,7 +228,7 @@ export default function CommonPlateformXDialog({
             <Button
               type='button'
               disabled={disableConfirmButton}
-              variant='contained'
+              variant='primaryButton2'
               onClick={confirmButtonHandle}
               autoFocus
               sx={{

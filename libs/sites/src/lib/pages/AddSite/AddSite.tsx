@@ -1,6 +1,4 @@
-/* eslint-disable no-empty */
 import { Box, Grid, SelectChangeEvent, Typography } from "@mui/material";
-import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 import { t } from "i18next";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
@@ -24,9 +22,10 @@ import {
   useUserSession,
   TextBox,
   Loader,
-  PlateformXDialogSuccess,
   ShowToastSuccess,
   Pencil,
+  CommonPlateformXDialog,
+  ShowToastError,
 } from "@platformx/utilities";
 import AddSiteSelect from "./AddSiteSelect";
 import SiteCreationTopBar from "../../components/SiteCreationTopbar/SiteCreationTopBar";
@@ -200,7 +199,9 @@ export const AddSite = () => {
         ...newSiteFormClone,
         { name: "site_title_url", value: siteDetail.site_title_url },
       ]);
-    } catch (error) {}
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
 
   const fetchAdminDomain = async () => {
@@ -217,7 +218,9 @@ export const AddSite = () => {
         user_id: obj.user_id,
       }));
       setAdminDomain(() => ({ adminList: admin || [], domainList: domain || [] }));
-    } catch (error) {}
+    } catch (error) {
+      ShowToastError(t("api_error_toast"));
+    }
   };
 
   const validate = async (input, type) => {
@@ -326,20 +329,6 @@ export const AddSite = () => {
     return formValue;
   };
 
-  const handleToast = (response) => {
-    if (response) {
-      response
-        .then((res) => {
-          if (!res?.errors) {
-            setOpenPublishModal(true);
-          }
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
-  };
-
   const getZoneName = () => {
     const zone = adminDomainList.domainList.find(
       (control) => control.value === newSiteForm[0].value,
@@ -412,13 +401,14 @@ export const AddSite = () => {
       }
     } catch (error: any) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
   };
 
   const onPublish = async () => {
     try {
       setIsLoading(true);
-      const publishRes = publishMultisiteInfo({
+      await publishMultisiteInfo({
         input: {
           page: siteName ? siteName : savedPageURL,
           status: "publish",
@@ -426,17 +416,13 @@ export const AddSite = () => {
           schedule_date_time: "",
         },
       });
-
-      await handleToast(publishRes);
+      setOpenPublishModal(true);
       setIsLoading(false);
       setIsSaved(false);
     } catch (error: any) {
       setIsLoading(false);
+      ShowToastError(t("api_error_toast"));
     }
-  };
-
-  const closeButtonHandle = () => {
-    setOpenPublishModal(false);
   };
 
   useEffect(() => {
@@ -604,15 +590,12 @@ export const AddSite = () => {
       </Box>
 
       {openPublishModal && (
-        <PlateformXDialogSuccess
+        <CommonPlateformXDialog
           isDialogOpen={openPublishModal}
           title={t("congratulations")}
           subTitle={`${t("publish_site_success")}`}
           confirmButtonText={t("go_to_site_listing")}
-          crossButtonHandle={closeButtonHandle}
-          closeButtonHandle={closeButtonHandle}
           confirmButtonHandle={() => navigate("/sites/site-listing")}
-          closeIcon={<CreateRoundedIcon />}
           modalType='publish'
         />
       )}

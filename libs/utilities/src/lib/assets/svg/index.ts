@@ -254,11 +254,17 @@ import VideoNav from "./VideoMenuIcon.svg";
 import GlobalSetting from "./GlobalSetting.svg";
 import UploadThumbnail from "./UploadThumbnail.svg";
 import HashTag from "./Hashtag.svg";
+import ContactPhone from "./contactphone.svg";
+import Address from "./address.svg";
+import Email from "./email.svg";
 
 export {
   RedBlinkingDot as liveIcon,
   IconFbSvg,
   GlobalSetting,
+  ContactPhone,
+  Address,
+  Email,
   HashTag,
   IconGoogleSvg,
   IconVisaCardSvg,

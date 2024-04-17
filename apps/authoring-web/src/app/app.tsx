@@ -25,6 +25,7 @@ import "./App.css";
 import RootRouter from "./router/RootRouter";
 import Analytics from "./utils/analytics/analyticsData";
 import { analyticsInstance } from "./utils/analytics/dynamicAnalytics";
+import { AnalyticsProvider } from "use-analytics";
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace("Mui", "Platform-x-"),
@@ -60,7 +61,7 @@ function App() {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState(DefaultLocale);
   const classes = useStyles();
-  const [, setInstances] = useState<any>({});
+  const [instances, setInstances] = useState<any>({});
   const routing = getSelectedRoute();
   const { pathname } = window.location;
 
@@ -90,16 +91,16 @@ function App() {
       <div className='App'>
         <I18nextProvider i18n={i18next}>
           <ApolloProvider client={graphqlInstance}>
-            {/* <AnalyticsProvider instance={instances}> */}
-            <ThemeProvider theme={LightTheme}>
-              <CssBaseline />
-              <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
-                <Provider store={store}>
-                  <RootRouter />
-                </Provider>
-              </BrowserRouter>
-            </ThemeProvider>
-            {/* </AnalyticsProvider> */}
+            <AnalyticsProvider instance={instances}>
+              <ThemeProvider theme={LightTheme}>
+                <CssBaseline />
+                <BrowserRouter basename={routing ? `/${routing}/${language}` : `/${language}`}>
+                  <Provider store={store}>
+                    <RootRouter />
+                  </Provider>
+                </BrowserRouter>
+              </ThemeProvider>
+            </AnalyticsProvider>
             <ToastContainer
               position='bottom-center'
               autoClose={4000}

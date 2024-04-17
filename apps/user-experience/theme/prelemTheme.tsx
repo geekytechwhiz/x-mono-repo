@@ -84,6 +84,8 @@ declare module "@mui/material/Button" {
     tertiaryButton2: true;
     tertiaryButton3: true;
     tertiaryButton4: true;
+    outlined: true;
+    contained: true;
   }
 }
 declare module "@mui/material/styles" {
@@ -1144,35 +1146,35 @@ const PrelemTheme = (ThemeConstants) =>
             },
           },
           /*old variant */
-          {
-            props: { variant: "outlined" },
-            style: {
-              textTransform: "capitalize",
-              fontWeight: ThemeConstants.FONTWEIGHT_LIGHT,
-              background: ThemeConstants.WHITE_COLOR,
-              borderRadius: ThemeConstants.DEFAULT_BORDER_RADIUS_CTA,
-              fontSize: ThemeConstants.FONTSIZE_16,
-              color: ThemeConstants.BLACK_COLOR,
-              border: "solid 0.5px " + ThemeConstants.BLACK_COLOR,
-              // padding: '8.5px 10px 10.5px 10px',
-              width: "100%",
-              height: "40px",
-              padding: "15px 20px",
-              minWidth: "250px",
-              [`@media (max-width:${ThemeConstants.XL}px)`]: {
-                padding: "10px 20px",
-                minWidth: "200px",
-              },
-              "&:hover": {
-                background: ThemeConstants.BUTTON_MAIN_COLOR,
-                color: ThemeConstants.WHITE_COLOR,
-                border: "solid 0.5px " + ThemeConstants.BUTTON_MAIN_COLOR,
-              },
-              "&:disabled": {
-                color: ThemeConstants.WHITE_COLOR,
-              },
-            },
-          },
+          // {
+          //   props: { variant: "outlined" },
+          //   style: {
+          //     textTransform: "capitalize",
+          //     fontWeight: ThemeConstants.FONTWEIGHT_LIGHT,
+          //     background: ThemeConstants.WHITE_COLOR,
+          //     borderRadius: ThemeConstants.DEFAULT_BORDER_RADIUS_CTA,
+          //     fontSize: ThemeConstants.FONTSIZE_16,
+          //     color: ThemeConstants.BLACK_COLOR,
+          //     border: "solid 0.5px " + ThemeConstants.BLACK_COLOR,
+          //     // padding: '8.5px 10px 10.5px 10px',
+          //     width: "100%",
+          //     height: "40px",
+          //     padding: "15px 20px",
+          //     minWidth: "250px",
+          //     [`@media (max-width:${ThemeConstants.XL}px)`]: {
+          //       padding: "10px 20px",
+          //       minWidth: "200px",
+          //     },
+          //     "&:hover": {
+          //       background: ThemeConstants.BUTTON_MAIN_COLOR,
+          //       color: ThemeConstants.WHITE_COLOR,
+          //       border: "solid 0.5px " + ThemeConstants.BUTTON_MAIN_COLOR,
+          //     },
+          //     "&:disabled": {
+          //       color: ThemeConstants.WHITE_COLOR,
+          //     },
+          //   },
+          // },
           {
             props: { variant: "transparent" },
             style: {

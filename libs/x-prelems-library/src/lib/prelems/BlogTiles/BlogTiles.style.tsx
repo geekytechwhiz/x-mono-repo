@@ -264,6 +264,14 @@ export const useCustomStyle = makeStyles(() => {
             },
           },
         },
+        "& .grid_full_width": {
+          "& .blogTilesCardContent": {
+            padding: "0 5px 8px !important",
+          },
+          "& .gap": {
+            letterSpacing: "-1px",
+          },
+        },
       },
     },
   };

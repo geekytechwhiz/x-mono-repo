@@ -61,6 +61,8 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: "",
       socialShareImgURL: "",
       colorCode: color,
+      original_image: {},
+      published_images: [],
     });
     pollRef.current = {
       ...pollRef.current,
@@ -68,6 +70,8 @@ export const ImageVideo = ({ state, setState, pollRef, unsavedChanges }) => {
       thumbnailURL: "",
       socialShareImgURL: "",
       colorCode: color,
+      original_image: {},
+      published_images: [],
     };
     unsavedChanges.current = true;
   };

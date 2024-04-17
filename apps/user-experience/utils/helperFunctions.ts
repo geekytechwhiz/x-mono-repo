@@ -516,7 +516,7 @@ export const postPageImpressionEvent = (pageData, contentType) => {
   })
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        // throw new Error("Network response was not ok");
       } else {
         // eslint-disable-next-line no-console
         console.log("Event addeed in the RPI");
@@ -525,7 +525,7 @@ export const postPageImpressionEvent = (pageData, contentType) => {
     })
     .catch((error) => {
       console.error("Error:", error);
-      throw error;
+      // throw error;
     });
 };
 

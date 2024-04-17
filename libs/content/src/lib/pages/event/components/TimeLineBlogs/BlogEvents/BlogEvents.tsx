@@ -123,7 +123,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
             showToastError("Couldn't find the event.");
           }
         })
-        .catch((err) => {
+        .catch(() => {
           showToastError(t("api_error_toast"));
         });
     } else {
@@ -190,7 +190,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
               {selectedEventDetaiils?.event_start_date ? (
                 <Box className={classes.eventSpacer}>
                   <Typography variant='h6semibold' component='h6'>
-                    Event Start
+                    {t("event_start")}
                   </Typography>
                   <Box sx={{ display: "flex" }}>
                     <Typography variant='h6regular' component='h6' className={classes.timeField}>
@@ -215,7 +215,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
               {selectedEventDetaiils?.event_end_date ? (
                 <Box>
                   <Typography variant='h6semibold' component='h6' className={classes.eventSpacer}>
-                    Event End
+                    {t("event_end")}
                   </Typography>
                   <Box sx={{ display: "flex" }}>
                     <Typography variant='h6regular' component='h6' className={classes.timeField}>
@@ -258,8 +258,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
             className={classes.button}
             onClick={viewEventHandle}>
             <Typography variant='h6semibold' component='h6'>
-              {" "}
-              View Full Event{" "}
+              {t("view_full_event")}
             </Typography>
           </Button>
         </Box>
@@ -283,8 +282,7 @@ const BlogEvents: React.FC<EventsProps> = (_props: any) => {
           className={classes.button}
           onClick={viewEventHandle}>
           <Typography variant='h6semibold' component='h6'>
-            {" "}
-            View Full Event{" "}
+            {t("view_full_event")}
           </Typography>
         </Button>
       </Box>

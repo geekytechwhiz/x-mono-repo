@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import "./BlogTimeline.css";
-import { format } from "date-fns";
-import Box from "@mui/material/Box";
-import { Link } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import Timeline from "@mui/lab/Timeline";
-import { timeSince } from "../Utils/helperBlogs";
-import DOMPurify from "isomorphic-dompurify";
-import MenuItem from "@mui/material/MenuItem";
-import { useTranslation } from "react-i18next";
-import TimelineDot from "@mui/lab/TimelineDot";
-import EditIcon from "@mui/icons-material/Edit";
-import TimelineItem from "@mui/lab/TimelineItem";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import BlogSearchBox from "../Blogs/BlogSearchBox";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TimelineContent from "@mui/lab/TimelineContent";
+import EditIcon from "@mui/icons-material/Edit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import InfiniteScroll from "react-infinite-scroll-component";
+import Timeline from "@mui/lab/Timeline";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { Link } from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 import {
+  CommonPlateformXDialog,
+  ShowToastSuccess,
+  apiCallForBlogs,
   nullToArray,
   ShowToastError as showToastError,
-  ShowToastSuccess,
-  DeletePopup,
-  apiCallForBlogs,
 } from "@platformx/utilities";
+import { format } from "date-fns";
+import DOMPurify from "isomorphic-dompurify";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
+import BlogSearchBox from "../Blogs/BlogSearchBox";
+import { timeSince } from "../Utils/helperBlogs";
+import "./BlogTimeline.css";
 
 const BlogTimeline = (_props: any) => {
   const {
@@ -92,7 +92,7 @@ const BlogTimeline = (_props: any) => {
   };
 
   const deleteCloseButtonHandle = () => {
-    setIsDelete(true);
+    setIsDelete(false);
   };
 
   const handleDelete = () => {
@@ -178,7 +178,7 @@ const BlogTimeline = (_props: any) => {
             mb: 2,
             display: { xs: "none", lg: "block" },
           }}>
-          Blogs Timeline
+          {t("blogs_Timeline")}
         </Typography>
         <BlogSearchBox
           selectedItem={selectedItem}
@@ -205,7 +205,7 @@ const BlogTimeline = (_props: any) => {
                 sx={{
                   color: "Themeconstants.LIGHT_GREY3_COLOR",
                 }}>
-                {t("no_match_results")}{" "}
+                {t("no_match_results")}
               </Typography>
             ) : null}
 
@@ -215,7 +215,7 @@ const BlogTimeline = (_props: any) => {
                 sx={{
                   color: "Themeconstants.LIGHT_GREY3_COLOR",
                 }}>
-                {`We didn't find any Blog to show here`}.
+                {t("no_blogs")}.
               </Typography>
             ) : null}
             {selectedItem?.length > 0 && isBlogLoad ? (
@@ -228,10 +228,10 @@ const BlogTimeline = (_props: any) => {
                 <TimelineContent sx={{ py: "12px", px: 2 }}>
                   <Box sx={{ ml: 1 }}>
                     <Typography variant='h6medium' component='h6' sx={{ color: "#89909a" }}>
-                      Uploading...
+                      {t("uploading")}...
                     </Typography>
                     <Typography sx={{ color: "#5c6574", pb: 3 }} variant='h6medium' component='p'>
-                      Your blog is publishing. Please wait!
+                      {t("blog_pending")}
                     </Typography>
                   </Box>
                 </TimelineContent>
@@ -242,7 +242,7 @@ const BlogTimeline = (_props: any) => {
               dataLength={nullToArray(selectedItem)?.length}
               next={fetchMoreData}
               hasMore={isLazyLoad}
-              loader={<h4>Loading...</h4>}
+              loader={<h4>{t("loading")}</h4>}
               scrollableTarget='scrollableDiv'>
               {selectedItem &&
                 selectedItem?.map((itemData: any, index) => {
@@ -470,14 +470,14 @@ const BlogTimeline = (_props: any) => {
                                 handleEdit(presentId);
                                 handleListClose();
                               }}>
-                              <EditIcon /> Edit
+                              <EditIcon /> {t("edit")}
                             </MenuItem>
                             <MenuItem
                               disableRipple
                               onClick={() => {
                                 handleDelete();
                               }}>
-                              <DeleteIcon /> Delete
+                              <DeleteIcon /> {t("delete")}
                             </MenuItem>
                           </Menu>
                         </Box>
@@ -491,14 +491,15 @@ const BlogTimeline = (_props: any) => {
       </Box>
 
       {isDelete ? (
-        <DeletePopup
+        <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")} ${t("blog")}?. ${t("process_undone")}`}
+          subTitle={`${t("delete_confirm")} ${t("blog")}? ${t("process_undone")}`}
           closeButtonText={t("no_keep_it")}
           confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={deleteCloseButtonHandle}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       ) : null}
     </>

@@ -38,5 +38,6 @@ export const SNOWPLOW = {
     ARTICLE: "Article",
     POLL: "Poll",
     QUIZ: "Quiz",
+    PROFILE: "Profile",
   },
 };

@@ -97,9 +97,14 @@ export const getRestApiCall = (url: string, locale?: string, sitename?: string) 
  * @param payload object
  * @returns object
  */
-export const postRestApiCall = (url: string, payload: any, locale?: string, site_host?: string) => {
+export const postRestApiCall = async (
+  url: string,
+  payload: any,
+  locale?: string,
+  site_host?: string,
+) => {
   try {
-    return axios.post(url, payload, {
+    return await axios.post(url, payload, {
       headers: {
         ...headerData,
         ...(site_host && { site_host: site_host }),
@@ -335,7 +340,7 @@ export const formCroppedUrl = (
 //   }
 //   return FallBackImage as string; // Assuming FallBackImage is a string URL
 // };
-export const checkImageUrlPathString: (imgUrl: string) => string = (imgUrl) => {
+export const checkImageUrlPathString = (imgUrl) => {
   const imagePath: string = "";
   if (imgUrl.match(/(https?:\/\/.*\.(?:png|jpg|svg|webp|gif))/i)) {
     return imgUrl; // Return the URL as a string

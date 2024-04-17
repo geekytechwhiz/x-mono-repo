@@ -211,7 +211,7 @@ const CreateSpace = () => {
         title={t("save_warn_title")}
         subTitle={t("save_warn_subtitle")}
         closeButtonText={t("take_me_out")}
-        confirmButtonText={t("done")}
+        confirmButtonText={t("stay_here")}
         closeButtonHandle={handleConfirm}
         confirmButtonHandle={() => setShowExitWarning(false)}
         crossButtonHandle={() => {

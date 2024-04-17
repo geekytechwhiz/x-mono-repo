@@ -1,27 +1,25 @@
+import AddIcon from "@mui/icons-material/Add";
+import DeleteMenuIcon from "@mui/icons-material/Delete";
+import EditMenuIcon from "@mui/icons-material/Edit";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
+import RemoveIcon from "@mui/icons-material/Remove";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Box, Grid, IconButton, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
+import {
+  DeleteIcon,
+  EditIcon,
+  Loader,
+  MoreHorizIcon,
+  CommonPlateformXDialog as PlateformXDialogDelete,
+  iconsList,
+  ShowToastError as showToastError,
+  statusIcons,
+} from "@platformx/utilities";
 import { format } from "date-fns";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import DeleteMenuIcon from "@mui/icons-material/Delete";
-import EditMenuIcon from "@mui/icons-material/Edit";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import GroupRemoveIcon from "@mui/icons-material/GroupRemove";
-import {
-  DeleteIcon,
-  EditIcon,
-  iconsList,
-  statusIcons,
-  MoreHorizIcon,
-  Loader,
-  PlateformXDialog as PlateformXDialogDelete,
-  ShowToastError as showToastError,
-} from "@platformx/utilities";
-import { RegistrationConstants } from "./SpaceAccess/Constants";
-import { MenuActions, MenuActionsType } from "./MenuActions.types";
 import {
   filterArrayValues,
   filterArrayValueswithSameKey,
@@ -32,6 +30,8 @@ import {
   getSpaceMembersList,
 } from "../utils/SpacesHelper";
 import InviteMemberPopup from "./Invitememberspopup/InviteMemberPopup";
+import { MenuActions, MenuActionsType } from "./MenuActions.types";
+import { RegistrationConstants } from "./SpaceAccess/Constants";
 import { useStyles } from "./SpaceListingCard.styles";
 
 const SpaceListingCard = ({
@@ -257,6 +257,7 @@ const SpaceListingCard = ({
           confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={onCloseMenuActions}
           confirmButtonHandle={deleteConfirmButtonHandle}
+          modalType='delete'
         />
       )}
       {menuActions.isLeave && (
@@ -268,6 +269,7 @@ const SpaceListingCard = ({
           confirmButtonText={t("leave")}
           closeButtonHandle={onCloseMenuActions}
           confirmButtonHandle={leaveSpaceHandlerFunction}
+          modalType='delete'
         />
       )}
       <Box className='listbox'>

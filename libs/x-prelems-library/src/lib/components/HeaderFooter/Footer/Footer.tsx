@@ -55,22 +55,26 @@ const Footer = ({ data, langCode, gcpUrl, bucketName }: Props) => {
               </Typography>
               <br />
               <Box className='anchorWrapper'>
-                {data?.footermediahandle?.map((media, index) => (
-                  <a
-                    href={media.media_url}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    key={`media-${index}`}
-                    className='anchorGap'>
-                    <img
-                      src={formRelativeURL(gcpUrl, bucketName, media.icon_image)}
-                      loading='lazy'
-                      alt='social-icon'
-                      width='40'
-                      height='40'
-                    />
-                  </a>
-                ))}
+                {data?.footermediahandle?.map(
+                  (media, index) =>
+                    media.media_url &&
+                    media.icon_image && (
+                      <a
+                        href={media.media_url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        key={`media-${index}`}
+                        className='anchorGap'>
+                        <img
+                          src={formRelativeURL(gcpUrl, bucketName, media.icon_image)}
+                          loading='lazy'
+                          alt='social-icon'
+                          width='40'
+                          height='40'
+                        />
+                      </a>
+                    ),
+                )}
               </Box>
             </Grid>
             <Grid item xs={12} em={4} sm={6} className='footerSecondColumn'>

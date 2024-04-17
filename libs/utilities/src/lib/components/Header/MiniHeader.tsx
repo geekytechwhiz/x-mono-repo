@@ -15,10 +15,10 @@ import useUserSession from "../../hooks/useUserSession/useUserSession";
 // import { callSaveandResetWarning } from '../../store/Actions';
 // import { capitalizeFirstLetter } from '../../utils/helperFunctions';
 // import PlateformXDialog from '../Modal';
+import CommonPlateformXDialog from "../../components/Modal/CommonPlateformXDialog";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { capitalizeFirstLetter } from "../../utils/helperFns";
-import PlateformXDialog from "../Popups/PlateformXDialog";
 import { Users } from "./Header.types";
 
 const saveWarningMessage = {
@@ -39,10 +39,8 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { saveWarnTitle, saveWarnSubtitle, saveWarnSave, saveWarnReject } = saveWarningMessage;
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorE2, setAnchorE2] = React.useState<null | HTMLElement>(null);
   const [hasSaveWarning, setHasSaveWarning] = React.useState<boolean>(false);
-  const open = Boolean(anchorEl);
   const openMenu = Boolean(anchorE2);
   const [triggerCase, setTriggerCase] = useState("");
   const [backgroundStyle, setBackgroundstyle] = useState("");
@@ -54,12 +52,6 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
     };
   }, []);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   const onCloseSaveWarningHandler = () => {
     setHasSaveWarning(false);
     // dispatch(callSaveandResetWarning(true));
@@ -119,7 +111,7 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
         break;
       }
       case "PAGE_LIST":
-        navigate("/page-list");
+        navigate("/sitepage");
         break;
       default:
         window.location.replace(LOGOUT_URL);
@@ -140,9 +132,6 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
     }
   };
 
-  const unsavedCrossButtonHandle = () => {
-    setHasSaveWarning(false);
-  };
   const { role } = userSession;
   return (location.pathname === "/change-password" ||
     location.pathname.includes("/preview-page") ||
@@ -219,15 +208,14 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
         </Menu>
       </Box>
       {hasSaveWarning ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={hasSaveWarning}
           title={saveWarnTitle}
           subTitle={saveWarnSubtitle}
           closeButtonText={saveWarnReject}
           confirmButtonText={saveWarnSave}
-          confirmButtonHandle={onCloseSaveWarningHandler}
-          closeButtonHandle={() => callFnsCase(triggerCase)}
-          crossButtonHandle={unsavedCrossButtonHandle}
+          confirmButtonHandle={() => callFnsCase(triggerCase)}
+          closeButtonHandle={onCloseSaveWarningHandler}
           modalType='unsavedChanges'
         />
       ) : null}

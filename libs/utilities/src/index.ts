@@ -17,41 +17,24 @@ import ContentListDesktopLoader from "./lib/components/Loader/ContentListDesktop
 import ContentListMobileLoader from "./lib/components/Loader/ContentListLoaderMobile";
 import { NoContentFound } from "./lib/components/NoContentFound/NoContentFound";
 import NoSearchResult from "./lib/components/NoSearchResult/NoSearchResult";
-import {
-  default as DeletePopup,
-  default as PlateformXDialog,
-} from "./lib/components/Popups/PlateformXDialog";
-import PlateformXDialogSuccess from "./lib/components/Popups/SuccessPopup";
-import RadioControlLabel from "./lib/components/RadioControlLabel";
-import { RadioLabelWithSubheading } from "./lib/components/RadioLabelWithSubheading";
-import ChartSkeltonLoader from "./lib/components/Skeleton-loader/chartSkelton";
-import SkeltonLoader from "./lib/components/Skeleton-loader/skeleton";
-import BasicSwitch from "./lib/components/Switch/Switch";
-import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
-import TextBox from "./lib/components/TextBox/TextBox";
-import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
-import {
-  ShowToastError,
-  ShowToastSuccess,
-} from "./lib/components/ToastNotification/ToastNotification";
-import {
-  AUTH_INFO,
-  AUTH_URL,
-  LOGOUT_URL,
-  NEW_LOGOUT_URL,
-  REDIRECT_AUTH_URL,
-} from "./lib/constants/AuthConstant";
 
 import XAnimatedLoader from "./lib/assets/gif/Common-Loader-dark.gif";
+import PlaceOrderGIf from "./lib/assets/gif/placeOrderSuccess.gif";
 import DeleteGif from "./lib/assets/gif/delete.gif";
 import loadergif from "./lib/assets/gif/holi-loader.gif";
 import ProgressiveLoader from "./lib/assets/gif/progressiveLoader2.gif";
 import liveIcon from "./lib/assets/gif/red_blinking_gif.gif";
 import CommonContentRender from "./lib/components/CommonPreview/CommonContentRender";
 import CommonPreview from "./lib/components/CommonPreview/CommonPreview";
+import ExitModal from "./lib/components/ExitModal";
 import ArticleListMobileLoader from "./lib/components/Loader/article-list-loader-mobile";
+import LoadingTextModal from "./lib/components/LoadingTextModal";
 import CommonPlateformXDialog from "./lib/components/Modal/CommonPlateformXDialog";
+import CommonPlateformXDialogUserExp from "./lib/components/Modal/CommonPlateformXDialogUserExp";
 import NoResultsFound from "./lib/components/NoResultsFound";
+import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
+import RadioControlLabel from "./lib/components/RadioControlLabel";
+import { RadioLabelWithSubheading } from "./lib/components/RadioLabelWithSubheading";
 import {
   Answers,
   ColorPallet,
@@ -71,13 +54,27 @@ import {
   XTextArea,
   workflowKeys,
 } from "./lib/components/SchemaComponents";
+import ChartSkeltonLoader from "./lib/components/Skeleton-loader/chartSkelton";
+import SkeltonLoader from "./lib/components/Skeleton-loader/skeleton";
 import StructureDataDialog from "./lib/components/StructuresDataDialog/StructureDataDialog";
-
-import LoadingTextModal from "./lib/components/LoadingTextModal";
-import NotificationBox from "./lib/components/NotificationBox/NotificationBox";
 import Submit from "./lib/components/Submit/Submit";
+import BasicSwitch from "./lib/components/Switch/Switch";
+import TaskNotFound from "./lib/components/TaskNotFound/TaskNotFound";
+import TextBox from "./lib/components/TextBox/TextBox";
+import ToastContainerHandle from "./lib/components/ToastContainer/ToastContainerHandle";
+import {
+  ShowToastError,
+  ShowToastSuccess,
+} from "./lib/components/ToastNotification/ToastNotification";
 import { ToolTip } from "./lib/components/Tooltip/ToolTip";
 import XDialog from "./lib/components/XDialog/XDialog";
+import {
+  AUTH_INFO,
+  AUTH_URL,
+  LOGOUT_URL,
+  NEW_LOGOUT_URL,
+  REDIRECT_AUTH_URL,
+} from "./lib/constants/AuthConstant";
 import { USERNAME_EMAIL_EXIST } from "./lib/constants/CommonConstants";
 import { usePageImpression } from "./lib/hooks/customHook/PageImpressionHook";
 import useAccess from "./lib/hooks/useAccess/useAccess";
@@ -140,19 +137,20 @@ export {
   CommonBoxWithNumber,
   CommonContentRender,
   CommonPlateformXDialog,
+  CommonPlateformXDialogUserExp,
   CommonPreview,
   ContentGridLoader,
   ContentListDesktopLoader,
   ContentListMobileLoader,
   DatePicker,
   DeleteGif,
-  DeletePopup,
   DuplicateContentPopup,
   Error,
   ErrorBoundary,
   ErrorHandleAutoTextArea,
   ErrorHandleTextBox,
   ErrorTooltip,
+  ExitModal,
   FormikField,
   General_community,
   Icons,
@@ -170,8 +168,6 @@ export {
   NoResultsFound,
   NoSearchResult,
   NotificationBox,
-  PlateformXDialog,
-  PlateformXDialogSuccess,
   PrelemTheme,
   ProgressiveLoader,
   REDIRECT_AUTH_URL,
@@ -221,4 +217,5 @@ export {
   usePrelemImpression,
   useUserSession,
   workflowKeys,
+  PlaceOrderGIf,
 };
