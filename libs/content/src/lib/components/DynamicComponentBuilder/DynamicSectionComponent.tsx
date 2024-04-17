@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import { Container, Grid } from "@mui/material";
 import {
@@ -16,7 +17,6 @@ const DynamicSectionComponent = ({
   showGallery,
   state,
   setState,
-  handleAddImage,
   errors,
   register,
   clearErrors,
@@ -56,7 +56,9 @@ const DynamicSectionComponent = ({
                   <TitleSubTitle
                     titleVariant={"h6medium"}
                     subTitleVariant={"h7regular"}
-                    title={field?.title}
+                    title={
+                      field?.validations[0]?.type === "required" ? `${field?.title}*` : field?.title
+                    }
                     subTitle={field?.description}
                   />
                 </Grid>
@@ -96,7 +98,9 @@ const DynamicSectionComponent = ({
                   <TitleSubTitle
                     titleVariant={"h6medium"}
                     subTitleVariant={"h7regular"}
-                    title={field?.title}
+                    title={
+                      field?.validations[0]?.type === "required" ? `${field?.title}*` : field?.title
+                    }
                     subTitle={field?.description}
                   />
                 </Grid>
@@ -141,7 +145,9 @@ const DynamicSectionComponent = ({
               <TitleSubTitle
                 titleVariant={"h6medium"}
                 subTitleVariant={"h7regular"}
-                title={field?.title}
+                title={
+                  field?.validations[0]?.type === "required" ? `${field?.title}*` : field?.title
+                }
                 subTitle={field?.description}
               />
             </Grid>
@@ -177,7 +183,9 @@ const DynamicSectionComponent = ({
               <TitleSubTitle
                 titleVariant={"h6medium"}
                 subTitleVariant={"h7regular"}
-                title={field?.title}
+                title={
+                  field?.validations[0]?.type === "required" ? `${field?.title}*` : field?.title
+                }
                 subTitle={field?.description}
               />
             </Grid>
@@ -199,7 +207,9 @@ const DynamicSectionComponent = ({
               <TitleSubTitle
                 titleVariant={"h6medium"}
                 subTitleVariant={"h7regular"}
-                title={field?.title}
+                title={
+                  field?.validations[0]?.type === "required" ? `${field?.title}*` : field?.title
+                }
                 subTitle={field?.description}
               />
             </Grid>

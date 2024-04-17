@@ -9,7 +9,15 @@ export const SNOWPLOW = {
   APP_NAME: "plateform-x-authoring-app",
 };
 
-export const headerMenus = ["pages", "user_management", "post", "menu", "sites"];
+export const headerMenus = [
+  "pages",
+  "user_management",
+  "dashboard",
+  "workflow",
+  "post",
+  "menu",
+  "sites",
+];
 export const tagData = [
   { title: "Fifa" },
   { title: "Cricket" },

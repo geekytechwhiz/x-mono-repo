@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { KeyboardArrowRight } from "@mui/icons-material";
 import { Box, MenuItem, MenuList, Tooltip, Typography } from "@mui/material";
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";

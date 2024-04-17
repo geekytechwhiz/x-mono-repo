@@ -1,18 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { Avatar, Box, Typography } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Profile from "../../assets/images/avatar.png";
 // import { Store } from '../../store/ContextStore';
 // import ThemeConstants from '../../theme/variable';
 // import { logoutUrl } from '../../utils/authConstants';
 import { usePlatformAnalytics } from "@platformx/utilities";
-import useUserSession from "../../hooks/useUserSession/useUserSession";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
+import useUserSession from "../../hooks/useUserSession/useUserSession";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
-import PlateformXDialog from "../Popups/PlateformXDialog";
-import { PageData } from "analytics";
 // import { callSaveandResetWarning } from '../../store/Actions';
 // import PlateformXDialog from '../Modal';
 

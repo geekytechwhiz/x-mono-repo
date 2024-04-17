@@ -27,6 +27,7 @@ import "./Blogs.css";
 import ContentTypeCard from "./ContentTypeCard";
 import { ContentGallery } from "@platformx/site-page";
 import { defaultFallBackImage } from "../Utils/helperBlogs";
+import { useTranslation } from "react-i18next";
 
 const bQuotes = blockQuotes();
 const useStyles = makeStyles({
@@ -108,6 +109,7 @@ const Blogs = ({
   saveButtonHandle = () => {},
   savePublishHandle = () => {},
   isBlogLoad,
+  // eslint-disable-next-line no-unused-vars
   setImageOrVideoToDefault,
   handleSelectedImage,
   handleSelectedVideo,
@@ -116,6 +118,7 @@ const Blogs = ({
   isQuoteOpen,
   isStarOpen,
   publishButton,
+  // eslint-disable-next-line no-unused-vars
   embeddURLValue,
   onRemoveImage = () => {},
   onRemoveVideo = () => {},
@@ -135,7 +138,7 @@ const Blogs = ({
     gcpUrl: authInfo.gcpUri,
     bucketName: authInfo.gcpBucketName,
   };
-
+  const { t } = useTranslation();
   const toggleGallery = (toggleState) => {
     setGalleryState(toggleState);
   };
@@ -295,7 +298,7 @@ const Blogs = ({
               {!isQuoteOpen ? (
                 <TextBoxWithoutBorder
                   name='BlogTitle'
-                  placeHolder='Blog Title'
+                  placeHolder={t("blog_title")}
                   handleChange={handleBlogChange}
                   maxCharLength={60}
                   state={blogData?.BlogTitle}
@@ -316,18 +319,18 @@ const Blogs = ({
         <Box className='attachments'>
           {isStarOpen ? (
             <Box
-              className='KeyHighlighterArea '
+              className='KeyHighlighterArea'
               sx={{
                 display: "flex ",
                 flexDirection: { xs: "column", lg: "row" },
               }}>
               <Box sx={{ flexGrow: 1, mr: { lg: 2, xs: "0" } }}>
                 <Typography variant='h6semibold' component='h6' sx={{ mt: 2, mb: 1 }}>
-                  Key Highlighter
+                  {t("key_highlighter")}
                 </Typography>
                 <TextBoxWidthBorder
                   name='BlogKeyHighlighter'
-                  placeHolder='Please enter your highlighter'
+                  placeHolder={t("highlighter_place_holder")}
                   handleChange={handleBlogChange}
                   maxCharLength={30}
                   state={blogData?.BlogKeyHighlighter}
@@ -335,7 +338,7 @@ const Blogs = ({
               </Box>
               <Box>
                 <Typography variant='h6semibold' component='h6' sx={{ mt: 2, mb: 1 }}>
-                  Time Stamp
+                  {t("time_stamp")}
                 </Typography>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateTimePicker
@@ -364,11 +367,11 @@ const Blogs = ({
           {isQuoteOpen ? (
             <>
               <Typography variant='h6semibold' component='h6' sx={{ mt: 2, mb: 1 }}>
-                Author Name
+                {`${t("author")} ${t("name")}`}
               </Typography>
               <TextBoxWidthBorder
                 name='BlogAuthorName'
-                placeHolder='Please write author name'
+                placeHolder={t("author_place_holder")}
                 handleChange={handleBlogChange}
                 maxCharLength={30}
                 state={blogData?.BlogAuthorName}
@@ -379,12 +382,12 @@ const Blogs = ({
           {isCode ? (
             <>
               <Typography variant='h6semibold' component='h6' sx={{ mt: 2, mb: 1 }}>
-                Embed
+                {t("embed")}
               </Typography>
               <TextareaAutosize
                 name='BlogEmbed'
                 className='textArea withBorder'
-                placeholder='Please paste your embed code here'
+                placeholder={t("embed_place_holder")}
                 value={blogData?.BlogEmbed}
                 style={{
                   fontFamily: ThemeConstants.PRIMARY_FONT_FAMILY,
@@ -439,7 +442,7 @@ const Blogs = ({
               }
               startIcon={<SaveIcon />}
               onClick={saveButtonHandle}>
-              Save
+              {t("save")}
             </Button>
 
             <Button
@@ -455,7 +458,7 @@ const Blogs = ({
               }
               startIcon={<SendIcon className='rotateIcon45' />}
               onClick={savePublishHandle}>
-              Publish
+              {t("publish")}
             </Button>
           </Box>
         </Box>
