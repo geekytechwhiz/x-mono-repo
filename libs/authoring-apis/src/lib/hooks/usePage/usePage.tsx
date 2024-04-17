@@ -57,7 +57,7 @@ const usePage = (filter = "ALL") => {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const { t, i18n } = useTranslation();
-  const { page, content } = useSelector((state: RootState) => state);
+  const { page } = useSelector((state: RootState) => state);
   const [runFetchPageModel] = useLazyQuery(PageQueries.FETCH_PAGE_MODEL_DRAFT);
   const [runFetchValidationQuery] = useLazyQuery(FETCH_PRELEM_VALIDATION);
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
