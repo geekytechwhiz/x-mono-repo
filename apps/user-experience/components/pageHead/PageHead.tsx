@@ -118,18 +118,16 @@ export const PageHead = (props: PageHeadProps) => {
               <meta property='twitter:site' content={socialog_twitter_url} />
             )}
           </Head>
-          {arrStructuredData &&
-            arrStructuredData?.length &&
-            arrStructuredData.map((item: any, key: number) => {
-              return (
-                <Script
-                  id={`SD${key}`}
-                  type='application/ld+json'
-                  dangerouslySetInnerHTML={{ __html: item }}
-                  key={convertLowerCase(key + "arrStructuredData")}
-                />
-              );
-            })}
+          {arrStructuredData?.map((item: any, key: number) => {
+            return (
+              <Script
+                id={`SD${key}`}
+                type='application/ld+json'
+                dangerouslySetInnerHTML={{ __html: item }}
+                key={convertLowerCase(key + "arrStructuredData")}
+              />
+            );
+          })}
         </>
       ) : (
         <Head>

@@ -129,7 +129,6 @@ export const getProductDetails = (
     nullToObject(secondaryArgs);
 
   const getLocalData = localStorage.getItem("ecommerceQuery");
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const {
     searchTerm = "",
     tags = [],
@@ -154,7 +153,7 @@ export const getProductDetails = (
     searchTerm,
   )},tags:${JSON.stringify(
     tags,
-  )},filter:Ecommerce,isSuggestive:false,ecommerceRequest:{filter:${JSON.stringify(filter)}`;
+  )},filter:Ecommerce,isSuggestive:false,ecommerceRequest:{filter:${JSON.stringify(filter)}}}`;
 
   if (fromListing) {
     queryparam = obj2;

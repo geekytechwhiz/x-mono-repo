@@ -92,7 +92,7 @@ const BlogTimeline = (_props: any) => {
   };
 
   const deleteCloseButtonHandle = () => {
-    setIsDelete(true);
+    setIsDelete(false);
   };
 
   const handleDelete = () => {
@@ -494,7 +494,7 @@ const BlogTimeline = (_props: any) => {
         <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
-          subTitle={`${t("delete_confirm")} ${t("blog")}?. ${t("process_undone")}`}
+          subTitle={`${t("delete_confirm")} ${t("blog")}? ${t("process_undone")}`}
           closeButtonText={t("no_keep_it")}
           confirmButtonText={t("yes_delete_it")}
           closeButtonHandle={deleteCloseButtonHandle}
