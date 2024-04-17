@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
 
@@ -111,7 +112,7 @@ const useContentGlleryStyle = makeStyles((theme: Theme) => ({
     textAlign: "center",
   },
   noresultfoundtypo: {
-    height: "calc(100vh - 82px)",
+    height: "calc(100vh - 169px)",
     overflowY: "scroll",
   },
   containercard: {

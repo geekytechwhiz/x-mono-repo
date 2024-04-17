@@ -280,7 +280,7 @@ const PrelemTheme = (ThemeConstants) =>
       MuiButton: {
         variants: [
           {
-            props: { variant: "primaryButton1" && "contained" },
+            props: { variant: "primaryButton1" },
             style: {
               background: ThemeConstants.PRIMARY_PRELEM.BUTTON.VARIANT1.BACKGROUND_COLOR,
               borderRadius: ThemeConstants.ELEMENT.BUTTON.BORDER_RADIUS,
@@ -342,7 +342,7 @@ const PrelemTheme = (ThemeConstants) =>
             },
           },
           {
-            props: { variant: "primaryButton2" && "outlined" },
+            props: { variant: "primaryButton2" },
             style: {
               background: ThemeConstants.PRIMARY_PRELEM.BUTTON.VARIANT2.BACKGROUND_COLOR,
               borderRadius: ThemeConstants.ELEMENT.BUTTON.BORDER_RADIUS,

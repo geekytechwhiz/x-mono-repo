@@ -207,7 +207,7 @@ export default function CommonPlateformXDialogUserExp({
           }}>
           {closeButtonText ? (
             <Button
-              variant='outlined'
+              variant='primaryButton1'
               sx={{
                 marginRight: "12px",
                 textTransform: "capitalize",
@@ -228,7 +228,7 @@ export default function CommonPlateformXDialogUserExp({
             <Button
               type='button'
               disabled={disableConfirmButton}
-              variant='contained'
+              variant='primaryButton2'
               onClick={confirmButtonHandle}
               autoFocus
               sx={{
