@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Box, Typography } from "@mui/material";
-import { fetchUserSitePermissionList, usePage } from "@platformx/authoring-apis";
+import { fetchUserSitePermissionList } from "@platformx/authoring-apis";
 import {
   Card,
   ContentListDesktopLoader,
@@ -34,6 +34,8 @@ const ContentListing = ({
   editPage,
   fetchContentDetails,
   deleteContentLoading,
+  deletePage,
+  deletePageLoading,
 }: ContentListingProps) => {
   const { contentArray } = useSelector((state: RootState) => state.content);
   const [sitelist, setSiteList] = useState([]);
@@ -41,7 +43,6 @@ const ContentListing = ({
   const { userInfo } = getSession();
   const pageUrl = new URL(window.location.href);
   const path = pageUrl.pathname.split("/")?.pop();
-  const { handlePageDelete, loading: deleteLoading } = usePage();
   const { t } = useTranslation();
 
   const fetchUserSite = async () => {
@@ -150,7 +151,7 @@ const ContentListing = ({
 
   return (
     <Box id='scrollableDiv' sx={{ height: "calc(100vh - 140px)", overflowY: "auto" }}>
-      {deleteLoading || deleteContentLoading ? <Loader /> : ""}
+      {deletePageLoading || deleteContentLoading ? <Loader /> : ""}
       <InfiniteScroll
         dataLength={contentArray?.length}
         next={fetchMore}
@@ -184,7 +185,7 @@ const ContentListing = ({
                       editPage={editPage}
                       siteList={sitelist}
                       contentType={contentType}
-                      handlePageDelete={handlePageDelete}
+                      handlePageDelete={deletePage}
                       CustomMenuList={
                         <ContentTypeMenuList
                           item={makeContentData(item)}

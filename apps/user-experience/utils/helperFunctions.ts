@@ -45,11 +45,13 @@ export const fetchMenuModel = (langCode, host) => {
 
 export const fetchContent = (contentType, pageName, langCode, host) => {
   try {
-    const hostName = getHostName(host);
-    return getRequestWithHost(
-      `${publicRuntimeConfig.NEXT_CLUSTER_API_URL}api/v1/web/${langCode}/delivery/${contentType}-model?pagePath=${pageName}`,
-      hostName,
-    );
+    if (pageName) {
+      const hostName = getHostName(host);
+      return getRequestWithHost(
+        `${publicRuntimeConfig.NEXT_CLUSTER_API_URL}api/v1/web/${langCode}/delivery/${contentType}-model?pagePath=${pageName}`,
+        hostName,
+      );
+    }
   } catch (error) {
     console.error("Error fetching content data:", error);
     return null;
