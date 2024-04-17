@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import "./BlogTimeline.css";
-import { format } from "date-fns";
-import Box from "@mui/material/Box";
-import { Link } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import Timeline from "@mui/lab/Timeline";
-import { timeSince } from "../Utils/helperBlogs";
-import DOMPurify from "isomorphic-dompurify";
-import MenuItem from "@mui/material/MenuItem";
-import { useTranslation } from "react-i18next";
-import TimelineDot from "@mui/lab/TimelineDot";
-import EditIcon from "@mui/icons-material/Edit";
-import TimelineItem from "@mui/lab/TimelineItem";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import BlogSearchBox from "../Blogs/BlogSearchBox";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TimelineContent from "@mui/lab/TimelineContent";
+import EditIcon from "@mui/icons-material/Edit";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
-import InfiniteScroll from "react-infinite-scroll-component";
+import Timeline from "@mui/lab/Timeline";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import { Link } from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 import {
+  CommonPlateformXDialog,
+  ShowToastSuccess,
+  apiCallForBlogs,
   nullToArray,
   ShowToastError as showToastError,
-  ShowToastSuccess,
-  CommonPlateformXDialog as DeletePopup,
-  apiCallForBlogs,
 } from "@platformx/utilities";
+import { format } from "date-fns";
+import DOMPurify from "isomorphic-dompurify";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import InfiniteScroll from "react-infinite-scroll-component";
+import BlogSearchBox from "../Blogs/BlogSearchBox";
+import { timeSince } from "../Utils/helperBlogs";
+import "./BlogTimeline.css";
 
 const BlogTimeline = (_props: any) => {
   const {
@@ -491,7 +491,7 @@ const BlogTimeline = (_props: any) => {
       </Box>
 
       {isDelete ? (
-        <DeletePopup
+        <CommonPlateformXDialog
           isDialogOpen={isDelete}
           title={t("delete_title")}
           subTitle={`${t("delete_confirm")} ${t("blog")}? ${t("process_undone")}`}

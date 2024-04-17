@@ -15,10 +15,10 @@ import useUserSession from "../../hooks/useUserSession/useUserSession";
 // import { callSaveandResetWarning } from '../../store/Actions';
 // import { capitalizeFirstLetter } from '../../utils/helperFunctions';
 // import PlateformXDialog from '../Modal';
+import CommonPlateformXDialog from "../../components/Modal/CommonPlateformXDialog";
 import { LOGOUT_URL } from "../../constants/AuthConstant";
 import ThemeConstants from "../../themes/authoring/lightTheme/lightThemeVariable";
 import { capitalizeFirstLetter } from "../../utils/helperFns";
-import PlateformXDialog from "../Popups/PlateformXDialog";
 import { Users } from "./Header.types";
 
 const saveWarningMessage = {
@@ -132,9 +132,6 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
     }
   };
 
-  const unsavedCrossButtonHandle = () => {
-    setHasSaveWarning(false);
-  };
   const { role } = userSession;
   return (location.pathname === "/change-password" ||
     location.pathname.includes("/preview-page") ||
@@ -211,15 +208,14 @@ export const MiniHeader = ({ showUserDetails = true }: Users) => {
         </Menu>
       </Box>
       {hasSaveWarning ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={hasSaveWarning}
           title={saveWarnTitle}
           subTitle={saveWarnSubtitle}
           closeButtonText={saveWarnReject}
           confirmButtonText={saveWarnSave}
-          confirmButtonHandle={onCloseSaveWarningHandler}
-          closeButtonHandle={() => callFnsCase(triggerCase)}
-          crossButtonHandle={unsavedCrossButtonHandle}
+          confirmButtonHandle={() => callFnsCase(triggerCase)}
+          closeButtonHandle={onCloseSaveWarningHandler}
           modalType='unsavedChanges'
         />
       ) : null}

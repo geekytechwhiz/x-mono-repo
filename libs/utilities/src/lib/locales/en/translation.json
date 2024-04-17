@@ -1204,6 +1204,7 @@
   "first_name_label": "First Name",
   "company_name": "Company Name",
   "email_id": "Email Id",
+  "is_not_in_valid_format": "is not in valid format",
   "phone_number": "Phone Number",
   "message": "Message",
   "form_update_message": "Form details updated successfully",
