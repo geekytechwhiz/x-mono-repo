@@ -3,9 +3,9 @@ import {
   AutoTextArea,
   CATEGORY_CONTENT,
   CommonBoxWithNumber,
+  CommonPlateformXDialog,
   DuplicateContentPopup,
   Loader,
-  PlateformXDialog,
   RadioControlLabel,
   ShowToastSuccess,
   TextBox,
@@ -362,7 +362,7 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
         />
       ) : null}
       {openPageExistModal ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={openPageExistModal}
           title={`${t("quiz")} ${t("duplicate_exists")}`}
           subTitle={t("conformation")}
@@ -370,20 +370,19 @@ const AddQuestion = ({ setAddQuestion, saveQuestionCallBack, qusUnsavedChanges, 
           confirmButtonText={t("yes")}
           closeButtonHandle={pageExistCloseHandle}
           confirmButtonHandle={pageExistYesButtonHandle}
-          crossButtonHandle={pageExistCloseHandle}
           modalType=''
         />
       ) : null}
       {exitPopUp ? (
-        <PlateformXDialog
+        <CommonPlateformXDialog
           isDialogOpen={exitPopUp}
           title={t("save_warn_title")}
           subTitle={t("save_warn_subtitle")}
-          closeButtonText={t("take_me_out")}
-          confirmButtonText={t("done")}
+          closeButtonText={t("stay_here")}
+          confirmButtonText={t("take_me_out")}
           closeButtonHandle={onHandleCloseButton}
-          confirmButtonHandle={onSaveQuestion}
-          crossButtonHandle={onHandleCrossButton}
+          confirmButtonHandle={onHandleCrossButton}
+          // crossButtonHandle={onHandleCrossButton}
           modalType='unsavedChanges'
         />
       ) : null}

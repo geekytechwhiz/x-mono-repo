@@ -66,7 +66,6 @@ export const CreateQuiz = () => {
   );
   const [scrollToView, setscrollToView] = useState<any>();
   const [quizInstance, setQuizInstance] = useState<any>({});
-  const [onSavedModal, setOnSavedModal] = useState(false);
   const [showExitWarning, setShowExitWarning] = useState(false);
   const unsavedChanges = useRef<boolean>(false);
   const qusUnsavedChanges = useRef<boolean>(false);
@@ -603,12 +602,6 @@ export const CreateQuiz = () => {
     }
   };
 
-  const crossButtonHandle = () => {
-    setShowExitWarning(false);
-    setOnSavedModal(false);
-    navigate(`?path=${quizRef.current?.page}`);
-  };
-
   const saveQuestionCallBack = (questionInfo) => {
     if (quizState?.questions?.length < 16) {
       let temp = [...quizState.questions];
@@ -833,11 +826,7 @@ export const CreateQuiz = () => {
       setOpenAddQuestion(false);
     }
   };
-  const navigateTo = () => {
-    unsavedChanges.current = false;
-    navigate("/content/quiz");
-    // dispatch(previewContent({}));
-  };
+
   const handelPreview = () => {
     const backgroundContent = {
       objectType: quizState?.imagevideoURL ? "image" : quizState?.colorCode ? "color" : "",
