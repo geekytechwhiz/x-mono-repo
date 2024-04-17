@@ -264,7 +264,7 @@ const EditPageContainer = () => {
         : setShowWorkflowSubmit(true);
     }
   };
-  const savePage = (isWorkflow = false, props = {}, event_step = "") => {
+  const savePage = (isWorkflow = false, props = {}, event_step = "", publishCall = false) => {
     setSaveLoading(true);
     setGifPlaying(true);
     const {
@@ -315,7 +315,7 @@ const EditPageContainer = () => {
           } else {
             setIsNotificationToast(true);
             setGifPlaying(false);
-            ShowToastSuccess(t("page_save_toast"));
+            !publishCall && ShowToastSuccess(t("page_save_toast"));
           }
           setSaveLoading(false);
           const pageDataObj = {
@@ -1011,7 +1011,7 @@ const EditPageContainer = () => {
         break;
       case "PUBLISH":
         if (!saveStatus.current) {
-          savePage();
+          savePage(false, {}, "", true);
         }
         publishPage();
         break;

@@ -1,10 +1,10 @@
 import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import { Paper } from "@mui/material";
 import { styled } from "@mui/system";
-import React from "react";
 import { nullToObject } from "@platformx/utilities";
-import PictureComponent from "./PictureComponent";
+import React from "react";
 import { RATIOS } from "../utils/constants";
+import PictureComponent from "./PictureComponent";
 
 const ImageRender = (props: any = {}) => {
   const {
@@ -43,13 +43,15 @@ const ImageRender = (props: any = {}) => {
 
   return (
     <>
-      <RoundBox onClick={changeCrop}>
-        <ViewQuiltIcon
-          sx={{
-            fontSize: { md: "22px" },
-          }}
-        />
-      </RoundBox>
+      {Thumbnail && (
+        <RoundBox onClick={changeCrop}>
+          <ViewQuiltIcon
+            sx={{
+              fontSize: { md: "22px" },
+            }}
+          />
+        </RoundBox>
+      )}
       {cropped_images && cropped_images.length > 0 ? (
         <PictureComponent croppedImages={cropped_images} imgOrder={imgOrder} extension={ext} />
       ) : Thumbnail && Thumbnail.search("dspace") !== -1 ? (
