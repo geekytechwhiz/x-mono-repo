@@ -746,7 +746,8 @@ export const formateNumber = (value: number, toFixedVal?: number) => {
  * @returns boolean
  */
 export const emailValidate = (email = "") => {
-  const reg = /^\s*([\w+-]+\.)*[\w+]+@([\w+-]+\.)*([\w+-]+\.[a-zA-Z]{2,6})+\s*$/;
+  // const reg = /^\s*([\w+-]+\.)*[\w+]+@([\w+-]+\.)*([\w+-]+\.[a-zA-Z]{2,6})+\s*$/;
+  const reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!reg.test(email)) {
     return false;
   }
