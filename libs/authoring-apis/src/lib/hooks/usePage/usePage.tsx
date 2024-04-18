@@ -342,6 +342,9 @@ const usePage = (filter = "ALL") => {
       })
       .catch(() => {
         ShowToastError(t("api_error_toast"));
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -402,7 +405,7 @@ const usePage = (filter = "ALL") => {
     } catch (e) {
       console.error("error in handlePageDelete", e);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
