@@ -48,13 +48,12 @@ export const DraggableQuestions = ({ quizState, setQuizState, onClickEditQuestio
   };
 
   const onDeleteOption = (id) => {
-    const tempQue = quizState?.questions.filter((item) => item.current_page_url !== id);
+    const tempQue = quizState?.questions.filter((item) => item.current_page_url !== "/" + id);
     setQuizState({ ...quizState, questions: tempQue });
     setAnchorEl(null);
   };
   const onEditOption = () => {
     setAnchorEl(null);
-    // console.info(items);
     onClickEditQuestion(items);
   };
 

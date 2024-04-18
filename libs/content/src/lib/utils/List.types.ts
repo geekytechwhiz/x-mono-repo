@@ -64,6 +64,8 @@ export type ContentListingProps = {
   handlePageDelete?: any;
   duplicateToSite?: any;
   deleteContentLoading?: boolean;
+  deletePage: (content: any) => void;
+  deletePageLoading: boolean;
 };
 
 export type CardProps = {

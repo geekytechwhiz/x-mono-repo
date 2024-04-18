@@ -4,6 +4,7 @@ import {
   CONTENT_TYPES,
   useContentActions,
   useContentSearch,
+  usePage,
 } from "@platformx/authoring-apis";
 import { makeCreateContentPath } from "@platformx/utilities";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -42,6 +43,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
     duplicateToSite,
     loading: deleteLoading,
   } = useContentActions("ALL");
+  const { handlePageDelete, loading: deletePageLoading } = usePage();
 
   const memoizedMethods = useMemo(
     () => ({
@@ -54,6 +56,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       editPage: useMemo(() => editPage, [editPage]),
       fetchContentDetails: useMemo(() => fetchContentDetails, [fetchContentDetails]),
       duplicateToSite: useMemo(() => duplicateToSite, [duplicateToSite]),
+      handlePageDelete: useMemo(() => handlePageDelete, [handlePageDelete]),
     }),
     [
       deleteContent,
@@ -65,6 +68,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       editPage,
       fetchContentDetails,
       duplicateToSite,
+      handlePageDelete,
     ],
   );
 
@@ -126,6 +130,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
       <ContentListing
         content={contentType}
         deleteContent={memoizedMethods.deleteContent}
+        deletePage={handlePageDelete}
         fetchMore={handleFetchMore}
         preview={memoizedMethods.preview}
         unPublish={memoizedMethods.unPublish}
@@ -134,6 +139,7 @@ const ContListingContainer = ({ contentType }: { contentType: string }) => {
         editPage={memoizedMethods.editPage}
         loading={loading}
         deleteContentLoading={deleteLoading}
+        deletePageLoading={deletePageLoading}
         duplicate={memoizedMethods.duplicate}
         fetchContentDetails={memoizedMethods.fetchContentDetails}
         duplicateToSite={memoizedMethods.duplicateToSite}

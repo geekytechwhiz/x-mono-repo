@@ -31,6 +31,7 @@ export const DASHBOARD_KEYS = {
 
 export const SORT_ORDER = "DESC";
 export const DefaultLocale = "en";
+export const DefaultLanguage = "English (UK)";
 export const CATEGORY_CONTENT = "content";
 export const CATEGORY_PAGE = "Page";
 export const SORTED_ORDER = "ASC";

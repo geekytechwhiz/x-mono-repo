@@ -2,7 +2,6 @@ import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   ContentState,
   RootState,
-  updateContent,
   updateContentList,
   updatePageSettings,
 } from "@platformx/authoring-state";
@@ -14,6 +13,7 @@ import {
   capitalizeFirstLetter,
   formatChildrenForPageDuplicate,
   getCurrentLang,
+  getCurrentLangName,
   getSelectedSite,
   getSubDomain,
   setDefaultPageSettings,
@@ -29,7 +29,6 @@ import { PageQueries } from "../../graphQL/queries/pageQueries";
 import { FETCH_PRELEM_VALIDATION } from "../../graphQL/queries/prelemQueries";
 import contentTypeAPIs from "../../services/contentTypes/contentTypes.api";
 import { fetchPageModel } from "../../services/page/page.api";
-import { fetchContent } from "../../utils/helper";
 import { consolidatePageModel } from "./mapper";
 
 const PageModelInstanceDefault = {
@@ -58,7 +57,7 @@ const usePage = (filter = "ALL") => {
   const [getSession] = useUserSession();
   const { userInfo } = getSession();
   const { t, i18n } = useTranslation();
-  const { page, content } = useSelector((state: RootState) => state);
+  const { page } = useSelector((state: RootState) => state);
   const [runFetchPageModel] = useLazyQuery(PageQueries.FETCH_PAGE_MODEL_DRAFT);
   const [runFetchValidationQuery] = useLazyQuery(FETCH_PRELEM_VALIDATION);
   const username = `${userInfo.first_name} ${userInfo.last_name}`;
@@ -227,9 +226,18 @@ const usePage = (filter = "ALL") => {
           createdBy: newPageModel.DevelopedBy,
         };
         handleImpression(pageDataObj.eventType, pageDataObj);
-        if (isDuplicate) {
-          dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
-        } else {
+        if (isDuplicate && code === getCurrentLangName()) {
+          const searchResponse = await contentTypeAPIs.fetchSearchContent(
+            capitalizeFirstLetter("sitepage"),
+            location,
+            filter,
+            startIndex,
+            contentList,
+            true,
+          );
+          dispatch(updateContentList(searchResponse));
+        }
+        if (!isDuplicate) {
           navigate(
             {
               pathname: "/edit-page",
@@ -273,8 +281,15 @@ const usePage = (filter = "ALL") => {
         ),
       ),
     );
-    //dispatch(updateSaveWarning(false));
-    dispatch(updateContent(await fetchContent("Sitepage", location, filter, content, true)));
+    const searchResponse = await contentTypeAPIs.fetchSearchContent(
+      capitalizeFirstLetter("sitepage"),
+      location,
+      filter,
+      startIndex,
+      contentList,
+      true,
+    );
+    dispatch(updateContentList(searchResponse));
   };
 
   /**duplicate page */
@@ -314,7 +329,6 @@ const usePage = (filter = "ALL") => {
       },
     })
       .then(async () => {
-        ShowToastSuccess(`${t("page")} ${t("deleted_toast")}`);
         const searchResponse = await contentTypeAPIs.fetchSearchContent(
           capitalizeFirstLetter("sitepage"),
           location,
@@ -324,6 +338,7 @@ const usePage = (filter = "ALL") => {
           true,
         );
         dispatch(updateContentList(searchResponse));
+        ShowToastSuccess(`${t("page")} ${t("deleted_toast")}`);
       })
       .catch(() => {
         ShowToastError(t("api_error_toast"));
@@ -364,8 +379,8 @@ const usePage = (filter = "ALL") => {
 
   /**handle page delete conditions main */
   const handlePageDelete = (selectedPage) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const requestDto = {
         page: selectedPage.page,
         currentpageurl: selectedPage.currentPageUrl,
@@ -457,15 +472,6 @@ const usePage = (filter = "ALL") => {
           },
         })
           .then(async () => {
-            // dispatch(
-            //   await fetchContent(
-            //     state.content.contentType,
-            //     location,
-            //     filter,
-            //     state,
-            //     true
-            //   )
-            // );
             const searchResponse = await contentTypeAPIs.fetchSearchContent(
               capitalizeFirstLetter("sitepage"),
               location,
@@ -541,15 +547,6 @@ const usePage = (filter = "ALL") => {
           },
         })
           .then(async () => {
-            // dispatch(
-            //   await fetchContent(
-            //     state.content.contentType,
-            //     location,
-            //     filter,
-            //     state,
-            //     true
-            //   )
-            // );
             const searchResponse = await contentTypeAPIs.fetchSearchContent(
               capitalizeFirstLetter("sitepage"),
               location,

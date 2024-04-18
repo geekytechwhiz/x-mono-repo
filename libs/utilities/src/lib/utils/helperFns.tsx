@@ -7,7 +7,11 @@ import { DE_FLAG, EN_FLAG, FR_FLAG } from "../assets/pngIcons";
 import ToastService from "../components/ToastContainer/ToastService";
 import { ShowToastError } from "../components/ToastNotification/ToastNotification";
 import { AUTH_INFO } from "../constants/AuthConstant";
-import { CONTENT_TYPE_WITH_ABSOLUTEURL, DefaultLocale } from "../constants/CommonConstants";
+import {
+  CONTENT_TYPE_WITH_ABSOLUTEURL,
+  DefaultLocale,
+  DefaultLanguage,
+} from "../constants/CommonConstants";
 import {
   CONTENT_ICON,
   LanguageList,
@@ -807,6 +811,18 @@ export const getCurrentLang = () => {
     lang = x;
   } else {
     lang = DefaultLocale;
+  }
+  return lang;
+};
+
+export const getCurrentLangName = () => {
+  let lang = "";
+  const split = window?.location.pathname.split("/");
+  const selLang = LanguageList().find((x) => x.id === split[2]);
+  if (selLang) {
+    lang = selLang.label;
+  } else {
+    lang = DefaultLanguage;
   }
   return lang;
 };

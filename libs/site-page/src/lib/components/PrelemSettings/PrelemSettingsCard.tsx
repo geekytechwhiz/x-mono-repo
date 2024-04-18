@@ -141,6 +141,21 @@ const PrelemSettingsCard = ({ selectedPrelemIndex, pageId, setPageId, updatePrel
             index: index,
           }),
         );
+        const updateContent = {
+          ...page?.prelemMetaArray[selectedPrelemIndex]?.content,
+          [sectionToUpdate]: {
+            ...page?.prelemMetaArray[selectedPrelemIndex]?.content[sectionToUpdate],
+            [index]: data,
+          },
+        };
+        updatePrelemContent(
+          updateContent,
+          selectedPrelemIndex,
+          prelemModelData.DocumentPath,
+          prelemModelData.DocumentCreationPath,
+          prelemModelData.DocumentType,
+          prelemModelData.InstanceId,
+        );
       } else {
         ShowToastError(`${t("auto_cropping_failed")}`);
       }
